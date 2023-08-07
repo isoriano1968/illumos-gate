@@ -721,7 +721,6 @@ usr/bin/test-getdc
 #
 usr/include/ficllocal.h
 usr/lib/amd64/libficl-sys.so		i386
-usr/lib/libficl-sys.so
 
 #
 # libsff is private
