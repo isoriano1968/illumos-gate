@@ -84,9 +84,11 @@ data access handle. The translation may involve byte-swapping if the host and
 the device have incompatible endian characteristics.
 .sp
 .LP
-These \fBDDI\fR functions can be called from a high-interrupt context for
-the ISA bus and, under certain conditions, for the PCI bus.
-See \fBsysbus\fR(5), \fBisa\fR(5) and \fBpci\fR(5) for details.
+For certain bus types, you can call these \fBDDI\fR functions from a
+high-interrupt context. These types include \fBISA\fR and SBus buses.  See
+\fBsysbus\fR(5), \fBisa\fR(5), and \fBsbus\fR(5) for details. For the PCI bus,
+you can, under certain conditions, call these \fBDDI\fR functions from a
+high-interrupt context. See \fBpci\fR(5).
 .SH CONTEXT
 These functions can be called from user, kernel, or interrupt context.
 .SH ATTRIBUTES
