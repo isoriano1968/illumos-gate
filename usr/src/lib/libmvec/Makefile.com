@@ -255,6 +255,11 @@ SRCS_mvec = \
 	../common/vz_log_.c \
 	../common/vz_pow_.c
 
+pics/__vsin.o := sparcv9_XARCH = -m64 -xarch=niagara
+pics/__vsincos.o := sparcv9_XARCH = -m64 -xarch=niagara
+pics/__vcosbig_ultra3.o := sparcv9_XARCH = -m64 -xarch=niagara
+pics/__vsinbig_ultra3.o := sparcv9_XARCH = -m64 -xarch=niagara
+
 .KEEP_STATE:
 
 all:	$(LIBS)
