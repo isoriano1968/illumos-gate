@@ -904,7 +904,7 @@ sun4v_display_cpus(picl_nodehdl_t cpuh, void* args)
 	picl_prophdl_t tblh;
 	picl_prophdl_t rowproph;
 	picl_propinfo_t propinfo;
-	int *int_value;
+	unsigned int *unsigned_int_value;
 	int cpuid;
 	char *comp_value;
 	char *no_prop_value = "   ";
@@ -931,21 +931,21 @@ clock_freq:
 	status = picl_get_propinfo_by_name(cpuh, "clock-frequency", &propinfo,
 	    &proph);
 	if (status == PICL_SUCCESS) {
-		int_value = malloc(propinfo.size);
-		if (int_value == NULL) {
+		unsigned_int_value = malloc(propinfo.size);
+		if (unsigned_int_value == NULL) {
 			log_printf("%-10s", no_prop_value);
 			goto compatible;
 		}
-		status = picl_get_propval(proph, int_value, propinfo.size);
+		status = picl_get_propval(proph, unsigned_int_value, propinfo.size);
 		if (status != PICL_SUCCESS) {
 			log_printf("%-10s", no_prop_value);
 		} else {
 			/* Running frequency */
 			(void) snprintf(freq_str, sizeof (freq_str), "%d MHz",
-			    CLK_FREQ_TO_MHZ(*int_value));
+			    CLK_FREQ_TO_MHZ(*unsigned_int_value));
 			log_printf("%-10s", freq_str);
 		}
-		free(int_value);
+		free(unsigned_int_value);
 	} else
 		log_printf("%-10s", no_prop_value);
 
