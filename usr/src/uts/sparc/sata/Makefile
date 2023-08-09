@@ -71,6 +71,7 @@ DEBUG_DEFS	+= $(DEBUG_FLGS)
 LDFLAGS += -Nmisc/scsi
 
 CFLAGS		+= $(CCVERBOSE)
+CERRWARN	+= $(CNOWARN_UNINIT)
 
 #
 #	Default build targets.
