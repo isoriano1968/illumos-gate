@@ -962,7 +962,7 @@ xge_hal_fifo_dtr_buffer_append(xge_hal_channel_h channelh, xge_hal_dtr_h dtrh,
  *
  * See Also: xge_hal_fifo_dtr_buffer_append().
 */
-__HAL_STATIC_FIFO __HAL_INLINE_FIFO void
+__HAL_STATIC_FIFO void
 xge_hal_fifo_dtr_buffer_finalize(xge_hal_channel_h channelh, xge_hal_dtr_h dtrh,
 		int frag_idx)
 {
