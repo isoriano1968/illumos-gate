@@ -365,7 +365,7 @@ npi_espc_reg_get(npi_handle_t handle, int reg_idx)
 	return (reg_val);
 }
 
-static inline uint8_t vpd_rd(npi_handle_t handle, uint32_t addr)
+static uint8_t vpd_rd(npi_handle_t handle, uint32_t addr)
 {
 	uint8_t data = 0;
 
