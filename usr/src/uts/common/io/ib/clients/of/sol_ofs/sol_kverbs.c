@@ -593,7 +593,7 @@ ofs_lock_enter(krwlock_t *lock)
 	}
 }
 
-static inline void
+static void
 ofs_lock_exit(krwlock_t *lock)
 {
 	if (!RW_WRITE_HELD(lock)) {
