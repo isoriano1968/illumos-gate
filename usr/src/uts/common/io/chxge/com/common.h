@@ -201,7 +201,7 @@ struct board_info {
 
 extern struct pci_device_id t1_pci_tbl[];
 
-static inline int t1_is_asic(const adapter_t *adapter)
+static int t1_is_asic(const adapter_t *adapter)
 {
 	return adapter->params.is_asic;
 }
