@@ -4880,7 +4880,7 @@ sadb_checkacquire(iacqf_t *bucket, ipsec_action_t *ap, ipsec_policy_t *pp,
  * Generate an SADB_ACQUIRE base message mblk, including KEYSOCK_OUT metadata.
  * In other words, this will return, upon success, a two-mblk chain.
  */
-static inline mblk_t *
+static mblk_t *
 sadb_acquire_msg_base(minor_t serial, uint8_t satype, uint32_t seq, pid_t pid)
 {
 	mblk_t *mp;
