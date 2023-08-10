@@ -56,6 +56,8 @@ CFLAGS		+= -DC99_NOT_SUPPORTED -DCONFIG_CHELSIO_T1_1G \
 		-I$(UTSBASE)/common/io/chxge/ \
 		-I$(UTSBASE)/common/io/chxge/com
 
+CFLAGS		+= $(CCINLINESIZE)
+
 CFLAGS		+= -DCONFIG_SMP
 
 CFLAGS		+= -DRX_MAX_COUNT=256
