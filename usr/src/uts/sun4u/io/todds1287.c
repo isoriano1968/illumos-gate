@@ -147,7 +147,7 @@ static struct dev_ops ds1287_ops = {
 	nodev,				/* reset */
 	&ds1287_cbops,			/* cb_ops */
 	(struct bus_ops *)NULL,		/* bus_ops */
-	NULL,				/* power */
+	0,				/* power */
 	ddi_quiesce_not_supported,	/* devo_quiesce */
 };
 

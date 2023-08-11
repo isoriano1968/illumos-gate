@@ -349,7 +349,7 @@ ipcl_g_init(void)
 	ip_conn_cache = kmem_cache_create("ip_conn_cache",
 	    sizeof (conn_t), CACHE_ALIGN_SIZE,
 	    ip_conn_constructor, ip_conn_destructor,
-	    NULL, NULL, NULL, 0);
+	    0, NULL, NULL, 0);
 
 	tcp_conn_cache = kmem_cache_create("tcp_conn_cache",
 	    sizeof (itc_t) + sizeof (tcp_t), CACHE_ALIGN_SIZE,
@@ -359,17 +359,17 @@ ipcl_g_init(void)
 	udp_conn_cache = kmem_cache_create("udp_conn_cache",
 	    sizeof (itc_t) + sizeof (udp_t), CACHE_ALIGN_SIZE,
 	    udp_conn_constructor, udp_conn_destructor,
-	    NULL, NULL, NULL, 0);
+	    0, NULL, NULL, 0);
 
 	rawip_conn_cache = kmem_cache_create("rawip_conn_cache",
 	    sizeof (itc_t) + sizeof (icmp_t), CACHE_ALIGN_SIZE,
 	    rawip_conn_constructor, rawip_conn_destructor,
-	    NULL, NULL, NULL, 0);
+	    0, NULL, NULL, 0);
 
 	rts_conn_cache = kmem_cache_create("rts_conn_cache",
 	    sizeof (itc_t) + sizeof (rts_t), CACHE_ALIGN_SIZE,
 	    rts_conn_constructor, rts_conn_destructor,
-	    NULL, NULL, NULL, 0);
+	    0, NULL, NULL, 0);
 }
 
 /*

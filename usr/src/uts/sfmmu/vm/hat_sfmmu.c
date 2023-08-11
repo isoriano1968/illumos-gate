@@ -1109,7 +1109,7 @@ hat_init(void)
 
 	/* mmu_ctx_t is 64 bytes aligned */
 	mmuctxdom_cache = kmem_cache_create("mmuctxdom_cache",
-	    sizeof (mmu_ctx_t), 64, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (mmu_ctx_t), 64, 0, 0, 0, NULL, NULL, 0);
 	/*
 	 * MMU context domain initialization for the Boot CPU.
 	 * This needs the context domains array allocated above.
@@ -1140,10 +1140,10 @@ hat_init(void)
 
 	sfmmuid_cache = kmem_cache_create("sfmmuid_cache", size,
 	    64, sfmmu_idcache_constructor, sfmmu_idcache_destructor,
-	    NULL, NULL, static_arena, 0);
+	    0, NULL, static_arena, 0);
 
 	sfmmu_tsbinfo_cache = kmem_cache_create("sfmmu_tsbinfo_cache",
-	    sizeof (struct tsb_info), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (struct tsb_info), 0, 0, 0, 0, NULL, NULL, 0);
 
 	/*
 	 * Since we only use the tsb8k cache to "borrow" pages for TSBs
@@ -1152,7 +1152,7 @@ hat_init(void)
 	 * them to the system as quickly as possible.
 	 */
 	sfmmu_tsb8k_cache = kmem_cache_create("sfmmu_tsb8k_cache",
-	    MMU_PAGESIZE, MMU_PAGESIZE, NULL, NULL, NULL, NULL,
+	    MMU_PAGESIZE, MMU_PAGESIZE, 0, 0, 0, NULL,
 	    static_arena, KMC_NOMAGAZINE);
 
 	/*
@@ -1272,7 +1272,7 @@ hat_init(void)
 
 			(void) sprintf(s, "sfmmu_tsb_lgrp%d_cache", i);
 			sfmmu_tsb_cache[i] = kmem_cache_create(s,
-			    PAGESIZE, PAGESIZE, NULL, NULL, NULL, NULL,
+			    PAGESIZE, PAGESIZE, 0, 0, 0, NULL,
 			    kmem_tsb_default_arena[i], 0);
 		}
 	} else {
@@ -1289,7 +1289,7 @@ hat_init(void)
 		    sfmmu_tsb_segkmem_free, kmem_tsb_arena, 0,
 		    VM_SLEEP | VM_BESTFIT);
 		sfmmu_tsb_cache[0] = kmem_cache_create("sfmmu_tsb_cache",
-		    PAGESIZE, PAGESIZE, NULL, NULL, NULL, NULL,
+		    PAGESIZE, PAGESIZE, 0, 0, 0, NULL,
 		    kmem_tsb_default_arena[0], 0);
 	}
 
@@ -1306,19 +1306,19 @@ hat_init(void)
 	sfmmu1_cache = kmem_cache_create("sfmmu1_cache", HME1BLK_SZ,
 	    HMEBLK_ALIGN, sfmmu_hblkcache_constructor,
 	    sfmmu_hblkcache_destructor,
-	    NULL, (void *)HME1BLK_SZ,
+	    0, (void *)HME1BLK_SZ,
 	    hat_memload1_arena, KMC_NOHASH);
 
 	pa_hment_cache = kmem_cache_create("pa_hment_cache", PAHME_SZ,
-	    0, NULL, NULL, NULL, NULL, static_arena, KMC_NOHASH);
+	    0, 0, 0, 0, NULL, static_arena, KMC_NOHASH);
 
 	ism_blk_cache = kmem_cache_create("ism_blk_cache",
-	    sizeof (ism_blk_t), ecache_alignsize, NULL, NULL,
-	    NULL, NULL, static_arena, KMC_NOHASH);
+	    sizeof (ism_blk_t), ecache_alignsize, 0, 0,
+	    0, NULL, static_arena, KMC_NOHASH);
 
 	ism_ment_cache = kmem_cache_create("ism_ment_cache",
-	    sizeof (ism_ment_t), 0, NULL, NULL,
-	    NULL, NULL, NULL, 0);
+	    sizeof (ism_ment_t), 0, 0, 0,
+	    0, NULL, NULL, 0);
 
 	/*
 	 * We grab the first hat for the kernel,
@@ -1386,13 +1386,13 @@ hat_init(void)
 
 		srd_cache = kmem_cache_create("srd_cache", sizeof (sf_srd_t),
 		    0, sfmmu_srdcache_constructor, sfmmu_srdcache_destructor,
-		    NULL, NULL, NULL, 0);
+		    0, NULL, NULL, 0);
 		region_cache = kmem_cache_create("region_cache",
 		    sizeof (sf_region_t), 0, sfmmu_rgncache_constructor,
-		    sfmmu_rgncache_destructor, NULL, NULL, NULL, 0);
+		    sfmmu_rgncache_destructor, 0, NULL, NULL, 0);
 		scd_cache = kmem_cache_create("scd_cache", sizeof (sf_scd_t),
 		    0, sfmmu_scdcache_constructor,  sfmmu_scdcache_destructor,
-		    NULL, NULL, NULL, 0);
+		    0, NULL, NULL, 0);
 	}
 
 	/*
@@ -8603,7 +8603,7 @@ hat_share(struct hat *sfmmup, caddr_t addr, struct hat *ism_hatid,
 	old_scdp = sfmmup->sfmmu_scdp;
 
 	rcookie = hat_join_region(sfmmup, addr, len, (void *)ism_hatid, 0,
-	    PROT_ALL, ismszc, NULL, HAT_REGION_ISM);
+	    PROT_ALL, ismszc, 0, HAT_REGION_ISM);
 	if (rcookie != HAT_INVALID_REGION_COOKIE) {
 		ism_map[i].imap_rid = (uchar_t)((uint64_t)rcookie);
 	}
@@ -13020,7 +13020,7 @@ sfmmu_init_tsbs(void)
 	}
 
 	sfmmu_tsb_cb_id = hat_register_callback('T'<<16 | 'S' << 8 | 'B',
-	    sfmmu_tsb_pre_relocator, sfmmu_tsb_post_relocator, NULL, 0);
+	    sfmmu_tsb_pre_relocator, sfmmu_tsb_post_relocator, 0, 0);
 
 	if (kpm_enable == 0)
 		return;

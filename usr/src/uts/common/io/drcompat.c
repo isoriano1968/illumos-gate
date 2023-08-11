@@ -97,19 +97,19 @@ static struct module_info drinfo = {
 
 static struct qinit drrinit = {
 	(int (*)())drrput,
-	NULL,
+	0,
 	dropen,
 	drclose,
-	NULL,
+	0,
 	&drinfo
 };
 
 static struct qinit drwinit = {
 	(int (*)())drwput,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
 	&drinfo
 };
 

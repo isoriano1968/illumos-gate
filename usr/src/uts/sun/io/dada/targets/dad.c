@@ -3462,7 +3462,7 @@ dcdioctl(dev_t dev, int cmd, intptr_t arg, int flag,
 		bp->b_bcount = 0;
 		bp->b_blkno = 0;
 		bp->b_un.b_addr = 0;
-		bp->b_iodone = NULL;
+		bp->b_iodone = 0;
 		bp->b_list = NULL;
 		bp->b_private = NULL;
 
@@ -3513,7 +3513,7 @@ dcdflushdone(struct buf *bp)
 		ASSERT(bp->b_iodone != NULL);
 		(*dkc->dkc_callback)(dkc->dkc_cookie, geterror(bp));
 		kmem_free(dkc, sizeof (*dkc));
-		bp->b_iodone = NULL;
+		bp->b_iodone = 0;
 		bp->b_private = NULL;
 	}
 

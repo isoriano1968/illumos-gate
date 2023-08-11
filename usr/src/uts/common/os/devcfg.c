@@ -243,7 +243,7 @@ i_ddi_node_cache_init()
 {
 	ASSERT(ddi_node_cache == NULL);
 	ddi_node_cache = kmem_cache_create("dev_info_node_cache",
-	    sizeof (struct dev_info), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (struct dev_info), 0, 0, 0, 0, NULL, NULL, 0);
 
 	if (ddidebug & DDI_AUDIT)
 		da_log_init();
@@ -2370,7 +2370,7 @@ find_duplicate_child(dev_info_t *pdip, dev_info_t *dip)
 
 	/* search nodes before dip */
 	dup = find_sibling(ddi_get_child(pdip), cname, caddr,
-	    FIND_NODE_BY_NODENAME, NULL);
+	    FIND_NODE_BY_NODENAME, 0);
 	if (dup != dip)
 		return (dup);
 
@@ -2378,7 +2378,7 @@ find_duplicate_child(dev_info_t *pdip, dev_info_t *dip)
 	 * search nodes after dip; normally this is not needed,
 	 */
 	return (find_sibling(ddi_get_next_sibling(dip), cname, caddr,
-	    FIND_NODE_BY_NODENAME, NULL));
+	    FIND_NODE_BY_NODENAME, 0));
 }
 
 /*
@@ -2407,12 +2407,12 @@ find_child_by_name(dev_info_t *pdip, char *cname, char *caddr)
 
 	/* attempt search without changing state of preceding siblings */
 	dip = find_sibling(ddi_get_child(pdip), cname, caddr,
-	    FIND_NODE_BY_NODENAME, NULL);
+	    FIND_NODE_BY_NODENAME, 0);
 	if (dip)
 		return (dip);
 
 	return (find_sibling(ddi_get_child(pdip), cname, caddr,
-	    FIND_NODE_BY_NODENAME|FIND_ADDR_BY_INIT, NULL));
+	    FIND_NODE_BY_NODENAME|FIND_ADDR_BY_INIT, 0));
 }
 
 /*
@@ -2426,12 +2426,12 @@ find_child_by_driver(dev_info_t *pdip, char *cname, char *caddr)
 
 	/* attempt search without changing state of preceding siblings */
 	dip = find_sibling(ddi_get_child(pdip), cname, caddr,
-	    FIND_NODE_BY_DRIVER, NULL);
+	    FIND_NODE_BY_DRIVER, 0);
 	if (dip)
 		return (dip);
 
 	return (find_sibling(ddi_get_child(pdip), cname, caddr,
-	    FIND_NODE_BY_DRIVER|FIND_ADDR_BY_INIT, NULL));
+	    FIND_NODE_BY_DRIVER|FIND_ADDR_BY_INIT, 0));
 }
 
 /*
@@ -2457,12 +2457,12 @@ find_child_by_addr(dev_info_t *pdip, char *caddr)
 
 	/* attempt search without changing state of preceding siblings */
 	dip = find_sibling(ddi_get_child(pdip), NULL, caddr,
-	    FIND_NODE_BY_ADDR, NULL);
+	    FIND_NODE_BY_ADDR, 0);
 	if (dip)
 		return (dip);
 
 	return (find_sibling(ddi_get_child(pdip), NULL, caddr,
-	    FIND_NODE_BY_ADDR|FIND_ADDR_BY_INIT, NULL));
+	    FIND_NODE_BY_ADDR|FIND_ADDR_BY_INIT, 0));
 }
 
 /*
@@ -6838,7 +6838,7 @@ ndi_devi_find(dev_info_t *pdip, char *cname, char *caddr)
 
 	ndi_devi_enter(pdip, &circ);
 	child = find_sibling(ddi_get_child(pdip), cname, caddr,
-	    FIND_NODE_BY_NODENAME, NULL);
+	    FIND_NODE_BY_NODENAME, 0);
 	ndi_devi_exit(pdip, circ);
 	return (child);
 }
@@ -6865,7 +6865,7 @@ ndi_devi_findchild(dev_info_t *pdip, char *devname)
 	}
 
 	child = find_sibling(ddi_get_child(pdip), cname, caddr,
-	    FIND_NODE_BY_NODENAME, NULL);
+	    FIND_NODE_BY_NODENAME, 0);
 	kmem_free(devstr, strlen(devname)+1);
 	return (child);
 }
@@ -9044,7 +9044,7 @@ ddi_register_aliases(plat_alias_t *pali, uint64_t npali)
 
 	create_sorted_pairs(pali, npali);
 
-	tsd_create(&tsd_ddi_redirect, NULL);
+	tsd_create(&tsd_ddi_redirect, 0);
 
 	ddi_aliases_present = B_TRUE;
 }

@@ -148,9 +148,9 @@ static audio_engine_ops_t audiocs_engine_ops = {
 	audiocs_channels,
 	audiocs_rate,
 	audiocs_sync,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
 };
 
 #define	OUTPUT_SPEAKER		0
@@ -249,7 +249,7 @@ static uint8_t cs4231_atten[] = {
 static struct dev_ops audiocs_dev_ops = {
 	DEVO_REV,			/* devo_rev */
 	0,				/* devo_refcnt */
-	NULL,				/* devo_getinfo */
+	0,				/* devo_getinfo */
 	nulldev,			/* devo_identify - obsolete */
 	nulldev,			/* devo_probe - not needed */
 	audiocs_ddi_attach,		/* devo_attach */

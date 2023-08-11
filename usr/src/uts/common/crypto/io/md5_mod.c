@@ -170,7 +170,7 @@ static crypto_digest_ops_t md5_digest_ops = {
 	md5_digest_init,
 	md5_digest,
 	md5_digest_update,
-	NULL,
+	0,
 	md5_digest_final,
 	md5_digest_atomic
 };
@@ -188,7 +188,7 @@ static int md5_mac_verify_atomic(crypto_provider_handle_t, crypto_session_id_t,
 
 static crypto_mac_ops_t md5_mac_ops = {
 	md5_mac_init,
-	NULL,
+	0,
 	md5_mac_update,
 	md5_mac_final,
 	md5_mac_atomic,

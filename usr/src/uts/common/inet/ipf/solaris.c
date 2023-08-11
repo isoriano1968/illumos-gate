@@ -158,7 +158,7 @@ static struct dev_ops ipf_ops = {
 	nodev,		/* reset */
 	&ipf_cb_ops,
 	(struct bus_ops *)0,
-	NULL,
+	0,
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 
@@ -756,7 +756,7 @@ ddi_attach_cmd_t cmd;
 		}
 
 		ipf_minor = vmem_create("ipf_minor", (void *)1, UINT32_MAX - 1,
-		    1, NULL, NULL, NULL, 0, VM_SLEEP | VMC_IDENTIFIER);
+		    1, 0, 0, NULL, 0, VM_SLEEP | VMC_IDENTIFIER);
 
 #ifdef IPFDEBUG
 		cmn_err(CE_CONT, "IP Filter:stack_create callback_reg=%d", i);

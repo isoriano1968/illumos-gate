@@ -82,7 +82,7 @@ s32 ixgbe_init_ops_X540(struct ixgbe_hw *hw)
 
 	/* PHY */
 	phy->ops.init = ixgbe_init_phy_ops_generic;
-	phy->ops.reset = NULL;
+	phy->ops.reset = 0;
 	phy->ops.set_phy_power = ixgbe_set_copper_phy_power;
 
 	/* MAC */
@@ -91,8 +91,8 @@ s32 ixgbe_init_ops_X540(struct ixgbe_hw *hw)
 	mac->ops.get_media_type = ixgbe_get_media_type_X540;
 	mac->ops.get_supported_physical_layer =
 				    ixgbe_get_supported_physical_layer_X540;
-	mac->ops.read_analog_reg8 = NULL;
-	mac->ops.write_analog_reg8 = NULL;
+	mac->ops.read_analog_reg8 = 0;
+	mac->ops.write_analog_reg8 = 0;
 	mac->ops.start_hw = ixgbe_start_hw_X540;
 	mac->ops.get_san_mac_addr = ixgbe_get_san_mac_addr_generic;
 	mac->ops.set_san_mac_addr = ixgbe_set_san_mac_addr_generic;

@@ -245,13 +245,13 @@ static const int MAX_SPEEDS = sizeof (speedtab) / sizeof (speedtab[0]);
 static dacf_op_t kbconfig_op[] = {
 	{ DACF_OPID_POSTATTACH,	kb_config },
 	{ DACF_OPID_PREDETACH,	kb_unconfig },
-	{ DACF_OPID_END,	NULL },
+	{ DACF_OPID_END,	0 },
 };
 
 static dacf_op_t msconfig_op[] = {
 	{ DACF_OPID_POSTATTACH,	ms_config },
 	{ DACF_OPID_PREDETACH,	ms_unconfig },
-	{ DACF_OPID_END,	NULL },
+	{ DACF_OPID_END,	0 },
 };
 
 static dacf_opset_t opsets[] = {

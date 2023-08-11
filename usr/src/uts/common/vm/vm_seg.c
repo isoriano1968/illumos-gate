@@ -1385,7 +1385,7 @@ seg_pinit(void)
 
 	seg_pdisabled = 0;
 	seg_pkmcache = kmem_cache_create("seg_pcache",
-	    sizeof (struct seg_pcache), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (struct seg_pcache), 0, 0, 0, 0, NULL, NULL, 0);
 	if (segpcache_pcp_maxage_ticks <= 0) {
 		segpcache_pcp_maxage_ticks = segpcache_pcp_maxage_sec * hz;
 	}
@@ -1563,7 +1563,7 @@ seg_init(void)
 	kstat_t *ksp;
 
 	seg_cache = kmem_cache_create("seg_cache", sizeof (struct seg),
-	    0, NULL, NULL, NULL, NULL, NULL, 0);
+	    0, 0, 0, 0, NULL, NULL, 0);
 
 	ksp = kstat_create("unix", 0, "segadvstat", "vm", KSTAT_TYPE_NAMED,
 	    segadvstat_ndata, KSTAT_FLAG_VIRTUAL);

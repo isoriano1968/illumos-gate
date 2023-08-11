@@ -39,21 +39,21 @@ static int cl_tcp_walk_list_stack(int (*callback)(cl_tcp_info_t *, void *),
  */
 void (*cl_inet_listen)(netstackid_t stack_id, uint8_t protocol,
 			    sa_family_t addr_family, uint8_t *laddrp,
-			    in_port_t lport, void *args) = NULL;
+			    in_port_t lport, void *args) = 0;
 void (*cl_inet_unlisten)(netstackid_t stack_id, uint8_t protocol,
 			    sa_family_t addr_family, uint8_t *laddrp,
-			    in_port_t lport, void *args) = NULL;
+			    in_port_t lport, void *args) = 0;
 
 int (*cl_inet_connect2)(netstackid_t stack_id, uint8_t protocol,
 			    boolean_t is_outgoing,
 			    sa_family_t addr_family,
 			    uint8_t *laddrp, in_port_t lport,
 			    uint8_t *faddrp, in_port_t fport,
-			    void *args) = NULL;
+			    void *args) = 0;
 void (*cl_inet_disconnect)(netstackid_t stack_id, uint8_t protocol,
 			    sa_family_t addr_family, uint8_t *laddrp,
 			    in_port_t lport, uint8_t *faddrp,
-			    in_port_t fport, void *args) = NULL;
+			    in_port_t fport, void *args) = 0;
 
 /*
  * Exported routine for extracting active tcp connection status.

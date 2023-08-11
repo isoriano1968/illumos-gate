@@ -194,7 +194,7 @@ static struct dev_ops emul64_ops = {
 	nodev,				/* reset */
 	&emul64_cbops,			/* char/block ops */
 	NULL,				/* bus ops */
-	NULL,				/* power */
+	0,				/* power */
 	ddi_quiesce_not_needed,			/* quiesce */
 };
 
@@ -373,7 +373,7 @@ emul64_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 	tran->tran_tgt_private		= NULL;
 	tran->tran_tgt_init		= emul64_tran_tgt_init;
 	tran->tran_tgt_probe		= scsi_hba_probe;
-	tran->tran_tgt_free		= NULL;
+	tran->tran_tgt_free		= 0;
 
 	tran->tran_start		= emul64_scsi_start;
 	tran->tran_abort		= emul64_scsi_abort;

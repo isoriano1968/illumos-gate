@@ -233,7 +233,7 @@ _init(void)
 	 * VOP will have a lockfs mark on it.
 	 */
 	tsd_create(&ufs_lockfs_key, ufs_lockfs_tsd_destructor);
-	tsd_create(&bypass_snapshot_throttle_key, NULL);
+	tsd_create(&bypass_snapshot_throttle_key, 0);
 	return (mod_install(&modlinkage));
 }
 
@@ -2080,7 +2080,7 @@ ufsinit(int fstype, char *name)
 		VFSNAME_SYNC,		{ .vfs_sync = ufs_sync },
 		VFSNAME_VGET,		{ .vfs_vget = ufs_vget },
 		VFSNAME_MOUNTROOT,	{ .vfs_mountroot = ufs_mountroot },
-		NULL,			NULL
+		NULL,			0
 	};
 	int error;
 

@@ -55,14 +55,14 @@ crypto_get_input_data(crypto_data_t *input, uchar_t **dptr, uchar_t *buf)
 
 	case CRYPTO_DATA_UIO:
 		if ((rv = crypto_uio_data(input, buf, input->cd_length,
-		    COPY_FROM_DATA, NULL, NULL)) != CRYPTO_SUCCESS)
+		    COPY_FROM_DATA, NULL, 0)) != CRYPTO_SUCCESS)
 			return (rv);
 		*dptr = buf;
 		break;
 
 	case CRYPTO_DATA_MBLK:
 		if ((rv = crypto_mblk_data(input, buf, input->cd_length,
-		    COPY_FROM_DATA, NULL, NULL)) != CRYPTO_SUCCESS)
+		    COPY_FROM_DATA, NULL, 0)) != CRYPTO_SUCCESS)
 			return (rv);
 		*dptr = buf;
 		break;

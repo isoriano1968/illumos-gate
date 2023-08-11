@@ -1473,7 +1473,7 @@ kphysm_del_release(memhandle_t handle)
 	mhp->mh_phys_pages = 0;
 	mhp->mh_vm_pages = 0;
 	mhp->mh_hold_todo = 0;
-	mhp->mh_delete_complete = NULL;
+	mhp->mh_delete_complete = 0;
 	mhp->mh_delete_complete_arg = NULL;
 	mhp->mh_cancel = 0;
 
@@ -3252,7 +3252,7 @@ void
 mem_config_init()
 {
 	memseg_cache = kmem_cache_create("memseg_cache", sizeof (struct memseg),
-	    0, NULL, NULL, NULL, NULL, static_arena, KMC_NOHASH);
+	    0, 0, 0, 0, NULL, static_arena, KMC_NOHASH);
 }
 
 struct memseg *
@@ -3302,7 +3302,7 @@ memseg_cpu_vm_flush()
 	vm_cpu_data_t *vc;
 
 	mutex_enter(&cpu_lock);
-	pause_cpus(NULL, NULL);
+	pause_cpus(NULL, 0);
 
 	cp = cpu_list;
 	do {

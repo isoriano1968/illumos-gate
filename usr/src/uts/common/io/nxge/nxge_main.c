@@ -339,13 +339,13 @@ mac_callbacks_t nxge_m_callbacks = {
 	nxge_m_stop,
 	nxge_m_promisc,
 	nxge_m_multicst,
-	NULL,
-	NULL,
+	0,
+	0,
 	NULL,
 	nxge_m_ioctl,
 	nxge_m_getcapab,
-	NULL,
-	NULL,
+	0,
+	0,
 	nxge_m_setprop,
 	nxge_m_getprop,
 	nxge_m_propinfo
@@ -4406,8 +4406,8 @@ nxge_m_getcapab(void *arg, mac_capab_t cap, void *cap_data)
 				cap_rings->mr_rget = nxge_fill_ring;
 				cap_rings->mr_gnum = 1;
 				cap_rings->mr_gget = nxge_hio_group_get;
-				cap_rings->mr_gaddring = NULL;
-				cap_rings->mr_gremring = NULL;
+				cap_rings->mr_gaddring = 0;
+				cap_rings->mr_gremring = 0;
 			} else {
 				/*
 				 * Service Domain.
@@ -4436,9 +4436,9 @@ nxge_m_getcapab(void *arg, mac_capab_t cap, void *cap_data)
 				    NXGE_HIO_SHARE_MAX_CHANNELS;
 				cap_rings->mr_rget = nxge_fill_ring;
 				cap_rings->mr_gnum = 0;
-				cap_rings->mr_gget = NULL;
-				cap_rings->mr_gaddring = NULL;
-				cap_rings->mr_gremring = NULL;
+				cap_rings->mr_gget = 0;
+				cap_rings->mr_gaddring = 0;
+				cap_rings->mr_gremring = 0;
 			} else {
 				/*
 				 * Service Domain.
@@ -6176,7 +6176,7 @@ nxge_add_intrs_adv_type(p_nxge_t nxgep, uint32_t int_type)
 			    arg1, arg2,
 			    ldgp->nldvs, x, ldgp->intdata));
 		} else {
-			inthandler = NULL;
+			inthandler = 0;
 		}
 
 		NXGE_DEBUG_MSG((nxgep, INT_CTL,
@@ -6343,7 +6343,7 @@ nxge_add_intrs_adv_type_fix(p_nxge_t nxgep, uint32_t int_type)
 			    x, ldgp->nldvs, ldgp->ldg, ldgp->ldvp->ldv,
 			    arg1, arg2));
 		} else {
-			inthandler = NULL;
+			inthandler = 0;
 		}
 
 		if ((ddi_status = ddi_intr_add_handler(intrp->htable[x],

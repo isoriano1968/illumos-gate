@@ -206,7 +206,7 @@ static struct dev_ops consms_ops = {
 	nodev,			/* devo_reset */
 	&(cb_consms_ops),	/* devo_cb_ops */
 	(struct bus_ops *)NULL,	/* devo_bus_ops */
-	NULL,			/* devo_power */
+	0,			/* devo_power */
 	ddi_quiesce_not_needed,		/* devo_quiesce */
 };
 
@@ -869,7 +869,7 @@ consms_add_lq(consms_lq_t *lq)
 
 	ASSERT(MUTEX_HELD(&consmslock));
 
-	lq->lq_ioc_reply_func = NULL;
+	lq->lq_ioc_reply_func = 0;
 	iocp = (struct iocblk *)lq->lq_pending_plink->b_rptr;
 	iocp->ioc_error = 0;
 	iocp->ioc_count = 0;

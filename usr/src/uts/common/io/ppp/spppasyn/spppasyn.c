@@ -152,20 +152,20 @@ static struct module_info spppasyn_modinfo = {
 
 static struct qinit spppasyn_rinit = {
 	spppasyn_rput,		/* qi_putp */
-	NULL,			/* qi_srvp */
+	0,			/* qi_srvp */
 	spppasyn_open,		/* qi_qopen */
 	spppasyn_close,		/* qi_qclose */
-	NULL,			/* qi_qadmin */
+	0,			/* qi_qadmin */
 	&spppasyn_modinfo,	/* qi_minfo */
 	NULL			/* qi_mstat */
 };
 
 static struct qinit spppasyn_winit = {
 	spppasyn_wput,		/* qi_putp */
-	NULL,			/* qi_srvp */
-	NULL,			/* qi_qopen */
-	NULL,			/* qi_qclose */
-	NULL,			/* qi_qadmin */
+	0,			/* qi_srvp */
+	0,			/* qi_qopen */
+	0,			/* qi_qclose */
+	0,			/* qi_qadmin */
 	&spppasyn_modinfo,	/* qi_minfo */
 	NULL			/* qi_mstat */
 };

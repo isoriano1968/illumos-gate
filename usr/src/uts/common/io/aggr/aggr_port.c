@@ -82,7 +82,7 @@ aggr_port_init(void)
 {
 	aggr_port_cache = kmem_cache_create("aggr_port_cache",
 	    sizeof (aggr_port_t), 0, aggr_port_constructor,
-	    aggr_port_destructor, NULL, NULL, NULL, 0);
+	    aggr_port_destructor, 0, NULL, NULL, 0);
 
 	/*
 	 * Allocate a id space to manage port identification. The range of

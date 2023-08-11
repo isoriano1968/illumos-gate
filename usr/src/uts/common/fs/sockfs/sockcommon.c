@@ -505,7 +505,7 @@ sonode_constructor(void *buf, void *cdrarg, int kmflags)
 	cv_init(&so->so_copy_cv, NULL, CV_DEFAULT, NULL);
 	cv_init(&so->so_closing_cv, NULL, CV_DEFAULT, NULL);
 
-	so->so_krecv_cb = NULL;
+	so->so_krecv_cb = 0;
 	so->so_krecv_arg = NULL;
 
 	return (0);
@@ -662,7 +662,7 @@ sonode_fini(struct sonode *so)
 		sof_sonode_cleanup(so);
 
 	/* Clean up any remnants of krecv callbacks */
-	so->so_krecv_cb = NULL;
+	so->so_krecv_cb = 0;
 	so->so_krecv_arg = NULL;
 
 	ASSERT(list_is_empty(&so->so_acceptq_list));

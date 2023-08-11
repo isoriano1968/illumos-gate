@@ -171,12 +171,12 @@ static struct module_info info = {
 };
 
 static struct qinit rinit = {
-	NULL, spdsock_rsrv, spdsock_open, spdsock_close,
-	NULL, &info
+	0, spdsock_rsrv, spdsock_open, spdsock_close,
+	0, &info
 };
 
 static struct qinit winit = {
-	spdsock_wput, spdsock_wsrv, NULL, NULL, NULL, &info
+	spdsock_wput, spdsock_wsrv, 0, 0, 0, &info
 };
 
 struct streamtab spdsockinfo = {
@@ -272,7 +272,7 @@ spdsock_ddi_init(void)
 	    spdsock_opt_obj.odb_opt_des_arr, spdsock_opt_obj.odb_opt_arr_cnt);
 
 	spdsock_vmem = vmem_create("spdsock", (void *)1, MAXMIN, 1,
-	    NULL, NULL, NULL, 1, VM_SLEEP | VMC_IDENTIFIER);
+	    0, 0, NULL, 1, VM_SLEEP | VMC_IDENTIFIER);
 
 	/*
 	 * We want to be informed each time a stack is created or

@@ -199,12 +199,12 @@ static mac_callbacks_t vnet_m_callbacks = {
 	vnet_m_stop,
 	vnet_m_promisc,
 	vnet_m_multicst,
-	NULL,	/* m_unicst entry must be NULL while rx rings are exposed */
-	NULL,	/* m_tx entry must be NULL while tx rings are exposed */
+	0,	/* m_unicst entry must be NULL while rx rings are exposed */
+	0,	/* m_tx entry must be NULL while tx rings are exposed */
 	NULL,
 	vnet_m_ioctl,
 	vnet_m_capab,
-	NULL
+	0
 };
 
 static mac_callbacks_t vnet_hio_res_callbacks = {
@@ -212,13 +212,13 @@ static mac_callbacks_t vnet_hio_res_callbacks = {
 	vnet_hio_stat,
 	vnet_hio_start,
 	vnet_hio_stop,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
 	vnet_hio_tx,
 	NULL,
-	NULL,
-	NULL
+	0,
+	0
 };
 
 /*
@@ -307,7 +307,7 @@ static struct cb_ops cb_vnetops = {
 static struct dev_ops vnetops = {
 	DEVO_REV,		/* devo_rev */
 	0,			/* devo_refcnt */
-	NULL,			/* devo_getinfo */
+	0,			/* devo_getinfo */
 	nulldev,		/* devo_identify */
 	nulldev,		/* devo_probe */
 	vnetattach,		/* devo_attach */
@@ -315,7 +315,7 @@ static struct dev_ops vnetops = {
 	nodev,			/* devo_reset */
 	&cb_vnetops,		/* devo_cb_ops */
 	(struct bus_ops *)NULL,	/* devo_bus_ops */
-	NULL,			/* devo_power */
+	0,			/* devo_power */
 	ddi_quiesce_not_supported,	/* devo_quiesce */
 };
 
@@ -2173,8 +2173,8 @@ vnet_m_capab(void *arg, mac_capab_t cap, void *cap_data)
 
 			cap_rings->mr_gnum = VNET_NUM_PSEUDO_GROUPS;
 			cap_rings->mr_gget = vnet_get_group;
-			cap_rings->mr_gaddring = NULL;
-			cap_rings->mr_gremring = NULL;
+			cap_rings->mr_gaddring = 0;
+			cap_rings->mr_gremring = 0;
 		} else {
 			cap_rings->mr_group_type = MAC_GROUP_TYPE_STATIC;
 
@@ -2193,8 +2193,8 @@ vnet_m_capab(void *arg, mac_capab_t cap, void *cap_data)
 			cap_rings->mr_gnum = 0;
 
 			cap_rings->mr_gget = vnet_get_group;
-			cap_rings->mr_gaddring = NULL;
-			cap_rings->mr_gremring = NULL;
+			cap_rings->mr_gaddring = 0;
+			cap_rings->mr_gremring = 0;
 		}
 		return (B_TRUE);
 
@@ -2337,8 +2337,8 @@ vnet_get_group(void *arg, mac_ring_type_t type, const int index,
 		rx_grp->vnetp = vnetp;
 
 		infop->mgi_driver = (mac_group_driver_t)rx_grp;
-		infop->mgi_start = NULL;
-		infop->mgi_stop = NULL;
+		infop->mgi_start = 0;
+		infop->mgi_stop = 0;
 		infop->mgi_addmac = vnet_addmac;
 		infop->mgi_remmac = vnet_remmac;
 		infop->mgi_count = rx_grp->ring_cnt;
@@ -2359,10 +2359,10 @@ vnet_get_group(void *arg, mac_ring_type_t type, const int index,
 		tx_grp->vnetp = vnetp;
 
 		infop->mgi_driver = (mac_group_driver_t)tx_grp;
-		infop->mgi_start = NULL;
-		infop->mgi_stop = NULL;
-		infop->mgi_addmac = NULL;
-		infop->mgi_remmac = NULL;
+		infop->mgi_start = 0;
+		infop->mgi_stop = 0;
+		infop->mgi_addmac = 0;
+		infop->mgi_remmac = 0;
 		infop->mgi_count = VNET_NUM_PSEUDO_TXRINGS;
 
 		break;
@@ -2913,7 +2913,7 @@ vnet_unbind_hwrings(vnet_t *vnetp)
 			tx_ringp->hw_rh = NULL;
 		}
 	}
-	(void) mac_client_tx_notify(vnetp->hio_mch, NULL,
+	(void) mac_client_tx_notify(vnetp->hio_mch, 0,
 	    tx_grp->tx_notify_handle);
 
 	rx_grp = &vnetp->rx_grp[0];

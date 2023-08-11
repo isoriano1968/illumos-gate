@@ -170,7 +170,7 @@ iommu_init(struct sbus_soft_state *softsp, caddr_t address)
 	 */
 	softsp->dvma_arena = vmem_create(name,
 	    (void *)(uintptr_t)softsp->iommu_dvma_base,
-	    softsp->iommu_dvma_size, PAGESIZE, NULL, NULL, NULL,
+	    softsp->iommu_dvma_size, PAGESIZE, 0, 0, NULL,
 	    DVMA_MAX_CACHE, VM_SLEEP);
 
 	/* Set the limit for dvma_reserve() to 1/2 of the total dvma space */

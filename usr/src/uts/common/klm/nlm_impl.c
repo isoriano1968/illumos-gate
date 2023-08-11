@@ -278,7 +278,7 @@ nlm_init(void)
 
 	nlm_vhold_cache = kmem_cache_create("nlm_vhold_cache",
 	    sizeof (struct nlm_vhold), 0, nlm_vhold_ctor, nlm_vhold_dtor,
-	    NULL, NULL, NULL, 0);
+	    0, NULL, NULL, 0);
 
 	nlm_rpc_init();
 	TAILQ_INIT(&nlm_zones_list);
@@ -2340,7 +2340,7 @@ nlm_svc_add_ep(struct file *fp, const char *netid, struct knetconfig *knc)
 	int error;
 
 	error = svc_tli_kcreate(fp, 0, (char *)netid, NULL, &xprt,
-	    &nlm_sct, NULL, NLM_SVCPOOL_ID, FALSE);
+	    &nlm_sct, 0, NLM_SVCPOOL_ID, FALSE);
 	if (error != 0)
 		return (error);
 

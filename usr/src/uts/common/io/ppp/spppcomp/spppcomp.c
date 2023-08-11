@@ -126,7 +126,7 @@ static struct qinit spppcomp_rinit = {
 	spppcomp_rsrv,		/* qi_srvp */
 	spppcomp_open,		/* qi_qopen */
 	spppcomp_close,		/* qi_qclose */
-	NULL,			/* qi_qadmin */
+	0,			/* qi_qadmin */
 	&spppcomp_modinfo,	/* qi_minfo */
 	NULL			/* qi_mstat */
 };
@@ -134,9 +134,9 @@ static struct qinit spppcomp_rinit = {
 static struct qinit spppcomp_winit = {
 	spppcomp_wput,		/* qi_putp */
 	spppcomp_wsrv,		/* qi_srvp */
-	NULL,			/* qi_qopen */
-	NULL,			/* qi_qclose */
-	NULL,			/* qi_qadmin */
+	0,			/* qi_qopen */
+	0,			/* qi_qclose */
+	0,			/* qi_qadmin */
 	&spppcomp_modinfo,	/* qi_minfo */
 	NULL			/* qi_mstat */
 };

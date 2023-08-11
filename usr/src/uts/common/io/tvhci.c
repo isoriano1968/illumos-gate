@@ -103,32 +103,32 @@ static struct cb_ops tvhci_cb_ops = {
 static struct bus_ops tvhci_bus_ops = {
 	BUSO_REV,			/* busops_rev */
 	nullbusmap,			/* bus_map */
-	NULL,				/* bus_get_intrspec */
-	NULL,				/* bus_add_interspec */
-	NULL,				/* bus_remove_interspec */
+	0,				/* bus_get_intrspec */
+	0,				/* bus_add_interspec */
+	0,				/* bus_remove_interspec */
 	i_ddi_map_fault,		/* bus_map_fault */
 	ddi_no_dma_map,			/* bus_dma_map */
 	ddi_no_dma_allochdl,		/* bus_dma_allochdl */
-	NULL,				/* bus_dma_freehdl */
-	NULL,				/* bus_dma_bindhdl */
-	NULL,				/* bus_dma_unbindhdl */
-	NULL,				/* bus_dma_flush */
-	NULL,				/* bus_dma_win */
-	NULL,				/* bus_dma_ctl */
+	0,				/* bus_dma_freehdl */
+	0,				/* bus_dma_bindhdl */
+	0,				/* bus_dma_unbindhdl */
+	0,				/* bus_dma_flush */
+	0,				/* bus_dma_win */
+	0,				/* bus_dma_ctl */
 	tvhci_ctl,			/* bus_ctl */
 	ddi_bus_prop_op,		/* bus_prop_op */
-	NULL,				/* bus_get_eventcookie */
-	NULL,				/* bus_add_eventcall */
-	NULL,				/* bus_remove_event */
-	NULL,				/* bus_post_event */
-	NULL,				/* bus_intr_ctl */
+	0,				/* bus_get_eventcookie */
+	0,				/* bus_add_eventcall */
+	0,				/* bus_remove_event */
+	0,				/* bus_post_event */
+	0,				/* bus_intr_ctl */
 	tvhci_bus_config,		/* bus_config */
 	tvhci_bus_unconfig,		/* bus_unconfig */
-	NULL,				/* bus_fm_init */
-	NULL,				/* bus_fm_fini */
-	NULL,				/* bus_fm_access_enter */
-	NULL,				/* bus_fm_access_exit */
-	NULL,				/* bus_power */
+	0,				/* bus_fm_init */
+	0,				/* bus_fm_fini */
+	0,				/* bus_fm_access_enter */
+	0,				/* bus_fm_access_exit */
+	0,				/* bus_power */
 	tvhci_intr_op			/* bus_intr_op */
 };
 
@@ -143,7 +143,7 @@ static struct dev_ops tvhci_ops = {
 	nodev,			/* reset */
 	&tvhci_cb_ops,		/* cb_ops */
 	&tvhci_bus_ops,		/* bus_ops */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

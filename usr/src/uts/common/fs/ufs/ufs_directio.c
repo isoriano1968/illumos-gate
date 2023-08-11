@@ -156,7 +156,7 @@ directio_bufs_init(void)
 	directio_buf_cache = kmem_cache_create("directio_buf_cache",
 	    sizeof (struct directio_buf), 0,
 	    directio_buf_constructor, directio_buf_destructor,
-	    NULL, NULL, NULL, 0);
+	    0, NULL, NULL, 0);
 }
 
 void

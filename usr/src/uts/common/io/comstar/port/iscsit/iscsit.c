@@ -96,7 +96,7 @@ static struct dev_ops iscsit_dev_ops = {
 	nodev,			/* devo_reset */
 	&iscsit_cb_ops,		/* devo_cb_ops */
 	NULL,			/* devo_bus_ops */
-	NULL,			/* devo_power */
+	0,			/* devo_power */
 	ddi_quiesce_not_needed,	/* quiesce */
 };
 
@@ -692,7 +692,7 @@ iscsit_enable_svc(iscsit_hostinfo_t *hostinfo)
 	    offsetof(iscsit_ini_t, ini_global_ln));
 
 	iscsit_global.global_tsih_pool = vmem_create("iscsit_tsih_pool",
-	    (void *)1, ISCSI_MAX_TSIH, 1, NULL, NULL, NULL, 0,
+	    (void *)1, ISCSI_MAX_TSIH, 1, 0, 0, NULL, 0,
 	    VM_SLEEP | VMC_IDENTIFIER);
 
 	/*
@@ -714,7 +714,7 @@ iscsit_enable_svc(iscsit_hostinfo_t *hostinfo)
 	iscsit_status_pdu_cache = kmem_cache_create("iscsit_status_pdu_cache",
 	    sizeof (idm_pdu_t) + sizeof (iscsi_scsi_rsp_hdr_t), 8,
 	    &iscsit_status_pdu_constructor,
-	    NULL, NULL, NULL, NULL, KM_SLEEP);
+	    0, 0, NULL, NULL, KM_SLEEP);
 
 	/* Default TPG and portal */
 	iscsit_global.global_default_tpg = iscsit_tpg_createdefault();
@@ -1163,7 +1163,7 @@ iscsit_keepalive(idm_conn_t *ic)
 	 * so we will just throw it away without looking at it when it arrives.
 	 */
 	nop_in_pdu = idm_pdu_alloc(sizeof (*nop_in), 0);
-	idm_pdu_init(nop_in_pdu, ic, NULL, NULL);
+	idm_pdu_init(nop_in_pdu, ic, NULL, 0);
 	nop_in = (iscsi_nop_in_hdr_t *)nop_in_pdu->isp_hdr;
 	bzero(nop_in, sizeof (*nop_in));
 	nop_in->opcode = ISCSI_OP_NOOP_IN;
@@ -2303,7 +2303,7 @@ iscsit_send_direct_scsi_resp(iscsit_conn_t *ict, idm_pdu_t *rx_pdu,
 	ic = ict->ict_ic;
 
 	rsp_pdu = idm_pdu_alloc(sizeof (iscsi_scsi_rsp_hdr_t), 0);
-	idm_pdu_init(rsp_pdu, ic, NULL, NULL);
+	idm_pdu_init(rsp_pdu, ic, NULL, 0);
 	/*
 	 * StatSN is incremented by 1 for every response sent on
 	 * a connection except for responses sent as a result of
@@ -2380,7 +2380,7 @@ iscsit_op_scsi_task_mgmt(iscsit_conn_t *ict, idm_pdu_t *rx_pdu)
 		idm_pdu_complete(rx_pdu, IDM_STATUS_SUCCESS);
 		return;
 	}
-	idm_pdu_init(tm_resp_pdu, ict->ict_ic, NULL, NULL);
+	idm_pdu_init(tm_resp_pdu, ict->ict_ic, NULL, 0);
 	iscsi_tm_rsp = (iscsi_scsi_task_mgt_rsp_hdr_t *)tm_resp_pdu->isp_hdr;
 	bzero(iscsi_tm_rsp, sizeof (iscsi_scsi_task_mgt_rsp_hdr_t));
 	iscsi_tm_rsp->opcode = ISCSI_OP_SCSI_TASK_MGT_RSP;
@@ -2572,7 +2572,7 @@ iscsit_pdu_op_noop(iscsit_conn_t *ict, idm_pdu_t *rx_pdu)
 	/* Allocate a PDU to respond */
 	resp_datalen = ntoh24(out->dlength);
 	resp = idm_pdu_alloc(sizeof (iscsi_hdr_t), resp_datalen);
-	idm_pdu_init(resp, ict->ict_ic, NULL, NULL);
+	idm_pdu_init(resp, ict->ict_ic, NULL, 0);
 	if (resp_datalen > 0) {
 		bcopy(rx_pdu->isp_data, resp->isp_data, resp_datalen);
 	}
@@ -2620,7 +2620,7 @@ iscsit_pdu_op_logout_cmd(iscsit_conn_t	*ict, idm_pdu_t *rx_pdu)
 
 	/* Allocate a PDU to respond */
 	resp = idm_pdu_alloc(sizeof (iscsi_hdr_t), 0);
-	idm_pdu_init(resp, ict->ict_ic, NULL, NULL);
+	idm_pdu_init(resp, ict->ict_ic, NULL, 0);
 	/*
 	 * The StatSN is to be sent to the initiator,
 	 * it is not required to increment the number
@@ -2736,7 +2736,7 @@ iscsit_send_async_event(iscsit_conn_t *ict, uint8_t event)
 	 * The StatSN for the connection is advanced after the PDU is sent
 	 * to allow for initiator and target state synchronization.
 	 */
-	idm_pdu_init(abt, ict->ict_ic, NULL, NULL);
+	idm_pdu_init(abt, ict->ict_ic, NULL, 0);
 	abt->isp_datalen = 0;
 	abt->isp_flags |= IDM_PDU_SET_STATSN | IDM_PDU_ADVANCE_STATSN;
 
@@ -2780,7 +2780,7 @@ iscsit_send_reject(iscsit_conn_t *ict, idm_pdu_t *rejected_pdu, uint8_t reason)
 		idm_conn_event(ict->ict_ic, CE_TRANSPORT_FAIL, 0);
 		return;
 	}
-	idm_pdu_init(reject_pdu, ict->ict_ic, NULL, NULL);
+	idm_pdu_init(reject_pdu, ict->ict_ic, NULL, 0);
 	/* StatSN is advanced after a Reject PDU */
 	reject_pdu->isp_flags |= IDM_PDU_SET_STATSN | IDM_PDU_ADVANCE_STATSN;
 	reject_pdu->isp_datalen = rejected_pdu->isp_hdrlen;

@@ -105,7 +105,7 @@ struct svc_ops svc_cots_op = {
 	svc_cots_kfreeres,	/* Destroy pre-serialized response header */
 	svc_cots_kclone_destroy, /* Destroy a clone xprt */
 	svc_cots_kstart,	/* Tell `ready-to-receive' to rpcmod */
-	NULL,			/* Transport specific clone xprt */
+	0,			/* Transport specific clone xprt */
 	svc_cots_ktattrs,	/* Transport Attributes */
 	mir_svc_hold,		/* Increment transport reference count */
 	mir_svc_release		/* Decrement transport reference count */
@@ -844,7 +844,7 @@ svc_cots_kdup(struct svc_req *req, caddr_t res, int size, struct dupreq **drpp,
 			(*dr->dr_resfree)(dr->dr_resp.buf);
 		}
 	}
-	dr->dr_resfree = NULL;
+	dr->dr_resfree = 0;
 	cotsdrmru = dr;
 
 	dr->dr_xid = REQTOXID(req);

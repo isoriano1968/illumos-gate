@@ -880,7 +880,7 @@ void
 page_retire_init(void)
 {
 	const fs_operation_def_t retired_vnodeops_template[] = {
-		{ NULL, NULL }
+		{ NULL, 0 }
 	};
 	struct vnodeops *vops;
 	kstat_t *ksp;

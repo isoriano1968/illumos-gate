@@ -88,7 +88,7 @@ top:
 	if (sigfunc != NULL && txg_wait_synced_sig(dp, dst.dst_txg)) {
 		/* current contract is to call func once */
 		sigfunc(arg, tx);
-		sigfunc = NULL;	/* in case of an EAGAIN retry */
+		sigfunc = 0;	/* in case of an EAGAIN retry */
 	}
 	txg_wait_synced(dp, dst.dst_txg);
 
@@ -129,7 +129,7 @@ dsl_sync_task(const char *pool, dsl_checkfunc_t *checkfunc,
     dsl_syncfunc_t *syncfunc, void *arg,
     int blocks_modified, zfs_space_check_t space_check)
 {
-	return (dsl_sync_task_common(pool, checkfunc, syncfunc, NULL, arg,
+	return (dsl_sync_task_common(pool, checkfunc, syncfunc, 0, arg,
 	    blocks_modified, space_check, B_FALSE));
 }
 
@@ -151,7 +151,7 @@ dsl_early_sync_task(const char *pool, dsl_checkfunc_t *checkfunc,
     dsl_syncfunc_t *syncfunc, void *arg,
     int blocks_modified, zfs_space_check_t space_check)
 {
-	return (dsl_sync_task_common(pool, checkfunc, syncfunc, NULL, arg,
+	return (dsl_sync_task_common(pool, checkfunc, syncfunc, 0, arg,
 	    blocks_modified, space_check, B_TRUE));
 }
 

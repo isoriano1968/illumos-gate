@@ -6295,7 +6295,7 @@ i_mdi_enable_disable_path(mdi_pathinfo_t *pip, mdi_vhci_t *vh, int flags,
 	int		sync_flag = 0;
 	int		rv;
 	mdi_pathinfo_t	*next;
-	int		(*f)() = NULL;
+	int		(*f)() = 0;
 
 	/*
 	 * Check to make sure the path is not already in the

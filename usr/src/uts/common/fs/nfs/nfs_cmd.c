@@ -78,7 +78,7 @@ void
 nfscmd_init(void)
 {
 	zone_key_create(&nfscmd_zone_key, nfscmd_zone_init,
-	    NULL, nfscmd_zone_fini);
+	    0, nfscmd_zone_fini);
 }
 
 void

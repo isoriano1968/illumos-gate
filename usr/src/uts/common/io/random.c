@@ -106,7 +106,7 @@ static struct dev_ops rnd_ops = {
 	nodev,			/* reset */
 	&rnd_cb_ops,		/* driver operations */
 	NULL,			/* bus operations */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

@@ -169,7 +169,7 @@ softmac_init()
 
 	softmac_cachep = kmem_cache_create("softmac_cache",
 	    sizeof (softmac_t), 0, softmac_constructor,
-	    softmac_destructor, NULL, NULL, NULL, 0);
+	    softmac_destructor, 0, NULL, NULL, 0);
 	ASSERT(softmac_cachep != NULL);
 	softmac_fp_init();
 }

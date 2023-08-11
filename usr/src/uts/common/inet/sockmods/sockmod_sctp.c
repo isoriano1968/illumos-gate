@@ -44,7 +44,7 @@ static void 	socksctp_destructor(void *, void *);
 static __smod_priv_t sosctp_priv = {
 	socksctp_create,
 	socksctp_destroy,
-	NULL
+	0
 };
 
 static smod_reg_t sinfo = {
@@ -52,7 +52,7 @@ static smod_reg_t sinfo = {
 	"socksctp",
 	SOCK_UC_VERSION,
 	SOCK_DC_VERSION,
-	NULL,
+	0,
 	&sosctp_priv
 };
 
@@ -77,9 +77,9 @@ socksctp_init(void)
 {
 	sosctp_sockcache = kmem_cache_create("sctpsock",
 	    sizeof (struct sctp_sonode), 0, socksctp_constructor,
-	    socksctp_destructor, NULL, NULL, NULL, 0);
+	    socksctp_destructor, 0, NULL, NULL, 0);
 	sosctp_assoccache = kmem_cache_create("sctp_assoc",
-	    sizeof (struct sctp_soassoc), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (struct sctp_soassoc), 0, 0, 0, 0, NULL, NULL, 0);
 	return (0);
 }
 

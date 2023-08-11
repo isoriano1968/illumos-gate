@@ -235,7 +235,7 @@ void
 squeue_init(void)
 {
 	squeue_cache = kmem_cache_create("squeue_cache",
-	    sizeof (squeue_t), 64, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (squeue_t), 64, 0, 0, 0, NULL, NULL, 0);
 
 	squeue_drain_ns = squeue_drain_ms * SQUEUE_MSEC_TO_NSEC;
 }
@@ -1157,8 +1157,8 @@ squeue_worker_thr_control(squeue_t *sqp)
 
 		rx_ring->rr_rx_handle = NULL;
 		rx_ring->rr_intr_handle = NULL;
-		rx_ring->rr_intr_enable = NULL;
-		rx_ring->rr_intr_disable = NULL;
+		rx_ring->rr_intr_enable = 0;
+		rx_ring->rr_intr_disable = 0;
 		sqp->sq_state |= SQS_POLL_CLEANUP_DONE;
 	} else {
 		sqp->sq_state &= ~SQS_POLL_QUIESCE;

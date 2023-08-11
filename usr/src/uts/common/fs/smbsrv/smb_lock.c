@@ -894,7 +894,7 @@ smb_lock_wait(smb_request_t *sr, smb_lock_t *lock, smb_lock_t *conflict)
 	 * finish SR state transitions.
 	 */
 	mutex_enter(&sr->sr_mutex);
-	sr->cancel_method = NULL;
+	sr->cancel_method = 0;
 	sr->cancel_arg2 = NULL;
 
 	switch (sr->sr_state) {

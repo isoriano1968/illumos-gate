@@ -42,7 +42,7 @@ static void brand_plat_interposition_enable(void);
 static void brand_plat_interposition_disable(void);
 
 struct brand_mach_ops native_mach_ops  = {
-		NULL, NULL
+		0, 0
 };
 #else /* !__sparcv9 */
 struct brand_mach_ops native_mach_ops  = {

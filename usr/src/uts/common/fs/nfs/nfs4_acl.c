@@ -219,14 +219,14 @@ nfs4_acl_init(void)
 {
 	nfs4_ace4vals_cache = kmem_cache_create("nfs4_ace4vals_cache",
 	    sizeof (ace4vals_t), 0,
-	    NULL, NULL,
-	    NULL, NULL,
+	    0, 0,
+	    0, NULL,
 	    NULL,
 	    0);
 	nfs4_ace4_list_cache = kmem_cache_create("nfs4_ace4_list_cache",
 	    sizeof (ace4_list_t), 0,
 	    nfs4_ace4_list_construct, nfs4_ace4_list_destroy,
-	    NULL, NULL,
+	    0, NULL,
 	    NULL,
 	    0);
 }

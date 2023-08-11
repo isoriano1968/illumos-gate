@@ -353,7 +353,7 @@ static dacf_op_t kmod_op_test[] = {
 #ifdef DEBUG
 	{ DACF_OPID_POSTATTACH, kmod_test_postattach },
 #endif
-	{ DACF_OPID_END,	NULL },
+	{ DACF_OPID_END,	0 },
 };
 
 static dacf_opset_t kmod_opsets[] = {

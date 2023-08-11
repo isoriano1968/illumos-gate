@@ -96,7 +96,7 @@ void
 mac_bcast_init(void)
 {
 	mac_bcast_grp_cache = kmem_cache_create("mac_bcast_grp_cache",
-	    sizeof (mac_bcast_grp_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (mac_bcast_grp_t), 0, 0, 0, 0, NULL, NULL, 0);
 }
 
 void

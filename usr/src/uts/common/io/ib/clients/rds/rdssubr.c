@@ -128,7 +128,7 @@ void
 rds_init()
 {
 	rds_alloc_cache = kmem_cache_create("rds_alloc_cache",
-	    sizeof (rds_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (rds_t), 0, 0, 0, 0, NULL, NULL, 0);
 	rds_hash_init();
 	/*
 	 * kstats

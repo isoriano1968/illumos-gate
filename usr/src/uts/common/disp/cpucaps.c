@@ -243,7 +243,7 @@ cpucaps_init()
 
 	cpucaps_enabled = B_FALSE;
 	cpucaps_busy = B_FALSE;
-	cpucaps_clock_callout = NULL;
+	cpucaps_clock_callout = 0;
 }
 
 /*
@@ -343,7 +343,7 @@ cap_disable(list_t *l, cpucap_t *cap)
 	list_remove(l, cap);
 	if (list_is_empty(&capped_projects) && list_is_empty(&capped_zones)) {
 		cpucaps_enabled = B_FALSE;
-		cpucaps_clock_callout = NULL;
+		cpucaps_clock_callout = 0;
 	}
 	cap->cap_value = 0;
 	cap->cap_project = NULL;

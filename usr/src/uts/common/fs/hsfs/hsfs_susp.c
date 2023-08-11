@@ -71,7 +71,7 @@ ext_signature_t  susp_signature_table[ ] = {
 	SUSP_PD,	share_padding,
 	SUSP_ER,	share_ext_ref,
 	SUSP_ST,	share_stop,
-	(char *)NULL,	NULL
+	(char *)NULL,	0
 };
 
 /*

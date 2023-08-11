@@ -317,7 +317,7 @@ static int dca_generate_random(crypto_provider_handle_t, crypto_session_id_t,
     uchar_t *, size_t, crypto_req_handle_t);
 
 static crypto_random_number_ops_t dca_random_number_ops = {
-	NULL,
+	0,
 	dca_generate_random
 };
 
@@ -330,22 +330,22 @@ static int ext_info_base(crypto_provider_handle_t prov,
 
 static crypto_provider_management_ops_t dca_provmanage_ops_1 = {
 	ext_info_sym,		/* ext_info */
-	NULL,			/* init_token */
-	NULL,			/* init_pin */
-	NULL			/* set_pin */
+	0,			/* init_token */
+	0,			/* init_pin */
+	0			/* set_pin */
 };
 
 static crypto_provider_management_ops_t dca_provmanage_ops_2 = {
 	ext_info_asym,		/* ext_info */
-	NULL,			/* init_token */
-	NULL,			/* init_pin */
-	NULL			/* set_pin */
+	0,			/* init_token */
+	0,			/* init_pin */
+	0			/* set_pin */
 };
 
 int dca_free_context(crypto_ctx_t *);
 
 static crypto_ctx_ops_t dca_ctx_ops = {
-	NULL,
+	0,
 	dca_free_context
 };
 
@@ -1817,7 +1817,7 @@ dca_getreq(dca_t *dca, int mcr, int tryhard)
 	mutex_exit(&wlp->dwl_freereqslock);
 	if (reqp) {
 		reqp->dr_flags = 0;
-		reqp->dr_callback = NULL;
+		reqp->dr_callback = 0;
 	} else if (tryhard) {
 		/*
 		 * failed to get a free one, try an allocation, the hard way.
@@ -1827,7 +1827,7 @@ dca_getreq(dca_t *dca, int mcr, int tryhard)
 			reqp->dr_wlp = wlp;
 			reqp->dr_dca = dca;
 			reqp->dr_flags = 0;
-			reqp->dr_callback = NULL;
+			reqp->dr_callback = 0;
 		}
 	}
 	return (reqp);

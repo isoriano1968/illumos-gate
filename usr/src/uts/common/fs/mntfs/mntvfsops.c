@@ -136,7 +136,7 @@ mntinit(int fstype, char *name)
 		VFSNAME_UNMOUNT,	{ .vfs_unmount = mntunmount },
 		VFSNAME_ROOT,		{ .vfs_root = mntroot },
 		VFSNAME_STATVFS,	{ .vfs_statvfs = mntstatvfs },
-		NULL,			NULL
+		NULL,			0
 	};
 	extern const fs_operation_def_t mnt_vnodeops_template[];
 	int error;

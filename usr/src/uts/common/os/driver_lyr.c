@@ -1756,11 +1756,11 @@ ldi_close(ldi_handle_t lh, int flag, cred_t *cr)
 		if (lecp->lec_lhp != handlep)
 			continue;
 		lecp->lec_lhp = NULL;
-		lecp->lec_notify = NULL;
+		lecp->lec_notify = 0;
 		LDI_EVDBG((CE_NOTE, "ldi_close: NULLed lh and notify"));
 		if (!notify) {
 			LDI_EVDBG((CE_NOTE, "ldi_close: NULLed finalize"));
-			lecp->lec_finalize = NULL;
+			lecp->lec_finalize = 0;
 		}
 	}
 
@@ -3464,7 +3464,7 @@ ldi_invoke_notify(dev_info_t *dip, dev_t dev, int spec_type, char *event,
 			LDI_EVDBG((CE_NOTE,
 			    "ldi_invoke_notify(): NULL-ing finalize after "
 			    "calling 1 finalize following ldi_close"));
-			lecp->lec_finalize = NULL;
+			lecp->lec_finalize = 0;
 		}
 	}
 
@@ -3637,7 +3637,7 @@ ldi_invoke_finalize(dev_info_t *dip, dev_t dev, int spec_type, char *event,
 			LDI_EVDBG((CE_NOTE,
 			    "ldi_invoke_finalize(): NULLing finalize after "
 			    "calling 1 finalize following ldi_close"));
-			lecp->lec_finalize = NULL;
+			lecp->lec_finalize = 0;
 		}
 	}
 	ldi_ev_callback_list.le_walker_next = NULL;

@@ -424,7 +424,7 @@ hpc_nexus_unregister_bus(dev_info_t *dip)
 	 */
 	for (slotp = busp->bus_slot_list; slotp != NULL;
 		slotp = slotp->slot_next) {
-		slotp->slot_event_handler = NULL;
+		slotp->slot_event_handler = 0;
 		slotp->slot_event_handler_arg = NULL;
 	}
 	busp->bus_registered = B_FALSE;
@@ -700,7 +700,7 @@ hpc_remove_event_handler(hpc_slot_t handle)
 	busp = slotp->slot_bus;
 	mutex_enter(&busp->bus_mutex);
 	slotp->slot_event_mask = 0;
-	slotp->slot_event_handler = NULL;
+	slotp->slot_event_handler = 0;
 	slotp->slot_event_handler_arg = NULL;
 	mutex_exit(&busp->bus_mutex);
 	return (HPC_SUCCESS);

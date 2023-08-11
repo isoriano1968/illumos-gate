@@ -77,8 +77,8 @@ struct brand_ops sn1_brops = {
 	sn1_freelwp,
 	sn1_lwpexit,
 	sn1_elfexec,
-	NULL,
-	NULL,
+	0,
+	0,
 	NSIG,
 };
 

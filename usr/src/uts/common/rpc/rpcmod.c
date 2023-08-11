@@ -280,7 +280,7 @@ static struct xprt_style_ops xprt_clts_ops = {
 	rpcmodwput,
 	rpcmodwsrv,
 	rpcmodrput,
-	NULL
+	0
 };
 
 static struct xprt_style_ops xprt_cots_ops = {
@@ -428,12 +428,12 @@ typedef struct mir_s {
 void tmp_rput(queue_t *q, mblk_t *mp);
 
 struct xprt_style_ops tmpops = {
-	NULL,
-	NULL,
+	0,
+	0,
 	putnext,
-	NULL,
+	0,
 	tmp_rput,
-	NULL
+	0
 };
 
 void

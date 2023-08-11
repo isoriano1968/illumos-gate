@@ -4334,7 +4334,7 @@ eri_param_register(struct eri *erip, param_t *eripa, int cnt)
 			break;
 
 		case '-':	/* read-only */
-			setter = NULL;
+			setter = 0;
 			break;
 
 		case '!':	/* read-only, not displayed */

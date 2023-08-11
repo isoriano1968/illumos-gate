@@ -841,11 +841,11 @@ taskq_init(void)
 {
 	taskq_ent_cache = kmem_cache_create("taskq_ent_cache",
 	    sizeof (taskq_ent_t), 0, taskq_ent_constructor,
-	    taskq_ent_destructor, NULL, NULL, NULL, 0);
+	    taskq_ent_destructor, 0, NULL, NULL, 0);
 	taskq_cache = kmem_cache_create("taskq_cache", sizeof (taskq_t),
-	    0, taskq_constructor, taskq_destructor, NULL, NULL, NULL, 0);
+	    0, taskq_constructor, taskq_destructor, 0, NULL, NULL, 0);
 	taskq_id_arena = vmem_create("taskq_id_arena",
-	    (void *)1, INT32_MAX, 1, NULL, NULL, NULL, 0,
+	    (void *)1, INT32_MAX, 1, 0, 0, NULL, 0,
 	    VM_SLEEP | VMC_IDENTIFIER);
 
 	list_create(&taskq_cpupct_list, sizeof (taskq_t),
@@ -1746,7 +1746,7 @@ taskq_d_thread(taskq_ent_t *tqe)
 			/*
 			 * Return the entry to the bucket free list.
 			 */
-			tqe->tqent_func = NULL;
+			tqe->tqent_func = 0;
 			TQ_APPEND(bucket->tqbucket_freelist, tqe);
 			bucket->tqbucket_nalloc--;
 			bucket->tqbucket_nfree++;
@@ -2245,7 +2245,7 @@ taskq_bucket_extend(void *arg)
 	 * Once the entry is ready, link it to the the bucket free list.
 	 */
 	mutex_enter(&b->tqbucket_lock);
-	tqe->tqent_func = NULL;
+	tqe->tqent_func = 0;
 	TQ_APPEND(b->tqbucket_freelist, tqe);
 	b->tqbucket_nfree++;
 	TQ_STAT(b, tqs_tcreates);

@@ -216,7 +216,7 @@ segkp_create(struct seg *seg)
 		segkp_bitmap = NULL;
 		np = btop(seg->s_size);
 		kpsd->kpsd_arena = vmem_create("segkp", seg->s_base,
-		    seg->s_size, PAGESIZE, NULL, NULL, NULL, 5 * PAGESIZE,
+		    seg->s_size, PAGESIZE, 0, 0, NULL, 5 * PAGESIZE,
 		    VM_SLEEP);
 	}
 

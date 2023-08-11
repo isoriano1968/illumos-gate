@@ -85,11 +85,11 @@ static struct bus_ops px_bus_ops = {
 	ndi_busop_add_eventcall,
 	ndi_busop_remove_eventcall,
 	ndi_post_event,
-	NULL,
-	NULL,			/* (*bus_config)(); */
-	NULL,			/* (*bus_unconfig)(); */
+	0,
+	0,			/* (*bus_config)(); */
+	0,			/* (*bus_unconfig)(); */
 	px_fm_init_child,	/* (*bus_fm_init)(); */
-	NULL,			/* (*bus_fm_fini)(); */
+	0,			/* (*bus_fm_fini)(); */
 	px_bus_enter,		/* (*bus_fm_access_enter)(); */
 	px_bus_exit,		/* (*bus_fm_access_fini)(); */
 	pcie_bus_power,		/* (*bus_power)(); */
@@ -1055,7 +1055,7 @@ px_dma_unbindhdl(dev_info_t *dip, dev_info_t *rdip, ddi_dma_handle_t handle)
 		return (DDI_FAILURE);
 	}
 
-	mp->dmai_error.err_cf = NULL;
+	mp->dmai_error.err_cf = 0;
 
 	/*
 	 * Here if the handle is using the iommu.  Unload all the iommu

@@ -1168,7 +1168,7 @@ ufs_sbwrite(struct ufsvfs *ufsvfsp)
 	 * delta the whole superblock
 	 */
 	TRANS_DELTA(ufsvfsp, ldbtob(SBLOCK), sizeof (struct fs),
-	    DT_SB, NULL, 0);
+	    DT_SB, 0, 0);
 	/*
 	 * retain the incore state of fs_fmod; set the ondisk state to 0
 	 */

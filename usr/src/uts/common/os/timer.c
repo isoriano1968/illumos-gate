@@ -167,7 +167,7 @@ timer_delete_locked(proc_t *p, timer_t tid, itimer_t *it)
 	 * in siginfofree() is indicated by setting sq_func to NULL.
 	 */
 	if (it->it_pending > 0) {
-		it->it_sigq->sq_func = NULL;
+		it->it_sigq->sq_func = 0;
 	} else {
 		kmem_free(it->it_sigq, sizeof (sigqueue_t));
 	}
@@ -261,7 +261,7 @@ void
 clock_timer_init()
 {
 	clock_timer_cache = kmem_cache_create("timer_cache",
-	    sizeof (itimer_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (itimer_t), 0, 0, 0, 0, NULL, NULL, 0);
 
 	/*
 	 * Push the timer_max limit up to at least 4 * NCPU.  Due to the way
@@ -731,7 +731,7 @@ timer_create(clockid_t clock, struct sigevent *evp, timer_t *tid)
 		/* associate timer as event source with the port */
 		error = port_associate_ksource(port, PORT_SOURCE_TIMER,
 		    (port_source_t **)&it->it_portsrc, timer_close_port,
-		    (void *)it, NULL);
+		    (void *)it, 0);
 		if (error) {
 			mutex_exit(&p->p_lock);
 			kmem_cache_free(clock_timer_cache, it);

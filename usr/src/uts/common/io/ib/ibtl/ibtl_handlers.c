@@ -1266,7 +1266,7 @@ void
 ibtl_free_cq_check(ibtl_cq_t *ibtl_cq)
 {
 	mutex_enter(&ibtl_cq->cq_mutex);
-	ibtl_cq->cq_comp_handler = NULL;
+	ibtl_cq->cq_comp_handler = 0;
 	mutex_exit(&ibtl_cq->cq_mutex);
 	if (ibtl_cq->cq_in_thread) {
 		mutex_enter(&ibtl_cq_mutex);

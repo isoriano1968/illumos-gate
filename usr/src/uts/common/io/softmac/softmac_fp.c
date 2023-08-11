@@ -216,7 +216,7 @@ softmac_client_tx_notify(softmac_upper_t *sup, mac_tx_notify_t func, void *arg)
 		while (sup->su_tx_inprocess != 0)
 			cv_wait(&sup->su_cv, &sup->su_mutex);
 
-		sup->su_tx_notify_func = NULL;
+		sup->su_tx_notify_func = 0;
 		sup->su_tx_notify_arg = NULL;
 	}
 	return ((mac_tx_notify_handle_t)sup);
@@ -932,7 +932,7 @@ softmac_fastpath_tear(softmac_upper_t *sup)
 	 * or the stream is unbound (fastpath-slowpath-switch). Therefore,
 	 * No need to call the tx_notify callback.
 	 */
-	sup->su_tx_notify_func = NULL;
+	sup->su_tx_notify_func = 0;
 	sup->su_tx_notify_arg = NULL;
 	if (sup->su_tx_busy) {
 		ASSERT(sup->su_tx_flow_mp == NULL);

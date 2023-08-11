@@ -125,10 +125,10 @@ static struct module_info ttycompatmiinfo = {
 
 static struct qinit ttycompatrinit = {
 	ttcompatrput,
-	NULL,
+	0,
 	ttcompatopen,
 	ttcompatclose,
-	NULL,
+	0,
 	&ttycompatmiinfo
 };
 
@@ -143,10 +143,10 @@ static struct module_info ttycompatmoinfo = {
 
 static struct qinit ttycompatwinit = {
 	ttcompatwput,
-	NULL,
+	0,
 	ttcompatopen,
 	ttcompatclose,
-	NULL,
+	0,
 	&ttycompatmoinfo
 };
 
@@ -366,7 +366,6 @@ ttcompatwput(queue_t *q, mblk_t *mp)
 
 		} /* switch cp_cmd */
 	} /* end message switch */
-	return (0);
 }
 
 /*

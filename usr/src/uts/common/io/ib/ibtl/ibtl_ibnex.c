@@ -41,7 +41,7 @@
  * Globals.
  */
 static char		ibtl_ibnex[] = "ibtl_ibnex";
-ibtl_ibnex_callback_t	ibtl_ibnex_callback_routine = NULL;
+ibtl_ibnex_callback_t	ibtl_ibnex_callback_routine = 0;
 
 /*
  * Function:
@@ -310,7 +310,7 @@ ibtl_ibnex_unregister_callback()
 	IBTF_DPRINTF_L5(ibtl_ibnex, "ibtl_ibnex_unregister_callback: ibnex cb");
 
 	mutex_enter(&ibtl_clnt_list_mutex);
-	ibtl_ibnex_callback_routine = NULL;
+	ibtl_ibnex_callback_routine = 0;
 	mutex_exit(&ibtl_clnt_list_mutex);
 }
 

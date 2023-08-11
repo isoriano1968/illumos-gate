@@ -305,11 +305,11 @@ static struct {
 static struct bus_ops pshot_bus_ops = {
 	BUSO_REV,			/* busops_rev */
 	nullbusmap,			/* bus_map */
-	NULL,				/* bus_get_intrspec */
-	NULL,				/* bus_add_interspec */
-	NULL,				/* bus_remove_interspec */
+	0,				/* bus_get_intrspec */
+	0,				/* bus_add_interspec */
+	0,				/* bus_remove_interspec */
 	i_ddi_map_fault,		/* bus_map_fault */
-	NULL,				/* bus_dma_map */
+	0,				/* bus_dma_map */
 	ddi_dma_allochdl,		/* bus_dma_allochdl */
 	ddi_dma_freehdl,		/* bus_dma_freehdl */
 	ddi_dma_bindhdl,		/* bus_dma_bindhdl */
@@ -323,13 +323,13 @@ static struct bus_ops pshot_bus_ops = {
 	pshot_add_eventcall,		/* bus_add_eventcall */
 	pshot_remove_eventcall,		/* bus_remove_event */
 	pshot_post_event,		/* bus_post_event */
-	NULL,				/* bus_intr_ctl */
+	0,				/* bus_intr_ctl */
 	pshot_bus_config,		/* bus_config */
 	pshot_bus_unconfig,		/* bus_unconfig */
-	NULL,				/* bus_fm_init */
-	NULL,				/* bus_fm_fini */
-	NULL,				/* bus_fm_access_enter */
-	NULL,				/* bus_fm_access_exit */
+	0,				/* bus_fm_init */
+	0,				/* bus_fm_fini */
+	0,				/* bus_fm_access_enter */
+	0,				/* bus_fm_access_exit */
 	pshot_bus_power,		/* bus_power */
 	pshot_bus_introp		/* bus_intr_op */
 };

@@ -124,7 +124,7 @@ static struct dev_ops ssc050_ops = {
 	nodev,
 	&ssc050_cbops,
 	NULL,
-	NULL,
+	0,
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

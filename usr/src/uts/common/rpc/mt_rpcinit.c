@@ -121,7 +121,7 @@ mt_kstat_zone_fini(zoneid_t zoneid, void *data)
 void
 mt_kstat_init(void)
 {
-	zone_key_create(&rpcstat_zone_key, mt_kstat_zone_init, NULL,
+	zone_key_create(&rpcstat_zone_key, mt_kstat_zone_init, 0,
 	    mt_kstat_zone_fini);
 }
 

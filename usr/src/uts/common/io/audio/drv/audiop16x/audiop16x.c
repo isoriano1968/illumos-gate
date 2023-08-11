@@ -123,9 +123,9 @@ static audio_engine_ops_t p16x_engine_ops = {
 	p16x_channels,
 	p16x_rate,
 	p16x_sync,
-	NULL,
+	0,
 	p16x_chinfo,
-	NULL
+	0
 };
 
 static unsigned int
@@ -668,7 +668,7 @@ static int p16x_ddi_quiesce(dev_info_t *);
 static struct dev_ops p16x_dev_ops = {
 	DEVO_REV,		/* rev */
 	0,			/* refcnt */
-	NULL,			/* getinfo */
+	0,			/* getinfo */
 	nulldev,		/* identify */
 	nulldev,		/* probe */
 	p16x_ddi_attach,	/* attach */
@@ -676,7 +676,7 @@ static struct dev_ops p16x_dev_ops = {
 	nodev,			/* reset */
 	NULL,			/* cb_ops */
 	NULL,			/* bus_ops */
-	NULL,			/* power */
+	0,			/* power */
 	p16x_ddi_quiesce,	/* quiesce */
 };
 

@@ -177,7 +177,7 @@ lofs_subrinit(void)
 	 * Initialize the cache.
 	 */
 	lnode_cache = kmem_cache_create("lnode_cache", sizeof (lnode_t),
-	    0, NULL, NULL, NULL, NULL, NULL, 0);
+	    0, 0, 0, 0, NULL, NULL, 0);
 }
 
 void

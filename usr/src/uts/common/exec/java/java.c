@@ -183,7 +183,7 @@ static struct execsw jexecsw = {
 	0,
 	4,
 	javaexec,
-	NULL
+	0
 };
 
 static struct modlexec jmodlexec = {

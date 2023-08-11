@@ -176,7 +176,7 @@ nlm_dispatch(
 		curthread->t_flag &= ~T_DONTPEND;
 		if (curthread->t_flag & T_WOULDBLOCK) {
 			curthread->t_flag &= ~T_WOULDBLOCK;
-			SVC_DUPDONE_EXT(transp, dr, res, NULL,
+			SVC_DUPDONE_EXT(transp, dr, res, 0,
 			    de->de_ressz, DUP_DROP);
 			do_reply = FALSE;
 			break;
@@ -282,7 +282,7 @@ nlm_prog_3_dtable[] = {
 	NLM_SVC_FUNC(nlm_null_svc),
 	(xdrproc_t)xdr_void,
 	(xdrproc_t)xdr_void,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -336,7 +336,7 @@ nlm_prog_3_dtable[] = {
 	NLM_SVC_FUNC(nlm_test_msg_1_svc),
 	(xdrproc_t)xdr_nlm_testargs,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -344,7 +344,7 @@ nlm_prog_3_dtable[] = {
 	NLM_SVC_FUNC(nlm_lock_msg_1_svc),
 	(xdrproc_t)xdr_nlm_lockargs,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -352,7 +352,7 @@ nlm_prog_3_dtable[] = {
 	NLM_SVC_FUNC(nlm_cancel_msg_1_svc),
 	(xdrproc_t)xdr_nlm_cancargs,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -360,7 +360,7 @@ nlm_prog_3_dtable[] = {
 	NLM_SVC_FUNC(nlm_unlock_msg_1_svc),
 	(xdrproc_t)xdr_nlm_unlockargs,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -368,7 +368,7 @@ nlm_prog_3_dtable[] = {
 	NLM_SVC_FUNC(nlm_granted_msg_1_svc),
 	(xdrproc_t)xdr_nlm_testargs,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -376,7 +376,7 @@ nlm_prog_3_dtable[] = {
 	NLM_SVC_FUNC(nlm_test_res_1_svc),
 	(xdrproc_t)xdr_nlm_testres,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -384,7 +384,7 @@ nlm_prog_3_dtable[] = {
 	NLM_SVC_FUNC(nlm_lock_res_1_svc),
 	(xdrproc_t)xdr_nlm_res,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -392,7 +392,7 @@ nlm_prog_3_dtable[] = {
 	NLM_SVC_FUNC(nlm_cancel_res_1_svc),
 	(xdrproc_t)xdr_nlm_res,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -400,7 +400,7 @@ nlm_prog_3_dtable[] = {
 	NLM_SVC_FUNC(nlm_unlock_res_1_svc),
 	(xdrproc_t)xdr_nlm_res,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -408,7 +408,7 @@ nlm_prog_3_dtable[] = {
 	NLM_SVC_FUNC(nlm_granted_res_1_svc),
 	(xdrproc_t)xdr_nlm_res,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -416,7 +416,7 @@ nlm_prog_3_dtable[] = {
 	NLM_SVC_FUNC(0),
 	(xdrproc_t)0,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -424,7 +424,7 @@ nlm_prog_3_dtable[] = {
 	NLM_SVC_FUNC(nlm_sm_notify1_2_svc),
 	(xdrproc_t)xdr_nlm_sm_status,
 	(xdrproc_t)xdr_void,
-	NULL,
+	0,
 	0,
 	NLM_DISP_NOREMOTE },
 
@@ -432,7 +432,7 @@ nlm_prog_3_dtable[] = {
 	NLM_SVC_FUNC(nlm_sm_notify2_2_svc),
 	(xdrproc_t)xdr_nlm_sm_status,
 	(xdrproc_t)xdr_void,
-	NULL,
+	0,
 	0,
 	NLM_DISP_NOREMOTE },
 
@@ -444,7 +444,7 @@ nlm_prog_3_dtable[] = {
 	NLM_SVC_FUNC(0),
 	(xdrproc_t)0,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -476,7 +476,7 @@ nlm_prog_3_dtable[] = {
 	NLM_SVC_FUNC(nlm_free_all_3_svc),
 	(xdrproc_t)xdr_nlm_notify,
 	(xdrproc_t)xdr_void,
-	NULL,
+	0,
 	0,
 	0 },
 };
@@ -531,7 +531,7 @@ nlm_prog_4_dtable[] = {
 	NLM_SVC_FUNC(nlm_null_svc),
 	(xdrproc_t)xdr_void,
 	(xdrproc_t)xdr_void,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -585,7 +585,7 @@ nlm_prog_4_dtable[] = {
 	NLM_SVC_FUNC(nlm4_test_msg_4_svc),
 	(xdrproc_t)xdr_nlm4_testargs,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -593,7 +593,7 @@ nlm_prog_4_dtable[] = {
 	NLM_SVC_FUNC(nlm4_lock_msg_4_svc),
 	(xdrproc_t)xdr_nlm4_lockargs,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -601,7 +601,7 @@ nlm_prog_4_dtable[] = {
 	NLM_SVC_FUNC(nlm4_cancel_msg_4_svc),
 	(xdrproc_t)xdr_nlm4_cancargs,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -609,7 +609,7 @@ nlm_prog_4_dtable[] = {
 	NLM_SVC_FUNC(nlm4_unlock_msg_4_svc),
 	(xdrproc_t)xdr_nlm4_unlockargs,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -617,7 +617,7 @@ nlm_prog_4_dtable[] = {
 	NLM_SVC_FUNC(nlm4_granted_msg_4_svc),
 	(xdrproc_t)xdr_nlm4_testargs,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -625,7 +625,7 @@ nlm_prog_4_dtable[] = {
 	NLM_SVC_FUNC(nlm4_test_res_4_svc),
 	(xdrproc_t)xdr_nlm4_testres,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -633,7 +633,7 @@ nlm_prog_4_dtable[] = {
 	NLM_SVC_FUNC(nlm4_lock_res_4_svc),
 	(xdrproc_t)xdr_nlm4_res,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -641,7 +641,7 @@ nlm_prog_4_dtable[] = {
 	NLM_SVC_FUNC(nlm4_cancel_res_4_svc),
 	(xdrproc_t)xdr_nlm4_res,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -649,7 +649,7 @@ nlm_prog_4_dtable[] = {
 	NLM_SVC_FUNC(nlm4_unlock_res_4_svc),
 	(xdrproc_t)xdr_nlm4_res,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -657,7 +657,7 @@ nlm_prog_4_dtable[] = {
 	NLM_SVC_FUNC(nlm4_granted_res_4_svc),
 	(xdrproc_t)xdr_nlm4_res,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -665,7 +665,7 @@ nlm_prog_4_dtable[] = {
 	NLM_SVC_FUNC(0),
 	(xdrproc_t)0,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -673,7 +673,7 @@ nlm_prog_4_dtable[] = {
 	NLM_SVC_FUNC(0),
 	(xdrproc_t)0,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -681,7 +681,7 @@ nlm_prog_4_dtable[] = {
 	NLM_SVC_FUNC(0),
 	(xdrproc_t)0,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -689,7 +689,7 @@ nlm_prog_4_dtable[] = {
 	NLM_SVC_FUNC(0),
 	(xdrproc_t)0,
 	(xdrproc_t)0,
-	NULL,
+	0,
 	0,
 	0 },
 
@@ -721,7 +721,7 @@ nlm_prog_4_dtable[] = {
 	NLM_SVC_FUNC(nlm4_free_all_4_svc),
 	(xdrproc_t)xdr_nlm4_notify,
 	(xdrproc_t)xdr_void,
-	NULL,
+	0,
 	0,
 	0 },
 };

@@ -210,7 +210,7 @@ static nxge_xcvr_table_t nxge_10G_fiber_table = {
 };
 
 static nxge_xcvr_table_t nxge_1G_copper_table = {
-	NULL,
+	0,
 	nxge_1G_xcvr_init,
 	nxge_1G_copper_link_intr_stop,
 	nxge_1G_copper_link_intr_start,
@@ -230,10 +230,10 @@ static nxge_xcvr_table_t nxge_1G_fiber_table = {
 
 static nxge_xcvr_table_t nxge_10G_copper_table = {
 	nxge_neptune_10G_serdes_init,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
 	PCS_XCVR
 };
 

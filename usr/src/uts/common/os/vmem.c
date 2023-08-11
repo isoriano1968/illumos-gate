@@ -1542,7 +1542,7 @@ vmem_create_common(const char *name, void *base, size_t size, size_t quantum,
 			(void) sprintf(buf, "%s_%lu", vmp->vm_name,
 			    (i + 1) * quantum);
 			vmp->vm_qcache[i] = kmem_cache_create(buf,
-			    (i + 1) * quantum, quantum, NULL, NULL, NULL,
+			    (i + 1) * quantum, quantum, 0, 0, 0,
 			    NULL, vmp, KMC_QCACHE | KMC_NOTOUCH);
 		}
 	}
@@ -1774,7 +1774,7 @@ vmem_init(const char *heap_name,
 
 	heap = vmem_create(heap_name,
 	    heap_start, heap_size, heap_quantum,
-	    NULL, NULL, NULL, 0,
+	    0, 0, NULL, 0,
 	    VM_SLEEP | VMC_POPULATOR);
 
 	vmem_metadata_arena = vmem_create("vmem_metadata",

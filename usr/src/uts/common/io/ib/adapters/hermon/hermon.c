@@ -142,7 +142,7 @@ static struct cb_ops hermon_cb_ops = {
 	nodev,			/* write */
 	hermon_ioctl,		/* ioctl */
 	hermon_devmap,		/* devmap */
-	NULL,			/* mmap */
+	0,			/* mmap */
 	nodev,			/* segmap */
 	nochpoll,		/* chpoll */
 	ddi_prop_op,		/* prop_op */

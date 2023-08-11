@@ -66,11 +66,11 @@ static int nx1394_post_event(dev_info_t *dip, dev_info_t *rdip,
 struct bus_ops nx1394_busops = {
 	BUSO_REV,
 	nullbusmap,			/* bus_map */
-	NULL,				/* bus_get_intrspec */
-	NULL,				/* bus_add_intrspec */
-	NULL,				/* bus_remove_intrspec */
+	0,				/* bus_get_intrspec */
+	0,				/* bus_add_intrspec */
+	0,				/* bus_remove_intrspec */
 	i_ddi_map_fault,		/* XXXX bus_map_fault */
-	NULL,				/* bus_dma_map */
+	0,				/* bus_dma_map */
 	nx1394_dma_allochdl,
 	ddi_dma_freehdl,
 	ddi_dma_bindhdl,

@@ -191,13 +191,13 @@ static mac_callbacks_t hxge_m_callbacks = {
 	hxge_m_stop,
 	hxge_m_promisc,
 	hxge_m_multicst,
-	NULL,
-	NULL,
+	0,
+	0,
 	NULL,
 	hxge_m_ioctl,
 	hxge_m_getcapab,
-	NULL,
-	NULL,
+	0,
+	0,
 	hxge_m_setprop,
 	hxge_m_getprop,
 	hxge_m_propinfo
@@ -3075,16 +3075,16 @@ hxge_m_getcapab(void *arg, mac_capab_t cap, void *cap_data)
 			cap_rings->mr_rget = hxge_fill_ring;
 			cap_rings->mr_gnum = HXGE_MAX_RX_GROUPS;
 			cap_rings->mr_gget = hxge_group_get;
-			cap_rings->mr_gaddring = NULL;
-			cap_rings->mr_gremring = NULL;
+			cap_rings->mr_gaddring = 0;
+			cap_rings->mr_gremring = 0;
 		} else {
 			cap_rings->mr_group_type = MAC_GROUP_TYPE_STATIC;
 			cap_rings->mr_rnum = HXGE_MAX_TDCS;
 			cap_rings->mr_rget = hxge_fill_ring;
 			cap_rings->mr_gnum = 0;
-			cap_rings->mr_gget = NULL;
-			cap_rings->mr_gaddring = NULL;
-			cap_rings->mr_gremring = NULL;
+			cap_rings->mr_gget = 0;
+			cap_rings->mr_gaddring = 0;
+			cap_rings->mr_gremring = 0;
 		}
 		MUTEX_EXIT(hxgep->genlock);
 		break;

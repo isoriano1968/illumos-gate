@@ -234,8 +234,8 @@ boolean_t BnxeWorkQueueAdd(um_device_t * pUM,
     pWorkItem->pWorkData       = (pWorkItem + 1);
     pWorkItem->workDataLen     = workDataLen;
     pWorkItem->pWorkCbkCopy    = pWorkCbkCopy;
-    pWorkItem->pWorkCbkNoCopy  = NULL;
-    pWorkItem->pWorkCbkGeneric = NULL;
+    pWorkItem->pWorkCbkNoCopy  = 0;
+    pWorkItem->pWorkCbkGeneric = 0;
     pWorkItem->delayMs         = 0;
 
     memcpy(pWorkItem->pWorkData, pWorkData, workDataLen);
@@ -273,9 +273,9 @@ boolean_t BnxeWorkQueueAddNoCopy(um_device_t * pUM,
 
     pWorkItem->pWorkData       = pWorkData;
     pWorkItem->workDataLen     = 0;
-    pWorkItem->pWorkCbkCopy    = NULL;
+    pWorkItem->pWorkCbkCopy    = 0;
     pWorkItem->pWorkCbkNoCopy  = pWorkCbkNoCopy;
-    pWorkItem->pWorkCbkGeneric = NULL;
+    pWorkItem->pWorkCbkGeneric = 0;
     pWorkItem->delayMs         = 0;
 
     mutex_enter(&pUM->workqs.instq.workQueueMutex);
@@ -310,8 +310,8 @@ boolean_t BnxeWorkQueueAddGeneric(um_device_t * pUM,
 
     pWorkItem->pWorkData       = NULL;
     pWorkItem->workDataLen     = 0;
-    pWorkItem->pWorkCbkCopy    = NULL;
-    pWorkItem->pWorkCbkNoCopy  = NULL;
+    pWorkItem->pWorkCbkCopy    = 0;
+    pWorkItem->pWorkCbkNoCopy  = 0;
     pWorkItem->pWorkCbkGeneric = pWorkCbkGeneric;
     pWorkItem->delayMs         = 0;
 
@@ -352,8 +352,8 @@ boolean_t BnxeWorkQueueAddDelay(um_device_t * pUM,
     pWorkItem->pWorkData       = (pWorkItem + 1);
     pWorkItem->workDataLen     = workDataLen;
     pWorkItem->pWorkCbkCopy    = pWorkCbkCopy;
-    pWorkItem->pWorkCbkNoCopy  = NULL;
-    pWorkItem->pWorkCbkGeneric = NULL;
+    pWorkItem->pWorkCbkNoCopy  = 0;
+    pWorkItem->pWorkCbkGeneric = 0;
     pWorkItem->delayMs         = delayMs;
 
     memcpy(pWorkItem->pWorkData, pWorkData, workDataLen);
@@ -392,9 +392,9 @@ boolean_t BnxeWorkQueueAddDelayNoCopy(um_device_t * pUM,
 
     pWorkItem->pWorkData       = pWorkData;
     pWorkItem->workDataLen     = 0;
-    pWorkItem->pWorkCbkCopy    = NULL;
+    pWorkItem->pWorkCbkCopy    = 0;
     pWorkItem->pWorkCbkNoCopy  = pWorkCbkNoCopy;
-    pWorkItem->pWorkCbkGeneric = NULL;
+    pWorkItem->pWorkCbkGeneric = 0;
     pWorkItem->delayMs         = delayMs;
 
     mutex_enter(&pUM->workqs.delayq.workQueueMutex);
@@ -430,8 +430,8 @@ boolean_t BnxeWorkQueueAddDelayGeneric(um_device_t * pUM,
 
     pWorkItem->pWorkData       = NULL;
     pWorkItem->workDataLen     = 0;
-    pWorkItem->pWorkCbkCopy    = NULL;
-    pWorkItem->pWorkCbkNoCopy  = NULL;
+    pWorkItem->pWorkCbkCopy    = 0;
+    pWorkItem->pWorkCbkNoCopy  = 0;
     pWorkItem->pWorkCbkGeneric = pWorkCbkGeneric;
     pWorkItem->delayMs         = delayMs;
 

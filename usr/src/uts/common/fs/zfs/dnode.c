@@ -233,7 +233,7 @@ dnode_init(void)
 	ASSERT(dnode_cache == NULL);
 	dnode_cache = kmem_cache_create("dnode_t",
 	    sizeof (dnode_t),
-	    0, dnode_cons, dnode_dest, NULL, NULL, NULL, 0);
+	    0, dnode_cons, dnode_dest, 0, NULL, NULL, 0);
 #ifdef	_KERNEL
 	kmem_cache_set_move(dnode_cache, dnode_move);
 
@@ -1395,7 +1395,7 @@ dnode_hold_impl(objset_t *os, uint64_t object, int flag, int slots,
 			}
 		}
 
-		dmu_buf_init_user(&dnc->dnc_dbu, NULL,
+		dmu_buf_init_user(&dnc->dnc_dbu, 0,
 		    dnode_buf_evict_async, NULL);
 		winner = dmu_buf_set_user(&db->db, &dnc->dnc_dbu);
 		if (winner != NULL) {

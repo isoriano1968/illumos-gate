@@ -230,11 +230,11 @@ static struct bus_ops pcieb_bus_ops = {
 	ndi_busop_add_eventcall,	/* (*bus_add_eventcall)();	*/
 	ndi_busop_remove_eventcall,	/* (*bus_remove_eventcall)();	*/
 	ndi_post_event,			/* (*bus_post_event)();		*/
-	NULL,				/* (*bus_intr_ctl)();		*/
-	NULL,				/* (*bus_config)();		*/
-	NULL,				/* (*bus_unconfig)();		*/
+	0,				/* (*bus_intr_ctl)();		*/
+	0,				/* (*bus_config)();		*/
+	0,				/* (*bus_unconfig)();		*/
 	pcieb_fm_init_child,		/* (*bus_fm_init)();		*/
-	NULL,				/* (*bus_fm_fini)();		*/
+	0,				/* (*bus_fm_fini)();		*/
 	i_ndi_busop_access_enter,	/* (*bus_fm_access_enter)();	*/
 	i_ndi_busop_access_exit,	/* (*bus_fm_access_exit)();	*/
 	pcie_bus_power,			/* (*bus_power)();		*/

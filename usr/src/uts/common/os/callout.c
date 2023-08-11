@@ -1977,11 +1977,11 @@ callout_cpu_online(cpu_t *cp)
 		(void) snprintf(s, KMEM_CACHE_NAMELEN, "callout_cache%lx",
 		    (long)hand);
 		cache->cc_cache = kmem_cache_create(s, sizeof (callout_t),
-		    CALLOUT_ALIGN, NULL, NULL, NULL, NULL, NULL, 0);
+		    CALLOUT_ALIGN, 0, 0, 0, NULL, NULL, 0);
 		(void) snprintf(s, KMEM_CACHE_NAMELEN, "callout_lcache%lx",
 		    (long)hand);
 		cache->cc_lcache = kmem_cache_create(s, sizeof (callout_list_t),
-		    CALLOUT_ALIGN, NULL, NULL, NULL, NULL, NULL, 0);
+		    CALLOUT_ALIGN, 0, 0, 0, NULL, NULL, 0);
 		cache->cc_next = callout_caches;
 		callout_caches = cache;
 	}

@@ -996,7 +996,7 @@ ibmf_saa_gid_to_pathrecords(ibmf_saa_handle_t ibmf_saa_handle, ib_gid_t sgid,
 	access_args.sq_access_type = IBMF_SAA_RETRIEVE;
 	access_args.sq_component_mask = comp_mask;
 	access_args.sq_template = &path_record;
-	access_args.sq_callback = NULL;
+	access_args.sq_callback = 0;
 	access_args.sq_callback_arg = NULL;
 
 	res = ibmf_sa_access(ibmf_saa_handle, &access_args, 0, length,
@@ -1096,7 +1096,7 @@ ibmf_saa_paths_from_gid(ibmf_saa_handle_t ibmf_saa_handle, ib_gid_t sgid,
 	access_args.sq_access_type = IBMF_SAA_RETRIEVE;
 	access_args.sq_component_mask = comp_mask;
 	access_args.sq_template = &path_record;
-	access_args.sq_callback = NULL;
+	access_args.sq_callback = 0;
 	access_args.sq_callback_arg = NULL;
 
 	res = ibmf_sa_access(ibmf_saa_handle, &access_args, 0, length,
@@ -1205,7 +1205,7 @@ ibmf_saa_name_to_service_record(ibmf_saa_handle_t ibmf_saa_handle,
 	access_args.sq_attr_id = SA_SERVICERECORD_ATTRID;
 	access_args.sq_access_type = IBMF_SAA_RETRIEVE;
 	access_args.sq_template = &service_record;
-	access_args.sq_callback = NULL;
+	access_args.sq_callback = 0;
 	access_args.sq_callback_arg = NULL;
 
 	res = ibmf_sa_access(ibmf_saa_handle, &access_args, 0, length,
@@ -1294,7 +1294,7 @@ ibmf_saa_id_to_service_record(ibmf_saa_handle_t ibmf_saa_handle,
 	access_args.sq_attr_id = SA_SERVICERECORD_ATTRID;
 	access_args.sq_access_type = IBMF_SAA_RETRIEVE;
 	access_args.sq_template = &service_record;
-	access_args.sq_callback = NULL;
+	access_args.sq_callback = 0;
 	access_args.sq_callback_arg = NULL;
 
 	res = ibmf_sa_access(ibmf_saa_handle, &access_args, 0, length,
@@ -1387,7 +1387,7 @@ ibmf_saa_update_service_record(ibmf_saa_handle_t ibmf_saa_handle,
 	access_args.sq_access_type = access_type;
 	access_args.sq_component_mask = comp_mask;
 	access_args.sq_template = service_record;
-	access_args.sq_callback = NULL;
+	access_args.sq_callback = 0;
 	access_args.sq_callback_arg = NULL;
 
 	res = ibmf_sa_access(ibmf_saa_handle, &access_args, 0, &length,

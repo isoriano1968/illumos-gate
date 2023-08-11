@@ -181,10 +181,10 @@ static mac_callbacks_t mxfe_m_callbacks = {
 	mxfe_m_unicst,
 	mxfe_m_tx,
 	NULL,
-	NULL,		/* mc_ioctl */
-	NULL,		/* mc_getcapab */
-	NULL,		/* mc_open */
-	NULL,		/* mc_close */
+	0,		/* mc_ioctl */
+	0,		/* mc_getcapab */
+	0,		/* mc_open */
+	0,		/* mc_close */
 	mxfe_m_setprop,
 	mxfe_m_getprop,
 	mxfe_m_propinfo

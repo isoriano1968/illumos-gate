@@ -701,7 +701,7 @@ loop:
 	nbp->b_edev = dev;
 	nbp->b_dev = (o_dev_t)cmpdev(dev);
 	nbp->b_blkno = blkno;
-	nbp->b_iodone = NULL;
+	nbp->b_iodone = 0;
 	nbp->b_bcount = bsize;
 	/*
 	 * If we are given a ufsvfsp and the vfs_root field is NULL
@@ -764,7 +764,7 @@ ngeteblk(long bsize)
 	bp->b_edev = NODEV;
 	bp->b_lblkno = 0;
 	bp->b_bcount = bsize;
-	bp->b_iodone = NULL;
+	bp->b_iodone = 0;
 	return (bp);
 }
 

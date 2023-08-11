@@ -3191,7 +3191,7 @@ kobj_texthole_alloc(caddr_t addr, size_t size)
 		if (arena == 0) {
 			texthole_source[0] = vmem_create("module_text_holesrc",
 			    (void *)(KERNELBASE + MMU_PAGESIZE4M),
-			    MMU_PAGESIZE4M, PAGESIZE, NULL, NULL, NULL,
+			    MMU_PAGESIZE4M, PAGESIZE, 0, 0, NULL,
 			    0, VM_SLEEP);
 		} else {
 			base = HEAPTEXT_BASE +
@@ -3201,7 +3201,7 @@ kobj_texthole_alloc(caddr_t addr, size_t size)
 			    "heaptext_holesrc_%d", arena);
 
 			texthole_source[arena] = vmem_create(c, (void *)base,
-			    HEAPTEXT_UNMAPPED, PAGESIZE, NULL, NULL, NULL,
+			    HEAPTEXT_UNMAPPED, PAGESIZE, 0, 0, NULL,
 			    0, VM_SLEEP);
 		}
 

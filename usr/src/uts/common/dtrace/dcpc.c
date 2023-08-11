@@ -1010,13 +1010,13 @@ static dtrace_pattr_t dcpc_attr = {
 
 static dtrace_pops_t dcpc_pops = {
     dcpc_provide,
-    NULL,
+    0,
     dcpc_enable,
     dcpc_disable,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
+    0,
+    0,
+    0,
+    0,
     dcpc_mode,
     dcpc_destroy
 };

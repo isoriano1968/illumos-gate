@@ -112,7 +112,7 @@ static void
 ilb_conn_cache_init(void)
 {
 	ilb_conn_cache = kmem_cache_create("ilb_conn_cache",
-	    sizeof (ilb_conn_t), 0, NULL, NULL, NULL, NULL, NULL,
+	    sizeof (ilb_conn_t), 0, 0, 0, 0, NULL, NULL,
 	    ilb_kmem_flags);
 }
 
@@ -1143,7 +1143,7 @@ static void
 ilb_sticky_cache_init(void)
 {
 	ilb_sticky_cache = kmem_cache_create("ilb_sticky_cache",
-	    sizeof (ilb_sticky_t), 0, NULL, NULL, NULL, NULL, NULL,
+	    sizeof (ilb_sticky_t), 0, 0, 0, 0, NULL, NULL,
 	    ilb_kmem_flags);
 }
 

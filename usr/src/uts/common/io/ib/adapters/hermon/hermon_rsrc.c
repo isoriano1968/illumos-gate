@@ -655,7 +655,7 @@ hermon_rsrc_init_phase1(hermon_state_t *state)
 	 * (kmem_cache_create will SLEEP until successful)
 	 */
 	state->hs_rsrc_cache = kmem_cache_create(rsrc_name,
-	    sizeof (hermon_rsrc_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (hermon_rsrc_t), 0, 0, 0, 0, NULL, NULL, 0);
 
 	/*
 	 * Allocate an array of hermon_rsrc_pool_info_t's (used in all
@@ -1048,8 +1048,8 @@ hermon_rsrc_init_phase2(hermon_state_t *state)
 			HERMON_RSRC_NAME(rsrc_name, HERMON_EQHDL_CACHE);
 			hdl_info.swi_num = HERMON_NUM_EQ;
 			hdl_info.swi_max = ((uint64_t)1 << devlim->log_max_eq);
-			hdl_info.swi_constructor = NULL;
-			hdl_info.swi_destructor	 = NULL;
+			hdl_info.swi_constructor = 0;
+			hdl_info.swi_destructor	 = 0;
 			hdl_info.swi_flags	 = HERMON_SWHDL_KMEMCACHE_INIT;
 			ncleanup = HERMON_RSRC_CLEANUP_LEVEL23;
 			break;
@@ -1603,7 +1603,7 @@ hermon_rsrc_hw_entries_init(hermon_state_t *state,
 		vmp = vmem_create(info->hwi_rsrcname,
 		    (void *)(uintptr_t)rsrc_pool->rsrc_start,
 		    rsrc_pool->rsrc_pool_size, rsrc_pool->rsrc_quantum,
-		    NULL, NULL, NULL, 0, VM_SLEEP);
+		    0, 0, NULL, 0, VM_SLEEP);
 		if (vmp == NULL) {
 			/* failed to create vmem arena */
 			return (DDI_FAILURE);
@@ -1710,7 +1710,7 @@ hermon_rsrc_sw_handles_init(hermon_state_t *state,
 	if (info->swi_flags & HERMON_SWHDL_KMEMCACHE_INIT) {
 		rsrc_pool->rsrc_private = kmem_cache_create(
 		    info->swi_rsrcname, rsrc_pool->rsrc_quantum, 0,
-		    info->swi_constructor, info->swi_destructor, NULL,
+		    info->swi_constructor, info->swi_destructor, 0,
 		    rsrc_pool->rsrc_state, NULL, 0);
 	}
 
@@ -1788,8 +1788,8 @@ hermon_rsrc_pd_handles_init(hermon_state_t *state,
 	HERMON_RSRC_NAME(vmem_name, HERMON_PDHDL_VMEM);
 
 	/* Create new vmem arena for PD numbers */
-	vmp = vmem_create(vmem_name, (caddr_t)1, info->swi_num, 1, NULL,
-	    NULL, NULL, 0, VM_SLEEP | VMC_IDENTIFIER);
+	vmp = vmem_create(vmem_name, (caddr_t)1, info->swi_num, 1, 0,
+	    0, NULL, 0, VM_SLEEP | VMC_IDENTIFIER);
 	if (vmp == NULL) {
 		/* Unable to create vmem arena */
 		info->swi_table_ptr = NULL;

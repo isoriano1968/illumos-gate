@@ -356,7 +356,7 @@ fs_copyfsops(const fs_operation_def_t *template, vfsops_t *actual,
 			(fs_generic_func_p)fs_nosys,
 			(fs_generic_func_p)fs_nosys,
 
-		NULL, 0, NULL, NULL
+		NULL, 0, 0, 0
 	};
 
 	return (fs_build_vector(actual, unused_ops, vfs_ops_table, template));
@@ -2815,7 +2815,7 @@ vfs_mnttabvp_setup(void)
 		VOPNAME_WRITE,		{ .vop_write = vfs_mntdummywrite },
 		VOPNAME_GETATTR,	{ .vop_getattr = vfs_mntdummygetattr },
 		VOPNAME_VNEVENT,	{ .vop_vnevent = fs_vnevent_support },
-		NULL,			NULL
+		NULL,			0
 	};
 
 	if (vn_make_ops("mnttab", mnt_dummyvnodeops_template,
@@ -4177,7 +4177,7 @@ vfsinit(void)
 		VFSNAME_MOUNTROOT,	{ .error = vfs_EIO },
 		VFSNAME_FREEVFS,	{ .error = vfs_EIO },
 		VFSNAME_VNSTATE,	{ .error = vfs_EIO },
-		NULL, NULL
+		NULL, 0
 	};
 
 	static const fs_operation_def_t stray_vfsops_template[] = {
@@ -4190,12 +4190,12 @@ vfsinit(void)
 		VFSNAME_MOUNTROOT,	{ .error = vfsstray },
 		VFSNAME_FREEVFS,	{ .error = vfsstray },
 		VFSNAME_VNSTATE,	{ .error = vfsstray },
-		NULL, NULL
+		NULL, 0
 	};
 
 	/* Create vfs cache */
 	vfs_cache = kmem_cache_create("vfs_cache", sizeof (struct vfs),
-	    sizeof (uintptr_t), NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (uintptr_t), 0, 0, 0, NULL, NULL, 0);
 
 	/* Initialize the vnode cache (file systems may use it during init). */
 	vn_create_cache();

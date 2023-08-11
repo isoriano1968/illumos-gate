@@ -66,11 +66,11 @@ struct module_info oplmsu_mod_info = {
 };
 
 struct qinit oplmsu_urinit = {
-	NULL,
+	0,
 	oplmsu_ursrv,
 	oplmsu_open,
 	oplmsu_close,
-	NULL,
+	0,
 	&oplmsu_mod_info,
 	NULL
 };
@@ -80,7 +80,7 @@ struct qinit oplmsu_uwinit = {
 	oplmsu_uwsrv,
 	oplmsu_open,
 	oplmsu_close,
-	NULL,
+	0,
 	&oplmsu_mod_info,
 	NULL
 };
@@ -90,17 +90,17 @@ struct qinit oplmsu_lrinit = {
 	oplmsu_lrsrv,
 	oplmsu_open,
 	oplmsu_close,
-	NULL,
+	0,
 	&oplmsu_mod_info,
 	NULL
 };
 
 struct qinit oplmsu_lwinit = {
-	NULL,
+	0,
 	oplmsu_lwsrv,
 	oplmsu_open,
 	oplmsu_close,
-	NULL,
+	0,
 	&oplmsu_mod_info,
 	NULL
 };
@@ -141,7 +141,7 @@ static struct dev_ops oplmsu_ops = {
 	(nodev),			/* devo_reset */
 	&(cb_oplmsu_ops),		/* devo_cb_ops */
 	(struct bus_ops *)NULL,		/* devo_bus_ops */
-	NULL,				/* devo_power */
+	0,				/* devo_power */
 	ddi_quiesce_not_needed,			/* dev_quiesce */
 };
 

@@ -98,7 +98,7 @@ static const fm_subr_t fm_subrs[] = {
 	{ FM_IOC_GENTOPO_LEGACY, B_FALSE, FM_TOPO_LEGACY_VERSION,
 	    fm_ioctl_gentopo_legacy },
 #endif	/* __x86 */
-	{ -1, B_FALSE, NULL, NULL },
+	{ -1, B_FALSE, NULL, 0 },
 };
 
 static dev_info_t *fm_dip;

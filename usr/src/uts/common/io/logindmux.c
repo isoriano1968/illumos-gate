@@ -117,38 +117,38 @@ static struct module_info logdmuxm_info = {
 };
 
 static struct qinit logdmuxurinit = {
-	NULL,
+	0,
 	logdmuxursrv,
 	logdmuxopen,
 	logdmuxclose,
-	NULL,
+	0,
 	&logdmuxm_info
 };
 
 static struct qinit logdmuxuwinit = {
 	logdmuxuwput,
 	logdmuxuwsrv,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
 	&logdmuxm_info
 };
 
 static struct qinit logdmuxlrinit = {
 	logdmuxlrput,
 	logdmuxlrsrv,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
 	&logdmuxm_info
 };
 
 static struct qinit logdmuxlwinit = {
-	NULL,
+	0,
 	logdmuxlwsrv,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
 	&logdmuxm_info
 };
 
@@ -193,7 +193,7 @@ _init(void)
 	}
 
 	logdmux_minor_arena = vmem_create("logdmux_minor", (void *)1,
-	    logdmux_maxminor, 1, NULL, NULL, NULL, 0,
+	    logdmux_maxminor, 1, 0, 0, NULL, 0,
 	    VM_SLEEP | VMC_IDENTIFIER);
 	(void) ddi_soft_state_init(&logdmux_statep, sizeof (struct tmx), 1);
 

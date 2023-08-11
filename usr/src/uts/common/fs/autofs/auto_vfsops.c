@@ -254,7 +254,7 @@ autofs_init(int fstype, char *name)
 		VFSNAME_UNMOUNT,	{ .vfs_unmount = auto_unmount },
 		VFSNAME_ROOT,		{ .vfs_root = auto_root },
 		VFSNAME_STATVFS,	{ .vfs_statvfs = auto_statvfs },
-		NULL,			NULL
+		NULL,			0
 	};
 	int error;
 
@@ -292,7 +292,7 @@ autofs_init(int fstype, char *name)
 	 * since it wants to zthread_create(), something it can't do in a ZSD
 	 * constructor.
 	 */
-	zone_key_create(&autofs_key, NULL, NULL, autofs_zone_destructor);
+	zone_key_create(&autofs_key, 0, 0, autofs_zone_destructor);
 
 	return (0);
 }

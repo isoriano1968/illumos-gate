@@ -1918,7 +1918,7 @@ udfinit(int fstype, char *name)
 		VFSNAME_SYNC,		{ .vfs_sync = udf_sync },
 		VFSNAME_VGET,		{ .vfs_vget = udf_vget },
 		VFSNAME_MOUNTROOT,	{ .vfs_mountroot = udf_mountroot },
-		NULL,			NULL
+		NULL,			0
 	};
 	extern struct vnodeops *udf_vnodeops;
 	extern const fs_operation_def_t udf_vnodeops_template[];

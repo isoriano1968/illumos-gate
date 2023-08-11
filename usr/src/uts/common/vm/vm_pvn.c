@@ -701,7 +701,7 @@ pvn_init()
 		pvn_vmodsort_supported = hat_supported(HAT_VMODSORT, NULL);
 	marker_cache = kmem_cache_create("marker_cache",
 	    sizeof (page_t), 0, marker_constructor,
-	    NULL, NULL, NULL, NULL, 0);
+	    0, 0, NULL, NULL, 0);
 }
 
 

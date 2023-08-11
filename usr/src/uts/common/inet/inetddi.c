@@ -225,8 +225,8 @@ static struct modlstrmod modlstrmod = {
 
 #ifdef	INET_SOCK_PROTO_FB_FUNC
 static __smod_priv_t smodpriv = {
-	NULL,
-	NULL,
+	0,
+	0,
 	INET_SOCK_PROTO_FB_FUNC,
 	INET_SOCK_FALLBACK_DEV_V4,
 	INET_SOCK_FALLBACK_DEV_V6

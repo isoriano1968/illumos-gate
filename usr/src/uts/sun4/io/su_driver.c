@@ -219,17 +219,17 @@ static struct qinit asy_rint = {
 	asyrsrv,
 	asyopen,
 	asyclose,
-	NULL,
+	0,
 	&asy_info,
 	NULL
 };
 
 static struct qinit asy_wint = {
 	asywput,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
 	&asy_info,
 	NULL
 };
@@ -276,7 +276,7 @@ struct dev_ops asy_ops = {
 	nodev,			/* devo_reset */
 	&cb_asy_ops,		/* devo_cb_ops */
 	NULL,			/* devo_bus_ops */
-	NULL,			/* devo_power */
+	0,			/* devo_power */
 	ddi_quiesce_not_supported,	/* devo_quiesce */
 };
 

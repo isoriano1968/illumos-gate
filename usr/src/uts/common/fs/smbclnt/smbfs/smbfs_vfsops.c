@@ -320,7 +320,7 @@ static const fs_operation_def_t smbfs_vfsops_template[] = {
 	{ VFSNAME_VGET,	{ .error = fs_nosys } },
 	{ VFSNAME_MOUNTROOT, { .error = fs_nosys } },
 	{ VFSNAME_FREEVFS, { .vfs_freevfs = smbfs_freevfs } },
-	{ NULL, NULL }
+	{ NULL, 0 }
 };
 
 /*

@@ -2088,11 +2088,11 @@ ccid_slot_teardown(ccid_t *ccid, ccid_slot_t *slot, boolean_t signal)
 	atr_data_reset(slot->cs_icc.icc_atr_data);
 	slot->cs_icc.icc_protocols = ATR_P_NONE;
 	slot->cs_icc.icc_cur_protocol = ATR_P_NONE;
-	slot->cs_icc.icc_init = NULL;
-	slot->cs_icc.icc_tx = NULL;
-	slot->cs_icc.icc_complete = NULL;
-	slot->cs_icc.icc_teardown = NULL;
-	slot->cs_icc.icc_fini = NULL;
+	slot->cs_icc.icc_init = 0;
+	slot->cs_icc.icc_tx = 0;
+	slot->cs_icc.icc_complete = 0;
+	slot->cs_icc.icc_teardown = 0;
+	slot->cs_icc.icc_fini = 0;
 
 	slot->cs_voltage = 0;
 	freemsgchain(slot->cs_atr);
@@ -2169,11 +2169,11 @@ ccid_slot_setup_functions(ccid_t *ccid, ccid_slot_t *slot)
 {
 	uint_t bits = CCID_CLASS_F_SHORT_APDU_XCHG | CCID_CLASS_F_EXT_APDU_XCHG;
 
-	slot->cs_icc.icc_init = NULL;
-	slot->cs_icc.icc_tx = NULL;
-	slot->cs_icc.icc_complete = NULL;
-	slot->cs_icc.icc_teardown = NULL;
-	slot->cs_icc.icc_fini = NULL;
+	slot->cs_icc.icc_init = 0;
+	slot->cs_icc.icc_tx = 0;
+	slot->cs_icc.icc_complete = 0;
+	slot->cs_icc.icc_teardown = 0;
+	slot->cs_icc.icc_fini = 0;
 
 	switch (ccid->ccid_class.ccd_dwFeatures & bits) {
 	case CCID_CLASS_F_SHORT_APDU_XCHG:
@@ -2854,7 +2854,7 @@ ccid_open_pipes(ccid_t *ccid)
 	    USB_SUCCESS) {
 		ccid_error(ccid, "!failed to open Bulk-OUT pipe: %d\n", ret);
 		usb_pipe_close(ccid->ccid_dip, ccid->ccid_bulkin_pipe,
-		    USB_FLAGS_SLEEP, NULL, NULL);
+		    USB_FLAGS_SLEEP, 0, NULL);
 		ccid->ccid_bulkin_pipe = NULL;
 		return (B_FALSE);
 	}
@@ -2866,10 +2866,10 @@ ccid_open_pipes(ccid_t *ccid)
 			ccid_error(ccid, "!failed to open Intr-IN pipe: %d\n",
 			    ret);
 			usb_pipe_close(ccid->ccid_dip, ccid->ccid_bulkin_pipe,
-			    USB_FLAGS_SLEEP, NULL, NULL);
+			    USB_FLAGS_SLEEP, 0, NULL);
 			ccid->ccid_bulkin_pipe = NULL;
 			usb_pipe_close(ccid->ccid_dip, ccid->ccid_bulkout_pipe,
-			    USB_FLAGS_SLEEP, NULL, NULL);
+			    USB_FLAGS_SLEEP, 0, NULL);
 			ccid->ccid_bulkout_pipe = NULL;
 			return (B_FALSE);
 		}
@@ -3122,9 +3122,9 @@ done:
 
 static usb_event_t ccid_usb_events = {
 	ccid_disconnect_cb,
-	NULL,
-	NULL,
-	NULL
+	0,
+	0,
+	0
 };
 
 static void
@@ -3190,14 +3190,14 @@ ccid_cleanup(dev_info_t *dip)
 
 	if ((ccid->ccid_attach & CCID_ATTACH_OPEN_PIPES) != 0) {
 		usb_pipe_close(dip, ccid->ccid_bulkin_pipe, USB_FLAGS_SLEEP,
-		    NULL, NULL);
+		    0, NULL);
 		ccid->ccid_bulkin_pipe = NULL;
 		usb_pipe_close(dip, ccid->ccid_bulkout_pipe, USB_FLAGS_SLEEP,
-		    NULL, NULL);
+		    0, NULL);
 		ccid->ccid_bulkout_pipe = NULL;
 		if ((ccid->ccid_flags & CCID_F_HAS_INTR) != 0) {
 			usb_pipe_close(dip, ccid->ccid_intrin_pipe,
-			    USB_FLAGS_SLEEP, NULL, NULL);
+			    USB_FLAGS_SLEEP, 0, NULL);
 			ccid->ccid_intrin_pipe = NULL;
 		} else {
 			VERIFY3P(ccid->ccid_intrin_pipe, ==, NULL);
@@ -4350,7 +4350,7 @@ static struct dev_ops ccid_dev_ops = {
 	nodev,			/* devo_reset */
 	&ccid_cb_ops,		/* devo_cb_ops */
 	NULL,			/* devo_bus_ops */
-	NULL,			/* devo_power */
+	0,			/* devo_power */
 	ddi_quiesce_not_supported /* devo_quiesce */
 };
 

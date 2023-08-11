@@ -189,7 +189,7 @@ static struct modlinkage usb_as_modlinkage = {
 static usb_event_t usb_as_events = {
 	usb_as_disconnect_event_cb,
 	usb_as_reconnect_event_cb,
-	NULL, NULL
+	0, 0
 };
 
 /*
@@ -449,7 +449,7 @@ usb_as_cleanup(dev_info_t *dip, usb_as_state_t *uasp)
 
 	if (uasp->usb_as_isoc_ph) {
 		usb_pipe_close(dip, uasp->usb_as_isoc_ph,
-		    USB_FLAGS_SLEEP, NULL, NULL);
+		    USB_FLAGS_SLEEP, 0, NULL);
 	}
 	/*
 	 * Disable the event callbacks first, after this point, event
@@ -880,7 +880,7 @@ usb_as_setup(usb_as_state_t *uasp)
 		/* close the isoc pipe which is opened before */
 		mutex_exit(&uasp->usb_as_mutex);
 		usb_pipe_close(uasp->usb_as_dip, uasp->usb_as_isoc_ph,
-		    USB_FLAGS_SLEEP, NULL, (usb_opaque_t)NULL);
+		    USB_FLAGS_SLEEP, 0, (usb_opaque_t)NULL);
 
 		mutex_enter(&uasp->usb_as_mutex);
 		uasp->usb_as_isoc_ph = NULL;

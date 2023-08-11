@@ -188,10 +188,10 @@ static mac_callbacks_t rtls_m_callbacks = {
 	rtls_m_unicst,
 	rtls_m_tx,
 	NULL,
-	NULL,  /* mc_ioctl */
-	NULL,  /* mc_getcapab */
-	NULL,  /* mc_open */
-	NULL,  /* mc_close */
+	0,  /* mc_ioctl */
+	0,  /* mc_getcapab */
+	0,  /* mc_open */
+	0,  /* mc_close */
 	rtls_m_setprop,
 	rtls_m_getprop,
 	rtls_m_propinfo
@@ -202,7 +202,7 @@ static mii_ops_t rtls_mii_ops = {
 	rtls_mii_read,
 	rtls_mii_write,
 	rtls_mii_notify,	/* notify */
-	NULL,			/* reset */
+	0,			/* reset */
 };
 
 DDI_DEFINE_STREAM_OPS(rtls_dev_ops, nulldev, nulldev, rtls_attach, rtls_detach,

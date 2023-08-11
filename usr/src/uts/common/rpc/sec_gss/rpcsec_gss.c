@@ -150,9 +150,9 @@ gssauth_init(void)
 	 * Allocate gss auth cache handle
 	 */
 	ga_cache_handle = kmem_cache_create("ga_cache_handle",
-	    sizeof (struct ga_cache_entry), 0, NULL, NULL,
+	    sizeof (struct ga_cache_entry), 0, 0, 0,
 	    gssauth_cache_reclaim, NULL, NULL, 0);
-	zone_key_create(&gssauth_zone_key, NULL, NULL, gssauth_zone_fini);
+	zone_key_create(&gssauth_zone_key, 0, 0, gssauth_zone_fini);
 }
 
 /*

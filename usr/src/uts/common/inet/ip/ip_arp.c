@@ -101,10 +101,10 @@ struct module_info arp_mod_info = {
 	IP_MOD_ID, "arp", 1, INFPSZ, 65536, 1024
 };
 static struct qinit rinit_arp = {
-	arp_rput, NULL, arp_open, arp_close, NULL, &arp_mod_info
+	arp_rput, 0, arp_open, arp_close, 0, &arp_mod_info
 };
 static struct qinit winit_arp = {
-	arp_wput, NULL, arp_open, arp_close, NULL, &arp_mod_info
+	arp_wput, 0, arp_open, arp_close, 0, &arp_mod_info
 };
 struct streamtab arpinfo = {
 	&rinit_arp, &winit_arp

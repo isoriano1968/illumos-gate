@@ -417,7 +417,7 @@ struct dev_ops dr_dev_ops = {
 	nodev,		/* reset */
 	&dr_cb_ops,	/* cb_ops */
 	(struct bus_ops *)NULL, /* bus ops */
-	NULL,		/* power */
+	0,		/* power */
 	ddi_quiesce_not_needed,	/* quiesce */
 };
 

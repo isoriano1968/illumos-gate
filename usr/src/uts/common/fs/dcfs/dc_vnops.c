@@ -239,7 +239,7 @@ const fs_operation_def_t dc_vnodeops_template[] = {
 	VOPNAME_MAP,			{ .vop_map = dc_map },
 	VOPNAME_ADDMAP,			{ .vop_addmap = dc_addmap },
 	VOPNAME_DELMAP,			{ .vop_delmap = dc_delmap },
-	NULL,				NULL
+	NULL,				0
 };
 
 /*ARGSUSED*/
@@ -885,7 +885,7 @@ static int
 dcinit(int fstype, char *name)
 {
 	static const fs_operation_def_t dc_vfsops_template[] = {
-		NULL, NULL
+		NULL, 0
 	};
 	int error;
 	major_t dev;
@@ -913,7 +913,7 @@ dcinit(int fstype, char *name)
 	mutex_init(&dctable_lock, NULL, MUTEX_DEFAULT, NULL);
 	mutex_init(&dccache_lock, NULL, MUTEX_DEFAULT, NULL);
 	dcnode_cache = kmem_cache_create("dcnode_cache", sizeof (struct dcnode),
-	    0, dcnode_constructor, dcnode_destructor, NULL, NULL, NULL, 0);
+	    0, dcnode_constructor, dcnode_destructor, 0, NULL, NULL, 0);
 
 	return (0);
 }
@@ -989,8 +989,8 @@ decompvp(struct vnode *vp, cred_t *cred, caller_context_t *ctp)
 	cpp = &dcbuf_cache[btop(bsize)];
 	mutex_enter(&dccache_lock);
 	if (*cpp == NULL)
-		*cpp = kmem_cache_create("dcbuf_cache", ndp->dc_zmax, 0, NULL,
-		    NULL, NULL, NULL, NULL, 0);
+		*cpp = kmem_cache_create("dcbuf_cache", ndp->dc_zmax, 0, 0,
+		    0, 0, NULL, NULL, 0);
 	mutex_exit(&dccache_lock);
 	ndp->dc_bufcache = *cpp;
 

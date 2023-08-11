@@ -305,7 +305,7 @@ rn_match(v_arg, head)
 	void *v_arg;
 	struct radix_node_head *head;
 {
-	return (rn_match_args(v_arg, head, NULL, NULL));
+	return (rn_match_args(v_arg, head, 0, NULL));
 }
 
 static struct radix_node *
@@ -1092,7 +1092,7 @@ rn_walktree(h, f, w)
 	walktree_f_t *f;
 	void *w;
 {
-	return (rn_walktree_mt(h, f, w, NULL, NULL));
+	return (rn_walktree_mt(h, f, w, 0, 0));
 }
 static int
 rn_walktree_mt(h, f, w, lockf, unlockf)
@@ -1216,7 +1216,7 @@ rn_inithead(head, off)
 	rnh->rnh_lookup = rn_lookup;
 	rnh->rnh_walktree = rn_walktree;
 	rnh->rnh_walktree_mt = rn_walktree_mt;
-	rnh->rnh_walktree_from = NULL;  /* not implemented */
+	rnh->rnh_walktree_from = 0;  /* not implemented */
 	rnh->rnh_treetop = t;
 	return (1);
 }
@@ -1228,10 +1228,10 @@ rn_init()
 
 #ifdef	_KERNEL
 	radix_mask_cache = kmem_cache_create("radix_mask",
-	    sizeof (struct radix_mask), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (struct radix_mask), 0, 0, 0, 0, NULL, NULL, 0);
 	radix_node_cache = kmem_cache_create("radix_node",
 	    max_keylen + 2 * sizeof (struct radix_node),
-	    0, NULL, NULL, NULL, NULL, NULL, 0);
+	    0, 0, 0, 0, NULL, NULL, 0);
 #endif /* _KERNEL */
 	R_ZallocSleep(rn_zeros, char *, 2 * max_keylen);
 
@@ -1267,11 +1267,11 @@ rn_freehead(rnh)
 {
 	(void) rn_walktree(rnh, rn_freenode, rnh);
 
-	rnh->rnh_addaddr = NULL;
-	rnh->rnh_deladdr = NULL;
-	rnh->rnh_matchaddr = NULL;
-	rnh->rnh_lookup = NULL;
-	rnh->rnh_walktree = NULL;
+	rnh->rnh_addaddr = 0;
+	rnh->rnh_deladdr = 0;
+	rnh->rnh_matchaddr = 0;
+	rnh->rnh_lookup = 0;
+	rnh->rnh_walktree = 0;
 
 #ifdef	_KERNEL
 	RADIX_NODE_HEAD_DESTROY(rnh);

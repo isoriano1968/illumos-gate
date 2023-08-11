@@ -157,8 +157,8 @@ static struct qinit telmodrinit = {
 static struct qinit telmodwinit = {
 	telmodwput,
 	telmodwsrv,
-	NULL,
-	NULL,
+	0,
+	0,
 	nulldev,
 	&telmodoinfo,
 	NULL

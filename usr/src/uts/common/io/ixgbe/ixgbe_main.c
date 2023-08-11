@@ -182,7 +182,7 @@ static struct cb_ops ixgbe_cb_ops = {
 static struct dev_ops ixgbe_dev_ops = {
 	DEVO_REV,		/* devo_rev */
 	0,			/* devo_refcnt */
-	NULL,			/* devo_getinfo */
+	0,			/* devo_getinfo */
 	nulldev,		/* devo_identify */
 	nulldev,		/* devo_probe */
 	ixgbe_attach,		/* devo_attach */
@@ -239,13 +239,13 @@ static mac_callbacks_t ixgbe_m_callbacks = {
 	ixgbe_m_stop,
 	ixgbe_m_promisc,
 	ixgbe_m_multicst,
-	NULL,
-	NULL,
+	0,
+	0,
 	NULL,
 	ixgbe_m_ioctl,
 	ixgbe_m_getcapab,
-	NULL,
-	NULL,
+	0,
+	0,
 	ixgbe_m_setprop,
 	ixgbe_m_getprop,
 	ixgbe_m_propinfo
@@ -6246,7 +6246,7 @@ ixgbe_fill_ring(void *arg, mac_ring_type_t rtype, const int group_index,
 
 		infop->mri_driver = (mac_ring_driver_t)rx_ring;
 		infop->mri_start = ixgbe_ring_start;
-		infop->mri_stop = NULL;
+		infop->mri_stop = 0;
 		infop->mri_poll = ixgbe_ring_rx_poll;
 		infop->mri_stat = ixgbe_rx_ring_stat;
 
@@ -6269,8 +6269,8 @@ ixgbe_fill_ring(void *arg, mac_ring_type_t rtype, const int group_index,
 		tx_ring->ring_handle = rh;
 
 		infop->mri_driver = (mac_ring_driver_t)tx_ring;
-		infop->mri_start = NULL;
-		infop->mri_stop = NULL;
+		infop->mri_start = 0;
+		infop->mri_stop = 0;
 		infop->mri_tx = ixgbe_ring_tx;
 		infop->mri_stat = ixgbe_tx_ring_stat;
 		if (ixgbe->intr_type &
@@ -6303,8 +6303,8 @@ ixgbe_fill_group(void *arg, mac_ring_type_t rtype, const int index,
 		rx_group->group_handle = gh;
 
 		infop->mgi_driver = (mac_group_driver_t)rx_group;
-		infop->mgi_start = NULL;
-		infop->mgi_stop = NULL;
+		infop->mgi_start = 0;
+		infop->mgi_stop = 0;
 		infop->mgi_addmac = ixgbe_addmac;
 		infop->mgi_remmac = ixgbe_remmac;
 
@@ -6317,8 +6317,8 @@ ixgbe_fill_group(void *arg, mac_ring_type_t rtype, const int index,
 			infop->mgi_addvlan = ixgbe_addvlan;
 			infop->mgi_remvlan = ixgbe_remvlan;
 		} else {
-			infop->mgi_addvlan = NULL;
-			infop->mgi_remvlan = NULL;
+			infop->mgi_addvlan = 0;
+			infop->mgi_remvlan = 0;
 		}
 
 		infop->mgi_count = (ixgbe->num_rx_rings / ixgbe->num_rx_groups);

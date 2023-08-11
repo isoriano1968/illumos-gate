@@ -206,7 +206,7 @@ static struct cb_ops cb_ws_ops = {
 static struct dev_ops ws_ops = {
 	DEVO_REV,		/* devo_rev */
 	0,			/* devo_refcnt */
-	NULL,			/* devo_getinfo */
+	0,			/* devo_getinfo */
 	nulldev,		/* devo_identify */
 	nulldev,		/* devo_probe */
 	e1000g_attach,		/* devo_attach */
@@ -246,13 +246,13 @@ static mac_callbacks_t e1000g_m_callbacks = {
 	e1000g_m_stop,
 	e1000g_m_promisc,
 	e1000g_m_multicst,
-	NULL,
+	0,
 	e1000g_m_tx,
 	NULL,
 	e1000g_m_ioctl,
 	e1000g_m_getcapab,
-	NULL,
-	NULL,
+	0,
+	0,
 	e1000g_m_setprop,
 	e1000g_m_getprop,
 	e1000g_m_propinfo
@@ -3123,7 +3123,7 @@ e1000g_fill_ring(void *arg, mac_ring_type_t rtype, const int grp_index,
 	rx_ring->mrh = rx_ring->mrh_init = rh;
 	infop->mri_driver = (mac_ring_driver_t)rx_ring;
 	infop->mri_start = e1000g_ring_start;
-	infop->mri_stop = NULL;
+	infop->mri_stop = 0;
 	infop->mri_poll = e1000g_poll_ring;
 	infop->mri_stat = e1000g_rx_ring_stat;
 
@@ -3153,8 +3153,8 @@ e1000g_fill_group(void *arg, mac_ring_type_t rtype, const int grp_index,
 	Adapter->rx_group = gh;
 
 	infop->mgi_driver = (mac_group_driver_t)Adapter;
-	infop->mgi_start = NULL;
-	infop->mgi_stop = NULL;
+	infop->mgi_start = 0;
+	infop->mgi_stop = 0;
 	infop->mgi_addmac = e1000g_addmac;
 	infop->mgi_remmac = e1000g_remmac;
 	infop->mgi_count = 1;

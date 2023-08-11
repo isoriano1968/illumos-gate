@@ -338,18 +338,18 @@ static struct cmac_ops chelsio_mac_ops = {
 	mac_intr_enable,
 	mac_intr_disable,
 	mac_intr_clear,
-	NULL,
+	0,
 	mac_enable,
 	mac_disable,
-	NULL,
-	NULL,
+	0,
+	0,
 	mac_set_mtu,
 	mac_set_rx_mode,
 	mac_set_speed_duplex_fc,
-	NULL,
+	0,
 	mac_update_statistics,
 	mac_get_address,
-	NULL
+	0
 };
 #else
 static struct cmac_ops chelsio_mac_ops = {

@@ -668,8 +668,8 @@ niumx_dma_allochdl(dev_info_t *dip, dev_info_t *rdip, ddi_dma_attr_t *attrp,
 	mp->dmai_ncookies = 0;
 	mp->dmai_curcookie = 0;
 	mp->dmai_fault = 0;
-	mp->dmai_fault_check = NULL;
-	mp->dmai_fault_notify = NULL;
+	mp->dmai_fault_check = 0;
+	mp->dmai_fault_notify = 0;
 
 	mp->dmai_attr = *attrp;		/* set requestors attr info */
 

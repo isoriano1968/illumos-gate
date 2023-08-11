@@ -288,7 +288,7 @@ nfs4_init_mem_cache(char *cache_name, uint32_t idxcnt, uint32_t size, uint32_t i
 	    0,
 	    rfs4_dbe_kmem_constructor,
 	    rfs4_dbe_kmem_destructor,
-	    NULL,
+	    0,
 	    NULL,
 	    NULL,
 	    0);

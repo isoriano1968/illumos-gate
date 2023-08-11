@@ -97,7 +97,7 @@ nxge_intr_add(
 	} else if (group->nldvs > 1) {
 		inthandler = group->sys_intr_handler;
 	} else {
-		inthandler = NULL;
+		inthandler = 0;
 	}
 
 	interrupts = (nxge_intr_t *)&nxge->nxge_intr_type;
@@ -357,7 +357,7 @@ nxge_hio_intr_add(
 	} else if (group->nldvs > 1) {
 		inthandler = group->sys_intr_handler;
 	} else {
-		inthandler = NULL;
+		inthandler = 0;
 	}
 
 	if ((ddi_status = ddi_intr_add_handler(interrupts->htable[vector],

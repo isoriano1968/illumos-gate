@@ -169,7 +169,7 @@ static struct dev_ops rpcib_ops = {
 	nodev,			/* reset */
 	&rpcib_cbops,		    /* driver ops - devctl interfaces */
 	NULL,			/* bus operations */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 
@@ -406,7 +406,7 @@ static struct ibt_clnt_modinfo_s rib_modinfo = {
 	IBTI_V_CURR,
 	IBT_GENERIC,
 	rib_async_handler,	/* async event handler */
-	NULL,			/* Memory Region Handler */
+	0,			/* Memory Region Handler */
 	"nfs/ib"
 };
 
@@ -910,8 +910,8 @@ rpcib_open_hcas(rpcib_state_t *ribstat)
 			hca->server_side_cache = kmem_cache_create(
 			    rssc_name,
 			    sizeof (cache_avl_struct_t), 0,
-			    NULL,
-			    NULL,
+			    0,
+			    0,
 			    rib_server_side_cache_reclaim,
 			    hca, NULL, 0);
 		}

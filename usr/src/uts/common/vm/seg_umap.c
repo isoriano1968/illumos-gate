@@ -75,8 +75,8 @@ static struct seg_ops segumap_ops = {
 	segumap_faulta,
 	segumap_setprot,
 	segumap_checkprot,
-	NULL,			/* kluster: disabled */
-	NULL,			/* swapout: disabled */
+	0,			/* kluster: disabled */
+	0,			/* swapout: disabled */
 	segumap_sync,
 	segumap_incore,
 	segumap_lockop,
@@ -89,7 +89,7 @@ static struct seg_ops segumap_ops = {
 	segumap_pagelock,
 	segumap_setpagesize,
 	segumap_getmemid,
-	NULL,			/* getpolicy: disabled */
+	0,			/* getpolicy: disabled */
 	segumap_capable,
 	seg_inherit_notsup
 };

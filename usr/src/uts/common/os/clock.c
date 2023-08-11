@@ -387,8 +387,8 @@ static void calcloadavg(int, uint64_t *);
 static int genloadavg(struct loadavg_s *);
 static void loadavg_update();
 
-void (*cmm_clock_callout)() = NULL;
-void (*cpucaps_clock_callout)() = NULL;
+void (*cmm_clock_callout)() = 0;
+void (*cpucaps_clock_callout)() = 0;
 
 extern clock_t clock_tick_proc_max;
 
@@ -2034,7 +2034,7 @@ deadman_init(void)
 		deadman_enabled = 1;
 
 	hdlr.cyo_online = deadman_online;
-	hdlr.cyo_offline = NULL;
+	hdlr.cyo_offline = 0;
 	hdlr.cyo_arg = NULL;
 
 	mutex_enter(&cpu_lock);

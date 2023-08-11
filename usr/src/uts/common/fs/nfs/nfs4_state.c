@@ -1461,7 +1461,7 @@ rfs4_state_zone_init(nfs4_srv_t *nsrv4)
 	    1,
 	    rfs4_file_create,
 	    rfs4_file_destroy,
-	    NULL,
+	    0,
 	    sizeof (rfs4_file_t),
 	    TABSIZE,
 	    MAXTABSZ, -1);

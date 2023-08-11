@@ -212,11 +212,11 @@ static struct module_info bridge_dld_modinfo = {
 };
 
 static struct qinit bridge_dld_rinit = {
-	NULL,			/* qi_putp */
-	NULL,			/* qi_srvp */
+	0,			/* qi_putp */
+	0,			/* qi_srvp */
 	dld_open,		/* qi_qopen */
 	dld_close,		/* qi_qclose */
-	NULL,			/* qi_qadmin */
+	0,			/* qi_qadmin */
 	&bridge_dld_modinfo,	/* qi_minfo */
 	NULL			/* qi_mstat */
 };
@@ -224,9 +224,9 @@ static struct qinit bridge_dld_rinit = {
 static struct qinit bridge_dld_winit = {
 	dld_wput,		/* qi_putp */
 	dld_wsrv,		/* qi_srvp */
-	NULL,			/* qi_qopen */
-	NULL,			/* qi_qclose */
-	NULL,			/* qi_qadmin */
+	0,			/* qi_qopen */
+	0,			/* qi_qclose */
+	0,			/* qi_qadmin */
 	&bridge_dld_modinfo,	/* qi_minfo */
 	NULL			/* qi_mstat */
 };
@@ -236,7 +236,7 @@ static int bridge_ioc_listfwd(void *, intptr_t, int, cred_t *, int *);
 /* GLDv3 control ioctls used by Bridging */
 static dld_ioc_info_t bridge_ioc_list[] = {
 	{BRIDGE_IOC_LISTFWD, DLDCOPYINOUT, sizeof (bridge_listfwd_t),
-	    bridge_ioc_listfwd, NULL},
+	    bridge_ioc_listfwd, 0},
 };
 
 /*
@@ -543,10 +543,10 @@ static mac_callbacks_t bridge_m_callbacks = {
 	bridge_m_unicst,
 	bridge_m_tx,
 	NULL,	/* reserved */
-	NULL,	/* ioctl */
-	NULL,	/* getcapab */
-	NULL,	/* open */
-	NULL,	/* close */
+	0,	/* ioctl */
+	0,	/* getcapab */
+	0,	/* open */
+	0,	/* close */
 	bridge_m_setprop,
 	bridge_m_getprop,
 	bridge_m_propinfo
@@ -2906,7 +2906,7 @@ bridge_add_link(void *arg)
 		goto fail;
 	blp->bl_flags |= BLF_SET_BRIDGE;
 
-	err = mac_promisc_add(blp->bl_mch, MAC_CLIENT_PROMISC_ALL, NULL,
+	err = mac_promisc_add(blp->bl_mch, MAC_CLIENT_PROMISC_ALL, 0,
 	    blp, &blp->bl_mphp, MAC_PROMISC_FLAGS_NO_TX_LOOP);
 	if (err != 0)
 		goto fail;
@@ -3370,7 +3370,7 @@ bridge_inst_init(void)
 static void
 bridge_inst_fini(void)
 {
-	mac_bridge_vectors(NULL, NULL, NULL, NULL);
+	mac_bridge_vectors(0, 0, 0, 0);
 	if (bridge_timerid != 0)
 		(void) untimeout(bridge_timerid);
 	rw_destroy(&bmac_rwlock);
@@ -3473,21 +3473,21 @@ static struct module_info bridge_modinfo = {
 };
 
 static struct qinit bridge_rinit = {
-	NULL,			/* qi_putp */
-	NULL,			/* qi_srvp */
+	0,			/* qi_putp */
+	0,			/* qi_srvp */
 	bridge_open,		/* qi_qopen */
 	bridge_close,		/* qi_qclose */
-	NULL,			/* qi_qadmin */
+	0,			/* qi_qadmin */
 	&bridge_modinfo,	/* qi_minfo */
 	NULL			/* qi_mstat */
 };
 
 static struct qinit bridge_winit = {
 	(int (*)())bridge_wput, /* qi_putp */
-	NULL,			/* qi_srvp */
-	NULL,			/* qi_qopen */
-	NULL,			/* qi_qclose */
-	NULL,			/* qi_qadmin */
+	0,			/* qi_srvp */
+	0,			/* qi_qopen */
+	0,			/* qi_qclose */
+	0,			/* qi_qadmin */
 	&bridge_modinfo,	/* qi_minfo */
 	NULL			/* qi_mstat */
 };

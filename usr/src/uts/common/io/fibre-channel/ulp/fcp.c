@@ -842,7 +842,7 @@ static struct dev_ops fcp_ops = {
 	nodev,			/* reset */
 	&fcp_cb_ops,		/* cb_ops */
 	NULL,			/* bus_ops */
-	NULL,			/* power */
+	0,			/* power */
 };
 
 
@@ -9876,33 +9876,33 @@ fcp_handle_port_attach(opaque_t ulph, fc_ulp_port_info_t *pinfo,
 	pptr->port_tran = tran;
 	tran->tran_hba_private		= pptr;
 	tran->tran_tgt_init		= fcp_scsi_tgt_init;
-	tran->tran_tgt_probe		= NULL;
+	tran->tran_tgt_probe		= 0;
 	tran->tran_tgt_free		= fcp_scsi_tgt_free;
 	tran->tran_start		= fcp_scsi_start;
 	tran->tran_reset		= fcp_scsi_reset;
 	tran->tran_abort		= fcp_scsi_abort;
 	tran->tran_getcap		= fcp_scsi_getcap;
 	tran->tran_setcap		= fcp_scsi_setcap;
-	tran->tran_init_pkt		= NULL;
-	tran->tran_destroy_pkt		= NULL;
-	tran->tran_dmafree		= NULL;
-	tran->tran_sync_pkt		= NULL;
+	tran->tran_init_pkt		= 0;
+	tran->tran_destroy_pkt		= 0;
+	tran->tran_dmafree		= 0;
+	tran->tran_sync_pkt		= 0;
 	tran->tran_reset_notify		= fcp_scsi_reset_notify;
 	tran->tran_get_bus_addr		= fcp_scsi_get_bus_addr;
 	tran->tran_get_name		= fcp_scsi_get_name;
-	tran->tran_clear_aca		= NULL;
-	tran->tran_clear_task_set	= NULL;
-	tran->tran_terminate_task	= NULL;
+	tran->tran_clear_aca		= 0;
+	tran->tran_clear_task_set	= 0;
+	tran->tran_terminate_task	= 0;
 	tran->tran_get_eventcookie	= fcp_scsi_bus_get_eventcookie;
 	tran->tran_add_eventcall	= fcp_scsi_bus_add_eventcall;
 	tran->tran_remove_eventcall	= fcp_scsi_bus_remove_eventcall;
 	tran->tran_post_event		= fcp_scsi_bus_post_event;
-	tran->tran_quiesce		= NULL;
-	tran->tran_unquiesce		= NULL;
-	tran->tran_bus_reset		= NULL;
+	tran->tran_quiesce		= 0;
+	tran->tran_unquiesce		= 0;
+	tran->tran_bus_reset		= 0;
 	tran->tran_bus_config		= fcp_scsi_bus_config;
 	tran->tran_bus_unconfig		= fcp_scsi_bus_unconfig;
-	tran->tran_bus_power		= NULL;
+	tran->tran_bus_power		= 0;
 	tran->tran_interconnect_type	= INTERCONNECT_FABRIC;
 
 	tran->tran_pkt_constructor	= fcp_kmem_cache_constructor;
@@ -9921,10 +9921,10 @@ fcp_handle_port_attach(opaque_t ulph, fc_ulp_port_info_t *pinfo,
 		tran->tran_destroy_pkt	   = fcp_pseudo_destroy_pkt;
 		tran->tran_sync_pkt	   = fcp_pseudo_sync_pkt;
 		tran->tran_dmafree	   = fcp_pseudo_dmafree;
-		tran->tran_setup_pkt	   = NULL;
-		tran->tran_teardown_pkt	   = NULL;
-		tran->tran_pkt_constructor = NULL;
-		tran->tran_pkt_destructor  = NULL;
+		tran->tran_setup_pkt	   = 0;
+		tran->tran_teardown_pkt	   = 0;
+		tran->tran_pkt_constructor = 0;
+		tran->tran_pkt_destructor  = 0;
 		pptr->port_data_dma_attr   = pseudo_fca_dma_attr;
 	}
 
@@ -11657,7 +11657,7 @@ fcp_reset_target(struct scsi_address *ap, int level)
 	mutex_exit(&ptgt->tgt_mutex);
 
 	if ((pkt = scsi_init_pkt(ap, NULL, NULL, 0, 0,
-	    0, 0, NULL, 0)) == NULL) {
+	    0, 0, 0, 0)) == NULL) {
 		kmem_free(p, sizeof (struct fcp_reset_elem));
 		mutex_enter(&ptgt->tgt_mutex);
 		fcp_update_tgt_state(ptgt, FCP_RESET, FCP_LUN_BUSY);
@@ -11673,7 +11673,7 @@ fcp_reset_target(struct scsi_address *ap, int level)
 	} else {
 		cmd->cmd_fcp_cmd.fcp_cntl.cntl_reset_lun = 1;
 	}
-	cmd->cmd_fp_pkt->pkt_comp = NULL;
+	cmd->cmd_fp_pkt->pkt_comp = 0;
 	cmd->cmd_pkt->pkt_flags |= FLAG_NOINTR;
 
 	/* prepare a packet for transport */
@@ -14215,7 +14215,7 @@ fcp_prepare_pkt(struct fcp_port *pptr, struct fcp_pkt *cmd,
 
 	if (cmd->cmd_pkt->pkt_flags & FLAG_NOINTR) {
 		fpkt->pkt_tran_flags = (FC_TRAN_CLASS3 | FC_TRAN_NO_INTR);
-		fpkt->pkt_comp = NULL;
+		fpkt->pkt_comp = 0;
 	} else {
 		fpkt->pkt_tran_flags = (FC_TRAN_CLASS3 | FC_TRAN_INTR);
 		if (cmd->cmd_pkt->pkt_flags & FLAG_IMMEDIATE_CB) {
@@ -16288,7 +16288,7 @@ fcp_pseudo_start(struct scsi_address *ap, struct scsi_pkt *pkt)
 	}
 
 	if (pkt->pkt_flags & FLAG_NOINTR) {
-		fpkt->pkt_comp = NULL;
+		fpkt->pkt_comp = 0;
 		fpkt->pkt_tran_flags = (FC_TRAN_CLASS3 | FC_TRAN_NO_INTR);
 	} else {
 		fpkt->pkt_comp = fcp_cmd_callback;

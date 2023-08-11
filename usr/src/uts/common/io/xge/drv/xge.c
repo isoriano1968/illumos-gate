@@ -127,11 +127,11 @@ xge_driver_init_hal(void)
 	uld_callbacks.link_up = xgell_callback_link_up;
 	uld_callbacks.link_down = xgell_callback_link_down;
 	uld_callbacks.crit_err = xge_callback_crit_err;
-	uld_callbacks.event = NULL;
-	uld_callbacks.event_queued = NULL;
-	uld_callbacks.before_device_poll = NULL;
-	uld_callbacks.after_device_poll = NULL;
-	uld_callbacks.sched_timer = NULL;
+	uld_callbacks.event = 0;
+	uld_callbacks.event_queued = 0;
+	uld_callbacks.before_device_poll = 0;
+	uld_callbacks.after_device_poll = 0;
+	uld_callbacks.sched_timer = 0;
 	uld_callbacks.xpak_alarm_log = xge_xpak_alarm_log;
 
 	return (xge_hal_driver_initialize(&driver_config, &uld_callbacks));

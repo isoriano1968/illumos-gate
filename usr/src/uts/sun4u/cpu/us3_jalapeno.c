@@ -841,8 +841,8 @@ cpu_init_private(struct cpu *cp)
 	 */
 	if (ch_private_cache == NULL) {
 		ch_private_cache = kmem_cache_create("ch_private_cache",
-		    sizeof (cheetah_private_t), PAGESIZE, NULL, NULL,
-		    NULL, NULL, static_arena, 0);
+		    sizeof (cheetah_private_t), PAGESIZE, 0, 0,
+		    0, NULL, static_arena, 0);
 	}
 
 	chprp = CPU_PRIVATE(cp) = kmem_cache_alloc(ch_private_cache, KM_SLEEP);

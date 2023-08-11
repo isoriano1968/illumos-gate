@@ -161,7 +161,7 @@ static crypto_digest_ops_t sha2_digest_ops = {
 	sha2_digest_init,
 	sha2_digest,
 	sha2_digest_update,
-	NULL,
+	0,
 	sha2_digest_final,
 	sha2_digest_atomic
 };
@@ -180,7 +180,7 @@ static int sha2_mac_verify_atomic(crypto_provider_handle_t, crypto_session_id_t,
 
 static crypto_mac_ops_t sha2_mac_ops = {
 	sha2_mac_init,
-	NULL,
+	0,
 	sha2_mac_update,
 	sha2_mac_final,
 	sha2_mac_atomic,

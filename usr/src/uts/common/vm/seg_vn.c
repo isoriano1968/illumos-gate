@@ -415,7 +415,7 @@ segvn_init(void)
 
 	segvn_cache = kmem_cache_create("segvn_cache",
 	    sizeof (struct segvn_data), 0,
-	    segvn_cache_constructor, segvn_cache_destructor, NULL,
+	    segvn_cache_constructor, segvn_cache_destructor, 0,
 	    NULL, NULL, 0);
 
 	if (segvn_lpg_disable == 0) {
@@ -451,7 +451,7 @@ segvn_init(void)
 		(void) sprintf(str, "segvn_szc_cache%d", szc);
 		segvn_szc_cache[szc] = kmem_cache_create(str,
 		    page_get_pagecnt(szc) * sizeof (page_t *), 0,
-		    NULL, NULL, NULL, NULL, NULL, KMC_NODEBUG);
+		    0, 0, 0, NULL, NULL, KMC_NODEBUG);
 	}
 
 
@@ -477,8 +477,8 @@ segvn_init(void)
 		size_t hsz = svntr_hashtab_sz * sizeof (svntr_bucket_t);
 
 		svntr_cache = kmem_cache_create("svntr_cache",
-		    sizeof (svntr_t), 0, svntr_cache_constructor, NULL,
-		    NULL, NULL, NULL, 0);
+		    sizeof (svntr_t), 0, svntr_cache_constructor, 0,
+		    0, NULL, NULL, 0);
 		svntr_hashtab = kmem_zalloc(hsz, KM_SLEEP);
 		for (i = 0; i < svntr_hashtab_sz; i++) {
 			mutex_init(&svntr_hashtab[i].tr_lock,  NULL,

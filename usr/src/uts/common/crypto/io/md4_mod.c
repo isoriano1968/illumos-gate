@@ -121,7 +121,7 @@ static crypto_digest_ops_t md4_digest_ops = {
 	md4_digest_init,
 	md4_digest,
 	md4_digest_update,
-	NULL,
+	0,
 	md4_digest_final,
 	md4_digest_atomic
 };

@@ -1251,7 +1251,7 @@ ipp_packet_free(
 	if (pp->ippp_private) {
 		pp->ippp_private_free(pp->ippp_private);
 		pp->ippp_private = NULL;
-		pp->ippp_private_free = NULL;
+		pp->ippp_private_free = 0;
 	}
 
 	/*
@@ -3281,7 +3281,7 @@ init_mods(
 	ipp_mid_limit = (ipp_mod_id_t)(ipp_max_mod - 1);
 
 	ipp_mod_cache = kmem_cache_create("ipp_mod", sizeof (ipp_mod_t),
-	    IPP_ALIGN, mod_constructor, mod_destructor, NULL, NULL, NULL, 0);
+	    IPP_ALIGN, mod_constructor, mod_destructor, 0, NULL, NULL, 0);
 	ASSERT(ipp_mod_cache != NULL);
 
 	/*
@@ -3313,7 +3313,7 @@ init_actions(
 
 	ipp_action_cache = kmem_cache_create("ipp_action",
 	    sizeof (ipp_action_t), IPP_ALIGN, action_constructor,
-	    action_destructor, NULL, NULL, NULL, 0);
+	    action_destructor, 0, NULL, NULL, 0);
 	ASSERT(ipp_action_cache != NULL);
 
 	/*
@@ -3339,7 +3339,7 @@ init_packets(
 
 	ipp_packet_cache = kmem_cache_create("ipp_packet",
 	    sizeof (ipp_packet_t), IPP_ALIGN, packet_constructor,
-	    packet_destructor, NULL, NULL, NULL, 0);
+	    packet_destructor, 0, NULL, NULL, 0);
 	ASSERT(ipp_packet_cache != NULL);
 }
 #undef	__FN__

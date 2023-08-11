@@ -97,11 +97,11 @@ static dld_ioc_info_t	iptun_ioc_list[] = {
 	{ IPTUN_MODIFY,		DLDCOPYIN,	sizeof (iptun_kparams_t),
 	    iptun_ioc_modify,		secpolicy_iptun_config},
 	{ IPTUN_INFO,		DLDCOPYINOUT,	sizeof (iptun_kparams_t),
-	    iptun_ioc_info,		NULL},
+	    iptun_ioc_info,		0},
 	{ IPTUN_SET_6TO4RELAY,	DLDCOPYIN,	sizeof (struct in_addr),
 	    iptun_ioc_set_6to4relay,	secpolicy_iptun_config},
 	{ IPTUN_GET_6TO4RELAY,	DLDCOPYINOUT,	sizeof (struct in_addr),
-	    iptun_ioc_get_6to4relay,	NULL}
+	    iptun_ioc_get_6to4relay,	0}
 };
 
 int

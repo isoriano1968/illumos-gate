@@ -120,7 +120,7 @@ static struct dev_ops pmugpio_ops = {
 	nodev,			/* Reset */
 	&pmugpio_cb_ops,		/* Driver operations */
 	0,			/* Bus operations */
-	NULL,			/* Power */
+	0,			/* Power */
 	ddi_quiesce_not_supported,	/* devo_quiesce */
 };
 

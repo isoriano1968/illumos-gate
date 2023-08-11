@@ -717,7 +717,7 @@ cb_dispatch(struct svc_req *req, SVCXPRT *xprt)
 		xdr_args = xdr_void;
 		xdr_res = xdr_void;
 		proc = cb_null;
-		freeproc = NULL;
+		freeproc = 0;
 		break;
 
 	case CB_COMPOUND:
@@ -1050,7 +1050,7 @@ nfs4_svc(struct nfs4_svc_args *arg, model_t model)
 
 	if (cmd & NFS4_KRPC_START) {
 		error = svc_tli_kcreate(fp, readsize, buf, &addrmask, &cb_xprt,
-		    &nfs4_cb_sct, NULL, NFS_CB_SVCPOOL_ID, FALSE);
+		    &nfs4_cb_sct, 0, NFS_CB_SVCPOOL_ID, FALSE);
 		if (error) {
 			CB_WARN1("nfs4_svc: svc_tli_kcreate failed %d\n",
 			    error);

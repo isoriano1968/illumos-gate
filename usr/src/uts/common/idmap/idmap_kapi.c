@@ -352,7 +352,7 @@ int
 kidmap_start(void)
 {
 	mutex_init(&idmap_zone_mutex, NULL, MUTEX_DEFAULT, NULL);
-	zone_key_create(&idmap_zone_key, NULL, NULL, idmap_zone_destroy);
+	zone_key_create(&idmap_zone_key, 0, 0, idmap_zone_destroy);
 	kidmap_sid_prefix_store_init();
 
 	return (0);

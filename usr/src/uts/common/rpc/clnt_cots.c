@@ -3692,7 +3692,7 @@ clnt_cots_init(void)
 		clnt_cots_hash_size = DEFAULT_MIN_HASH_SIZE;
 
 	cots_call_ht = call_table_init(clnt_cots_hash_size);
-	zone_key_create(&zone_cots_key, NULL, NULL, clnt_zone_destroy);
+	zone_key_create(&zone_cots_key, 0, 0, clnt_zone_destroy);
 }
 
 void

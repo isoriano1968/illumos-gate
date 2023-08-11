@@ -220,7 +220,7 @@ static void
 mpo_wr_lock()
 {
 	mutex_enter(&cpu_lock);
-	pause_cpus(NULL, NULL);
+	pause_cpus(NULL, 0);
 	mutex_exit(&cpu_lock);
 }
 

@@ -1274,7 +1274,7 @@ const pf_fab_err_tbl_t pcie_pcie_tbl[] = {
 	{PCIE_AER_UCE_UR,	pf_analyse_ca_ur,
 	    PF_AFFECTED_SELF, 0},
 
-	{0, NULL, 0, 0}
+	{0, 0, 0, 0}
 };
 
 const pf_fab_err_tbl_t pcie_rp_tbl[] = {
@@ -1315,7 +1315,7 @@ const pf_fab_err_tbl_t pcie_rp_tbl[] = {
 	{PCIE_AER_UCE_UR,	pf_no_panic,
 	    PF_AFFECTED_AER, PF_AFFECTED_CHILDREN},
 
-	{0, NULL, 0, 0}
+	{0, 0, 0, 0}
 };
 
 const pf_fab_err_tbl_t pcie_sw_tbl[] = {
@@ -1356,7 +1356,7 @@ const pf_fab_err_tbl_t pcie_sw_tbl[] = {
 	{PCIE_AER_UCE_UR,	pf_analyse_ca_ur,
 	    PF_AFFECTED_AER, PF_AFFECTED_SELF | PF_AFFECTED_CHILDREN},
 
-	{0, NULL, 0, 0}
+	{0, 0, 0, 0}
 };
 
 const pf_fab_err_tbl_t pcie_pcie_bdg_tbl[] = {
@@ -1399,7 +1399,7 @@ const pf_fab_err_tbl_t pcie_pcie_bdg_tbl[] = {
 	{PCIE_AER_SUCE_INTERNAL_ERR,	pf_panic,
 	    PF_AFFECTED_SELF | PF_AFFECTED_CHILDREN, 0},
 
-	{0, NULL, 0, 0}
+	{0, 0, 0, 0}
 };
 
 const pf_fab_err_tbl_t pcie_pci_bdg_tbl[] = {
@@ -1421,7 +1421,7 @@ const pf_fab_err_tbl_t pcie_pci_bdg_tbl[] = {
 	{PCI_STAT_S_TARG_AB,	pf_analyse_pci,
 	    PF_AFFECTED_SELF, 0},
 
-	{0, NULL, 0, 0}
+	{0, 0, 0, 0}
 };
 
 const pf_fab_err_tbl_t pcie_pci_tbl[] = {
@@ -1443,7 +1443,7 @@ const pf_fab_err_tbl_t pcie_pci_tbl[] = {
 	{PCI_STAT_S_TARG_AB,	pf_analyse_pci,
 	    PF_AFFECTED_SELF, 0},
 
-	{0, NULL, 0, 0}
+	{0, 0, 0, 0}
 };
 
 #define	PF_MASKED_AER_ERR(pfd_p) \

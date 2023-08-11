@@ -178,7 +178,7 @@ tmpfsinit(int fstype, char *name)
 		VFSNAME_ROOT,		{ .vfs_root = tmp_root },
 		VFSNAME_STATVFS,	{ .vfs_statvfs = tmp_statvfs },
 		VFSNAME_VGET,		{ .vfs_vget = tmp_vget },
-		NULL,			NULL
+		NULL,			0
 	};
 	int error;
 	extern  void    tmpfs_hash_init();

@@ -580,7 +580,7 @@ ibmf_i_init_wqes(ibmf_ci_t *cip)
 	(void) sprintf(string, "ibmf_%016" PRIx64 "_wqes", cip->ci_node_guid);
 	cip->ci_wqe_ib_vmem = vmem_create(string,
 	    (void *)(uintptr_t)wqe_mgtp->wqes_ib_mem, wqe_mgtp->wqes_kmem_sz,
-	    sizeof (uint64_t), NULL, NULL, NULL, 0, VM_SLEEP);
+	    sizeof (uint64_t), 0, 0, NULL, 0, VM_SLEEP);
 
 	mutex_enter(&cip->ci_wqe_mutex);
 	cip->ci_wqe_mgt_list = wqe_mgtp;
@@ -591,14 +591,14 @@ ibmf_i_init_wqes(ibmf_ci_t *cip)
 	/* create a kmem cache for the send WQEs */
 	cip->ci_send_wqes_cache = kmem_cache_create(string,
 	    sizeof (ibmf_send_wqe_t), 0, ibmf_send_wqe_cache_constructor,
-	    ibmf_send_wqe_cache_destructor, NULL, (void *)cip, NULL, 0);
+	    ibmf_send_wqe_cache_destructor, 0, (void *)cip, NULL, 0);
 
 	bzero(string, 128);
 	(void) sprintf(string, "ibmf_%016" PRIx64 "_rwqe", cip->ci_node_guid);
 	/* create a kmem cache for the receive WQEs */
 	cip->ci_recv_wqes_cache = kmem_cache_create(string,
 	    sizeof (ibmf_recv_wqe_t), 0, ibmf_recv_wqe_cache_constructor,
-	    ibmf_recv_wqe_cache_destructor, NULL, (void *)cip, NULL, 0);
+	    ibmf_recv_wqe_cache_destructor, 0, (void *)cip, NULL, 0);
 
 	IBMF_TRACE_0(IBMF_TNF_DEBUG, DPRINT_L4, ibmf_i_init_wqes_end,
 	    IBMF_TNF_TRACE, "", "ibmf_i_init_wqes() exit\n");
@@ -735,7 +735,7 @@ ibmf_i_init_altqp_wqes(ibmf_alt_qp_t *qp_ctx)
 	    qp_ctx->isq_client_hdl->ic_client_info.ci_guid, qp_ctx->isq_qpn);
 	qp_ctx->isq_wqe_ib_vmem = vmem_create(string,
 	    (void *)(uintptr_t)wqe_mgtp->wqes_ib_mem, wqe_mgtp->wqes_kmem_sz,
-	    sizeof (uint64_t), NULL, NULL, NULL, 0, VM_SLEEP);
+	    sizeof (uint64_t), 0, 0, NULL, 0, VM_SLEEP);
 
 	bzero(string, 128);
 	/*
@@ -749,7 +749,7 @@ ibmf_i_init_altqp_wqes(ibmf_alt_qp_t *qp_ctx)
 	/* create a kmem cache for the send WQEs */
 	qp_ctx->isq_send_wqes_cache = kmem_cache_create(string,
 	    sizeof (ibmf_send_wqe_t), 0, ibmf_altqp_send_wqe_cache_constructor,
-	    ibmf_altqp_send_wqe_cache_destructor, NULL, (void *)qp_ctx,
+	    ibmf_altqp_send_wqe_cache_destructor, 0, (void *)qp_ctx,
 	    NULL, 0);
 
 	bzero(string, 128);
@@ -758,7 +758,7 @@ ibmf_i_init_altqp_wqes(ibmf_alt_qp_t *qp_ctx)
 	/* create a kmem cache for the receive WQEs */
 	qp_ctx->isq_recv_wqes_cache = kmem_cache_create(string,
 	    sizeof (ibmf_recv_wqe_t), 0, ibmf_altqp_recv_wqe_cache_constructor,
-	    ibmf_altqp_recv_wqe_cache_destructor, NULL, (void *)qp_ctx,
+	    ibmf_altqp_recv_wqe_cache_destructor, 0, (void *)qp_ctx,
 	    NULL, 0);
 
 	mutex_enter(&qp_ctx->isq_wqe_mutex);

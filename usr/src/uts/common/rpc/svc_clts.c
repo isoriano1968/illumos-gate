@@ -872,7 +872,7 @@ svc_clts_kdup(struct svc_req *req, caddr_t res, int size, struct dupreq **drpp,
 			(*dr->dr_resfree)(dr->dr_resp.buf);
 		}
 	}
-	dr->dr_resfree = NULL;
+	dr->dr_resfree = 0;
 	drmru = dr;
 
 	dr->dr_xid = REQTOXID(req);

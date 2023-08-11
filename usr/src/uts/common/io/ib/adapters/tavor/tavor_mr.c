@@ -384,7 +384,7 @@ tavor_mr_register_shared(tavor_state_t *state, tavor_mrhdl_t mrhdl,
 	mr->mr_rsrcp	  = rsrc;
 	mr->mr_is_umem	  = mr_is_umem;
 	mr->mr_umemcookie = (mr_is_umem != 0) ? umem_cookie : NULL;
-	mr->mr_umem_cbfunc = NULL;
+	mr->mr_umem_cbfunc = 0;
 	mr->mr_umem_cbarg1 = NULL;
 	mr->mr_umem_cbarg2 = NULL;
 
@@ -1165,7 +1165,7 @@ tavor_mr_common_reg(tavor_state_t *state, tavor_pdhdl_t pd,
 		_NOTE(NOW_INVISIBLE_TO_OTHER_THREADS(*bind->bi_buf))
 
 		bind->bi_buf = ddi_umem_iosetup(umem_cookie, 0, umem_len,
-		    B_WRITE, 0, 0, NULL, DDI_UMEM_SLEEP);
+		    B_WRITE, 0, 0, 0, DDI_UMEM_SLEEP);
 		if (bind->bi_buf == NULL) {
 			goto mrcommon_fail3;
 		}
@@ -1274,7 +1274,7 @@ tavor_mr_common_reg(tavor_state_t *state, tavor_pdhdl_t pd,
 	mr->mr_rsrcp	  = rsrc;
 	mr->mr_is_umem	  = mr_is_umem;
 	mr->mr_umemcookie = (mr_is_umem != 0) ? umem_cookie : NULL;
-	mr->mr_umem_cbfunc = NULL;
+	mr->mr_umem_cbfunc = 0;
 	mr->mr_umem_cbarg1 = NULL;
 	mr->mr_umem_cbarg2 = NULL;
 
@@ -1480,7 +1480,7 @@ tavor_dma_mr_register(tavor_state_t *state, tavor_pdhdl_t pd,
 	mr->mr_rsrcp	   = rsrc;
 	mr->mr_is_umem	   = 0;
 	mr->mr_umemcookie  = NULL;
-	mr->mr_umem_cbfunc = NULL;
+	mr->mr_umem_cbfunc = 0;
 	mr->mr_umem_cbarg1 = NULL;
 	mr->mr_umem_cbarg2 = NULL;
 

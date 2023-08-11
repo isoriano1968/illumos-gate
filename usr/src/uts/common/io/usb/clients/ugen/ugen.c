@@ -67,7 +67,7 @@ static int	ugen_skel_reconnect_ev_cb(dev_info_t *);
 static usb_event_t ugen_skel_events = {
 	ugen_skel_disconnect_ev_cb,
 	ugen_skel_reconnect_ev_cb,
-	NULL, NULL
+	0, 0
 };
 
 /* Driver cb_ops structure */

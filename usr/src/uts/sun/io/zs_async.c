@@ -462,17 +462,17 @@ static struct qinit async_rinit = {
 	zsa_rsrv,
 	zsa_open,
 	zsa_close,
-	NULL,
+	0,
 	&asyncm_info,
 	NULL
 };
 
 static struct qinit async_winit = {
 	zsa_wput,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
 	&asyncm_info,
 	NULL
 };

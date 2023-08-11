@@ -249,9 +249,9 @@ static mac_callbacks_t yge_m_callbacks = {
 	yge_m_tx,
 	NULL,
 	yge_m_ioctl,
-	NULL,		/* mc_getcapab */
-	NULL,		/* mc_open */
-	NULL,		/* mc_close */
+	0,		/* mc_getcapab */
+	0,		/* mc_open */
+	0,		/* mc_close */
 	yge_m_setprop,
 	yge_m_getprop,
 	yge_m_propinfo
@@ -262,7 +262,7 @@ static mii_ops_t yge_mii_ops = {
 	yge_mii_read,
 	yge_mii_write,
 	yge_mii_notify,
-	NULL	/* reset */
+	0	/* reset */
 };
 
 /*

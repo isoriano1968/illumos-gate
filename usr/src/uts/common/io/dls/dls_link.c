@@ -749,7 +749,7 @@ dls_link_init(void)
 	 */
 	i_dls_link_cachep = kmem_cache_create("dls_link_cache",
 	    sizeof (dls_link_t), 0, i_dls_link_constructor,
-	    i_dls_link_destructor, NULL, NULL, NULL, 0);
+	    i_dls_link_destructor, 0, NULL, NULL, 0);
 	ASSERT(i_dls_link_cachep != NULL);
 
 	/*

@@ -298,7 +298,7 @@ struct bus_ops db_bus_ops = {
 	0,
 	0,
 	db_fm_init_child,
-	NULL,
+	0,
 	db_bus_enter,
 	db_bus_exit,
 	0,

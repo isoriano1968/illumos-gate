@@ -126,8 +126,8 @@ static mac_callbacks_t vnic_m_callbacks = {
 	NULL,
 	vnic_m_ioctl,
 	vnic_m_capab_get,
-	NULL,
-	NULL,
+	0,
+	0,
 	vnic_m_setprop,
 	vnic_m_getprop,
 	vnic_m_propinfo
@@ -137,7 +137,7 @@ void
 vnic_dev_init(void)
 {
 	vnic_cache = kmem_cache_create("vnic_cache",
-	    sizeof (vnic_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (vnic_t), 0, 0, 0, 0, NULL, NULL, 0);
 
 	vnic_hash = mod_hash_create_idhash("vnic_hash",
 	    VNIC_HASHSZ, mod_hash_null_valdtor);

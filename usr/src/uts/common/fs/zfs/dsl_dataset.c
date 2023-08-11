@@ -1024,7 +1024,7 @@ dsl_dataset_zero_zil(dsl_dataset_t *ds, dmu_tx_t *tx)
 		if (os->os_encrypted)
 			os->os_next_write_raw[tx->tx_txg & TXG_MASK] = B_TRUE;
 
-		zio = zio_root(dp->dp_spa, NULL, NULL, ZIO_FLAG_MUSTSUCCEED);
+		zio = zio_root(dp->dp_spa, 0, NULL, ZIO_FLAG_MUSTSUCCEED);
 		dsl_dataset_sync(ds, zio, tx);
 		VERIFY0(zio_wait(zio));
 

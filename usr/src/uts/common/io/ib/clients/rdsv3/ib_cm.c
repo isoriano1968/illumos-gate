@@ -220,7 +220,7 @@ rdsv3_ib_cm_connect_complete(struct rdsv3_connection *conn,
 	 * we had received a regular ACK.
 	 */
 	if (dp && dp->dp_ack_seq)
-		rdsv3_send_drop_acked(conn, ntohll(dp->dp_ack_seq), NULL);
+		rdsv3_send_drop_acked(conn, ntohll(dp->dp_ack_seq), 0);
 
 	rdsv3_connect_complete(conn);
 
@@ -427,7 +427,7 @@ rdsv3_ib_tasklet_fn(void *data)
 		    ack_state.ack_required);
 	}
 	if (ack_state.ack_recv_valid && ack_state.ack_recv > ic->i_ack_recv) {
-		rdsv3_send_drop_acked(conn, ack_state.ack_recv, NULL);
+		rdsv3_send_drop_acked(conn, ack_state.ack_recv, 0);
 		ic->i_ack_recv = ack_state.ack_recv;
 	}
 	if (rdsv3_conn_up(conn)) {
@@ -780,7 +780,7 @@ rdsv3_ib_cm_handle_connect(struct rdma_cm_id *cm_id,
 	 * we had received a regular ACK.
 	 */
 	if (dp->dp_ack_seq)
-		rdsv3_send_drop_acked(conn, ntohll(dp->dp_ack_seq), NULL);
+		rdsv3_send_drop_acked(conn, ntohll(dp->dp_ack_seq), 0);
 
 	ASSERT(!cm_id->context);
 	ASSERT(!ic->i_cm_id);

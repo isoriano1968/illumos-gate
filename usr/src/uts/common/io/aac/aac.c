@@ -457,7 +457,7 @@ static struct dev_ops aac_dev_ops = {
 	aac_reset,
 	&aac_cb_ops,
 	NULL,
-	NULL,
+	0,
 	aac_quiesce,
 };
 
@@ -7222,7 +7222,7 @@ aac_probe_lun(struct aac_softstate *softs, struct scsi_device *sd)
 			mutex_exit(&softs->io_lock);
 			if ((event != AAC_CFG_NULL_NOEXIST) &&
 			    (event != AAC_CFG_DELETE)) {
-				if (scsi_hba_probe(sd, NULL) ==
+				if (scsi_hba_probe(sd, 0) ==
 				    SCSIPROBE_EXISTS)
 					return (NDI_SUCCESS);
 			}
@@ -7232,7 +7232,7 @@ aac_probe_lun(struct aac_softstate *softs, struct scsi_device *sd)
 		int dtype;
 		int qual; /* device qualifier */
 
-		if (scsi_hba_probe(sd, NULL) != SCSIPROBE_EXISTS)
+		if (scsi_hba_probe(sd, 0) != SCSIPROBE_EXISTS)
 			return (NDI_FAILURE);
 
 		dtype = sd->sd_inq->inq_dtype & DTYPE_MASK;
@@ -7321,7 +7321,7 @@ aac_config_tgt(struct aac_softstate *softs, int tgt)
 		}
 		if ((pkt = scsi_init_pkt(&ap, NULL, bp, CDB_GROUP5,
 		    sizeof (struct scsi_arq_status), 0, PKT_CONSISTENT,
-		    NULL, NULL)) == NULL) {
+		    0, NULL)) == NULL) {
 			scsi_free_consistent_buf(bp);
 			return (AACERR);
 		}

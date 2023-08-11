@@ -101,7 +101,7 @@ struct dev_ops fcsm_ops = {
 	nodev,		/* reset */
 	&fcsm_cb_ops,	/* char/block entry points structure for leaf drivers */
 	NULL,		/* bus operations for nexus driver */
-	NULL		/* power management */
+	0		/* power management */
 };
 
 
@@ -218,7 +218,7 @@ _init(void)
 
 	fcsm_job_cache = kmem_cache_create("fcsm_job_cache",
 	    sizeof (fcsm_job_t), 8, fcsm_job_cache_constructor,
-	    fcsm_job_cache_destructor, NULL, NULL, NULL, 0);
+	    fcsm_job_cache_destructor, 0, NULL, NULL, 0);
 
 	if (fcsm_job_cache == NULL) {
 		mutex_destroy(&fcsm_global_mutex);
@@ -625,7 +625,7 @@ fcsm_handle_port_attach(fc_ulp_port_info_t *pinfo, uint32_t s_id, int instance)
 	fcsm->sm_cmd_cache = kmem_cache_create(name,
 	    sizeof (fcsm_cmd_t) + pinfo->port_fca_pkt_size, 8,
 	    fcsm_cmd_cache_constructor, fcsm_cmd_cache_destructor,
-	    NULL, (void *)fcsm, NULL, 0);
+	    0, (void *)fcsm, NULL, 0);
 	if (fcsm->sm_cmd_cache == NULL) {
 		fcsm_display(CE_WARN, SM_LOG, fcsm, NULL,
 		    "port_attach: pkt cache create failed");
@@ -1169,7 +1169,7 @@ fcsm_cleanup_port(fcsm_t *fcsm)
 	job = fcsm_alloc_job(KM_SLEEP);
 	ASSERT(job != NULL);
 	fcsm_init_job(job, fcsm->sm_instance, FCSM_JOB_THREAD_SHUTDOWN,
-	    FCSM_JOBFLAG_SYNC, NULL, NULL, NULL, NULL);
+	    FCSM_JOBFLAG_SYNC, NULL, NULL, 0, NULL);
 
 	status = fcsm_process_job(job, 0);
 	ASSERT(status == FC_SUCCESS);
@@ -1596,7 +1596,7 @@ fcsm_fciocmd(intptr_t arg, int mode, cred_t *credp, fcio_t *fcio)
 		fcio->fcio_obuf = rsp_iu;
 
 		status = fcsm_ct_passthru(fcsm->sm_instance, fcio, KM_SLEEP,
-		    FCSM_JOBFLAG_SYNC, NULL);
+		    FCSM_JOBFLAG_SYNC, 0);
 		if (status != FC_SUCCESS) {
 			retval = EIO;
 		}
@@ -2058,7 +2058,7 @@ fcsm_alloc_cmd(fcsm_t *fcsm, uint32_t cmd_len, uint32_t resp_len, int sleep)
 	cmd->cmd_retry_count	= 0;
 	cmd->cmd_max_retries	= 0;
 	cmd->cmd_retry_interval	= 0;
-	cmd->cmd_transport	= NULL;
+	cmd->cmd_transport	= 0;
 
 	ASSERT(cmd->cmd_dma_flags == 0);
 	ASSERT(cmd->cmd_fp_pkt == &cmd->cmd_fc_packet);
@@ -2351,7 +2351,7 @@ fcsm_alloc_job(int sleep)
 		job->job_result		= -1;
 		job->job_arg		= (opaque_t)0;
 		job->job_caller_priv	= (opaque_t)0;
-		job->job_comp		= NULL;
+		job->job_comp		= 0;
 		job->job_comp_arg	= (opaque_t)0;
 		job->job_priv		= (void *)0;
 		job->job_priv_flags	= 0;

@@ -170,7 +170,7 @@ static struct cb_ops igb_cb_ops = {
 static struct dev_ops igb_dev_ops = {
 	DEVO_REV,		/* devo_rev */
 	0,			/* devo_refcnt */
-	NULL,			/* devo_getinfo */
+	0,			/* devo_getinfo */
 	nulldev,		/* devo_identify */
 	nulldev,		/* devo_probe */
 	igb_attach,		/* devo_attach */
@@ -210,13 +210,13 @@ static mac_callbacks_t igb_m_callbacks = {
 	igb_m_stop,
 	igb_m_promisc,
 	igb_m_multicst,
-	NULL,
-	NULL,
+	0,
+	0,
 	NULL,
 	igb_m_ioctl,
 	igb_m_getcapab,
-	NULL,
-	NULL,
+	0,
+	0,
 	igb_m_setprop,
 	igb_m_getprop,
 	igb_m_propinfo

@@ -77,14 +77,14 @@ typedef void (*mac_notify_default_cb_fn_t)(mac_impl_t *);
 
 static const mac_notify_default_cb_fn_t mac_notify_cb_list[MAC_NNOTE] = {
 	mac_fanout_recompute,	/* MAC_NOTE_LINK */
-	NULL,		/* MAC_NOTE_UNICST */
-	NULL,		/* MAC_NOTE_TX */
-	NULL,		/* MAC_NOTE_DEVPROMISC */
-	NULL,		/* MAC_NOTE_FASTPATH_FLUSH */
-	NULL,		/* MAC_NOTE_SDU_SIZE */
-	NULL,		/* MAC_NOTE_MARGIN */
-	NULL,		/* MAC_NOTE_CAPAB_CHG */
-	NULL		/* MAC_NOTE_LOWLINK */
+	0,		/* MAC_NOTE_UNICST */
+	0,		/* MAC_NOTE_TX */
+	0,		/* MAC_NOTE_DEVPROMISC */
+	0,		/* MAC_NOTE_FASTPATH_FLUSH */
+	0,		/* MAC_NOTE_SDU_SIZE */
+	0,		/* MAC_NOTE_MARGIN */
+	0,		/* MAC_NOTE_CAPAB_CHG */
+	0		/* MAC_NOTE_LOWLINK */
 };
 
 /*

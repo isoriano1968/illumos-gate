@@ -2319,7 +2319,7 @@ cyclic_configure(cpu_t *c)
 
 	if (cyclic_id_cache == NULL)
 		cyclic_id_cache = kmem_cache_create("cyclic_id_cache",
-		    sizeof (cyc_id_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+		    sizeof (cyc_id_t), 0, 0, 0, 0, NULL, NULL, 0);
 
 	cpu->cyp_cpu = c;
 
@@ -2521,7 +2521,7 @@ cyclic_omni_start(cyc_id_t *idp, cyc_cpu_t *cpu)
 	ASSERT(cpu->cyp_state == CYS_ONLINE);
 	ASSERT(idp->cyi_cpu == NULL);
 
-	hdlr.cyh_func = NULL;
+	hdlr.cyh_func = 0;
 	hdlr.cyh_arg = NULL;
 	hdlr.cyh_level = CY_LEVELS;
 

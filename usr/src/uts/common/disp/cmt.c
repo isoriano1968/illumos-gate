@@ -169,7 +169,7 @@ struct pg_ops pg_ops_cmt = {
 	pg_cmt_cpu_active,
 	pg_cmt_cpu_inactive,
 	pg_cmt_cpupart_in,
-	NULL,			/* cpupart_out */
+	0,			/* cpupart_out */
 	pg_cmt_cpupart_move,
 	pg_cmt_cpu_belongs,
 	pg_cmt_policy_name,
@@ -355,7 +355,7 @@ cmt_hier_promote(pg_cmt_t *pg, cpu_pg_t *pgdata)
 	 * We're changing around the hierarchy, which is actively traversed
 	 * by the dispatcher. Pause CPUS to ensure exclusivity.
 	 */
-	pause_cpus(NULL, NULL);
+	pause_cpus(NULL, 0);
 
 	/*
 	 * If necessary, update the parent's sibling set, replacing parent
@@ -1555,7 +1555,7 @@ pg_cmt_prune(pg_cmt_t *pg_bad, pg_cmt_t **lineage, int *sz, cpu_pg_t *pgdata)
 	 * We're operating on the PG hierarchy. Pause CPUs to ensure
 	 * exclusivity with respect to the dispatcher.
 	 */
-	pause_cpus(NULL, NULL);
+	pause_cpus(NULL, 0);
 
 	/*
 	 * Prune all PG instances of the hardware sharing relationship
@@ -1675,7 +1675,7 @@ pg_cmt_disable(void)
 
 	ASSERT(MUTEX_HELD(&cpu_lock));
 
-	pause_cpus(NULL, NULL);
+	pause_cpus(NULL, 0);
 	cpu = cpu_list;
 
 	do {

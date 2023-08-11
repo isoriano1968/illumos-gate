@@ -102,7 +102,7 @@ static struct dev_ops av1394_ops = {
 	nodev,			/* reset */
 	&av1394_cb_ops,		/* driver operations */
 	NULL,			/* bus operations */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_supported,	/* devo_quiesce */
 };
 

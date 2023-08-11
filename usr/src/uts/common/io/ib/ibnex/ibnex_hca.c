@@ -93,25 +93,25 @@ extern int	ibnex_port_settling_time;
 struct bus_ops ibnex_ci_busops = {
 	BUSO_REV,
 	nullbusmap,		/* bus_map */
-	NULL,			/* bus_get_intrspec */
-	NULL,			/* bus_add_intrspec */
-	NULL,			/* bus_remove_intrspec */
+	0,			/* bus_get_intrspec */
+	0,			/* bus_add_intrspec */
+	0,			/* bus_remove_intrspec */
 	ibnex_map_fault,	/* Map Fault */
 	ddi_no_dma_map,		/* DMA related entry points */
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
 	ibnex_busctl,		/* bus_ctl */
 	ddi_bus_prop_op,	/* bus_prop_op */
-	NULL,			/* bus_get_eventcookie	*/
-	NULL,			/* bus_add_eventcall	*/
-	NULL,			/* bus_remove_eventcall	*/
-	NULL,			/* bus_post_event	*/
-	NULL,
+	0,			/* bus_get_eventcookie	*/
+	0,			/* bus_add_eventcall	*/
+	0,			/* bus_remove_eventcall	*/
+	0,			/* bus_post_event	*/
+	0,
 	ibnex_hca_bus_config,	/* bus config */
 	ibnex_hca_bus_unconfig	/* bus unconfig */
 };

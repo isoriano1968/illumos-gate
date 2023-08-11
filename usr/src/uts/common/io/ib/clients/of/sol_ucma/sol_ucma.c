@@ -133,12 +133,12 @@ sol_ofs_uobj_table_t	ucma_ctx_uo_tbl;
 sol_ofs_uobj_table_t	ucma_mcast_uo_tbl;
 
 /* Function pointers for uverbs functions */
-static uverbs_get_clnt_hdl_t		uverbs_get_hdl_fp = NULL;
-static uverbs_qpnum2qphdl_t		uverbs_qpnum2qphdl_fp = NULL;
-static uverbs_disable_uqpn_mod_t	uverbs_disable_uqpn_modify_fp = NULL;
-static uverbs_uqpn_cq_ctrl_t		uverbs_uqpn_cq_ctrl_fp = NULL;
-static uverbs_set_qp_free_state_t	uverbs_set_qp_free_state_fp = NULL;
-static uverbs_flush_qp_t		uverbs_flush_qp_fp = NULL;
+static uverbs_get_clnt_hdl_t		uverbs_get_hdl_fp = 0;
+static uverbs_qpnum2qphdl_t		uverbs_qpnum2qphdl_fp = 0;
+static uverbs_disable_uqpn_mod_t	uverbs_disable_uqpn_modify_fp = 0;
+static uverbs_uqpn_cq_ctrl_t		uverbs_uqpn_cq_ctrl_fp = 0;
+static uverbs_set_qp_free_state_t	uverbs_set_qp_free_state_fp = 0;
+static uverbs_flush_qp_t		uverbs_flush_qp_fp = 0;
 
 /* Global Variables */
 sol_ucma_t	sol_ucma;
@@ -604,13 +604,13 @@ sol_ucma_close(dev_t dev, int flag, int otype, cred_t *credp)
 	if (sol_ucma.ucma_num_file == 1) {
 		sol_ucma.ucma_clnt_hdl_flag =
 		    SOL_UCMA_CLNT_HDL_UNINITIALIZED;
-		uverbs_get_hdl_fp = NULL;
-		uverbs_qpnum2qphdl_fp = NULL;
-		uverbs_disable_uqpn_modify_fp = NULL;
-		uverbs_uqpn_cq_ctrl_fp = NULL;
-		uverbs_uqpn_cq_ctrl_fp  = NULL;
-		uverbs_set_qp_free_state_fp = NULL;
-		uverbs_flush_qp_fp = NULL;
+		uverbs_get_hdl_fp = 0;
+		uverbs_qpnum2qphdl_fp = 0;
+		uverbs_disable_uqpn_modify_fp = 0;
+		uverbs_uqpn_cq_ctrl_fp = 0;
+		uverbs_uqpn_cq_ctrl_fp  = 0;
+		uverbs_set_qp_free_state_fp = 0;
+		uverbs_flush_qp_fp = 0;
 		sol_ucma.ucma_ib_clnt_hdl = NULL;
 		sol_ucma.ucma_iw_clnt_hdl = NULL;
 		(void) ddi_modclose(sol_ucma.ucma_mod_hdl);
@@ -678,7 +678,7 @@ static  sol_ucma_cmd_table_t	sol_ucma_cmd_table[] = {
 	[RDMA_USER_CM_CMD_GET_EVENT]	= sol_ucma_get_event,
 	    sizeof (sol_ucma_get_event_t),
 	    sizeof (sol_ucma_event_resp_t),
-	[RDMA_USER_CM_CMD_GET_OPTION]	= NULL,
+	[RDMA_USER_CM_CMD_GET_OPTION]	= 0,
 	    0,
 	    0,
 	[RDMA_USER_CM_CMD_SET_OPTION]	= sol_ucma_set_option,

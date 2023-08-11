@@ -186,15 +186,15 @@ static mac_callbacks_t aggr_m_callbacks = {
 	aggr_m_stop,
 	aggr_m_promisc,
 	aggr_m_multicst,
-	NULL,
-	NULL,
+	0,
+	0,
 	NULL,
 	aggr_m_ioctl,
 	aggr_m_capab_get,
-	NULL,
-	NULL,
+	0,
+	0,
 	aggr_m_setprop,
-	NULL,
+	0,
 	aggr_m_propinfo
 };
 
@@ -241,7 +241,7 @@ aggr_grp_init(void)
 {
 	aggr_grp_cache = kmem_cache_create("aggr_grp_cache",
 	    sizeof (aggr_grp_t), 0, aggr_grp_constructor,
-	    aggr_grp_destructor, NULL, NULL, NULL, 0);
+	    aggr_grp_destructor, 0, NULL, NULL, 0);
 
 	aggr_grp_hash = mod_hash_create_idhash("aggr_grp_hash",
 	    GRP_HASHSZ, mod_hash_null_valdtor);
@@ -1055,7 +1055,7 @@ aggr_rem_pseudo_tx_group(aggr_port_t *port, aggr_pseudo_tx_group_t *tx_grp)
 	    (sizeof (mac_ring_handle_t *) * port->lp_tx_ring_alloc));
 
 	port->lp_tx_ring_cnt = 0;
-	(void) mac_client_tx_notify(port->lp_mch, NULL, port->lp_tx_notify_mh);
+	(void) mac_client_tx_notify(port->lp_mch, 0, port->lp_tx_notify_mh);
 	port->lp_tx_grp_added = B_FALSE;
 	aggr_grp_update_default(grp);
 done:
@@ -2497,8 +2497,8 @@ aggr_m_capab_get(void *arg, mac_capab_t cap, void *cap_data)
 			cap_rings->mr_group_type = MAC_GROUP_TYPE_STATIC;
 			cap_rings->mr_rnum = ring_cnt;
 			cap_rings->mr_gnum = grp->lg_rx_group_count;
-			cap_rings->mr_gaddring = NULL;
-			cap_rings->mr_gremring = NULL;
+			cap_rings->mr_gaddring = 0;
+			cap_rings->mr_gremring = 0;
 		} else {
 			cap_rings->mr_group_type = MAC_GROUP_TYPE_STATIC;
 			cap_rings->mr_rnum = grp->lg_tx_group.atg_ring_cnt;
@@ -2543,8 +2543,8 @@ aggr_fill_group(void *arg, mac_ring_type_t rtype, const int index,
 		rx_group->arg_grp = grp;
 
 		infop->mgi_driver = (mac_group_driver_t)rx_group;
-		infop->mgi_start = NULL;
-		infop->mgi_stop = NULL;
+		infop->mgi_start = 0;
+		infop->mgi_stop = 0;
 		infop->mgi_addmac = aggr_addmac;
 		infop->mgi_remmac = aggr_remmac;
 		infop->mgi_count = rx_group->arg_ring_cnt;
@@ -2615,8 +2615,8 @@ aggr_fill_ring(void *arg, mac_ring_type_t rtype, const int rg_index,
 		tx_ring->atr_rh = rh;
 
 		infop->mri_driver = (mac_ring_driver_t)tx_ring;
-		infop->mri_start = NULL;
-		infop->mri_stop = NULL;
+		infop->mri_start = 0;
+		infop->mri_stop = 0;
 		infop->mri_tx = aggr_ring_tx;
 		infop->mri_stat = aggr_tx_ring_stat;
 		/*

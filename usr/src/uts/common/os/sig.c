@@ -2147,8 +2147,8 @@ sigaddq(proc_t *p, kthread_t *t, k_siginfo_t *infop, int km_flags)
 	    (sig == SIGCLD && SI_FROMKERNEL(infop))) &&
 	    ((sqp = kmem_alloc(sizeof (sigqueue_t), km_flags)) != NULL)) {
 		bcopy(infop, &sqp->sq_info, sizeof (k_siginfo_t));
-		sqp->sq_func = NULL;
-		sqp->sq_next = NULL;
+		sqp->sq_func = 0;
+		sqp->sq_next = 0;
 		sigaddqins(p, t, sqp);
 	}
 	sigtoproc(p, t, sig);
@@ -2448,7 +2448,7 @@ sigqalloc(sigqhdr_t *sqh)
 				 * The pre-allocated pool is exhausted.
 				 */
 				sq = kmem_alloc(sizeof (sigqueue_t), KM_SLEEP);
-				sq->sq_func = NULL;
+				sq->sq_func = 0;
 			} else {
 				sq = sqh->sqb_free;
 				sq->sq_func = sigqrel;

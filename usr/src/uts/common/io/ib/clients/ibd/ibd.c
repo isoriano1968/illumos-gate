@@ -473,7 +473,7 @@ static struct ibt_clnt_modinfo_s ibd_clnt_modinfo = {
 	IBTI_V_CURR,
 	IBT_NETWORK,
 	ibd_async_handler,
-	NULL,
+	0,
 	"IBPART"
 };
 
@@ -481,7 +481,7 @@ static struct ibt_clnt_modinfo_s ibdpd_clnt_modinfo = {
 	IBTI_V_CURR,
 	IBT_NETWORK,
 	ibdpd_async_handler,
-	NULL,
+	0,
 	"IPIB"
 };
 
@@ -501,10 +501,10 @@ static mac_callbacks_t ibd_m_callbacks = {
 	ibd_m_unicst,
 	ibd_m_tx,
 	NULL,
-	NULL,
+	0,
 	ibd_m_getcapab,
-	NULL,
-	NULL,
+	0,
+	0,
 	ibd_m_setprop,
 	ibd_m_getprop,
 	ibd_m_propinfo
@@ -550,7 +550,7 @@ static dld_ioc_info_t ibd_dld_ioctl_list[] = {
 	{IBD_DELETE_IBPART, DLDCOPYIN, sizeof (ibpart_ioctl_t),
 	    ibd_delete_partition, secpolicy_dl_config},
 	{IBD_INFO_IBPART, DLDCOPYIN, sizeof (ibd_ioctl_t),
-	    ibd_get_partition_info, NULL}
+	    ibd_get_partition_info, 0}
 };
 
 /*
@@ -2878,7 +2878,7 @@ ibd_state_init(ibd_state_t *state, dev_info_t *dip)
 	(void) sprintf(buf, "ibd_req%d_%x_%u", ddi_get_instance(dip),
 	    state->id_pkey, state->id_plinkid);
 	state->id_req_kmc = kmem_cache_create(buf, sizeof (ibd_req_t),
-	    0, NULL, NULL, NULL, NULL, NULL, 0);
+	    0, 0, 0, 0, NULL, NULL, 0);
 
 	/* For Reliable Connected Mode */
 	mutex_init(&state->rc_rx_lock, NULL, MUTEX_DRIVER, NULL);
@@ -3075,7 +3075,7 @@ ibd_iba_join(ibd_state_t *state, ib_gid_t mgid, ibd_mce_t *mce)
 	mcg_attr.mc_sl = state->id_mcinfo->mc_adds_vect.av_srvl;
 	mcg_attr.mc_tclass = state->id_mcinfo->mc_adds_vect.av_tclass;
 	return (ibt_join_mcg(state->id_sgid, &mcg_attr, &mce->mc_info,
-	    NULL, NULL));
+	    0, NULL));
 }
 
 /*
@@ -3474,7 +3474,7 @@ query_bcast_grp:
 			_NOTE(NOW_VISIBLE_TO_OTHER_THREADS(state->id_mgid))
 
 			if ((ret = ibt_join_mcg(state->id_sgid, &mcg_attr,
-			    &mcg_info, NULL, NULL)) != IBT_SUCCESS) {
+			    &mcg_info, 0, NULL)) != IBT_SUCCESS) {
 				ibd_print_warn(state, "IPoIB broadcast group "
 				    "absent, create failed: ret = %d\n", ret);
 				state->id_bgroup_created = B_FALSE;
@@ -5653,7 +5653,7 @@ ibd_undo_start(ibd_state_t *state, link_state_t cur_link_state)
 	}
 
 	if (progress & IBD_DRV_SM_NOTICES_REGISTERED) {
-		ibt_register_subnet_notices(state->id_ibt_hdl, NULL, NULL);
+		ibt_register_subnet_notices(state->id_ibt_hdl, 0, NULL);
 
 		mutex_enter(&state->id_trap_lock);
 		state->id_trap_stop = B_TRUE;

@@ -396,7 +396,7 @@ dnlc_init()
 	 * functions.
 	 */
 	dnlc_dir_space_cache = kmem_cache_create("dnlc_space_cache",
-	    sizeof (dcfree_t), 0, NULL, NULL, dnlc_dir_reclaim, NULL,
+	    sizeof (dcfree_t), 0, 0, 0, dnlc_dir_reclaim, NULL,
 	    NULL, 0);
 
 	/*

@@ -154,9 +154,9 @@ mod_prop_info_t udp_propinfo_tbl[] = {
 	    mod_set_extra_privports, mod_get_extra_privports,
 	    {1, ULP_MAX_PORT, 0}, {0} },
 
-	{ "?", MOD_PROTO_UDP, NULL, mod_get_allprop, {0}, {0} },
+	{ "?", MOD_PROTO_UDP, 0, mod_get_allprop, {0}, {0} },
 
-	{ NULL, 0, NULL, NULL, {0}, {0} }
+	{ NULL, 0, 0, 0, {0}, {0} }
 };
 
 int udp_propinfo_count = A_CNT(udp_propinfo_tbl);

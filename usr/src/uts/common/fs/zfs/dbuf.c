@@ -638,7 +638,7 @@ retry:
 
 	dbuf_kmem_cache = kmem_cache_create("dmu_buf_impl_t",
 	    sizeof (dmu_buf_impl_t),
-	    0, dbuf_cons, dbuf_dest, NULL, NULL, NULL, 0);
+	    0, dbuf_cons, dbuf_dest, 0, NULL, NULL, 0);
 
 	for (i = 0; i < DBUF_MUTEXES; i++)
 		mutex_init(&h->hash_mutexes[i], NULL, MUTEX_DEFAULT, NULL);
@@ -1374,7 +1374,7 @@ dbuf_read(dmu_buf_impl_t *db, zio_t *zio, uint32_t flags)
 
 		if (zio == NULL &&
 		    db->db_blkptr != NULL && !BP_IS_HOLE(db->db_blkptr)) {
-			zio = zio_root(spa, NULL, NULL, ZIO_FLAG_CANFAIL);
+			zio = zio_root(spa, 0, NULL, ZIO_FLAG_CANFAIL);
 			need_wait = B_TRUE;
 		}
 		err = dbuf_read_impl(db, zio, flags, dblt, FTAG);
@@ -2821,7 +2821,7 @@ dbuf_prefetch_impl(dnode_t *dn, int64_t level, uint64_t blkid,
 
 	ASSERT3U(curlevel, ==, BP_GET_LEVEL(&bp));
 
-	zio_t *pio = zio_root(dmu_objset_spa(dn->dn_objset), NULL, NULL,
+	zio_t *pio = zio_root(dmu_objset_spa(dn->dn_objset), 0, NULL,
 	    ZIO_FLAG_CANFAIL);
 
 	dbuf_prefetch_arg_t *dpa = kmem_zalloc(sizeof (*dpa), KM_SLEEP);
@@ -2884,7 +2884,7 @@ dbuf_prefetch(dnode_t *dn, int64_t level, uint64_t blkid, zio_priority_t prio,
     arc_flags_t aflags)
 {
 
-	return (dbuf_prefetch_impl(dn, level, blkid, prio, aflags, NULL, NULL));
+	return (dbuf_prefetch_impl(dn, level, blkid, prio, aflags, 0, NULL));
 }
 
 /*
@@ -4054,7 +4054,7 @@ dbuf_can_remap(const dmu_buf_impl_t *db)
 	spa_config_enter(spa, SCL_VDEV, FTAG, RW_READER);
 	for (int i = 0; i < db->db.db_size >> SPA_BLKPTRSHIFT; i++) {
 		blkptr_t bp_copy = bp[i];
-		if (spa_remap_blkptr(spa, &bp_copy, NULL, NULL)) {
+		if (spa_remap_blkptr(spa, &bp_copy, 0, NULL)) {
 			ret = B_TRUE;
 			break;
 		}
@@ -4079,7 +4079,7 @@ dnode_needs_remap(const dnode_t *dn)
 	spa_config_enter(spa, SCL_VDEV, FTAG, RW_READER);
 	for (int j = 0; j < dn->dn_phys->dn_nblkptr; j++) {
 		blkptr_t bp_copy = dn->dn_phys->dn_blkptr[j];
-		if (spa_remap_blkptr(spa, &bp_copy, NULL, NULL)) {
+		if (spa_remap_blkptr(spa, &bp_copy, 0, NULL)) {
 			ret = B_TRUE;
 			break;
 		}
@@ -4217,7 +4217,7 @@ dbuf_write(dbuf_dirty_record_t *dr, arc_buf_t *data, dmu_tx_t *tx)
 
 		dr->dr_zio = zio_write(zio, os->os_spa, txg, &dr->dr_bp_copy,
 		    contents, db->db.db_size, db->db.db_size, &zp,
-		    dbuf_write_override_ready, NULL, NULL,
+		    dbuf_write_override_ready, 0, 0,
 		    dbuf_write_override_done,
 		    dr, ZIO_PRIORITY_ASYNC_WRITE, ZIO_FLAG_MUSTSUCCEED, &zb);
 		mutex_enter(&db->db_mtx);
@@ -4230,7 +4230,7 @@ dbuf_write(dbuf_dirty_record_t *dr, arc_buf_t *data, dmu_tx_t *tx)
 		    zp.zp_checksum == ZIO_CHECKSUM_NOPARITY);
 		dr->dr_zio = zio_write(zio, os->os_spa, txg,
 		    &dr->dr_bp_copy, NULL, db->db.db_size, db->db.db_size, &zp,
-		    dbuf_write_nofill_ready, NULL, NULL,
+		    dbuf_write_nofill_ready, 0, 0,
 		    dbuf_write_nofill_done, db,
 		    ZIO_PRIORITY_ASYNC_WRITE,
 		    ZIO_FLAG_MUSTSUCCEED | ZIO_FLAG_NODATA, &zb);
@@ -4242,7 +4242,7 @@ dbuf_write(dbuf_dirty_record_t *dr, arc_buf_t *data, dmu_tx_t *tx)
 		 * ready callback so that we can properly handle an indirect
 		 * block that only contains holes.
 		 */
-		arc_write_done_func_t *children_ready_cb = NULL;
+		arc_write_done_func_t *children_ready_cb = 0;
 		if (db->db_level != 0)
 			children_ready_cb = dbuf_write_children_ready;
 

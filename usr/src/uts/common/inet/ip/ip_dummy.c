@@ -53,12 +53,12 @@ struct module_info dummy_mod_info = {
 
 
 static struct qinit dummyrmodinit = {
-	dummy_wput, NULL, dummy_modopen, dummy_modclose, NULL,
+	dummy_wput, 0, dummy_modopen, dummy_modclose, 0,
 	&dummy_mod_info
 };
 
 static struct qinit dummywmodinit = {
-	dummy_wput, NULL, NULL, NULL, NULL, &dummy_mod_info
+	dummy_wput, 0, 0, 0, 0, &dummy_mod_info
 };
 
 struct streamtab dummymodinfo = {

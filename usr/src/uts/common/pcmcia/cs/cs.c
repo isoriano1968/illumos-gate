@@ -99,8 +99,8 @@ int CardServices(int function, ...);
  *
  * WAS: void *(*cis_parser)(int, ...) = NULL;
  */
-void *(*cis_parser)(int, ...) = NULL;
-csfunction_t *cs_socket_services = NULL;
+void *(*cis_parser)(int, ...) = 0;
+csfunction_t *cs_socket_services = 0;
 
 /*
  * event handling functions
@@ -596,7 +596,7 @@ CardServices(int function, ...)
 		break;
 	    case CISUnregister:	/* XXX - should we do some more checking */
 		/* XXX - need to protect this by a mutex */
-		cis_parser = NULL;
+		cis_parser = 0;
 		cis_cistpl_std_callout = NULL;
 		retcode = CS_SUCCESS;
 		break;
@@ -8528,7 +8528,7 @@ cs_ss_init()
 	csr.cs_magic = PCCS_MAGIC;
 	csr.cs_version = PCCS_VERSION;
 	csr.cs_card_services = CardServices;
-	csr.cs_event = NULL;
+	csr.cs_event = 0;
 
 	/*
 	 * Call into the CIS module and tell it what the private

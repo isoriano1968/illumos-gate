@@ -253,20 +253,20 @@ static struct module_info udp_mod_info =  {
  * We have separate open functions for the /dev/udp and /dev/udp6 devices.
  */
 static struct qinit udp_rinitv4 = {
-	NULL, NULL, udp_openv4, udp_tpi_close, NULL, &udp_mod_info, NULL
+	0, 0, udp_openv4, udp_tpi_close, 0, &udp_mod_info, NULL
 };
 
 static struct qinit udp_rinitv6 = {
-	NULL, NULL, udp_openv6, udp_tpi_close, NULL, &udp_mod_info, NULL
+	0, 0, udp_openv6, udp_tpi_close, 0, &udp_mod_info, NULL
 };
 
 static struct qinit udp_winit = {
-	udp_wput, ip_wsrv, NULL, NULL, NULL, &udp_mod_info
+	udp_wput, ip_wsrv, 0, 0, 0, &udp_mod_info
 };
 
 /* UDP entry point during fallback */
 struct qinit udp_fallback_sock_winit = {
-	udp_wput_fallback, NULL, NULL, NULL, NULL, &udp_mod_info
+	udp_wput_fallback, 0, 0, 0, 0, &udp_mod_info
 };
 
 /*
@@ -274,11 +274,11 @@ struct qinit udp_fallback_sock_winit = {
  * likes to use it as a place to hang the various streams.
  */
 static struct qinit udp_lrinit = {
-	udp_lrput, NULL, udp_openv4, udp_tpi_close, NULL, &udp_mod_info
+	udp_lrput, 0, udp_openv4, udp_tpi_close, 0, &udp_mod_info
 };
 
 static struct qinit udp_lwinit = {
-	udp_lwput, NULL, udp_openv4, udp_tpi_close, NULL, &udp_mod_info
+	udp_lwput, 0, udp_openv4, udp_tpi_close, 0, &udp_mod_info
 };
 
 /* For AF_INET aka /dev/udp */
@@ -341,10 +341,10 @@ uint32_t udp_random_anon_port = 1;
 
 void (*cl_inet_bind)(netstackid_t stack_id, uchar_t protocol,
     sa_family_t addr_family, uint8_t *laddrp, in_port_t lport,
-    void *args) = NULL;
+    void *args) = 0;
 void (*cl_inet_unbind)(netstackid_t stack_id, uint8_t protocol,
     sa_family_t addr_family, uint8_t *laddrp, in_port_t lport,
-    void *args) = NULL;
+    void *args) = 0;
 
 typedef union T_primitives *t_primp_t;
 
@@ -4486,7 +4486,7 @@ udp_ddi_g_init(void)
 	 * destroyed in the kernel, so we can maintain the
 	 * set of udp_stack_t's.
 	 */
-	netstack_register(NS_UDP, udp_stack_init, NULL, udp_stack_fini);
+	netstack_register(NS_UDP, udp_stack_init, 0, udp_stack_fini);
 }
 
 void
@@ -6601,9 +6601,9 @@ sock_downcalls_t sock_udp_downcalls = {
 	udp_getsockopt,		/* sd_getsockopt */
 	udp_setsockopt,		/* sd_setsockopt */
 	udp_send,		/* sd_send */
-	NULL,			/* sd_send_uio */
-	NULL,			/* sd_recv_uio */
-	NULL,			/* sd_poll */
+	0,			/* sd_send_uio */
+	0,			/* sd_recv_uio */
+	0,			/* sd_poll */
 	udp_shutdown,		/* sd_shutdown */
 	udp_clr_flowctrl,	/* sd_setflowctrl */
 	udp_ioctl,		/* sd_ioctl */

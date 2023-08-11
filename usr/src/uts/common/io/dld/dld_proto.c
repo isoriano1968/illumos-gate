@@ -549,7 +549,7 @@ proto_unbind_req(dld_str_t *dsp, mblk_t *mp)
 	/*
 	 * Clear the receive callback.
 	 */
-	dls_rx_set(dsp, NULL, NULL);
+	dls_rx_set(dsp, 0, NULL);
 	dsp->ds_direct = B_FALSE;
 
 	/*
@@ -1450,7 +1450,7 @@ dld_capab_poll_disable(dld_str_t *dsp, dld_capab_poll_t *poll)
 		return (EINVAL);
 
 	mac_client_poll_disable(dsp->ds_mch);
-	mac_resource_set(dsp->ds_mch, NULL, NULL);
+	mac_resource_set(dsp->ds_mch, 0, NULL);
 
 	dsp->ds_polling = B_FALSE;
 	return (0);

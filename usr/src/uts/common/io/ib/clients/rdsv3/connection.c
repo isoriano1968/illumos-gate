@@ -573,7 +573,7 @@ rdsv3_conn_init()
 
 	rdsv3_conn_slab = kmem_cache_create("rdsv3_connection",
 	    sizeof (struct rdsv3_connection), 0, rdsv3_conn_constructor,
-	    rdsv3_conn_destructor, NULL, NULL, NULL, 0);
+	    rdsv3_conn_destructor, 0, NULL, NULL, 0);
 	if (!rdsv3_conn_slab) {
 		RDSV3_DPRINTF2("rdsv3_conn_init",
 		    "kmem_cache_create(rdsv3_conn_slab) failed");

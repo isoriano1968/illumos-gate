@@ -919,7 +919,7 @@ flk_init(void)
 	uint_t	i;
 
 	flk_edge_cache = kmem_cache_create("flk_edges",
-	    sizeof (struct edge), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (struct edge), 0, 0, 0, 0, NULL, NULL, 0);
 	if (flk_edge_cache == NULL) {
 		cmn_err(CE_PANIC, "Couldn't create flk_edge_cache\n");
 	}

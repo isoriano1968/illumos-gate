@@ -83,11 +83,11 @@ static struct module_info sppp_modinfo = {
 };
 
 static struct qinit sppp_urinit = {
-	NULL,			/* qi_putp */
-	NULL,			/* qi_srvp */
+	0,			/* qi_putp */
+	0,			/* qi_srvp */
 	sppp_open,		/* qi_qopen */
 	sppp_close,		/* qi_qclose */
-	NULL,			/* qi_qadmin */
+	0,			/* qi_qadmin */
 	&sppp_modinfo,		/* qi_minfo */
 	NULL			/* qi_mstat */
 };
@@ -95,9 +95,9 @@ static struct qinit sppp_urinit = {
 static struct qinit sppp_uwinit = {
 	sppp_uwput,		/* qi_putp */
 	sppp_uwsrv,		/* qi_srvp */
-	NULL,			/* qi_qopen */
-	NULL,			/* qi_qclose */
-	NULL,			/* qi_qadmin */
+	0,			/* qi_qopen */
+	0,			/* qi_qclose */
+	0,			/* qi_qadmin */
 	&sppp_modinfo,		/* qi_minfo */
 	NULL			/* qi_mstat */
 };
@@ -105,19 +105,19 @@ static struct qinit sppp_uwinit = {
 static struct qinit sppp_lrinit = {
 	sppp_lrput,		/* qi_putp */
 	sppp_lrsrv,		/* qi_srvp */
-	NULL,			/* qi_qopen */
-	NULL,			/* qi_qclose */
-	NULL,			/* qi_qadmin */
+	0,			/* qi_qopen */
+	0,			/* qi_qclose */
+	0,			/* qi_qadmin */
 	&sppp_modinfo,		/* qi_minfo */
 	NULL			/* qi_mstat */
 };
 
 static struct qinit sppp_lwinit = {
-	NULL,			/* qi_putp */
+	0,			/* qi_putp */
 	sppp_lwsrv,		/* qi_srvp */
-	NULL,			/* qi_qopen */
-	NULL,			/* qi_qclose */
-	NULL,			/* qi_qadmin */
+	0,			/* qi_qopen */
+	0,			/* qi_qclose */
+	0,			/* qi_qadmin */
 	&sppp_modinfo,		/* qi_minfo */
 	NULL			/* qi_mstat */
 };

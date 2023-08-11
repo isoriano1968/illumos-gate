@@ -390,7 +390,7 @@ static	struct	cb_ops	vsw_cb_ops = {
 static	struct	dev_ops	vsw_ops = {
 	DEVO_REV,		/* devo_rev */
 	0,			/* devo_refcnt */
-	NULL,			/* devo_getinfo */
+	0,			/* devo_getinfo */
 	nulldev,		/* devo_identify */
 	nulldev,		/* devo_probe */
 	vsw_attach,		/* devo_attach */

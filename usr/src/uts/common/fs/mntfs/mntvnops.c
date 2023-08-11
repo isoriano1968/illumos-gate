@@ -1886,5 +1886,5 @@ const fs_operation_def_t mnt_vnodeops_template[] = {
 	VOPNAME_CMP,		{ .vop_cmp = mntcmp },
 	VOPNAME_DISPOSE,	{ .error = fs_error },
 	VOPNAME_SHRLOCK,	{ .error = fs_error },
-	NULL,			NULL
+	NULL,			0
 };

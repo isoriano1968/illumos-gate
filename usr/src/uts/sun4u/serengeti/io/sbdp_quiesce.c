@@ -844,7 +844,7 @@ sbdp_suspend(sbdp_sr_handle_t *srh)
 	}
 
 	mutex_enter(&cpu_lock);
-	pause_cpus(NULL, NULL);
+	pause_cpus(NULL, 0);
 	sbdp_stop_intr();
 
 	/*

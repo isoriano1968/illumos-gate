@@ -2291,7 +2291,7 @@ fct_check_solcmd_queue(fct_i_local_port_t *iport)
 				prev_icmd->icmd_solcmd_next = next_icmd;
 			}
 
-			icmd->icmd_cb = NULL;
+			icmd->icmd_cb = 0;
 			mutex_exit(&iport->iport_worker_lock);
 			fct_cmd_free(icmd->icmd_cmd);
 			mutex_enter(&iport->iport_worker_lock);

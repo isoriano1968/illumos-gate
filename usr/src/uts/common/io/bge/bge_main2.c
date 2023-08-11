@@ -1707,7 +1707,7 @@ bge_fill_ring(void *arg, mac_ring_type_t rtype, const int rg_index,
 
 		infop->mri_driver = (mac_ring_driver_t)rx_ring;
 		infop->mri_start = bge_ring_start;
-		infop->mri_stop = NULL;
+		infop->mri_stop = 0;
 		infop->mri_poll = bge_poll_ring;
 		infop->mri_stat = bge_rx_ring_stat;
 
@@ -1747,8 +1747,8 @@ bge_fill_group(void *arg, mac_ring_type_t rtype, const int rg_index,
 		rx_ring->ring_group_handle = gh;
 
 		infop->mgi_driver = (mac_group_driver_t)rx_ring;
-		infop->mgi_start = NULL;
-		infop->mgi_stop = NULL;
+		infop->mgi_start = 0;
+		infop->mgi_stop = 0;
 		infop->mgi_addmac = bge_addmac;
 		infop->mgi_remmac = bge_remmac;
 		infop->mgi_count = 1;
@@ -4268,9 +4268,9 @@ DDI_DEFINE_STREAM_OPS(bge_dev_ops,
 	bge_attach,	/* attach */
 	bge_detach,	/* detach */
 	nodev,		/* reset */
-	NULL,		/* cb_ops */
+	0,		/* cb_ops */
 	D_MP,		/* bus_ops */
-	NULL,		/* power */
+	0,		/* power */
 	bge_quiesce	/* quiesce */
 );
 

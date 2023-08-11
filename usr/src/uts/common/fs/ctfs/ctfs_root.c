@@ -265,7 +265,7 @@ ctfs_mount(vfs_t *vfsp, vnode_t *mvp, struct mounta *uap, cred_t *cr)
 	 */
 	data->ctvfs_root = gfs_root_create(sizeof (ctfs_rootnode_t),
 	    vfsp, ctfs_ops_root, CTFS_INO_ROOT, dirent, ctfs_root_do_inode,
-	    CTFS_NAME_MAX, NULL, NULL);
+	    CTFS_NAME_MAX, 0, 0);
 
 	kmem_free(dirent, (ct_ntypes + 2) * sizeof (gfs_dirent_t));
 
@@ -365,7 +365,7 @@ static const fs_operation_def_t ctfs_vfstops[] = {
 	{ VFSNAME_UNMOUNT,	{ .vfs_unmount = ctfs_unmount } },
 	{ VFSNAME_ROOT,		{ .vfs_root = ctfs_root } },
 	{ VFSNAME_STATVFS,	{ .vfs_statvfs = ctfs_statvfs } },
-	{ NULL, NULL }
+	{ NULL, 0 }
 };
 
 /*
@@ -517,5 +517,5 @@ static const fs_operation_def_t ctfs_tops_root[] = {
 	{ VOPNAME_LOOKUP,	{ .vop_lookup = gfs_vop_lookup } },
 	{ VOPNAME_SEEK,		{ .vop_seek = fs_seek } },
 	{ VOPNAME_INACTIVE,	{ .vop_inactive = gfs_vop_inactive } },
-	{ NULL, NULL }
+	{ NULL, 0 }
 };

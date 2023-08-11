@@ -318,7 +318,7 @@ devvt_prunedir(struct sdev_node *ddv)
 {
 	struct vnode *vp;
 	struct sdev_node *dv, *next = NULL;
-	int (*vtor)(struct sdev_node *) = NULL;
+	int (*vtor)(struct sdev_node *) = 0;
 
 	ASSERT(ddv->sdev_flags & SDEV_VTOR);
 
@@ -483,5 +483,5 @@ const fs_operation_def_t devvt_vnodeops_tbl[] = {
 	VOPNAME_RMDIR,		{ .error = fs_nosys },
 	VOPNAME_SYMLINK,	{ .error = fs_nosys },
 	VOPNAME_SETSECATTR,	{ .error = fs_nosys },
-	NULL,			NULL
+	NULL,			0
 };

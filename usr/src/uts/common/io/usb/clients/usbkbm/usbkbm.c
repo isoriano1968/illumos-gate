@@ -350,17 +350,17 @@ static struct qinit usbkbm_rinit = {
 	usbkbm_rsrv,
 	usbkbm_open,
 	usbkbm_close,
-	NULL,
+	0,
 	&usbkbm_minfo
 	};
 
 /* write side for ioctls */
 static struct qinit usbkbm_winit = {
 	usbkbm_wput,
-	NULL,
+	0,
 	usbkbm_open,
 	usbkbm_close,
-	NULL,
+	0,
 	&usbkbm_minfo
 	};
 
@@ -450,7 +450,7 @@ usbkbm_open(queue_t *q, dev_t *devp, int oflag, int sflag, cred_t *crp)
 	usbkbmd->usbkbm_polled_info.cons_polledio_argument =
 	    (cons_polledio_arg_t)usbkbmd;
 
-	usbkbmd->usbkbm_polled_info.cons_polledio_putchar = NULL;
+	usbkbmd->usbkbm_polled_info.cons_polledio_putchar = 0;
 
 	usbkbmd->usbkbm_polled_info.cons_polledio_getchar =
 	    usbkbm_polled_getchar;

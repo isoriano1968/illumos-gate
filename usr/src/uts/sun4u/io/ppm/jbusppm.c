@@ -91,7 +91,7 @@ static struct dev_ops jbppm_ops = {
 	nodev,			/* reset */
 	&jbppm_cbops,		/* cb_ops */
 	NULL,			/* bus_ops */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_supported,	/* devo_quiesce */
 };
 

@@ -160,7 +160,7 @@ ds_ops_t pl2303_ds_ops = {
 	pl2303_set_modem_ctl,
 	pl2303_get_modem_ctl,
 	pl2303_break_ctl,
-	NULL,			/* HW don't support loopback */
+	0,			/* HW don't support loopback */
 	pl2303_tx,
 	pl2303_rx,
 	pl2303_stop,
@@ -1489,7 +1489,7 @@ pl2303_open_pipes(pl2303_state_t *plp)
 	if (usb_pipe_open(plp->pl_dip, &out_data->ep_descr, &policy,
 	    USB_FLAGS_SLEEP, &plp->pl_bulkout_ph) != USB_SUCCESS) {
 		usb_pipe_close(plp->pl_dip, plp->pl_bulkin_ph, USB_FLAGS_SLEEP,
-		    NULL, NULL);
+		    0, NULL);
 
 		return (USB_FAILURE);
 	}

@@ -198,7 +198,7 @@ static struct dev_ops iscsi_dev_ops = {
 	nodev,			/* reset */
 	&iscsi_cb_ops,		/* driver operations */
 	NULL,			/* bus ops */
-	NULL,			/* power management */
+	0,			/* power management */
 	ddi_quiesce_not_needed,	/* quiesce */
 };
 

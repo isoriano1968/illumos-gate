@@ -138,8 +138,8 @@ srinterrupt(iwscn_list_t *lp, boolean_t wait)
 	ASSERT(MUTEX_HELD(&iwscn_list_lock));
 
 	while (lp->wl_ref_cnt != 0) {
-		strsetrerror(lp->wl_vp, EINTR, 0, NULL);
-		strsetwerror(lp->wl_vp, EINTR, 0, NULL);
+		strsetrerror(lp->wl_vp, EINTR, 0, 0);
+		strsetwerror(lp->wl_vp, EINTR, 0, 0);
 		if (!wait)
 			break;
 		cv_wait(&iwscn_list_cv, &iwscn_list_lock);
@@ -673,7 +673,7 @@ struct dev_ops	iwscn_ops = {
 	nodev,			/* reset */
 	&iwscn_cb_ops,		/* driver operations */
 	NULL,			/* bus operations */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

@@ -270,9 +270,9 @@ static dtrace_pops_t	dtrace_provider_ops = {
 	.dtps_disable = dtrace_nullop,
 	.dtps_suspend = dtrace_nullop,
 	.dtps_resume = dtrace_nullop,
-	.dtps_getargdesc = NULL,
-	.dtps_getargval = NULL,
-	.dtps_mode = NULL,
+	.dtps_getargdesc = 0,
+	.dtps_getargval = 0,
+	.dtps_mode = 0,
 	.dtps_destroy = dtrace_nullop
 };
 
@@ -13748,7 +13748,7 @@ dtrace_state_create(dev_t *devp, cred_t *cr)
 
 	(void) snprintf(c, sizeof (c), "dtrace_aggid_%d", minor);
 	state->dts_aggid_arena = vmem_create(c, (void *)1, UINT32_MAX, 1,
-	    NULL, NULL, NULL, 0, VM_SLEEP | VMC_IDENTIFIER);
+	    0, 0, NULL, 0, VM_SLEEP | VMC_IDENTIFIER);
 
 	if (devp != NULL) {
 		major = getemajor(*devp);
@@ -14399,7 +14399,7 @@ dtrace_state_stop(dtrace_state_t *state, processorid_t *cpu)
 		state->dts_cred.dcr_cred->cr_zone->zone_dtrace_getf--;
 
 		if (--dtrace_getf == 0)
-			dtrace_closef = NULL;
+			dtrace_closef = 0;
 	}
 
 	return (0);
@@ -16053,16 +16053,16 @@ dtrace_attach(dev_info_t *devi, ddi_attach_cmd_t cmd)
 	ASSERT(MUTEX_HELD(&cpu_lock));
 
 	dtrace_arena = vmem_create("dtrace", (void *)1, UINT32_MAX, 1,
-	    NULL, NULL, NULL, 0, VM_SLEEP | VMC_IDENTIFIER);
+	    0, 0, NULL, 0, VM_SLEEP | VMC_IDENTIFIER);
 	dtrace_minor = vmem_create("dtrace_minor", (void *)DTRACEMNRN_CLONE,
-	    UINT32_MAX - DTRACEMNRN_CLONE, 1, NULL, NULL, NULL, 0,
+	    UINT32_MAX - DTRACEMNRN_CLONE, 1, 0, 0, NULL, 0,
 	    VM_SLEEP | VMC_IDENTIFIER);
 	dtrace_taskq = taskq_create("dtrace_taskq", 1, maxclsyspri,
 	    1, INT_MAX, 0);
 
 	dtrace_state_cache = kmem_cache_create("dtrace_state_cache",
 	    sizeof (dtrace_dstate_percpu_t) * NCPU, DTRACE_STATE_ALIGN,
-	    NULL, NULL, NULL, NULL, NULL, 0);
+	    0, 0, 0, NULL, NULL, 0);
 
 	ASSERT(MUTEX_HELD(&cpu_lock));
 	dtrace_bymod = dtrace_hash_create(offsetof(dtrace_probe_t, dtpr_mod),
@@ -17163,15 +17163,15 @@ dtrace_detach(dev_info_t *dip, ddi_detach_cmd_t cmd)
 
 	bzero(&dtrace_anon, sizeof (dtrace_anon_t));
 	unregister_cpu_setup_func(dtrace_cpu_setup, NULL);
-	dtrace_cpu_init = NULL;
-	dtrace_helpers_cleanup = NULL;
-	dtrace_helpers_fork = NULL;
-	dtrace_cpustart_init = NULL;
-	dtrace_cpustart_fini = NULL;
-	dtrace_debugger_init = NULL;
-	dtrace_debugger_fini = NULL;
-	dtrace_modload = NULL;
-	dtrace_modunload = NULL;
+	dtrace_cpu_init = 0;
+	dtrace_helpers_cleanup = 0;
+	dtrace_helpers_fork = 0;
+	dtrace_cpustart_init = 0;
+	dtrace_cpustart_fini = 0;
+	dtrace_debugger_init = 0;
+	dtrace_debugger_fini = 0;
+	dtrace_modload = 0;
+	dtrace_modunload = 0;
 
 	ASSERT(dtrace_getf == 0);
 	ASSERT(dtrace_closef == NULL);

@@ -95,14 +95,14 @@ static ibt_status_t tavor_umap_pd_data_out(tavor_pdhdl_t pd,
 static struct devmap_callback_ctl tavor_devmap_umem_cbops = {
 	DEVMAP_OPS_REV,
 	tavor_devmap_umem_map,
-	NULL,
+	0,
 	tavor_devmap_umem_dup,
 	tavor_devmap_umem_unmap
 };
 static struct devmap_callback_ctl tavor_devmap_devmem_cbops = {
 	DEVMAP_OPS_REV,
 	tavor_devmap_devmem_map,
-	NULL,
+	0,
 	tavor_devmap_devmem_dup,
 	tavor_devmap_devmem_unmap
 };

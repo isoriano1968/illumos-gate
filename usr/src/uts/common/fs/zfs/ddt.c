@@ -978,7 +978,7 @@ ddt_repair_entry(ddt_t *ddt, ddt_entry_t *dde, ddt_entry_t *rdde, zio_t *rio)
 			continue;
 		ddt_bp_create(ddt->ddt_checksum, ddk, ddp, &blk);
 		zio_nowait(zio_rewrite(zio, zio->io_spa, 0, &blk,
-		    rdde->dde_repair_abd, DDK_GET_PSIZE(rddk), NULL, NULL,
+		    rdde->dde_repair_abd, DDK_GET_PSIZE(rddk), 0, NULL,
 		    ZIO_PRIORITY_SYNC_WRITE, ZIO_DDT_CHILD_FLAGS(zio), NULL));
 	}
 
@@ -1129,7 +1129,7 @@ ddt_sync(spa_t *spa, uint64_t txg)
 
 	tx = dmu_tx_create_assigned(spa->spa_dsl_pool, txg);
 
-	rio = zio_root(spa, NULL, NULL,
+	rio = zio_root(spa, 0, NULL,
 	    ZIO_FLAG_CANFAIL | ZIO_FLAG_SPECULATIVE | ZIO_FLAG_SELF_HEAL);
 
 	/*

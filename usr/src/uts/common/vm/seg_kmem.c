@@ -281,7 +281,7 @@ kernelheap_init(
 
 	if (core_size > 0) {
 		heap_core_arena = vmem_create("heap_core", core_start,
-		    core_size, PAGESIZE, NULL, NULL, NULL, 0, VM_SLEEP);
+		    core_size, PAGESIZE, 0, 0, NULL, 0, VM_SLEEP);
 		heap_core_base = core_start;
 	} else {
 		heap_core_arena = heap_arena;
@@ -308,8 +308,8 @@ kernelheap_init(
 
 #ifdef __sparc
 	heap32_arena = vmem_create("heap32", (void *)SYSBASE32,
-	    SYSLIMIT32 - SYSBASE32 - HEAPTEXT_SIZE, PAGESIZE, NULL,
-	    NULL, NULL, 0, VM_SLEEP);
+	    SYSLIMIT32 - SYSBASE32 - HEAPTEXT_SIZE, PAGESIZE, 0,
+	    0, NULL, 0, VM_SLEEP);
 	/*
 	 * Prom claims the physical and virtual resources used by panicbuf
 	 * and inter_vec_table. So reserve space for panicbuf, intr_vec_table,
@@ -331,7 +331,7 @@ kernelheap_init(
 #endif	/* __sparc */
 
 	heaptext_arena = vmem_create("heaptext", (void *)textbase,
-	    HEAPTEXT_SIZE, PAGESIZE, NULL, NULL, heaptext_parent, 0, VM_SLEEP);
+	    HEAPTEXT_SIZE, PAGESIZE, 0, 0, heaptext_parent, 0, VM_SLEEP);
 
 	/*
 	 * Create a set of arenas for memory with static translations
@@ -1050,13 +1050,13 @@ segkmem_xfree(vmem_t *vmp, void *inaddr, size_t size, struct vnode *vp,
 void
 segkmem_free(vmem_t *vmp, void *inaddr, size_t size)
 {
-	segkmem_xfree(vmp, inaddr, size, &kvp, NULL);
+	segkmem_xfree(vmp, inaddr, size, &kvp, 0);
 }
 
 static void
 segkmem_zio_free(vmem_t *vmp, void *inaddr, size_t size)
 {
-	segkmem_xfree(vmp, inaddr, size, &kvps[KV_ZVP], NULL);
+	segkmem_xfree(vmp, inaddr, size, &kvps[KV_ZVP], 0);
 }
 
 void
@@ -1533,7 +1533,7 @@ segkmem_zio_init(void *zio_mem_base, size_t zio_mem_size)
 	 * slabs, which matches nicely with the common 128k zio_data bufs.
 	 */
 	zio_arena = vmem_create("zfs_file_data", zio_mem_base, zio_mem_size,
-	    PAGESIZE, NULL, NULL, NULL, 32 * 1024, VM_SLEEP);
+	    PAGESIZE, 0, 0, NULL, 32 * 1024, VM_SLEEP);
 
 	zio_alloc_arena = vmem_create("zfs_file_data_buf", NULL, 0, PAGESIZE,
 	    segkmem_zio_alloc, segkmem_zio_free, zio_arena, 0, VM_SLEEP);
@@ -1621,7 +1621,7 @@ segkmem_heap_lp_init()
 
 	/* create large page heap arena */
 	heap_lp_arena = vmem_create("heap_lp", heap_lp_base, heap_lp_size,
-	    segkmem_heaplp_quantum, NULL, NULL, NULL, 0, VM_SLEEP);
+	    segkmem_heaplp_quantum, 0, 0, NULL, 0, VM_SLEEP);
 
 	ASSERT(heap_lp_arena != NULL);
 

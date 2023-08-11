@@ -266,7 +266,7 @@ static struct dev_ops stmf_ops = {
 	nodev,			/* reset */
 	&stmf_cb_ops,
 	NULL,			/* bus_ops */
-	NULL			/* power */
+	0			/* power */
 };
 
 #define	STMF_NAME		"COMSTAR STMF"

@@ -88,7 +88,7 @@ static struct dev_ops tda8444_ops = {
 	nodev,
 	&tda8444_cbops,
 	NULL,
-	NULL,
+	0,
 	ddi_quiesce_not_supported,	/* devo_quiesce */
 };
 

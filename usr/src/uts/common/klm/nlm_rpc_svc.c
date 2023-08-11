@@ -169,7 +169,7 @@ nlm_test_1_svc(struct nlm_testargs *argp, nlm_testres *resp,
 	args4.exclusive = argp->exclusive;
 	nlm_convert_to_nlm4_lock(&args4.alock, &argp->alock);
 
-	nlm_do_test(&args4, &res4, sr, NULL);
+	nlm_do_test(&args4, &res4, sr, 0);
 
 	resp->cookie = res4.cookie;
 	resp->stat.stat = nlm_convert_to_nlm_stats(res4.stat.stat);
@@ -205,7 +205,7 @@ nlm_lock_1_svc(nlm_lockargs *argp, nlm_res *resp,
 
 	/* NLM_LOCK */
 	nlm_do_lock(&args4, &res4, sr,
-	    nlm_lock_1_reply, NULL,
+	    nlm_lock_1_reply, 0,
 	    nlm_granted_1_cb);
 
 	/* for freeresult */
@@ -258,7 +258,7 @@ nlm_cancel_1_svc(struct nlm_cancargs *argp, nlm_res *resp,
 	args4.exclusive = argp->exclusive;
 	nlm_convert_to_nlm4_lock(&args4.alock, &argp->alock);
 
-	nlm_do_cancel(&args4, &res4, sr, NULL);
+	nlm_do_cancel(&args4, &res4, sr, 0);
 
 	nlm_convert_to_nlm_res(resp, &res4);
 
@@ -277,7 +277,7 @@ nlm_unlock_1_svc(struct nlm_unlockargs *argp, nlm_res *resp,
 	args4.cookie = argp->cookie;
 	nlm_convert_to_nlm4_lock(&args4.alock, &argp->alock);
 
-	nlm_do_unlock(&args4, &res4, sr, NULL);
+	nlm_do_unlock(&args4, &res4, sr, 0);
 
 	nlm_convert_to_nlm_res(resp, &res4);
 
@@ -297,7 +297,7 @@ nlm_granted_1_svc(struct nlm_testargs *argp, nlm_res *resp,
 	args4.exclusive = argp->exclusive;
 	nlm_convert_to_nlm4_lock(&args4.alock, &argp->alock);
 
-	nlm_do_granted(&args4, &res4, sr, NULL);
+	nlm_do_granted(&args4, &res4, sr, 0);
 
 	nlm_convert_to_nlm_res(resp, &res4);
 
@@ -384,7 +384,7 @@ nlm_lock_msg_1_svc(nlm_lockargs *argp, void *resp,
 
 	/* NLM_LOCK_MSG */
 	nlm_do_lock(&args4, &res4, sr,
-	    NULL, nlm_lock_res_1_cb,
+	    0, nlm_lock_res_1_cb,
 	    nlm_granted_msg_1_cb);
 
 	/* NB: We have a result our caller will not free. */
@@ -670,8 +670,8 @@ nlm_nm_lock_3_svc(nlm_lockargs *argp, nlm_res *resp, struct svc_req *sr)
 
 	/* NLM_NM_LOCK */
 	nlm_do_lock(&args4, &res4, sr,
-	    nlm_lock_1_reply, NULL,
-	    NULL); /* indicates non-monitored */
+	    nlm_lock_1_reply, 0,
+	    0); /* indicates non-monitored */
 
 	/* for freeresult */
 	nlm_convert_to_nlm_res(resp, &res4);
@@ -700,7 +700,7 @@ nlm_free_all_3_svc(nlm_notify *argp, void *resp, struct svc_req *sr)
 bool_t
 nlm4_test_4_svc(nlm4_testargs *argp, nlm4_testres *resp, struct svc_req *sr)
 {
-	nlm_do_test(argp, resp, sr, NULL);
+	nlm_do_test(argp, resp, sr, 0);
 	return (TRUE);
 }
 
@@ -716,7 +716,7 @@ nlm4_lock_4_svc(nlm4_lockargs *argp, nlm4_res *resp,
 
 	/* NLM4_LOCK */
 	nlm_do_lock(argp, resp, sr,
-	    nlm4_lock_4_reply, NULL,
+	    nlm4_lock_4_reply, 0,
 	    nlm4_granted_4);
 
 	/* above does its own reply */
@@ -732,21 +732,21 @@ nlm4_lock_4_reply(SVCXPRT *transp, nlm4_res *resp)
 bool_t
 nlm4_cancel_4_svc(nlm4_cancargs *argp, nlm4_res *resp, struct svc_req *sr)
 {
-	nlm_do_cancel(argp, resp, sr, NULL);
+	nlm_do_cancel(argp, resp, sr, 0);
 	return (TRUE);
 }
 
 bool_t
 nlm4_unlock_4_svc(nlm4_unlockargs *argp, nlm4_res *resp, struct svc_req *sr)
 {
-	nlm_do_unlock(argp, resp, sr, NULL);
+	nlm_do_unlock(argp, resp, sr, 0);
 	return (TRUE);
 }
 
 bool_t
 nlm4_granted_4_svc(nlm4_testargs *argp, nlm4_res *resp, struct svc_req *sr)
 {
-	nlm_do_granted(argp, resp, sr, NULL);
+	nlm_do_granted(argp, resp, sr, 0);
 	return (TRUE);
 }
 
@@ -783,7 +783,7 @@ nlm4_lock_msg_4_svc(nlm4_lockargs *argp, void *resp,
 	/* NLM4_LOCK_MSG */
 	bzero(&res4, sizeof (res4));
 	nlm_do_lock(argp, &res4, sr,
-	    NULL, nlm4_lock_res_4,
+	    0, nlm4_lock_res_4,
 	    nlm4_granted_msg_4_cb);
 
 	/* NB: We have a result our caller will not free. */
@@ -931,8 +931,8 @@ nlm4_nm_lock_4_svc(nlm4_lockargs *argp, nlm4_res *resp, struct svc_req *sr)
 
 	/* NLM4_NM_LOCK */
 	nlm_do_lock(argp, resp, sr,
-	    nlm4_lock_4_reply, NULL,
-	    NULL); /* indicates non-monitored */
+	    nlm4_lock_4_reply, 0,
+	    0); /* indicates non-monitored */
 
 	/* above does its own reply */
 	return (FALSE);

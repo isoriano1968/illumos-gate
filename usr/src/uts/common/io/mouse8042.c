@@ -142,11 +142,11 @@ static struct module_info	mouse8042_minfo = {
 };
 
 static struct qinit mouse8042_rinit = {
-	NULL,		/* put */
-	NULL,		/* service */
+	0,		/* put */
+	0,		/* service */
 	mouse8042_open,
 	mouse8042_close,
-	NULL,		/* admin */
+	0,		/* admin */
 	&mouse8042_minfo,
 	NULL		/* statistics */
 };
@@ -154,9 +154,9 @@ static struct qinit mouse8042_rinit = {
 static struct qinit mouse8042_winit = {
 	mouse8042_wput,	/* put */
 	mouse8042_wsrv,	/* service */
-	NULL,		/* open */
-	NULL,		/* close */
-	NULL,		/* admin */
+	0,		/* open */
+	0,		/* close */
+	0,		/* admin */
 	&mouse8042_minfo,
 	NULL		/* statistics */
 };
@@ -202,7 +202,7 @@ static struct dev_ops	mouse8042_ops = {
 	nodev,			/* reset */
 	&mouse8042_cb_ops,	/* driver operations */
 	(struct bus_ops *)0,	/* bus operations */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

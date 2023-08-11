@@ -213,7 +213,7 @@ dls_mgmt_init(void)
 	 */
 	i_dls_devnet_cachep = kmem_cache_create("dls_devnet_cache",
 	    sizeof (dls_devnet_t), 0, i_dls_devnet_constructor,
-	    i_dls_devnet_destructor, NULL, NULL, NULL, 0);
+	    i_dls_devnet_destructor, 0, NULL, NULL, 0);
 	ASSERT(i_dls_devnet_cachep != NULL);
 
 	/*

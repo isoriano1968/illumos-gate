@@ -263,8 +263,8 @@ rw_locked(rwlock_impl_t *lp, krw_t rw)
 	return (0);
 }
 
-uint_t (*rw_lock_backoff)(uint_t) = NULL;
-void (*rw_lock_delay)(uint_t) = NULL;
+uint_t (*rw_lock_backoff)(uint_t) = 0;
+void (*rw_lock_delay)(uint_t) = 0;
 
 /*
  * Full-service implementation of rw_enter() to handle all the hard cases.

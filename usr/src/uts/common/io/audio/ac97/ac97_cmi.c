@@ -130,7 +130,7 @@ cmi_setup_micboost(ac97_t *ac)
 	ac97_ctrl_probe_t cpt = {
 		AUDIO_CTRL_ID_MICBOOST, 1, 0xf, 0xf, AUDIO_CTRL_TYPE_ENUM,
 		AC97_FLAGS | AUDIO_CTRL_FLAG_REC, 0, cmi_set_micboost,
-		NULL, 0, values };
+		0, 0, values };
 
 	ctrl = ac97_control_find(ac, AUDIO_CTRL_ID_MICBOOST);
 	if (ctrl) {
@@ -163,11 +163,11 @@ cmi_setup_jack_funcs(ac97_t *ac)
 
 	ac97_ctrl_probe_t linein_cpt = {
 		AUDIO_CTRL_ID_JACK1, 1, 3, 3, AUDIO_CTRL_TYPE_ENUM, AC97_FLAGS,
-		0, cmi_set_linein_func, NULL, 0, cmi_linein_funcs
+		0, cmi_set_linein_func, 0, 0, cmi_linein_funcs
 	};
 	ac97_ctrl_probe_t mic_cpt = {
 		AUDIO_CTRL_ID_JACK2, 1, 3, 3, AUDIO_CTRL_TYPE_ENUM, AC97_FLAGS,
-		0, cmi_set_mic_func, NULL, 0, cmi_mic_funcs
+		0, cmi_set_mic_func, 0, 0, cmi_mic_funcs
 	};
 
 	bcopy(&linein_cpt, &cp, sizeof (cp));
@@ -217,7 +217,7 @@ cmi_setup_jack_func_9738(ac97_t *ac)
 
 	ac97_ctrl_probe_t linein_cpt = {
 		AUDIO_CTRL_ID_JACK1, 1, 3, 3, AUDIO_CTRL_TYPE_ENUM, AC97_FLAGS,
-		0, cmi_set_linein_func_9738, NULL, 0, cmi_linein_funcs
+		0, cmi_set_linein_func_9738, 0, 0, cmi_linein_funcs
 	};
 	ac97_ctrl_probe_t spread_cpt = {
 		AUDIO_CTRL_ID_SPREAD, 0, 0, 1, AUDIO_CTRL_TYPE_BOOLEAN,

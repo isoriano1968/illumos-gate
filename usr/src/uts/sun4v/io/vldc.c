@@ -139,7 +139,7 @@ static struct dev_ops vldc_ops = {
 	nodev,			/* reset */
 	&vldc_cb_ops,		/* cb_ops */
 	(struct bus_ops *)NULL,	/* bus_ops */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

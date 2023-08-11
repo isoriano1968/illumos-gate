@@ -148,9 +148,9 @@ static crypto_sign_ops_t ecc_sign_ops = {
 	ecc_sign_update,
 	ecc_sign_final,
 	ecc_sign_atomic,
-	NULL,
-	NULL,
-	NULL
+	0,
+	0,
+	0
 };
 
 static int ecc_verify_init(crypto_ctx_t *, crypto_mechanism_t *,
@@ -171,9 +171,9 @@ static crypto_verify_ops_t ecc_verify_ops = {
 	ecc_verify_update,
 	ecc_verify_final,
 	ecc_verify_atomic,
-	NULL,
-	NULL,
-	NULL
+	0,
+	0,
+	0
 };
 
 static int ecc_nostore_key_generate_pair(crypto_provider_handle_t,
@@ -186,7 +186,7 @@ static int ecc_nostore_key_derive(crypto_provider_handle_t,
     uint_t, crypto_req_handle_t);
 
 static crypto_nostore_key_ops_t ecc_nostore_key_ops = {
-	NULL,
+	0,
 	ecc_nostore_key_generate_pair,
 	ecc_nostore_key_derive
 };

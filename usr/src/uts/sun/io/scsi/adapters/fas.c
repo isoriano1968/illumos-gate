@@ -379,7 +379,7 @@ static struct dev_ops fas_ops = {
 	nodev,			/* reset */
 	NULL,			/* driver operations */
 	NULL,			/* bus operations */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_supported,	/* devo_quiesce */
 };
 
@@ -701,7 +701,7 @@ fas_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 	tran->tran_tgt_private		= NULL;
 	tran->tran_tgt_init		= fas_scsi_tgt_init;
 	tran->tran_tgt_probe		= fas_scsi_tgt_probe;
-	tran->tran_tgt_free		= NULL;
+	tran->tran_tgt_free		= 0;
 	tran->tran_start		= fas_scsi_start;
 	tran->tran_abort		= fas_scsi_abort;
 	tran->tran_reset		= fas_scsi_reset;
@@ -712,15 +712,15 @@ fas_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 	tran->tran_dmafree		= fas_scsi_dmafree;
 	tran->tran_sync_pkt		= fas_scsi_sync_pkt;
 	tran->tran_reset_notify 	= fas_scsi_reset_notify;
-	tran->tran_get_bus_addr		= NULL;
-	tran->tran_get_name		= NULL;
+	tran->tran_get_bus_addr		= 0;
+	tran->tran_get_name		= 0;
 	tran->tran_quiesce		= fas_scsi_quiesce;
 	tran->tran_unquiesce		= fas_scsi_unquiesce;
-	tran->tran_bus_reset		= NULL;
-	tran->tran_add_eventcall	= NULL;
-	tran->tran_get_eventcookie	= NULL;
-	tran->tran_post_event		= NULL;
-	tran->tran_remove_eventcall	= NULL;
+	tran->tran_bus_reset		= 0;
+	tran->tran_add_eventcall	= 0;
+	tran->tran_get_eventcookie	= 0;
+	tran->tran_post_event		= 0;
+	tran->tran_remove_eventcall	= 0;
 
 	fas->f_force_async = 0;
 
@@ -960,7 +960,7 @@ fas_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 	fas->f_kmem_cache = kmem_cache_create(buf,
 	    EXTCMD_SIZE, 8,
 	    fas_kmem_cache_constructor, fas_kmem_cache_destructor,
-	    NULL, (void *)fas, NULL, 0);
+	    0, (void *)fas, NULL, 0);
 	if (fas->f_kmem_cache == NULL) {
 		cmn_err(CE_WARN, "fas: cannot create kmem_cache");
 		goto fail;
@@ -7767,7 +7767,7 @@ fas_do_scsi_abort(struct scsi_address *ap, struct scsi_pkt *pkt)
 		 * prevent completion on current cmd
 		 */
 		cur_savec = cur_sp->cmd_pkt->pkt_comp;
-		cur_sp->cmd_pkt->pkt_comp = NULL;
+		cur_sp->cmd_pkt->pkt_comp = 0;
 	}
 
 	if (sp) {
@@ -7779,7 +7779,7 @@ fas_do_scsi_abort(struct scsi_address *ap, struct scsi_pkt *pkt)
 		sp_tagged_flag = (sp->cmd_pkt_flags & FLAG_TAGMASK);
 		abort_msg = (sp_tagged_flag? MSG_ABORT_TAG : MSG_ABORT);
 		sp_savec = sp->cmd_pkt->pkt_comp;
-		sp->cmd_pkt->pkt_comp = NULL;
+		sp->cmd_pkt->pkt_comp = 0;
 
 		/* connected but not selecting? */
 		if ((sp == cur_sp) && (fas->f_state != STATE_FREE) &&
@@ -8282,7 +8282,7 @@ fas_do_scsi_reset(struct scsi_address *ap, int level)
 
 	} else {
 		struct fas_cmd *cur_sp = fas->f_current_sp;
-		void (*savec)() = NULL;
+		void (*savec)() = 0;
 
 		/*
 		 * prevent new commands from starting
@@ -8295,7 +8295,7 @@ fas_do_scsi_reset(struct scsi_address *ap, int level)
 		 */
 		if (cur_sp) {
 			savec = cur_sp->cmd_pkt->pkt_comp;
-			cur_sp->cmd_pkt->pkt_comp = NULL;
+			cur_sp->cmd_pkt->pkt_comp = 0;
 		}
 
 		/*

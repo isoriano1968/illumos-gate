@@ -171,7 +171,7 @@ static struct qinit usbser_keyspan_rinit = {
 	usbser_rsrv,
 	usbser_keyspan_open,
 	usbser_close,
-	NULL,
+	0,
 	&usbser_keyspan_modinfo,
 	NULL
 };
@@ -179,9 +179,9 @@ static struct qinit usbser_keyspan_rinit = {
 static struct qinit usbser_keyspan_winit = {
 	usbser_wput,
 	usbser_wsrv,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
 	&usbser_keyspan_modinfo,
 	NULL
 };
@@ -486,7 +486,7 @@ keyspan_set_cfg(dev_info_t *dip, uint8_t cfg_num)
 {
 
 	if (usb_set_cfg(dip, cfg_num, USB_FLAGS_SLEEP,
-	    NULL, NULL) != USB_SUCCESS) {
+	    0, NULL) != USB_SUCCESS) {
 
 		return (USB_FAILURE);
 	}

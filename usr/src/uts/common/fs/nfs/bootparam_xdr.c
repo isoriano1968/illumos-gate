@@ -61,7 +61,7 @@ xdr_ip_addr_t(XDR *xdrs, ip_addr_t *objp)
 
 static struct xdr_discrim choices[] = {
 	{ IP_ADDR_TYPE, xdr_ip_addr_t },
-	{ __dontcare__, NULL }
+	{ __dontcare__, 0 }
 };
 
 bool_t

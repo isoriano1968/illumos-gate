@@ -1967,7 +1967,7 @@ _init_map(void)
 	 * current entries is not possible.
 	 */
 	mapentry_cache = kmem_cache_create("lufs_mapentry_cache",
-	    sizeof (mapentry_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (mapentry_t), 0, 0, 0, 0, NULL, NULL, 0);
 }
 
 /*

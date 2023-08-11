@@ -62,7 +62,7 @@ s1394_fa_descr_t s1394_fcp_ctl_descr = {
 	IEC61883_FCP_RESP_ADDR,
 	IEC61883_FCP_RESP_SIZE,
 	T1394_ADDR_WRENBL,
-	{ NULL, s1394_fcp_resp_recv_write_request, NULL },
+	{ 0, s1394_fcp_resp_recv_write_request, 0 },
 	IEC61883_FCP_CMD_ADDR
 };
 
@@ -70,7 +70,7 @@ s1394_fa_descr_t s1394_fcp_tgt_descr = {
 	IEC61883_FCP_CMD_ADDR,
 	IEC61883_FCP_CMD_SIZE,
 	T1394_ADDR_WRENBL,
-	{ NULL, s1394_fcp_cmd_recv_write_request, NULL },
+	{ 0, s1394_fcp_cmd_recv_write_request, 0 },
 	IEC61883_FCP_RESP_ADDR
 };
 

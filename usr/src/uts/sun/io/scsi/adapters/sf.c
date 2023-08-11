@@ -208,7 +208,7 @@ static struct dev_ops sf_ops = {
 	nodev,			/* reset */
 	&sf_cb_ops,		/* driver operations */
 	NULL,			/* bus operations */
-	NULL,			/* power management */
+	0,			/* power management */
 	ddi_quiesce_not_supported,	/* devo_quiesce */
 };
 
@@ -493,7 +493,7 @@ sf_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 		 */
 		soc_add_ulp(sf->sf_sochandle, sf->sf_socp,
 		    sf->sf_sochandle->fcal_portno, TYPE_SCSI_FCP,
-		    sf_statec_callback, sf_unsol_els_callback, NULL, sf);
+		    sf_statec_callback, sf_unsol_els_callback, 0, sf);
 
 		/*
 		 * call transport routine to force loop initialization
@@ -574,7 +574,7 @@ sf_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 		    sizeof (fcal_packet_t) + sizeof (struct sf_pkt) +
 		    scsi_pkt_size(), 8,
 		    sf_kmem_cache_constructor, sf_kmem_cache_destructor,
-		    NULL, NULL, NULL, 0);
+		    0, NULL, NULL, 0);
 		if (sf->sf_pkt_cache == NULL) {
 			cmn_err(CE_WARN, "sf%d: failed to allocate kmem cache",
 			    instance);
@@ -675,7 +675,7 @@ sf_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 		tran->tran_hba_private		= sf;
 		tran->tran_tgt_private		= NULL;
 		tran->tran_tgt_init		= sf_scsi_tgt_init;
-		tran->tran_tgt_probe		= NULL;
+		tran->tran_tgt_probe		= 0;
 		tran->tran_tgt_free		= sf_scsi_tgt_free;
 
 		tran->tran_start		= sf_start;
@@ -824,7 +824,7 @@ sf_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 		 */
 		soc_add_ulp(sf->sf_sochandle, sf->sf_socp,
 		    sf->sf_sochandle->fcal_portno, TYPE_SCSI_FCP,
-		    sf_statec_callback, sf_unsol_els_callback, NULL, sf);
+		    sf_statec_callback, sf_unsol_els_callback, 0, sf);
 
 		/*
 		 * call transport routine to force loop initialization
@@ -1463,7 +1463,7 @@ sf_scsi_init_pkt(struct scsi_address *ap, struct scsi_pkt *pkt,
 			cmd->cmd_state = SF_STATE_IDLE;
 			cmd->cmd_pkt->pkt_ha_private = (opaque_t)cmd;
 			cmd->cmd_pkt->pkt_scbp = (opaque_t)cmd->cmd_scsi_scb;
-			cmd->cmd_pkt->pkt_comp	= NULL;
+			cmd->cmd_pkt->pkt_comp	= 0;
 			cmd->cmd_pkt->pkt_flags	= 0;
 			cmd->cmd_pkt->pkt_time	= 0;
 			cmd->cmd_pkt->pkt_resid	= 0;
@@ -4667,11 +4667,11 @@ sf_abort(struct scsi_address *ap, struct scsi_pkt *pkt)
 		mutex_exit(&sf->sf_mutex);
 
 		if ((pkt = sf_scsi_init_pkt(ap, NULL, NULL, 0,
-		    0, 0, 0, NULL, 0)) != NULL) {
+		    0, 0, 0, 0, 0)) != NULL) {
 
 			cmd = PKT2CMD(pkt);
 			cmd->cmd_block->fcp_cntl.cntl_abort_tsk = 1;
-			cmd->cmd_fp_pkt->fcal_pkt_comp = NULL;
+			cmd->cmd_fp_pkt->fcal_pkt_comp = 0;
 			cmd->cmd_pkt->pkt_flags |= FLAG_NOINTR;
 
 			/* prepare the packet for transport */
@@ -4813,10 +4813,10 @@ sf_reset(struct scsi_address *ap, int level)
 
 		deferred_destroy = 0;
 		if ((pkt = sf_scsi_init_pkt(ap, NULL, NULL, 0,
-		    0, 0, 0, NULL, 0)) != NULL) {
+		    0, 0, 0, 0, 0)) != NULL) {
 			cmd = PKT2CMD(pkt);
 			cmd->cmd_block->fcp_cntl.cntl_reset = 1;
-			cmd->cmd_fp_pkt->fcal_pkt_comp = NULL;
+			cmd->cmd_fp_pkt->fcal_pkt_comp = 0;
 			cmd->cmd_pkt->pkt_flags |= FLAG_NOINTR;
 
 			/* prepare the packet for transport */
@@ -5348,7 +5348,7 @@ sf_dopoll(struct sf *sf, struct sf_pkt *cmd)
 	timeout = cmd->cmd_pkt->pkt_time ? cmd->cmd_pkt->pkt_time
 	    : SF_POLL_TIMEOUT;
 	cmd->cmd_timeout = 0;
-	cmd->cmd_fp_pkt->fcal_pkt_comp = NULL;
+	cmd->cmd_fp_pkt->fcal_pkt_comp = 0;
 	cmd->cmd_state = SF_STATE_ISSUED;
 
 	/* call transport to send a pkt polled */

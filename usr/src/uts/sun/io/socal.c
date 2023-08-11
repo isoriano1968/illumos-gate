@@ -358,7 +358,7 @@ static struct dev_ops socal_ops = {
 	nodev,			/* reset */
 	&socal_cb_ops,		/* driver operations */
 	&socal_bus_ops,		/* bus operations */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_supported,	/* quiesce */
 };
 
@@ -2803,7 +2803,7 @@ socal_doit(fcal_packet_t *fcalpkt, socal_port_t *port_statep, int polled,
 	socal_state_t   *socalp = (socal_state_t *)fcalpkt->fcal_pkt_cookie;
 
 	if (polled) {
-		fcalpkt->fcal_pkt_comp = NULL;
+		fcalpkt->fcal_pkt_comp = 0;
 		status = socal_transport_poll(fcalpkt, timo, CQ_REQUEST_0);
 	} else {
 		fcalpkt->fcal_pkt_comp = func;
@@ -4236,7 +4236,7 @@ socal_diag_request(socal_state_t *socalp, uint32_t port, uint_t *diagcode,
 	sdr->sdr_cqhdr.cq_hdr_count = 1;
 	sdr->sdr_cqhdr.cq_hdr_type = CQ_TYPE_DIAGNOSTIC;
 	fcalpkt->fcal_pkt_cookie = (void *)socalp;
-	return (socal_doit(fcalpkt, port_statep, 1, NULL,
+	return (socal_doit(fcalpkt, port_statep, 1, 0,
 	    SOCAL_DIAG_TIMEOUT, 0, diagcode));
 }
 

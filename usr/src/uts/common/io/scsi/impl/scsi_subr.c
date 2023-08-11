@@ -107,7 +107,7 @@ scsi_poll(struct scsi_pkt *pkt)
 	 * do a callback for polled cmds; however, removing this will break sd
 	 * and probably other target drivers
 	 */
-	pkt->pkt_comp = NULL;
+	pkt->pkt_comp = 0;
 
 	/*
 	 * we don't like a polled command without timeout.
@@ -1242,7 +1242,7 @@ scsi_errmsg(struct scsi_device *devp, struct scsi_pkt *pkt, char *label,
     struct scsi_key_strings *cmdlist, struct scsi_extended_sense *sensep)
 {
 	scsi_vu_errmsg(devp, pkt, label, severity, blkno,
-	    err_blkno, cmdlist, sensep, NULL, NULL);
+	    err_blkno, cmdlist, sensep, NULL, 0);
 }
 
 /*PRINTFLIKE4*/

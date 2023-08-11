@@ -679,21 +679,21 @@ void
 ipsec_policy_g_init(void)
 {
 	ipsec_action_cache = kmem_cache_create("ipsec_actions",
-	    sizeof (ipsec_action_t), _POINTER_ALIGNMENT, NULL, NULL,
+	    sizeof (ipsec_action_t), _POINTER_ALIGNMENT, 0, 0,
 	    ipsec_action_reclaim, NULL, NULL, 0);
 	ipsec_sel_cache = kmem_cache_create("ipsec_selectors",
-	    sizeof (ipsec_sel_t), _POINTER_ALIGNMENT, NULL, NULL,
-	    NULL, NULL, NULL, 0);
+	    sizeof (ipsec_sel_t), _POINTER_ALIGNMENT, 0, 0,
+	    0, NULL, NULL, 0);
 	ipsec_pol_cache = kmem_cache_create("ipsec_policy",
-	    sizeof (ipsec_policy_t), _POINTER_ALIGNMENT, NULL, NULL,
-	    NULL, NULL, NULL, 0);
+	    sizeof (ipsec_policy_t), _POINTER_ALIGNMENT, 0, 0,
+	    0, NULL, NULL, 0);
 
 	/*
 	 * We want to be informed each time a stack is created or
 	 * destroyed in the kernel, so we can maintain the
 	 * set of ipsec_stack_t's.
 	 */
-	netstack_register(NS_IPSEC, ipsec_stack_init, NULL, ipsec_stack_fini);
+	netstack_register(NS_IPSEC, ipsec_stack_init, 0, ipsec_stack_fini);
 }
 
 /*

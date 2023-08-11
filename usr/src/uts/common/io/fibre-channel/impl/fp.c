@@ -1005,7 +1005,7 @@ fp_attach_handler(dev_info_t *dip)
 	 */
 	port->fp_pkt_cache = kmem_cache_create(name,
 	    (port->fp_fca_tran->fca_pkt_size) + sizeof (fp_cmd_t), 8,
-	    fp_cache_constructor, fp_cache_destructor, NULL, (void *)port,
+	    fp_cache_constructor, fp_cache_destructor, 0, (void *)port,
 	    NULL, 0);
 	port->fp_out_fpcmds = 0;
 	if (port->fp_pkt_cache == NULL) {
@@ -1437,7 +1437,7 @@ fp_resume_all(fc_local_port_t *port, fc_attach_cmd_t cmd)
 		mutex_exit(&port->fp_mutex);
 
 		job = fctl_alloc_job(JOB_PORT_ONLINE,
-		    JOB_CANCEL_ULP_NOTIFICATION, NULL, NULL, KM_SLEEP);
+		    JOB_CANCEL_ULP_NOTIFICATION, 0, NULL, KM_SLEEP);
 		fctl_enque_job(port, job);
 
 		fctl_jobwait(job);
@@ -1563,7 +1563,7 @@ fp_detach_handler(fc_local_port_t *port)
 	 * modunloaded even tho the job thread isn't done executing.
 	 * without creating the race condition.
 	 */
-	job = fctl_alloc_job(JOB_PORT_SHUTDOWN, 0, NULL,
+	job = fctl_alloc_job(JOB_PORT_SHUTDOWN, 0, 0,
 	    (opaque_t)port, KM_SLEEP);
 	fctl_enque_job(port, job);
 	fctl_jobwait(job);
@@ -6943,7 +6943,7 @@ fp_statec_cb(opaque_t port_handle, uint32_t state)
 	switch (FC_PORT_STATE_MASK(state)) {
 	case FC_STATE_OFFLINE:
 		job = fctl_alloc_job(JOB_PORT_OFFLINE,
-		    JOB_TYPE_FCTL_ASYNC, NULL, NULL, KM_NOSLEEP);
+		    JOB_TYPE_FCTL_ASYNC, 0, NULL, KM_NOSLEEP);
 		if (job == NULL) {
 			fp_printf(port, CE_NOTE, FP_LOG_ONLY, 0, NULL,
 			    " fp_statec_cb() couldn't submit a job "
@@ -6984,7 +6984,7 @@ fp_statec_cb(opaque_t port_handle, uint32_t state)
 		}
 
 		job = fctl_alloc_job(JOB_PORT_ONLINE,
-		    JOB_TYPE_FCTL_ASYNC, NULL, NULL, KM_NOSLEEP);
+		    JOB_TYPE_FCTL_ASYNC, 0, NULL, KM_NOSLEEP);
 		if (job == NULL) {
 			fp_printf(port, CE_NOTE, FP_LOG_ONLY, 0, NULL,
 			    "fp_statec_cb() couldn't submit a job "
@@ -7009,7 +7009,7 @@ fp_statec_cb(opaque_t port_handle, uint32_t state)
 
 	case FC_STATE_RESET:
 		job = fctl_alloc_job(JOB_ULP_NOTIFY,
-		    JOB_TYPE_FCTL_ASYNC, NULL, NULL, KM_NOSLEEP);
+		    JOB_TYPE_FCTL_ASYNC, 0, NULL, KM_NOSLEEP);
 		if (job == NULL) {
 			fp_printf(port, CE_NOTE, FP_LOG_ONLY, 0, NULL,
 			    "fp_statec_cb() couldn't submit a job"
@@ -8250,7 +8250,7 @@ fp_fciocmd(fc_local_port_t *port, intptr_t data, int mode, fcio_t *fcio)
 		case FC_TOP_PUBLIC_LOOP:
 		case FC_TOP_FABRIC:
 			mutex_exit(&port->fp_mutex);
-			job = fctl_alloc_job(JOB_NS_CMD, 0, NULL,
+			job = fctl_alloc_job(JOB_NS_CMD, 0, 0,
 			    NULL, KM_SLEEP);
 			ASSERT(job != NULL);
 
@@ -8388,7 +8388,7 @@ fp_fciocmd(fc_local_port_t *port, intptr_t data, int mode, fcio_t *fcio)
 			ns_cmd->ns_cmd_code = NS_GA_NXT;
 			ns_cmd->ns_gan_max = map_size / sizeof (fc_port_dev_t);
 
-			job = fctl_alloc_job(JOB_PORT_GETMAP, 0, NULL,
+			job = fctl_alloc_job(JOB_PORT_GETMAP, 0, 0,
 			    NULL, KM_SLEEP);
 			ASSERT(job != NULL);
 
@@ -8640,7 +8640,7 @@ fp_fciocmd(fc_local_port_t *port, intptr_t data, int mode, fcio_t *fcio)
 			}
 		}
 
-		job = fctl_alloc_job(jcode, 0, NULL, NULL, KM_SLEEP);
+		job = fctl_alloc_job(jcode, 0, 0, NULL, KM_SLEEP);
 		job->job_private = kfcio;
 
 		fctl_enque_job(port, job);
@@ -8684,7 +8684,7 @@ fp_fciocmd(fc_local_port_t *port, intptr_t data, int mode, fcio_t *fcio)
 			if (FC_IS_TOP_SWITCH(port->fp_topology)) {
 				mutex_exit(&port->fp_mutex);
 				job = fctl_alloc_job(JOB_PLOGI_ONE, 0,
-				    NULL, NULL, KM_SLEEP);
+				    0, NULL, KM_SLEEP);
 
 				job->job_counter = 1;
 				job->job_result = FC_SUCCESS;
@@ -9137,7 +9137,7 @@ fp_fciocmd(fc_local_port_t *port, intptr_t data, int mode, fcio_t *fcio)
 		port->fp_soft_state |= FP_SOFT_IN_LINK_RESET;
 		mutex_exit(&port->fp_mutex);
 
-		job = fctl_alloc_job(JOB_LINK_RESET, 0, NULL, NULL, KM_SLEEP);
+		job = fctl_alloc_job(JOB_LINK_RESET, 0, 0, NULL, KM_SLEEP);
 		if (job == NULL) {
 			rval = ENOMEM;
 			break;
@@ -9462,7 +9462,7 @@ fp_fciocmd(fc_local_port_t *port, intptr_t data, int mode, fcio_t *fcio)
 		 * Instead fp_sendcmd() is called directly here.
 		 */
 		job = fctl_alloc_job(JOB_DUMMY, JOB_TYPE_FP_ASYNC,
-		    NULL, NULL, KM_SLEEP);
+		    0, NULL, KM_SLEEP);
 		ASSERT(job != NULL);
 
 		job->job_counter = 1;
@@ -9607,7 +9607,7 @@ fp_fciocmd(fc_local_port_t *port, intptr_t data, int mode, fcio_t *fcio)
 			break;
 		}
 
-		job = fctl_alloc_job(JOB_NS_CMD, 0, NULL, NULL, KM_SLEEP);
+		job = fctl_alloc_job(JOB_NS_CMD, 0, 0, NULL, KM_SLEEP);
 		ASSERT(job != NULL);
 
 		ns_cmd = fctl_alloc_ns_cmd(ns_req->ns_req_len,
@@ -9863,7 +9863,7 @@ fp_send_rnid(fc_local_port_t *port, intptr_t data, int mode, fcio_t *fcio,
 	 * Instead fp_sendcmd() is called directly here.
 	 */
 	job = fctl_alloc_job(JOB_DUMMY, JOB_TYPE_FP_ASYNC,
-	    NULL, NULL, KM_SLEEP);
+	    0, NULL, KM_SLEEP);
 
 	ASSERT(job != NULL);
 
@@ -10492,7 +10492,7 @@ fp_fillout_loopmap(fc_local_port_t *port, fcio_t *fcio, int mode)
 		job_request_t	*job;
 
 		mutex_exit(&port->fp_mutex);
-		job = fctl_alloc_job(JOB_PORT_GETMAP, 0, NULL, NULL, KM_SLEEP);
+		job = fctl_alloc_job(JOB_PORT_GETMAP, 0, 0, NULL, KM_SLEEP);
 		job->job_counter = 1;
 
 		mutex_enter(&port->fp_mutex);
@@ -10934,7 +10934,7 @@ fp_unsol_cb(opaque_t port_handle, fc_unsol_buf_t *buf, uint32_t type)
 	 *    retrying the operation it was doing in anticipation of getting a
 	 *    new state change call back for the new RSCN.
 	 */
-	job = fctl_alloc_job(JOB_UNSOL_REQUEST, 0, NULL,
+	job = fctl_alloc_job(JOB_UNSOL_REQUEST, 0, 0,
 	    (opaque_t)(uintptr_t)cb_arg, KM_NOSLEEP);
 	if (job == NULL) {
 		fp_printf(port, CE_NOTE, FP_LOG_ONLY, 0, NULL, "fp_unsol_cb() "
@@ -11575,7 +11575,7 @@ fp_handle_unsol_logo(fc_local_port_t *port, fc_unsol_buf_t *buf,
 			 * send PLOGI to that remote port
 			 */
 			job = fctl_alloc_job(
-			    JOB_NS_CMD, 0, NULL, (opaque_t)port, KM_SLEEP);
+			    JOB_NS_CMD, 0, 0, (opaque_t)port, KM_SLEEP);
 
 			if (job != NULL) {
 				ns_cmd = fctl_alloc_ns_cmd(
@@ -13691,7 +13691,7 @@ fp_create_remote_port_by_ns(fc_local_port_t *port, uint32_t d_id, int sleep)
 	mutex_exit(&port->fp_mutex);
 #endif
 
-	job = fctl_alloc_job(JOB_NS_CMD, 0, NULL, (opaque_t)port, sleep);
+	job = fctl_alloc_job(JOB_NS_CMD, 0, 0, (opaque_t)port, sleep);
 	if (job == NULL) {
 		return (NULL);
 	}

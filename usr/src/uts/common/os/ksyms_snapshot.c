@@ -137,7 +137,7 @@ ksyms_snapshot(void (*emit)(const void *, void *, size_t),
 	/*
 	 * Compute the size of the header, locals, globals, and strings.
 	 */
-	(void) ksyms_walk(&kw, NULL, 0, NULL, NULL,
+	(void) ksyms_walk(&kw, NULL, 0, 0, NULL,
 	    KW_HEADER | KW_LOCALS | KW_GLOBALS | KW_STRINGS);
 
 	/*

@@ -81,7 +81,7 @@ static struct ibt_clnt_modinfo_s iser_ib_modinfo = {
 	IBTI_V_CURR,
 	IBT_STORAGE_DEV,
 	iser_ib_async_handler,
-	NULL,
+	0,
 	"iSER"
 };
 
@@ -107,7 +107,7 @@ iser_ib_init(void)
 
 	/* Create the global work request kmem_cache */
 	iser_state->iser_wr_cache = kmem_cache_create("iser_wr_cache",
-	    sizeof (iser_wr_t), 0, NULL, NULL, NULL,
+	    sizeof (iser_wr_t), 0, 0, 0, 0,
 	    iser_state, NULL, KM_SLEEP);
 
 	/* Populate our list of HCAs */

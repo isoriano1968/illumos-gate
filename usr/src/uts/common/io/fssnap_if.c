@@ -48,12 +48,12 @@
 #include <sys/fssnap_if.h>
 
 struct fssnap_operations snapops = {
-	NULL,	/* fssnap_create */
-	NULL,	/* fssnap_set_candidate */
-	NULL,	/* fssnap_is_candidate */
-	NULL,	/* fssnap_create_done */
-	NULL,	/* fssnap_delete */
-	NULL	/* fssnap_strategy */
+	0,	/* fssnap_create */
+	0,	/* fssnap_set_candidate */
+	0,	/* fssnap_is_candidate */
+	0,	/* fssnap_create_done */
+	0,	/* fssnap_delete */
+	0	/* fssnap_strategy */
 };
 
 void *

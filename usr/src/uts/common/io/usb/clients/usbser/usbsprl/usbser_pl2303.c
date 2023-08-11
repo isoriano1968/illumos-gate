@@ -80,7 +80,7 @@ static struct qinit usbser_pl2303_rinit = {
 	usbser_rsrv,
 	usbser_pl2303_open,
 	usbser_close,
-	NULL,
+	0,
 	&usbser_pl2303_modinfo,
 	NULL
 };
@@ -89,9 +89,9 @@ static struct qinit usbser_pl2303_rinit = {
 static struct qinit usbser_pl2303_winit = {
 	usbser_wput,
 	usbser_wsrv,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
 	&usbser_pl2303_modinfo,
 	NULL
 };

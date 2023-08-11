@@ -141,5 +141,5 @@ const fs_operation_def_t ctfs_tops_sym[] = {
 	{ VOPNAME_READDIR,	{ .error = fs_notdir } },
 	{ VOPNAME_LOOKUP,	{ .error = fs_notdir } },
 	{ VOPNAME_INACTIVE,	{ .vop_inactive = ctfs_sym_inactive } },
-	{ NULL, NULL }
+	{ NULL, 0 }
 };

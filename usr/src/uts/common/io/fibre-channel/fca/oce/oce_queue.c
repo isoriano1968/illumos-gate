@@ -306,7 +306,7 @@ oce_cq_del(struct oce_dev *dev, struct oce_cq *cq)
 	    QTYPE_CQ);
 
 	/* Reset the handler */
-	cq->cq_handler = NULL;
+	cq->cq_handler = 0;
 	dev->cq[cq->cq_id % OCE_MAX_CQ] = NULL;
 	atomic_dec_32(&cq->eq->ref_count);
 	mutex_destroy(&cq->lock);
@@ -507,7 +507,7 @@ oce_wq_init(struct oce_dev *dev,  uint32_t q_len, int wq_type)
 	(void) snprintf(str, MAX_POOL_NAME, "%s%d%s%d", "oce_wqed_",
 	    dev->dev_id, "_", wq_id++);
 	wq->wqed_cache = kmem_cache_create(str, sizeof (oce_wqe_desc_t),
-	    0, NULL, NULL, NULL, NULL, NULL, 0);
+	    0, 0, 0, 0, NULL, NULL, 0);
 	if (wq->wqed_cache == NULL) {
 		oce_log(dev, CE_WARN, MOD_CONFIG, "%s",
 		    "WQ Packet Desc Pool create failed ");

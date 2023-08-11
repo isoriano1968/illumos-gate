@@ -522,7 +522,7 @@ static struct modlinkage modlinkage = {
 static usb_event_t scsa2usb_events = {
 	scsa2usb_disconnect_event_cb,
 	scsa2usb_reconnect_event_cb,
-	NULL, NULL
+	0, 0
 };
 
 int
@@ -913,18 +913,18 @@ scsa2usb_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 	tran->tran_setcap		= scsa2usb_scsi_setcap;
 	tran->tran_init_pkt		= scsa2usb_scsi_init_pkt;
 	tran->tran_destroy_pkt		= scsa2usb_scsi_destroy_pkt;
-	tran->tran_dmafree		= NULL;
-	tran->tran_sync_pkt		= NULL;
-	tran->tran_reset_notify		= NULL;
-	tran->tran_get_bus_addr		= NULL;
-	tran->tran_get_name		= NULL;
-	tran->tran_quiesce		= NULL;
-	tran->tran_unquiesce		= NULL;
-	tran->tran_bus_reset		= NULL;
-	tran->tran_add_eventcall	= NULL;
-	tran->tran_get_eventcookie	= NULL;
-	tran->tran_post_event		= NULL;
-	tran->tran_remove_eventcall	= NULL;
+	tran->tran_dmafree		= 0;
+	tran->tran_sync_pkt		= 0;
+	tran->tran_reset_notify		= 0;
+	tran->tran_get_bus_addr		= 0;
+	tran->tran_get_name		= 0;
+	tran->tran_quiesce		= 0;
+	tran->tran_unquiesce		= 0;
+	tran->tran_bus_reset		= 0;
+	tran->tran_add_eventcall	= 0;
+	tran->tran_get_eventcookie	= 0;
+	tran->tran_post_event		= 0;
+	tran->tran_remove_eventcall	= 0;
 	tran->tran_bus_config		= scsa2usb_scsi_bus_config;
 	tran->tran_bus_unconfig		= scsa2usb_scsi_bus_unconfig;
 
@@ -3499,7 +3499,7 @@ scsa2usb_do_tur(scsa2usb_state_t *scsa2usbp, struct scsi_address *ap)
 	RQ_MAKECOM_G0(pkt, FLAG_HEAD | FLAG_NODISCON,
 	    (char)SCMD_TEST_UNIT_READY, 0, 0);
 
-	pkt->pkt_comp = NULL;
+	pkt->pkt_comp = 0;
 	pkt->pkt_time = PKT_DEFAULT_TIMEOUT;
 	turcmd = PKT2CMD(pkt);
 
@@ -4320,7 +4320,7 @@ scsa2usb_do_inquiry(scsa2usb_state_t *scsa2usbp, uint_t target, uint_t lun)
 
 	RQ_MAKECOM_G0(pkt, FLAG_NOINTR, (char)SCMD_INQUIRY, 0, (char)len);
 
-	pkt->pkt_comp = NULL;
+	pkt->pkt_comp = 0;
 	pkt->pkt_time = 5;
 	bzero(bp->b_un.b_addr, len);
 
@@ -4444,7 +4444,7 @@ scsa2usb_create_arq_pkt(scsa2usb_state_t *scsa2usbp, struct scsi_address *ap)
 	arq_cmd->cmd_pkt->pkt_ha_private = arq_cmd;
 	scsa2usbp->scsa2usb_arq_cmd = arq_cmd;
 	scsa2usbp->scsa2usb_arq_bp = bp;
-	arq_cmd->cmd_pkt->pkt_comp = NULL;
+	arq_cmd->cmd_pkt->pkt_comp = 0;
 	bzero(bp->b_un.b_addr, SENSE_LENGTH);
 
 	return (USB_SUCCESS);
@@ -4562,7 +4562,7 @@ scsa2usb_open_usb_pipes(scsa2usb_state_t *scsa2usbp)
 		    &scsa2usbp->scsa2usb_bulkout_pipe)) != USB_SUCCESS) {
 			usb_pipe_close(scsa2usbp->scsa2usb_dip,
 			    scsa2usbp->scsa2usb_bulkin_pipe,
-			    USB_FLAGS_SLEEP, NULL, NULL);
+			    USB_FLAGS_SLEEP, 0, NULL);
 
 			mutex_enter(&scsa2usbp->scsa2usb_mutex);
 			scsa2usbp->scsa2usb_bulkin_pipe = NULL;
@@ -4587,11 +4587,11 @@ scsa2usb_open_usb_pipes(scsa2usb_state_t *scsa2usbp)
 			    USB_SUCCESS) {
 				usb_pipe_close(scsa2usbp->scsa2usb_dip,
 				    scsa2usbp->scsa2usb_bulkin_pipe,
-				    USB_FLAGS_SLEEP, NULL, NULL);
+				    USB_FLAGS_SLEEP, 0, NULL);
 
 				usb_pipe_close(scsa2usbp->scsa2usb_dip,
 				    scsa2usbp->scsa2usb_bulkout_pipe,
-				    USB_FLAGS_SLEEP, NULL, NULL);
+				    USB_FLAGS_SLEEP, 0, NULL);
 
 				mutex_enter(&scsa2usbp->scsa2usb_mutex);
 				scsa2usbp->scsa2usb_bulkin_pipe = NULL;
@@ -4670,16 +4670,16 @@ scsa2usb_close_usb_pipes(scsa2usb_state_t *scsa2usbp)
 	mutex_exit(&scsa2usbp->scsa2usb_mutex);
 
 	usb_pipe_close(scsa2usbp->scsa2usb_dip,
-	    scsa2usbp->scsa2usb_bulkout_pipe, flags, NULL, NULL);
+	    scsa2usbp->scsa2usb_bulkout_pipe, flags, 0, NULL);
 
 	usb_pipe_close(scsa2usbp->scsa2usb_dip,
-	    scsa2usbp->scsa2usb_bulkin_pipe, flags, NULL, NULL);
+	    scsa2usbp->scsa2usb_bulkin_pipe, flags, 0, NULL);
 
 	mutex_enter(&scsa2usbp->scsa2usb_mutex);
 	if (SCSA2USB_IS_CBI(scsa2usbp)) {
 		mutex_exit(&scsa2usbp->scsa2usb_mutex);
 		usb_pipe_close(scsa2usbp->scsa2usb_dip,
-		    scsa2usbp->scsa2usb_intr_pipe, flags, NULL, NULL);
+		    scsa2usbp->scsa2usb_intr_pipe, flags, 0, NULL);
 		mutex_enter(&scsa2usbp->scsa2usb_mutex);
 	}
 	scsa2usbp->scsa2usb_bulkout_pipe = NULL;
@@ -5325,9 +5325,9 @@ scsa2usb_clear_ept_stall(scsa2usb_state_t *scsa2usbp, uint_t ept_addr,
 
 	mutex_exit(&scsa2usbp->scsa2usb_mutex);
 	rval = usb_clr_feature(dip, USB_DEV_REQ_RCPT_EP, 0, ept_addr,
-	    USB_FLAGS_SLEEP, NULL, NULL);
+	    USB_FLAGS_SLEEP, 0, NULL);
 
-	usb_pipe_reset(dip, ph, USB_FLAGS_SLEEP, NULL, NULL);
+	usb_pipe_reset(dip, ph, USB_FLAGS_SLEEP, 0, NULL);
 
 	mutex_enter(&scsa2usbp->scsa2usb_mutex);
 	USB_DPRINTF_L4(DPRINT_MASK_SCSA, scsa2usbp->scsa2usb_log_handle,

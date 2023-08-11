@@ -129,11 +129,11 @@ static int usb_ia_cleanup(usb_ia_t *);
 static struct bus_ops usb_ia_busops = {
 	BUSO_REV,
 	nullbusmap,			/* bus_map */
-	NULL,				/* bus_get_intrspec */
-	NULL,				/* bus_add_intrspec */
-	NULL,				/* bus_remove_intrspec */
-	NULL,				/* XXXX bus_map_fault */
-	NULL,				/* bus_dma_map */
+	0,				/* bus_get_intrspec */
+	0,				/* bus_add_intrspec */
+	0,				/* bus_remove_intrspec */
+	0,				/* XXXX bus_map_fault */
+	0,				/* bus_dma_map */
 	ddi_dma_allochdl,
 	ddi_dma_freehdl,
 	ddi_dma_bindhdl,
@@ -147,14 +147,14 @@ static struct bus_ops usb_ia_busops = {
 	usb_ia_busop_add_eventcall,
 	usb_ia_busop_remove_eventcall,
 	usb_ia_busop_post_event,	/* bus_post_event */
-	NULL,				/* bus_intr_ctl */
+	0,				/* bus_intr_ctl */
 	usb_ia_bus_config,		/* bus_config */
 	usb_ia_bus_unconfig,		/* bus_unconfig */
-	NULL,				/* bus_fm_init */
-	NULL,				/* bus_fm_fini */
-	NULL,				/* bus_fm_access_enter */
-	NULL,				/* bus_fm_access_exit */
-	NULL				/* bus_power */
+	0,				/* bus_fm_init */
+	0,				/* bus_fm_fini */
+	0,				/* bus_fm_access_enter */
+	0,				/* bus_fm_access_exit */
+	0				/* bus_power */
 };
 
 

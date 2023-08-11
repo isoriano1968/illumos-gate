@@ -149,8 +149,8 @@ static	struct	qinit	rloginmodrinit = {
 static	struct	qinit	rloginmodwinit = {
 	rlmodwput,
 	rlmodwsrv,
-	NULL,
-	NULL,
+	0,
+	0,
 	nulldev,
 	&rloginmodiinfo,
 	NULL

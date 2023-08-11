@@ -797,8 +797,8 @@ ksensor_unregister(dev_info_t *reg_dip)
 	}
 
 	ksensor_cb_dip = NULL;
-	ksensor_cb_create = NULL;
-	ksensor_cb_remove = NULL;
+	ksensor_cb_create = 0;
+	ksensor_cb_remove = 0;
 	mutex_exit(&ksensor_g_mutex);
 }
 

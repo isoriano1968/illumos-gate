@@ -86,14 +86,14 @@ idm_transport_ops_t iser_transport_ops = {
 	&iser_pdu_tx,			/* it_tx_pdu */
 	&iser_buf_tx_to_ini,		/* it_buf_tx_to_ini */
 	&iser_buf_rx_from_ini,		/* it_buf_rx_from_ini */
-	NULL,				/* it_rx_datain */
-	NULL,				/* it_rx_rtt */
-	NULL,				/* it_rx_dataout */
-	NULL,				/* it_alloc_conn_rsrc */
-	NULL,				/* it_free_conn_rsrc */
+	0,				/* it_rx_datain */
+	0,				/* it_rx_rtt */
+	0,				/* it_rx_dataout */
+	0,				/* it_alloc_conn_rsrc */
+	0,				/* it_free_conn_rsrc */
 	&iser_tgt_enable_datamover,	/* it_tgt_enable_datamover */
 	&iser_ini_enable_datamover,	/* it_ini_enable_datamover */
-	NULL,				/* it_conn_terminate */
+	0,				/* it_conn_terminate */
 	&iser_free_task_rsrcs,		/* it_free_task_rsrc */
 	&iser_negotiate_key_values,	/* it_negotiate_key_values */
 	&iser_notice_key_values,	/* it_notice_key_values */

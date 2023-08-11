@@ -479,7 +479,7 @@ eib_vnic_join_data_mcg(eib_t *ss, eib_vnic_t *vnic, uint8_t *mcast_mac,
 	mcg_attr.mc_sl = 0;
 	mcg_attr.mc_scope = 0;	/* IB_MC_SCOPE_SUBNET_LOCAL perhaps ? */
 
-	ret = ibt_join_mcg(mcg->mg_rgid, &mcg_attr, mcg_info, NULL, NULL);
+	ret = ibt_join_mcg(mcg->mg_rgid, &mcg_attr, mcg_info, 0, NULL);
 	if (ret != IBT_SUCCESS) {
 		EIB_DPRINTF_WARN(ss->ei_instance, "eib_vnic_join_data_mcg: "
 		    "ibt_join_mcg(mgid=%llx.%llx, pkey=0x%x, qkey=0x%lx, "
@@ -1585,7 +1585,7 @@ eib_vnic_attach_vhub_table(eib_t *ss, eib_vnic_t *vnic)
 	mcg_attr.mc_sl = tbl_mcginfo->mc_adds_vect.av_srvl;
 	mcg_attr.mc_scope = 0;	/* IB_MC_SCOPE_SUBNET_LOCAL perhaps ? */
 
-	ret = ibt_join_mcg(mcg->mg_rgid, &mcg_attr, tbl_mcginfo, NULL, NULL);
+	ret = ibt_join_mcg(mcg->mg_rgid, &mcg_attr, tbl_mcginfo, 0, NULL);
 	if (ret != IBT_SUCCESS) {
 		EIB_DPRINTF_WARN(ss->ei_instance,
 		    "eib_vnic_attach_vhub_table: "
@@ -1691,7 +1691,7 @@ eib_vnic_attach_vhub_update(eib_t *ss, eib_vnic_t *vnic)
 	mcg_attr.mc_sl = upd_mcginfo->mc_adds_vect.av_srvl;
 	mcg_attr.mc_scope = 0;	/* IB_MC_SCOPE_SUBNET_LOCAL perhaps ? */
 
-	ret = ibt_join_mcg(mcg->mg_rgid, &mcg_attr, upd_mcginfo, NULL, NULL);
+	ret = ibt_join_mcg(mcg->mg_rgid, &mcg_attr, upd_mcginfo, 0, NULL);
 	if (ret != IBT_SUCCESS) {
 		EIB_DPRINTF_WARN(ss->ei_instance,
 		    "eib_vnic_attach_vhub_update: "

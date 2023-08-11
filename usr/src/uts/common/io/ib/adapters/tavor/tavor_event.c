@@ -338,7 +338,7 @@ tavor_eq_init_all(tavor_state_t *state)
 	 * will never be called.
 	 */
 	status = tavor_eq_handler_init(state, state->ts_eqhdl[42],
-	    TAVOR_EVT_MSK_LOCAL_CAT_ERROR, NULL);
+	    TAVOR_EVT_MSK_LOCAL_CAT_ERROR, 0);
 	if (status != DDI_SUCCESS) {
 		goto all_eq_init_fail;
 	}

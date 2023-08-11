@@ -254,7 +254,7 @@ dsl_dir_hold_obj(dsl_pool_t *dp, uint64_t ddobj,
 			dmu_buf_rele(origin_bonus, FTAG);
 		}
 
-		dmu_buf_init_user(&dd->dd_dbu, NULL, dsl_dir_evict_async,
+		dmu_buf_init_user(&dd->dd_dbu, 0, dsl_dir_evict_async,
 		    &dd->dd_dbuf);
 		winner = dmu_buf_set_user_ie(dbuf, &dd->dd_dbu);
 		if (winner != NULL) {
@@ -773,7 +773,7 @@ dsl_dir_update_last_remap_txg(dsl_dir_t *dd, uint64_t txg)
 	arg.ddlrta_txg = txg;
 
 	return (dsl_sync_task(spa_name(dd->dd_pool->dp_spa),
-	    NULL, dsl_dir_update_last_remap_txg_sync, &arg,
+	    0, dsl_dir_update_last_remap_txg_sync, &arg,
 	    1, ZFS_SPACE_CHECK_RESERVED));
 }
 

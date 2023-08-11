@@ -8284,7 +8284,7 @@ umem_lockmemory(caddr_t addr, size_t len, int flags, ddi_umem_cookie_t *cookie,
 {
 	int	error;
 	struct ddi_umem_cookie *p;
-	void	(*driver_callback)() = NULL;
+	void	(*driver_callback)() = 0;
 	struct as *as;
 	struct seg		*seg;
 	vnode_t			*vp;

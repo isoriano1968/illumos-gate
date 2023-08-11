@@ -103,10 +103,10 @@ static void cpu_sgn_update(ushort_t sgn, uchar_t state,
  */
 /*CSTYLED*/
 extern int   iosram_write     (int, uint32_t, caddr_t, uint32_t);
-static int (*iosram_write_ptr)(int, uint32_t, caddr_t, uint32_t) = NULL;
+static int (*iosram_write_ptr)(int, uint32_t, caddr_t, uint32_t) = 0;
 /*CSTYLED*/
 extern int   iosram_read     (int, uint32_t, caddr_t, uint32_t);
-static int (*iosram_read_ptr)(int, uint32_t, caddr_t, uint32_t) = NULL;
+static int (*iosram_read_ptr)(int, uint32_t, caddr_t, uint32_t) = 0;
 
 
 /*
@@ -142,8 +142,8 @@ int	sbbc_mbox_min_timeout = MBOX_MIN_TIMEOUT;
 /* cached 'chosen' node_id */
 pnode_t chosen_nodeid = (pnode_t)0;
 
-static void (*sg_ecc_taskq_func)(sbbc_ecc_mbox_t *) = NULL;
-static int (*sg_ecc_mbox_func)(sbbc_ecc_mbox_t *) = NULL;
+static void (*sg_ecc_taskq_func)(sbbc_ecc_mbox_t *) = 0;
+static int (*sg_ecc_mbox_func)(sbbc_ecc_mbox_t *) = 0;
 
 /*
  * Table that maps memory slices to a specific memnode.
@@ -222,7 +222,7 @@ load_platform_modules(void)
 int
 plat_cpu_poweron(struct cpu *cp)
 {
-	int (*serengeti_cpu_poweron)(struct cpu *) = NULL;
+	int (*serengeti_cpu_poweron)(struct cpu *) = 0;
 
 	serengeti_cpu_poweron =
 	    (int (*)(struct cpu *))modgetsymvalue("sbdp_cpu_poweron", 0);
@@ -237,7 +237,7 @@ plat_cpu_poweron(struct cpu *cp)
 int
 plat_cpu_poweroff(struct cpu *cp)
 {
-	int (*serengeti_cpu_poweroff)(struct cpu *) = NULL;
+	int (*serengeti_cpu_poweroff)(struct cpu *) = 0;
 
 	serengeti_cpu_poweroff =
 	    (int (*)(struct cpu *))modgetsymvalue("sbdp_cpu_poweroff", 0);
@@ -808,7 +808,7 @@ plat_nodename_set(void)
 		int32_t	namelen;
 		char	nodename[_SYS_NMLN];
 	} nni;
-	int (*sg_mbox)(sbbc_msg_t *, sbbc_msg_t *, time_t) = NULL;
+	int (*sg_mbox)(sbbc_msg_t *, sbbc_msg_t *, time_t) = 0;
 
 	/*
 	 * find the symbol for the mailbox routine

@@ -380,7 +380,7 @@ static struct cb_ops rsm_cb_ops = {
 	nodev,			/* write */
 	rsm_ioctl,		/* ioctl */
 	rsm_devmap,		/* devmap */
-	NULL,			/* mmap */
+	0,			/* mmap */
 	rsm_segmap,		/* segmap */
 	rsm_chpoll,		/* poll */
 	ddi_prop_op,		/* cb_prop_op */
@@ -2533,7 +2533,7 @@ rsm_rebind(rsmseg_t *seg, rsm_ioctlmsg_t *msg)
 		rsm_memory_local_t mem;
 
 		xbuf = ddi_umem_iosetup(cookie, 0, msg->len, B_WRITE,
-		    sdev, 0, NULL, DDI_UMEM_SLEEP);
+		    sdev, 0, 0, DDI_UMEM_SLEEP);
 		ASSERT(xbuf != NULL);
 
 		mem.ms_type = RSM_MEM_BUF;
@@ -2962,7 +2962,7 @@ rsm_publish(rsmseg_t *seg, rsm_ioctlmsg_t *msg, intptr_t dataptr, int mode)
 
 	/* create segment  */
 	xbuf = ddi_umem_iosetup(seg->s_cookie, 0, seg->s_len, B_WRITE,
-	    sdev, 0, NULL, DDI_UMEM_SLEEP);
+	    sdev, 0, 0, DDI_UMEM_SLEEP);
 	ASSERT(xbuf != NULL);
 
 	mem.ms_type = RSM_MEM_BUF;
@@ -4813,7 +4813,7 @@ rsmsegshare_resume(rsmseg_t *seg)
 			    sharedp->rsmsi_handle, p->start_offset,
 			    p->individual_len, &mapped_len,
 			    &p->dip, &p->dev_register, &p->dev_offset,
-			    NULL, NULL);
+			    0, NULL);
 
 			if (e != 0) {
 				DBG_PRINTF((category, RSM_ERR,
@@ -7611,7 +7611,7 @@ rsm_iovec_ioctl(dev_t dev, caddr_t arg, int cmd, int mode, cred_t *credp)
 
 				xbuf = ddi_umem_iosetup(ex_seg->s_cookie,
 				    0, ex_seg->s_len, B_WRITE,
-				    sdev, 0, NULL, DDI_UMEM_SLEEP);
+				    sdev, 0, 0, DDI_UMEM_SLEEP);
 
 				ASSERT(xbuf != NULL);
 
@@ -8736,7 +8736,7 @@ rsm_segmap(dev_t dev, off_t off, struct as *as, caddr_t *addrp, off_t len,
 				    seg->s_handle.in, tmp_off,
 				    length_to_map, &tmp_len,
 				    &dip, &dev_register, &dev_offset,
-				    NULL, NULL);
+				    0, NULL);
 
 				if (error != 0)
 					break;
@@ -9254,7 +9254,7 @@ rsm_unquiesce_exp_seg(rsmresource_t *resp)
 			}
 		}
 		xbuf = ddi_umem_iosetup(segp->s_cookie, 0, segp->s_len, B_WRITE,
-		    sdev, 0, NULL, DDI_UMEM_SLEEP);
+		    sdev, 0, 0, DDI_UMEM_SLEEP);
 		ASSERT(xbuf != NULL);
 
 		mem.ms_type = RSM_MEM_BUF;

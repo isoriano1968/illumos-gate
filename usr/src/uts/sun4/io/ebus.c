@@ -125,11 +125,11 @@ struct cb_ops ebus_cb_ops = {
 static struct bus_ops ebus_bus_ops = {
 	BUSO_REV,
 	ebus_map,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
 	i_ddi_map_fault,
-	NULL,
+	0,
 	ddi_dma_allochdl,
 	ddi_dma_freehdl,
 	ddi_dma_bindhdl,
@@ -165,7 +165,7 @@ static struct dev_ops ebus_ops = {
 	nodev,
 	&ebus_cb_ops,
 	&ebus_bus_ops,
-	NULL,
+	0,
 	ddi_quiesce_not_supported,	/* devo_quiesce */
 };
 

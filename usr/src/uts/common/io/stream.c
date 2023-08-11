@@ -361,7 +361,7 @@ streams_msg_init(void)
 	int offset;
 
 	mblk_cache = kmem_cache_create("streams_mblk", sizeof (mblk_t), 32,
-	    NULL, NULL, NULL, NULL, NULL, mblk_kmem_flags);
+	    0, 0, 0, NULL, NULL, mblk_kmem_flags);
 
 	for (sizep = dblk_sizes; (size = *sizep) != 0; sizep++) {
 
@@ -388,7 +388,7 @@ streams_msg_init(void)
 
 		(void) sprintf(name, "streams_dblk_%ld", size);
 		cp = kmem_cache_create(name, tot_size, DBLK_CACHE_ALIGN,
-		    dblk_constructor, dblk_destructor, NULL, (void *)(size),
+		    dblk_constructor, dblk_destructor, 0, (void *)(size),
 		    NULL, dblk_kmem_flags);
 
 		while (lastsize <= size) {
@@ -398,12 +398,12 @@ streams_msg_init(void)
 	}
 
 	dblk_esb_cache = kmem_cache_create("streams_dblk_esb", sizeof (dblk_t),
-	    DBLK_CACHE_ALIGN, dblk_esb_constructor, dblk_destructor, NULL,
+	    DBLK_CACHE_ALIGN, dblk_esb_constructor, dblk_destructor, 0,
 	    (void *)sizeof (dblk_t), NULL, dblk_kmem_flags);
 	fthdr_cache = kmem_cache_create("streams_fthdr", sizeof (fthdr_t), 32,
-	    fthdr_constructor, fthdr_destructor, NULL, NULL, NULL, 0);
+	    fthdr_constructor, fthdr_destructor, 0, NULL, NULL, 0);
 	ftblk_cache = kmem_cache_create("streams_ftblk", sizeof (ftblk_t), 32,
-	    ftblk_constructor, ftblk_destructor, NULL, NULL, NULL, 0);
+	    ftblk_constructor, ftblk_destructor, 0, NULL, NULL, 0);
 
 	/* initialize throttling queue for esballoc */
 	esballoc_queue_init();
@@ -1053,12 +1053,12 @@ bcache_create(char *name, size_t size, uint_t align)
 	mutex_init(&bcp->mutex, NULL, MUTEX_DRIVER, NULL);
 
 	(void) sprintf(buffer, "%s_buffer_cache", name);
-	bcp->buffer_cache = kmem_cache_create(buffer, size, align, NULL, NULL,
-	    NULL, NULL, NULL, 0);
+	bcp->buffer_cache = kmem_cache_create(buffer, size, align, 0, 0,
+	    0, NULL, NULL, 0);
 	(void) sprintf(buffer, "%s_dblk_cache", name);
 	bcp->dblk_cache = kmem_cache_create(buffer, sizeof (dblk_t),
 	    DBLK_CACHE_ALIGN, bcache_dblk_constructor, bcache_dblk_destructor,
-	    NULL, (void *)bcp, NULL, 0);
+	    0, (void *)bcp, NULL, 0);
 
 	return (bcp);
 }

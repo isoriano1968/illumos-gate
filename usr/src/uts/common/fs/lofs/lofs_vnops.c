@@ -1294,5 +1294,5 @@ const fs_operation_def_t lo_vnodeops_template[] = {
 	VOPNAME_SETSECATTR,	{ .vop_setsecattr = lo_setsecattr },
 	VOPNAME_GETSECATTR,	{ .vop_getsecattr = lo_getsecattr },
 	VOPNAME_SHRLOCK,	{ .vop_shrlock = lo_shrlock },
-	NULL,			NULL
+	NULL,			0
 };

@@ -158,7 +158,7 @@ _init(void)
 	/* initialize the copy reduction caches */
 
 	nfs_xuio_cache = kmem_cache_create("nfs_xuio_cache",
-	    sizeof (nfs_xuio_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (nfs_xuio_t), 0, 0, 0, 0, NULL, NULL, 0);
 
 	return (status);
 }
@@ -510,7 +510,7 @@ nfs_svc(struct nfs_svc_args *arg, model_t model)
 
 	/* Create a transport handle. */
 	error = svc_tli_kcreate(fp, readsize, buf, &addrmask, &xprt,
-	    sctp, NULL, NFS_SVCPOOL_ID, TRUE);
+	    sctp, 0, NFS_SVCPOOL_ID, TRUE);
 
 	if (error)
 		kmem_free(addrmask.buf, addrmask.maxlen);
@@ -1698,7 +1698,7 @@ common_dispatch(struct svc_req *req, SVCXPRT *xprt, rpcvers_t min_vers,
 			curthread->t_flag &= ~T_DONTPEND;
 			if (curthread->t_flag & T_WOULDBLOCK) {
 				curthread->t_flag &= ~T_WOULDBLOCK;
-				SVC_DUPDONE_EXT(xprt, dr, res, NULL,
+				SVC_DUPDONE_EXT(xprt, dr, res, 0,
 				    disp->dis_ressz, DUP_DROP);
 				if (res != (char *)&res_buf)
 					SVC_FREERES(xprt);
@@ -1706,11 +1706,11 @@ common_dispatch(struct svc_req *req, SVCXPRT *xprt, rpcvers_t min_vers,
 				goto done;
 			}
 			if (dis_flags & RPC_AVOIDWORK) {
-				SVC_DUPDONE_EXT(xprt, dr, res, NULL,
+				SVC_DUPDONE_EXT(xprt, dr, res, 0,
 				    disp->dis_ressz, DUP_DROP);
 			} else {
 				SVC_DUPDONE_EXT(xprt, dr, res,
-				    disp->dis_resfree == nullfree ? NULL :
+				    disp->dis_resfree == nullfree ? 0 :
 				    disp->dis_resfree,
 				    disp->dis_ressz, DUP_DONE);
 				dupcached = TRUE;
@@ -2561,7 +2561,7 @@ nfs_srvinit(void)
 	rw_init(&nfssrv_globals_rwl, NULL, RW_DEFAULT, NULL);
 	list_create(&nfssrv_globals_list, sizeof (nfs_globals_t),
 	    offsetof(nfs_globals_t, nfs_g_link));
-	tsd_create(&nfs_server_tsd_key, NULL);
+	tsd_create(&nfs_server_tsd_key, 0);
 
 	/* The order here is important */
 	nfs_exportinit();

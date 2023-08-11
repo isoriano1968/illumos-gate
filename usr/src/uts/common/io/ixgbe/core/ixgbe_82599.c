@@ -78,9 +78,9 @@ void ixgbe_init_mac_link_ops_82599(struct ixgbe_hw *hw)
 		mac->ops.flap_tx_laser = ixgbe_flap_tx_laser_multispeed_fiber;
 
 	} else {
-		mac->ops.disable_tx_laser = NULL;
-		mac->ops.enable_tx_laser = NULL;
-		mac->ops.flap_tx_laser = NULL;
+		mac->ops.disable_tx_laser = 0;
+		mac->ops.enable_tx_laser = 0;
+		mac->ops.flap_tx_laser = 0;
 	}
 
 	if (hw->phy.multispeed_fiber) {
@@ -147,7 +147,7 @@ s32 ixgbe_init_phy_ops_82599(struct ixgbe_hw *hw)
 	/* Setup function pointers based on detected SFP module and speeds */
 	ixgbe_init_mac_link_ops_82599(hw);
 	if (hw->phy.sfp_type != ixgbe_sfp_type_unknown)
-		hw->phy.ops.reset = NULL;
+		hw->phy.ops.reset = 0;
 
 	/* If copper media, overwrite with copper function pointers */
 	if (mac->ops.get_media_type(hw) == ixgbe_media_type_copper) {
@@ -181,7 +181,7 @@ s32 ixgbe_setup_sfp_modules_82599(struct ixgbe_hw *hw)
 	if (hw->phy.sfp_type != ixgbe_sfp_type_unknown) {
 		ixgbe_init_mac_link_ops_82599(hw);
 
-		hw->phy.ops.reset = NULL;
+		hw->phy.ops.reset = 0;
 
 		ret_val = ixgbe_get_sfp_init_sequence_offsets(hw, &list_offset,
 							      &data_offset);

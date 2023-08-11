@@ -434,8 +434,8 @@ static mac_callbacks_t vgen_m_callbacks = {
 	vgen_tx,
 	NULL,
 	vgen_ioctl,
-	NULL,
-	NULL
+	0,
+	0
 };
 
 /* Externs */
@@ -5326,7 +5326,7 @@ vgen_handle_pkt_data(void *arg1, void *arg2, uint32_t msglen)
 	uint32_t		size;
 	mblk_t			*mp;
 	vio_mblk_t		*vmp;
-	vio_net_rx_cb_t		vrx_cb = NULL;
+	vio_net_rx_cb_t		vrx_cb = 0;
 	vgen_t			*vgenp = LDC_TO_VGEN(ldcp);
 	vgen_stats_t		*statsp = &ldcp->stats;
 	vgen_hparams_t		*lp = &ldcp->local_hparams;

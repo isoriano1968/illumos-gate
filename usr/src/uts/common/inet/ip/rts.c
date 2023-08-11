@@ -141,13 +141,13 @@ static struct module_info rts_mod_info = {
 };
 
 static struct qinit rtsrinit = {
-	NULL, rts_rsrv, rts_stream_open, rts_stream_close, NULL,
+	0, rts_rsrv, rts_stream_open, rts_stream_close, 0,
 	&rts_mod_info
 };
 
 static struct qinit rtswinit = {
-	rts_wput, NULL, NULL, NULL, NULL, &rts_mod_info,
-	NULL, rts_wrw, NULL, STRUIOT_STANDARD
+	rts_wput, 0, 0, 0, 0, &rts_mod_info,
+	NULL, rts_wrw, 0, STRUIOT_STANDARD
 };
 
 struct streamtab rtsinfo = {
@@ -1232,7 +1232,7 @@ rts_ddi_g_init(void)
 	 * destroyed in the kernel, so we can maintain the
 	 * set of rts_stack_t's.
 	 */
-	netstack_register(NS_RTS, rts_stack_init, NULL, rts_stack_fini);
+	netstack_register(NS_RTS, rts_stack_init, 0, rts_stack_fini);
 }
 
 void
@@ -1619,9 +1619,9 @@ sock_downcalls_t sock_rts_downcalls = {
 	rts_getsockopt,
 	rts_setsockopt,
 	rts_send,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
 	rts_shutdown,
 	rts_clr_flowctrl,
 	rts_ioctl,

@@ -160,7 +160,7 @@ ds_ops_t uftdi_ds_ops = {
 	uftdi_set_modem_ctl,
 	uftdi_get_modem_ctl,
 	uftdi_break_ctl,
-	NULL,			/* no loopback support */
+	0,			/* no loopback support */
 	uftdi_tx,
 	uftdi_rx,
 	uftdi_stop,
@@ -1545,7 +1545,7 @@ uftdi_open_pipes(uftdi_state_t *uf)
 	if (usb_pipe_open(uf->uf_dip, &out_data->ep_descr, &policy,
 	    USB_FLAGS_SLEEP, &uf->uf_bulkout_ph) != USB_SUCCESS) {
 		usb_pipe_close(uf->uf_dip, uf->uf_bulkin_ph, USB_FLAGS_SLEEP,
-		    NULL, NULL);
+		    0, NULL);
 		return (USB_FAILURE);
 	}
 

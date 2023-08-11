@@ -139,7 +139,7 @@ sock_downcalls_t pfp_downcalls = {
 	sdpfp_setsockopt,
 	sock_send_notsupp,
 	sdpfp_senduio,
-	NULL,
+	0,
 	sock_poll_notsupp,
 	sock_shutdown_notsupp,
 	sdpfp_clr_flowctrl,

@@ -238,7 +238,7 @@ ilb_find_nat_src(ilb_stack_t *ilbs, const in6_addr_t *nat_src,
 	(void) snprintf(arena_name, ARENA_NAMESZ, "ilb_ns_%u",
 	    atomic_inc_32_nv(&ilb_nat_src_instance));
 	if ((tmp->nse_port_arena = vmem_create(arena_name,
-	    (void *)NAT_PORT_START, NAT_PORT_SIZE, 1, NULL, NULL, NULL, 1,
+	    (void *)NAT_PORT_START, NAT_PORT_SIZE, 1, 0, 0, NULL, 1,
 	    VM_SLEEP | VMC_IDENTIFIER)) == NULL) {
 		kmem_free(tmp, sizeof (*tmp));
 		return (NULL);

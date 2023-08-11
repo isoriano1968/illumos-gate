@@ -174,7 +174,7 @@ kcpc_register_dcpc(void (*func)(uint64_t))
 void
 kcpc_unregister_dcpc(void)
 {
-	dtrace_cpc_fire = NULL;
+	dtrace_cpc_fire = 0;
 }
 
 int

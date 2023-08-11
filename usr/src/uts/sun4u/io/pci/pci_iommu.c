@@ -154,7 +154,7 @@ iommu_create(pci_t *pci_p)
 	iommu_p->iommu_dvma_map = vmem_create(map_name,
 	    (void *)(iommu_p->iommu_dvma_fast_end + 1),
 	    IOMMU_PTOB(tsb_entries) - cache_size, IOMMU_PAGE_SIZE,
-	    NULL, NULL, NULL, IOMMU_PAGE_SIZE, VM_SLEEP);
+	    0, 0, NULL, IOMMU_PAGE_SIZE, VM_SLEEP);
 
 	mutex_init(&iommu_p->dvma_debug_lock, NULL, MUTEX_DRIVER, NULL);
 

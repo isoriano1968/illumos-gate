@@ -226,7 +226,7 @@ lwp_create(void (*proc)(), caddr_t arg, size_t len, proc_t *p,
 	/*
 	 * Create a thread, initializing the stack pointer
 	 */
-	t = thread_create(lwpdata, stksize, NULL, NULL, 0, p, TS_STOPPED, pri);
+	t = thread_create(lwpdata, stksize, 0, NULL, 0, p, TS_STOPPED, pri);
 
 	/*
 	 * If a non-NULL stack base is passed in, thread_create() assumes

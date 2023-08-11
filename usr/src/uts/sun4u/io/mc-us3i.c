@@ -374,9 +374,9 @@ mc_detach(dev_info_t *devi, ddi_detach_cmd_t cmd)
 
 	if (nmcs == 0) {
 		if (&p2get_mem_unum)
-			p2get_mem_unum = NULL;
+			p2get_mem_unum = 0;
 		if (&p2get_mem_info)
-			p2get_mem_info = NULL;
+			p2get_mem_info = 0;
 	}
 
 	mutex_exit(&mcmutex);

@@ -1157,7 +1157,7 @@ void
 finit()
 {
 	file_cache = kmem_cache_create("file_cache", sizeof (file_t), 0,
-	    file_cache_constructor, file_cache_destructor, NULL, NULL, NULL, 0);
+	    file_cache_constructor, file_cache_destructor, 0, NULL, NULL, 0);
 }
 
 void

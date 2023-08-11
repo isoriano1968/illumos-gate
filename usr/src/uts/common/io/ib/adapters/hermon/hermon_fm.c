@@ -1839,8 +1839,8 @@ i_hca_fm_init(struct i_hca_fm *hca_fm)
 	++hca_fm->ref_cnt;
 	if (hca_fm->fm_acc_cache == NULL) {
 		hca_fm->fm_acc_cache = kmem_cache_create("hca_fm_acc_handle",
-		    sizeof (struct i_hca_acc_handle), 0, NULL,
-		    NULL, NULL, NULL, NULL, 0);
+		    sizeof (struct i_hca_acc_handle), 0, 0,
+		    0, 0, NULL, NULL, 0);
 	}
 
 	mutex_exit(&hca_fm->lock);

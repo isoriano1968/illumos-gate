@@ -39,7 +39,7 @@ static ibt_clnt_modinfo_t eibnx_clnt_modinfo = {
 	IBTI_V_CURR,
 	IBT_GENERIC,
 	eibnx_async_handler,
-	NULL,
+	0,
 	"EoIB Nexus"
 };
 
@@ -682,7 +682,7 @@ eibnx_join_solicit_mcg(eibnx_thr_info_t *info)
 	 * We only need to send to solicit mcg, so we only need to join
 	 * the multicast group, no need to attach our qp to it
 	 */
-	ret = ibt_join_mcg(rgid, &mcg_attr, &mcg_info, NULL, NULL);
+	ret = ibt_join_mcg(rgid, &mcg_attr, &mcg_info, 0, NULL);
 	if (ret != IBT_SUCCESS) {
 		ENX_DPRINTF_ERR("ibt_join_mcg() failed for solicit "
 		    "mgid=%llx.%llx, ret=%x", enx_solicit_mgid.gid_prefix,
@@ -729,7 +729,7 @@ eibnx_join_advertise_mcg(eibnx_thr_info_t *info)
 	mcg_attr.mc_sl = info->ti_advertise_mcg->mc_adds_vect.av_srvl;
 	mcg_attr.mc_scope = IB_MC_SCOPE_SUBNET_LOCAL;
 
-	ret = ibt_join_mcg(rgid, &mcg_attr, &mcg_info, NULL, NULL);
+	ret = ibt_join_mcg(rgid, &mcg_attr, &mcg_info, 0, NULL);
 	if (ret != IBT_SUCCESS) {
 		ENX_DPRINTF_ERR("ibt_join_mcg() failed for advertise "
 		    "mgid=%llx.%llx, ret=%x", enx_advertise_mgid.gid_prefix,
@@ -840,7 +840,7 @@ eibnx_rb_ibt_init(eibnx_t *ss)
 	/*
 	 * Disable subnet notices callbacks
 	 */
-	ibt_register_subnet_notices(ss->nx_ibt_hdl, NULL, NULL);
+	ibt_register_subnet_notices(ss->nx_ibt_hdl, 0, NULL);
 
 	/*
 	 * Remove the hca list from the state structure
@@ -1069,7 +1069,7 @@ eibnx_rb_setup_bufs(eibnx_thr_info_t *info)
 void
 eibnx_rb_setup_cq_handler(eibnx_thr_info_t *info)
 {
-	ibt_set_cq_handler(info->ti_cq_hdl, NULL, NULL);
+	ibt_set_cq_handler(info->ti_cq_hdl, 0, NULL);
 
 	if (info->ti_softint_hdl) {
 		(void) ddi_intr_remove_softint(info->ti_softint_hdl);

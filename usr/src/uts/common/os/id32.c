@@ -64,7 +64,7 @@ id32_init(void)
 	    segkmem_alloc, segkmem_free, heap32_arena, 0, VM_SLEEP);
 
 	id32_cache = kmem_cache_create("id32_cache", ID32_ALIGN, ID32_ALIGN,
-	    NULL, NULL, NULL, NULL, id32_arena, 0);
+	    0, 0, 0, NULL, id32_arena, 0);
 }
 
 /*

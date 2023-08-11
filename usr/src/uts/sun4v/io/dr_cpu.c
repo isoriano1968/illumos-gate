@@ -1463,7 +1463,7 @@ dr_cpu_probe(processorid_t cpuid)
 	br.arg = (void *)&cba;
 	br.type = DEVI_BRANCH_SID;
 	br.create.sid_branch_create = new_cpu_node;
-	br.devi_branch_callback = NULL;
+	br.devi_branch_callback = 0;
 	pdip = ddi_root_node();
 
 	if ((rv = e_ddi_branch_create(pdip, &br, NULL, 0))) {

@@ -113,7 +113,7 @@ s1394_setup_CSR_space(s1394_hal_t *hal)
 	addr.aa_type	= T1394_ADDR_FIXED;
 	addr.aa_evts.recv_read_request	= s1394_CSR_state_clear;
 	addr.aa_evts.recv_write_request	= s1394_CSR_state_clear;
-	addr.aa_evts.recv_lock_request	= NULL;
+	addr.aa_evts.recv_lock_request	= 0;
 	addr.aa_kmem_bufp = NULL;
 	addr.aa_arg	  = hal;
 	result = s1394_claim_addr_blk(hal, &addr);
@@ -130,7 +130,7 @@ s1394_setup_CSR_space(s1394_hal_t *hal)
 	addr.aa_length	= IEEE1394_QUADLET;
 	addr.aa_enable	= T1394_ADDR_WRENBL;
 	addr.aa_type	= T1394_ADDR_FIXED;
-	addr.aa_evts.recv_read_request	= NULL;
+	addr.aa_evts.recv_read_request	= 0;
 	addr.aa_evts.recv_write_request	= s1394_CSR_state_set;
 	addr.aa_evts.recv_lock_request	= NULL;
 	addr.aa_kmem_bufp = NULL;
@@ -151,7 +151,7 @@ s1394_setup_CSR_space(s1394_hal_t *hal)
 	addr.aa_type	= T1394_ADDR_FIXED;
 	addr.aa_evts.recv_read_request	= s1394_CSR_node_ids;
 	addr.aa_evts.recv_write_request = s1394_CSR_node_ids;
-	addr.aa_evts.recv_lock_request	= NULL;
+	addr.aa_evts.recv_lock_request	= 0;
 	addr.aa_kmem_bufp = NULL;
 	addr.aa_arg	  = hal;
 	result = s1394_claim_addr_blk(hal, &addr);
@@ -168,9 +168,9 @@ s1394_setup_CSR_space(s1394_hal_t *hal)
 	addr.aa_length	= IEEE1394_QUADLET;
 	addr.aa_enable	= T1394_ADDR_WRENBL;
 	addr.aa_type	= T1394_ADDR_FIXED;
-	addr.aa_evts.recv_read_request	= NULL;
+	addr.aa_evts.recv_read_request	= 0;
 	addr.aa_evts.recv_write_request	= s1394_CSR_reset_start;
-	addr.aa_evts.recv_lock_request	= NULL;
+	addr.aa_evts.recv_lock_request	= 0;
 	addr.aa_kmem_bufp = NULL;
 	addr.aa_arg	  = hal;
 	result = s1394_claim_addr_blk(hal, &addr);
@@ -189,7 +189,7 @@ s1394_setup_CSR_space(s1394_hal_t *hal)
 	addr.aa_type = T1394_ADDR_FIXED;
 	addr.aa_evts.recv_read_request	= s1394_CSR_split_timeout;
 	addr.aa_evts.recv_write_request	= s1394_CSR_split_timeout;
-	addr.aa_evts.recv_lock_request	= NULL;
+	addr.aa_evts.recv_lock_request	= 0;
 	addr.aa_kmem_bufp = NULL;
 	addr.aa_arg	  = hal;
 	result = s1394_claim_addr_blk(hal, &addr);
@@ -208,7 +208,7 @@ s1394_setup_CSR_space(s1394_hal_t *hal)
 	addr.aa_type	= T1394_ADDR_FIXED;
 	addr.aa_evts.recv_read_request	= s1394_CSR_argument_regs;
 	addr.aa_evts.recv_write_request	= s1394_CSR_argument_regs;
-	addr.aa_evts.recv_lock_request	= NULL;
+	addr.aa_evts.recv_lock_request	= 0;
 	addr.aa_kmem_bufp = NULL;
 	addr.aa_arg	  = hal;
 	result = s1394_claim_addr_blk(hal, &addr);
@@ -227,7 +227,7 @@ s1394_setup_CSR_space(s1394_hal_t *hal)
 	addr.aa_type	= T1394_ADDR_FIXED;
 	addr.aa_evts.recv_read_request	= s1394_CSR_test_regs;
 	addr.aa_evts.recv_write_request	= s1394_CSR_test_regs;
-	addr.aa_evts.recv_lock_request	= NULL;
+	addr.aa_evts.recv_lock_request	= 0;
 	addr.aa_kmem_bufp = NULL;
 	addr.aa_arg	  = hal;
 	result = s1394_claim_addr_blk(hal, &addr);
@@ -246,7 +246,7 @@ s1394_setup_CSR_space(s1394_hal_t *hal)
 	addr.aa_type	= T1394_ADDR_FIXED;
 	addr.aa_evts.recv_read_request	= s1394_CSR_interrupt_regs;
 	addr.aa_evts.recv_write_request	= s1394_CSR_interrupt_regs;
-	addr.aa_evts.recv_lock_request	= NULL;
+	addr.aa_evts.recv_lock_request	= 0;
 	addr.aa_kmem_bufp = NULL;
 	addr.aa_arg	  = hal;
 	result = s1394_claim_addr_blk(hal, &addr);
@@ -265,7 +265,7 @@ s1394_setup_CSR_space(s1394_hal_t *hal)
 	addr.aa_type	= T1394_ADDR_FIXED;
 	addr.aa_evts.recv_read_request	= s1394_CSR_clock_regs;
 	addr.aa_evts.recv_write_request	= s1394_CSR_clock_regs;
-	addr.aa_evts.recv_lock_request	= NULL;
+	addr.aa_evts.recv_lock_request	= 0;
 	addr.aa_kmem_bufp = NULL;
 	addr.aa_arg	  = hal;
 	result = s1394_claim_addr_blk(hal, &addr);
@@ -284,7 +284,7 @@ s1394_setup_CSR_space(s1394_hal_t *hal)
 	addr.aa_type	= T1394_ADDR_FIXED;
 	addr.aa_evts.recv_read_request	= s1394_CSR_message_regs;
 	addr.aa_evts.recv_write_request	= s1394_CSR_message_regs;
-	addr.aa_evts.recv_lock_request	= NULL;
+	addr.aa_evts.recv_lock_request	= 0;
 	addr.aa_kmem_bufp = NULL;
 	addr.aa_arg	  = hal;
 	result = s1394_claim_addr_blk(hal, &addr);
@@ -302,7 +302,7 @@ s1394_setup_CSR_space(s1394_hal_t *hal)
 	addr.aa_type	= T1394_ADDR_FIXED;
 	addr.aa_evts.recv_read_request	= s1394_CSR_cycle_time;
 	addr.aa_evts.recv_write_request	= s1394_CSR_cycle_time;
-	addr.aa_evts.recv_lock_request	= NULL;
+	addr.aa_evts.recv_lock_request	= 0;
 	addr.aa_kmem_bufp = NULL;
 	addr.aa_arg	  = hal;
 	result = s1394_claim_addr_blk(hal, &addr);
@@ -320,7 +320,7 @@ s1394_setup_CSR_space(s1394_hal_t *hal)
 	addr.aa_type	= T1394_ADDR_FIXED;
 	addr.aa_evts.recv_read_request	= s1394_CSR_bus_time;
 	addr.aa_evts.recv_write_request	= s1394_CSR_bus_time;
-	addr.aa_evts.recv_lock_request	= NULL;
+	addr.aa_evts.recv_lock_request	= 0;
 	addr.aa_kmem_bufp = NULL;
 	addr.aa_arg	  = hal;
 	result = s1394_claim_addr_blk(hal, &addr);
@@ -338,7 +338,7 @@ s1394_setup_CSR_space(s1394_hal_t *hal)
 	addr.aa_type	= T1394_ADDR_FIXED;
 	addr.aa_evts.recv_read_request	= s1394_CSR_busy_timeout;
 	addr.aa_evts.recv_write_request	= s1394_CSR_busy_timeout;
-	addr.aa_evts.recv_lock_request	= NULL;
+	addr.aa_evts.recv_lock_request	= 0;
 	addr.aa_kmem_bufp = NULL;
 	addr.aa_arg	  = hal;
 	result = s1394_claim_addr_blk(hal, &addr);
@@ -357,7 +357,7 @@ s1394_setup_CSR_space(s1394_hal_t *hal)
 	addr.aa_enable	= T1394_ADDR_RDENBL | T1394_ADDR_LKENBL;
 	addr.aa_type	= T1394_ADDR_FIXED;
 	addr.aa_evts.recv_read_request	= s1394_CSR_IRM_regs;
-	addr.aa_evts.recv_write_request	= NULL;
+	addr.aa_evts.recv_write_request	= 0;
 	addr.aa_evts.recv_lock_request	= s1394_CSR_IRM_regs;
 	addr.aa_kmem_bufp = NULL;
 	addr.aa_arg	  = hal;
@@ -388,8 +388,8 @@ s1394_setup_CSR_space(s1394_hal_t *hal)
 	addr.aa_enable	= T1394_ADDR_RDENBL;
 	addr.aa_type	= T1394_ADDR_FIXED;
 	addr.aa_evts.recv_read_request	= s1394_CSR_topology_map;
-	addr.aa_evts.recv_write_request	= NULL;
-	addr.aa_evts.recv_lock_request	= NULL;
+	addr.aa_evts.recv_write_request	= 0;
+	addr.aa_evts.recv_lock_request	= 0;
 	addr.aa_kmem_bufp = (caddr_t)hal->CSR_topology_map;
 	addr.aa_arg	  = hal;
 	result = s1394_claim_addr_blk(hal, &addr);

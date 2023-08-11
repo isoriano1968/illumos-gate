@@ -115,7 +115,7 @@ static ibt_clnt_modinfo_t ibt_clnt_modinfo = {
 	.mi_ibt_version			= IBTI_V_CURR,
 	.mi_clnt_class			= IBT_USER,
 	.mi_async_handler		= umad_async_handler,
-	.mi_reserved			= NULL,
+	.mi_reserved			= 0,
 	.mi_clnt_name			= "sol_umad"
 };
 
@@ -1249,7 +1249,7 @@ umad_register_agent(struct umad_agent_s *agent)
 	reg_info.ir_client_class = ibmf_class;
 
 	mutex_enter(&ibmf_info->ibmf_reg_lock);
-	rc = ibmf_register(&reg_info, IBMF_VERSION, flags, NULL, NULL,
+	rc = ibmf_register(&reg_info, IBMF_VERSION, flags, 0, NULL,
 	    &ibmf_info->ibmf_reg_handle, &impl_caps);
 
 	if (rc != IBMF_SUCCESS) {
@@ -2063,7 +2063,7 @@ umad_write(dev_t dev, struct uio *uiop, cred_t *credp)
 	rc = ibmf_msg_transport(agent->agent_reg->ibmf_reg_handle,
 	    IBMF_QP_HANDLE_DEFAULT,
 	    ibmf_msg, &mad_retrans,
-	    need_callback ? umad_solicited_cb : NULL,
+	    need_callback ? umad_solicited_cb : 0,
 	    umad_ctx, flags);
 
 	if (! need_callback) {

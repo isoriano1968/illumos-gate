@@ -84,7 +84,7 @@ const fs_operation_def_t swap_vnodeops_template[] = {
 	VOPNAME_PATHCONF,	{ .error = fs_error },
 	VOPNAME_GETSECATTR,	{ .error = fs_error },
 	VOPNAME_SHRLOCK,	{ .error = fs_error },
-	NULL,			NULL
+	NULL,			0
 };
 
 vnodeops_t *swap_vnodeops;

@@ -7035,7 +7035,7 @@ emlxs_fcoe_fcftab_fcf_delete(emlxs_port_t *port, uint32_t fcf_index)
 	bzero(mp->virt, mp->size);
 
 	mbq->nonembed = (void *)mp;
-	mbq->mbox_cmpl = NULL;
+	mbq->mbox_cmpl = 0;
 	mbq->context = (void *)((unsigned long)fcf_index);
 	mbq->port = (void *)port;
 

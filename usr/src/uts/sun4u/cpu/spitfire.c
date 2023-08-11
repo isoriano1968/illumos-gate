@@ -3831,8 +3831,8 @@ cpu_init_private(struct cpu *cp)
 	 */
 	if (sf_private_cache == NULL) {
 		sf_private_cache = kmem_cache_create("sf_private_cache",
-		    sizeof (spitfire_private_t), S_ECACHE_MAX_LSIZE, NULL,
-		    NULL, NULL, NULL, NULL, 0);
+		    sizeof (spitfire_private_t), S_ECACHE_MAX_LSIZE, 0,
+		    0, 0, NULL, NULL, 0);
 		ASSERT(sf_private_cache);
 	}
 

@@ -632,7 +632,7 @@ ddi_intr_add_handler(ddi_intr_handle_t h, ddi_intr_handler_t inthandler,
 	    DDI_INTROP_ADDISR, hdlp, NULL);
 
 	if (ret != DDI_SUCCESS) {
-		hdlp->ih_cb_func = NULL;
+		hdlp->ih_cb_func = 0;
 		hdlp->ih_cb_arg1 = NULL;
 		hdlp->ih_cb_arg2 = NULL;
 	} else
@@ -731,7 +731,7 @@ ddi_intr_remove_handler(ddi_intr_handle_t h)
 
 	if (ret == DDI_SUCCESS) {
 		hdlp->ih_state = DDI_IHDL_STATE_ALLOC;
-		hdlp->ih_cb_func = NULL;
+		hdlp->ih_cb_func = 0;
 		hdlp->ih_cb_arg1 = NULL;
 		hdlp->ih_cb_arg2 = NULL;
 	}

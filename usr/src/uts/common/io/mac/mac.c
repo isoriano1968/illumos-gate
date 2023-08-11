@@ -424,11 +424,11 @@ mac_init(void)
 
 	i_mac_impl_cachep = kmem_cache_create("mac_impl_cache",
 	    sizeof (mac_impl_t), 0, i_mac_constructor, i_mac_destructor,
-	    NULL, NULL, NULL, 0);
+	    0, NULL, NULL, 0);
 	ASSERT(i_mac_impl_cachep != NULL);
 
 	mac_ring_cache = kmem_cache_create("mac_ring_cache",
-	    sizeof (mac_ring_t), 0, i_mac_ring_ctor, i_mac_ring_dtor, NULL,
+	    sizeof (mac_ring_t), 0, i_mac_ring_ctor, i_mac_ring_dtor, 0,
 	    NULL, NULL, 0);
 	ASSERT(mac_ring_cache != NULL);
 
@@ -1730,7 +1730,7 @@ mac_hwring_clear_passthru(mac_ring_handle_t hwrh)
 
 	hwring->mr_classify_type = MAC_NO_CLASSIFIER;
 
-	hwring->mr_pt_fn = NULL;
+	hwring->mr_pt_fn = 0;
 	hwring->mr_pt_arg1 = NULL;
 	hwring->mr_pt_arg2 = NULL;
 }

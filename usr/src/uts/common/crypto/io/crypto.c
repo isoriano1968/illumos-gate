@@ -303,7 +303,7 @@ static struct dev_ops devops = {
 	nodev,			/* devo_reset */
 	&cbops,			/* devo_cb_ops */
 	NULL,			/* devo_bus_ops */
-	NULL,			/* devo_power */
+	0,			/* devo_power */
 	ddi_quiesce_not_needed,		/* devo_quiesce */
 };
 
@@ -371,7 +371,7 @@ crypto_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 	}
 
 	crypto_session_cache = kmem_cache_create("crypto_session_cache",
-	    sizeof (crypto_session_data_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (crypto_session_data_t), 0, 0, 0, 0, NULL, NULL, 0);
 
 	if (crypto_session_cache == NULL)
 		return (DDI_FAILURE);
@@ -395,7 +395,7 @@ crypto_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 
 	/* allocate integer space for minor numbers */
 	crypto_arena = vmem_create("crypto", (void *)1,
-	    CRYPTO_MINOR_CHUNK, 1, NULL, NULL, NULL, 0,
+	    CRYPTO_MINOR_CHUNK, 1, 0, 0, NULL, 0,
 	    VM_SLEEP | VMC_IDENTIFIER);
 
 	return (DDI_SUCCESS);

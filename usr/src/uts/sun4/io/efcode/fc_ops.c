@@ -88,7 +88,7 @@ static struct fc_ops_v fov[] = {
 	{	FC_SVC_INVALIDATE,	fco_invalidate},
 	{	FC_SVC_EXIT,		fco_exit},
 	{	"local-ether-addr",	fco_local_ether_addr},
-	{	NULL,			NULL}
+	{	NULL,			0}
 };
 
 /*

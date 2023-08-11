@@ -2384,7 +2384,7 @@ _idm_init(void)
 
 	/* Create the global buffer and task kmem caches */
 	idm.idm_buf_cache = kmem_cache_create("idm_buf_cache",
-	    sizeof (idm_buf_t), 8, NULL, NULL, NULL, NULL, NULL, KM_SLEEP);
+	    sizeof (idm_buf_t), 8, 0, 0, 0, NULL, NULL, KM_SLEEP);
 
 	/*
 	 * Note, we're explicitly allocating an additional iSER header-
@@ -2393,7 +2393,7 @@ _idm_init(void)
 	idm.idm_task_cache = kmem_cache_create("idm_task_cache",
 	    sizeof (idm_task_t) + IDM_TRANSPORT_HEADER_LENGTH, 8,
 	    &idm_task_constructor, &idm_task_destructor,
-	    NULL, NULL, NULL, KM_SLEEP);
+	    0, NULL, NULL, KM_SLEEP);
 
 	/* Create the service and connection context lists */
 	list_create(&idm.idm_tgt_svc_list, sizeof (idm_svc_t),

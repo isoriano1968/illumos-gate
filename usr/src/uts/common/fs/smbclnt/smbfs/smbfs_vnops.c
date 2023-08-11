@@ -5030,5 +5030,5 @@ const fs_operation_def_t smbfs_vnodeops_template[] = {
 #ifdef	SMBFS_VNEVENT
 	VOPNAME_VNEVENT,	{ .vop_vnevent = fs_vnevent_support },
 #endif
-	{ NULL, NULL }
+	{ NULL, 0 }
 };

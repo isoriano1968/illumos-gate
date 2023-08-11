@@ -188,9 +188,9 @@ static void	aus_socket(struct t_audit_data *);
  * call to several events.
  */
 
-#define	aui_null	NULL	/* NULL initialize function */
-#define	aus_null	NULL	/* NULL start function */
-#define	auf_null	NULL	/* NULL finish function */
+#define	aui_null	0	/* NULL initialize function */
+#define	aus_null	0	/* NULL start function */
+#define	auf_null	0	/* NULL finish function */
 
 struct audit_s2e audit_s2e[] =
 {

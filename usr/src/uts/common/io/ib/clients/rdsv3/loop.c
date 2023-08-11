@@ -90,7 +90,7 @@ rdsv3_loop_xmit(struct rdsv3_connection *conn, struct rdsv3_message *rm,
 	    KM_NOSLEEP);
 
 	rdsv3_send_drop_acked(conn, ntohll(rm->m_inc.i_hdr.h_sequence),
-	    NULL);
+	    0);
 
 	rdsv3_inc_put(&rm->m_inc);
 

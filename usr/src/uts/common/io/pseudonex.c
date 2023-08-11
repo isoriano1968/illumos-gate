@@ -99,32 +99,32 @@ typedef struct pseudonex_state {
 static struct bus_ops pseudonex_bus_ops = {
 	BUSO_REV,
 	nullbusmap,		/* bus_map */
-	NULL,			/* bus_get_intrspec */
-	NULL,			/* bus_add_intrspec */
-	NULL,			/* bus_remove_intrspec */
+	0,			/* bus_get_intrspec */
+	0,			/* bus_add_intrspec */
+	0,			/* bus_remove_intrspec */
 	i_ddi_map_fault,	/* bus_map_fault */
 	ddi_no_dma_map,		/* bus_dma_map */
 	ddi_no_dma_allochdl,	/* bus_dma_allochdl */
-	NULL,			/* bus_dma_freehdl */
-	NULL,			/* bus_dma_bindhdl */
-	NULL,			/* bus_dma_unbindhdl */
-	NULL,			/* bus_dma_flush */
-	NULL,			/* bus_dma_win */
-	NULL,			/* bus_dma_ctl */
+	0,			/* bus_dma_freehdl */
+	0,			/* bus_dma_bindhdl */
+	0,			/* bus_dma_unbindhdl */
+	0,			/* bus_dma_flush */
+	0,			/* bus_dma_win */
+	0,			/* bus_dma_ctl */
 	pseudonex_ctl,		/* bus_ctl */
 	ddi_bus_prop_op,	/* bus_prop_op */
 	0,			/* bus_get_eventcookie */
 	0,			/* bus_add_eventcall */
 	0,			/* bus_remove_eventcall	*/
 	0,			/* bus_post_event */
-	NULL,			/* bus_intr_ctl */
-	NULL,			/* bus_config */
-	NULL,			/* bus_unconfig */
+	0,			/* bus_intr_ctl */
+	0,			/* bus_config */
+	0,			/* bus_unconfig */
 	pseudonex_fm_init,	/* bus_fm_init */
-	NULL,			/* bus_fm_fini */
-	NULL,			/* bus_fm_access_enter */
-	NULL,			/* bus_fm_access_exit */
-	NULL,			/* bus_power */
+	0,			/* bus_fm_fini */
+	0,			/* bus_fm_access_enter */
+	0,			/* bus_fm_access_exit */
+	0,			/* bus_power */
 	pseudonex_intr_op	/* bus_intr_op */
 };
 

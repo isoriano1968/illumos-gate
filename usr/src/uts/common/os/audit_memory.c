@@ -119,5 +119,5 @@ au_pad_init()
 {
 	au_pad_cache = kmem_cache_create("audit_proc",
 	    sizeof (p_audit_data_t), 0, au_pad_const, au_pad_destr,
-	    NULL, NULL, NULL, 0);
+	    0, NULL, NULL, 0);
 }

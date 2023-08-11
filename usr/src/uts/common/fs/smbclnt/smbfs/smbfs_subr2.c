@@ -1240,7 +1240,7 @@ smbfs_subrinit(void)
 	}
 
 	smbnode_cache = kmem_cache_create("smbnode_cache", sizeof (smbnode_t),
-	    0, NULL, NULL, smbfs_kmem_reclaim, NULL, NULL, 0);
+	    0, 0, 0, smbfs_kmem_reclaim, NULL, NULL, 0);
 
 	/*
 	 * Initialize the various mutexes and reader/writer locks

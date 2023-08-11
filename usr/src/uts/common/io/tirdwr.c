@@ -87,7 +87,7 @@ static struct module_info tirdwr_info = {
 
 static struct qinit tirdwrrinit = {
 	tirdwrrput,
-	NULL,
+	0,
 	tirdwropen,
 	tirdwrclose,
 	nulldev,
@@ -97,7 +97,7 @@ static struct qinit tirdwrrinit = {
 
 static struct qinit tirdwrwinit = {
 	tirdwrwput,
-	NULL,
+	0,
 	tirdwropen,
 	tirdwrclose,
 	nulldev,

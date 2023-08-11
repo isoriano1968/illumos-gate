@@ -743,8 +743,8 @@ static struct cb_ops sysevent_cb_ops = {
 	.cb_str = NULL,
 	.cb_flag = D_NEW | D_MP,
 	.cb_rev = CB_REV,
-	.cb_aread = NULL,
-	.cb_awrite = NULL
+	.cb_aread = 0,
+	.cb_awrite = 0
 };
 
 static struct dev_ops sysevent_ops = {

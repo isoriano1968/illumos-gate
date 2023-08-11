@@ -3526,7 +3526,7 @@ nfs_subrinit(void)
 		rw_init(&rtable[i].r_lock, NULL, RW_DEFAULT, NULL);
 	}
 	rnode_cache = kmem_cache_create("rnode_cache", sizeof (rnode_t),
-	    0, NULL, NULL, nfs_reclaim, NULL, NULL, 0);
+	    0, 0, 0, nfs_reclaim, NULL, NULL, 0);
 
 	/*
 	 * Allocate and initialize the access cache
@@ -3549,12 +3549,12 @@ nfs_subrinit(void)
 		rw_init(&acache[i].lock, NULL, RW_DEFAULT, NULL);
 	}
 	acache_cache = kmem_cache_create("nfs_access_cache",
-	    sizeof (acache_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (acache_t), 0, 0, 0, 0, NULL, NULL, 0);
 	/*
 	 * Allocate and initialize the client handle cache
 	 */
 	chtab_cache = kmem_cache_create("client_handle_cache",
-	    sizeof (struct chtab), 0, NULL, NULL, clreclaim, NULL, NULL, 0);
+	    sizeof (struct chtab), 0, 0, 0, clreclaim, NULL, NULL, 0);
 	/*
 	 * Initialize the list of per-zone client handles (and associated data).
 	 * This needs to be done before we call zone_key_create().
@@ -3564,7 +3564,7 @@ nfs_subrinit(void)
 	/*
 	 * Initialize the zone_key for per-zone client handle lists.
 	 */
-	zone_key_create(&nfsclnt_zone_key, clinit_zone, NULL, clfini_zone);
+	zone_key_create(&nfsclnt_zone_key, clinit_zone, 0, clfini_zone);
 	/*
 	 * Initialize the various mutexes and reader/writer locks
 	 */

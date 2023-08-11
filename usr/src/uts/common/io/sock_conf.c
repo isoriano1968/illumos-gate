@@ -105,7 +105,7 @@ smod_register(const smod_reg_t *reg)
 		    reg->__smod_priv->smodp_sock_create_func;
 		smodp->smod_sock_destroy_func =
 		    reg->__smod_priv->smodp_sock_destroy_func;
-		smodp->smod_proto_create_func = NULL;
+		smodp->smod_proto_create_func = 0;
 	} else {
 		if (reg->smod_proto_create_func == NULL ||
 		    (reg->__smod_priv != NULL &&
@@ -195,9 +195,9 @@ smod_destroy(smod_info_t *smodp)
 
 	kmem_free(smodp->smod_name, strlen(smodp->smod_name) + 1);
 	smodp->smod_name = NULL;
-	smodp->smod_proto_create_func = NULL;
-	smodp->smod_sock_create_func = NULL;
-	smodp->smod_sock_destroy_func = NULL;
+	smodp->smod_proto_create_func = 0;
+	smodp->smod_sock_create_func = 0;
+	smodp->smod_sock_destroy_func = 0;
 	kmem_free(smodp, sizeof (*smodp));
 }
 

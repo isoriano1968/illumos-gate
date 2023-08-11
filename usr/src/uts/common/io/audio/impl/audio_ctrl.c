@@ -143,8 +143,8 @@ audio_dev_add_control(audio_dev_t *d, audio_ctrl_desc_t *desc,
 		mutex_exit(&d->d_ctrl_lock);
 
 		audio_control_freenames(ctrl);
-		ctrl->ctrl_read_fn = NULL;
-		ctrl->ctrl_write_fn = NULL;
+		ctrl->ctrl_read_fn = 0;
+		ctrl->ctrl_write_fn = 0;
 		ctrl->ctrl_arg = NULL;
 		ctrl->ctrl_dev = NULL;
 	}

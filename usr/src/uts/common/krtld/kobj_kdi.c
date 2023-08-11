@@ -235,8 +235,8 @@ kdi_t kobj_kdi = {
 	 * The rest are filled in by cpu_kdi_init, mach_kdi_init, and/or
 	 * plat_kdi_init.
 	 */
-	NULL,			/* kdi_plat_call */
-	NULL,			/* kdi_kmdb_enter */
-	{ NULL },		/* kdi_arch */
-	{ NULL }		/* kdi_plat */
+	0,		/* kdi_plat_call */
+	0,		/* kdi_kmdb_enter */
+	{ 0 },		/* kdi_arch */
+	{ 0 }		/* kdi_plat */
 };

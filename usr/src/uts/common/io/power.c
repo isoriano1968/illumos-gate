@@ -222,7 +222,7 @@ static struct dev_ops power_ops = {
 	nodev,			/* reset */
 	&power_cb_ops,		/* cb_ops */
 	(struct bus_ops *)NULL,	/* bus_ops */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_supported,	/* devo_quiesce */
 };
 

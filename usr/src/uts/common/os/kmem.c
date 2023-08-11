@@ -4186,7 +4186,7 @@ kmem_alloc_caches_create(const int *array, size_t count,
 		(void) snprintf(name, sizeof (name),
 		    "kmem_alloc_%lu", cache_size);
 		cp = kmem_cache_create(name, cache_size, align,
-		    NULL, NULL, NULL, NULL, NULL, KMC_KMEM_ALLOC);
+		    0, 0, 0, NULL, NULL, KMC_KMEM_ALLOC);
 
 		while (size <= cache_size) {
 			alloc_table[(size - 1) >> shift] = cp;
@@ -4211,20 +4211,20 @@ kmem_cache_init(int pass, int use_large_pages)
 		(void) sprintf(name, "kmem_magazine_%d", mtp->mt_magsize);
 		mtp->mt_cache = kmem_cache_create(name,
 		    (mtp->mt_magsize + 1) * sizeof (void *),
-		    mtp->mt_align, NULL, NULL, NULL, NULL,
+		    mtp->mt_align, 0, 0, 0, NULL,
 		    kmem_msb_arena, KMC_NOHASH);
 	}
 
 	kmem_slab_cache = kmem_cache_create("kmem_slab_cache",
-	    sizeof (kmem_slab_t), 0, NULL, NULL, NULL, NULL,
+	    sizeof (kmem_slab_t), 0, 0, 0, 0, NULL,
 	    kmem_msb_arena, KMC_NOHASH);
 
 	kmem_bufctl_cache = kmem_cache_create("kmem_bufctl_cache",
-	    sizeof (kmem_bufctl_t), 0, NULL, NULL, NULL, NULL,
+	    sizeof (kmem_bufctl_t), 0, 0, 0, 0, NULL,
 	    kmem_msb_arena, KMC_NOHASH);
 
 	kmem_bufctl_audit_cache = kmem_cache_create("kmem_bufctl_audit_cache",
-	    sizeof (kmem_bufctl_audit_t), 0, NULL, NULL, NULL, NULL,
+	    sizeof (kmem_bufctl_audit_t), 0, 0, 0, 0, NULL,
 	    kmem_msb_arena, KMC_NOHASH);
 
 	if (pass == 2) {
@@ -4508,10 +4508,10 @@ static void
 kmem_move_init(void)
 {
 	kmem_defrag_cache = kmem_cache_create("kmem_defrag_cache",
-	    sizeof (kmem_defrag_t), 0, NULL, NULL, NULL, NULL,
+	    sizeof (kmem_defrag_t), 0, 0, 0, 0, NULL,
 	    kmem_msb_arena, KMC_NOHASH);
 	kmem_move_cache = kmem_cache_create("kmem_move_cache",
-	    sizeof (kmem_move_t), 0, NULL, NULL, NULL, NULL,
+	    sizeof (kmem_move_t), 0, 0, 0, 0, NULL,
 	    kmem_msb_arena, KMC_NOHASH);
 
 	/*

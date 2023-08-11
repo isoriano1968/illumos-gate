@@ -1277,5 +1277,5 @@ usb_unregister_dev_driver(dev_info_t *dip)
 
 	ASSERT(dip == usb_cap.dip);
 	usb_cap.dip = NULL;
-	usb_cap.usba_dev_driver_cb = NULL;
+	usb_cap.usba_dev_driver_cb = 0;
 }

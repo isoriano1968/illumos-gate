@@ -103,21 +103,21 @@ static int hermon_umap_db_compare(const void *query, const void *entry);
 static struct devmap_callback_ctl hermon_devmap_umem_cbops = {
 	DEVMAP_OPS_REV,
 	hermon_devmap_umem_map,
-	NULL,
+	0,
 	hermon_devmap_umem_dup,
 	hermon_devmap_umem_unmap
 };
 static struct devmap_callback_ctl hermon_devmap_devmem_cbops = {
 	DEVMAP_OPS_REV,
 	hermon_devmap_devmem_map,
-	NULL,
+	0,
 	hermon_devmap_devmem_dup,
 	hermon_devmap_devmem_unmap
 };
 static struct devmap_callback_ctl hermon_devmap_dbrecmem_cbops = {
 	DEVMAP_OPS_REV,
 	hermon_devmap_dbrecmem_map,
-	NULL,
+	0,
 	hermon_devmap_dbrecmem_dup,
 	hermon_devmap_dbrecmem_unmap
 };

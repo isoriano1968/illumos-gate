@@ -481,5 +481,5 @@ const fs_operation_def_t nm_vnodeops_template[] = {
 	VOPNAME_REALVP,		{ .vop_realvp = nm_realvp },
 	VOPNAME_POLL,		{ .vop_poll = nm_poll },
 	VOPNAME_DISPOSE,	{ .error = fs_error },
-	NULL,			NULL
+	NULL,			0
 };

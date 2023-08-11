@@ -894,7 +894,7 @@ dacf_opset_copy(dacf_opset_t *dst, dacf_opset_t *src)
 		dst->opset_ops[i].op_func = src->opset_ops[i].op_func;
 	}
 	dst->opset_ops[nelems].op_id = DACF_OPID_END;
-	dst->opset_ops[nelems].op_func = NULL;
+	dst->opset_ops[nelems].op_func = 0;
 
 	dprintf("dacf_opset_copy: done copying ops\n");
 }

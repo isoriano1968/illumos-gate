@@ -129,7 +129,7 @@ struct bus_ops ppb_bus_ops = {
 	0,				/* (*bus_config)();		*/
 	0,				/* (*bus_unconfig)();		*/
 	ppb_fm_init_child,		/* (*bus_fm_init)();		*/
-	NULL,				/* (*bus_fm_fini)();		*/
+	0,				/* (*bus_fm_fini)();		*/
 	ppb_bus_enter,			/* (*bus_enter)()		*/
 	ppb_bus_exit,			/* (*bus_exit)()		*/
 	ppb_bus_power,			/* (*bus_power)()		*/

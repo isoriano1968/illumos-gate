@@ -190,10 +190,10 @@ static mac_callbacks_t efe_m_callbacks = {
 	efe_m_unicst,			/* mc_unicst */
 	efe_m_tx,			/* mc_tx */
 	NULL,				/* mc_reserved */
-	NULL,				/* mc_ioctl */
-	NULL,				/* mc_getcapab */
-	NULL,				/* mc_open */
-	NULL,				/* mc_close */
+	0,				/* mc_ioctl */
+	0,				/* mc_getcapab */
+	0,				/* mc_open */
+	0,				/* mc_close */
 	efe_m_setprop,			/* mc_setprop */
 	efe_m_getprop,			/* mc_getprop */
 	efe_m_propinfo			/* mc_propinfo */

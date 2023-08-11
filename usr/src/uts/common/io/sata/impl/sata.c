@@ -811,11 +811,11 @@ sata_hba_attach(dev_info_t *dip, sata_hba_tran_t *sata_tran,
 	scsi_tran->tran_dmafree		= sata_scsi_dmafree;
 	scsi_tran->tran_sync_pkt	= sata_scsi_sync_pkt;
 
-	scsi_tran->tran_reset_notify	= NULL;
-	scsi_tran->tran_get_bus_addr	= NULL;
-	scsi_tran->tran_quiesce		= NULL;
-	scsi_tran->tran_unquiesce	= NULL;
-	scsi_tran->tran_bus_reset	= NULL;
+	scsi_tran->tran_reset_notify	= 0;
+	scsi_tran->tran_get_bus_addr	= 0;
+	scsi_tran->tran_quiesce		= 0;
+	scsi_tran->tran_unquiesce	= 0;
+	scsi_tran->tran_bus_reset	= 0;
 
 	if (scsi_hba_attach_setup(dip, sata_tran->sata_tran_hba_dma_attr,
 	    scsi_tran, 0) != DDI_SUCCESS) {
@@ -1731,7 +1731,7 @@ sata_get_error_retrieval_pkt(dev_info_t *dip, sata_device_t *sata_device,
 	spx = kmem_zalloc(sizeof (sata_pkt_txlate_t), KM_SLEEP);
 	spx->txlt_sata_hba_inst = sata_hba_inst;
 	spx->txlt_scsi_pkt = NULL;		/* No scsi pkt involved */
-	spkt = sata_pkt_alloc(spx, NULL);
+	spkt = sata_pkt_alloc(spx, 0);
 	if (spkt == NULL) {
 		kmem_free(spx, sizeof (sata_pkt_txlate_t));
 		return (NULL);
@@ -1851,7 +1851,7 @@ sata_get_rdwr_pmult_pkt(dev_info_t *dip, sata_device_t *sd,
 
 	/* Fill sata_pkt */
 	spkt->satapkt_op_mode = SATA_OPMODE_SYNCH | SATA_OPMODE_POLLING;
-	spkt->satapkt_comp = NULL; /* Synchronous mode, no callback */
+	spkt->satapkt_comp = 0; /* Synchronous mode, no callback */
 	spkt->satapkt_time = 10; /* Timeout 10s */
 
 	/* Build READ PORT MULTIPLIER cmd in the sata_pkt */
@@ -4273,7 +4273,7 @@ sata_txlt_start_stop_unit(sata_pkt_txlate_t *spx)
 	}
 
 	spx->txlt_sata_pkt->satapkt_op_mode |= SATA_OPMODE_SYNCH;
-	spx->txlt_sata_pkt->satapkt_comp = NULL;
+	spx->txlt_sata_pkt->satapkt_comp = 0;
 
 	sdinfo = sata_get_device_info(spx->txlt_sata_hba_inst,
 	    &spx->txlt_sata_pkt->satapkt_device);
@@ -6770,7 +6770,7 @@ sata_txlt_write_buffer(sata_pkt_txlate_t *spx)
 	scmd->satacmd_lba_mid_lsb = 0;
 	scmd->satacmd_lba_high_lsb = 0;
 	scmd->satacmd_device_reg = 0;
-	spx->txlt_sata_pkt->satapkt_comp = NULL;
+	spx->txlt_sata_pkt->satapkt_comp = 0;
 	scmd->satacmd_addr_type = 0;
 
 	/* Transfer command to HBA */
@@ -9815,7 +9815,7 @@ sata_atapi_err_ret_cmd_setup(sata_pkt_txlate_t *spx, sata_drive_info_t *sdinfo)
 	spkt->satapkt_op_mode = SATA_OPMODE_SYNCH | SATA_OPMODE_INTERRUPTS;
 
 	/* Synchronous mode, no callback - may be changed by the caller */
-	spkt->satapkt_comp = NULL;
+	spkt->satapkt_comp = 0;
 	spkt->satapkt_time = sata_default_pkt_time;
 
 	scmd = &spkt->satapkt_cmd;
@@ -10027,7 +10027,7 @@ sata_get_atapi_inquiry_data(sata_hba_inst_t *sata_hba,
 	spx = kmem_zalloc(sizeof (sata_pkt_txlate_t), KM_SLEEP);
 	spx->txlt_sata_hba_inst = sata_hba;
 	spx->txlt_scsi_pkt = NULL;		/* No scsi pkt involved */
-	spkt = sata_pkt_alloc(spx, NULL);
+	spkt = sata_pkt_alloc(spx, 0);
 	if (spkt == NULL) {
 		kmem_free(spx, sizeof (sata_pkt_txlate_t));
 		return (SATA_FAILURE);
@@ -10053,7 +10053,7 @@ sata_get_atapi_inquiry_data(sata_hba_inst_t *sata_hba,
 
 	/* Use synchronous mode */
 	spkt->satapkt_op_mode = SATA_OPMODE_SYNCH | SATA_OPMODE_INTERRUPTS;
-	spkt->satapkt_comp = NULL;
+	spkt->satapkt_comp = 0;
 	spkt->satapkt_time = sata_default_pkt_time;
 
 	/* Issue inquiry command - 6 bytes cdb, data transfer, read */
@@ -13807,7 +13807,7 @@ sata_fetch_device_identify_data(sata_hba_inst_t *sata_hba_inst,
 	spkt->satapkt_device.satadev_addr = sdinfo->satadrv_addr;
 	spkt->satapkt_op_mode = SATA_OPMODE_SYNCH | SATA_OPMODE_INTERRUPTS;
 	/* Synchronous mode, no callback */
-	spkt->satapkt_comp = NULL;
+	spkt->satapkt_comp = 0;
 	/* Timeout 30s */
 	spkt->satapkt_time = sata_default_pkt_time;
 
@@ -14088,7 +14088,7 @@ sata_set_dma_mode(sata_hba_inst_t *sata_hba_inst, sata_drive_info_t *sdinfo)
 	spkt->satapkt_time = sata_default_pkt_time;
 	/* Synchronous mode, no callback, interrupts */
 	spkt->satapkt_op_mode = SATA_OPMODE_SYNCH | SATA_OPMODE_INTERRUPTS;
-	spkt->satapkt_comp = NULL;
+	spkt->satapkt_comp = 0;
 	scmd = &spkt->satapkt_cmd;
 	scmd->satacmd_flags.sata_data_direction = SATA_DIR_NODATA_XFER;
 	scmd->satacmd_flags.sata_ignore_dev_reset = B_TRUE;
@@ -14166,7 +14166,7 @@ sata_set_cache_mode(sata_hba_inst_t *sata_hba_inst, sata_drive_info_t *sdinfo,
 	/* Synchronous mode, no callback, interrupts */
 	spkt->satapkt_op_mode =
 	    SATA_OPMODE_SYNCH | SATA_OPMODE_INTERRUPTS;
-	spkt->satapkt_comp = NULL;
+	spkt->satapkt_comp = 0;
 	scmd = &spkt->satapkt_cmd;
 	scmd->satacmd_flags.sata_data_direction = SATA_DIR_NODATA_XFER;
 	scmd->satacmd_flags.sata_ignore_dev_reset = B_TRUE;
@@ -14251,7 +14251,7 @@ sata_set_rmsn(sata_hba_inst_t *sata_hba_inst, sata_drive_info_t *sdinfo,
 	/* Synchronous mode, no callback, interrupts */
 	spkt->satapkt_op_mode =
 	    SATA_OPMODE_SYNCH | SATA_OPMODE_INTERRUPTS;
-	spkt->satapkt_comp = NULL;
+	spkt->satapkt_comp = 0;
 	scmd = &spkt->satapkt_cmd;
 	scmd->satacmd_flags.sata_data_direction = SATA_DIR_NODATA_XFER;
 	scmd->satacmd_flags.sata_ignore_dev_reset = B_TRUE;
@@ -14543,7 +14543,7 @@ sata_ioctl_disconnect(sata_hba_inst_t *sata_hba_inst,
 	 * sata_tran_hotplug_ops->sata_tran_port_deactivate().
 	 * Do the sanity check.
 	 */
-	if (SATA_PORT_DEACTIVATE_FUNC(sata_hba_inst) == NULL) {
+	if (SATA_PORT_DEACTIVATE_FUNC(sata_hba_inst) == 0) {
 		/* No physical port deactivation supported. */
 		return (EINVAL);
 	}

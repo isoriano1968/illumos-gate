@@ -1072,9 +1072,9 @@ emlxs_fca_modclose()
 		emlxs_modsym.mod_fctl = 0;
 	}
 
-	emlxs_modsym.fc_fca_attach = NULL;
-	emlxs_modsym.fc_fca_detach = NULL;
-	emlxs_modsym.fc_fca_init   = NULL;
+	emlxs_modsym.fc_fca_attach = 0;
+	emlxs_modsym.fc_fca_detach = 0;
+	emlxs_modsym.fc_fca_init   = 0;
 
 	return;
 
@@ -2141,8 +2141,8 @@ emlxs_fca_unbind_port(opaque_t fca_port_handle)
 
 		port->ulp_handle = 0;
 		port->ulp_statec = FC_STATE_OFFLINE;
-		port->ulp_statec_cb = NULL;
-		port->ulp_unsol_cb = NULL;
+		port->ulp_statec_cb = 0;
+		port->ulp_unsol_cb = 0;
 	}
 	mutex_exit(&EMLXS_PORT_LOCK);
 
@@ -4896,7 +4896,7 @@ emlxs_fca_port_manage(opaque_t fca_port_handle, fc_fca_pm_t *pm)
 			bzero((void *) mb, MAILBOX_CMD_SLI4_BSIZE);
 
 			mb->un.varSLIConfig.be.embedded = 1;
-			mbq->mbox_cmpl = NULL;
+			mbq->mbox_cmpl = 0;
 
 			mb->mbxCommand = MBX_SLI_CONFIG;
 			mb->mbxOwner = OWN_HOST;

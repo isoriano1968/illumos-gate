@@ -235,7 +235,7 @@ smb_opipe_send_userinfo(smb_request_t *sr, smb_opipe_t *opipe,
 		rc = EIO;
 
 	mutex_enter(&sr->sr_mutex);
-	sr->cancel_method = NULL;
+	sr->cancel_method = 0;
 	sr->cancel_arg2 = NULL;
 	switch (sr->sr_state) {
 	case SMB_REQ_STATE_WAITING_PIPE:
@@ -486,7 +486,7 @@ smb_opipe_read(smb_request_t *sr, struct uio *uio)
 	    &recvcnt, ofile->f_cr);
 
 	mutex_enter(&sr->sr_mutex);
-	sr->cancel_method = NULL;
+	sr->cancel_method = 0;
 	sr->cancel_arg2 = NULL;
 	switch (sr->sr_state) {
 	case SMB_REQ_STATE_WAITING_PIPE:

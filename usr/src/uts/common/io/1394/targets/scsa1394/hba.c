@@ -156,7 +156,7 @@ static struct cb_ops scsa1394_cb_ops = {
 	nodev,			/* dump */
 	nodev,			/* read */
 	nodev,			/* write */
-	NULL,			/* ioctl */
+	0,			/* ioctl */
 	nodev,			/* devmap */
 	nodev,			/* mmap */
 	nodev,			/* segmap */
@@ -563,16 +563,16 @@ scsa1394_attach_scsa(scsa1394_state_t *sp)
 	tran->tran_destroy_pkt	= scsa1394_scsi_destroy_pkt;
 	tran->tran_dmafree	= scsa1394_scsi_dmafree;
 	tran->tran_sync_pkt	= scsa1394_scsi_sync_pkt;
-	tran->tran_reset_notify	= NULL;
-	tran->tran_get_bus_addr	= NULL;
-	tran->tran_get_name	= NULL;
-	tran->tran_bus_reset	= NULL;
-	tran->tran_quiesce	= NULL;
-	tran->tran_unquiesce	= NULL;
-	tran->tran_get_eventcookie = NULL;
-	tran->tran_add_eventcall = NULL;
-	tran->tran_remove_eventcall = NULL;
-	tran->tran_post_event	= NULL;
+	tran->tran_reset_notify	= 0;
+	tran->tran_get_bus_addr	= 0;
+	tran->tran_get_name	= 0;
+	tran->tran_bus_reset	= 0;
+	tran->tran_quiesce	= 0;
+	tran->tran_unquiesce	= 0;
+	tran->tran_get_eventcookie = 0;
+	tran->tran_add_eventcall = 0;
+	tran->tran_remove_eventcall = 0;
+	tran->tran_post_event	= 0;
 	tran->tran_bus_config	= scsa1394_scsi_bus_config;
 	tran->tran_bus_unconfig	= scsa1394_scsi_bus_unconfig;
 
@@ -605,7 +605,7 @@ scsa1394_create_cmd_cache(scsa1394_state_t *sp)
 	sp->s_cmd_cache = kmem_cache_create(name,
 	    SCSA1394_CMD_SIZE, sizeof (void *),
 	    scsa1394_cmd_cache_constructor, scsa1394_cmd_cache_destructor,
-	    NULL, (void *)sp, NULL, 0);
+	    0, (void *)sp, NULL, 0);
 
 	return ((sp->s_cmd_cache == NULL) ? DDI_FAILURE : DDI_SUCCESS);
 }
@@ -1784,9 +1784,9 @@ scsa1394_cmd_pt_dma_alloc(scsa1394_state_t *sp, scsa1394_cmd_t *cmd,
 	aa.aa_type = T1394_ADDR_FIXED;
 	aa.aa_length = len;
 	aa.aa_address = cmd->sc_pt_dmac.dmac_address;
-	aa.aa_evts.recv_read_request = NULL;
-	aa.aa_evts.recv_write_request = NULL;
-	aa.aa_evts.recv_lock_request = NULL;
+	aa.aa_evts.recv_read_request = 0;
+	aa.aa_evts.recv_write_request = 0;
+	aa.aa_evts.recv_lock_request = 0;
 	aa.aa_arg = NULL;
 	aa.aa_kmem_bufp = NULL;
 	aa.aa_enable = T1394_ADDR_RDENBL;
@@ -1829,9 +1829,9 @@ scsa1394_cmd_buf_addr_alloc(scsa1394_state_t *sp, scsa1394_cmd_t *cmd)
 	int		i;
 
 	aa.aa_type = T1394_ADDR_FIXED;
-	aa.aa_evts.recv_read_request = NULL;
-	aa.aa_evts.recv_write_request = NULL;
-	aa.aa_evts.recv_lock_request = NULL;
+	aa.aa_evts.recv_read_request = 0;
+	aa.aa_evts.recv_write_request = 0;
+	aa.aa_evts.recv_lock_request = 0;
 	aa.aa_arg = NULL;
 	aa.aa_kmem_bufp = NULL;
 	if (cmd->sc_flags & SCSA1394_CMD_READ) {

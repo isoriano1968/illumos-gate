@@ -161,10 +161,10 @@ static mac_callbacks_t vr_mac_callbacks = {
 	vr_mac_set_ether_addr,	/* Set the unicast MAC address */
 	vr_mac_tx_enqueue_list,	/* Transmit a packet */
 	NULL,
-	NULL,			/* Process an unknown ioctl */
-	NULL,			/* Get capability information */
-	NULL,			/* Open the device */
-	NULL,			/* Close the device */
+	0,			/* Process an unknown ioctl */
+	0,			/* Get capability information */
+	0,			/* Open the device */
+	0,			/* Close the device */
 	vr_mac_setprop,		/* Set properties of the device */
 	vr_mac_getprop,		/* Get properties of the device */
 	vr_mac_propinfo		/* Get properties attributes */

@@ -160,11 +160,11 @@ static struct module_info info = {
 
 static struct qinit rinit = {
 	keysock_rput, keysock_rsrv, keysock_open, keysock_close,
-	NULL, &info
+	0, &info
 };
 
 static struct qinit winit = {
-	keysock_wput, NULL, NULL, NULL, NULL, &info
+	keysock_wput, 0, 0, 0, 0, &info
 };
 
 struct streamtab keysockinfo = {
@@ -374,14 +374,14 @@ keysock_ddi_init(void)
 	    keysock_opt_obj.odb_opt_des_arr, keysock_opt_obj.odb_opt_arr_cnt);
 
 	keysock_vmem = vmem_create("keysock", (void *)1, MAXMIN, 1,
-	    NULL, NULL, NULL, 1, VM_SLEEP | VMC_IDENTIFIER);
+	    0, 0, NULL, 1, VM_SLEEP | VMC_IDENTIFIER);
 
 	/*
 	 * We want to be informed each time a stack is created or
 	 * destroyed in the kernel, so we can maintain the
 	 * set of keysock_stack_t's.
 	 */
-	netstack_register(NS_KEYSOCK, keysock_stack_init, NULL,
+	netstack_register(NS_KEYSOCK, keysock_stack_init, 0,
 	    keysock_stack_fini);
 
 	return (B_TRUE);

@@ -110,7 +110,7 @@ physio_bufs_init(void)
 {
 	physio_buf_cache = kmem_cache_create("physio_buf_cache",
 	    sizeof (struct buf), 0, physio_buf_constructor,
-	    physio_buf_destructor, NULL, NULL, NULL, 0);
+	    physio_buf_destructor, 0, NULL, NULL, 0);
 }
 
 
@@ -152,7 +152,7 @@ default_physio(int (*strat)(struct buf *), struct buf *bp, dev_t dev,
 
 	if (bp == NULL) {
 		bp = kmem_cache_alloc(physio_buf_cache, KM_SLEEP);
-		bp->b_iodone = NULL;
+		bp->b_iodone = 0;
 		bp->b_resid = 0;
 		allocbuf = 1;
 	}

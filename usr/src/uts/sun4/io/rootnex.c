@@ -127,9 +127,9 @@ static struct cb_ops rootnex_cb_ops = {
 static struct bus_ops rootnex_bus_ops = {
 	BUSO_REV,
 	rootnex_map,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
 	rootnex_map_fault,
 	ddi_no_dma_map,		/* no rootnex_dma_map- now in sysio nexus */
 	ddi_no_dma_allochdl,
@@ -145,14 +145,14 @@ static struct bus_ops rootnex_bus_ops = {
 	i_ddi_rootnex_add_eventcall,
 	i_ddi_rootnex_remove_eventcall,
 	i_ddi_rootnex_post_event,
-	NULL,			/* bus_intr_ctl */
-	NULL,			/* bus_config */
-	NULL,			/* bus_unconfig */
+	0,			/* bus_intr_ctl */
+	0,			/* bus_config */
+	0,			/* bus_unconfig */
 	rootnex_busop_fminit,	/* bus_fm_init */
-	NULL,			/* bus_fm_fini */
-	NULL,			/* bus_fm_access_enter */
-	NULL,			/* bus_fm_access_fini */
-	NULL,			/* bus_power */
+	0,			/* bus_fm_fini */
+	0,			/* bus_fm_access_enter */
+	0,			/* bus_fm_access_fini */
+	0,			/* bus_power */
 	rootnex_intr_ops	/* bus_intr_op */
 };
 
@@ -170,7 +170,7 @@ static struct dev_ops rootnex_ops = {
 	nodev,			/* reset */
 	&rootnex_cb_ops,
 	&rootnex_bus_ops,
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 
@@ -262,7 +262,7 @@ rootnex_attach(dev_info_t *devi, ddi_attach_cmd_t cmd)
 		add_root_props(devi);
 		i_ddi_rootnex_init_events(devi);
 		rootnex_regspec_arena = vmem_create("regspec",
-		    (void *)PIOMAPBASE, PIOMAPSIZE, MMU_PAGESIZE, NULL, NULL,
+		    (void *)PIOMAPBASE, PIOMAPSIZE, MMU_PAGESIZE, 0, 0,
 		    NULL, 0, VM_SLEEP);
 	}
 

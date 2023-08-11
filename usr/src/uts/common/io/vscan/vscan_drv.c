@@ -198,7 +198,7 @@ static struct dev_ops devops = {
 	nodev,			/* devo_reset */
 	&cbops,			/* devo_cb_ops */
 	NULL,			/* devo_bus_ops */
-	NULL,			/* devo_power */
+	0,			/* devo_power */
 	ddi_quiesce_not_needed,		/* devo_quiesce */
 };
 

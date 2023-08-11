@@ -184,7 +184,7 @@ nfslog_init()
 	for (indx = 0; nfslog_mem_alloc[indx].size != (-1); indx++) {
 		nfslog_mem_alloc[indx].mem_cache =
 		    kmem_cache_create(nfslog_mem_alloc[indx].cache_name,
-		    ALLOC_SIZE(indx), 0, NULL, NULL, NULL, NULL, NULL, 0);
+		    ALLOC_SIZE(indx), 0, 0, 0, 0, NULL, NULL, 0);
 	}
 }
 

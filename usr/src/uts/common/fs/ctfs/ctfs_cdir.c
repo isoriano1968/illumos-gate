@@ -72,7 +72,7 @@ ctfs_create_cdirnode(vnode_t *pvp, contract_t *ct)
 		return (vp);
 
 	vp = gfs_dir_create(sizeof (ctfs_cdirnode_t), pvp, ctfs_ops_cdir,
-	    ctfs_ctls, ctfs_cdir_do_inode, CTFS_NAME_MAX, NULL, NULL);
+	    ctfs_ctls, ctfs_cdir_do_inode, CTFS_NAME_MAX, 0, 0);
 	cdir = vp->v_data;
 
 	/*
@@ -161,5 +161,5 @@ const fs_operation_def_t ctfs_tops_cdir[] = {
 	{ VOPNAME_LOOKUP,	{ .vop_lookup = gfs_vop_lookup } },
 	{ VOPNAME_SEEK,		{ .vop_seek = fs_seek } },
 	{ VOPNAME_INACTIVE,	{ .vop_inactive = ctfs_cdir_inactive } },
-	{ NULL, NULL }
+	{ NULL, 0 }
 };

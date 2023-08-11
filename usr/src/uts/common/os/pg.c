@@ -122,15 +122,15 @@ static pgid_t		pg_id_next = 1;
 static struct pg_ops pg_ops_default = {
 	pg_alloc_default,	/* alloc */
 	pg_free_default,	/* free */
-	NULL,			/* cpu_init */
-	NULL,			/* cpu_fini */
-	NULL,			/* cpu_active */
-	NULL,			/* cpu_inactive */
-	NULL,			/* cpupart_in */
-	NULL,			/* cpupart_out */
-	NULL,			/* cpupart_move */
-	NULL,			/* cpu_belongs */
-	NULL,			/* policy_name */
+	0,			/* cpu_init */
+	0,			/* cpu_fini */
+	0,			/* cpu_active */
+	0,			/* cpu_inactive */
+	0,			/* cpupart_in */
+	0,			/* cpupart_out */
+	0,			/* cpupart_move */
+	0,			/* cpu_belongs */
+	0,			/* policy_name */
 };
 
 static struct pg_cb_ops pg_cb_ops_default = {

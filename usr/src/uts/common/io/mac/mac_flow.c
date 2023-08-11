@@ -186,9 +186,9 @@ void
 mac_flow_init()
 {
 	flow_cache = kmem_cache_create("flow_entry_cache",
-	    sizeof (flow_entry_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (flow_entry_t), 0, 0, 0, 0, NULL, NULL, 0);
 	flow_tab_cache = kmem_cache_create("flow_tab_cache",
-	    sizeof (flow_tab_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (flow_tab_t), 0, 0, 0, 0, NULL, NULL, 0);
 	flow_hash = mod_hash_create_extended("flow_hash",
 	    100, mod_hash_null_keydtor, mod_hash_null_valdtor,
 	    mod_hash_bystr, NULL, mod_hash_strkey_cmp, KM_SLEEP);

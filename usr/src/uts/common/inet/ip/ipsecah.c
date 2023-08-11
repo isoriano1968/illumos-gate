@@ -152,12 +152,12 @@ static struct module_info info = {
 };
 
 static struct qinit rinit = {
-	ipsecah_rput, NULL, ipsecah_open, ipsecah_close, NULL, &info,
+	ipsecah_rput, 0, ipsecah_open, ipsecah_close, 0, &info,
 	NULL
 };
 
 static struct qinit winit = {
-	ipsecah_wput, NULL, ipsecah_open, ipsecah_close, NULL, &info,
+	ipsecah_wput, 0, ipsecah_open, ipsecah_close, 0, &info,
 	NULL
 };
 
@@ -358,7 +358,7 @@ ipsecah_ddi_init(void)
 	 * destroyed in the kernel, so we can maintain the
 	 * set of ipsecah_stack_t's.
 	 */
-	netstack_register(NS_IPSECAH, ipsecah_stack_init, NULL,
+	netstack_register(NS_IPSECAH, ipsecah_stack_init, 0,
 	    ipsecah_stack_fini);
 
 	return (B_TRUE);

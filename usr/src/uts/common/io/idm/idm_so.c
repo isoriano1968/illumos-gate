@@ -138,11 +138,11 @@ idm_transport_ops_t idm_so_transport_ops = {
 	idm_so_rx_datain,		/* it_rx_datain */
 	idm_so_rx_rtt,			/* it_rx_rtt */
 	idm_so_rx_dataout,		/* it_rx_dataout */
-	NULL,				/* it_alloc_conn_rsrc */
-	NULL,				/* it_free_conn_rsrc */
-	NULL,				/* it_tgt_enable_datamover */
-	NULL,				/* it_ini_enable_datamover */
-	NULL,				/* it_conn_terminate */
+	0,				/* it_alloc_conn_rsrc */
+	0,				/* it_free_conn_rsrc */
+	0,				/* it_tgt_enable_datamover */
+	0,				/* it_ini_enable_datamover */
+	0,				/* it_conn_terminate */
 	idm_so_free_task_rsrc,		/* it_free_task_rsrc */
 	idm_so_negotiate_key_values,	/* it_negotiate_key_values */
 	idm_so_notice_key_values,	/* it_notice_key_values */
@@ -180,16 +180,16 @@ idm_so_init(idm_transport_t *it)
 	/* Cache for IDM Data and R2T Transmit PDU's */
 	idm.idm_sotx_pdu_cache = kmem_cache_create("idm_tx_pdu_cache",
 	    sizeof (idm_pdu_t) + sizeof (iscsi_hdr_t), 8,
-	    &idm_sotx_pdu_constructor, NULL, NULL, NULL, NULL, KM_SLEEP);
+	    &idm_sotx_pdu_constructor, 0, 0, NULL, NULL, KM_SLEEP);
 
 	/* Cache for IDM Receive PDU's */
 	idm.idm_sorx_pdu_cache = kmem_cache_create("idm_rx_pdu_cache",
 	    sizeof (idm_pdu_t) + IDM_SORX_CACHE_HDRLEN, 8,
-	    &idm_sorx_pdu_constructor, NULL, NULL, NULL, NULL, KM_SLEEP);
+	    &idm_sorx_pdu_constructor, 0, 0, NULL, NULL, KM_SLEEP);
 
 	/* 128k buffer cache */
 	idm.idm_so_128k_buf_cache = kmem_cache_create("idm_128k_buf_cache",
-	    IDM_SO_BUF_CACHE_UB, 8, NULL, NULL, NULL, NULL, NULL, KM_SLEEP);
+	    IDM_SO_BUF_CACHE_UB, 8, 0, 0, 0, NULL, NULL, KM_SLEEP);
 
 	/* Set the sockets transport ops */
 	it->it_ops = &idm_so_transport_ops;
@@ -2630,7 +2630,7 @@ idm_so_send_rtt_data(idm_conn_t *ic, idm_task_t *idt, idm_buf_t *idb,
 		return;
 	}
 
-	rtt_buf->idb_buf_cb = NULL;
+	rtt_buf->idb_buf_cb = 0;
 	rtt_buf->idb_cb_arg = NULL;
 	rtt_buf->idb_bufoffset = offset;
 	rtt_buf->idb_xfer_len = length;

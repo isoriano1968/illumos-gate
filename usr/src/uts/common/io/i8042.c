@@ -294,32 +294,32 @@ static boolean_t i8042_is_polling_platform(void);
 static struct bus_ops i8042_bus_ops = {
 	BUSO_REV,
 	i8042_map,
-	NULL,
-	NULL,
-	NULL,
-	NULL,		/* ddi_map_fault */
-	NULL,		/* ddi_dma_map */
-	NULL,		/* ddi_dma_allochdl */
-	NULL,		/* ddi_dma_freehdl */
-	NULL,		/* ddi_dma_bindhdl */
-	NULL,		/* ddi_dma_unbindhdl */
-	NULL,		/* ddi_dma_flush */
-	NULL,		/* ddi_dma_win */
-	NULL,		/* ddi_dma_mctl */
+	0,
+	0,
+	0,
+	0,		/* ddi_map_fault */
+	0,		/* ddi_dma_map */
+	0,		/* ddi_dma_allochdl */
+	0,		/* ddi_dma_freehdl */
+	0,		/* ddi_dma_bindhdl */
+	0,		/* ddi_dma_unbindhdl */
+	0,		/* ddi_dma_flush */
+	0,		/* ddi_dma_win */
+	0,		/* ddi_dma_mctl */
 	i8042_ctlops,
 	ddi_bus_prop_op,
-	NULL,			/* (*bus_get_eventcookie)();	*/
-	NULL,			/* (*bus_add_eventcall)();	*/
-	NULL,			/* (*bus_remove_eventcall)();	*/
-	NULL,			/* (*bus_post_event)();		*/
-	NULL,			/* bus_intr_ctl */
+	0,			/* (*bus_get_eventcookie)();	*/
+	0,			/* (*bus_add_eventcall)();	*/
+	0,			/* (*bus_remove_eventcall)();	*/
+	0,			/* (*bus_post_event)();		*/
+	0,			/* bus_intr_ctl */
 	i8042_bus_config,	/* bus_config */
 	i8042_bus_unconfig,	/* bus_unconfig */
-	NULL,			/* bus_fm_init */
-	NULL,			/* bus_fm_fini */
-	NULL,			/* bus_fm_access_enter */
-	NULL,			/* bus_fm_access_exit */
-	NULL,			/* bus_power */
+	0,			/* bus_fm_init */
+	0,			/* bus_fm_fini */
+	0,			/* bus_fm_access_enter */
+	0,			/* bus_fm_access_exit */
+	0,			/* bus_power */
 	i8042_intr_ops		/* bus_intr_op */
 };
 
@@ -334,7 +334,7 @@ static struct dev_ops i8042_ops = {
 	nodev,
 	(struct cb_ops *)0,
 	&i8042_bus_ops,
-	NULL,
+	0,
 	ddi_quiesce_not_needed,
 };
 
@@ -928,20 +928,20 @@ i8042_map(
 		 */
 		ap->ahi_put8 = i8042_put8;
 		ap->ahi_get8 = i8042_get8;
-		ap->ahi_put16 = NULL;
-		ap->ahi_get16 = NULL;
-		ap->ahi_put32 = NULL;
-		ap->ahi_get32 = NULL;
-		ap->ahi_put64 = NULL;
-		ap->ahi_get64 = NULL;
-		ap->ahi_rep_put8 = NULL;
-		ap->ahi_rep_get8 = NULL;
-		ap->ahi_rep_put16 = NULL;
-		ap->ahi_rep_get16 = NULL;
-		ap->ahi_rep_put32 = NULL;
-		ap->ahi_rep_get32 = NULL;
-		ap->ahi_rep_put64 = NULL;
-		ap->ahi_rep_get64 = NULL;
+		ap->ahi_put16 = 0;
+		ap->ahi_get16 = 0;
+		ap->ahi_put32 = 0;
+		ap->ahi_get32 = 0;
+		ap->ahi_put64 = 0;
+		ap->ahi_get64 = 0;
+		ap->ahi_rep_put8 = 0;
+		ap->ahi_rep_get8 = 0;
+		ap->ahi_rep_put16 = 0;
+		ap->ahi_rep_get16 = 0;
+		ap->ahi_rep_put32 = 0;
+		ap->ahi_rep_get32 = 0;
+		ap->ahi_rep_put64 = 0;
+		ap->ahi_rep_get64 = 0;
 		*addrp = 0;
 		return (DDI_SUCCESS);
 

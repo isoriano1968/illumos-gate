@@ -1306,7 +1306,7 @@ void
 sctp_ftsn_sets_init(void)
 {
 	sctp_kmem_ftsn_set_cache = kmem_cache_create("sctp_ftsn_set_cache",
-	    sizeof (sctp_ftsn_set_t), 0, NULL, NULL, NULL, NULL,
+	    sizeof (sctp_ftsn_set_t), 0, 0, 0, 0, NULL,
 	    NULL, 0);
 }
 

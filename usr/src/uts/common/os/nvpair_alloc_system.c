@@ -41,11 +41,11 @@ nv_free_sys(nv_alloc_t *nva, void *buf, size_t size)
 }
 
 static const nv_alloc_ops_t system_ops = {
-	NULL,			/* nv_ao_init() */
-	NULL,			/* nv_ao_fini() */
+	0,			/* nv_ao_init() */
+	0,			/* nv_ao_fini() */
 	nv_alloc_sys,		/* nv_ao_alloc() */
 	nv_free_sys,		/* nv_ao_free() */
-	NULL			/* nv_ao_reset() */
+	0			/* nv_ao_reset() */
 };
 
 nv_alloc_t nv_alloc_sleep_def = {

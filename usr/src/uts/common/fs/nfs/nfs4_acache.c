@@ -231,7 +231,7 @@ nfs4_acache_init(void)
 		rw_init(&acache4[i].lock, NULL, RW_DEFAULT, NULL);
 	}
 	acache4_cache = kmem_cache_create("nfs4_access_cache",
-	    sizeof (acache4_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (acache4_t), 0, 0, 0, 0, NULL, NULL, 0);
 
 	return (0);
 }

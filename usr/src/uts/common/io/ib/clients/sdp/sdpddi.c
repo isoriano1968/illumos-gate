@@ -276,13 +276,13 @@ static struct module_info info = {
 };
 
 static struct qinit rinit = {
-	NULL, NULL, sdp_gen_open, sdp_gen_close, NULL,
-	&info, NULL, NULL, NULL, STRUIOT_NONE
+	0, 0, sdp_gen_open, sdp_gen_close, 0,
+	&info, NULL, 0, 0, STRUIOT_NONE
 };
 
 static struct qinit winit = {
-	sdp_gen_wput, NULL,  sdp_gen_open, sdp_gen_close,
-	NULL, &info, NULL, NULL, NULL, STRUIOT_NONE
+	sdp_gen_wput, 0,  sdp_gen_open, sdp_gen_close,
+	0, &info, NULL, 0, 0, STRUIOT_NONE
 };
 
 struct streamtab sdpinfo = {

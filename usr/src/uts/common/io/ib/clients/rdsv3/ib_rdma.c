@@ -296,7 +296,7 @@ rdsv3_ib_create_mr_pool(struct rdsv3_ib_device *rds_ibdev)
 	fmr_attr.fmr_flags = IBT_MR_NOSLEEP  | IBT_MR_ENABLE_LOCAL_WRITE |
 	    IBT_MR_ENABLE_REMOTE_WRITE | IBT_MR_ENABLE_REMOTE_READ;
 	fmr_attr.fmr_page_sz = h_page_sz;
-	fmr_attr.fmr_func_hdlr = NULL;
+	fmr_attr.fmr_func_hdlr = 0;
 	fmr_attr.fmr_func_arg = (void *) NULL;
 
 	/* create the FMR pool */
@@ -366,7 +366,7 @@ rdsv3_ib_get_mr(struct rds_iovec *args, unsigned long nents,
 
 	/* transpose umem_cookie to buf structure for rdsv3_ib_map_fmr() */
 	bp = ddi_umem_iosetup(umem_cookie, 0, umem_len,
-	    B_WRITE, 0, 0, NULL, DDI_UMEM_SLEEP);
+	    B_WRITE, 0, 0, 0, DDI_UMEM_SLEEP);
 
 	ret = rdsv3_ib_map_fmr(rds_ibdev, ibmr, bp, nents);
 	freerbuf(bp);	/* free bp */

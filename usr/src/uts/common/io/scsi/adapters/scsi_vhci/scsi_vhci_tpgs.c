@@ -84,7 +84,7 @@ vhci_tpgs_set_target_groups(struct scsi_address *ap, int set_state,
 	bufp[7] = (0x00ff & tpg_id);
 
 	pkt = scsi_init_pkt(ap, NULL, bp, CDB_GROUP5,
-	    sizeof (struct scsi_arq_status), 0, 0, NULL, NULL);
+	    sizeof (struct scsi_arq_status), 0, 0, 0, NULL);
 
 	if (pkt == NULL) {
 		VHCI_DEBUG(1, (CE_NOTE, NULL,
@@ -330,7 +330,7 @@ once_again:
 	bp->b_resid = 0;
 
 	pkt = scsi_init_pkt(ap, NULL, bp, CDB_GROUP0,
-	    sizeof (struct scsi_arq_status), 0, 0, NULL, NULL);
+	    sizeof (struct scsi_arq_status), 0, 0, 0, NULL);
 	if (pkt == NULL) {
 		VHCI_DEBUG(1, (CE_WARN, NULL,
 		    "!vhci_tpgs_page83: Failure returned from scsi_init_pkt"));
@@ -472,7 +472,7 @@ try_again:
 	bp->b_resid = 0;
 
 	pkt = scsi_init_pkt(ap, NULL, bp, CDB_GROUP5,
-	    sizeof (struct scsi_arq_status), 0, 0, NULL, NULL);
+	    sizeof (struct scsi_arq_status), 0, 0, 0, NULL);
 
 	if (pkt == NULL) {
 		VHCI_DEBUG(1, (CE_NOTE, NULL,

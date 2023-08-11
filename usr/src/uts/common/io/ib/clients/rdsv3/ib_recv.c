@@ -878,7 +878,7 @@ rdsv3_ib_recv_init(void)
 
 	rdsv3_ib_incoming_slab = kmem_cache_create("rdsv3_ib_incoming",
 	    sizeof (struct rdsv3_ib_incoming), 0, rdsv3_ib_inc_constructor,
-	    rdsv3_ib_inc_destructor, NULL, NULL, NULL, 0);
+	    rdsv3_ib_inc_destructor, 0, NULL, NULL, 0);
 	if (!rdsv3_ib_incoming_slab) {
 		RDSV3_DPRINTF2("rdsv3_ib_recv_init", "kmem_cache_create "
 		    "failed");

@@ -205,7 +205,7 @@ port_associate_fd(port_t *pp, int source, uintptr_t object, int events,
 		 * - associate PORT_SOURCE_FD source with the port
 		 */
 		error = port_associate_ksource(pp->port_fd, PORT_SOURCE_FD,
-		    NULL, port_close_sourcefd, pp, NULL);
+		    NULL, port_close_sourcefd, pp, 0);
 		if (error) {
 			mutex_exit(&pcp->pc_lock);
 			releasef(fd);

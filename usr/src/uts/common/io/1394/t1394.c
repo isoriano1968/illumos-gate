@@ -1450,11 +1450,11 @@ t1394_alloc_isoch_single(t1394_handle_t t1394_hdl,
 	jii.isoch_cec_evts_arg	= sii->single_evt_arg;
 
 	/* All events are NULL except rsrc_fail_target() */
-	jii.isoch_cec_evts.setup_target	    = NULL;
-	jii.isoch_cec_evts.start_target	    = NULL;
-	jii.isoch_cec_evts.stop_target	    = NULL;
-	jii.isoch_cec_evts.stop_target	    = NULL;
-	jii.isoch_cec_evts.teardown_target  = NULL;
+	jii.isoch_cec_evts.setup_target	    = 0;
+	jii.isoch_cec_evts.start_target	    = 0;
+	jii.isoch_cec_evts.stop_target	    = 0;
+	jii.isoch_cec_evts.stop_target	    = 0;
+	jii.isoch_cec_evts.teardown_target  = 0;
 	jii.isoch_cec_evts.rsrc_fail_target = sii->rsrc_fail_target;
 
 	ret = t1394_join_isoch_cec(t1394_hdl,

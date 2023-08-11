@@ -94,7 +94,7 @@ rdsv3_info_deregister_func(int optname, rdsv3_info_func func)
 	ASSERT(optname >= RDS_INFO_FIRST && optname <= RDS_INFO_LAST);
 
 	mutex_enter(&rdsv3_info_lock);
-	rdsv3_info_funcs[offset] = NULL;
+	rdsv3_info_funcs[offset] = 0;
 	mutex_exit(&rdsv3_info_lock);
 }
 

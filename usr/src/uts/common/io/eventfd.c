@@ -330,7 +330,7 @@ eventfd_attach(dev_info_t *devi, ddi_attach_cmd_t cmd)
 	eventfd_devi = devi;
 
 	eventfd_minor = vmem_create("eventfd_minor", (void *)EVENTFDMNRN_CLONE,
-	    UINT32_MAX - EVENTFDMNRN_CLONE, 1, NULL, NULL, NULL, 0,
+	    UINT32_MAX - EVENTFDMNRN_CLONE, 1, 0, 0, NULL, 0,
 	    VM_SLEEP | VMC_IDENTIFIER);
 
 	mutex_exit(&eventfd_lock);

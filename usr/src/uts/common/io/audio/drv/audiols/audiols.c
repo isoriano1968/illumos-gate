@@ -105,9 +105,9 @@ static audio_engine_ops_t audigyls_engine_ops = {
 	audigyls_channels,
 	audigyls_rate,
 	audigyls_sync,
-	NULL,
+	0,
 	audigyls_chinfo,
-	NULL
+	0
 };
 
 /*
@@ -1299,7 +1299,7 @@ static int audigyls_ddi_quiesce(dev_info_t *);
 static struct dev_ops audigyls_dev_ops = {
 	DEVO_REV,		/* rev */
 	0,			/* refcnt */
-	NULL,			/* getinfo */
+	0,			/* getinfo */
 	nulldev,		/* identify */
 	nulldev,		/* probe */
 	audigyls_ddi_attach,	/* attach */
@@ -1307,7 +1307,7 @@ static struct dev_ops audigyls_dev_ops = {
 	nodev,			/* reset */
 	NULL,			/* cb_ops */
 	NULL,			/* bus_ops */
-	NULL,			/* power */
+	0,			/* power */
 	audigyls_ddi_quiesce,	/* quiesce */
 };
 

@@ -147,7 +147,7 @@ s32 ixgbe_init_ops_82598(struct ixgbe_hw *hw)
 	mac->ops.set_vmdq = ixgbe_set_vmdq_82598;
 	mac->ops.clear_vmdq = ixgbe_clear_vmdq_82598;
 	mac->ops.set_vfta = ixgbe_set_vfta_82598;
-	mac->ops.set_vlvf = NULL;
+	mac->ops.set_vlvf = 0;
 	mac->ops.clear_vfta = ixgbe_clear_vfta_82598;
 
 	/* Flow Control */
@@ -168,14 +168,14 @@ s32 ixgbe_init_ops_82598(struct ixgbe_hw *hw)
 	/* Link */
 	mac->ops.check_link = ixgbe_check_mac_link_82598;
 	mac->ops.setup_link = ixgbe_setup_mac_link_82598;
-	mac->ops.flap_tx_laser = NULL;
+	mac->ops.flap_tx_laser = 0;
 	mac->ops.get_link_capabilities = ixgbe_get_link_capabilities_82598;
 	mac->ops.setup_rxpba = ixgbe_set_rxpba_82598;
 
 	/* Manageability interface */
-	mac->ops.set_fw_drv_ver = NULL;
+	mac->ops.set_fw_drv_ver = 0;
 
-	mac->ops.get_rtrup2tc = NULL;
+	mac->ops.get_rtrup2tc = 0;
 
 	return ret_val;
 }

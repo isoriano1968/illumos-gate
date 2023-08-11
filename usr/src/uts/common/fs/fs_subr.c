@@ -819,7 +819,7 @@ fs_need_estale_retry(int retry_count)
 }
 
 
-static int (*fs_av_scan)(vnode_t *, cred_t *, int) = NULL;
+static int (*fs_av_scan)(vnode_t *, cred_t *, int) = 0;
 
 /*
  * Routine for anti-virus scanner to call to register its scanning routine.

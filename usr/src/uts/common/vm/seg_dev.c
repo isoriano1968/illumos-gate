@@ -603,7 +603,7 @@ devmap_handle_dup(devmap_handle_t *dhp, devmap_handle_t **new_dhp,
 				DEBUGF(1, (CE_CONT, "devmap_handle_dup ERROR: "
 				    "newdhp %p dhp %p\n", (void *)newdhp,
 				    (void *)dhp));
-				callbackops->devmap_unmap = NULL;
+				callbackops->devmap_unmap = 0;
 				return (ret);
 			}
 		}
@@ -2566,7 +2566,7 @@ devmap_device(devmap_handle_t *dhp, struct as *as, caddr_t *addr,
 		(void) as_unmap(as, *addr, len);
 	}
 
-	dev_a.mapfunc = NULL;
+	dev_a.mapfunc = 0;
 	dev_a.dev = dhp->dh_dev;
 	dev_a.type = flags & MAP_TYPE;
 	dev_a.offset = off;

@@ -693,7 +693,7 @@ keyspan_close_hw_port(keyspan_port_t *kp)
 		case KEYSPAN_USA49WLC_PID:
 			usb_pipe_reset(ksp->ks_dip,
 			    kp->kp_datain_pipe.pipe_handle,
-			    USB_FLAGS_SLEEP, NULL, NULL);
+			    USB_FLAGS_SLEEP, 0, NULL);
 
 			break;
 		case KEYSPAN_USA49WG_PID:
@@ -707,7 +707,7 @@ keyspan_close_hw_port(keyspan_port_t *kp)
 
 				usb_pipe_reset(ksp->ks_dip,
 				    kp->kp_datain_pipe.pipe_handle,
-				    USB_FLAGS_SLEEP, NULL, NULL);
+				    USB_FLAGS_SLEEP, 0, NULL);
 			} else {
 				mutex_exit(&ksp->ks_mutex);
 			}

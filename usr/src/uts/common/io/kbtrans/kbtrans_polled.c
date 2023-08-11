@@ -56,8 +56,8 @@ static void kbtrans_polled_cancel_repeat(struct kbtrans *);
  * mode
  */
 struct keyboard_callback kbtrans_polled_callbacks = {
-	NULL,				/* keypressed_raw */
-	NULL,				/* keyreleased_raw */
+	0,				/* keypressed_raw */
+	0,				/* keyreleased_raw */
 	kbtrans_polled_pressed,		/* keypressed */
 	kbtrans_polled_released,	/* keyreleased */
 	kbtrans_polled_setup_repeat,	/* setup_repeat */

@@ -176,20 +176,20 @@ static ipnetif_t *ipnetif_clone_create(ipnetif_t *, zoneid_t);
 static void	ipnetif_clone_release(ipnetif_t *);
 
 static struct qinit ipnet_rinit = {
-	NULL,		/* qi_putp */
+	0,		/* qi_putp */
 	ipnet_rsrv,	/* qi_srvp */
 	ipnet_open,	/* qi_qopen */
 	ipnet_close,	/* qi_qclose */
-	NULL,		/* qi_qadmin */
+	0,		/* qi_qadmin */
 	&ipnet_minfo,	/* qi_minfo */
 };
 
 static struct qinit ipnet_winit = {
 	ipnet_wput,	/* qi_putp */
-	NULL,		/* qi_srvp */
-	NULL,		/* qi_qopen */
-	NULL,		/* qi_qclose */
-	NULL,		/* qi_qadmin */
+	0,		/* qi_srvp */
+	0,		/* qi_qopen */
+	0,		/* qi_qclose */
+	0,		/* qi_qadmin */
 	&ipnet_minfo,	/* qi_minfo */
 };
 
@@ -286,7 +286,7 @@ _init(void)
 		goto done;
 	}
 
-	netstack_register(NS_IPNET, ipnet_stack_init, NULL, ipnet_stack_fini);
+	netstack_register(NS_IPNET, ipnet_stack_init, 0, ipnet_stack_fini);
 	netstack_registered = B_TRUE;
 
 	if ((ret = ipnetif_init()) == 0)

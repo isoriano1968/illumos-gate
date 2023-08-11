@@ -973,13 +973,13 @@ open_channel(char *channel_name)
 	 * by libsysevent
 	 */
 	if ((chan->scd_subscriber_cache = vmem_create(channel_name, (void *)1,
-	    MAX_SUBSCRIBERS + 1, 1, NULL, NULL, NULL, 0,
+	    MAX_SUBSCRIBERS + 1, 1, 0, 0, NULL, 0,
 	    VM_NOSLEEP | VMC_IDENTIFIER)) == NULL) {
 		kmem_free(chan, sizeof (sysevent_channel_descriptor_t));
 		return (-1);
 	}
 	if ((chan->scd_publisher_cache = vmem_create(channel_name, (void *)1,
-	    MAX_PUBLISHERS + 1, 1, NULL, NULL, NULL, 0,
+	    MAX_PUBLISHERS + 1, 1, 0, 0, NULL, 0,
 	    VM_NOSLEEP | VMC_IDENTIFIER)) == NULL) {
 		vmem_destroy(chan->scd_subscriber_cache);
 		kmem_free(chan, sizeof (sysevent_channel_descriptor_t));

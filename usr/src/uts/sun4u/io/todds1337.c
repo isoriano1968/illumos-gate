@@ -107,7 +107,7 @@ static struct cb_ops ds1337_cbops = {
 	nodev,				/* devmap */
 	nodev,				/* mmap */
 	nodev,				/* segmap */
-	NULL,				/* poll */
+	0,				/* poll */
 	ddi_prop_op,			/* cb_prop_op */
 	NULL,				/* streamtab */
 	D_NEW | D_MP,			/* Driver compatibility flag */
@@ -130,7 +130,7 @@ static struct dev_ops ds1337_ops = {
 	nodev,			/* reset */
 	&ds1337_cbops,		/* cb_ops - ds1337 does not need this(?) */
 	NULL,			/* bus_ops */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

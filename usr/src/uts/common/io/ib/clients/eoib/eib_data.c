@@ -1378,10 +1378,10 @@ eib_rb_data_setup_cqs(eib_t *ss, eib_vnic_t *vnic)
 	 * Reset any completion handlers we may have set up
 	 */
 	if (chan->ch_rcv_cq_hdl) {
-		ibt_set_cq_handler(chan->ch_rcv_cq_hdl, NULL, NULL);
+		ibt_set_cq_handler(chan->ch_rcv_cq_hdl, 0, NULL);
 	}
 	if (chan->ch_cq_hdl) {
-		ibt_set_cq_handler(chan->ch_cq_hdl, NULL, NULL);
+		ibt_set_cq_handler(chan->ch_cq_hdl, 0, NULL);
 	}
 
 	/*

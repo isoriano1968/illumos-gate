@@ -122,7 +122,7 @@ static struct qinit rinit = {
 	qcn_rsrv,	/* qi_srvp		*/
 	qcn_open,	/* qi_qopen		*/
 	qcn_close,	/* qi_qclose		*/
-	NULL,		/* qi_qadmin		*/
+	0,		/* qi_qadmin		*/
 	&minfo,		/* qi_minfo		*/
 	NULL		/* qi_mstat		*/
 };
@@ -132,7 +132,7 @@ static struct qinit winit = {
 	qcn_wsrv,	/* qi_srvp		*/
 	qcn_open,	/* qi_qopen		*/
 	qcn_close,	/* qi_qclose		*/
-	NULL,		/* qi_qadmin		*/
+	0,		/* qi_qadmin		*/
 	&minfo,		/* qi_minfo		*/
 	NULL		/* qi_mstat		*/
 };
@@ -174,7 +174,7 @@ static struct dev_ops qcn_ops = {
 	nodev,			/* reset()		*/
 	&qcn_cb_ops,		/* cb_ops		*/
 	(struct bus_ops *)NULL,	/* bus_ops		*/
-	NULL,			/* power()		*/
+	0,			/* power()		*/
 	ddi_quiesce_not_needed,		/* quiesce()		*/
 };
 

@@ -111,12 +111,12 @@ static struct bus_ops ppm_bus_ops = {
 	0,			/* bus_map_fault	*/
 	ddi_no_dma_map,		/* bus_dma_map		*/
 	ddi_no_dma_allochdl,	/* bus_dma_allochdl	*/
-	NULL,			/* bus_dma_freehdl	*/
-	NULL,			/* bus_dma_bindhdl	*/
-	NULL,			/* bus_dma_unbindhdl	*/
-	NULL,			/* bus_dma_flush	*/
-	NULL,			/* bus_dma_win		*/
-	NULL,			/* bus_dma_ctl		*/
+	0,			/* bus_dma_freehdl	*/
+	0,			/* bus_dma_bindhdl	*/
+	0,			/* bus_dma_unbindhdl	*/
+	0,			/* bus_dma_flush	*/
+	0,			/* bus_dma_win		*/
+	0,			/* bus_dma_ctl		*/
 	ppm_ctlops,		/* bus_ctl		*/
 	0,			/* bus_prop_op		*/
 	0,			/* bus_get_eventcookie	*/

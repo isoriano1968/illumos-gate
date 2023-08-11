@@ -90,19 +90,19 @@ static struct module_info softmac_dld_modinfo = {
 
 static struct qinit softmac_urinit = {
 	softmac_mod_rput,		/* qi_putp */
-	NULL,				/* qi_srvp */
+	0,				/* qi_srvp */
 	softmac_cmn_open,		/* qi_qopen */
 	softmac_mod_close,		/* qi_qclose */
-	NULL,				/* qi_qadmin */
+	0,				/* qi_qadmin */
 	&softmac_modinfo		/* qi_minfo */
 };
 
 static struct qinit softmac_uwinit = {
 	softmac_mod_wput,		/* qi_putp */
 	softmac_mod_wsrv,		/* qi_srvp */
-	NULL,				/* qi_qopen */
-	NULL,				/* qi_qclose */
-	NULL,				/* qi_qadmin */
+	0,				/* qi_qopen */
+	0,				/* qi_qclose */
+	0,				/* qi_qadmin */
 	&softmac_modinfo		/* qi_minfo */
 };
 
@@ -116,12 +116,12 @@ DDI_DEFINE_STREAM_OPS(softmac_ops, nulldev, nulldev, softmac_attach,
     ddi_quiesce_not_supported);
 
 static struct qinit softmac_dld_r_qinit = {
-	NULL, NULL, softmac_drv_open, softmac_drv_close, NULL,
+	0, 0, softmac_drv_open, softmac_drv_close, 0,
 	&softmac_dld_modinfo
 };
 
 static struct qinit softmac_dld_w_qinit = {
-	softmac_drv_wput, softmac_drv_wsrv, NULL, NULL, NULL,
+	softmac_drv_wput, softmac_drv_wsrv, 0, 0, 0,
 	&softmac_dld_modinfo
 };
 
@@ -208,7 +208,7 @@ _init(void)
 
 	softmac_upper_cachep = kmem_cache_create("softmac_upper_cache",
 	    sizeof (softmac_upper_t), 0, softmac_upper_constructor,
-	    softmac_upper_destructor, NULL, NULL, NULL, 0);
+	    softmac_upper_destructor, 0, NULL, NULL, 0);
 	ASSERT(softmac_upper_cachep != NULL);
 
 	if ((err = mod_install(&softmac_modlinkage)) != 0) {

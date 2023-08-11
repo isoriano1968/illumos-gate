@@ -1150,5 +1150,5 @@ const fs_operation_def_t dv_vnodeops_template[] = {
 	VOPNAME_DISPOSE,	{ .error = fs_error },
 	VOPNAME_SETSECATTR,	{ .vop_setsecattr = devfs_setsecattr },
 	VOPNAME_GETSECATTR,	{ .vop_getsecattr = devfs_getsecattr },
-	NULL,			NULL
+	NULL,			0
 };

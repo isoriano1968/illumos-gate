@@ -323,15 +323,15 @@ ixgbe_m_getcapab(void *arg, mac_capab_t cap, void *cap_data)
 			cap_rings->mr_gnum = ixgbe->num_rx_groups;
 			cap_rings->mr_rget = ixgbe_fill_ring;
 			cap_rings->mr_gget = ixgbe_fill_group;
-			cap_rings->mr_gaddring = NULL;
-			cap_rings->mr_gremring = NULL;
+			cap_rings->mr_gaddring = 0;
+			cap_rings->mr_gremring = 0;
 			break;
 		case MAC_RING_TYPE_TX:
 			cap_rings->mr_group_type = MAC_GROUP_TYPE_STATIC;
 			cap_rings->mr_rnum = ixgbe->num_tx_rings;
 			cap_rings->mr_gnum = 0;
 			cap_rings->mr_rget = ixgbe_fill_ring;
-			cap_rings->mr_gget = NULL;
+			cap_rings->mr_gget = 0;
 			break;
 		default:
 			break;

@@ -73,7 +73,7 @@
 int cs_stubs_debug = 0;
 #endif
 
-static csfunction_t *cardservices = NULL;
+static csfunction_t *cardservices = 0;
 static int do_cs_call = 0;
 static int cs_no_carservices(int32_t, ...);
 

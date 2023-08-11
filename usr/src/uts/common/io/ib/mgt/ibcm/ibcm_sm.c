@@ -3123,7 +3123,7 @@ ibcm_build_n_post_rej_mad(uint8_t *input_madp, ib_com_id_t remote_comid,
 	ibcm_build_reply_mad_addr(cm_mad_addr, &rej_reply_addr);
 
 	if (rej_reply_addr.cm_qp_entry != NULL) {
-		(void) ibcm_post_mad(cm_rej_msg, &rej_reply_addr, NULL, NULL);
+		(void) ibcm_post_mad(cm_rej_msg, &rej_reply_addr, 0, NULL);
 		ibcm_release_qp(rej_reply_addr.cm_qp_entry);
 	}
 
@@ -3173,7 +3173,7 @@ ibcm_post_rej_ver_mismatch(uint8_t *input_madp, ibcm_mad_addr_t *cm_mad_addr)
 
 	ibcm_build_reply_mad_addr(cm_mad_addr, &rej_reply_addr);
 	if (rej_reply_addr.cm_qp_entry != NULL) {
-		(void) ibcm_post_mad(cm_rej_msg, &rej_reply_addr, NULL, NULL);
+		(void) ibcm_post_mad(cm_rej_msg, &rej_reply_addr, 0, NULL);
 		ibcm_release_qp(rej_reply_addr.cm_qp_entry);
 	}
 	(void) ibcm_free_out_msg(cm_mad_addr->ibmf_hdl, &cm_rej_msg);
@@ -4881,7 +4881,7 @@ ibcm_post_sidr_rep_mad(ibcm_ud_state_data_t *ud_statep,
 	_NOTE(NOW_VISIBLE_TO_OTHER_THREADS(*sidr_repp))
 
 	/* post the SIDR REP MAD */
-	ibcm_post_ud_mad(ud_statep, ud_statep->ud_stored_msg, NULL, NULL);
+	ibcm_post_ud_mad(ud_statep, ud_statep->ud_stored_msg, 0, NULL);
 
 	timer_value = ibt_ib2usec(ibcm_max_sidr_rep_store_time);
 	/*
@@ -5225,7 +5225,7 @@ ibcm_process_get_classport_info(ibcm_hca_info_t *hcap, uint8_t *input_madp,
 
 	bcopy(&ibcm_clpinfo, IBCM_OUT_MSGP(msgp), sizeof (ibcm_clpinfo));
 
-	(void) ibcm_post_mad(msgp, cm_mad_addr, NULL, NULL);
+	(void) ibcm_post_mad(msgp, cm_mad_addr, 0, NULL);
 	(void) ibcm_free_out_msg(cm_mad_addr->ibmf_hdl, &msgp);
 
 	IBTF_DPRINTF_L4(cmlog, "ibcm_process_get_classport_info: done");

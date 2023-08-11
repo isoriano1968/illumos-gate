@@ -338,7 +338,7 @@ void
 sharefs_sharetab_init(void)
 {
 	zone_key_create(&sharetab_zone_key, sharetab_zone_init,
-	    NULL, sharetab_zone_fini);
+	    0, sharetab_zone_fini);
 }
 
 sharetab_globals_t *

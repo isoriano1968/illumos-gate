@@ -6307,11 +6307,11 @@ socktpi_init(void)
 	 */
 	socktpi_cache = kmem_cache_create("socktpi_cache",
 	    sizeof (struct sotpi_sonode), 0, socktpi_constructor,
-	    socktpi_destructor, NULL, NULL, NULL, 0);
+	    socktpi_destructor, 0, NULL, NULL, 0);
 
 	socktpi_unix_cache = kmem_cache_create("socktpi_unix_cache",
 	    sizeof (struct sotpi_sonode), 0, socktpi_unix_constructor,
-	    socktpi_unix_destructor, NULL, NULL, NULL, 0);
+	    socktpi_unix_destructor, 0, NULL, NULL, 0);
 
 	return (0);
 }

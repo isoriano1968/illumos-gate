@@ -18403,7 +18403,7 @@ static const cmd_attribute cmd_attributes[] = {
 	    0, 4, 3 },
 	{ SCMD_LOCATE,
 	    1, 1, 1, 0, 0, DIR_EITH, TRAN_NONE, POS_EXPECTED,
-	    0, 0, 0, NULL, st_get_cdb_g1_lba },
+	    0, 0, 0, 0, st_get_cdb_g1_lba },
 	{ SCMD_READ_POSITION,
 	    1, 1, 0, 0, 0, DIR_NONE, TRAN_READ, POS_EXPECTED,
 	    0, 0, 0 },
@@ -18436,7 +18436,7 @@ static const cmd_attribute cmd_attributes[] = {
 	    0, 0, 0 },
 	{ SCMD_LOCATE_G4,
 	    1, 1, 1, 0, 0, DIR_EITH, TRAN_NONE, POS_EXPECTED,
-	    0, 0, 0, NULL, st_get_cdb_g4g5_cnt },
+	    0, 0, 0, 0, st_get_cdb_g4g5_cnt },
 	{ SCMD_REPORT_LUNS,
 	    0, 1, 0, 0, 0, DIR_NONE, TRAN_READ, POS_EXPECTED,
 	    0, 0, 0 },
@@ -18451,7 +18451,7 @@ static const cmd_attribute cmd_attributes[] = {
 	    0, 0, 0 },
 	{ 0xff, /* Default attribute for unsupported commands */
 	    1, 0, 0, 0, 0, DIR_NONE, TRAN_NONE, POS_STARTING,
-	    1, 0, 0, NULL, NULL }
+	    1, 0, 0, 0, 0 }
 };
 
 static const cmd_attribute *

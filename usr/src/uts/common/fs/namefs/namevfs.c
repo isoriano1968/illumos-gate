@@ -108,7 +108,7 @@ static void
 namenodeno_init(void)
 {
 	nm_inoarena = vmem_create("namefs_inodes", (void *)1, NM_INOQUANT, 1,
-	    NULL, NULL, NULL, 1, VM_SLEEP);
+	    0, 0, NULL, 1, VM_SLEEP);
 	mutex_init(&nm_inolock, NULL, MUTEX_DEFAULT, NULL);
 }
 
@@ -700,12 +700,12 @@ nameinit(int fstype, char *name)
 		VFSNAME_ROOT,		{ .vfs_root = nm_root },
 		VFSNAME_STATVFS,	{ .vfs_statvfs = nm_statvfs },
 		VFSNAME_SYNC,		{ .vfs_sync = nm_sync },
-		NULL,			NULL
+		NULL,			0
 	};
 	static const fs_operation_def_t nm_dummy_vfsops_template[] = {
 		VFSNAME_STATVFS,	{ .vfs_statvfs = nm_statvfs },
 		VFSNAME_SYNC,		{ .vfs_sync = nm_sync },
-		NULL,			NULL
+		NULL,			0
 	};
 	int error;
 	int dev;

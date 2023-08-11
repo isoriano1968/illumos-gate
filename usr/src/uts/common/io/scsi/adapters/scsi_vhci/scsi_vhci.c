@@ -285,7 +285,7 @@ static struct dev_ops vhci_ops = {
 	nodev,			/* reset */
 	&vhci_cb_ops,		/* cb_ops */
 	NULL,			/* bus_ops */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,	/* quiesce */
 };
 
@@ -676,7 +676,7 @@ vhci_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 
 	tran->tran_hba_private	= vhci;
 	tran->tran_tgt_init	= vhci_scsi_tgt_init;
-	tran->tran_tgt_probe	= NULL;
+	tran->tran_tgt_probe	= 0;
 	tran->tran_tgt_free	= vhci_scsi_tgt_free;
 
 	tran->tran_start	= vhci_scsi_start;
@@ -692,17 +692,17 @@ vhci_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 
 	tran->tran_get_bus_addr	= vhci_scsi_get_bus_addr;
 	tran->tran_get_name	= vhci_scsi_get_name;
-	tran->tran_bus_reset	= NULL;
-	tran->tran_quiesce	= NULL;
-	tran->tran_unquiesce	= NULL;
+	tran->tran_bus_reset	= 0;
+	tran->tran_quiesce	= 0;
+	tran->tran_unquiesce	= 0;
 
 	/*
 	 * register event notification routines with scsa
 	 */
-	tran->tran_get_eventcookie = NULL;
-	tran->tran_add_eventcall = NULL;
-	tran->tran_remove_eventcall = NULL;
-	tran->tran_post_event	= NULL;
+	tran->tran_get_eventcookie = 0;
+	tran->tran_add_eventcall = 0;
+	tran->tran_remove_eventcall = 0;
+	tran->tran_post_event	= 0;
 
 	tran->tran_bus_power	= vhci_scsi_bus_power;
 
@@ -3943,7 +3943,7 @@ vhci_update_pathstates(void *arg)
 			/* Check for Reservation Conflict */
 			bp = scsi_alloc_consistent_buf(
 			    &svp->svp_psd->sd_address, (struct buf *)NULL,
-			    DEV_BSIZE, B_READ, NULL, NULL);
+			    DEV_BSIZE, B_READ, 0, NULL);
 			if (!bp) {
 				VHCI_DEBUG(1, (CE_NOTE, NULL,
 				    "!vhci_update_pathstates: No resources "
@@ -3953,7 +3953,7 @@ vhci_update_pathstates(void *arg)
 			}
 			pkt = scsi_init_pkt(&svp->svp_psd->sd_address, NULL, bp,
 			    CDB_GROUP1, sizeof (struct scsi_arq_status), 0,
-			    PKT_CONSISTENT, NULL, NULL);
+			    PKT_CONSISTENT, 0, NULL);
 			if (pkt) {
 				(void) scsi_setup_cdb((union scsi_cdb *)
 				    (uintptr_t)pkt->pkt_cdbp, SCMD_READ, 1, 1,
@@ -6963,7 +6963,7 @@ next_pathclass:
 		UA_condition = 0;
 
 		bp = scsi_alloc_consistent_buf(&svp->svp_psd->sd_address,
-		    (struct buf *)NULL, DEV_BSIZE, B_READ, NULL, NULL);
+		    (struct buf *)NULL, DEV_BSIZE, B_READ, 0, NULL);
 		if (!bp) {
 			VHCI_DEBUG(1, (CE_NOTE, NULL,
 			    "vhci_failover !No resources (buf)\n"));
@@ -6972,7 +6972,7 @@ next_pathclass:
 		}
 		pkt = scsi_init_pkt(&svp->svp_psd->sd_address, NULL, bp,
 		    CDB_GROUP1, sizeof (struct scsi_arq_status), 0,
-		    PKT_CONSISTENT, NULL, NULL);
+		    PKT_CONSISTENT, 0, NULL);
 		if (pkt) {
 			(void) scsi_setup_cdb((union scsi_cdb *)(uintptr_t)
 			    pkt->pkt_cdbp, SCMD_READ, 1, 1, 0);
@@ -8033,7 +8033,7 @@ vhci_update_pHCI_pkt(struct vhci_pkt *vpkt, struct scsi_pkt *pkt)
 		 * suspended state
 		 */
 		vpkt->vpkt_hba_pkt->pkt_flags |= FLAG_NOINTR;
-		vpkt->vpkt_hba_pkt->pkt_comp = NULL;
+		vpkt->vpkt_hba_pkt->pkt_comp = 0;
 	} else {
 		vpkt->vpkt_hba_pkt->pkt_comp = vhci_intr;
 	}
@@ -8325,12 +8325,12 @@ vhci_uscsi_send_sense(struct scsi_pkt *pkt, mp_uscsi_cmd_t *mp_uscmdp)
 	    (void *)cmdbp, (void *)pkt, (void *)mp_uscmdp));
 	/* set up the packet information and cdb */
 	if ((rqbp = scsi_alloc_consistent_buf(mp_uscmdp->ap, NULL,
-	    SENSE_LENGTH, B_READ, NULL, NULL)) == NULL) {
+	    SENSE_LENGTH, B_READ, 0, NULL)) == NULL) {
 		return (-1);
 	}
 
 	if ((rqpkt = scsi_init_pkt(mp_uscmdp->ap, NULL, rqbp,
-	    CDB_GROUP0, 1, 0, PKT_CONSISTENT, NULL, NULL)) == NULL) {
+	    CDB_GROUP0, 1, 0, PKT_CONSISTENT, 0, NULL)) == NULL) {
 		scsi_free_consistent_buf(rqbp);
 		return (-1);
 	}

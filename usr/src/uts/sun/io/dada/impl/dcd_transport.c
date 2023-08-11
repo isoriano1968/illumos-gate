@@ -47,7 +47,7 @@ dcd_flag_nointr_comp(struct dcd_pkt *pkt)
 
 	mutex_enter(&dcd_flag_nointr_mutex);
 
-	pkt->pkt_comp = NULL;
+	pkt->pkt_comp = 0;
 
 	/*
 	 * We need cv_broadcast, because there can be more than

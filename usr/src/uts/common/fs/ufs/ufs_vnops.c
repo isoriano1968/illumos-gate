@@ -232,7 +232,7 @@ const fs_operation_def_t ufs_vnodeops_template[] = {
 	VOPNAME_GETSECATTR,	{ .vop_getsecattr = ufs_getsecattr },
 	VOPNAME_SETSECATTR,	{ .vop_setsecattr = ufs_setsecattr },
 	VOPNAME_VNEVENT,	{ .vop_vnevent = fs_vnevent_support },
-	NULL,			NULL
+	NULL,			0
 };
 
 #define	MAX_BACKFILE_COUNT	9999
@@ -5208,7 +5208,7 @@ ufs_iodone(buf_t *bp)
 
 	ASSERT((bp->b_pages->p_vnode != NULL) && !(bp->b_flags & B_READ));
 
-	bp->b_iodone = NULL;
+	bp->b_iodone = 0;
 
 	ip = VTOI(bp->b_pages->p_vnode);
 

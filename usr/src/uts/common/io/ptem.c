@@ -112,10 +112,10 @@ static struct module_info ptem_info = {
 
 static struct qinit ptemrinit = {
 	ptemrput,
-	NULL,
+	0,
 	ptemopen,
 	ptemclose,
-	NULL,
+	0,
 	&ptem_info,
 	NULL
 };

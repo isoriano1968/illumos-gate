@@ -231,7 +231,7 @@ serializer_drain_completely(serializer_t *s)
 			serializer_drain(s, INT_MAX);
 		s->ser_owner = NULL;
 		s->ser_curr = NULL;
-		s->ser_proc = NULL;
+		s->ser_proc = 0;
 		s->ser_arg = NULL;
 	}
 	s->ser_taskq = B_FALSE;
@@ -388,7 +388,7 @@ serializer_constructor(void *buf, void *cdrarg, int kmflags)
 	s->ser_taskq = 0;
 	s->ser_count = 0;
 	s->ser_first = s->ser_last = s->ser_curr = NULL;
-	s->ser_proc = NULL;
+	s->ser_proc = 0;
 	s->ser_arg = NULL;
 	s->ser_owner = NULL;
 	return (0);
@@ -409,5 +409,5 @@ serializer_init(void)
 {
 	serializer_cache = kmem_cache_create("serializer_cache",
 	    sizeof (serializer_t), 0, serializer_constructor,
-	    serializer_destructor, NULL, NULL, NULL, 0);
+	    serializer_destructor, 0, NULL, NULL, 0);
 }

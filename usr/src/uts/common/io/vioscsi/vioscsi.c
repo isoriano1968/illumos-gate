@@ -1399,7 +1399,7 @@ vioscsi_iport_attach(dev_info_t *dip)
 	virtio_queue_no_interrupt(sc->vs_ctl_vq, B_TRUE);
 
 	if (scsi_hba_tgtmap_create(dip, SCSI_TM_FULLSET, MICROSEC,
-	    2 * MICROSEC, sc, NULL, NULL, &sc->vs_tgtmap) != DDI_SUCCESS) {
+	    2 * MICROSEC, sc, 0, 0, &sc->vs_tgtmap) != DDI_SUCCESS) {
 		vioscsi_iport_teardown(sc);
 		return (DDI_FAILURE);
 	}
@@ -1520,7 +1520,7 @@ static struct dev_ops vioscsi_dev_ops = {
 	.devo_reset =		nodev,
 	.devo_cb_ops =		NULL,
 	.devo_bus_ops =		NULL,
-	.devo_power =		NULL,
+	.devo_power =		0,
 	.devo_quiesce =		vioscsi_quiesce,
 };
 

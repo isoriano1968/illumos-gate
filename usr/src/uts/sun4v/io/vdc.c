@@ -7210,7 +7210,7 @@ static vdc_dk_ioctl_t	dk_ioctl[] = {
 		vdc_set_efi_convert},
 
 	/* DIOCTL_RWCMD is converted to a read or a write */
-	{0, DIOCTL_RWCMD,  sizeof (struct dadkio_rwcmd), NULL},
+	{0, DIOCTL_RWCMD,  sizeof (struct dadkio_rwcmd), 0},
 
 	/* mhd(4I) non-shared multihost disks ioctls */
 	{0, MHIOCTKOWN,				0, vdc_null_copy_func},

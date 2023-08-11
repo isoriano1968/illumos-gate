@@ -102,9 +102,9 @@ lwp_stk_cache_init(void)
 	 * boundaries as they are accessed by physical address.
 	 */
 	wbuf32_cache = kmem_cache_create("wbuf32_cache", WIN32_SIZE,
-	    0, NULL, NULL, NULL, NULL, static_arena, KMC_NOHASH);
+	    0, 0, 0, 0, NULL, static_arena, KMC_NOHASH);
 	wbuf64_cache = kmem_cache_create("wbuf64_cache", WIN64_SIZE,
-	    0, NULL, NULL, NULL, NULL, static_arena, KMC_NOHASH);
+	    0, 0, 0, 0, NULL, static_arena, KMC_NOHASH);
 }
 
 /*

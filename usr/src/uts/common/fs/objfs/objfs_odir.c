@@ -51,7 +51,7 @@ objfs_create_odirnode(vnode_t *pvp, struct modctl *mp)
 {
 	vnode_t *vp = gfs_dir_create(sizeof (objfs_odirnode_t), pvp,
 	    objfs_ops_odir, objfs_odir_entries, objfs_odir_do_inode,
-	    OBJFS_NAME_MAX, NULL, NULL);
+	    OBJFS_NAME_MAX, 0, 0);
 	objfs_odirnode_t *onode = vp->v_data;
 
 	onode->objfs_odir_modctl = mp;

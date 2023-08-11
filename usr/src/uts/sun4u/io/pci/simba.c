@@ -144,7 +144,7 @@ struct bus_ops simba_bus_ops = {
 	0,
 	0,
 	simba_fm_init_child,
-	NULL,
+	0,
 	simba_bus_enter,
 	simba_bus_exit,
 	0,
@@ -194,7 +194,7 @@ struct dev_ops simba_ops = {
 	nulldev,		/* reset */
 	&simba_cb_ops,		/* driver operations */
 	&simba_bus_ops,		/* bus operations */
-	NULL,
+	0,
 	ddi_quiesce_not_supported,	/* devo_quiesce */
 };
 

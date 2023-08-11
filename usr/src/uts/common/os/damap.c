@@ -237,7 +237,7 @@ damap_destroy(damap_t *damapp)
 		 */
 		(void) damap_sync(damapp, 0);
 		mutex_enter(&mapp->dam_lock);
-		dam_sched_timeout(NULL, mapp, 0);
+		dam_sched_timeout(0, mapp, 0);
 
 		/*
 		 * map is at full stop
@@ -520,7 +520,7 @@ damap_addrset_flush_locked(damap_t *damapp)
 		/*
 		 * cancel stabilization timeout
 		 */
-		dam_sched_timeout(NULL, mapp, 0);
+		dam_sched_timeout(0, mapp, 0);
 		DAM_INCR_STAT(mapp, dam_jitter);
 
 		/*
@@ -694,7 +694,7 @@ damap_addrset_end(damap_t *damapp, int flags)
 	if (flags & DAMAP_END_RESET) {
 		DTRACE_PROBE2(damap__addrset__end__reset,
 		    char *, mapp->dam_name, dam_t *, mapp);
-		dam_sched_timeout(NULL, mapp, 0);
+		dam_sched_timeout(0, mapp, 0);
 		for (i = 1; i < mapp->dam_high; i++)
 			if (DAM_IN_REPORT(mapp, i))
 				dam_addr_report_release(mapp, i);

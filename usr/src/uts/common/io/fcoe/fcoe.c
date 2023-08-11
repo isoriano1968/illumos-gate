@@ -155,11 +155,11 @@ static struct cb_ops fcoe_cb_ops = {
 static struct bus_ops fcoe_busops = {
 	BUSO_REV,
 	nullbusmap,			/* bus_map */
-	NULL,				/* bus_get_intrspec */
-	NULL,				/* bus_add_intrspec */
-	NULL,				/* bus_remove_intrspec */
+	0,				/* bus_get_intrspec */
+	0,				/* bus_add_intrspec */
+	0,				/* bus_remove_intrspec */
 	i_ddi_map_fault,		/* bus_map_fault */
-	NULL,				/* bus_dma_map */
+	0,				/* bus_dma_map */
 	ddi_dma_allochdl,		/* bus_dma_allochdl */
 	ddi_dma_freehdl,		/* bus_dma_freehdl */
 	ddi_dma_bindhdl,		/* bus_dma_bindhdl */
@@ -169,19 +169,19 @@ static struct bus_ops fcoe_busops = {
 	ddi_dma_mctl,			/* bus_dma_ctl */
 	fcoe_bus_ctl,			/* bus_ctl */
 	ddi_bus_prop_op,		/* bus_prop_op */
-	NULL,				/* bus_get_eventcookie */
-	NULL,				/* bus_add_eventcall */
-	NULL,				/* bus_remove_event */
-	NULL,				/* bus_post_event */
-	NULL,				/* bus_intr_ctl */
-	NULL,				/* bus_config */
-	NULL,				/* bus_unconfig */
-	NULL,				/* bus_fm_init */
-	NULL,				/* bus_fm_fini */
-	NULL,				/* bus_fm_access_enter */
-	NULL,				/* bus_fm_access_exit */
-	NULL,				/* bus_power */
-	NULL
+	0,				/* bus_get_eventcookie */
+	0,				/* bus_add_eventcall */
+	0,				/* bus_remove_event */
+	0,				/* bus_post_event */
+	0,				/* bus_intr_ctl */
+	0,				/* bus_config */
+	0,				/* bus_unconfig */
+	0,				/* bus_fm_init */
+	0,				/* bus_fm_fini */
+	0,				/* bus_fm_access_enter */
+	0,				/* bus_fm_access_exit */
+	0,				/* bus_power */
+	0
 };
 
 static struct dev_ops fcoe_ops = {

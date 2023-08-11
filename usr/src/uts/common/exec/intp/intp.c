@@ -62,7 +62,7 @@ static struct execsw esw = {
 	0,
 	2,
 	intpexec,
-	NULL
+	0
 };
 
 /*

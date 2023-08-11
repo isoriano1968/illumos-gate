@@ -295,15 +295,15 @@ pci_dma_allocmp(dev_info_t *dip, dev_info_t *rdip, int (*waitfp)(caddr_t),
 	mp->dmai_attr.dma_attr_version = (uint_t)DMA_ATTR_VERSION;
 	mp->dmai_attr.dma_attr_flags = (uint_t)0;
 	mp->dmai_fault = 0;
-	mp->dmai_fault_check = NULL;
-	mp->dmai_fault_notify = NULL;
+	mp->dmai_fault_check = 0;
+	mp->dmai_fault_notify = 0;
 
 	mp->dmai_error.err_ena = 0;
 	mp->dmai_error.err_status = DDI_FM_OK;
 	mp->dmai_error.err_expected = DDI_FM_ERR_UNEXPECTED;
 	mp->dmai_error.err_ontrap = NULL;
 	mp->dmai_error.err_fep = NULL;
-	mp->dmai_error.err_cf = NULL;
+	mp->dmai_error.err_cf = 0;
 	ndi_fmc_insert(rdip, DMA_HANDLE, mp, NULL);
 
 	SYNC_BUF_PA(mp) = 0ull;

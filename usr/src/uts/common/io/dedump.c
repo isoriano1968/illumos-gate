@@ -261,11 +261,11 @@ struct module_info dedump_minfo = {
 };
 
 struct qinit dedumprinit = {
-	dedumpput, NULL, dedumpopen, dedumpclose, NULL, &dedump_minfo, NULL
+	dedumpput, 0, dedumpopen, dedumpclose, 0, &dedump_minfo, NULL
 };
 
 struct qinit dedumpwinit = {
-	dedumpput, NULL, NULL, NULL, NULL, &dedump_minfo, NULL
+	dedumpput, 0, 0, 0, 0, &dedump_minfo, NULL
 };
 
 struct streamtab dedumpinfo = {

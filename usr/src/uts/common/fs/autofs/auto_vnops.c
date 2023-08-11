@@ -114,7 +114,7 @@ const fs_operation_def_t auto_vnodeops_template[] = {
 	VOPNAME_DISPOSE,	{ .error = fs_error },
 	VOPNAME_SHRLOCK,	{ .error = fs_error },
 	VOPNAME_VNEVENT,	{ .vop_vnevent = fs_vnevent_support },
-	NULL,			NULL
+	NULL,			0
 };
 
 

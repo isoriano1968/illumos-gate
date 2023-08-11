@@ -71,7 +71,7 @@ iser_init_hca_caches(iser_hca_t *hca)
 	    (uint32_t)(hca->hca_guid & 0xFFFFFFFF));
 	hca->iser_msg_cache = kmem_cache_create(name, sizeof (iser_msg_t),
 	    0, &iser_msg_cache_constructor, &iser_msg_cache_destructor,
-	    NULL, hca, NULL, KM_SLEEP);
+	    0, hca, NULL, KM_SLEEP);
 
 	(void) snprintf(name, ISER_CACHE_NAMELEN, "iser_buf_pool_%08x",
 	    (uint32_t)(hca->hca_guid & 0xFFFFFFFF));
@@ -81,7 +81,7 @@ iser_init_hca_caches(iser_hca_t *hca)
 	    (uint32_t)(hca->hca_guid & 0xFFFFFFFF));
 	hca->iser_buf_cache = kmem_cache_create(name, sizeof (iser_buf_t),
 	    0, &iser_buf_cache_constructor, &iser_buf_cache_destructor,
-	    NULL, hca, NULL, KM_SLEEP);
+	    0, hca, NULL, KM_SLEEP);
 }
 
 /*
@@ -362,7 +362,7 @@ iser_vmem_create(const char *name, iser_hca_t *hca, ib_memlen_t chunksize,
 	result->ivmp_vmem = vmem_create(name,
 	    (void *)(uintptr_t)first_chunk->is_mrva,
 	    (size_t)first_chunk->is_mrlen, ISER_MR_QUANTSIZE,
-	    NULL, NULL, NULL, 0, VM_SLEEP);
+	    0, 0, NULL, 0, VM_SLEEP);
 
 	return (result);
 }

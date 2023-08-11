@@ -77,10 +77,10 @@ static int smbus_switch(smbus_t *smbus);
 static struct bus_ops smbus_busops = {
 	BUSO_REV,
 	nullbusmap,			/* bus_map */
-	NULL,				/* bus_get_intrspec */
-	NULL,				/* bus_add_intrspec */
-	NULL,				/* bus_remove_intrspec */
-	NULL,				/* bus_map_fault */
+	0,				/* bus_get_intrspec */
+	0,				/* bus_add_intrspec */
+	0,				/* bus_remove_intrspec */
+	0,				/* bus_map_fault */
 	ddi_no_dma_map,			/* bus_dma_map */
 	ddi_no_dma_allochdl,		/* bus_dma_allochdl */
 	ddi_no_dma_freehdl,		/* bus_dma_freehdl */
@@ -91,10 +91,10 @@ static struct bus_ops smbus_busops = {
 	ddi_no_dma_mctl,		/* bus_dma_ctl */
 	smbus_bus_ctl,			/* bus_ctl */
 	ddi_bus_prop_op,		/* bus_prop_op */
-	NULL,				/* bus_get_eventcookie */
-	NULL,				/* bus_add_eventcall */
-	NULL,				/* bus_remove_eventcall */
-	NULL,				/* bus_post_event */
+	0,				/* bus_get_eventcookie */
+	0,				/* bus_add_eventcall */
+	0,				/* bus_remove_eventcall */
+	0,				/* bus_post_event */
 	0,				/* bus_intr_ctl 	*/
 	0,				/* bus_config		*/
 	0,				/* bus_unconfig		*/
@@ -135,7 +135,7 @@ static struct dev_ops smbus_ops = {
 	nodev,
 	&smbus_cb_ops,
 	&smbus_busops,
-	NULL,
+	0,
 	ddi_quiesce_not_supported,	/* devo_quiesce */
 };
 

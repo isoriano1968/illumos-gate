@@ -64,8 +64,8 @@ rdsv3_sock_init()
 	RDSV3_DPRINTF4("rdsv3_sock_init", "Enter");
 
 	rdsv3_alloc_cache = kmem_cache_create("rdsv3_alloc_cache",
-	    sizeof (struct rsock) + sizeof (struct rdsv3_sock), 0, NULL,
-	    NULL, NULL, NULL, NULL, 0);
+	    sizeof (struct rsock) + sizeof (struct rdsv3_sock), 0, 0,
+	    0, 0, NULL, NULL, 0);
 	if (rdsv3_alloc_cache == NULL) {
 		RDSV3_DPRINTF2("rdsv3_alloc_cache",
 		    "kmem_cache_create(rdsv3_alloc_cache) failed");
@@ -236,7 +236,7 @@ static struct dev_ops rdsv3_ops = {
 	nodev,			/* reset */
 	&rdsv3_cb_ops,		/* driver ops - devctl interfaces */
 	NULL,			/* bus operations */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed	/* quiesce */
 };
 

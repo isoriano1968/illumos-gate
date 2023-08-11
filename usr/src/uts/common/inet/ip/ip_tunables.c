@@ -908,16 +908,16 @@ mod_prop_info_t ip_propinfo_tbl[] = {
 	    mod_set_boolean, mod_get_boolean,
 	    {B_FALSE}, {B_FALSE} },
 #else
-	{ "", 0, NULL, NULL, {0}, {0} },
+	{ "", 0, 0, 0, {0}, {0} },
 #endif
 
 	{ "_dce_reclaim_threshold", MOD_PROTO_IP,
 	    mod_set_uint32, mod_get_uint32,
 	    {1, 100000, 32}, {32} },
 
-	{ "mtu", MOD_PROTO_IPV4, NULL, ip_get_mtu, {0}, {0} },
+	{ "mtu", MOD_PROTO_IPV4, 0, ip_get_mtu, {0}, {0} },
 
-	{ "mtu", MOD_PROTO_IPV6, NULL, ip_get_mtu, {0}, {0} },
+	{ "mtu", MOD_PROTO_IPV6, 0, ip_get_mtu, {0}, {0} },
 
 	/*
 	 * The following entry is a placeholder for `ip_debug' global
@@ -934,9 +934,9 @@ mod_prop_info_t ip_propinfo_tbl[] = {
 	{ "hostmodel", MOD_PROTO_IPV6, ip_set_hostmodel, ip_get_hostmodel,
 	    {IP_WEAK_ES, IP_STRONG_ES, IP_WEAK_ES}, {IP_WEAK_ES} },
 
-	{ "?", MOD_PROTO_IP, NULL, mod_get_allprop, {0}, {0} },
+	{ "?", MOD_PROTO_IP, 0, mod_get_allprop, {0}, {0} },
 
-	{ NULL, 0, NULL, NULL, {0}, {0} }
+	{ NULL, 0, 0, 0, {0}, {0} }
 };
 
 int ip_propinfo_count = A_CNT(ip_propinfo_tbl);

@@ -88,7 +88,7 @@ static struct dev_ops grfans_ops = {
 	nodev,
 	&grfans_cbops,
 	NULL,			/* bus_ops */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

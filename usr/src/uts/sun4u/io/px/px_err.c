@@ -474,11 +474,11 @@ px_err_bit_desc_t px_err_tlu_oe_tbl[] = {
 #define	LPUL_BIT_DESC(bit, hdl, erpt) \
 	LPU_LINK_LAYER_INTERRUPT_AND_STATUS_INT_ ## bit, \
 	0, \
-	NULL, \
-	NULL, \
+	0, \
+	0, \
 	""
 px_err_bit_desc_t px_err_lpul_tbl[] = {
-	{ LPUL_BIT_DESC(LINK_ERR_ACT,	NULL,		NULL) }
+	{ LPUL_BIT_DESC(LINK_ERR_ACT,	0,		0) }
 };
 #define	px_err_lpul_keys \
 	(sizeof (px_err_lpul_tbl)) / (sizeof (px_err_bit_desc_t))
@@ -487,11 +487,11 @@ px_err_bit_desc_t px_err_lpul_tbl[] = {
 #define	LPUP_BIT_DESC(bit, hdl, erpt) \
 	LPU_PHY_LAYER_INTERRUPT_AND_STATUS_INT_ ## bit, \
 	0, \
-	NULL, \
-	NULL, \
+	0, \
+	0, \
 	""
 px_err_bit_desc_t px_err_lpup_tbl[] = {
-	{ LPUP_BIT_DESC(PHY_LAYER_ERR,	NULL,		NULL) }
+	{ LPUP_BIT_DESC(PHY_LAYER_ERR,	0,		0) }
 };
 #define	px_err_lpup_keys \
 	(sizeof (px_err_lpup_tbl)) / (sizeof (px_err_bit_desc_t))
@@ -500,11 +500,11 @@ px_err_bit_desc_t px_err_lpup_tbl[] = {
 #define	LPUR_BIT_DESC(bit, hdl, erpt) \
 	LPU_RECEIVE_PHY_INTERRUPT_AND_STATUS_INT_ ## bit, \
 	0, \
-	NULL, \
-	NULL, \
+	0, \
+	0, \
 	""
 px_err_bit_desc_t px_err_lpur_tbl[] = {
-	{ LPUR_BIT_DESC(RCV_PHY,	NULL,		NULL) }
+	{ LPUR_BIT_DESC(RCV_PHY,	0,		0) }
 };
 #define	px_err_lpur_keys \
 	(sizeof (px_err_lpur_tbl)) / (sizeof (px_err_bit_desc_t))
@@ -513,11 +513,11 @@ px_err_bit_desc_t px_err_lpur_tbl[] = {
 #define	LPUX_BIT_DESC(bit, hdl, erpt) \
 	LPU_TRANSMIT_PHY_INTERRUPT_AND_STATUS_INT_ ## bit, \
 	0, \
-	NULL, \
-	NULL, \
+	0, \
+	0, \
 	""
 px_err_bit_desc_t px_err_lpux_tbl[] = {
-	{ LPUX_BIT_DESC(UNMSK,		NULL,		NULL) }
+	{ LPUX_BIT_DESC(UNMSK,		0,		0) }
 };
 #define	px_err_lpux_keys \
 	(sizeof (px_err_lpux_tbl)) / (sizeof (px_err_bit_desc_t))
@@ -526,11 +526,11 @@ px_err_bit_desc_t px_err_lpux_tbl[] = {
 #define	LPUS_BIT_DESC(bit, hdl, erpt) \
 	LPU_LTSSM_INTERRUPT_AND_STATUS_INT_ ## bit, \
 	0, \
-	NULL, \
-	NULL, \
+	0, \
+	0, \
 	""
 px_err_bit_desc_t px_err_lpus_tbl[] = {
-	{ LPUS_BIT_DESC(ANY,		NULL,		NULL) }
+	{ LPUS_BIT_DESC(ANY,		0,		0) }
 };
 #define	px_err_lpus_keys \
 	(sizeof (px_err_lpus_tbl)) / (sizeof (px_err_bit_desc_t))
@@ -539,11 +539,11 @@ px_err_bit_desc_t px_err_lpus_tbl[] = {
 #define	LPUG_BIT_DESC(bit, hdl, erpt) \
 	LPU_GIGABLAZE_GLUE_INTERRUPT_AND_STATUS_INT_ ## bit, \
 	0, \
-	NULL, \
-	NULL, \
+	0, \
+	0, \
 	""
 px_err_bit_desc_t px_err_lpug_tbl[] = {
-	{ LPUG_BIT_DESC(GLOBL_UNMSK,	NULL,		NULL) }
+	{ LPUG_BIT_DESC(GLOBL_UNMSK,	0,		0) }
 };
 #define	px_err_lpug_keys \
 	(sizeof (px_err_lpug_tbl)) / (sizeof (px_err_bit_desc_t))

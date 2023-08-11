@@ -59,9 +59,9 @@
 int clnopen(queue_t *rq, dev_t *devp, int flag, int sflag, cred_t *crp);
 
 static struct module_info clnm_info = { 0, "CLONE", 0, 0, 0, 0 };
-static struct qinit clnrinit = { NULL, NULL, clnopen, NULL, NULL, &clnm_info,
+static struct qinit clnrinit = { 0, 0, clnopen, 0, 0, &clnm_info,
     NULL };
-static struct qinit clnwinit = { NULL, NULL, NULL, NULL, NULL, &clnm_info,
+static struct qinit clnwinit = { 0, 0, 0, 0, 0, &clnm_info,
     NULL };
 struct streamtab clninfo = { &clnrinit, &clnwinit };
 

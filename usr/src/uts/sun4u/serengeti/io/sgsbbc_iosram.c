@@ -151,7 +151,7 @@ iosram_init()
 	}
 
 	for (i = 0; i < SBBC_MAX_INTRS; i++)
-		master_iosram->intrs[i].sbbc_handler = NULL;
+		master_iosram->intrs[i].sbbc_handler = 0;
 
 	mutex_init(&master_iosram->iosram_lock, NULL, MUTEX_DEFAULT, NULL);
 	rw_init(&master_iosram->tunnel_lock, NULL, RW_DEFAULT, NULL);

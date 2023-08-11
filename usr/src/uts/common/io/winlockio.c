@@ -242,7 +242,7 @@ static struct dev_ops	winlock_ops = {
 	nodev,			/* reset */
 	&winlock_cb_ops,	/* driver ops */
 	NULL,			/* bus ops */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

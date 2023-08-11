@@ -175,12 +175,12 @@ static struct cphy_ops my3126_ops = {
 	my3126_interrupt_disable,
 	my3126_interrupt_clear,
 	my3126_interrupt_handler,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
 	my3126_set_loopback,
-	NULL,
+	0,
 	my3126_get_link_status,
 };
 #else

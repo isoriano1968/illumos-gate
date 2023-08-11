@@ -72,7 +72,7 @@ static int keytab_base_length = 0;
 static const unsigned char *keytab_e0 = NULL;
 static int keytab_e0_length = 0;
 static boolean_t (*KeyboardConvertScan_fn)(struct kb8042 *, unsigned char,
-    int *, enum keystate *, boolean_t *) = NULL;
+    int *, enum keystate *, boolean_t *) = 0;
 
 static const unsigned char	keytab_base_set1[] = {
 /* scan		key number	keycap */

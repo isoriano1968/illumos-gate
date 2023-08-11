@@ -248,12 +248,12 @@ mac_client_init(void)
 
 	mac_client_impl_cache = kmem_cache_create("mac_client_impl_cache",
 	    MAC_CLIENT_IMPL_SIZE, 0, i_mac_client_impl_ctor,
-	    i_mac_client_impl_dtor, NULL, NULL, NULL, 0);
+	    i_mac_client_impl_dtor, 0, NULL, NULL, 0);
 	ASSERT(mac_client_impl_cache != NULL);
 
 	mac_promisc_impl_cache = kmem_cache_create("mac_promisc_impl_cache",
 	    sizeof (mac_promisc_impl_t), 0, i_mac_promisc_impl_ctor,
-	    i_mac_promisc_impl_dtor, NULL, NULL, NULL, 0);
+	    i_mac_promisc_impl_dtor, 0, NULL, NULL, 0);
 	ASSERT(mac_promisc_impl_cache != NULL);
 }
 
@@ -1360,10 +1360,10 @@ mac_client_open(mac_handle_t mh, mac_client_handle_t *mchp, char *name,
 	mcip->mci_upper_mip = NULL;
 	mcip->mci_rx_fn = mac_rx_def;
 	mcip->mci_rx_arg = NULL;
-	mcip->mci_rx_p_fn = NULL;
+	mcip->mci_rx_p_fn = 0;
 	mcip->mci_rx_p_arg = NULL;
 	mcip->mci_p_unicast_list = NULL;
-	mcip->mci_direct_rx_fn = NULL;
+	mcip->mci_direct_rx_fn = 0;
 	mcip->mci_direct_rx_arg = NULL;
 	mcip->mci_vidcache = MCIP_VIDCACHE_INVALID;
 
@@ -3082,7 +3082,7 @@ mac_unicast_remove(mac_client_handle_t mch, mac_unicast_handle_t mah)
 			if (mcip->mci_rx_p_fn != NULL) {
 				mac_rx_set(mch, mcip->mci_rx_p_fn,
 				    mcip->mci_rx_p_arg);
-				mcip->mci_rx_p_fn = NULL;
+				mcip->mci_rx_p_fn = 0;
 				mcip->mci_rx_p_arg = NULL;
 			}
 			kmem_free(muip, sizeof (mac_unicast_impl_t));
@@ -3119,7 +3119,7 @@ mac_unicast_remove(mac_client_handle_t mch, mac_unicast_handle_t mah)
 		mcip->mci_flags &= ~MAC_CLIENT_FLAGS_PASSIVE_PRIMARY;
 
 		mcip->mci_p_unicast_list = NULL;
-		mcip->mci_rx_p_fn = NULL;
+		mcip->mci_rx_p_fn = 0;
 		mcip->mci_rx_p_arg = NULL;
 
 		mcip->mci_state_flags &= ~MCIS_UNICAST_HW;
@@ -3240,7 +3240,7 @@ mac_unicast_remove(mac_client_handle_t mch, mac_unicast_handle_t mah)
 			if (mcip->mci_rx_p_fn != NULL) {
 				mac_rx_set(mch, mcip->mci_rx_p_fn,
 				    mcip->mci_rx_p_arg);
-				mcip->mci_rx_p_fn = NULL;
+				mcip->mci_rx_p_fn = 0;
 				mcip->mci_rx_p_arg = NULL;
 			}
 		} else {
@@ -3946,7 +3946,7 @@ void
 mac_resource_set(mac_client_handle_t mch, mac_resource_add_t add, void *arg)
 {
 	/* update the 'resource_add' callback */
-	mac_resource_set_common(mch, add, NULL, NULL, NULL, NULL, arg);
+	mac_resource_set_common(mch, add, 0, 0, 0, 0, arg);
 }
 
 /*

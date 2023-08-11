@@ -570,7 +570,7 @@ static struct dev_ops mptsas_ops = {
 };
 
 static ddi_ufm_ops_t mptsas_ufm_ops = {
-	NULL,
+	0,
 	mptsas_ufm_fill_image,
 	mptsas_ufm_fill_slot,
 	mptsas_ufm_getcaps
@@ -2211,12 +2211,12 @@ mptsas_hba_setup(mptsas_t *mpt)
 
 	hba_tran->tran_quiesce		= mptsas_scsi_quiesce;
 	hba_tran->tran_unquiesce	= mptsas_scsi_unquiesce;
-	hba_tran->tran_bus_reset	= NULL;
+	hba_tran->tran_bus_reset	= 0;
 
-	hba_tran->tran_add_eventcall	= NULL;
-	hba_tran->tran_get_eventcookie	= NULL;
-	hba_tran->tran_post_event	= NULL;
-	hba_tran->tran_remove_eventcall	= NULL;
+	hba_tran->tran_add_eventcall	= 0;
+	hba_tran->tran_get_eventcookie	= 0;
+	hba_tran->tran_post_event	= 0;
+	hba_tran->tran_remove_eventcall	= 0;
 
 	hba_tran->tran_bus_config	= mptsas_bus_config;
 
@@ -2402,7 +2402,7 @@ mptsas_cache_create(mptsas_t *mpt)
 	mpt->m_kmem_cache = kmem_cache_create(buf,
 	    sizeof (struct mptsas_cmd) + scsi_pkt_size(), 8,
 	    mptsas_kmem_cache_constructor, mptsas_kmem_cache_destructor,
-	    NULL, (void *)mpt, NULL, 0);
+	    0, (void *)mpt, NULL, 0);
 
 	if (mpt->m_kmem_cache == NULL) {
 		mptsas_log(mpt, CE_WARN, "creating kmem cache failed");
@@ -2417,7 +2417,7 @@ mptsas_cache_create(mptsas_t *mpt)
 	mpt->m_cache_frames = kmem_cache_create(buf,
 	    sizeof (mptsas_cache_frames_t), 8,
 	    mptsas_cache_frames_constructor, mptsas_cache_frames_destructor,
-	    NULL, (void *)mpt, NULL, 0);
+	    0, (void *)mpt, NULL, 0);
 
 	if (mpt->m_cache_frames == NULL) {
 		mptsas_log(mpt, CE_WARN, "creating cache for frames failed");
@@ -11072,7 +11072,7 @@ static struct mptsas_func {
 	{ MPI2_FUNCTION_CONFIG, "CONFIG",		mpi_pre_config},
 	{ MPI2_FUNCTION_SAS_IO_UNIT_CONTROL, "SAS_IO_UNIT_CONTROL",
 	    mpi_pre_sas_io_unit_control },
-	{ 0xFF, NULL,				NULL } /* list end */
+	{ 0xFF, NULL,				0 } /* list end */
 };
 
 static void
@@ -14082,7 +14082,7 @@ mptsas_send_scsi_cmd(mptsas_t *mpt, struct scsi_address *ap,
 
 	pktp = scsi_init_pkt(ap, (struct scsi_pkt *)NULL,
 	    data_bp, cdblen, sizeof (struct scsi_arq_status),
-	    0, PKT_CONSISTENT, NULL, NULL);
+	    0, PKT_CONSISTENT, 0, NULL);
 	if (pktp == NULL) {
 		goto out;
 	}

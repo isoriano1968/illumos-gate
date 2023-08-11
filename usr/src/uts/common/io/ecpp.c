@@ -484,11 +484,11 @@ struct module_info ecppinfo = {
 };
 
 static struct qinit ecpp_rinit = {
-	putq, ecpp_rsrv, ecpp_open, ecpp_close, NULL, &ecppinfo, NULL
+	putq, ecpp_rsrv, ecpp_open, ecpp_close, 0, &ecppinfo, NULL
 };
 
 static struct qinit ecpp_wint = {
-	ecpp_wput, ecpp_wsrv, ecpp_open, ecpp_close, NULL, &ecppinfo, NULL
+	ecpp_wput, ecpp_wsrv, ecpp_open, ecpp_close, 0, &ecppinfo, NULL
 };
 
 struct streamtab ecpp_str_info = {

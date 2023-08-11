@@ -543,5 +543,5 @@ const fs_operation_def_t bootfs_vnodeops_template[] = {
 	VOPNAME_DELMAP,		{ .vop_delmap = bootfs_delmap },
 	VOPNAME_PATHCONF,	{ .vop_pathconf = bootfs_pathconf },
 	VOPNAME_VNEVENT,	{ .vop_vnevent = fs_vnevent_nosupport },
-	NULL,			NULL
+	NULL,			0
 };

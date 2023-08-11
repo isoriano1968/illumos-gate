@@ -559,7 +559,7 @@ lofsinit(int fstyp, char *name)
 		VFSNAME_SYNC,		{ .vfs_sync = lo_sync },
 		VFSNAME_VGET,		{ .vfs_vget = lo_vget },
 		VFSNAME_FREEVFS,	{ .vfs_freevfs = lo_freevfs },
-		NULL,			NULL
+		NULL,			0
 	};
 	int error;
 

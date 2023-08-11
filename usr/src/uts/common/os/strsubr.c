@@ -378,20 +378,20 @@ struct  module_info passthru_info = {
 
 struct  qinit passthru_rinit = {
 	pass_rput,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
 	&passthru_info,
 	NULL
 };
 
 struct  qinit passthru_winit = {
 	pass_wput,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
 	&passthru_info,
 	NULL
 };
@@ -862,20 +862,20 @@ strinit(void)
 
 	stream_head_cache = kmem_cache_create("stream_head_cache",
 	    sizeof (stdata_t), 0,
-	    stream_head_constructor, stream_head_destructor, NULL,
+	    stream_head_constructor, stream_head_destructor, 0,
 	    NULL, NULL, 0);
 
 	queue_cache = kmem_cache_create("queue_cache", sizeof (queinfo_t), 0,
-	    queue_constructor, queue_destructor, NULL, NULL, NULL, 0);
+	    queue_constructor, queue_destructor, 0, NULL, NULL, 0);
 
 	syncq_cache = kmem_cache_create("syncq_cache", sizeof (syncq_t), 0,
-	    syncq_constructor, syncq_destructor, NULL, NULL, NULL, 0);
+	    syncq_constructor, syncq_destructor, 0, NULL, NULL, 0);
 
 	qband_cache = kmem_cache_create("qband_cache",
-	    sizeof (qband_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (qband_t), 0, 0, 0, 0, NULL, NULL, 0);
 
 	linkinfo_cache = kmem_cache_create("linkinfo_cache",
-	    sizeof (linkinfo_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (linkinfo_t), 0, 0, 0, 0, NULL, NULL, 0);
 
 	n_ciputctrl = ncpus;
 	n_ciputctrl = 1 << highbit(n_ciputctrl - 1);
@@ -885,7 +885,7 @@ strinit(void)
 		ciputctrl_cache = kmem_cache_create("ciputctrl_cache",
 		    sizeof (ciputctrl_t) * n_ciputctrl,
 		    sizeof (ciputctrl_t), ciputctrl_constructor,
-		    ciputctrl_destructor, NULL, NULL, NULL, 0);
+		    ciputctrl_destructor, 0, NULL, NULL, 0);
 	}
 
 	streams_taskq = system_taskq;
@@ -3321,8 +3321,8 @@ shalloc(queue_t *qp)
 	stp->sd_read_opt = 0;
 	stp->sd_rprotofunc = strrput_proto;
 	stp->sd_rmiscfunc = strrput_misc;
-	stp->sd_rderrfunc = stp->sd_wrerrfunc = NULL;
-	stp->sd_rputdatafunc = stp->sd_wputdatafunc = NULL;
+	stp->sd_rderrfunc = stp->sd_wrerrfunc = 0;
+	stp->sd_rputdatafunc = stp->sd_wputdatafunc = 0;
 	stp->sd_ciputctrl = NULL;
 	stp->sd_nciputctrl = 0;
 	stp->sd_qhead = NULL;
@@ -4322,7 +4322,7 @@ strgeterr(stdata_t *stp, int32_t flags_to_check, int ispeek)
 			    &clearerr);
 			if (clearerr) {
 				stp->sd_flag &= ~STRDERR;
-				stp->sd_rderrfunc = NULL;
+				stp->sd_rderrfunc = 0;
 			}
 		}
 	} else if (sd_flag & STWRERR) {
@@ -4342,7 +4342,7 @@ strgeterr(stdata_t *stp, int32_t flags_to_check, int ispeek)
 			    &clearerr);
 			if (clearerr) {
 				stp->sd_flag &= ~STWRERR;
-				stp->sd_wrerrfunc = NULL;
+				stp->sd_wrerrfunc = 0;
 			}
 		}
 	} else if (sd_flag & STRHUP) {

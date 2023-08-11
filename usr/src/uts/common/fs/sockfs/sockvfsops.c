@@ -84,7 +84,7 @@ _init(void)
 	 * global zone, without us having to special case it here.
 	 */
 	zone_key_create(&sockfs_zone_key,
-	    sock_kstat_init, NULL, sock_kstat_fini);
+	    sock_kstat_init, 0, sock_kstat_fini);
 
 	if ((ret = mod_install(&modlinkage)) != 0) {
 		(void) zone_key_delete(sockfs_zone_key);

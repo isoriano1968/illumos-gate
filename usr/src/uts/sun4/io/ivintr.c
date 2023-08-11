@@ -150,7 +150,7 @@ iv_alloc(softint_type_t type)
 	mutex_enter(&intr_vec_cache_mutex);
 	if (intr_vec_cache == NULL)
 		intr_vec_cache = kmem_cache_create("intr_vec_cache",
-		    sizeof (intr_vec_t), 64, NULL, NULL, NULL, NULL, NULL, 0);
+		    sizeof (intr_vec_t), 64, 0, 0, 0, NULL, NULL, 0);
 	mutex_exit(&intr_vec_cache_mutex);
 
 	iv_p = kmem_cache_alloc(intr_vec_cache, KM_SLEEP);

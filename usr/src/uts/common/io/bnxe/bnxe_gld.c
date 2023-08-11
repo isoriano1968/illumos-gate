@@ -1653,7 +1653,7 @@ static void BnxeFillRing(void *            arg,
 
         pRingInfo->mri_driver = (mac_ring_driver_t)pRxQ;
         pRingInfo->mri_start  = BnxeRxRingStart;
-        pRingInfo->mri_stop   = NULL;
+        pRingInfo->mri_stop   = 0;
 #if defined(__S11) || defined(__S12)
         pRingInfo->mri_stat   = BnxeRingStat;
 #endif
@@ -1679,8 +1679,8 @@ static void BnxeFillRing(void *            arg,
         pTxQ->ringHandle = ringHandle;
 
         pRingInfo->mri_driver = (mac_ring_driver_t)pTxQ;
-        pRingInfo->mri_start  = NULL;
-        pRingInfo->mri_stop   = NULL;
+        pRingInfo->mri_start  = 0;
+        pRingInfo->mri_stop   = 0;
 #if defined(__S11) || defined(__S12)
         pRingInfo->mri_stat   = BnxeRingStat;
 #endif
@@ -1714,8 +1714,8 @@ static void BnxeFillGroup(void *             arg,
         pRxQGroup->groupHandle = groupHandle;
 
         pGroupInfo->mgi_driver = (mac_group_driver_t)pRxQGroup;
-        pGroupInfo->mgi_start  = NULL;
-        pGroupInfo->mgi_stop   = NULL;
+        pGroupInfo->mgi_start  = 0;
+        pGroupInfo->mgi_stop   = 0;
         pGroupInfo->mgi_addmac = BnxeRxRingGroupAddMac;
         pGroupInfo->mgi_remmac = BnxeRxRingGroupRemMac;
         pGroupInfo->mgi_count  = (pUM->devParams.numRings /
@@ -1795,8 +1795,8 @@ static boolean_t BnxeMacGetCapability(void *      pArg,
         pCapRings->mr_group_type = MAC_GROUP_TYPE_STATIC;
         pCapRings->mr_rnum       = pUM->devParams.numRings;
         pCapRings->mr_rget       = BnxeFillRing;
-        pCapRings->mr_gaddring   = NULL;
-        pCapRings->mr_gremring   = NULL;
+        pCapRings->mr_gaddring   = 0;
+        pCapRings->mr_gremring   = 0;
 #if (defined(__S11) || defined(__S12)) && !defined(ILLUMOS)
         pCapRings->mr_ggetringtc = NULL;
 #endif
@@ -1816,7 +1816,7 @@ static boolean_t BnxeMacGetCapability(void *      pArg,
 #else
             pCapRings->mr_gnum = 0;
 #endif
-            pCapRings->mr_gget = NULL;
+            pCapRings->mr_gget = 0;
             break;
 
         default:
@@ -2969,7 +2969,7 @@ static mac_callbacks_t bnxe_callbacks =
     BnxeMacStop,
     BnxeMacPromiscuous,
     BnxeMacMulticast,
-    NULL,
+    0,
     BnxeMacTx,
 #ifdef MC_RESOURCES
     BnxeMacResources,
@@ -2979,8 +2979,8 @@ static mac_callbacks_t bnxe_callbacks =
     BnxeMacIoctl,
     BnxeMacGetCapability,
 #ifdef MC_OPEN
-    NULL,
-    NULL,
+    0,
+    0,
 #endif
 #ifdef MC_SETPROP
     BnxeMacSetProperty,

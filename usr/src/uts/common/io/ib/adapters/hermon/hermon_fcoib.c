@@ -398,14 +398,14 @@ hermon_fcoib_init(hermon_state_t *state)
 		    state->hs_instance, i + 1);
 		fcoib->hfc_fexch_vmemp[i] = vmem_create(string,
 		    (void *)vmemstart, fcoib->hfc_fexch_qps_per_port,
-		    1, NULL, NULL, NULL, 0, VM_SLEEP);
+		    1, 0, 0, NULL, 0, VM_SLEEP);
 
 		/* init RFCI QP rsrc pool */
 		(void) sprintf(string, "hermon%d_port%d_rfci_vmem",
 		    state->hs_instance, i + 1);
 		fcoib->hfc_rfci_vmemp[i] = vmem_create(string,
 		    (void *)vmemstart, fcoib->hfc_rfci_qps_per_port,
-		    1, NULL, NULL, NULL, 0, VM_SLEEP);
+		    1, 0, 0, NULL, 0, VM_SLEEP);
 	}
 
 	mutex_exit(&fcoib->hfc_lock);

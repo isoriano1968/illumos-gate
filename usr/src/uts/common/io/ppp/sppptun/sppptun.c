@@ -175,7 +175,7 @@ static struct qinit sppptun_urinit = {
 	sppptun_ursrv,		/* qi_srvp */
 	sppptun_open,		/* qi_qopen */
 	sppptun_close,		/* qi_qclose */
-	NULL,			/* qi_qadmin */
+	0,			/* qi_qadmin */
 	&sppptun_modinfo,	/* qi_minfo */
 	NULL			/* qi_mstat */
 };
@@ -183,29 +183,29 @@ static struct qinit sppptun_urinit = {
 static struct qinit sppptun_uwinit = {
 	(int (*)())sppptun_uwput, /* qi_putp */
 	sppptun_uwsrv,		/* qi_srvp */
-	NULL,			/* qi_qopen */
-	NULL,			/* qi_qclose */
-	NULL,			/* qi_qadmin */
+	0,			/* qi_qopen */
+	0,			/* qi_qclose */
+	0,			/* qi_qadmin */
 	&sppptun_modinfo,	/* qi_minfo */
 	NULL			/* qi_mstat */
 };
 
 static struct qinit sppptun_lrinit = {
 	(int (*)())sppptun_lrput, /* qi_putp */
-	NULL,			/* qi_srvp */
-	NULL,			/* qi_qopen */
-	NULL,			/* qi_qclose */
-	NULL,			/* qi_qadmin */
+	0,			/* qi_srvp */
+	0,			/* qi_qopen */
+	0,			/* qi_qclose */
+	0,			/* qi_qadmin */
 	&sppptun_modinfo,	/* qi_minfo */
 	NULL			/* qi_mstat */
 };
 
 static struct qinit sppptun_lwinit = {
 	(int (*)())sppptun_lwput, /* qi_putp */
-	NULL,			/* qi_srvp */
-	NULL,			/* qi_qopen */
-	NULL,			/* qi_qclose */
-	NULL,			/* qi_qadmin */
+	0,			/* qi_srvp */
+	0,			/* qi_qopen */
+	0,			/* qi_qclose */
+	0,			/* qi_qadmin */
 	&sppptun_modinfo,	/* qi_minfo */
 	NULL			/* qi_mstat */
 };
@@ -2431,11 +2431,11 @@ sppptun_tcl_init(void)
 	tcl_slots = kmem_zalloc(tcl_nslots * sizeof (tuncl_t *), KM_SLEEP);
 
 	tcl_cache = kmem_cache_create("sppptun_map", sizeof (tuncl_t), 0,
-	    tcl_constructor, tcl_destructor, NULL, NULL, NULL, 0);
+	    tcl_constructor, tcl_destructor, 0, NULL, NULL, 0);
 
 	/* Allocate integer space for minor numbers */
 	tcl_minor_arena = vmem_create("sppptun_minor", (void *)1, tcl_nslots,
-	    1, NULL, NULL, NULL, 0, VM_SLEEP | VMC_IDENTIFIER);
+	    1, 0, 0, NULL, 0, VM_SLEEP | VMC_IDENTIFIER);
 
 	/*
 	 * Calculate available number of tunnels - how many tunnels

@@ -466,7 +466,7 @@ audio_rsrv(queue_t *rq)
 static struct dev_ops audio_dev_ops = {
 	DEVO_REV,		/* rev */
 	0,			/* refcnt */
-	NULL,			/* getinfo */
+	0,			/* getinfo */
 	nulldev,		/* identify */
 	nulldev,		/* probe */
 	audio_attach,		/* attach */
@@ -474,7 +474,7 @@ static struct dev_ops audio_dev_ops = {
 	nodev,			/* reset */
 	NULL,			/* cb_ops */
 	NULL,			/* bus_ops */
-	NULL,			/* power */
+	0,			/* power */
 };
 
 static struct modldrv modldrv = {
@@ -516,9 +516,9 @@ audio_init_ops(struct dev_ops *devops, const char *name)
 
 	helper->wqinit.qi_putp = audio_wput;
 	helper->wqinit.qi_srvp = audio_wsrv;
-	helper->wqinit.qi_qopen = NULL;
-	helper->wqinit.qi_qclose = NULL;
-	helper->wqinit.qi_qadmin = NULL;
+	helper->wqinit.qi_qopen = 0;
+	helper->wqinit.qi_qclose = 0;
+	helper->wqinit.qi_qadmin = 0;
 	helper->wqinit.qi_minfo = &helper->minfo;
 	helper->wqinit.qi_mstat = NULL;
 
@@ -526,7 +526,7 @@ audio_init_ops(struct dev_ops *devops, const char *name)
 	helper->rqinit.qi_srvp = audio_rsrv;
 	helper->rqinit.qi_qopen = audio_stropen;
 	helper->rqinit.qi_qclose = audio_strclose;
-	helper->rqinit.qi_qadmin = NULL;
+	helper->rqinit.qi_qadmin = 0;
 	helper->rqinit.qi_minfo = &helper->minfo;
 	helper->rqinit.qi_mstat = NULL;
 
@@ -563,7 +563,7 @@ audio_fini_ops(struct dev_ops *devops)
 {
 	kmem_free(devops->devo_cb_ops, sizeof (struct audio_ops_helper));
 	devops->devo_cb_ops = NULL;
-	devops->devo_getinfo = NULL;
+	devops->devo_getinfo = 0;
 }
 
 void

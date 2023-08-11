@@ -91,9 +91,9 @@ static audio_engine_ops_t audio1575_engine_ops = {
 	audio1575_channels,
 	audio1575_rate,
 	audio1575_sync,
-	NULL,
-	NULL,
-	NULL
+	0,
+	0,
+	0
 };
 
 /*
@@ -132,7 +132,7 @@ static void audio1575_destroy(audio1575_state_t *);
 static struct dev_ops audio1575_dev_ops = {
 	DEVO_REV,		/* devo_rev */
 	0,			/* devo_refcnt */
-	NULL,			/* devo_getinfo */
+	0,			/* devo_getinfo */
 	nulldev,		/* devo_identify - obsolete */
 	nulldev,		/* devo_probe */
 	audio1575_ddi_attach,	/* devo_attach */
@@ -140,7 +140,7 @@ static struct dev_ops audio1575_dev_ops = {
 	nodev,			/* devo_reset */
 	NULL,			/* devi_cb_ops */
 	NULL,			/* devo_bus_ops */
-	NULL,			/* devo_power */
+	0,			/* devo_power */
 	audio1575_ddi_quiesce,	/* devo_quiesce */
 };
 

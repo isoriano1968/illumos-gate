@@ -187,7 +187,7 @@ smb_kdoor_send(smb_server_t *sv, smb_doorarg_t *outer_da)
 	int		rc;
 
 	bcopy(outer_da, &da, sizeof (smb_doorarg_t));
-	da.da_rsp_xdr = NULL;
+	da.da_rsp_xdr = 0;
 	da.da_rsp_data = NULL;
 
 	if (smb_kdoor_encode(&da) != 0)
@@ -213,7 +213,7 @@ smb_kdoor_receive(smb_server_t *sv, smb_doorarg_t *outer_da)
 	da.da_opcode = SMB_DR_ASYNC_RESPONSE;
 	da.da_opname = smb_doorhdr_opname(da.da_opcode);
 	da.da_flags &= ~SMB_DF_ASYNC;
-	da.da_req_xdr = NULL;
+	da.da_req_xdr = 0;
 	da.da_req_data = NULL;
 
 	if (smb_kdoor_encode(&da) != 0)

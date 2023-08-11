@@ -208,7 +208,7 @@ const fs_operation_def_t spec_vnodeops_template[] = {
 	VOPNAME_PAGEIO,		{ .vop_pageio = spec_pageio },
 	VOPNAME_SETSECATTR,	{ .vop_setsecattr = spec_setsecattr },
 	VOPNAME_GETSECATTR,	{ .vop_getsecattr = spec_getsecattr },
-	NULL,			NULL
+	NULL,			0
 };
 
 /*
@@ -1521,7 +1521,7 @@ spec_fsync(
 		struct dk_callback spec_callback;
 
 		spec_callback.dkc_flag = FLUSH_VOLATILE;
-		spec_callback.dkc_callback = NULL;
+		spec_callback.dkc_callback = 0;
 
 		/* synchronous flush on volatile cache */
 		rc = cdev_ioctl(vp->v_rdev, DKIOCFLUSHWRITECACHE,

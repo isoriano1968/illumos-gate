@@ -934,7 +934,7 @@ rdsv3_ib_dma_map_sg_rdma(struct ib_device *dev, struct rdsv3_rdma_sg scat[],
 		/* transpose umem_cookie  to buf structure */
 		bp = ddi_umem_iosetup(scat[i].umem_cookie,
 		    scat[i].iovec.addr & PAGEOFFSET, scat[i].iovec.bytes,
-		    B_WRITE, 0, 0, NULL, DDI_UMEM_SLEEP);
+		    B_WRITE, 0, 0, 0, DDI_UMEM_SLEEP);
 		if (bp == NULL) {
 			/* free resources  and return error */
 			goto out;

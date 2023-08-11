@@ -180,5 +180,5 @@ void
 au_mem_init()
 {
 	au_buf_cache = kmem_cache_create("audit_buffer",
-	    sizeof (au_buff_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (au_buff_t), 0, 0, 0, 0, NULL, NULL, 0);
 }

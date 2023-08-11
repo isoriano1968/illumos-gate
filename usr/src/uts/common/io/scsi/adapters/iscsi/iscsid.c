@@ -102,7 +102,7 @@ static iscsid_thr_table iscsid_thr[] = {
 	{ iscsid_thread_isns, NULL,
 	    iSCSIDiscoveryMethodISNS,
 	    "iSNS" },
-	{ NULL, NULL,
+	{ 0, NULL,
 	    iSCSIDiscoveryMethodUnknown,
 	    NULL }
 };

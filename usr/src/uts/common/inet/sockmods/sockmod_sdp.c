@@ -41,7 +41,7 @@ static void socksdp_destroy(struct sonode *);
 static __smod_priv_t sosdp_priv = {
 	socksdp_create,
 	socksdp_destroy,
-	NULL
+	0
 };
 
 static smod_reg_t sinfo = {
@@ -49,7 +49,7 @@ static smod_reg_t sinfo = {
 	"socksdp",
 	SOCK_UC_VERSION,
 	SOCK_DC_VERSION,
-	NULL,
+	0,
 	&sosdp_priv
 };
 

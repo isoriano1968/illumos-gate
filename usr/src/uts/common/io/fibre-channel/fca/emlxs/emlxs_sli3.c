@@ -6170,7 +6170,7 @@ emlxs_mb_config_port(emlxs_hba_t *hba, MAILBOXQ *mbq, uint32_t sli_mode,
 
 	mb->mbxCommand = MBX_CONFIG_PORT;
 	mb->mbxOwner = OWN_HOST;
-	mbq->mbox_cmpl = NULL;
+	mbq->mbox_cmpl = 0;
 
 	mb->un.varCfgPort.pcbLen = sizeof (PCB);
 	mb->un.varCfgPort.hbainit[0] = hbainit;
@@ -6848,7 +6848,7 @@ emlxs_sli3_reg_did_mbcmpl(emlxs_hba_t *hba, MAILBOXQ *mbq)
 		mboxq->sbp = NULL;
 		mboxq->ubp = NULL;
 		mboxq->iocbq = NULL;
-		mboxq->mbox_cmpl = NULL;
+		mboxq->mbox_cmpl = 0;
 		mboxq->context = NULL;
 		mboxq->port = (void *)port;
 

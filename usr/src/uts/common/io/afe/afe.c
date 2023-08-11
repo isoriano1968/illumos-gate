@@ -185,9 +185,9 @@ static mac_callbacks_t afe_m_callbacks = {
 	afe_m_tx,
 	NULL,
 	afe_m_ioctl,	/* mc_ioctl */
-	NULL,		/* mc_getcapab */
-	NULL,		/* mc_open */
-	NULL,		/* mc_close */
+	0,		/* mc_getcapab */
+	0,		/* mc_open */
+	0,		/* mc_close */
 	afe_m_setprop,
 	afe_m_getprop,
 	afe_m_propinfo

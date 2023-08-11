@@ -164,7 +164,7 @@ static struct qinit rinit = {
 	usbms_rserv,		/* service procedure */
 	usbms_open,		/* called on startup */
 	usbms_close,		/* called on finish */
-	NULL,			/* for future use */
+	0,			/* for future use */
 	&usbms_mod_info,	/* module information structure */
 	NULL			/* module statistics structure */
 };
@@ -172,10 +172,10 @@ static struct qinit rinit = {
 /* write side queue information structure */
 static struct qinit winit = {
 	usbms_wput,		/* put procedure */
-	NULL,			/* no service proecedure needed */
-	NULL,			/* open not used on write side */
-	NULL,			/* close not used on write side */
-	NULL,			/* for future use */
+	0,			/* no service proecedure needed */
+	0,			/* open not used on write side */
+	0,			/* close not used on write side */
+	0,			/* for future use */
 	&usbms_mod_info,	/* module information structure */
 	NULL			/* module statistics structure */
 };

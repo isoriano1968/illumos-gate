@@ -206,11 +206,11 @@ static int des_key_check(crypto_provider_handle_t, crypto_mechanism_t *,
     crypto_key_t *);
 
 static crypto_key_ops_t des_key_ops = {
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
+	0,
 	des_key_check
 };
 

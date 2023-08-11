@@ -115,32 +115,32 @@ vnex_ctl(dev_info_t *, dev_info_t *, ddi_ctl_enum_t, void *, void *);
 static struct bus_ops vnex_bus_ops = {
 	BUSO_REV,
 	nullbusmap,
-	NULL,	/* NO OP */
-	NULL,	/* NO OP */
-	NULL,	/* NO OP */
+	0,	/* NO OP */
+	0,	/* NO OP */
+	0,	/* NO OP */
 	i_ddi_map_fault,
 	ddi_no_dma_map,
 	ddi_no_dma_allochdl,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
 	vnex_ctl,
 	ddi_bus_prop_op,
-	NULL,	/* (*bus_get_eventcookie)();    */
-	NULL,	/* (*bus_add_eventcall)();	*/
-	NULL,	/* (*bus_remove_eventcall)();   */
-	NULL,	/* (*bus_post_event)();		*/
-	NULL,	/* (*bus_intr_ctl)();		*/
-	NULL,	/* (*bus_config)();		*/
-	NULL,	/* (*bus_unconfig)();		*/
-	NULL,	/* (*bus_fm_init)();		*/
-	NULL,	/* (*bus_fm_fini)();		*/
-	NULL,	/* (*bus_fm_access_enter)();	*/
-	NULL,	/* (*bus_fm_access_fini)();	*/
-	NULL,	/* (*bus_power)();		*/
+	0,	/* (*bus_get_eventcookie)();    */
+	0,	/* (*bus_add_eventcall)();	*/
+	0,	/* (*bus_remove_eventcall)();   */
+	0,	/* (*bus_post_event)();		*/
+	0,	/* (*bus_intr_ctl)();		*/
+	0,	/* (*bus_config)();		*/
+	0,	/* (*bus_unconfig)();		*/
+	0,	/* (*bus_fm_init)();		*/
+	0,	/* (*bus_fm_fini)();		*/
+	0,	/* (*bus_fm_access_enter)();	*/
+	0,	/* (*bus_fm_access_fini)();	*/
+	0,	/* (*bus_power)();		*/
 	vnex_intr_ops	/* (*bus_intr_op)();	*/
 };
 

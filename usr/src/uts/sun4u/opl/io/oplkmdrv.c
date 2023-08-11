@@ -135,7 +135,7 @@ struct dev_ops okm_ops = {
 	nodev,			/* reset */
 	&okm_cb_ops,		/* driver operations */
 	(struct bus_ops *)0,	/* no bus operations */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

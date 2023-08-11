@@ -200,7 +200,7 @@ stop_other_cpus(void)
 	if (ncpus > 1)
 		intr_redist_all_cpus_shutdown();
 
-	pause_cpus(NULL, NULL);
+	pause_cpus(NULL, 0);
 	cpu_are_paused = 1;
 
 	mutex_exit(&cpu_lock);

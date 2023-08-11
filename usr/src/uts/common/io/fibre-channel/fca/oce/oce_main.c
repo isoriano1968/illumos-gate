@@ -101,8 +101,8 @@ static struct cb_ops oce_cb_ops = {
 static struct dev_ops oce_dev_ops = {
 	DEVO_REV,	/* devo_rev */
 	0,		/* devo_refcnt */
-	NULL,		/* devo_getinfo */
-	NULL,		/* devo_identify */
+	0,		/* devo_getinfo */
+	0,		/* devo_identify */
 	nulldev,	/* devo_probe */
 	oce_attach,	/* devo_attach */
 	oce_detach,	/* devo_detach */
@@ -137,8 +137,8 @@ static mac_callbacks_t oce_mac_cb = {
 	NULL,			/* mc_reserve */
 	oce_m_ioctl,		/* mc_ioctl */
 	oce_m_getcap,		/* mc_getcapab */
-	NULL,			/* open */
-	NULL,			/* close */
+	0,			/* open */
+	0,			/* close */
 	oce_m_setprop,		/* set properties */
 	oce_m_getprop,		/* get properties */
 	oce_m_propinfo		/* properties info */

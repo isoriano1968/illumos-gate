@@ -157,7 +157,7 @@ static struct dev_ops nsmb_ops = {
 	nodev,		/* reset */
 	&nsmb_cbops,	/* driver ops - devctl interfaces */
 	NULL,		/* bus operations */
-	NULL,		/* power */
+	0,		/* power */
 	ddi_quiesce_not_needed,	/* quiesce */
 };
 
@@ -198,7 +198,7 @@ _init(void)
 	smb_pkey_init();
 
 #ifdef	_KERNEL
-	zone_key_create(&nsmb_zone_key, NULL, nsmb_zone_shutdown,
+	zone_key_create(&nsmb_zone_key, 0, nsmb_zone_shutdown,
 	    nsmb_zone_destroy);
 
 	/*

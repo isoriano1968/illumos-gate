@@ -394,7 +394,7 @@ sod_init()
 {
 	/* Allocate sodirect_t kmem_cache */
 	sock_sod_cache = kmem_cache_create("sock_sod_cache",
-	    sizeof (sodirect_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (sodirect_t), 0, 0, 0, 0, NULL, NULL, 0);
 
 	return (0);
 }

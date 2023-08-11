@@ -55,10 +55,10 @@ static uint_t av1394_isoch_softintr(caddr_t);
 
 static struct devmap_callback_ctl av1394_isoch_devmap_ops = {
 	DEVMAP_OPS_REV,		/* rev */
-	NULL,			/* map */
-	NULL,			/* access */
-	NULL,			/* dup */
-	NULL,			/* unmap */
+	0,			/* map */
+	0,			/* access */
+	0,			/* dup */
+	0,			/* unmap */
 };
 
 /* tunables */

@@ -175,20 +175,20 @@ static struct module_info hdlc_minfo = {
 
 static struct qinit hdlc_rinit = {
 	putq,		/* input put procedure */
-	NULL,		/* input service procedure */
+	0,		/* input service procedure */
 	zsh_open,	/* open procedure */
 	zsh_close,	/* close procedure */
-	NULL,		/* reserved */
+	0,		/* reserved */
 	&hdlc_minfo,	/* module info */
 	NULL		/* reserved */
 };
 
 static struct qinit hdlc_winit = {
 	zsh_wput,	/* output put procedure */
-	NULL,		/* output service procedure */
-	NULL,		/* open procedure */
-	NULL,		/* close procedure */
-	NULL,		/* reserved */
+	0,		/* output service procedure */
+	0,		/* open procedure */
+	0,		/* close procedure */
+	0,		/* reserved */
 	&hdlc_minfo,	/* module info */
 	NULL		/* reserved */
 };
@@ -260,8 +260,8 @@ struct zsops zsops_hdlc = {
 	zsh_rxint,
 	zsh_srint,
 	zsh_softint,
-	NULL,
-	NULL
+	0,
+	0
 };
 
 static int	zsh_program(struct zscom *zs, struct scc_mode *sm);

@@ -311,9 +311,9 @@ netstack_unregister(int moduleid)
 		mutex_exit(&ns->netstack_lock);
 	}
 
-	ns_reg[moduleid].nr_create = NULL;
-	ns_reg[moduleid].nr_shutdown = NULL;
-	ns_reg[moduleid].nr_destroy = NULL;
+	ns_reg[moduleid].nr_create = 0;
+	ns_reg[moduleid].nr_shutdown = 0;
+	ns_reg[moduleid].nr_destroy = 0;
 	ns_reg[moduleid].nr_flags = 0;
 	mutex_exit(&netstack_g_lock);
 }

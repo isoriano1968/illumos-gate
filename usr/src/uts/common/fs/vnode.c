@@ -378,7 +378,7 @@ static const fs_operation_trans_def_t vn_ops_table[] = {
 	VOPNAME_RETZCBUF, offsetof(struct vnodeops, vop_retzcbuf),
 	    fs_nosys, fs_nosys,
 
-	NULL, 0, NULL, NULL
+	NULL, 0, 0, 0
 };
 
 /* Extensible attribute (xva) routines. */
@@ -588,7 +588,7 @@ vopstats_startup()
 	mutex_init(&vskstat_tree_lock, NULL, MUTEX_DEFAULT, NULL);
 
 	vsk_anchor_cache = kmem_cache_create("vsk_anchor_cache",
-	    sizeof (vsk_anchor_t), sizeof (uintptr_t), NULL, NULL, NULL,
+	    sizeof (vsk_anchor_t), sizeof (uintptr_t), 0, 0, 0,
 	    NULL, NULL, 0);
 
 	/*
@@ -2372,7 +2372,7 @@ vn_create_cache(void)
 	ASSERT((1 << VNODE_ALIGN_LOG2) ==
 	    P2ROUNDUP(sizeof (struct vnode), VNODE_ALIGN));
 	vn_cache = kmem_cache_create("vn_cache", sizeof (struct vnode),
-	    VNODE_ALIGN, vn_cache_constructor, vn_cache_destructor, NULL, NULL,
+	    VNODE_ALIGN, vn_cache_constructor, vn_cache_destructor, 0, NULL,
 	    NULL, 0);
 }
 
@@ -4573,7 +4573,7 @@ vsd_destroy(uint_t *keyp)
 		/*
 		 * actually free the key (NULL destructor == unused)
 		 */
-		vsd_destructor[k] = NULL;
+		vsd_destructor[k] = 0;
 	}
 
 	mutex_exit(&vsd_lock);

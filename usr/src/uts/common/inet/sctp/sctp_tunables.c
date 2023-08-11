@@ -354,17 +354,17 @@ mod_prop_info_t sctp_propinfo_tbl[] = {
 	    {1, ULP_MAX_PORT, 0}, {0} },
 
 	{ "_listener_limit_conf", MOD_PROTO_SCTP,
-	    NULL, sctp_listener_conf_get, {0}, {0} },
+	    0, sctp_listener_conf_get, {0}, {0} },
 
 	{ "_listener_limit_conf_add", MOD_PROTO_SCTP,
-	    sctp_listener_conf_add, NULL, {0}, {0} },
+	    sctp_listener_conf_add, 0, {0}, {0} },
 
 	{ "_listener_limit_conf_del", MOD_PROTO_SCTP,
-	    sctp_listener_conf_del, NULL, {0}, {0} },
+	    sctp_listener_conf_del, 0, {0}, {0} },
 
-	{ "?", MOD_PROTO_SCTP, NULL, mod_get_allprop, {0}, {0} },
+	{ "?", MOD_PROTO_SCTP, 0, mod_get_allprop, {0}, {0} },
 
-	{ NULL, 0, NULL, NULL, {0}, {0} }
+	{ NULL, 0, 0, 0, {0}, {0} }
 };
 
 int sctp_propinfo_count = A_CNT(sctp_propinfo_tbl);

@@ -334,7 +334,7 @@ const fs_operation_def_t ctfs_tops_event[] = {
 	{ VOPNAME_LOOKUP,	{ .error = fs_notdir } },
 	{ VOPNAME_INACTIVE,	{ .vop_inactive = ctfs_ev_inactive } },
 	{ VOPNAME_POLL,		{ .vop_poll = ctfs_ev_poll } },
-	{ NULL, NULL }
+	{ NULL, 0 }
 };
 
 /*
@@ -494,5 +494,5 @@ const fs_operation_def_t ctfs_tops_bundle[] = {
 	{ VOPNAME_LOOKUP,	{ .error = fs_notdir } },
 	{ VOPNAME_INACTIVE,	{ .vop_inactive = ctfs_bu_inactive } },
 	{ VOPNAME_POLL,		{ .vop_poll = ctfs_bu_poll } },
-	{ NULL, NULL }
+	{ NULL, 0 }
 };

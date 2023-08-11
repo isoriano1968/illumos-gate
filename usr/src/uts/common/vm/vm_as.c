@@ -636,7 +636,7 @@ void
 as_init(void)
 {
 	as_cache = kmem_cache_create("as_cache", sizeof (struct as), 0,
-	    as_constructor, as_destructor, NULL, NULL, NULL, 0);
+	    as_constructor, as_destructor, 0, NULL, NULL, 0);
 }
 
 /*

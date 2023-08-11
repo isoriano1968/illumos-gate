@@ -404,7 +404,7 @@ smb_llist_init(void)
 		return;
 
 	smb_dtor_cache = kmem_cache_create("smb_dtor_cache",
-	    sizeof (smb_dtor_t), 8, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (smb_dtor_t), 8, 0, 0, 0, NULL, NULL, 0);
 }
 
 /*

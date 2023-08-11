@@ -97,7 +97,7 @@ static struct dev_ops pcf8574_ops = {
 	nodev,
 	&pcf8574_cbops,
 	NULL,			/* bus_ops */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

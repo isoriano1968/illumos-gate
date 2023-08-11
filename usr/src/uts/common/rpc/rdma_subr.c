@@ -491,8 +491,8 @@ rdma_modload()
 	 */
 	if (!clist_cache) {
 		clist_cache = kmem_cache_create("rdma_clist",
-		    sizeof (struct clist), _POINTER_ALIGNMENT, NULL,
-		    NULL, NULL, NULL, 0, 0);
+		    sizeof (struct clist), _POINTER_ALIGNMENT, 0,
+		    0, 0, NULL, 0, 0);
 		rdma_kstat_init();
 	}
 

@@ -275,7 +275,7 @@ void
 dce_g_init(void)
 {
 	dce_cache = kmem_cache_create("dce_cache",
-	    sizeof (dce_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (dce_t), 0, 0, 0, 0, NULL, NULL, 0);
 
 	mutex_init(&dce_reclaim_lock, NULL, MUTEX_DEFAULT, NULL);
 	cv_init(&dce_reclaim_cv, NULL, CV_DEFAULT, NULL);

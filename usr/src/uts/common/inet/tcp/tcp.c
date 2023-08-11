@@ -316,25 +316,25 @@ static struct module_info tcp_winfo =  {
  * We have separate open functions for the /dev/tcp and /dev/tcp6 devices.
  */
 struct qinit tcp_rinitv4 = {
-	NULL, tcp_rsrv, tcp_openv4, tcp_tpi_close, NULL, &tcp_rinfo
+	0, tcp_rsrv, tcp_openv4, tcp_tpi_close, 0, &tcp_rinfo
 };
 
 struct qinit tcp_rinitv6 = {
-	NULL, tcp_rsrv, tcp_openv6, tcp_tpi_close, NULL, &tcp_rinfo
+	0, tcp_rsrv, tcp_openv6, tcp_tpi_close, 0, &tcp_rinfo
 };
 
 struct qinit tcp_winit = {
-	tcp_wput, tcp_wsrv, NULL, NULL, NULL, &tcp_winfo
+	tcp_wput, tcp_wsrv, 0, 0, 0, &tcp_winfo
 };
 
 /* Initial entry point for TCP in socket mode. */
 struct qinit tcp_sock_winit = {
-	tcp_wput_sock, tcp_wsrv, NULL, NULL, NULL, &tcp_winfo
+	tcp_wput_sock, tcp_wsrv, 0, 0, 0, &tcp_winfo
 };
 
 /* TCP entry point during fallback */
 struct qinit tcp_fallback_sock_winit = {
-	tcp_wput_fallback, NULL, NULL, NULL, NULL, &tcp_winfo
+	tcp_wput_fallback, 0, 0, 0, 0, &tcp_winfo
 };
 
 /*
@@ -343,11 +343,11 @@ struct qinit tcp_fallback_sock_winit = {
  * been created.
  */
 struct qinit tcp_acceptor_rinit = {
-	NULL, tcp_rsrv, NULL, tcp_tpi_close_accept, NULL, &tcp_winfo
+	0, tcp_rsrv, 0, tcp_tpi_close_accept, 0, &tcp_winfo
 };
 
 struct qinit tcp_acceptor_winit = {
-	tcp_tpi_accept, NULL, NULL, NULL, NULL, &tcp_winfo
+	tcp_tpi_accept, 0, 0, 0, 0, &tcp_winfo
 };
 
 /* For AF_INET aka /dev/tcp */
@@ -3719,10 +3719,10 @@ tcp_ddi_g_init(void)
 {
 	tcp_timercache = kmem_cache_create("tcp_timercache",
 	    sizeof (tcp_timer_t) + sizeof (mblk_t), 0,
-	    NULL, NULL, NULL, NULL, NULL, 0);
+	    0, 0, 0, NULL, NULL, 0);
 
 	tcp_notsack_blk_cache = kmem_cache_create("tcp_notsack_blk_cache",
-	    sizeof (notsack_blk_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (notsack_blk_t), 0, 0, 0, 0, NULL, NULL, 0);
 
 	mutex_init(&tcp_random_lock, NULL, MUTEX_DEFAULT, NULL);
 
@@ -3741,7 +3741,7 @@ tcp_ddi_g_init(void)
 	 * destroyed in the kernel, so we can maintain the
 	 * set of tcp_stack_t's.
 	 */
-	netstack_register(NS_TCP, tcp_stack_init, NULL, tcp_stack_fini);
+	netstack_register(NS_TCP, tcp_stack_init, 0, tcp_stack_fini);
 }
 
 

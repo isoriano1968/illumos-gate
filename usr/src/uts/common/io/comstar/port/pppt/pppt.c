@@ -95,7 +95,7 @@ static struct dev_ops pppt_dev_ops = {
 	nodev,			/* devo_reset */
 	&pppt_cb_ops,		/* devo_cb_ops */
 	NULL,			/* devo_bus_ops */
-	NULL,			/* devo_power */
+	0,			/* devo_power */
 	ddi_quiesce_not_needed,	/* quiesce */
 };
 
@@ -462,7 +462,7 @@ pppt_enable_svc(void)
 	pp->pp_portif_rev = PORTIF_REV_1;
 	pp->pp_instance = 0;
 	pp->pp_name = PPPT_MODNAME;
-	pp->pp_cb = NULL;
+	pp->pp_cb = 0;
 
 	pppt_global.global_pp = pp;
 

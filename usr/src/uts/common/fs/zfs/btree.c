@@ -164,7 +164,7 @@ void
 zfs_btree_init(void)
 {
 	zfs_btree_leaf_cache = kmem_cache_create("zfs_btree_leaf_cache",
-	    BTREE_LEAF_SIZE, 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    BTREE_LEAF_SIZE, 0, 0, 0, 0, NULL, NULL, 0);
 }
 
 void
@@ -1275,7 +1275,7 @@ void *
 zfs_btree_next(zfs_btree_t *tree, const zfs_btree_index_t *idx,
     zfs_btree_index_t *out_idx)
 {
-	return (zfs_btree_next_helper(tree, idx, out_idx, NULL));
+	return (zfs_btree_next_helper(tree, idx, out_idx, 0));
 }
 
 /*

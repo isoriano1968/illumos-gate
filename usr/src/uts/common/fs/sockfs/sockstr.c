@@ -314,7 +314,7 @@ so_stream2sock(struct sonode *so)
 	 * This makes a read sleeping during the I_PUSH of sockmod return
 	 * EIO.
 	 */
-	strsetrerror(SOTOV(so), EIO, 1, NULL);
+	strsetrerror(SOTOV(so), EIO, 1, 0);
 
 	/*
 	 * Get the read lock before flushing data to avoid
@@ -324,7 +324,7 @@ so_stream2sock(struct sonode *so)
 	(void) so_lock_read(so, 0);	/* Set SOREADLOCKED */
 	mutex_exit(&so->so_lock);
 
-	strsetrerror(SOTOV(so), 0, 0, NULL);
+	strsetrerror(SOTOV(so), 0, 0, 0);
 	so_installhooks(so);
 
 	/*
@@ -366,7 +366,7 @@ so_removehooks(struct sonode *so)
 {
 	struct vnode *vp = SOTOV(so);
 
-	strsetrputhooks(vp, 0, NULL, NULL);
+	strsetrputhooks(vp, 0, 0, 0);
 	strsetwputhooks(vp, 0, STRTIMOUT);
 	/*
 	 * Leave read behavior as it would have been for a normal

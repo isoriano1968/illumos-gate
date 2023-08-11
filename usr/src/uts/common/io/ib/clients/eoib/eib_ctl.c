@@ -375,7 +375,7 @@ eib_rb_ctl_setup_cq(eib_t *ss, eib_vnic_t *vnic)
 	 * Reset any completion handler we may have set up
 	 */
 	if (chan->ch_cq_hdl)
-		ibt_set_cq_handler(chan->ch_cq_hdl, NULL, NULL);
+		ibt_set_cq_handler(chan->ch_cq_hdl, 0, NULL);
 
 	/*
 	 * Remove any softint we may have allocated for this cq

@@ -269,7 +269,7 @@ i_cpr_mp_setup(void)
 		for (cp = CPU->cpu_next; cp != CPU; cp = cp->cpu_next)
 			restart_other_cpu(cp->cpu_id);
 
-		pause_cpus(NULL, NULL);
+		pause_cpus(NULL, 0);
 		mutex_exit(&cpu_lock);
 
 		i_cpr_xcall(i_cpr_clear_entries);
@@ -1718,7 +1718,7 @@ i_cpr_save_tlbinfo(void)
 	cti.dst = m_info.dtte;
 	cti.tail = cti.dst + CPR_MAX_TLB;
 	cti.reader = dtlb_rd_entry;
-	cti.writer = NULL;
+	cti.writer = 0;
 	cti.filter = i_cpr_lnb;
 	cti.index = cpunodes[CPU->cpu_id].dtlb_size - 1;
 

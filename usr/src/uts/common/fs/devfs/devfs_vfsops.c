@@ -134,7 +134,7 @@ devfsinit(int fstype, char *name)
 		VFSNAME_STATVFS,	{ .vfs_statvfs = devfs_statvfs },
 		VFSNAME_SYNC,		{ .vfs_sync = fs_sync },
 		VFSNAME_MOUNTROOT,	{ .vfs_mountroot = devfs_mountroot },
-		NULL,			NULL
+		NULL,			0
 	};
 	int error;
 	int dev;

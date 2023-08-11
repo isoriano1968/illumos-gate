@@ -130,7 +130,7 @@ _init(void)
 		return (rc);
 
 	iptun_cache = kmem_cache_create("iptun_cache", sizeof (iptun_t), 0,
-	    iptun_constructor, iptun_destructor, NULL, NULL, NULL, 0);
+	    iptun_constructor, iptun_destructor, 0, NULL, NULL, 0);
 	if (iptun_cache == NULL) {
 		ldi_ident_release(iptun_ldi_ident);
 		return (ENOMEM);

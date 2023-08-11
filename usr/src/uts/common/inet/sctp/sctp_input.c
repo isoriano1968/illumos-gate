@@ -257,7 +257,7 @@ void
 sctp_sets_init()
 {
 	sctp_kmem_set_cache = kmem_cache_create("sctp_set_cache",
-	    sizeof (sctp_set_t), 0, NULL, NULL, NULL, NULL,
+	    sizeof (sctp_set_t), 0, 0, 0, 0, NULL,
 	    NULL, 0);
 }
 

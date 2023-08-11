@@ -82,7 +82,7 @@ static struct dev_ops ufmtest_ops = {
 	.devo_reset =		nodev,
 	.devo_cb_ops =		&ufmtest_cb_ops,
 	.devo_bus_ops =		NULL,
-	.devo_power =		NULL,
+	.devo_power =		0,
 	.devo_quiesce =		ddi_quiesce_not_needed
 };
 

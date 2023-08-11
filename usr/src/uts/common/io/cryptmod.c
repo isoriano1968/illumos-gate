@@ -96,7 +96,7 @@ static struct qinit	cryptmod_rinit = {
 	cryptmodrsrv,	/* qi_svc */
 	cryptmodopen,	/* qi_qopen */
 	cryptmodclose,	/* qi_qclose */
-	NULL,		/* qi_qadmin */
+	0,		/* qi_qadmin */
 	&cryptmod_minfo,	/* qi_minfo */
 	NULL		/* qi_mstat */
 };
@@ -104,9 +104,9 @@ static struct qinit	cryptmod_rinit = {
 static struct qinit	cryptmod_winit = {
 	cryptmodwput,	/* qi_putp */
 	cryptmodwsrv,	/* qi_srvp */
-	NULL,		/* qi_qopen */
-	NULL,		/* qi_qclose */
-	NULL,		/* qi_qadmin */
+	0,		/* qi_qopen */
+	0,		/* qi_qclose */
+	0,		/* qi_qadmin */
 	&cryptmod_minfo,	/* qi_minfo */
 	NULL		/* qi_mstat */
 };
@@ -138,7 +138,7 @@ static int crc32_calc(uchar_t *, uchar_t *, uint_t);
 static int md5_calc(uchar_t *, uchar_t *, uint_t);
 static int sha1_calc(uchar_t *, uchar_t *, uint_t);
 
-static hash_info_t null_hash = {0, 0, NULL};
+static hash_info_t null_hash = {0, 0, 0};
 static hash_info_t crc32_hash = {CRC32_HASHSIZE, CONFOUNDER_LEN, crc32_calc};
 static hash_info_t md5_hash = {MD5_HASHSIZE, CONFOUNDER_LEN, md5_calc};
 static hash_info_t sha1_hash = {SHA1_HASHSIZE, CONFOUNDER_LEN, sha1_calc};

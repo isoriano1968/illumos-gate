@@ -509,9 +509,9 @@ audio_engine_ops_t audiopci_engine_ops = {
 	audiopci_channels,
 	audiopci_rate,
 	audiopci_sync,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
 };
 
 static uint16_t
@@ -1367,7 +1367,7 @@ audiopci_ddi_detach(dev_info_t *dip, ddi_detach_cmd_t cmd)
 static struct dev_ops audiopci_dev_ops = {
 	DEVO_REV,		/* rev */
 	0,			/* refcnt */
-	NULL,			/* getinfo */
+	0,			/* getinfo */
 	nulldev,		/* identify */
 	nulldev,		/* probe */
 	audiopci_ddi_attach,	/* attach */
@@ -1375,7 +1375,7 @@ static struct dev_ops audiopci_dev_ops = {
 	nodev,			/* reset */
 	NULL,			/* cb_ops */
 	NULL,			/* bus_ops */
-	NULL,			/* power */
+	0,			/* power */
 	audiopci_quiesce,	/* quiesce */
 };
 

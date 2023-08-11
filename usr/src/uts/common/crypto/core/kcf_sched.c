@@ -1200,15 +1200,15 @@ kcf_sched_init(void)
 	 */
 	kcf_sreq_cache = kmem_cache_create("kcf_sreq_cache",
 	    sizeof (struct kcf_sreq_node), 64, kcf_sreq_cache_constructor,
-	    kcf_sreq_cache_destructor, NULL, NULL, NULL, 0);
+	    kcf_sreq_cache_destructor, 0, NULL, NULL, 0);
 
 	kcf_areq_cache = kmem_cache_create("kcf_areq_cache",
 	    sizeof (struct kcf_areq_node), 64, kcf_areq_cache_constructor,
-	    kcf_areq_cache_destructor, NULL, NULL, NULL, 0);
+	    kcf_areq_cache_destructor, 0, NULL, NULL, 0);
 
 	kcf_context_cache = kmem_cache_create("kcf_context_cache",
 	    sizeof (struct kcf_context), 64, kcf_context_cache_constructor,
-	    kcf_context_cache_destructor, NULL, NULL, NULL, 0);
+	    kcf_context_cache_destructor, 0, NULL, NULL, 0);
 
 	gswq = kmem_alloc(sizeof (kcf_global_swq_t), KM_SLEEP);
 

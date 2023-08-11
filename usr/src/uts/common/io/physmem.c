@@ -112,7 +112,7 @@ const fs_operation_def_t physmem_vnodeops_template[] = {
 	VOPNAME_ADDMAP,		{ .vop_addmap = physmem_addmap },
 	VOPNAME_DELMAP,		{ .vop_delmap = physmem_delmap },
 	VOPNAME_INACTIVE,	{ .vop_inactive = physmem_inactive },
-	NULL,			NULL
+	NULL,			0
 };
 
 vnodeops_t *physmem_vnodeops = NULL;
@@ -933,8 +933,8 @@ static struct cb_ops physmem_cb_ops = {
 	NULL,		/* cb_str */
 	D_NEW | D_MP | D_DEVMAP,
 	CB_REV,
-	NULL,
-	NULL
+	0,
+	0
 };
 
 static struct dev_ops physmem_ops = {
@@ -948,7 +948,7 @@ static struct dev_ops physmem_ops = {
 	nodev,
 	&physmem_cb_ops,
 	NULL,
-	NULL,
+	0,
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

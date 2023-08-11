@@ -198,7 +198,7 @@ traverse_prefetch_metadata(traverse_data_t *td,
 	if ((td->td_flags & TRAVERSE_NO_DECRYPT) && BP_IS_PROTECTED(bp))
 		zio_flags |= ZIO_FLAG_RAW;
 
-	(void) arc_read(NULL, td->td_spa, bp, NULL, NULL,
+	(void) arc_read(NULL, td->td_spa, bp, 0, NULL,
 	    ZIO_PRIORITY_ASYNC_READ, zio_flags, &flags, zb);
 }
 
@@ -542,7 +542,7 @@ traverse_prefetcher(spa_t *spa, zilog_t *zilog, const blkptr_t *bp,
 	if ((pfd->pd_flags & TRAVERSE_NO_DECRYPT) && BP_IS_PROTECTED(bp))
 		zio_flags |= ZIO_FLAG_RAW;
 
-	(void) arc_read(NULL, spa, bp, NULL, NULL, ZIO_PRIORITY_ASYNC_READ,
+	(void) arc_read(NULL, spa, bp, 0, NULL, ZIO_PRIORITY_ASYNC_READ,
 	    zio_flags, &aflags, zb);
 
 	return (0);

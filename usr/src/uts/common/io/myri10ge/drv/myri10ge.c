@@ -3753,8 +3753,8 @@ myri10ge_fill_group(void *arg, mac_ring_type_t rtype, const int index,
 		return;
 
 	infop->mgi_driver = (mac_group_driver_t)mgp;
-	infop->mgi_start = NULL;
-	infop->mgi_stop = NULL;
+	infop->mgi_start = 0;
+	infop->mgi_stop = 0;
 	infop->mgi_addmac = myri10ge_addmac;
 	infop->mgi_remmac = myri10ge_remmac;
 	infop->mgi_count = mgp->num_slices;
@@ -3869,7 +3869,7 @@ myri10ge_fill_ring(void *arg, mac_ring_type_t rtype, const int rg_index,
 		ss->rx_rh = rh;
 		infop->mri_driver = (mac_ring_driver_t)ss;
 		infop->mri_start = myri10ge_ring_start;
-		infop->mri_stop = NULL;
+		infop->mri_stop = 0;
 		infop->mri_poll = myri10ge_poll_rx;
 		infop->mri_stat = myri10ge_rx_ring_stat;
 		mintr->mi_handle = (mac_intr_handle_t)ss;
@@ -3879,8 +3879,8 @@ myri10ge_fill_ring(void *arg, mac_ring_type_t rtype, const int rg_index,
 	case MAC_RING_TYPE_TX:
 		ss->tx.rh = rh;
 		infop->mri_driver = (mac_ring_driver_t)ss;
-		infop->mri_start = NULL;
-		infop->mri_stop = NULL;
+		infop->mri_start = 0;
+		infop->mri_stop = 0;
 		infop->mri_tx = myri10ge_send_wrapper;
 		infop->mri_stat = myri10ge_tx_ring_stat;
 		break;
@@ -5182,7 +5182,7 @@ myri10ge_m_getcapab(void *arg, mac_capab_t cap, void *cap_data)
 			cap_rings->mr_rnum = mgp->num_slices;
 			cap_rings->mr_gnum = 0;
 			cap_rings->mr_rget = myri10ge_fill_ring;
-			cap_rings->mr_gget = NULL;
+			cap_rings->mr_gget = 0;
 			break;
 		default:
 			return (B_FALSE);
@@ -5408,15 +5408,15 @@ static mac_callbacks_t myri10ge_m_callbacks = {
 	myri10ge_m_stop,
 	myri10ge_m_promisc,
 	myri10ge_m_multicst,
-	NULL,
-	NULL,
+	0,
+	0,
 	NULL,
 	myri10ge_m_ioctl,
 	myri10ge_m_getcapab,
-	NULL,
-	NULL,
+	0,
+	0,
 	myri10ge_m_setprop,
-	NULL,
+	0,
 	myri10ge_m_propinfo
 };
 

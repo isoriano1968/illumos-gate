@@ -433,17 +433,17 @@ mc_detach(dev_info_t *devi, ddi_detach_cmd_t cmd)
 	mutex_enter(&mcmutex);
 	if (nmcs == 0) {
 		if (&p2get_mem_unum)
-			p2get_mem_unum = NULL;
+			p2get_mem_unum = 0;
 		if (&p2get_mem_info)
-			p2get_mem_info = NULL;
+			p2get_mem_info = 0;
 		if (&p2get_mem_sid)
-			p2get_mem_sid = NULL;
+			p2get_mem_sid = 0;
 		if (&p2get_mem_offset)
-			p2get_mem_offset = NULL;
+			p2get_mem_offset = 0;
 		if (&p2get_mem_addr)
-			p2get_mem_addr = NULL;
+			p2get_mem_addr = 0;
 		if (&p2init_sid_cache)
-			p2init_sid_cache = NULL;
+			p2init_sid_cache = 0;
 	}
 
 	mutex_exit(&mcmutex);

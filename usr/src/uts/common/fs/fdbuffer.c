@@ -72,14 +72,14 @@ fdb_init()
 {
 	fdb_cache = kmem_cache_create("fdb_cache", sizeof (fdbuffer_t),
 	    0, fdb_cache_constructor, fdb_cache_destructor,
-	    NULL, NULL, NULL, 0);
+	    0, NULL, NULL, 0);
 }
 
 static void
 fdb_prepare(fdbuffer_t *fdb)
 {
 	fdb->fd_holes = NULL;
-	fdb->fd_iofunc = NULL;
+	fdb->fd_iofunc = 0;
 	fdb->fd_iargp = NULL;
 	fdb->fd_parentbp = NULL;
 	fdb->fd_resid = 0;
@@ -408,7 +408,7 @@ fdb_iosetup(fdbuffer_t *fdb, u_offset_t off, size_t len, struct vnode *vp,
 	};
 
 	bp = bioclone(fdb->fd_parentbp, off, len, 0, 0,
-	    (b_flags & B_ASYNC) ? fdb_iodone : NULL,
+	    (b_flags & B_ASYNC) ? fdb_iodone : 0,
 	    NULL, KM_SLEEP);
 
 	bp->b_forw = (struct buf *)fdb;

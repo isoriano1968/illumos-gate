@@ -393,7 +393,7 @@ hermon_mr_register_shared(hermon_state_t *state, hermon_mrhdl_t mrhdl,
 	mr->mr_is_umem	  = mr_is_umem;
 	mr->mr_is_fmr	  = 0;
 	mr->mr_umemcookie = (mr_is_umem != 0) ? umem_cookie : NULL;
-	mr->mr_umem_cbfunc = NULL;
+	mr->mr_umem_cbfunc = 0;
 	mr->mr_umem_cbarg1 = NULL;
 	mr->mr_umem_cbarg2 = NULL;
 	mr->mr_lkey	   = hermon_mr_key_swap(mr->mr_lkey);
@@ -1620,7 +1620,7 @@ hermon_mr_common_reg(hermon_state_t *state, hermon_pdhdl_t pd,
 		_NOTE(NOW_INVISIBLE_TO_OTHER_THREADS(*bind->bi_buf))
 
 		bind->bi_buf = ddi_umem_iosetup(umem_cookie, 0, umem_len,
-		    B_WRITE, 0, 0, NULL, DDI_UMEM_SLEEP);
+		    B_WRITE, 0, 0, 0, DDI_UMEM_SLEEP);
 		if (bind->bi_buf == NULL) {
 			status = IBT_INSUFF_RESOURCE;
 			goto mrcommon_fail3;
@@ -1764,7 +1764,7 @@ no_passown:
 	mr->mr_is_umem	   = mr_is_umem;
 	mr->mr_is_fmr	   = 0;
 	mr->mr_umemcookie  = (mr_is_umem != 0) ? umem_cookie : NULL;
-	mr->mr_umem_cbfunc = NULL;
+	mr->mr_umem_cbfunc = 0;
 	mr->mr_umem_cbarg1 = NULL;
 	mr->mr_umem_cbarg2 = NULL;
 	mr->mr_lkey	   = hermon_mr_key_swap(mr->mr_lkey);
@@ -1987,7 +1987,7 @@ hermon_dma_mr_register(hermon_state_t *state, hermon_pdhdl_t pd,
 	mr->mr_is_umem	   = 0;
 	mr->mr_is_fmr	   = 0;
 	mr->mr_umemcookie  = NULL;
-	mr->mr_umem_cbfunc = NULL;
+	mr->mr_umem_cbfunc = 0;
 	mr->mr_umem_cbarg1 = NULL;
 	mr->mr_umem_cbarg2 = NULL;
 	mr->mr_lkey	   = hermon_mr_key_swap(mr->mr_lkey);

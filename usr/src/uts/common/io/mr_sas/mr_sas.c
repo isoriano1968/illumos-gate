@@ -296,7 +296,7 @@ static struct dev_ops mrsas_ops = {
 #endif	/* __sparc */
 	&mrsas_cb_ops,		/* char/block ops */
 	NULL,			/* bus ops */
-	NULL,			/* power */
+	0,			/* power */
 #ifdef __sparc
 	ddi_quiesce_not_needed
 #else	/* __sparc */
@@ -7603,7 +7603,7 @@ mrsas_config_ld(struct mrsas_instance *instance, uint16_t tgt,
 	sd->sd_address.a_target = (uint16_t)tgt;
 	sd->sd_address.a_lun = (uint8_t)lun;
 
-	if (scsi_hba_probe(sd, NULL) == SCSIPROBE_EXISTS)
+	if (scsi_hba_probe(sd, 0) == SCSIPROBE_EXISTS)
 		rval = mrsas_config_scsi_device(instance, sd, ldip);
 	else
 		rval = NDI_FAILURE;

@@ -489,8 +489,8 @@ static mactype_ops_t mac_ether_type_ops = {
 	mac_ether_sap_verify,
 	mac_ether_header,
 	mac_ether_header_info,
-	NULL, 	/* pdata_verify */
-	NULL,	/* header_cook */
-	NULL,	/* header_uncook */
+	0, 	/* pdata_verify */
+	0,	/* header_cook */
+	0,	/* header_uncook */
 	mac_ether_link_details
 };

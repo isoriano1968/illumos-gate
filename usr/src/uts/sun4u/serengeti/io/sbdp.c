@@ -815,7 +815,7 @@ static struct {
 #endif
 
 	/* the following line must always be last */
-	{ NULL,			NULL				}
+	{ NULL,			0				}
 };
 
 

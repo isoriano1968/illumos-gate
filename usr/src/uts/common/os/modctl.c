@@ -347,7 +347,7 @@ skip:;
 	read_class_file();
 
 	/* init thread specific structure for mod_uninstall_all */
-	tsd_create(&mod_autounload_key, NULL);
+	tsd_create(&mod_autounload_key, 0);
 }
 
 static int

@@ -218,7 +218,7 @@ boolean_t zfs_free_bpobj_enabled = B_TRUE;
 
 /* the order has to match pool_scan_type */
 static scan_cb_t *scan_funcs[POOL_SCAN_FUNCS] = {
-	NULL,
+	0,
 	dsl_scan_scrub_cb,	/* POOL_SCAN_SCRUB */
 	dsl_scan_scrub_cb,	/* POOL_SCAN_RESILVER */
 };
@@ -377,7 +377,7 @@ scan_init(void)
 		(void) sprintf(name, "sio_cache_%d", i);
 		sio_cache[i] = kmem_cache_create(name,
 		    (sizeof (scan_io_t) + ((i + 1) * sizeof (dva_t))),
-		    0, NULL, NULL, NULL, NULL, NULL, 0);
+		    0, 0, 0, 0, NULL, NULL, 0);
 	}
 }
 
@@ -3242,7 +3242,7 @@ dsl_process_async_destroys(dsl_pool_t *dp, dmu_tx_t *tx)
 	    spa_version(spa) >= SPA_VERSION_DEADLISTS) {
 		scn->scn_is_bptree = B_FALSE;
 		scn->scn_async_block_min_time_ms = zfs_free_min_time_ms;
-		scn->scn_zio_root = zio_root(spa, NULL,
+		scn->scn_zio_root = zio_root(spa, 0,
 		    NULL, ZIO_FLAG_MUSTSUCCEED);
 		err = bpobj_iterate(&dp->dp_free_bpobj,
 		    dsl_scan_free_block_cb, scn, tx);
@@ -3256,7 +3256,7 @@ dsl_process_async_destroys(dsl_pool_t *dp, dmu_tx_t *tx)
 	if (err == 0 && spa_feature_is_active(spa, SPA_FEATURE_ASYNC_DESTROY)) {
 		ASSERT(scn->scn_async_destroying);
 		scn->scn_is_bptree = B_TRUE;
-		scn->scn_zio_root = zio_root(spa, NULL,
+		scn->scn_zio_root = zio_root(spa, 0,
 		    NULL, ZIO_FLAG_MUSTSUCCEED);
 		err = bptree_iterate(dp->dp_meta_objset,
 		    dp->dp_bptree_obj, B_TRUE, dsl_scan_free_block_cb, scn, tx);
@@ -3570,7 +3570,7 @@ dsl_scan_sync(dsl_pool_t *dp, dmu_tx_t *tx)
 			    (longlong_t)scnp->scn_bookmark.zb_blkid);
 		}
 
-		scn->scn_zio_root = zio_root(dp->dp_spa, NULL,
+		scn->scn_zio_root = zio_root(dp->dp_spa, 0,
 		    NULL, ZIO_FLAG_CANFAIL);
 
 		scn->scn_prefetch_stop = B_FALSE;
@@ -3617,7 +3617,7 @@ dsl_scan_sync(dsl_pool_t *dp, dmu_tx_t *tx)
 		ASSERT(scn->scn_clearing);
 
 		/* need to issue scrubbing IOs from per-vdev queues */
-		scn->scn_zio_root = zio_root(dp->dp_spa, NULL,
+		scn->scn_zio_root = zio_root(dp->dp_spa, 0,
 		    NULL, ZIO_FLAG_CANFAIL);
 		scan_io_queues_run(scn);
 		(void) zio_wait(scn->scn_zio_root);
@@ -4058,7 +4058,7 @@ dsl_scan_io_queue_destroy(dsl_scan_io_queue_t *queue)
 
 	ASSERT0(queue->q_sio_memused);
 	atomic_add_64(&scn->scn_bytes_pending, -bytes_dequeued);
-	range_tree_vacate(queue->q_exts_by_addr, NULL, queue);
+	range_tree_vacate(queue->q_exts_by_addr, 0, queue);
 	range_tree_destroy(queue->q_exts_by_addr);
 	avl_destroy(&queue->q_sios_by_addr);
 	cv_destroy(&queue->q_zio_cv);

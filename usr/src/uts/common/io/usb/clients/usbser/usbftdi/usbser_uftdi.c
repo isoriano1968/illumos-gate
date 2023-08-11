@@ -94,16 +94,16 @@ static struct qinit uftdi_rinit = {
 	usbser_rsrv,
 	usbser_uftdi_open,
 	usbser_close,
-	NULL,
+	0,
 	&uftdi_modinfo,
 };
 
 static struct qinit uftdi_winit = {
 	usbser_wput,
 	usbser_wsrv,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
 	&uftdi_modinfo,
 };
 

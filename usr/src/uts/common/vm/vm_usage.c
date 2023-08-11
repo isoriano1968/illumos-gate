@@ -440,9 +440,9 @@ vm_usage_init()
 	    "vmusage zone hash", VMUSAGE_HASH_SIZE, vmu_free_zone);
 
 	vmu_bound_cache = kmem_cache_create("vmu_bound_cache",
-	    sizeof (vmu_bound_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (vmu_bound_t), 0, 0, 0, 0, NULL, NULL, 0);
 	vmu_object_cache = kmem_cache_create("vmu_object_cache",
-	    sizeof (vmu_object_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (vmu_object_t), 0, 0, 0, 0, NULL, NULL, 0);
 
 	vmu_data.vmu_entities = NULL;
 	vmu_data.vmu_nentities = 0;

@@ -95,7 +95,7 @@ static struct dev_ops pcf8591_ops = {
 	nodev,
 	&pcf8591_cbops,
 	NULL,
-	NULL,
+	0,
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

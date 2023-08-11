@@ -146,7 +146,7 @@ smb_node_init(void)
 
 	smb_node_cache = kmem_cache_create(SMBSRV_KSTAT_NODE_CACHE,
 	    sizeof (smb_node_t), 8, smb_node_constructor, smb_node_destructor,
-	    NULL, NULL, NULL, 0);
+	    0, NULL, NULL, 0);
 
 	for (i = 0; i <= SMBND_HASH_MASK; i++) {
 		smb_llist_constructor(&smb_node_hash_table[i],

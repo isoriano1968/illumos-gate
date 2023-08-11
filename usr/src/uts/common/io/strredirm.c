@@ -67,20 +67,20 @@ static struct module_info	wcminfo = {
 
 static struct qinit	wcmrinit = {
 	wcmrput,		/* put */
-	NULL,			/* service */
+	0,			/* service */
 	wcmopen,		/* open */
 	wcmclose,		/* close */
-	NULL,			/* qadmin */
+	0,			/* qadmin */
 	&wcminfo,
 	NULL			/* mstat */
 };
 
 static struct qinit	wcmwinit = {
 	wcmwput,		/* put */
-	NULL,			/* service */
+	0,			/* service */
 	wcmopen,		/* open */
 	wcmclose,		/* close */
-	NULL,			/* qadmin */
+	0,			/* qadmin */
 	&wcminfo,
 	NULL			/* mstat */
 };

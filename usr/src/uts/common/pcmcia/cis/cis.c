@@ -69,7 +69,7 @@
  * Function declarations
  */
 void *CISParser(int function, ...);
-static int (*cis_card_services)(int, ...) = NULL;
+static int (*cis_card_services)(int, ...) = 0;
 
 static int cis_process_longlink(cistpl_callout_t *, cistpl_t *,
 						cis_info_t *, cisparse_t *);
@@ -157,7 +157,7 @@ CISParser(int function, ...)
 
 		    cisr.cis_magic = PCCS_MAGIC;
 		    cisr.cis_version = PCCS_VERSION;
-		    cisr.cis_parser = NULL;	/* let the framework do this */
+		    cisr.cis_parser = 0;	/* let the framework do this */
 		    cisr.cistpl_std_callout = cistpl_std_callout;
 
 			/*

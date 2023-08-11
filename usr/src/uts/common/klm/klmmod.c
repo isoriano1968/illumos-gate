@@ -52,14 +52,14 @@ int lm_global_nlmid = 0;
  * If this hook is set, call this instead of the ususal
  * flk_set_lockmgr_status(FLK_LOCKMGR_UP / DOWN);
  */
-void (*lm_set_nlm_status)(int nlm_id, flk_nlm_status_t) = NULL;
+void (*lm_set_nlm_status)(int nlm_id, flk_nlm_status_t) = 0;
 
 /*
  * Call-back hook for clusters: Delete all locks held by sysid.
  * Call from code that drops all client locks (for which we're
  * the server) i.e. after the SM tells us a client has crashed.
  */
-void (*lm_remove_file_locks)(int) = NULL;
+void (*lm_remove_file_locks)(int) = 0;
 
 zone_key_t		nlm_zone_key;
 
@@ -132,9 +132,9 @@ _init()
 	rw_init(&lm_lck, NULL, RW_DEFAULT, NULL);
 	nlm_init();
 
-	zone_key_create(&nlm_zone_key, lm_zone_init, NULL, lm_zone_fini);
+	zone_key_create(&nlm_zone_key, lm_zone_init, 0, lm_zone_fini);
 	/* Per-zone lockmgr data.  See: os/flock.c */
-	zone_key_create(&flock_zone_key, flk_zone_init, NULL, flk_zone_fini);
+	zone_key_create(&flock_zone_key, flk_zone_init, 0, flk_zone_fini);
 
 	retval = mod_install(&modlinkage);
 	if (retval == 0)

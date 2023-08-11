@@ -166,7 +166,7 @@ swapinit(int fstype, char *name)
 
 	static const fs_operation_def_t swap_vfsops[] = {
 		VFSNAME_SYNC, { .vfs_sync = swap_sync },
-		NULL, NULL
+		NULL, 0
 	};
 
 	SWAPFS_PRINT(SWAP_SUBR, "swapinit\n", 0, 0, 0, 0, 0);

@@ -48,7 +48,7 @@ static struct translation *cif_prom_trans;
 static size_t cif_prom_ntrans;
 
 int cif_cpu_mp_ready;
-int (*prom_cif_handler)(void *) = NULL;
+int (*prom_cif_handler)(void *) = 0;
 
 extern struct memlist *phys_avail;
 extern struct vnode promvp;
@@ -108,7 +108,7 @@ static cif_callback_t cb_table[] = {
 	{ "SUNW,set-sun4v-api-version",	promif_set_sun4v_api_version },
 	{ "SUNW,get-sun4v-api-version",	promif_get_sun4v_api_version },
 #endif
-	{ NULL,				NULL			    }
+	{ NULL,				0			    }
 };
 
 cif_func_t
@@ -117,7 +117,7 @@ promif_find_cif_callback(char *opname)
 	cif_callback_t	*cb;
 
 	if (opname == NULL)
-		return (NULL);
+		return (0);
 
 	for (cb = cb_table; cb->name; cb++) {
 		if (prom_strcmp(cb->name, opname) == 0)

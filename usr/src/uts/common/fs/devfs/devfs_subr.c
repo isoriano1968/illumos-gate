@@ -171,9 +171,9 @@ dv_node_cache_init()
 	ASSERT(dv_node_cache == NULL);
 	dv_node_cache = kmem_cache_create("dv_node_cache",
 	    sizeof (struct dv_node), 0, i_dv_node_ctor, i_dv_node_dtor,
-	    NULL, NULL, NULL, 0);
+	    0, NULL, NULL, 0);
 
-	tsd_create(&devfs_clean_key, NULL);
+	tsd_create(&devfs_clean_key, 0);
 }
 
 /* destroy dv_node node cache */

@@ -51,7 +51,7 @@ extern void audit_exitprom();
  * to point to a platform specific function.  This needs to
  * be done in set_platform_defaults() within the platmod.
  */
-void (*cpu_sgn_func)(ushort_t, uchar_t, uchar_t, int) = NULL;
+void (*cpu_sgn_func)(ushort_t, uchar_t, uchar_t, int) = 0;
 
 /*
  * abort_seq_handler required by sysctrl.

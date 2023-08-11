@@ -811,16 +811,16 @@ void
 sec_subrinit(void)
 {
 	authkern_cache = kmem_cache_create("authkern_cache",
-	    sizeof (AUTH), 0, authkern_init, NULL, NULL, NULL, NULL, 0);
+	    sizeof (AUTH), 0, authkern_init, 0, 0, NULL, NULL, 0);
 	authnone_cache = kmem_cache_create("authnone_cache",
-	    sizeof (AUTH), 0, authnone_init, NULL, NULL, NULL, NULL, 0);
+	    sizeof (AUTH), 0, authnone_init, 0, 0, NULL, NULL, 0);
 	authloopback_cache = kmem_cache_create("authloopback_cache",
-	    sizeof (AUTH), 0, authloopback_init, NULL, NULL, NULL, NULL, 0);
+	    sizeof (AUTH), 0, authloopback_init, 0, 0, NULL, NULL, 0);
 	mutex_init(&desauthtab_lock, NULL, MUTEX_DEFAULT, NULL);
 
 	/* RPC stuff */
 	mutex_init(&authdes_ops_lock, NULL, MUTEX_DEFAULT, NULL);
-	zone_key_create(&auth_zone_key, auth_zone_init, NULL, auth_zone_fini);
+	zone_key_create(&auth_zone_key, auth_zone_init, 0, auth_zone_fini);
 }
 
 /*

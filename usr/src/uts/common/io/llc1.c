@@ -125,11 +125,11 @@ static struct module_info llc1_minfo = {
 };
 
 static struct qinit llc1_rint = {
-	NULL,
-	NULL,
+	0,
+	0,
 	llc1_open,
 	llc1_close,
-	NULL,
+	0,
 	&llc1_minfo,
 	NULL
 };
@@ -137,9 +137,9 @@ static struct qinit llc1_rint = {
 static struct qinit llc1_wint = {
 	llc1_uwput,
 	llc1_uwsrv,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
 	&llc1_minfo,
 	NULL
 };
@@ -147,19 +147,19 @@ static struct qinit llc1_wint = {
 static struct qinit llc1_muxrint = {
 	putq,
 	llc1_lrsrv,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
 	&llc1_minfo,
 	NULL
 };
 
 static struct qinit llc1_muxwint = {
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
+	0,
 	&llc1_minfo,
 	NULL
 };

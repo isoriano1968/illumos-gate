@@ -957,7 +957,7 @@ task_init(void)
 	 * Initialize task_cache and taskid_space.
 	 */
 	task_cache = kmem_cache_create("task_cache", sizeof (task_t),
-	    0, NULL, NULL, NULL, NULL, NULL, 0);
+	    0, 0, 0, 0, NULL, NULL, 0);
 	taskid_space = id_space_create("taskid_space", 0, MAX_TASKID);
 
 	/*

@@ -111,7 +111,7 @@ static int hxge_param_dump_ptrs(p_hxge_t hxgep, queue_t *q,
 
 static hxge_param_t hxge_param_arr[] = {
 	/* min	max	value	old	hw-name		conf-name	*/
-	{hxge_param_get_generic, NULL, HXGE_PARAM_READ,
+	{hxge_param_get_generic, 0, HXGE_PARAM_READ,
 		0, 999, 1000, 0, "instance", "instance"},
 
 	/* MTU cannot be propagated to the stack from here, so don't show it */
@@ -119,12 +119,12 @@ static hxge_param_t hxge_param_arr[] = {
 		HXGE_PARAM_MAC_RW | HXGE_PARAM_DONT_SHOW,
 		0, 1, 0, 0, "accept-jumbo", "accept_jumbo"},
 
-	{hxge_param_get_rxdma_info, NULL,
+	{hxge_param_get_rxdma_info, 0,
 		HXGE_PARAM_READ | HXGE_PARAM_DONT_SHOW,
 		HXGE_RBR_RBB_MIN, HXGE_RBR_RBB_MAX, HXGE_RBR_RBB_DEFAULT, 0,
 		"rx-rbr-size", "rx_rbr_size"},
 
-	{hxge_param_get_rxdma_info, NULL,
+	{hxge_param_get_rxdma_info, 0,
 		HXGE_PARAM_READ | HXGE_PARAM_DONT_SHOW,
 		HXGE_RCR_MIN, HXGE_RCR_MAX, HXGE_RCR_DEFAULT, 0,
 		"rx-rcr-size", "rx_rcr_size"},
@@ -212,10 +212,10 @@ static hxge_param_t hxge_param_arr[] = {
 		0ULL, ALL_FF_64, 0ULL, 0ULL,
 		"hpi-debug-flag", "hpi_debug_flag"},
 
-	{hxge_param_dump_ptrs, NULL, HXGE_PARAM_READ | HXGE_PARAM_DONT_SHOW,
+	{hxge_param_dump_ptrs, 0, HXGE_PARAM_READ | HXGE_PARAM_DONT_SHOW,
 		0, 0x0fffffff, 0x0fffffff, 0, "dump-ptrs", "dump_ptrs"},
 
-	{NULL, NULL, HXGE_PARAM_READ | HXGE_PARAM_DONT_SHOW,
+	{0, 0, HXGE_PARAM_READ | HXGE_PARAM_DONT_SHOW,
 		0, 0x0fffffff, 0x0fffffff, 0, "end", "end"},
 };
 
@@ -350,20 +350,20 @@ hxge_setup_param(p_hxge_t hxgep)
 		if ((param_arr[i].type & HXGE_PARAM_PRIV) &&
 		    (hxge_private_param_register(hxgep, &param_arr[i]) ==
 		    B_FALSE)) {
-			param_arr[i].setf = NULL;
-			param_arr[i].getf = NULL;
+			param_arr[i].setf = 0;
+			param_arr[i].getf = 0;
 		}
 		if (param_arr[i].type & HXGE_PARAM_CMPLX)
-			param_arr[i].setf = NULL;
+			param_arr[i].setf = 0;
 
 		if (param_arr[i].type & HXGE_PARAM_DONT_SHOW) {
-			param_arr[i].setf = NULL;
-			param_arr[i].getf = NULL;
+			param_arr[i].setf = 0;
+			param_arr[i].getf = 0;
 		}
 		set_pfi = (pfi_t)param_arr[i].setf;
 
 		if ((set_pfi) && (param_arr[i].type & HXGE_PARAM_INIT_ONLY)) {
-			set_pfi = NULL;
+			set_pfi = 0;
 		}
 		if (!hxge_nd_load(&hxgep->param_list, param_arr[i].name,
 		    (pfi_t)param_arr[i].getf, set_pfi,

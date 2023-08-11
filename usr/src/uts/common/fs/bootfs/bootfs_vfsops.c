@@ -227,7 +227,7 @@ static const fs_operation_def_t bootfs_vfsops_tmpl[] = {
 	VFSNAME_UNMOUNT,	{ .vfs_unmount = bootfs_unmount },
 	VFSNAME_ROOT,		{ .vfs_root = bootfs_root },
 	VFSNAME_STATVFS,	{ .vfs_statvfs = bootfs_statvfs },
-	NULL,			NULL
+	NULL,			0
 };
 
 static int
@@ -283,7 +283,7 @@ _init(void)
 {
 	bootfs_node_cache = kmem_cache_create("bootfs_node_cache",
 	    sizeof (bootfs_node_t), 0, bootfs_node_constructor,
-	    bootfs_node_destructor, NULL, NULL, NULL, 0);
+	    bootfs_node_destructor, 0, NULL, NULL, 0);
 	bootfs_idspace = id_space_create("bootfs_minors", 1, INT32_MAX);
 	mutex_init(&bootfs_lock, NULL, MUTEX_DEFAULT, NULL);
 

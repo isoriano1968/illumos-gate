@@ -897,7 +897,7 @@ trill_init(void)
 static void
 trill_fini(void)
 {
-	bridge_trill_register_cb(NULL, NULL, NULL, NULL);
+	bridge_trill_register_cb(0, 0, 0, 0);
 	rw_destroy(&trill_inst_rwlock);
 	list_destroy(&trill_inst_list);
 }
@@ -1654,9 +1654,9 @@ static sock_downcalls_t sock_trill_downcalls = {
 	sock_getsockopt_notsupp,	/* sd_getsockopt */
 	sock_setsockopt_notsupp,	/* sd_setsockopt */
 	trill_send,			/* sd_send */
-	NULL,				/* sd_send_uio */
-	NULL,				/* sd_recv_uio */
-	NULL,				/* sd_poll */
+	0,				/* sd_send_uio */
+	0,				/* sd_recv_uio */
+	0,				/* sd_poll */
 	sock_shutdown_notsupp,		/* sd_shutdown */
 	trill_clr_flowctrl,		/* sd_setflowctrl */
 	trill_ioctl,			/* sd_ioctl */

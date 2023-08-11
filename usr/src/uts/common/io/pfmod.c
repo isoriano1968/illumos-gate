@@ -101,20 +101,20 @@ static struct module_info pf_minfo = {
 
 static struct qinit pf_rinit = {
 	pfrput,			/* qi_putp */
-	NULL,
+	0,
 	pfopen,			/* qi_qopen */
 	pfclose,		/* qi_qclose */
-	NULL,			/* qi_qadmin */
+	0,			/* qi_qadmin */
 	&pf_minfo,		/* qi_minfo */
 	NULL			/* qi_mstat */
 };
 
 static struct qinit pf_winit = {
 	pfwput,			/* qi_putp */
-	NULL,			/* qi_srvp */
-	NULL,			/* qi_qopen */
-	NULL,			/* qi_qclose */
-	NULL,			/* qi_qadmin */
+	0,			/* qi_srvp */
+	0,			/* qi_qopen */
+	0,			/* qi_qclose */
+	0,			/* qi_qadmin */
 	&pf_minfo,		/* qi_minfo */
 	NULL			/* qi_mstat */
 };

@@ -780,7 +780,7 @@ mmapobj_alloc_start_addr(struct lib_va **lvpp, size_t len, int use_lib_va,
 				}
 				lib_va_64_arena = vmem_create("lib_va_64",
 				    (void *)lib_va_start, lib_va_len, PAGESIZE,
-				    NULL, NULL, NULL, 0,
+				    0, 0, NULL, 0,
 				    VM_NOSLEEP | VMC_IDENTIFIER);
 				if (lib_va_64_arena == NULL) {
 					mutex_exit(&lib_va_init_mutex);
@@ -808,7 +808,7 @@ mmapobj_alloc_start_addr(struct lib_va **lvpp, size_t len, int use_lib_va,
 				lib_va_start = lib_va_end - lib_va_len;
 				lib_va_32_arena = vmem_create("lib_va_32",
 				    (void *)lib_va_start, lib_va_len, PAGESIZE,
-				    NULL, NULL, NULL, 0,
+				    0, 0, NULL, 0,
 				    VM_NOSLEEP | VMC_IDENTIFIER);
 				if (lib_va_32_arena == NULL) {
 					mutex_exit(&lib_va_init_mutex);

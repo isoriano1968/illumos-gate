@@ -50,7 +50,7 @@ inet_minor_create(char *name, dev_t min_dev, dev_t max_dev, int kmflags)
 		arena->ineta_maxminor = max_dev;
 		arena->ineta_arena = vmem_create(name,
 		    (void *)min_dev, arena->ineta_maxminor - min_dev + 1,
-		    1, NULL, NULL, NULL, 1, kmflags | VMC_IDENTIFIER);
+		    1, 0, 0, NULL, 1, kmflags | VMC_IDENTIFIER);
 
 		if (arena->ineta_arena == NULL) {
 			kmem_free(arena, sizeof (inet_arena_t));

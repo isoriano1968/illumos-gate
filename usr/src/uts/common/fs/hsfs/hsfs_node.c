@@ -188,8 +188,8 @@ hs_init_hsnode_cache(void)
 	 * No constructor because hsnodes are initialised by bzeroing.
 	 */
 	hsnode_cache = kmem_cache_create("hsfs_hsnode_cache",
-	    sizeof (struct hsnode), 0, NULL,
-	    NULL, hs_hsnode_cache_reclaim, NULL, NULL, 0);
+	    sizeof (struct hsnode), 0, 0,
+	    0, hs_hsnode_cache_reclaim, NULL, NULL, 0);
 }
 
 /*

@@ -127,7 +127,7 @@ rdsv3_ib_add_one(ib_device_t *device)
 	    (longlong_t)htonll(dev_attr->hca_node_guid));
 	rds_ibdev->ib_frag_slab = kmem_cache_create(name,
 	    sizeof (struct rdsv3_page_frag), 0, rdsv3_ib_frag_constructor,
-	    rdsv3_ib_frag_destructor, NULL, (void *)rds_ibdev, NULL, 0);
+	    rdsv3_ib_frag_destructor, 0, (void *)rds_ibdev, NULL, 0);
 	if (rds_ibdev->ib_frag_slab == NULL) {
 		RDSV3_DPRINTF2("rdsv3_ib_add_one",
 		    "kmem_cache_create for ib_frag_slab failed for device: %s",
@@ -347,7 +347,7 @@ rds_ib_laddr_check(uint32_be_t addr)
 	 * Create a CMA ID and try to bind it. This catches both
 	 * IB and iWARP capable NICs.
 	 */
-	cm_id = rdma_create_id(NULL, NULL, RDMA_PS_TCP);
+	cm_id = rdma_create_id(0, NULL, RDMA_PS_TCP);
 	if (!cm_id)
 		return (-EADDRNOTAVAIL);
 
@@ -399,7 +399,7 @@ struct rdsv3_transport rdsv3_ib_transport = {
 	.laddr_check		= rds_ib_laddr_check,
 	.xmit_complete		= rdsv3_ib_xmit_complete,
 	.xmit			= rdsv3_ib_xmit,
-	.xmit_cong_map		= NULL,
+	.xmit_cong_map		= 0,
 	.xmit_rdma		= rdsv3_ib_xmit_rdma,
 	.recv			= rdsv3_ib_recv,
 	.conn_alloc		= rdsv3_ib_conn_alloc,

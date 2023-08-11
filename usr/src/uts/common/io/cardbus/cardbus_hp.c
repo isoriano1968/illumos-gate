@@ -136,10 +136,10 @@ cardbus_init_hotplug(cbus_t *cbp)
 	(void) strcpy(slot_info.slot.pci.slot_logical_name, cbp->ap_id);
 
 	slot_ops->hpc_version = HPC_SLOT_OPS_VERSION;
-	slot_ops->hpc_op_connect = NULL;
-	slot_ops->hpc_op_disconnect = NULL;
-	slot_ops->hpc_op_insert = NULL;
-	slot_ops->hpc_op_remove = NULL;
+	slot_ops->hpc_op_connect = 0;
+	slot_ops->hpc_op_disconnect = 0;
+	slot_ops->hpc_op_insert = 0;
+	slot_ops->hpc_op_remove = 0;
 	slot_ops->hpc_op_control = cardbus_pci_control;
 
 	if (hpc_slot_register(cbp->cb_dip, cbp->nexus_path, &slot_info,
@@ -1702,7 +1702,7 @@ static struct cardbus_pci_desc generic_pci_cfg[] = {
 	    { "CIS Pointer =", 0x28, CFG_GET(pci_config_get32), "%s 0x%08x" },
 	    { "ILINE       =", 0x3c, CFG_GET(pci_config_get8), "%s 0x%02x" },
 	    { "IPIN        =", 0x3d, CFG_GET(pci_config_get8), "%s 0x%02x" },
-	    { NULL, 0, NULL, NULL }
+	    { NULL, 0, 0, NULL }
 };
 
 static struct cardbus_pci_desc cardbus_pci_cfg[] = {
@@ -1729,7 +1729,7 @@ static struct cardbus_pci_desc cardbus_pci_cfg[] = {
 	    { "IPIN        =", 0x3d, CFG_GET(pci_config_get8), "%s 0x%02x" },
 	    { "Bridge Ctrl =", 0x3e, CFG_GET(pci_config_get16), "%s 0x%04x" },
 	    { "Legacy Addr =", 0x44, CFG_GET(pci_config_get32), "%s 0x%08x" },
-	    { NULL, 0, NULL, NULL }
+	    { NULL, 0, 0, NULL }
 };
 
 static void

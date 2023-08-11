@@ -277,7 +277,7 @@ static mactype_ops_t mac_ipv6_type_ops = {
 	mac_ipv6_header,
 	mac_ipv6_header_info,
 	mac_ipv6_pdata_verify,
-	NULL,
-	NULL,
-	NULL
+	0,
+	0,
+	0
 };

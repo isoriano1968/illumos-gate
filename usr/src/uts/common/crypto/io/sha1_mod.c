@@ -128,7 +128,7 @@ static crypto_digest_ops_t sha1_digest_ops = {
 	sha1_digest_init,
 	sha1_digest,
 	sha1_digest_update,
-	NULL,
+	0,
 	sha1_digest_final,
 	sha1_digest_atomic
 };

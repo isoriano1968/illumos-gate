@@ -418,7 +418,7 @@ emlxs_be_flash_image(emlxs_hba_t *hba, caddr_t buffer,
 
 		mb->un.varSLIConfig.be.embedded = 0;
 		mbq->nonembed = (void *)mp;
-		mbq->mbox_cmpl = NULL;
+		mbq->mbox_cmpl = 0;
 
 		mb->mbxCommand = MBX_SLI_CONFIG;
 		mb->mbxOwner = OWN_HOST;
@@ -526,7 +526,7 @@ emlxs_be_verify_crc(emlxs_hba_t *hba,
 
 	mb->un.varSLIConfig.be.embedded = 0;
 	mbq->nonembed = (void *)mp;
-	mbq->mbox_cmpl = NULL;
+	mbq->mbox_cmpl = 0;
 
 	mb->mbxCommand = MBX_SLI_CONFIG;
 	mb->mbxOwner = OWN_HOST;
@@ -614,7 +614,7 @@ emlxs_be_verify_phy(emlxs_hba_t *hba,
 
 	mb->un.varSLIConfig.be.embedded = 0;
 	mbq->nonembed = (void *)mp;
-	mbq->mbox_cmpl = NULL;
+	mbq->mbox_cmpl = 0;
 
 	mb->mbxCommand = MBX_SLI_CONFIG;
 	mb->mbxOwner = OWN_HOST;
@@ -710,7 +710,7 @@ emlxs_be_read_fw_version(emlxs_hba_t *hba, emlxs_firmware_t *fw)
 
 	mb->un.varSLIConfig.be.embedded = 0;
 	mbq->nonembed = (void *)mp;
-	mbq->mbox_cmpl = NULL;
+	mbq->mbox_cmpl = 0;
 
 	mb->mbxCommand = MBX_SLI_CONFIG;
 	mb->mbxOwner = OWN_HOST;
@@ -756,7 +756,7 @@ emlxs_be_read_fw_version(emlxs_hba_t *hba, emlxs_firmware_t *fw)
 
 	mb->un.varSLIConfig.be.embedded = 0;
 	mbq->nonembed = (void *)mp;
-	mbq->mbox_cmpl = NULL;
+	mbq->mbox_cmpl = 0;
 
 	mb->mbxCommand = MBX_SLI_CONFIG;
 	mb->mbxOwner = OWN_HOST;
@@ -1804,7 +1804,7 @@ emlxs_obj_flash_image(emlxs_hba_t *hba, caddr_t buffer, uint32_t size,
 
 		mb->un.varSLIConfig.be.embedded = 1;
 		mbq->nonembed  = NULL;
-		mbq->mbox_cmpl = NULL;
+		mbq->mbox_cmpl = 0;
 
 		mb->mbxCommand = MBX_SLI_CONFIG;
 		mb->mbxOwner = OWN_HOST;
@@ -2449,7 +2449,7 @@ emlxs_format_dump(emlxs_hba_t *hba, MAILBOXQ *mbq, uint32_t Type,
 		mb->mbxOwner = OWN_HOST;
 	}
 
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 
 	return;
 
@@ -2644,7 +2644,7 @@ emlxs_format_prog_flash(MAILBOXQ *mbq,
 	}
 
 	mb->mbxOwner = OWN_HOST;
-	mbq->mbox_cmpl = NULL;
+	mbq->mbox_cmpl = 0;
 
 } /* emlxs_format_prog_flash() */
 
@@ -2665,7 +2665,7 @@ emlxs_format_update_parms(MAILBOXQ *mbq, PWAKE_UP_PARMS WakeUpParms)
 	bcopy((caddr_t)WakeUpParms,
 	    (caddr_t)&(mb->un.varUpdateCfg.cfg_data),
 	    sizeof (WAKE_UP_PARMS));
-	mbq->mbox_cmpl = NULL;
+	mbq->mbox_cmpl = 0;
 
 } /* emlxs_format_update_parms () */
 
@@ -2687,7 +2687,7 @@ emlxs_format_update_pci_cfg(emlxs_hba_t *hba, MAILBOXQ *mbq,
 	mb->un.varUpdateCfg.region_id = region_id;
 	mb->un.varUpdateCfg.entry_len = size;
 	mb->un.varUpdateCfg.byte_len = size;
-	mbq->mbox_cmpl = NULL;
+	mbq->mbox_cmpl = 0;
 
 } /* emlxs_format_update_pci_cfg() */
 
@@ -4042,7 +4042,7 @@ emlxs_get_boot_config(emlxs_hba_t *hba, uint8_t *boot_state)
 
 	mb->un.varSLIConfig.be.embedded = 1;
 	mbq->nonembed = NULL;
-	mbq->mbox_cmpl = NULL;
+	mbq->mbox_cmpl = 0;
 
 	mb->mbxCommand = MBX_SLI_CONFIG;
 	mb->mbxOwner = OWN_HOST;
@@ -4099,7 +4099,7 @@ emlxs_set_boot_config(emlxs_hba_t *hba, uint8_t boot_state)
 
 	mb->un.varSLIConfig.be.embedded = 1;
 	mbq->nonembed = NULL;
-	mbq->mbox_cmpl = NULL;
+	mbq->mbox_cmpl = 0;
 
 	mb->mbxCommand = MBX_SLI_CONFIG;
 	mb->mbxOwner = OWN_HOST;
@@ -4951,7 +4951,7 @@ emlxs_update_exp_rom(emlxs_hba_t *hba, PWAKE_UP_PARMS WakeUpParms)
 	mb->un.varLdExpRom.step = EROM_CMD_FIND_IMAGE;
 	mb->un.varLdExpRom.progress = 0;
 	mb->un.varLdExpRom.un.prog_id = WakeUpParms->u1.EROM_prog_id;
-	mbox->mbox_cmpl = NULL;
+	mbox->mbox_cmpl = 0;
 
 	if (EMLXS_SLI_ISSUE_MBOX_CMD(hba, mbox, MBX_WAIT, 0) != MBX_SUCCESS) {
 		EMLXS_MSGF(EMLXS_CONTEXT, &emlxs_download_failed_msg,
@@ -4994,7 +4994,7 @@ emlxs_update_exp_rom(emlxs_hba_t *hba, PWAKE_UP_PARMS WakeUpParms)
 		mb->un.varLdExpRom.dl_to_adr = next_address;
 		mb->un.varLdExpRom.progress = 0;
 		mb->un.varLdExpRom.un.prog_id = WakeUpParms->u1.EROM_prog_id;
-		mbox->mbox_cmpl = NULL;
+		mbox->mbox_cmpl = 0;
 
 		if (EMLXS_SLI_ISSUE_MBOX_CMD(hba, mbox, MBX_WAIT, 0) !=
 		    MBX_SUCCESS) {
@@ -5018,7 +5018,7 @@ emlxs_update_exp_rom(emlxs_hba_t *hba, PWAKE_UP_PARMS WakeUpParms)
 		mb->un.varLdExpRom.dl_to_adr = next_address;
 		mb->un.varLdExpRom.progress = 0;
 		mb->un.varLdExpRom.un.prog_id = WakeUpParms->u1.EROM_prog_id;
-		mbox->mbox_cmpl = NULL;
+		mbox->mbox_cmpl = 0;
 
 		if (EMLXS_SLI_ISSUE_MBOX_CMD(hba, mbox, MBX_WAIT, 0) !=
 		    MBX_SUCCESS) {
@@ -5390,7 +5390,7 @@ emlxs_format_load_area_cmd(MAILBOXQ * mbq,
 	mb->un.varLdArea.area_id = AreaId;
 	mb->un.varLdArea.step = StepCmd;
 	mb->un.varLdArea.un.dl_from_slim_offset = DataOffset;
-	mbq->mbox_cmpl = NULL;
+	mbq->mbox_cmpl = 0;
 
 } /* emlxs_format_load_area_cmd() */
 

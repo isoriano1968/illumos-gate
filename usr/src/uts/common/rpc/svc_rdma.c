@@ -151,8 +151,8 @@ struct svc_ops rdma_svc_ops = {
 	svc_rdma_kstart,	/* Tell `ready-to-receive' to rpcmod */
 	svc_rdma_kclone_xprt,	/* Transport specific clone xprt */
 	svc_rdma_ktattrs,	/* Get Transport Attributes */
-	NULL,			/* Increment transport reference count */
-	NULL			/* Decrement transport reference count */
+	0,			/* Increment transport reference count */
+	0			/* Decrement transport reference count */
 };
 
 /*
@@ -1252,7 +1252,7 @@ svc_rdma_kdup(struct svc_req *req, caddr_t res, int size, struct dupreq **drpp,
 			(*dr->dr_resfree)(dr->dr_resp.buf);
 		}
 	}
-	dr->dr_resfree = NULL;
+	dr->dr_resfree = 0;
 	rdmadrmru = dr;
 
 	dr->dr_xid = REQTOXID(req);

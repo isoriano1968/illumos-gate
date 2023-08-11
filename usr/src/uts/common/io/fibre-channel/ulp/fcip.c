@@ -344,11 +344,11 @@ static struct module_info	fcipminfo = {
  * upstream (read) and downstream (write) qinit structs.
  */
 static struct qinit	fcip_rinit = {
-	NULL,		/* qi_putp */
-	NULL,		/* qi_srvp */
+	0,		/* qi_putp */
+	0,		/* qi_srvp */
 	fcip_open,	/* qi_qopen */
 	fcip_close,	/* qi_qclose */
-	NULL,		/* qi_qadmin */
+	0,		/* qi_qadmin */
 	&fcipminfo,	/* qi_minfo */
 	NULL		/* qi_mstat */
 };
@@ -356,9 +356,9 @@ static struct qinit	fcip_rinit = {
 static struct qinit	fcip_winit = {
 	fcip_wput,	/* qi_putp */
 	fcip_wsrv,	/* qi_srvp */
-	NULL,		/* qi_qopen */
-	NULL,		/* qi_qclose */
-	NULL,		/* qi_qadmin */
+	0,		/* qi_qopen */
+	0,		/* qi_qclose */
+	0,		/* qi_qadmin */
 	&fcipminfo,	/* qi_minfo */
 	NULL		/* qi_mstat */
 };
@@ -2643,7 +2643,7 @@ fcip_handle_farp_request(struct fcip *fptr, la_els_farp_t *fcmd)
 	fcmd->resp_nwwn = fport->fcipp_nwwn;
 
 	fcip_init_unicast_pkt(fcip_pkt, fport->fcipp_sid,
-	    fcmd->req_id, NULL);
+	    fcmd->req_id, 0);
 
 	fca_dev =
 	    fc_ulp_get_fca_device(fport->fcipp_handle, fcmd->req_id);
@@ -2951,7 +2951,7 @@ fcip_data_cb(opaque_t ulp_handle, opaque_t phandle,
 		/*
 		 * Check if ipq is valid in the sendup thread
 		 */
-		if (fcip_sendup_alloc_enque(fptr, bp, NULL) != FC_SUCCESS) {
+		if (fcip_sendup_alloc_enque(fptr, bp, 0) != FC_SUCCESS) {
 			freemsg(bp);
 		}
 	} else {
@@ -4620,12 +4620,12 @@ fcip_init_port(struct fcip *fptr)
 	fptr->fcip_xmit_cache = kmem_cache_create(buf,
 		(fport->fcipp_fca_pkt_size + sizeof (fcip_pkt_t)),
 		8, fcip_cache_constructor, fcip_cache_destructor,
-		NULL, (void *)fport, NULL, 0);
+		0, (void *)fport, NULL, 0);
 
 	(void) sprintf(buf, "fcip%d_sendup_cache", fptr->fcip_instance);
 	fptr->fcip_sendup_cache = kmem_cache_create(buf,
 		sizeof (struct fcip_sendup_elem),
-		8, fcip_sendup_constructor, NULL, NULL, (void *)fport, NULL, 0);
+		8, fcip_sendup_constructor, 0, 0, (void *)fport, NULL, 0);
 
 	if (fptr->fcip_xmit_cache == NULL) {
 		FCIP_DEBUG(FCIP_DEBUG_INIT,
@@ -6064,7 +6064,7 @@ fcip_do_farp(struct fcip *fptr, la_wwn_t *pwwn, char *ip_addr,
 	bdestp->fcipd_ncmds++;
 	mutex_exit(&bdestp->fcipd_mutex);
 
-	fcip_init_broadcast_pkt(fcip_pkt, NULL, 1);
+	fcip_init_broadcast_pkt(fcip_pkt, 0, 1);
 	fcip_pkt->fcip_pkt_flags |= FCIP_PKT_IN_LIST;
 
 	/*
@@ -7423,7 +7423,7 @@ fcip_sendup_constructor(void *buf, void *arg, int flags)
 	ASSERT(fport != NULL);
 
 	msg_elem->fcipsu_mp = NULL;
-	msg_elem->fcipsu_func = NULL;
+	msg_elem->fcipsu_func = 0;
 	msg_elem->fcipsu_next = NULL;
 
 	return (FCIP_SUCCESS);

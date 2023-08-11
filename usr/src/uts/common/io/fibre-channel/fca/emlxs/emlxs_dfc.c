@@ -3220,7 +3220,7 @@ emlxs_dfc_destroy_vport(emlxs_hba_t *hba, dfc_t *dfc, int32_t mode)
 		/* Make this a polled IO */
 		pkt->pkt_tran_flags &= ~FC_TRAN_INTR;
 		pkt->pkt_tran_flags |= FC_TRAN_NO_INTR;
-		pkt->pkt_comp = NULL;
+		pkt->pkt_comp = 0;
 
 		pkt->pkt_tran_type = FC_PKT_EXCHANGE;
 		pkt->pkt_timeout = 60;
@@ -3651,7 +3651,7 @@ emlxs_dfc_npiv_test(emlxs_hba_t *hba, dfc_t *dfc, int32_t mode)
 	/* Make this a polled IO */
 	pkt->pkt_tran_flags &= ~FC_TRAN_INTR;
 	pkt->pkt_tran_flags |= FC_TRAN_NO_INTR;
-	pkt->pkt_comp = NULL;
+	pkt->pkt_comp = 0;
 
 	pkt->pkt_tran_type = FC_PKT_EXCHANGE;
 	pkt->pkt_timeout = 60;
@@ -3679,7 +3679,7 @@ emlxs_dfc_npiv_test(emlxs_hba_t *hba, dfc_t *dfc, int32_t mode)
 			/* Make this a polled IO */
 			pkt1->pkt_tran_flags &= ~FC_TRAN_INTR;
 			pkt1->pkt_tran_flags |= FC_TRAN_NO_INTR;
-			pkt1->pkt_comp = NULL;
+			pkt1->pkt_comp = 0;
 
 			pkt1->pkt_tran_type = FC_PKT_EXCHANGE;
 			pkt1->pkt_timeout = 60;
@@ -5750,7 +5750,7 @@ emlxs_dfc_send_ct(emlxs_hba_t *hba, dfc_t *dfc, int32_t mode)
 	/* Make this a polled IO */
 	pkt->pkt_tran_flags &= ~FC_TRAN_INTR;
 	pkt->pkt_tran_flags |= FC_TRAN_NO_INTR;
-	pkt->pkt_comp = NULL;
+	pkt->pkt_comp = 0;
 
 	pkt->pkt_tran_type = FC_PKT_EXCHANGE;
 	pkt->pkt_timeout = (timeout) ? timeout : 30;
@@ -5852,7 +5852,7 @@ emlxs_dfc_send_ct_rsp(emlxs_hba_t *hba, dfc_t *dfc, int32_t mode)
 	/* Make this a polled IO */
 	pkt->pkt_tran_flags &= ~FC_TRAN_INTR;
 	pkt->pkt_tran_flags |= FC_TRAN_NO_INTR;
-	pkt->pkt_comp = NULL;
+	pkt->pkt_comp = 0;
 
 	pkt->pkt_tran_type = FC_PKT_OUTBOUND;
 	pkt->pkt_timeout = (timeout) ? timeout : 30;
@@ -6224,7 +6224,7 @@ emlxs_send_menlo_cmd(emlxs_hba_t *hba, uint8_t *cmd_buf, uint32_t cmd_size,
 		/* Make this a polled IO */
 		pkt->pkt_tran_flags &= ~FC_TRAN_INTR;
 		pkt->pkt_tran_flags |= FC_TRAN_NO_INTR;
-		pkt->pkt_comp = NULL;
+		pkt->pkt_comp = 0;
 		pkt->pkt_tran_type = FC_PKT_EXCHANGE;
 		pkt->pkt_timeout = 30;
 
@@ -6311,7 +6311,7 @@ emlxs_send_menlo_cmd(emlxs_hba_t *hba, uint8_t *cmd_buf, uint32_t cmd_size,
 				/* Make this a polled IO */
 				pkt->pkt_tran_flags &= ~FC_TRAN_INTR;
 				pkt->pkt_tran_flags |= FC_TRAN_NO_INTR;
-				pkt->pkt_comp = NULL;
+				pkt->pkt_comp = 0;
 				pkt->pkt_tran_type = FC_PKT_OUTBOUND;
 				pkt->pkt_timeout = 30;
 
@@ -6420,7 +6420,7 @@ emlxs_fcoe_attention_thread(emlxs_hba_t *hba,
 	/* Make this a polled IO */
 	pkt->pkt_tran_flags &= ~FC_TRAN_INTR;
 	pkt->pkt_tran_flags |= FC_TRAN_NO_INTR;
-	pkt->pkt_comp = NULL;
+	pkt->pkt_comp = 0;
 	pkt->pkt_tran_type = FC_PKT_EXCHANGE;
 	pkt->pkt_timeout = 30;
 
@@ -6813,7 +6813,7 @@ emlxs_dfc_send_els(emlxs_hba_t *hba, dfc_t *dfc, int32_t mode)
 	/* Make this a polled IO */
 	pkt->pkt_tran_flags &= ~FC_TRAN_INTR;
 	pkt->pkt_tran_flags |= FC_TRAN_NO_INTR;
-	pkt->pkt_comp = NULL;
+	pkt->pkt_comp = 0;
 
 	pkt->pkt_tran_type = FC_PKT_EXCHANGE;
 	pkt->pkt_timeout = (timeout) ? timeout : 30;
@@ -8304,7 +8304,7 @@ emlxs_dfc_set_menlo_loopback(emlxs_hba_t *hba)
 	/* Make this a polled IO */
 	pkt->pkt_tran_flags &= ~FC_TRAN_INTR;
 	pkt->pkt_tran_flags |= FC_TRAN_NO_INTR;
-	pkt->pkt_comp = NULL;
+	pkt->pkt_comp = 0;
 	pkt->pkt_tran_type = FC_PKT_EXCHANGE;
 	pkt->pkt_timeout = 30;
 
@@ -8434,7 +8434,7 @@ emlxs_dfc_set_menlo_fte(emlxs_hba_t *hba)
 	/* Make this a polled IO */
 	pkt->pkt_tran_flags &= ~FC_TRAN_INTR;
 	pkt->pkt_tran_flags |= FC_TRAN_NO_INTR;
-	pkt->pkt_comp = NULL;
+	pkt->pkt_comp = 0;
 	pkt->pkt_tran_type = FC_PKT_EXCHANGE;
 	pkt->pkt_timeout = 30;
 
@@ -8989,7 +8989,7 @@ emlxs_dfc_loopback_test(emlxs_hba_t *hba, dfc_t *dfc, int32_t mode)
 	pkt->pkt_tran_type = FC_PKT_OUTBOUND;
 	pkt->pkt_timeout = 2 * hba->fc_ratov;
 	pkt->pkt_tran_flags |= FC_TRAN_NO_INTR;
-	pkt->pkt_comp = NULL;
+	pkt->pkt_comp = 0;
 
 	pkt->pkt_cmd_fhdr.d_id = port->did;
 	pkt->pkt_cmd_fhdr.r_ctl = FC_SOL_CTL;
@@ -10271,7 +10271,7 @@ emlxs_dfc_send_scsi_fcp(emlxs_hba_t *hba, dfc_t *dfc, int32_t mode)
 	/* Make this a polled IO */
 	pkt->pkt_tran_flags &= ~FC_TRAN_INTR;
 	pkt->pkt_tran_flags |= FC_TRAN_NO_INTR;
-	pkt->pkt_comp = NULL;
+	pkt->pkt_comp = 0;
 
 	/* Build the fc header */
 	pkt->pkt_cmd_fhdr.d_id = LE_SWAP24_LO(ndlp->nlp_DID);
@@ -10925,7 +10925,7 @@ emlxs_dfc_rd_be_fcf(emlxs_hba_t *hba, dfc_t *dfc, int32_t mode)
 	 */
 	mb->un.varSLIConfig.be.embedded = 0;
 	mbq->nonembed = (void *)mp;
-	mbq->mbox_cmpl = NULL;
+	mbq->mbox_cmpl = 0;
 
 	mb->mbxCommand = MBX_SLI_CONFIG;
 	mb->mbxOwner = OWN_HOST;
@@ -10992,7 +10992,7 @@ emlxs_dfc_set_be_dcbx(emlxs_hba_t *hba, dfc_t *dfc, int32_t mode)
 	 * Signifies an embedded command
 	 */
 	mb->un.varSLIConfig.be.embedded = 1;
-	mbq->mbox_cmpl = NULL;
+	mbq->mbox_cmpl = 0;
 
 	mb->mbxCommand = MBX_SLI_CONFIG;
 	mb->mbxOwner = OWN_HOST;
@@ -11048,7 +11048,7 @@ emlxs_dfc_get_be_dcbx(emlxs_hba_t *hba, dfc_t *dfc, int32_t mode)
 	 * Signifies an embedded command
 	 */
 	mb->un.varSLIConfig.be.embedded = 1;
-	mbq->mbox_cmpl = NULL;
+	mbq->mbox_cmpl = 0;
 
 	mb->mbxCommand = MBX_SLI_CONFIG;
 	mb->mbxOwner = OWN_HOST;

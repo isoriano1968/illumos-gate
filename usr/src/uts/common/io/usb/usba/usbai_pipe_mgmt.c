@@ -1778,7 +1778,7 @@ usba_persistent_pipe_close(usba_device_t *usba_device)
 				usb_pipe_close(ph_impl->usba_ph_dip,
 				    pipe_handle,
 				    USB_FLAGS_SLEEP | USBA_FLAGS_PRIVILEGED,
-				    NULL, NULL);
+				    0, NULL);
 				mutex_enter(&usba_device->usb_mutex);
 				ASSERT(ph_impl->usba_ph_data == NULL);
 			}

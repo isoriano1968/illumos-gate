@@ -796,14 +796,14 @@ pmcs_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 	 */
 	(void) snprintf(buf, sizeof (buf), "pmcs_iocomp_cb_cache%d", inst);
 	pwp->iocomp_cb_cache = kmem_cache_create(buf,
-	    sizeof (pmcs_iocomp_cb_t), 16, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (pmcs_iocomp_cb_t), 16, 0, 0, 0, NULL, NULL, 0);
 
 	/*
 	 * Cache of PHY structures
 	 */
 	(void) snprintf(buf, sizeof (buf), "pmcs_phy_cache%d", inst);
 	pwp->phy_cache = kmem_cache_create(buf, sizeof (pmcs_phy_t), 8,
-	    pmcs_phy_constructor, pmcs_phy_destructor, NULL, (void *)pwp,
+	    pmcs_phy_constructor, pmcs_phy_destructor, 0, (void *)pwp,
 	    NULL, 0);
 
 	/*

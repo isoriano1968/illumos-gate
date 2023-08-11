@@ -132,20 +132,20 @@ static struct module_info usb_ah_minfo = {
 /* read side for key data and ioctl replies */
 static struct qinit usb_ah_rinit = {
 	usb_ah_rput,
-	NULL,		/* service not used */
+	0,		/* service not used */
 	usb_ah_open,
 	usb_ah_close,
-	NULL,
+	0,
 	&usb_ah_minfo
 	};
 
 /* write side -- just pass everything down */
 static struct qinit usb_ah_winit = {
 	usb_ah_wput,
-	NULL,
+	0,
 	usb_ah_open,
 	usb_ah_close,
-	NULL,
+	0,
 	&usb_ah_minfo
 	};
 

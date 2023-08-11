@@ -79,7 +79,7 @@ id_space_create(const char *name, id_t low, id_t high)
 	ASSERT(low < high);
 
 	return (vmem_create(name, ID_TO_ADDR(low), high - low, 1,
-	    NULL, NULL, NULL, 0, flag | VMC_IDENTIFIER));
+	    0, 0, NULL, 0, flag | VMC_IDENTIFIER));
 }
 
 /*

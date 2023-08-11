@@ -161,12 +161,12 @@ struct module_info envctrlinfo = {
 };
 
 static struct qinit envctrl_rinit = {
-	putq, NULL, envctrl_open, envctrl_close, NULL, &envctrlinfo, NULL
+	putq, 0, envctrl_open, envctrl_close, 0, &envctrlinfo, NULL
 };
 
 static struct qinit envctrl_wint = {
-	envctrl_wput, NULL, envctrl_open, envctrl_close,
-	    NULL, &envctrlinfo, NULL
+	envctrl_wput, 0, envctrl_open, envctrl_close,
+	    0, &envctrlinfo, NULL
 };
 
 struct streamtab envctrl_str_info = {

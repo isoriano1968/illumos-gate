@@ -108,11 +108,11 @@ static void hubd_unregister_cpr_callback(hubd_t *);
 struct bus_ops usba_hubdi_busops =	{
 	BUSO_REV,
 	nullbusmap,			/* bus_map */
-	NULL,				/* bus_get_intrspec */
-	NULL,				/* bus_add_intrspec */
-	NULL,				/* bus_remove_intrspec */
+	0,				/* bus_get_intrspec */
+	0,				/* bus_add_intrspec */
+	0,				/* bus_remove_intrspec */
 	usba_hubdi_map_fault,		/* bus_map_fault */
-	NULL,				/* bus_dma_map */
+	0,				/* bus_dma_map */
 	ddi_dma_allochdl,
 	ddi_dma_freehdl,
 	ddi_dma_bindhdl,
@@ -125,14 +125,14 @@ struct bus_ops usba_hubdi_busops =	{
 	hubd_busop_get_eventcookie,
 	hubd_busop_add_eventcall,
 	hubd_busop_remove_eventcall,
-	NULL,				/* bus_post_event */
-	NULL,				/* bus_intr_ctl */
+	0,				/* bus_post_event */
+	0,				/* bus_intr_ctl */
 	hubd_bus_config,		/* bus_config */
 	hubd_bus_unconfig,		/* bus_unconfig */
-	NULL,				/* bus_fm_init */
-	NULL,				/* bus_fm_fini */
-	NULL,				/* bus_fm_access_enter */
-	NULL,				/* bus_fm_access_exit */
+	0,				/* bus_fm_init */
+	0,				/* bus_fm_fini */
+	0,				/* bus_fm_access_enter */
+	0,				/* bus_fm_access_exit */
 	hubd_bus_power			/* bus_power */
 };
 
@@ -374,7 +374,7 @@ usba_hubdi_bind_root_hub(dev_info_t *dip,
 fail:
 	if (ph) {
 		usb_pipe_close(dip, ph,
-		    USB_FLAGS_SLEEP | USBA_FLAGS_PRIVILEGED, NULL, NULL);
+		    USB_FLAGS_SLEEP | USBA_FLAGS_PRIVILEGED, 0, NULL);
 	}
 
 	kmem_free(usba_device->usb_cfg_array,
@@ -2204,7 +2204,7 @@ hubd_setdevaddr(hubd_t *hubd, usb_port_t port)
 	mutex_exit(HUBD_MUTEX(hubd));
 	ph = usba_get_dflt_pipe_handle(child_dip);
 	usb_pipe_close(child_dip, ph,
-	    USB_FLAGS_SLEEP | USBA_FLAGS_PRIVILEGED, NULL, NULL);
+	    USB_FLAGS_SLEEP | USBA_FLAGS_PRIVILEGED, 0, NULL);
 	mutex_enter(HUBD_MUTEX(hubd));
 
 	/*
@@ -2260,7 +2260,7 @@ hubd_setdevaddr(hubd_t *hubd, usb_port_t port)
 		}
 
 		usb_pipe_close(child_dip, ph,
-		    USB_FLAGS_SLEEP | USBA_FLAGS_PRIVILEGED, NULL, NULL);
+		    USB_FLAGS_SLEEP | USBA_FLAGS_PRIVILEGED, 0, NULL);
 
 		if (rval == USB_SUCCESS) {
 
@@ -2968,7 +2968,7 @@ hubd_cleanup(dev_info_t *dip, hubd_t *hubd)
 
 	if (usba_is_root_hub(dip)) {
 		usb_pipe_close(dip, hubd->h_default_pipe,
-		    USB_FLAGS_SLEEP | USBA_FLAGS_PRIVILEGED, NULL, NULL);
+		    USB_FLAGS_SLEEP | USBA_FLAGS_PRIVILEGED, 0, NULL);
 	}
 
 done:
@@ -3588,7 +3588,7 @@ hubd_close_intr_pipe(hubd_t *hubd)
 	if (hubd->h_ep1_ph) {
 		mutex_exit(HUBD_MUTEX(hubd));
 		usb_pipe_close(hubd->h_dip, hubd->h_ep1_ph, USB_FLAGS_SLEEP,
-		    NULL, NULL);
+		    0, NULL);
 		mutex_enter(HUBD_MUTEX(hubd));
 		hubd->h_ep1_ph = NULL;
 	}
@@ -6339,7 +6339,7 @@ hubd_create_child(dev_info_t *dip,
 
 	/* now close the pipe for addr 0 */
 	usb_pipe_close(child_dip, ph,
-	    USB_FLAGS_SLEEP | USBA_FLAGS_PRIVILEGED, NULL, NULL);
+	    USB_FLAGS_SLEEP | USBA_FLAGS_PRIVILEGED, 0, NULL);
 
 	/*
 	 * This delay is important for the CATC hub to enumerate
@@ -6713,7 +6713,7 @@ fail_cleanup:
 
 	if (ph) {
 		usb_pipe_close(child_dip, ph,
-		    USB_FLAGS_SLEEP | USBA_FLAGS_PRIVILEGED, NULL, NULL);
+		    USB_FLAGS_SLEEP | USBA_FLAGS_PRIVILEGED, 0, NULL);
 	}
 
 	if (child_ud != NULL && hcd_called == B_TRUE &&
@@ -9180,7 +9180,7 @@ hubd_check_same_device(hubd_t *hubd, usb_port_t port)
 		    DPRINT_MASK_ALL, USB_CHK_ALL, NULL);
 
 		usb_pipe_close(dip, ph, USB_FLAGS_SLEEP |
-		    USBA_FLAGS_PRIVILEGED, NULL, NULL);
+		    USBA_FLAGS_PRIVILEGED, 0, NULL);
 	}
 	mutex_enter(HUBD_MUTEX(hubd));
 

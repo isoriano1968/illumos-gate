@@ -238,7 +238,7 @@ ire_ftable_lookup_simple_v4(ipaddr_t addr, uint32_t xmit_hint, ip_stack_t *ipst,
 	RADIX_NODE_HEAD_RLOCK(ipst->ips_ip_ftable);
 
 	rt = (struct rt_entry *)ipst->ips_ip_ftable->rnh_matchaddr_args(&rdst,
-	    ipst->ips_ip_ftable, NULL, NULL);
+	    ipst->ips_ip_ftable, 0, NULL);
 
 	if (rt == NULL)
 		goto bad;

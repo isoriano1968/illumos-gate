@@ -233,7 +233,7 @@ const fs_operation_def_t udf_vnodeops_template[] = {
 	VOPNAME_PATHCONF,	{ .vop_pathconf = udf_l_pathconf },
 	VOPNAME_PAGEIO,		{ .vop_pageio = udf_pageio },
 	VOPNAME_VNEVENT,	{ .vop_vnevent = fs_vnevent_support },
-	NULL,			NULL
+	NULL,			0
 };
 
 /* ARGSUSED */
@@ -2954,7 +2954,7 @@ ud_iodone(struct buf *bp)
 
 	ASSERT((bp->b_pages->p_vnode != NULL) && !(bp->b_flags & B_READ));
 
-	bp->b_iodone = NULL;
+	bp->b_iodone = 0;
 
 	ip = VTOI(bp->b_pages->p_vnode);
 

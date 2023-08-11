@@ -322,23 +322,23 @@ smb_server_g_init(void)
 	smb2_lease_init();
 
 	smb_cache_request = kmem_cache_create("smb_request_cache",
-	    sizeof (smb_request_t), 8, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (smb_request_t), 8, 0, 0, 0, NULL, NULL, 0);
 	smb_cache_session = kmem_cache_create("smb_session_cache",
-	    sizeof (smb_session_t), 8, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (smb_session_t), 8, 0, 0, 0, NULL, NULL, 0);
 	smb_cache_user = kmem_cache_create("smb_user_cache",
-	    sizeof (smb_user_t), 8, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (smb_user_t), 8, 0, 0, 0, NULL, NULL, 0);
 	smb_cache_tree = kmem_cache_create("smb_tree_cache",
-	    sizeof (smb_tree_t), 8, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (smb_tree_t), 8, 0, 0, 0, NULL, NULL, 0);
 	smb_cache_ofile = kmem_cache_create("smb_ofile_cache",
-	    sizeof (smb_ofile_t), 8, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (smb_ofile_t), 8, 0, 0, 0, NULL, NULL, 0);
 	smb_cache_odir = kmem_cache_create("smb_odir_cache",
-	    sizeof (smb_odir_t), 8, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (smb_odir_t), 8, 0, 0, 0, NULL, NULL, 0);
 	smb_cache_opipe = kmem_cache_create("smb_opipe_cache",
-	    sizeof (smb_opipe_t), 8, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (smb_opipe_t), 8, 0, 0, 0, NULL, NULL, 0);
 	smb_cache_event = kmem_cache_create("smb_event_cache",
-	    sizeof (smb_event_t), 8, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (smb_event_t), 8, 0, 0, 0, NULL, NULL, 0);
 	smb_cache_lock = kmem_cache_create("smb_lock_cache",
-	    sizeof (smb_lock_t), 8, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (smb_lock_t), 8, 0, 0, 0, NULL, NULL, 0);
 
 	smb_llist_init();
 	smb_llist_constructor(&smb_servers, sizeof (smb_server_t),

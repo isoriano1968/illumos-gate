@@ -153,11 +153,11 @@ static const char *alc_mic_funcs[] = {
 
 static ac97_ctrl_probe_t alc650_linein_func_cpt = {
 	AUDIO_CTRL_ID_JACK1, 1, 3, 3, AUDIO_CTRL_TYPE_ENUM, AC97_FLAGS,
-	0, alc650_set_linein_func, NULL, 0, alc_linein_funcs
+	0, alc650_set_linein_func, 0, 0, alc_linein_funcs
 };
 static ac97_ctrl_probe_t alc650_mic_func_cpt = {
 	AUDIO_CTRL_ID_JACK2, 1, 3, 3, AUDIO_CTRL_TYPE_ENUM, AC97_FLAGS,
-	0, alc650_set_mic_func, NULL, 0, alc_mic_funcs
+	0, alc650_set_mic_func, 0, 0, alc_mic_funcs
 };
 
 static void

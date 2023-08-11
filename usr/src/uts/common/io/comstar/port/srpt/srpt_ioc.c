@@ -110,7 +110,7 @@ static struct ibt_clnt_modinfo_s srpt_ibt_modinfo = {
 	IBTI_V_CURR,
 	IBT_STORAGE_DEV,
 	srpt_ioc_ib_async_hdlr,
-	NULL,
+	0,
 	"srpt"
 };
 
@@ -1402,7 +1402,7 @@ srpt_vmem_create(const char *name, srpt_ioc_t *ioc, ib_memlen_t chunksize,
 	result->svp_vmem = vmem_create(name,
 	    (void*)(uintptr_t)chunk->mr_va,
 	    (size_t)chunk->mr_len, SRPT_MR_QUANTSIZE,
-	    NULL, NULL, NULL, 0, VM_SLEEP);
+	    0, 0, NULL, 0, VM_SLEEP);
 
 	return (result);
 }

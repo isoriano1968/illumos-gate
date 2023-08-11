@@ -168,7 +168,7 @@ static nvf_ops_t devid_cache_ops = {
 	devid_cache_unpack_nvlist,		/* read: nvlist to nvp */
 	devid_cache_pack_list,			/* write: nvp to nvlist */
 	devid_list_free,			/* free data list */
-	NULL					/* write complete callback */
+	0					/* write complete callback */
 };
 
 /*

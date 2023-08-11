@@ -269,7 +269,7 @@ std_path_activate(struct scsi_device *sd, char *pathclass,
 	}
 
 	bp = scsi_alloc_consistent_buf(ap, (struct buf *)NULL, DEV_BSIZE,
-	    B_READ, NULL, NULL);
+	    B_READ, 0, NULL);
 	if (!bp) {
 		VHCI_DEBUG(4, (CE_WARN, NULL,
 		    "!(sd:%p)std_path_activate failed to alloc buffer",
@@ -278,7 +278,7 @@ std_path_activate(struct scsi_device *sd, char *pathclass,
 	}
 
 	pkt = scsi_init_pkt(ap, NULL, bp, CDB_GROUP1,
-	    sizeof (struct scsi_arq_status), 0, PKT_CONSISTENT, NULL, NULL);
+	    sizeof (struct scsi_arq_status), 0, PKT_CONSISTENT, 0, NULL);
 	if (!pkt) {
 		VHCI_DEBUG(4, (CE_WARN, NULL,
 		    "!(sd:%p)std_path_activate failed to initialize packet",

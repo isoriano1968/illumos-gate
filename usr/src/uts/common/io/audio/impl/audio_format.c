@@ -681,12 +681,12 @@ static const struct audio_format_info {
 	{ AUDIO_FORMAT_S32_OE,	4,	cnv_from_s32oe,		cnv_to_s32oe },
 
 	/* 24-bit formats are "special" */
-	{ AUDIO_FORMAT_S24_NE,	4,	NULL,			NULL },
+	{ AUDIO_FORMAT_S24_NE,	4,	0,			0 },
 	{ AUDIO_FORMAT_S24_OE,	4,	cnv_s24oe,		cnv_s24oe },
 	{ AUDIO_FORMAT_S24_PACKED, 3,	cnv_from_s24p,		cnv_to_s24p },
 
 	/* sentinel */
-	{ AUDIO_FORMAT_NONE,	0,	NULL,			NULL }
+	{ AUDIO_FORMAT_NONE,	0,	0,			0 }
 };
 
 int
@@ -695,7 +695,7 @@ auimpl_format_setup(audio_stream_t *sp, audio_parms_t *parms, uint_t mask)
 	audio_parms_t			source;
 	audio_parms_t			target;
 	audio_parms_t			*uparms;
-	audio_cnv_func_t		converter = NULL;
+	audio_cnv_func_t		converter = 0;
 	const struct audio_format_info	*info;
 	int				expand = AUDIO_UNIT_EXPAND;
 	unsigned			cnv_sampsz = sizeof (uint32_t);

@@ -130,17 +130,17 @@ static struct qinit	sb_rinit = {
 	sbrsrv,			/* qi_srvp */
 	sbopen,			/* qi_qopen */
 	sbclose,		/* qi_qclose */
-	NULL,			/* qi_qadmin */
+	0,			/* qi_qadmin */
 	&sb_minfo,		/* qi_minfo */
 	NULL			/* qi_mstat */
 };
 
 static struct qinit	sb_winit = {
 	sbwput,			/* qi_putp */
-	NULL,			/* qi_srvp */
-	NULL,			/* qi_qopen */
-	NULL,			/* qi_qclose */
-	NULL,			/* qi_qadmin */
+	0,			/* qi_srvp */
+	0,			/* qi_qopen */
+	0,			/* qi_qclose */
+	0,			/* qi_qadmin */
 	&sb_minfo,		/* qi_minfo */
 	NULL			/* qi_mstat */
 };

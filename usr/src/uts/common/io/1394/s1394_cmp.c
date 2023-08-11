@@ -61,7 +61,7 @@ s1394_fa_descr_t s1394_cmp_ompr_descr = {
 	T1394_ADDR_RDENBL | T1394_ADDR_LKENBL,
 	{
 		s1394_cmp_ompr_recv_read_request,
-		NULL,
+		0,
 		s1394_cmp_ompr_recv_lock_request
 	},
 	0
@@ -73,7 +73,7 @@ s1394_fa_descr_t s1394_cmp_impr_descr = {
 	T1394_ADDR_RDENBL | T1394_ADDR_LKENBL,
 	{
 		s1394_cmp_impr_recv_read_request,
-		NULL,
+		0,
 		s1394_cmp_impr_recv_lock_request
 	},
 	0
@@ -84,7 +84,7 @@ int
 s1394_cmp_register(s1394_target_t *target, t1394_cmp_evts_t *evts)
 {
 	s1394_hal_t	*hal = target->on_hal;
-	static t1394_cmp_evts_t default_evts = { NULL, NULL };
+	static t1394_cmp_evts_t default_evts = { 0, NULL };
 
 	rw_enter(&hal->target_list_rwlock, RW_WRITER);
 	/*

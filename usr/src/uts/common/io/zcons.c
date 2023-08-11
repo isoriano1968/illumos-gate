@@ -225,11 +225,11 @@ static struct module_info zc_info = {
 };
 
 static struct qinit zc_rinit = {
-	NULL,
+	0,
 	zc_rsrv,
 	zc_open,
 	zc_close,
-	NULL,
+	0,
 	&zc_info,
 	NULL
 };
@@ -237,9 +237,9 @@ static struct qinit zc_rinit = {
 static struct qinit zc_winit = {
 	zc_wput,
 	zc_wsrv,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
 	&zc_info,
 	NULL
 };

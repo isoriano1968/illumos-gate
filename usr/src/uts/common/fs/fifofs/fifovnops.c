@@ -142,7 +142,7 @@ const fs_operation_def_t fifo_vnodeops_template[] = {
 	VOPNAME_DISPOSE,	{ .error = fs_error },
 	VOPNAME_SETSECATTR,	{ .vop_setsecattr = fifo_setsecattr },
 	VOPNAME_GETSECATTR,	{ .vop_getsecattr = fifo_getsecattr },
-	NULL,			NULL
+	NULL,			0
 };
 
 /*

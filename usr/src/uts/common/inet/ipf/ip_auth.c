@@ -215,7 +215,7 @@ u_32_t *passp;
 					      (char *)fr, sizeof(*fr));
 					fr->fr_grp = NULL;
 					fr->fr_ifa = fin->fin_ifp;
-					fr->fr_func = NULL;
+					fr->fr_func = 0;
 					fr->fr_ref = 1;
 					fr->fr_flags = pass;
 					fr->fr_ifas[1] = NULL;

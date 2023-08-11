@@ -170,15 +170,15 @@ struct module_info kb8042_sinfo = {
 };
 
 static struct qinit kb8042_rinit = {
-	.qi_putp = NULL,
+	.qi_putp = 0,
 	.qi_srvp = kb8042_rsrv,
 	.qi_qopen = kb8042_open,
 	.qi_qclose = kb8042_close,
-	.qi_qadmin = NULL,
+	.qi_qadmin = 0,
 	.qi_minfo = &kb8042_sinfo,
 	.qi_mstat = NULL,
-	.qi_rwp = NULL,
-	.qi_infop = NULL,
+	.qi_rwp = 0,
+	.qi_infop = 0,
 	.qi_struiot = 0
 };
 
@@ -187,11 +187,11 @@ static struct qinit kb8042_winit = {
 	.qi_srvp = kb8042_wsrv,
 	.qi_qopen = kb8042_open,
 	.qi_qclose = kb8042_close,
-	.qi_qadmin = NULL,
+	.qi_qadmin = 0,
 	.qi_minfo = &kb8042_sinfo,
 	.qi_mstat = NULL,
-	.qi_rwp = NULL,
-	.qi_infop = NULL,
+	.qi_rwp = 0,
+	.qi_infop = 0,
 	.qi_struiot = 0
 };
 
@@ -242,7 +242,7 @@ struct dev_ops kb8042_ops = {
 	.devo_reset = nodev,
 	.devo_cb_ops = &cb_kb8042_ops,
 	.devo_bus_ops = NULL,
-	.devo_power = NULL,
+	.devo_power = 0,
 	.devo_quiesce = ddi_quiesce_not_needed
 };
 
@@ -744,13 +744,13 @@ kb8042_open(queue_t *qp, dev_t *devp, int flag, int sflag, cred_t *credp)
 	kb8042->polledio.cons_polledio_version = CONSPOLLEDIO_V1;
 	kb8042->polledio.cons_polledio_argument =
 	    (cons_polledio_arg_t)kb8042;
-	kb8042->polledio.cons_polledio_putchar = NULL;
+	kb8042->polledio.cons_polledio_putchar = 0;
 	kb8042->polledio.cons_polledio_getchar =
 	    (int (*)(cons_polledio_arg_t))kb8042_polled_getchar;
 	kb8042->polledio.cons_polledio_ischar =
 	    (boolean_t (*)(cons_polledio_arg_t))kb8042_polled_ischar;
-	kb8042->polledio.cons_polledio_enter = NULL;
-	kb8042->polledio.cons_polledio_exit = NULL;
+	kb8042->polledio.cons_polledio_enter = 0;
+	kb8042->polledio.cons_polledio_exit = 0;
 	kb8042->polledio.cons_polledio_setled =
 	    (void (*)(cons_polledio_arg_t, int))kb8042_polled_setled;
 	kb8042->polledio.cons_polledio_keycheck =

@@ -198,13 +198,13 @@ static int rsa_decrypt_atomic(crypto_provider_handle_t, crypto_session_id_t,
 static crypto_cipher_ops_t rsa_cipher_ops = {
 	rsa_common_init,
 	rsaprov_encrypt,
-	NULL,
-	NULL,
+	0,
+	0,
 	rsa_encrypt_atomic,
 	rsa_common_init,
 	rsaprov_decrypt,
-	NULL,
-	NULL,
+	0,
+	0,
 	rsa_decrypt_atomic
 };
 
@@ -270,7 +270,7 @@ static crypto_verify_ops_t rsa_verify_ops = {
 static int rsa_free_context(crypto_ctx_t *);
 
 static crypto_ctx_ops_t rsa_ctx_ops = {
-	NULL,
+	0,
 	rsa_free_context
 };
 
@@ -476,11 +476,11 @@ compare_data(crypto_data_t *data, uchar_t *buf)
 
 	case CRYPTO_DATA_UIO:
 		return (crypto_uio_data(data, buf, len,
-		    COMPARE_TO_DATA, NULL, NULL));
+		    COMPARE_TO_DATA, NULL, 0));
 
 	case CRYPTO_DATA_MBLK:
 		return (crypto_mblk_data(data, buf, len,
-		    COMPARE_TO_DATA, NULL, NULL));
+		    COMPARE_TO_DATA, NULL, 0));
 	}
 
 	return (CRYPTO_FAILED);
@@ -683,7 +683,7 @@ core_rsa_encrypt(crypto_key_t *key, uchar_t *in,
 	k.modulus_bits = CRYPTO_BYTES2BITS(modulus_len);
 	k.pubexpo = expo;
 	k.pubexpo_bytes = expo_len;
-	k.rfunc = NULL;
+	k.rfunc = 0;
 
 	rv = rsa_encrypt(&k, in, in_len, out);
 
@@ -834,7 +834,7 @@ core_rsa_decrypt(crypto_key_t *key, uchar_t *in, int in_len, uchar_t *out)
 	k.expo2_bytes = expo2_len;
 	k.coeff = coef;
 	k.coeff_bytes = coef_len;
-	k.rfunc = NULL;
+	k.rfunc = 0;
 
 	rv = rsa_decrypt(&k, in, in_len, out);
 

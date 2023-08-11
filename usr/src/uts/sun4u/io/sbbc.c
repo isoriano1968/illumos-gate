@@ -172,7 +172,7 @@ static struct bus_ops sbbc_bus_ops = {
 	0,
 	0,
 	0,
-	NULL,			/* (*bus_map_fault)() */
+	0,			/* (*bus_map_fault)() */
 	ddi_no_dma_map,
 	ddi_no_dma_allochdl,
 	ddi_no_dma_freehdl,	/* (*bus_dma_freehdl)() */

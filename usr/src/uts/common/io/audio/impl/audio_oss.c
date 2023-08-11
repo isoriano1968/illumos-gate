@@ -2555,47 +2555,47 @@ static struct audio_client_ops oss_ops = {
 	oss_write,
 	oss_ioctl,
 	oss_chpoll,
-	NULL,		/* mmap */
+	0,		/* mmap */
 	oss_input,
 	oss_output,
-	NULL,		/* drain */
+	0,		/* drain */
 };
 
 static struct audio_client_ops ossmix_ops = {
 	"sound,mixer",
-	NULL,
-	NULL,
+	0,
+	0,
 	ossmix_open,
 	ossmix_close,
 	ossmix_read,
 	ossmix_write,
 	ossmix_ioctl,
-	NULL,	/* chpoll */
-	NULL,   /* mmap */
-	NULL,	/* input */
-	NULL,   /* output */
-	NULL,	/* drain */
-	NULL,	/* wput */
-	NULL,	/* wsrv */
+	0,	/* chpoll */
+	0,   /* mmap */
+	0,	/* input */
+	0,   /* output */
+	0,	/* drain */
+	0,	/* wput */
+	0,	/* wsrv */
 };
 
 /* nearly the same as ossxmix; different minor name helps devfsadm */
 static struct audio_client_ops sndstat_ops = {
 	"sound,sndstat",
-	NULL,	/* dev_init */
-	NULL,	/* dev_fini */
+	0,	/* dev_init */
+	0,	/* dev_fini */
 	ossmix_open,
 	ossmix_close,
 	ossmix_read,
 	ossmix_write,
 	ossmix_ioctl,
-	NULL,	/* chpoll */
-	NULL,	/* mmap */
-	NULL,	/* input */
-	NULL,	/* output */
-	NULL,	/* drain */
-	NULL,	/* wput */
-	NULL,	/* wsrv */
+	0,	/* chpoll */
+	0,	/* mmap */
+	0,	/* input */
+	0,	/* output */
+	0,	/* drain */
+	0,	/* wput */
+	0,	/* wsrv */
 };
 
 void

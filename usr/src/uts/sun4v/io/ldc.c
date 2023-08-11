@@ -405,7 +405,7 @@ _init(void)
 
 	/* Create a cache for memory handles */
 	ldcssp->memhdl_cache = kmem_cache_create("ldc_memhdl_cache",
-	    sizeof (ldc_mhdl_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (ldc_mhdl_t), 0, 0, 0, 0, NULL, NULL, 0);
 	if (ldcssp->memhdl_cache == NULL) {
 		DWARN(DBG_ALL_LDCS, "_init: ldc_memhdl cache create failed\n");
 		mutex_exit(&ldcssp->lock);
@@ -414,7 +414,7 @@ _init(void)
 
 	/* Create cache for memory segment structures */
 	ldcssp->memseg_cache = kmem_cache_create("ldc_memseg_cache",
-	    sizeof (ldc_memseg_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (ldc_memseg_t), 0, 0, 0, 0, NULL, NULL, 0);
 	if (ldcssp->memseg_cache == NULL) {
 		DWARN(DBG_ALL_LDCS, "_init: ldc_memseg cache create failed\n");
 		mutex_exit(&ldcssp->lock);
@@ -458,7 +458,7 @@ _fini(void)
 	}
 
 	/* Unregister debug_enter callback */
-	kldc_set_debug_cb(NULL);
+	kldc_set_debug_cb(0);
 
 	/* Free descriptor rings */
 	dringp = ldcssp->dring_list;
@@ -2629,7 +2629,7 @@ ldc_init(uint64_t id, ldc_attr_t *attr, ldc_handle_t *handle)
 
 	/* Initialize the channel */
 	ldcp->id = id;
-	ldcp->cb = NULL;
+	ldcp->cb = 0;
 	ldcp->cb_arg = NULL;
 	ldcp->cb_inprogress = B_FALSE;
 	ldcp->cb_enabled = B_FALSE;
@@ -3334,7 +3334,7 @@ ldc_unreg_callback(ldc_handle_t handle)
 		return (EWOULDBLOCK);
 	}
 
-	ldcp->cb = NULL;
+	ldcp->cb = 0;
 	ldcp->cb_arg = NULL;
 	ldcp->cb_enabled = B_FALSE;
 
@@ -4701,11 +4701,11 @@ ldc_unregister(ldc_cnex_t *cinfo)
 
 	/* nexus unregister */
 	ldcssp->cinfo.dip = NULL;
-	ldcssp->cinfo.reg_chan = NULL;
-	ldcssp->cinfo.unreg_chan = NULL;
-	ldcssp->cinfo.add_intr = NULL;
-	ldcssp->cinfo.rem_intr = NULL;
-	ldcssp->cinfo.clr_intr = NULL;
+	ldcssp->cinfo.reg_chan = 0;
+	ldcssp->cinfo.unreg_chan = 0;
+	ldcssp->cinfo.add_intr = 0;
+	ldcssp->cinfo.rem_intr = 0;
+	ldcssp->cinfo.clr_intr = 0;
 
 	mutex_exit(&ldcssp->lock);
 

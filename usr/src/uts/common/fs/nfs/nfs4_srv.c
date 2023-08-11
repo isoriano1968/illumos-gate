@@ -487,7 +487,7 @@ static const fs_operation_def_t nfs4_rd_deleg_tmpl[] = {
 	VOPNAME_SPACE,		{ .femop_space = deleg_rd_space },
 	VOPNAME_SETSECATTR,	{ .femop_setsecattr = deleg_rd_setsecattr },
 	VOPNAME_VNEVENT,	{ .femop_vnevent = deleg_rd_vnevent },
-	NULL,			NULL
+	NULL,			0
 };
 static const fs_operation_def_t nfs4_wr_deleg_tmpl[] = {
 	VOPNAME_OPEN,		{ .femop_open = deleg_wr_open },
@@ -498,7 +498,7 @@ static const fs_operation_def_t nfs4_wr_deleg_tmpl[] = {
 	VOPNAME_SPACE,		{ .femop_space = deleg_wr_space },
 	VOPNAME_SETSECATTR,	{ .femop_setsecattr = deleg_wr_setsecattr },
 	VOPNAME_VNEVENT,	{ .femop_vnevent = deleg_wr_vnevent },
-	NULL,			NULL
+	NULL,			0
 };
 
 nfs4_srv_t *
@@ -592,7 +592,7 @@ rfs4_srvrinit(void)
 
 	nfs4_srv_caller_id = fs_new_caller_id();
 	lockt_sysid = lm_alloc_sysidt();
-	vsd_create(&nfs4_srv_vkey, NULL);
+	vsd_create(&nfs4_srv_vkey, 0);
 	rfs4_state_g_init();
 }
 

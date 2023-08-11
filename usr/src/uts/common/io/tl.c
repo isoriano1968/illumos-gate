@@ -697,11 +697,11 @@ static	struct	module_info	tl_minfo = {
 };
 
 static	struct	qinit	tl_rinit = {
-	NULL,			/* qi_putp */
+	0,			/* qi_putp */
 	tl_rsrv,		/* qi_srvp */
 	tl_open,		/* qi_qopen */
 	tl_close,		/* qi_qclose */
-	NULL,			/* qi_qadmin */
+	0,			/* qi_qadmin */
 	&tl_minfo,		/* qi_minfo */
 	NULL			/* qi_mstat */
 };
@@ -709,9 +709,9 @@ static	struct	qinit	tl_rinit = {
 static	struct	qinit	tl_winit = {
 	tl_wput,		/* qi_putp */
 	tl_wsrv,		/* qi_srvp */
-	NULL,			/* qi_qopen */
-	NULL,			/* qi_qclose */
-	NULL,			/* qi_qadmin */
+	0,			/* qi_qopen */
+	0,			/* qi_qclose */
+	0,			/* qi_qadmin */
 	&tl_minfo,		/* qi_minfo */
 	NULL			/* qi_mstat */
 };
@@ -1046,7 +1046,7 @@ tl_attach(dev_info_t *devi, ddi_attach_cmd_t cmd)
 	}
 
 	tl_cache = kmem_cache_create("tl_cache", sizeof (tl_endpt_t),
-	    0, tl_constructor, tl_destructor, NULL, NULL, NULL, 0);
+	    0, tl_constructor, tl_destructor, 0, NULL, NULL, 0);
 
 	if (tl_cache == NULL) {
 		ddi_remove_minor_node(devi, NULL);
@@ -1797,7 +1797,7 @@ tl_wput(queue_t *wq, mblk_t *mp)
 	tl_endpt_t		*tep = (tl_endpt_t *)wq->q_ptr;
 	ssize_t			msz = MBLKL(mp);
 	union T_primitives	*prim = (union T_primitives *)mp->b_rptr;
-	tlproc_t		*tl_proc = NULL;
+	tlproc_t		*tl_proc = 0;
 
 	switch (DB_TYPE(mp)) {
 	case M_DATA:

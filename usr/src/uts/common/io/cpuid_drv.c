@@ -250,7 +250,7 @@ static struct dev_ops cpuid_dv_ops = {
 	nodev,		/* reset */
 	&cpuid_cb_ops,
 	(struct bus_ops *)0,
-	NULL,
+	0,
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

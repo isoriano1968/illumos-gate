@@ -225,7 +225,7 @@ mdesc_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 		ddi_report_dev(dip);
 		mdesc_devi = dip;
 		mdesc_minor = vmem_create("mdesc_minor", (void *) 1,
-		    mdesc_max_opens, 1, NULL, NULL, NULL, 0,
+		    mdesc_max_opens, 1, 0, 0, NULL, 0,
 		    VM_SLEEP | VMC_IDENTIFIER);
 		mutex_init(&mdesc_lock, NULL, MUTEX_DRIVER, NULL);
 		mdesc_attached = 1;

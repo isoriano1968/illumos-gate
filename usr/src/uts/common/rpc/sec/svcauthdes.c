@@ -392,7 +392,7 @@ svcauthdes_init(void)
 	 * Allocate des cache handle
 	 */
 	authdes_cache_handle = kmem_cache_create("authdes_cache_handle",
-			sizeof (struct authdes_cache_entry), 0, NULL, NULL,
+			sizeof (struct authdes_cache_entry), 0, 0, 0,
 			authdes_cache_reclaim, NULL, NULL, 0);
 }
 

@@ -820,9 +820,9 @@ static struct gss_config default_gc = {
 	NULL,
 	0,
 	kgss_unseal_wrapped,
-	NULL,		/* kgss_delete_sec_context_wrapped */
+	0,		/* kgss_delete_sec_context_wrapped */
 	kgss_seal_wrapped,
-	NULL,		/* kgss_import_sec_context */
+	0,		/* kgss_import_sec_context */
 	kgss_sign_wrapped,
 	kgss_verify_wrapped
 };

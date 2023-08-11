@@ -228,7 +228,7 @@ static	struct dev_ops ch_ops = {
 	nodev,		/* funp: reset device (not supported) - dev_ops(9s) */
 	&cb_ch_ops,	/* ptr to cb_ops structure */
 	NULL,		/* ptr to nexus bus operations structure (leaf) */
-	NULL,		/* funp: change device power level - power(9e) */
+	0,		/* funp: change device power level - power(9e) */
 	ch_quiesce,	/* devo_quiesce */
 };
 
@@ -463,7 +463,7 @@ ch_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 		macinfo->gldm_ioctl = ch_ioctl;
 		macinfo->gldm_set_multicast = ch_set_multicast;
 		macinfo->gldm_intr = ch_intr;
-		macinfo->gldm_mctl = NULL;
+		macinfo->gldm_mctl = 0;
 
 		macinfo->gldm_ident = driver;
 		macinfo->gldm_type = DL_ETHER;
@@ -1883,10 +1883,10 @@ ch_unregister(void)
 			mutex_exit(&chp->ch_lock);
 
 		chp->open_device_map &= ~TOEDEV_DEVMAP_BIT;
-		chp->toe_rcv = NULL;
+		chp->toe_rcv = 0;
 		chp->ch_toeinst =  NULL;
-		chp->toe_free = NULL;
-		chp->toe_tunnel = NULL;
+		chp->toe_free = 0;
+		chp->toe_tunnel = 0;
 		chp->ch_tx_overflow_mutex = NULL;
 		chp->ch_tx_overflow_cv = NULL;
 	}

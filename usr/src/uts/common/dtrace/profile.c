@@ -442,13 +442,13 @@ static dtrace_pattr_t profile_attr = {
 
 static dtrace_pops_t profile_pops = {
 	profile_provide,
-	NULL,
+	0,
 	profile_enable,
 	profile_disable,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
 	profile_mode,
 	profile_destroy
 };

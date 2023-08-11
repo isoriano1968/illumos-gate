@@ -401,7 +401,7 @@ clnt_clts_kinit(CLIENT *h, struct netbuf *addr, int retrys, cred_t *cred)
 	p->cku_xid = 0;
 	p->cku_timers = NULL;
 	p->cku_timeall = NULL;
-	p->cku_feedback = NULL;
+	p->cku_feedback = 0;
 	p->cku_bcast = FALSE;
 	p->cku_call.call_xid = 0;
 	p->cku_call.call_hash = 0;
@@ -2228,7 +2228,7 @@ void
 clnt_clts_init(void)
 {
 	endpnt_cache = kmem_cache_create("clnt_clts_endpnt_cache",
-	    sizeof (struct endpnt), 0, NULL, NULL, endpnt_repossess, NULL,
+	    sizeof (struct endpnt), 0, 0, 0, endpnt_repossess, NULL,
 	    NULL, 0);
 
 	rw_init(&endpnt_type_lock, NULL, RW_DEFAULT, NULL);
@@ -2280,7 +2280,7 @@ clnt_clts_init(void)
 	/*
 	 * Initialize the zone destructor callback.
 	 */
-	zone_key_create(&endpnt_destructor_key, NULL, NULL, endpnt_destructor);
+	zone_key_create(&endpnt_destructor_key, 0, 0, endpnt_destructor);
 }
 
 void

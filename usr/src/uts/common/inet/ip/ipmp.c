@@ -1379,7 +1379,7 @@ ipmp_ill_refresh_active_timer(void *ill_arg)
 	}
 	mutex_exit(&ill->ill_lock);
 
-	if (ipsq_try_enter(NULL, ill, NULL, NULL, NULL, NEW_OP, B_FALSE)) {
+	if (ipsq_try_enter(NULL, ill, NULL, NULL, 0, NEW_OP, B_FALSE)) {
 		refreshed = ipmp_ill_try_refresh_active(ill);
 		ipsq_exit(ill->ill_phyint->phyint_ipsq);
 	}

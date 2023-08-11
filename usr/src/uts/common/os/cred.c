@@ -184,7 +184,7 @@ cred_init(void)
 	}
 
 	cred_cache = kmem_cache_create("cred_cache", crsize, 0,
-	    NULL, NULL, NULL, NULL, NULL, 0);
+	    0, 0, 0, NULL, NULL, 0);
 
 	/*
 	 * dummycr is used to copy initial state for creds.
@@ -239,7 +239,7 @@ cred_init(void)
 	ucredsize = UCRED_SIZE;
 
 	mutex_init(&ephemeral_zone_mutex, NULL, MUTEX_DEFAULT, NULL);
-	zone_key_create(&ephemeral_zone_key, NULL, NULL, destroy_ephemeral_zsd);
+	zone_key_create(&ephemeral_zone_key, 0, 0, destroy_ephemeral_zsd);
 }
 
 /*

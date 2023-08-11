@@ -1139,12 +1139,12 @@ static int BnxeCbIoctl(dev_t    dev,
         memset(&pUM->fcoe.bind, 0, sizeof(pUM->fcoe.bind));
         memset(&pUM->fcoe.stats, 0, sizeof(pUM->fcoe.stats));
 
-        pBinding->prvCtl           = NULL;
-        pBinding->prvTx            = NULL;
-        pBinding->prvPoll          = NULL;
-        pBinding->prvSendWqes      = NULL;
-        pBinding->prvMapMailboxq   = NULL;
-        pBinding->prvUnmapMailboxq = NULL;
+        pBinding->prvCtl           = 0;
+        pBinding->prvTx            = 0;
+        pBinding->prvPoll          = 0;
+        pBinding->prvSendWqes      = 0;
+        pBinding->prvMapMailboxq   = 0;
+        pBinding->prvUnmapMailboxq = 0;
 
         pUM->fcoe.pDev = NULL; /* sketchy? */
 
@@ -1223,7 +1223,7 @@ static struct dev_ops bnxe_dev_ops =
 {
     DEVO_REV,      /* devo_rev */
     0,             /* devo_refcnt */
-    NULL,          /* devo_getinfo */
+    0,          /* devo_getinfo */
     nulldev,       /* devo_identify */
     nulldev,       /* devo_probe */
     BnxeAttach,    /* devo_attach */
@@ -1235,7 +1235,7 @@ static struct dev_ops bnxe_dev_ops =
 #else
     NULL,          /* devo_bus_ops */
 #endif
-    NULL,          /* devo_power */
+    0,          /* devo_power */
     BnxeQuiesce    /* devo_quiesce */
 };
 

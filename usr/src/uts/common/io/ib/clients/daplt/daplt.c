@@ -587,7 +587,7 @@ static struct ibt_clnt_modinfo_s daplka_clnt_modinfo = {
 	IBTI_V_CURR,
 	IBT_USER,
 	daplka_async_handler,
-	NULL,
+	0,
 	DAPLKA_DRV_NAME
 };
 
@@ -937,7 +937,7 @@ daplka_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 	 * or when they get cancelled.
 	 */
 	retval = daplka_hash_create(&daplka_timer_info_htbl,
-	    DAPLKA_TIMER_HTBL_SZ, daplka_hash_timer_free, NULL);
+	    DAPLKA_TIMER_HTBL_SZ, daplka_hash_timer_free, 0);
 	if (retval != 0) {
 		DERR("attach: cannot create timer hash table\n");
 		retval = DDI_FAILURE;
@@ -2444,7 +2444,7 @@ daplka_ep_reinit(daplka_ia_resource_t *ia_rp, intptr_t arg, int mode,
 
 	status = ibt_recycle_rc(ep_rp->ep_chan_hdl,
 	    IBT_CEP_RDMA_RD|IBT_CEP_RDMA_WR,
-	    ia_rp->ia_port_num, NULL, NULL);
+	    ia_rp->ia_port_num, 0, NULL);
 	if (status != IBT_SUCCESS) {
 		DERR("reinit: unable to clone channel\n");
 		*rvalp = (int)status;
@@ -3495,7 +3495,7 @@ daplka_evd_destroy(daplka_resource_t *gen_rp)
 	 * free CQ
 	 */
 	if (evd_rp->evd_cq_hdl) {
-		ibt_set_cq_handler(evd_rp->evd_cq_hdl, NULL, NULL);
+		ibt_set_cq_handler(evd_rp->evd_cq_hdl, 0, NULL);
 		mutex_enter(&daplka_dev->daplka_mutex);
 		ibt_set_cq_private(evd_rp->evd_cq_hdl, NULL);
 		mutex_exit(&daplka_dev->daplka_mutex);
@@ -6243,7 +6243,7 @@ daplka_service_register(daplka_ia_resource_t *ia_rp, intptr_t arg, int mode,
 	sp_rp->sp_ruid = crgetruid(cred);
 
 	/* fill in args for register_service */
-	sd_args.sd_ud_handler = NULL;
+	sd_args.sd_ud_handler = 0;
 	sd_args.sd_handler = daplka_cm_service_handler;
 	sd_args.sd_flags = IBT_SRV_NO_FLAGS;
 
@@ -9788,8 +9788,8 @@ daplka_hash_destroy(daplka_hash_table_t *htblp)
 	htblp->ht_buckets = NULL;
 	htblp->ht_count = 0;
 	htblp->ht_nbuckets = 0;
-	htblp->ht_free_func = NULL;
-	htblp->ht_lookup_func = NULL;
+	htblp->ht_free_func = 0;
+	htblp->ht_lookup_func = 0;
 	htblp->ht_initialized = B_FALSE;
 	rw_exit(&htblp->ht_table_lock);
 

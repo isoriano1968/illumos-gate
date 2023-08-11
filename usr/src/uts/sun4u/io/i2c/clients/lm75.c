@@ -90,7 +90,7 @@ static struct dev_ops lm75_ops = {
 	nodev,
 	&lm75_cbops,
 	NULL,
-	NULL,
+	0,
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

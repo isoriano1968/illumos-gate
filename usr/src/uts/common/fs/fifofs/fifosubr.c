@@ -326,7 +326,7 @@ int
 fifoinit(int fstype, char *name)
 {
 	static const fs_operation_def_t fifo_vfsops_template[] = {
-		NULL, NULL
+		NULL, 0
 	};
 	int error;
 	major_t dev;
@@ -381,11 +381,11 @@ fifoinit(int fstype, char *name)
 	 */
 	fnode_cache = kmem_cache_create("fnode_cache",
 	    sizeof (fifodata_t) - sizeof (fifonode_t), 32,
-	    fnode_constructor, fnode_destructor, NULL,
+	    fnode_constructor, fnode_destructor, 0,
 	    (void *)(sizeof (fifodata_t) - sizeof (fifonode_t)), NULL, 0);
 
 	pipe_cache = kmem_cache_create("pipe_cache", sizeof (fifodata_t), 32,
-	    pipe_constructor, pipe_destructor, NULL,
+	    pipe_constructor, pipe_destructor, 0,
 	    (void *)(sizeof (fifodata_t)), NULL, 0);
 
 #if FIFODEBUG

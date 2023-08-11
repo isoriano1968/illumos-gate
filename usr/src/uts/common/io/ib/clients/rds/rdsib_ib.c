@@ -87,7 +87,7 @@ static struct ibt_clnt_modinfo_s rds_ib_modinfo = {
 	IBTI_V_CURR,
 	IBT_NETWORK,
 	rds_async_handler,
-	NULL,
+	0,
 	"RDS"
 };
 

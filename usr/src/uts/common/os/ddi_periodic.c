@@ -210,7 +210,7 @@ ddi_periodic_init(void)
 	 * to store them in so we can later delete based on opaque handles:
 	 */
 	periodic_cache = kmem_cache_create("ddi_periodic",
-	    sizeof (ddi_periodic_impl_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (ddi_periodic_impl_t), 0, 0, 0, 0, NULL, NULL, 0);
 	list_create(&periodics, sizeof (ddi_periodic_impl_t),
 	    offsetof(ddi_periodic_impl_t, dpr_link));
 

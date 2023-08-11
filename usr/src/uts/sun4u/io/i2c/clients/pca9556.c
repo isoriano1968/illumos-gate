@@ -124,7 +124,7 @@ static struct dev_ops pca9556_dev_ops = {
 	nodev,
 	&pca9556_cb_ops,
 	NULL,
-	NULL,
+	0,
 	ddi_quiesce_not_supported,	/* devo_quiesce */
 };
 

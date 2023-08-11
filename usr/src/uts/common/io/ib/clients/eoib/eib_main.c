@@ -102,10 +102,10 @@ static mac_callbacks_t eib_m_callbacks = {
 	eib_m_unicast,
 	eib_m_tx,
 	NULL,
-	NULL,
+	0,
 	eib_m_getcapab,
-	NULL,
-	NULL,
+	0,
+	0,
 	eib_m_setprop,
 	eib_m_getprop,
 	eib_m_propinfo
@@ -118,7 +118,7 @@ static ibt_clnt_modinfo_t eib_clnt_modinfo = {
 	IBTI_V_CURR,
 	IBT_NETWORK,
 	eib_ibt_async_handler,
-	NULL,
+	0,
 	EIB_DRV_NAME
 };
 

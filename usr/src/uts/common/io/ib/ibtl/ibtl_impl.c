@@ -415,13 +415,13 @@ ibt_detach(ibt_clnt_hdl_t ibt_hdl)
 	ibtl_free_clnt_async_check(ibt_hdl);
 
 	if (ibt_hdl->clnt_modinfop->mi_clnt_class == IBT_CM) {
-		ibtl_cm_async_handler = NULL;
+		ibtl_cm_async_handler = 0;
 		ibtl_cm_clnt_private = NULL;
 	} else if (ibt_hdl->clnt_modinfop->mi_clnt_class == IBT_DM) {
-		ibtl_dm_async_handler = NULL;
+		ibtl_dm_async_handler = 0;
 		ibtl_dm_clnt_private = NULL;
 	} else if (ibt_hdl->clnt_modinfop->mi_clnt_class == IBT_IBMA) {
-		ibtl_ibma_async_handler = NULL;
+		ibtl_ibma_async_handler = 0;
 		ibtl_ibma_clnt_private = NULL;
 	}
 	mutex_exit(&ibtl_clnt_list_mutex);

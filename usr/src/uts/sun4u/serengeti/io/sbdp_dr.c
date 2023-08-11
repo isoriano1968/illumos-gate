@@ -310,7 +310,7 @@ sbdp_attach_bd(int node, int board)
 	b.arg = (void *)apktp;
 	b.type = DEVI_BRANCH_PROM;
 	b.create.prom_branch_select = sbdp_select_top_nodes;
-	b.devi_branch_callback = NULL;
+	b.devi_branch_callback = 0;
 
 	(void) e_ddi_branch_create(apktp->top_node, &b, NULL, 0);
 

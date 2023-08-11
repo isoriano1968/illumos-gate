@@ -214,7 +214,7 @@ isns_client_init()
 	mutex_init(&esi_scn_thr_mutex, NULL, MUTEX_DRIVER, NULL);
 
 	/* MISC initializations. */
-	scn_callback_p = NULL;
+	scn_callback_p = 0;
 	esi_scn_thr_id = NULL;
 	instance_listening_so = NULL;
 	esi_scn_thr_to_shutdown = B_FALSE;

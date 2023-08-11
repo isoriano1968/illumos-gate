@@ -106,7 +106,7 @@ const fs_operation_def_t socket_vnodeops_template[] = {
 	VOPNAME_SEEK,		{ .vop_seek = socket_vop_seek },
 	VOPNAME_POLL,		{ .vop_poll = socket_vop_poll },
 	VOPNAME_DISPOSE,	{ .error = fs_error },
-	NULL,			NULL
+	NULL,			0
 };
 
 

@@ -212,31 +212,31 @@ static mdi_vhci_ops_t ibnex_vhci_ops = {
 struct bus_ops ibnex_bus_ops = {
 	BUSO_REV,
 	nullbusmap,		/* bus_map */
-	NULL,			/* bus_get_intrspec */
-	NULL,			/* bus_add_intrspec */
-	NULL,			/* bus_remove_intrspec */
+	0,			/* bus_get_intrspec */
+	0,			/* bus_add_intrspec */
+	0,			/* bus_remove_intrspec */
 	ibnex_map_fault,	/* Map Fault */
 	ddi_no_dma_map,		/* DMA related entry points */
 	ddi_no_dma_allochdl,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
 	ibnex_busctl,		/* bus_ctl */
 	ddi_bus_prop_op,	/* bus_prop_op */
 	ibnex_get_eventcookie,	/* bus_get_eventcookie	*/
 	ibnex_add_eventcall,	/* bus_add_eventcall	*/
 	ibnex_remove_eventcall,	/* bus_remove_eventcall	*/
 	ibnex_post_event,		/* bus_post_event	*/
-	NULL,
+	0,
 	ibnex_bus_config,	/* bus config */
 	ibnex_bus_unconfig,	/* bus unconfig */
-	NULL,			/* bus fm init */
-	NULL,			/* bus fm fini */
-	NULL,			/* bus fm access enter */
-	NULL,			/* bus fm access exit */
+	0,			/* bus fm init */
+	0,			/* bus fm fini */
+	0,			/* bus fm access enter */
+	0,			/* bus fm access exit */
 	ibnex_bus_power		/* bus power */
 };
 

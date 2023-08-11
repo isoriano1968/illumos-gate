@@ -1484,9 +1484,9 @@ lufs_init(void)
 
 	/* Create kmem caches */
 	lufs_sv = kmem_cache_create("lufs_save", sizeof (lufs_save_t), 0,
-	    NULL, NULL, NULL, NULL, NULL, 0);
+	    0, 0, 0, NULL, NULL, 0);
 	lufs_bp = kmem_cache_create("lufs_bufs", sizeof (lufs_buf_t), 0,
-	    NULL, NULL, NULL, NULL, NULL, 0);
+	    0, 0, 0, NULL, NULL, 0);
 
 	mutex_init(&log_mutex, NULL, MUTEX_DEFAULT, NULL);
 

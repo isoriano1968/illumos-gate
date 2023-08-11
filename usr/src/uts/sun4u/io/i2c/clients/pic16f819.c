@@ -92,7 +92,7 @@ static struct dev_ops pic16f819_ops = {
 	nodev,
 	&pic16f819_cbops,
 	NULL,			/* bus ops */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

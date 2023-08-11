@@ -1705,15 +1705,15 @@ static dtrace_pattr_t fbt_attr = {
 };
 
 static dtrace_pops_t fbt_pops = {
-	NULL,
+	0,
 	fbt_provide_module,
 	fbt_enable,
 	fbt_disable,
 	fbt_suspend,
 	fbt_resume,
 	fbt_getargdesc,
-	NULL,
-	NULL,
+	0,
+	0,
 	fbt_destroy
 };
 

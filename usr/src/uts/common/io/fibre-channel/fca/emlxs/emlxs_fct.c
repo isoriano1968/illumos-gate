@@ -580,26 +580,26 @@ emlxs_fct_modclose()
 		emlxs_modsym.mod_stmf = 0;
 	}
 
-	emlxs_modsym.fct_alloc = NULL;
-	emlxs_modsym.fct_free = NULL;
-	emlxs_modsym.fct_scsi_task_alloc = NULL;
-	emlxs_modsym.fct_register_local_port = NULL;
-	emlxs_modsym.fct_deregister_local_port = NULL;
-	emlxs_modsym.fct_handle_event = NULL;
-	emlxs_modsym.fct_ctl = NULL;
-	emlxs_modsym.fct_queue_cmd_for_termination = NULL;
-	emlxs_modsym.fct_send_response_done = NULL;
-	emlxs_modsym.fct_send_cmd_done = NULL;
-	emlxs_modsym.fct_scsi_data_xfer_done = NULL;
-	emlxs_modsym.fct_port_shutdown = NULL;
-	emlxs_modsym.fct_port_initialize = NULL;
-	emlxs_modsym.fct_cmd_fca_aborted = NULL;
-	emlxs_modsym.fct_handle_rcvd_flogi = NULL;
+	emlxs_modsym.fct_alloc = 0;
+	emlxs_modsym.fct_free = 0;
+	emlxs_modsym.fct_scsi_task_alloc = 0;
+	emlxs_modsym.fct_register_local_port = 0;
+	emlxs_modsym.fct_deregister_local_port = 0;
+	emlxs_modsym.fct_handle_event = 0;
+	emlxs_modsym.fct_ctl = 0;
+	emlxs_modsym.fct_queue_cmd_for_termination = 0;
+	emlxs_modsym.fct_send_response_done = 0;
+	emlxs_modsym.fct_send_cmd_done = 0;
+	emlxs_modsym.fct_scsi_data_xfer_done = 0;
+	emlxs_modsym.fct_port_shutdown = 0;
+	emlxs_modsym.fct_port_initialize = 0;
+	emlxs_modsym.fct_cmd_fca_aborted = 0;
+	emlxs_modsym.fct_handle_rcvd_flogi = 0;
 
-	emlxs_modsym.stmf_alloc = NULL;
-	emlxs_modsym.stmf_free = NULL;
-	emlxs_modsym.stmf_deregister_port_provider = NULL;
-	emlxs_modsym.stmf_register_port_provider = NULL;
+	emlxs_modsym.stmf_alloc = 0;
+	emlxs_modsym.stmf_free = 0;
+	emlxs_modsym.stmf_deregister_port_provider = 0;
+	emlxs_modsym.stmf_register_port_provider = 0;
 
 	mutex_exit(&emlxs_device.lock);
 
@@ -1853,7 +1853,7 @@ emlxs_fct_flogi_xchg(struct fct_local_port *fct_port, struct fct_flogi_xchg *fx)
 	/* Make this a polled IO */
 	pkt->pkt_tran_flags &= ~FC_TRAN_INTR;
 	pkt->pkt_tran_flags |= FC_TRAN_NO_INTR;
-	pkt->pkt_comp = NULL;
+	pkt->pkt_comp = 0;
 
 	pkt->pkt_tran_type = FC_PKT_EXCHANGE;
 	pkt->pkt_timeout = fx->fx_sec_timeout;

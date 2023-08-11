@@ -213,7 +213,7 @@ _init(void)
 	sem_svc = ipcs_create("semids", rc_project_semmni, rc_zone_semmni,
 	    sizeof (ksemid_t), sem_dtor, sem_rmid, AT_IPC_SEM,
 	    offsetof(ipc_rqty_t, ipcq_semmni));
-	zone_key_create(&sem_zone_key, NULL, sem_remove_zone, NULL);
+	zone_key_create(&sem_zone_key, 0, sem_remove_zone, 0);
 
 	if ((result = mod_install(&modlinkage)) == 0)
 		return (0);

@@ -1750,7 +1750,7 @@ exacct_init()
 {
 	exacct_queue = system_taskq;
 	exacct_object_cache = kmem_cache_create("exacct_object_cache",
-	    sizeof (ea_object_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (ea_object_t), 0, 0, 0, 0, NULL, NULL, 0);
 	task_commit_thread_init();
 }
 

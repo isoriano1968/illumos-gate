@@ -316,20 +316,20 @@ static struct module_info ds_minfo = {
 };
 
 static struct qinit ds_rinit = {
-	NULL,		/* qi_putp */
-	NULL,		/* qi_srvp */
+	0,		/* qi_putp */
+	0,		/* qi_srvp */
 	ds_open,	/* qi_qopen */
 	ds_close,	/* qi_qclose */
-	NULL,		/* qi_qadmin */
+	0,		/* qi_qadmin */
 	&ds_minfo,	/* qi_minfo */
 };
 
 static struct qinit ds_winit = {
 	ds_wput,	/* qi_putp */
-	NULL,		/* qi_srvp */
-	NULL,		/* qi_qopen */
-	NULL,		/* qi_qclose */
-	NULL,		/* qi_qadmin */
+	0,		/* qi_srvp */
+	0,		/* qi_qopen */
+	0,		/* qi_qclose */
+	0,		/* qi_qadmin */
 	&ds_minfo,	/* qi_minfo */
 };
 

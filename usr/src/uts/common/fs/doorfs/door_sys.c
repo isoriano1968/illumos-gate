@@ -152,7 +152,7 @@ int
 _init(void)
 {
 	static const fs_operation_def_t door_vfsops_template[] = {
-		NULL, NULL
+		NULL, 0
 	};
 	extern const fs_operation_def_t door_vnodeops_template[];
 	vfsops_t *door_vfsops;
@@ -512,7 +512,7 @@ door_call(int did, void *args)
 	uint_t		ncopied = 0;
 	size_t		dsize;
 	/* destructor for data returned by a kernel server */
-	void		(*destfn)() = NULL;
+	void		(*destfn)() = 0;
 	void		*destarg;
 	model_t		datamodel;
 	int		gotresults = 0;

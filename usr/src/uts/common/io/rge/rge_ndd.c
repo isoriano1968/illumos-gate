@@ -223,7 +223,7 @@ rge_param_register(rge_t *rgep)
 			break;
 
 		case '-':
-			setfn = NULL;
+			setfn = 0;
 			break;
 		}
 

@@ -62,7 +62,7 @@ const fs_operation_def_t port_vnodeops_template[] = {
 	VOPNAME_DISPOSE,	{ .error = fs_error },
 	VOPNAME_GETSECATTR,	{ .error = fs_error },
 	VOPNAME_SHRLOCK,	{ .error = fs_error },
-	NULL,			NULL
+	NULL,			0
 };
 
 /* ARGSUSED */

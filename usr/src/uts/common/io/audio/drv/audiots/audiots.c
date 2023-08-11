@@ -170,9 +170,9 @@ static audio_engine_ops_t	audiots_engine_ops = {
 	audiots_channels,
 	audiots_rate,
 	audiots_sync,
-	NULL,
+	0,
 	audiots_chinfo,
-	NULL,
+	0,
 };
 
 /*
@@ -204,7 +204,7 @@ static void *audiots_statep;
 static struct dev_ops audiots_dev_ops = {
 	DEVO_REV,		/* devo_rev */
 	0,			/* devo_refcnt */
-	NULL,			/* devo_getinfo */
+	0,			/* devo_getinfo */
 	nulldev,		/* devo_identify - obsolete */
 	nulldev,		/* devo_probe */
 	audiots_attach,		/* devo_attach */
@@ -212,7 +212,7 @@ static struct dev_ops audiots_dev_ops = {
 	nodev,			/* devo_reset */
 	NULL,			/* devo_cb_ops */
 	NULL,			/* devo_bus_ops */
-	NULL,			/* devo_power */
+	0,			/* devo_power */
 	audiots_quiesce,	/* devo_quiesce */
 };
 

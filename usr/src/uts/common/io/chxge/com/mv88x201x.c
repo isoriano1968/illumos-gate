@@ -192,12 +192,12 @@ static struct cphy_ops mv88x201x_ops = {
 	mv88x201x_interrupt_disable,
 	mv88x201x_interrupt_clear,
 	mv88x201x_interrupt_handler,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
 	mv88x201x_set_loopback,
-	NULL,
+	0,
 	mv88x201x_get_link_status,
 };
 #else

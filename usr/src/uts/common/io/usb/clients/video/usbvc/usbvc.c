@@ -246,7 +246,7 @@ static int		usbvc_set_default_stream_fmt(usbvc_state_t *);
 static usb_event_t usbvc_events = {
 	usbvc_disconnect_event_cb,
 	usbvc_reconnect_event_cb,
-	NULL, NULL
+	0, 0
 };
 
 /* module loading stuff */
@@ -699,7 +699,7 @@ usbvc_close(dev_t dev, int flag, int otyp, cred_t *cred_p)
 	 */
 	(void) usb_pipe_drain_reqs(usbvcp->usbvc_dip,
 	    usbvcp->usbvc_reg->dev_default_ph, 0,
-	    USB_FLAGS_SLEEP, NULL, 0);
+	    USB_FLAGS_SLEEP, 0, 0);
 
 	mutex_enter(&usbvcp->usbvc_mutex);
 	strm_if = usbvcp->usbvc_curr_strm;
@@ -717,7 +717,7 @@ usbvc_close(dev_t dev, int flag, int otyp, cred_t *cred_p)
 
 	/* reset alternate to the default one. */
 	(void) usb_set_alt_if(usbvcp->usbvc_dip, if_num, 0,
-	    USB_FLAGS_SLEEP, NULL, NULL);
+	    USB_FLAGS_SLEEP, 0, NULL);
 	mutex_enter(&usbvcp->usbvc_mutex);
 
 	usbvc_free_read_bufs(usbvcp, strm_if);
@@ -3068,7 +3068,7 @@ usbvc_close_isoc_pipe(usbvc_state_t *usbvcp, usbvc_stream_if_t *strm_if)
 	if (strm_if->datain_ph) {
 		mutex_exit(&usbvcp->usbvc_mutex);
 		usb_pipe_close(usbvcp->usbvc_dip, strm_if->datain_ph,
-		    USB_FLAGS_SLEEP, NULL, NULL);
+		    USB_FLAGS_SLEEP, 0, NULL);
 		mutex_enter(&usbvcp->usbvc_mutex);
 	}
 	strm_if->datain_ph = NULL;
@@ -3376,7 +3376,7 @@ usbvc_set_alt(usbvc_state_t *usbvcp, usbvc_stream_if_t *strm_if)
 	if_num = strm_if->if_descr->if_alt->altif_descr.bInterfaceNumber;
 	mutex_exit(&usbvcp->usbvc_mutex);
 	if ((rval = usb_set_alt_if(usbvcp->usbvc_dip, if_num, strm_if->curr_alt,
-	    USB_FLAGS_SLEEP, NULL, NULL)) != USB_SUCCESS) {
+	    USB_FLAGS_SLEEP, 0, NULL)) != USB_SUCCESS) {
 		mutex_enter(&usbvcp->usbvc_mutex);
 		USB_DPRINTF_L2(PRINT_MASK_OPEN, usbvcp->usbvc_log_handle,
 		    "usbvc_set_alt: usb_set_alt_if fail, if.alt=%d.%d, rval=%d",

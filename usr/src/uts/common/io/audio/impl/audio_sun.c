@@ -1431,11 +1431,11 @@ static struct audio_client_ops devaudio_ops = {
 	devaudio_fini,
 	devaudio_open,
 	devaudio_close,
-	NULL,	/* read */
-	NULL,	/* write */
-	NULL,	/* ioctl */
-	NULL,	/* chpoll */
-	NULL,	/* mmap */
+	0,	/* read */
+	0,	/* write */
+	0,	/* ioctl */
+	0,	/* chpoll */
+	0,	/* mmap */
 	devaudio_input,
 	devaudio_output,
 	devaudio_drain,
@@ -1446,20 +1446,20 @@ static struct audio_client_ops devaudio_ops = {
 
 static struct audio_client_ops devaudioctl_ops = {
 	"sound,audioctl",
-	NULL,	/* dev_init */
-	NULL,	/* dev_fini */
+	0,	/* dev_init */
+	0,	/* dev_fini */
 	devaudioctl_open,
 	devaudioctl_close,
-	NULL,	/* read */
-	NULL,	/* write */
-	NULL,	/* ioctl */
-	NULL,	/* chpoll */
-	NULL,	/* mmap */
-	NULL,	/* output */
-	NULL,	/* input */
-	NULL,	/* drain */
+	0,	/* read */
+	0,	/* write */
+	0,	/* ioctl */
+	0,	/* chpoll */
+	0,	/* mmap */
+	0,	/* output */
+	0,	/* input */
+	0,	/* drain */
 	devaudioctl_wput,
-	NULL,
+	0,
 	devaudio_rsrv
 };
 

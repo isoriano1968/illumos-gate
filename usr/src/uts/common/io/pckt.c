@@ -146,17 +146,17 @@ static struct qinit pcktrinit = {
 	pcktrsrv,
 	pcktopen,
 	pcktclose,
-	NULL,
+	0,
 	&pcktiinfo,
 	NULL
 };
 
 static struct qinit pcktwinit = {
 	pcktwput,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
 	&pcktoinfo,
 	NULL
 };

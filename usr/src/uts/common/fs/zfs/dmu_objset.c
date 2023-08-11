@@ -1204,7 +1204,7 @@ dmu_objset_create_sync(void *arg, dmu_tx_t *tx)
 		ds->ds_owner = FTAG;
 		mutex_exit(&ds->ds_lock);
 
-		rzio = zio_root(spa, NULL, NULL, ZIO_FLAG_MUSTSUCCEED);
+		rzio = zio_root(spa, 0, NULL, ZIO_FLAG_MUSTSUCCEED);
 		tmpds = txg_list_remove_this(&dp->dp_dirty_datasets, ds,
 		    tx->tx_txg);
 		if (tmpds != NULL) {
@@ -1219,7 +1219,7 @@ dmu_objset_create_sync(void *arg, dmu_tx_t *tx)
 			key_mapping_rele(spa, ds->ds_key_mapping, ds);
 		}
 
-		rzio = zio_root(spa, NULL, NULL, ZIO_FLAG_MUSTSUCCEED);
+		rzio = zio_root(spa, 0, NULL, ZIO_FLAG_MUSTSUCCEED);
 		tmpds = txg_list_remove_this(&dp->dp_dirty_datasets, ds,
 		    tx->tx_txg);
 		if (tmpds != NULL) {
@@ -1713,7 +1713,7 @@ dmu_objset_sync(objset_t *os, zio_t *pio, dmu_tx_t *tx)
 
 	zio = arc_write(pio, os->os_spa, tx->tx_txg,
 	    blkptr_copy, os->os_phys_buf, DMU_OS_IS_L2CACHEABLE(os),
-	    &zp, dmu_objset_write_ready, NULL, NULL, dmu_objset_write_done,
+	    &zp, dmu_objset_write_ready, 0, 0, dmu_objset_write_done,
 	    os, ZIO_PRIORITY_ASYNC_WRITE, ZIO_FLAG_MUSTSUCCEED, &zb);
 
 	/*

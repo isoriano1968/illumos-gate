@@ -481,7 +481,7 @@ _fini(void)
 	if ((error = mod_remove(&modlinkage)) != 0)
 		return (error);
 
-	plat_register_tod_fault(NULL);
+	plat_register_tod_fault(0);
 
 	mutex_destroy(&ftlist_mutex);
 
@@ -964,7 +964,7 @@ fhc_init(struct fhc_soft_state *softsp)
 
 	/* Initialize the poll_list to be empty */
 	for (i = 0; i < MAX_ZS_CNT; i++) {
-		softsp->poll_list[i].funcp = NULL;
+		softsp->poll_list[i].funcp = 0;
 	}
 
 	/* Modify the various registers in the FHC now */
@@ -1368,7 +1368,7 @@ fhc_remove_intr_impl(dev_info_t *dip, dev_info_t *rdip,
 		for (i = 0; i < MAX_ZS_CNT; i++) {
 			if (softsp->poll_list[i].child == rdip &&
 			    softsp->poll_list[i].inum == hdlp->ih_inum) {
-				softsp->poll_list[i].funcp = NULL;
+				softsp->poll_list[i].funcp = 0;
 				intr_found++;
 			}
 		}

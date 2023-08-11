@@ -278,9 +278,9 @@ static ip_m_t   ip_m_tbl[] = {
 	    ip_mbcast_mapping, ip_mbcast_mapping, ip_ipv4_v6intfid,
 	    ip_nodef_v6intfid },
 	{ SUNW_DL_VNI, IFT_OTHER, ETHERTYPE_IP, ETHERTYPE_IPV6,
-	    NULL, NULL, ip_nodef_v6intfid, ip_nodef_v6intfid },
+	    0, 0, ip_nodef_v6intfid, ip_nodef_v6intfid },
 	{ SUNW_DL_IPMP, IFT_OTHER, ETHERTYPE_IP, ETHERTYPE_IPV6,
-	    NULL, NULL, ip_ipmp_v6intfid, ip_nodef_v6intfid },
+	    0, 0, ip_ipmp_v6intfid, ip_nodef_v6intfid },
 	{ DL_OTHER, IFT_OTHER, ETHERTYPE_IP, ETHERTYPE_IPV6,
 	    ip_ether_v4_mapping, ip_ether_v6_mapping, ip_nodef_v6intfid,
 	    ip_nodef_v6intfid }
@@ -2158,7 +2158,7 @@ ill_capability_dld_disable(ill_t *ill)
 		mutex_exit(&ill->ill_lock);
 		if (ill->ill_flownotify_mh != NULL) {
 			idd = &idc->idc_direct;
-			idd->idd_tx_cb_df(idd->idd_tx_cb_dh, NULL,
+			idd->idd_tx_cb_df(idd->idd_tx_cb_dh, 0,
 			    ill->ill_flownotify_mh);
 			ill->ill_flownotify_mh = NULL;
 		}
@@ -3105,7 +3105,7 @@ ill_alloc_ppa(ill_if_t *ifp, ill_t *ill)
 		 * Create an arena.
 		 */
 		ifp->illif_ppa_arena = vmem_create(ifp->illif_name,
-		    (void *)1, UINT_MAX - 1, 1, NULL, NULL,
+		    (void *)1, UINT_MAX - 1, 1, 0, 0,
 		    NULL, 0, VM_SLEEP | VMC_IDENTIFIER);
 			/* allocate what has already been assigned */
 		for (tmp_ill = avl_first(&ifp->illif_avl_by_ppa);

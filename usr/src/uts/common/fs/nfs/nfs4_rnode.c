@@ -1928,7 +1928,7 @@ nfs4_rnode_init(void)
 	}
 
 	rnode4_cache = kmem_cache_create("rnode4_cache", sizeof (rnode4_t),
-	    0, NULL, NULL, nfs4_reclaim, NULL, NULL, 0);
+	    0, 0, 0, nfs4_reclaim, NULL, NULL, 0);
 
 	return (0);
 }

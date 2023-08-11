@@ -72,7 +72,7 @@ label_init(void)
 	 */
 
 	tslabel_cache = kmem_cache_create("tslabel_cache", sizeof (ts_label_t),
-	    0, NULL, NULL, NULL, NULL, NULL, 0);
+	    0, 0, 0, 0, NULL, NULL, 0);
 	bsllow(&label);
 	l_admin_low = labelalloc(&label, default_doi, KM_SLEEP);
 	bslhigh(&label);

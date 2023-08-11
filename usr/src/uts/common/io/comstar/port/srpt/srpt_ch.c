@@ -389,7 +389,7 @@ srpt_ch_cleanup(srpt_channel_t *ch)
 	 * or via abort).
 	 */
 	if (ch->ch_rcq_hdl) {
-		ibt_set_cq_handler(ch->ch_rcq_hdl, NULL, NULL);
+		ibt_set_cq_handler(ch->ch_rcq_hdl, 0, NULL);
 
 		while (ibt_poll_cq(ch->ch_rcq_hdl, &wc, 1, NULL) ==
 		    IBT_SUCCESS) {

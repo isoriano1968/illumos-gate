@@ -219,7 +219,7 @@ sol_uverbs_hca_open(uverbs_module_context_t *mod_ctxt)
 	mod_ctxt->clnt_modinfo.mi_ibt_version   = IBTI_V_CURR;
 	mod_ctxt->clnt_modinfo.mi_clnt_class    = IBT_USER;
 	mod_ctxt->clnt_modinfo.mi_async_handler = uverbs_async_event_handler;
-	mod_ctxt->clnt_modinfo.mi_reserved	= NULL;
+	mod_ctxt->clnt_modinfo.mi_reserved	= 0;
 	mod_ctxt->clnt_modinfo.mi_clnt_name	= "sol_uverbs";
 
 	status = ibt_attach(&mod_ctxt->clnt_modinfo, mod_ctxt->dip,

@@ -63,7 +63,7 @@ s32 ixgbe_init_ops_X550(struct ixgbe_hw *hw)
 	mac->ops.dmac_config = ixgbe_dmac_config_X550;
 	mac->ops.dmac_config_tcs = ixgbe_dmac_config_tcs_X550;
 	mac->ops.dmac_update_tcs = ixgbe_dmac_update_tcs_X550;
-	mac->ops.setup_eee = NULL;
+	mac->ops.setup_eee = 0;
 	mac->ops.set_source_address_pruning =
 			ixgbe_set_source_address_pruning_X550;
 	mac->ops.set_ethertype_anti_spoofing =
@@ -88,8 +88,8 @@ s32 ixgbe_init_ops_X550(struct ixgbe_hw *hw)
 	mac->ops.set_fw_drv_ver = ixgbe_set_fw_drv_ver_x550;
 	switch (hw->device_id) {
 	case IXGBE_DEV_ID_X550EM_X_1G_T:
-		hw->mac.ops.led_on = NULL;
-		hw->mac.ops.led_off = NULL;
+		hw->mac.ops.led_on = 0;
+		hw->mac.ops.led_off = 0;
 		break;
 	case IXGBE_DEV_ID_X550EM_X_10G_T:
 	case IXGBE_DEV_ID_X550EM_A_10G_T:
@@ -499,8 +499,8 @@ static s32 ixgbe_identify_phy_fw(struct ixgbe_hw *hw)
 		hw->phy.phy_semaphore_mask = IXGBE_GSSR_PHY0_SM;
 
 	hw->phy.type = ixgbe_phy_fw;
-	hw->phy.ops.read_reg = NULL;
-	hw->phy.ops.write_reg = NULL;
+	hw->phy.ops.read_reg = 0;
+	hw->phy.ops.write_reg = 0;
 	return ixgbe_get_phy_id_fw(hw);
 }
 
@@ -620,24 +620,24 @@ s32 ixgbe_init_ops_X550EM(struct ixgbe_hw *hw)
 	 */
 
 	/* Bypass not supported in x550EM */
-	mac->ops.bypass_rw = NULL;
-	mac->ops.bypass_valid_rd = NULL;
-	mac->ops.bypass_set = NULL;
-	mac->ops.bypass_rd_eep = NULL;
+	mac->ops.bypass_rw = 0;
+	mac->ops.bypass_valid_rd = 0;
+	mac->ops.bypass_set = 0;
+	mac->ops.bypass_rd_eep = 0;
 
 	/* FCOE not supported in x550EM */
-	mac->ops.get_san_mac_addr = NULL;
-	mac->ops.set_san_mac_addr = NULL;
-	mac->ops.get_wwn_prefix = NULL;
-	mac->ops.get_fcoe_boot_status = NULL;
+	mac->ops.get_san_mac_addr = 0;
+	mac->ops.set_san_mac_addr = 0;
+	mac->ops.get_wwn_prefix = 0;
+	mac->ops.get_fcoe_boot_status = 0;
 
 	/* IPsec not supported in x550EM */
-	mac->ops.disable_sec_rx_path = NULL;
-	mac->ops.enable_sec_rx_path = NULL;
+	mac->ops.disable_sec_rx_path = 0;
+	mac->ops.enable_sec_rx_path = 0;
 
 	/* AUTOC register is not present in x550EM. */
-	mac->ops.prot_autoc_read = NULL;
-	mac->ops.prot_autoc_write = NULL;
+	mac->ops.prot_autoc_read = 0;
+	mac->ops.prot_autoc_write = 0;
 
 	/* X550EM bus type is internal*/
 	hw->bus.type = ixgbe_bus_type_internal;
@@ -661,22 +661,22 @@ s32 ixgbe_init_ops_X550EM(struct ixgbe_hw *hw)
 	switch (hw->device_id) {
 	case IXGBE_DEV_ID_X550EM_A_1G_T:
 	case IXGBE_DEV_ID_X550EM_A_1G_T_L:
-		mac->ops.setup_fc = NULL;
+		mac->ops.setup_fc = 0;
 		phy->ops.identify = ixgbe_identify_phy_fw;
-		phy->ops.set_phy_power = NULL;
-		phy->ops.get_firmware_version = NULL;
+		phy->ops.set_phy_power = 0;
+		phy->ops.get_firmware_version = 0;
 		break;
 	case IXGBE_DEV_ID_X550EM_X_1G_T:
-		mac->ops.setup_fc = NULL;
+		mac->ops.setup_fc = 0;
 		phy->ops.identify = ixgbe_identify_phy_x550em;
-		phy->ops.set_phy_power = NULL;
+		phy->ops.set_phy_power = 0;
 		break;
 	default:
 		phy->ops.identify = ixgbe_identify_phy_x550em;
 	}
 
 	if (mac->ops.get_media_type(hw) != ixgbe_media_type_copper)
-		phy->ops.set_phy_power = NULL;
+		phy->ops.set_phy_power = 0;
 
 
 	/* EEPROM */
@@ -808,7 +808,7 @@ s32 ixgbe_init_ops_X550EM_a(struct ixgbe_hw *hw)
 
 	switch (mac->ops.get_media_type(hw)) {
 	case ixgbe_media_type_fiber:
-		mac->ops.setup_fc = NULL;
+		mac->ops.setup_fc = 0;
 		mac->ops.fc_autoneg = ixgbe_fc_autoneg_fiber_x550em_a;
 		break;
 	case ixgbe_media_type_backplane:
@@ -866,9 +866,9 @@ s32 ixgbe_init_ops_X550EM_x(struct ixgbe_hw *hw)
 	link->addr = IXGBE_CS4227;
 
 	if (hw->device_id == IXGBE_DEV_ID_X550EM_X_1G_T) {
-		mac->ops.setup_fc = NULL;
-		mac->ops.setup_eee = NULL;
-		mac->ops.init_led_link_act = NULL;
+		mac->ops.setup_fc = 0;
+		mac->ops.setup_eee = 0;
+		mac->ops.init_led_link_act = 0;
 	}
 
 	return ret_val;
@@ -1619,7 +1619,7 @@ s32 ixgbe_setup_sfp_modules_X550em(struct ixgbe_hw *hw)
 		return status;
 
 	ixgbe_init_mac_link_ops_X550em(hw);
-	hw->phy.ops.reset = NULL;
+	hw->phy.ops.reset = 0;
 
 	return IXGBE_SUCCESS;
 }
@@ -1828,9 +1828,9 @@ void ixgbe_init_mac_link_ops_X550em(struct ixgbe_hw *hw)
 		/* CS4227 does not support autoneg, so disable the laser control
 		 * functions for SFP+ fiber
 		 */
-		mac->ops.disable_tx_laser = NULL;
-		mac->ops.enable_tx_laser = NULL;
-		mac->ops.flap_tx_laser = NULL;
+		mac->ops.disable_tx_laser = 0;
+		mac->ops.enable_tx_laser = 0;
+		mac->ops.flap_tx_laser = 0;
 		mac->ops.setup_link = ixgbe_setup_mac_link_multispeed_fiber;
 		mac->ops.set_rate_select_speed =
 					ixgbe_set_soft_rate_select_speed;
@@ -2287,10 +2287,10 @@ s32 ixgbe_init_phy_ops_X550em(struct ixgbe_hw *hw)
 	switch (hw->device_id) {
 	case IXGBE_DEV_ID_X550EM_A_1G_T:
 	case IXGBE_DEV_ID_X550EM_A_1G_T_L:
-		phy->ops.read_reg_mdi = NULL;
-		phy->ops.write_reg_mdi = NULL;
-		hw->phy.ops.read_reg = NULL;
-		hw->phy.ops.write_reg = NULL;
+		phy->ops.read_reg_mdi = 0;
+		phy->ops.write_reg_mdi = 0;
+		hw->phy.ops.read_reg = 0;
+		hw->phy.ops.write_reg = 0;
 		phy->ops.check_overtemp = ixgbe_check_overtemp_fw;
 		if (hw->bus.lan_id)
 			hw->phy.phy_semaphore_mask |= IXGBE_GSSR_PHY1_SM;
@@ -2312,8 +2312,8 @@ s32 ixgbe_init_phy_ops_X550em(struct ixgbe_hw *hw)
 		hw->phy.phy_semaphore_mask = IXGBE_GSSR_SHARED_I2C_SM;
 		break;
 	case IXGBE_DEV_ID_X550EM_X_1G_T:
-		phy->ops.read_reg_mdi = NULL;
-		phy->ops.write_reg_mdi = NULL;
+		phy->ops.read_reg_mdi = 0;
+		phy->ops.write_reg_mdi = 0;
 	default:
 		break;
 	}
@@ -2327,12 +2327,12 @@ s32 ixgbe_init_phy_ops_X550em(struct ixgbe_hw *hw)
 	/* Setup function pointers based on detected hardware */
 	ixgbe_init_mac_link_ops_X550em(hw);
 	if (phy->sfp_type != ixgbe_sfp_type_unknown)
-		phy->ops.reset = NULL;
+		phy->ops.reset = 0;
 
 	/* Set functions pointers based on phy type */
 	switch (hw->phy.type) {
 	case ixgbe_phy_x550em_kx4:
-		phy->ops.setup_link = NULL;
+		phy->ops.setup_link = 0;
 		phy->ops.read_reg = ixgbe_read_phy_reg_x550em;
 		phy->ops.write_reg = ixgbe_write_phy_reg_x550em;
 		break;
@@ -2343,12 +2343,12 @@ s32 ixgbe_init_phy_ops_X550em(struct ixgbe_hw *hw)
 		break;
 	case ixgbe_phy_ext_1g_t:
 		/* link is managed by FW */
-		phy->ops.setup_link = NULL;
-		phy->ops.reset = NULL;
+		phy->ops.setup_link = 0;
+		phy->ops.reset = 0;
 		break;
 	case ixgbe_phy_x550em_xfi:
 		/* link is managed by HW */
-		phy->ops.setup_link = NULL;
+		phy->ops.setup_link = 0;
 		phy->ops.read_reg = ixgbe_read_phy_reg_x550em;
 		phy->ops.write_reg = ixgbe_write_phy_reg_x550em;
 		break;
@@ -2369,7 +2369,7 @@ s32 ixgbe_init_phy_ops_X550em(struct ixgbe_hw *hw)
 		phy->ops.reset = ixgbe_reset_phy_t_X550em;
 		break;
 	case ixgbe_phy_sgmii:
-		phy->ops.setup_link = NULL;
+		phy->ops.setup_link = 0;
 		break;
 	case ixgbe_phy_fw:
 		phy->ops.setup_link = ixgbe_setup_fw_link;

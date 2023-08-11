@@ -131,7 +131,7 @@ static struct dev_ops rdsib_ops = {
 	nodev,			/* reset */
 	&rdsib_cb_ops,		/* driver ops - devctl interfaces */
 	NULL,			/* bus operations */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,	/* devo_quiesce */
 };
 

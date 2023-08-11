@@ -89,11 +89,11 @@ static int isadma_detach(dev_info_t *dip, ddi_detach_cmd_t cmd);
 static struct bus_ops isadma_bus_ops = {
 	BUSO_REV,
 	isadma_map,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
 	i_ddi_map_fault,
-	NULL,
+	0,
 	ddi_dma_allochdl,
 	ddi_dma_freehdl,
 	ddi_dma_bindhdl,
@@ -129,7 +129,7 @@ static struct dev_ops isadma_ops = {
 	nodev,
 	(struct cb_ops *)0,
 	&isadma_bus_ops,
-	NULL,
+	0,
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

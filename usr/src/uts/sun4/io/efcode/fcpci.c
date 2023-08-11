@@ -165,12 +165,12 @@ static struct pfc_ops_v pov[] = {
 	{	FC_CONFIG_CHILD,	pfc_config_child},
 	{	FC_GET_FCODE_SIZE,	pfc_get_fcode_size},
 	{	FC_GET_FCODE,		pfc_get_fcode},
-	{	NULL,			NULL}
+	{	NULL,			0}
 };
 
 static struct pfc_ops_v shared_pov[] = {
 	{	FC_SVC_EXIT,		pfc_dma_cleanup},
-	{	NULL,			NULL}
+	{	NULL,			0}
 };
 
 int pci_map_phys(dev_info_t *, pci_regspec_t *,

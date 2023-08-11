@@ -71,13 +71,13 @@ smb_mbc_init(void)
 	if (smb_mbc_cache != NULL)
 		return;
 	smb_mbc_cache = kmem_cache_create(SMBSRV_KSTAT_MBC_CACHE,
-	    sizeof (mbuf_chain_t), 8, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (mbuf_chain_t), 8, 0, 0, 0, NULL, NULL, 0);
 
 	smb_mbuf_cache = kmem_cache_create("smb_mbuf_cache",
-	    sizeof (mbuf_t), 8, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (mbuf_t), 8, 0, 0, 0, NULL, NULL, 0);
 
 	smb_mbufcl_cache = kmem_cache_create("smb_mbufcl_cache",
-	    MCLBYTES, 8, NULL, NULL, NULL, NULL, NULL, 0);
+	    MCLBYTES, 8, 0, 0, 0, NULL, NULL, 0);
 }
 
 void

@@ -360,7 +360,7 @@ cpu_dispqalloc(int numpris)
 	} while (cpup != cpu_list);
 	num = i;
 
-	pause_cpus(NULL, NULL);
+	pause_cpus(NULL, 0);
 	for (i = 0; i < num; i++)
 		disp_dq_assign(&disp_mem[i], numpris);
 	start_cpus();

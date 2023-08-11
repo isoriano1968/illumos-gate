@@ -46,7 +46,7 @@ static struct dev_ops pcs_devops = {
 	nulldev,
 	NULL,
 	NULL,
-	NULL,
+	0,
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 /*

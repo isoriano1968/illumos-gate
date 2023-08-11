@@ -302,7 +302,7 @@ static ipfunc_resolve_t fr_availfuncs[] = {
 	{ "fr_srcgrpmap", fr_srcgrpmap, fr_grpmapinit },
 	{ "fr_dstgrpmap", fr_dstgrpmap, fr_grpmapinit },
 #endif
-	{ "", NULL }
+	{ "", 0 }
 };
 
 
@@ -4352,7 +4352,7 @@ ipf_stack_t *ifs;
 		break;
 	default:
 		ptr = NULL;
-		*funcptr = NULL;
+		*funcptr = 0;
 		break;
 	}
 	RWLOCK_EXIT(&ifs->ifs_ip_poolrw);
@@ -4884,7 +4884,7 @@ ipfunc_t funcptr;
 	for (ft = fr_availfuncs; ft->ipfu_addr != NULL; ft++)
 		if (ft->ipfu_addr == funcptr)
 			return funcptr;
-	return NULL;
+	return 0;
 }
 
 

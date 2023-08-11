@@ -208,7 +208,7 @@ int
 sockinit(int fstype, char *name)
 {
 	static const fs_operation_def_t sock_vfsops_template[] = {
-		NULL, NULL
+		NULL, 0
 	};
 	int error;
 	major_t dev;
@@ -232,7 +232,7 @@ sockinit(int fstype, char *name)
 
 	socket_cache = kmem_cache_create("socket_cache",
 	    sizeof (struct sonode), 0, sonode_constructor,
-	    sonode_destructor, NULL, NULL, NULL, 0);
+	    sonode_destructor, 0, NULL, NULL, 0);
 
 	rw_init(&sockconf_lock, NULL, RW_DEFAULT, NULL);
 

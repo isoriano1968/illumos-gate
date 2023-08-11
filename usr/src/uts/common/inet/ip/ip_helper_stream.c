@@ -49,13 +49,13 @@ static struct module_info ip_helper_stream_info =  {
 };
 
 static struct qinit ip_helper_stream_rinit = {
-	NULL, NULL, NULL, ip_helper_stream_close, NULL,
+	0, 0, 0, ip_helper_stream_close, 0,
 	&ip_helper_stream_info, NULL
 };
 
 static struct qinit ip_helper_stream_winit = {
-	ip_helper_wput, ip_wsrv, NULL, NULL, NULL,
-	&ip_helper_stream_info, NULL, NULL, NULL, STRUIOT_NONE
+	ip_helper_wput, ip_wsrv, 0, 0, 0,
+	&ip_helper_stream_info, NULL, 0, 0, STRUIOT_NONE
 };
 
 /*

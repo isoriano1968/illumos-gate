@@ -157,10 +157,10 @@ sock_upcalls_t sosctp_sock_upcalls = {
 	so_queue_msg,
 	so_set_prop,
 	so_txq_full,
-	NULL,			/* su_signal_oob */
-	NULL,			/* su_signal_oob */
-	NULL,			/* su_set_error */
-	NULL,			/* su_closed */
+	0,			/* su_signal_oob */
+	0,			/* su_signal_oob */
+	0,			/* su_set_error */
+	0,			/* su_closed */
 	so_get_vnode		/* su_get_vnode */
 };
 
@@ -173,10 +173,10 @@ sock_upcalls_t sosctp_assoc_upcalls = {
 	sctp_assoc_recv,
 	sctp_assoc_properties,
 	sctp_assoc_xmitted,
-	NULL,			/* su_recv_space */
-	NULL,			/* su_signal_oob */
-	NULL,			/* su_set_error */
-	NULL,			/* su_closed */
+	0,			/* su_recv_space */
+	0,			/* su_signal_oob */
+	0,			/* su_set_error */
+	0,			/* su_closed */
 	sctp_assoc_get_vnode
 };
 

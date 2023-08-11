@@ -293,7 +293,7 @@ __hal_ring_open(xge_hal_channel_h channelh, xge_hal_channel_attr_t *attr)
 				     ring->rxdblock_priv_size,
 				     queue->initial, queue->max,
 				     __hal_ring_mempool_item_alloc,
-				     NULL, /* nothing to free */
+				     0, /* nothing to free */
 				     ring);
 	if (ring->mempool == NULL) {
 		__hal_ring_close(channelh);

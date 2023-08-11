@@ -8287,7 +8287,7 @@ emlxs_sli4_post_sgl_pages(emlxs_hba_t *hba, MAILBOXQ *mbq)
 
 	bzero((void *) mb, MAILBOX_CMD_SLI4_BSIZE);
 	mbq->bp = NULL;
-	mbq->mbox_cmpl = NULL;
+	mbq->mbox_cmpl = 0;
 
 	if ((mp = emlxs_mem_buf_alloc(hba, EMLXS_MAX_NONEMBED_SIZE)) == 0) {
 		EMLXS_MSGF(EMLXS_CONTEXT, &emlxs_sli_detail_msg,
@@ -8406,7 +8406,7 @@ emlxs_sli4_post_hdr_tmplates(emlxs_hba_t *hba, MAILBOXQ *mbq)
 	for (j = 0; j < hba->sli.sli4.RPIExtCount; j++) {
 		bzero((void *) mb, MAILBOX_CMD_SLI4_BSIZE);
 		mbq->bp = NULL;
-		mbq->mbox_cmpl = NULL;
+		mbq->mbox_cmpl = 0;
 
 		/*
 		 * Signifies an embedded command

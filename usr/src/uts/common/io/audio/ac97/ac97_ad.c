@@ -203,7 +203,7 @@ ads_setup_micsrc(ac97_t *ac)
 	ac97_ctrl_probe_t cpt = {
 		AUDIO_CTRL_ID_MICSRC, 1, 0x7, 0x7, AUDIO_CTRL_TYPE_ENUM,
 		AC97_FLAGS | AUDIO_CTRL_FLAG_REC, 0, ads_set_micsrc,
-		NULL, 0, values };
+		0, 0, values };
 
 	ac_add_control(ac, &cpt);
 }
@@ -223,7 +223,7 @@ ads_setup_micboost(ac97_t *ac)
 	ac97_ctrl_probe_t cpt = {
 		AUDIO_CTRL_ID_MICBOOST, 1, 0xf, 0xf, AUDIO_CTRL_TYPE_ENUM,
 		AC97_FLAGS | AUDIO_CTRL_FLAG_REC, 0, ads_set_micboost,
-		NULL, 0, values };
+		0, 0, values };
 
 	ctrl = ac97_control_find(ac, AUDIO_CTRL_ID_MICBOOST);
 	if (ctrl) {

@@ -221,14 +221,14 @@ static dtrace_pattr_t lockstat_attr = {
 
 static dtrace_pops_t lockstat_pops = {
 	lockstat_provide,
-	NULL,
+	0,
 	lockstat_enable,
 	lockstat_disable,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
+	0,
 	lockstat_destroy
 };
 
@@ -311,7 +311,7 @@ static struct dev_ops lockstat_ops = {
 	nulldev,		/* reset */
 	&lockstat_cb_ops,	/* cb_ops */
 	NULL,			/* bus_ops */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

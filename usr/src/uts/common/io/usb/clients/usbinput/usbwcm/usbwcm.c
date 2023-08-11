@@ -1621,10 +1621,10 @@ static struct module_info modinfo;
 /* read side queue */
 static struct qinit rinit = {
 	.qi_putp = usbwcm_rput,
-	.qi_srvp = NULL,
+	.qi_srvp = 0,
 	.qi_qopen = usbwcm_open,
 	.qi_qclose = usbwcm_close,
-	.qi_qadmin = NULL,
+	.qi_qadmin = 0,
 	.qi_minfo = &modinfo,
 	.qi_mstat = NULL
 };
@@ -1632,10 +1632,10 @@ static struct qinit rinit = {
 /* write side queue */
 static struct qinit winit = {
 	.qi_putp = usbwcm_wput,
-	.qi_srvp = NULL,
-	.qi_qopen = NULL,
-	.qi_qclose = NULL,
-	.qi_qadmin = NULL,
+	.qi_srvp = 0,
+	.qi_qopen = 0,
+	.qi_qclose = 0,
+	.qi_qadmin = 0,
 	.qi_minfo = &modinfo,
 	.qi_mstat = NULL
 };

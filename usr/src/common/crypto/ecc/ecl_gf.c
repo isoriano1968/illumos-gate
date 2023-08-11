@@ -66,7 +66,7 @@ GFMethod_new(int kmflag)
 #endif
 	meth->constructed = MP_YES;
 	MP_DIGITS(&meth->irr) = 0;
-	meth->extra_free = NULL;
+	meth->extra_free = 0;
 	MP_CHECKOK(mp_init(&meth->irr, kmflag));
 
   CLEANUP:
@@ -120,11 +120,11 @@ GFMethod_consGFp(const mp_int *irr)
 	meth->field_mul = &ec_GFp_mul;
 	meth->field_sqr = &ec_GFp_sqr;
 	meth->field_div = &ec_GFp_div;
-	meth->field_enc = NULL;
-	meth->field_dec = NULL;
+	meth->field_enc = 0;
+	meth->field_dec = 0;
 	meth->extra1 = NULL;
 	meth->extra2 = NULL;
-	meth->extra_free = NULL;
+	meth->extra_free = 0;
 
   CLEANUP:
 	if (res != MP_OKAY) {
@@ -176,11 +176,11 @@ GFMethod_consGF2m(const mp_int *irr, const unsigned int irr_arr[5])
 	meth->field_mul = &ec_GF2m_mul;
 	meth->field_sqr = &ec_GF2m_sqr;
 	meth->field_div = &ec_GF2m_div;
-	meth->field_enc = NULL;
-	meth->field_dec = NULL;
+	meth->field_enc = 0;
+	meth->field_dec = 0;
 	meth->extra1 = NULL;
 	meth->extra2 = NULL;
-	meth->extra_free = NULL;
+	meth->extra_free = 0;
 
   CLEANUP:
 	if (res != MP_OKAY) {

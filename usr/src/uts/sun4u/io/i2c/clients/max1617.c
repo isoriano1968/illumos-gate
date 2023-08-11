@@ -95,7 +95,7 @@ static struct dev_ops max1617_ops = {
 	nodev,
 	&max1617_cbops,
 	NULL,
-	NULL,
+	0,
 	ddi_quiesce_not_supported,	/* devo_quiesce */
 };
 

@@ -68,7 +68,7 @@ overlay_plugin_init(void)
 	 */
 	overlay_plugin_cache = kmem_cache_create("overlay_plugin_cache",
 	    sizeof (overlay_plugin_t), 0, overlay_plugin_cache_constructor,
-	    overlay_plugin_cache_destructor, NULL, NULL, NULL, 0);
+	    overlay_plugin_cache_destructor, 0, NULL, NULL, 0);
 	list_create(&overlay_plugin_list, sizeof (overlay_plugin_t),
 	    offsetof(overlay_plugin_t, ovp_link));
 }

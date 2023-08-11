@@ -1055,7 +1055,7 @@ svc_callout_find(SVCXPRT *xprt, rpcprog_t prog, rpcvers_t vers,
 		}
 	}
 
-	return (NULL);
+	return (0);
 }
 
 /*
@@ -1348,13 +1348,13 @@ svc_getreq(
 			/*
 			 * Free the arguments.
 			 */
-			(void) SVC_FREEARGS(clone_xprt, NULL, NULL);
+			(void) SVC_FREEARGS(clone_xprt, 0, NULL);
 		} else if (no_dispatch) {
 			/*
 			 * XXX - when bug id 4053736 is done, remove
 			 * the SVC_FREEARGS() call.
 			 */
-			(void) SVC_FREEARGS(clone_xprt, NULL, NULL);
+			(void) SVC_FREEARGS(clone_xprt, 0, NULL);
 		} else {
 			TRACE_1(TR_FAC_KRPC, TR_SVC_GETREQ_AUTH_END,
 			    "svc_getreq_auth_end:(%S)", "good");
@@ -1380,7 +1380,7 @@ svc_getreq(
 				 * Free the arguments. For successful calls
 				 * this is done by the dispatch routine.
 				 */
-				(void) SVC_FREEARGS(clone_xprt, NULL, NULL);
+				(void) SVC_FREEARGS(clone_xprt, 0, NULL);
 				/* Fall through to ... */
 			}
 			/*

@@ -174,14 +174,14 @@ static struct bus_ops pcmu_bus_ops = {
 	ndi_busop_add_eventcall,	/* (*bus_add_eventcall)(); */
 	ndi_busop_remove_eventcall,	/* (*bus_remove_eventcall)(); */
 	ndi_post_event,			/* (*bus_post_event)(); */
-	NULL,				/* (*bus_intr_ctl)(); */
-	NULL,				/* (*bus_config)(); */
-	NULL,				/* (*bus_unconfig)(); */
-	NULL,				/* (*bus_fm_init)(); */
-	NULL,				/* (*bus_fm_fini)(); */
-	NULL,				/* (*bus_fm_access_enter)(); */
-	NULL,				/* (*bus_fm_access_fini)(); */
-	NULL,				/* (*bus_power)(); */
+	0,				/* (*bus_intr_ctl)(); */
+	0,				/* (*bus_config)(); */
+	0,				/* (*bus_unconfig)(); */
+	0,				/* (*bus_fm_init)(); */
+	0,				/* (*bus_fm_fini)(); */
+	0,				/* (*bus_fm_access_enter)(); */
+	0,				/* (*bus_fm_access_fini)(); */
+	0,				/* (*bus_power)(); */
 	pcmu_intr_ops			/* (*bus_intr_op)(); */
 };
 

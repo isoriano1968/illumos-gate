@@ -265,7 +265,7 @@ s32 ixgbe_init_phy_ops_generic(struct ixgbe_hw *hw)
 	phy->ops.write_reg_mdi = ixgbe_write_phy_reg_mdi;
 	phy->ops.setup_link = ixgbe_setup_phy_link_generic;
 	phy->ops.setup_link_speed = ixgbe_setup_phy_link_speed_generic;
-	phy->ops.check_link = NULL;
+	phy->ops.check_link = 0;
 	phy->ops.get_firmware_version = ixgbe_get_phy_firmware_version_generic;
 	phy->ops.read_i2c_byte = ixgbe_read_i2c_byte_generic;
 	phy->ops.write_i2c_byte = ixgbe_write_i2c_byte_generic;

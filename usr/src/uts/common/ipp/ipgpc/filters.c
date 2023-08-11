@@ -381,13 +381,13 @@ ipgpc_initialize(ipp_action_id_t in_aid)
 	/* create object caches */
 	element_node_cache = kmem_cache_create("element_node_cache",
 	    sizeof (element_node_t), 0, element_node_cache_constructor,
-	    NULL, NULL, NULL, NULL, 0);
+	    0, 0, NULL, NULL, 0);
 	trie_node_cache = kmem_cache_create("trie_node_cache",
-	    sizeof (node_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (node_t), 0, 0, 0, 0, NULL, NULL, 0);
 	ht_node_cache = kmem_cache_create("ht_node_cache",
-	    sizeof (ht_node_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (ht_node_t), 0, 0, 0, 0, NULL, NULL, 0);
 	ht_match_cache = kmem_cache_create("ht_match_cache",
-	    sizeof (ht_match_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (ht_match_t), 0, 0, 0, 0, NULL, NULL, 0);
 
 	/* initialize tries, catch memory errors */
 	if ((rc = initialize_tries()) != 0) {

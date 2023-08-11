@@ -47,7 +47,7 @@ static kmutex_t mi2cv_mutex;
 
 int (*p2get_mem_unum)(int, uint64_t, char *, int, int *);
 static void cpu_sgn_update(ushort_t, uchar_t, uchar_t, int);
-int (*rmc_req_now)(rmc_comm_msg_t *, uint8_t) = NULL;
+int (*rmc_req_now)(rmc_comm_msg_t *, uint8_t) = 0;
 
 void
 startup_platform(void)
@@ -307,7 +307,7 @@ void
 plat_nodename_set(void)
 {
 	rmc_comm_msg_t	req;	/* request */
-	int (*rmc_req_res)(rmc_comm_msg_t *, rmc_comm_msg_t *, time_t) = NULL;
+	int (*rmc_req_res)(rmc_comm_msg_t *, rmc_comm_msg_t *, time_t) = 0;
 
 	/*
 	 * find the symbol for the mailbox routine
@@ -345,7 +345,7 @@ cpu_sgn_update(ushort_t sig, uchar_t state, uchar_t sub_state, int cpuid)
 {
 	dp_cpu_signature_t signature;
 	rmc_comm_msg_t	req;	/* request */
-	int (*rmc_req_now)(rmc_comm_msg_t *, uint8_t) = NULL;
+	int (*rmc_req_now)(rmc_comm_msg_t *, uint8_t) = 0;
 
 
 	/*

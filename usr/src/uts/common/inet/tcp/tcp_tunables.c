@@ -577,16 +577,16 @@ mod_prop_info_t tcp_propinfo_tbl[] = {
 	    {1, ULP_MAX_PORT, 0}, {0} },
 
 	{ "_1948_phrase", MOD_PROTO_TCP,
-	    tcp_set_1948phrase, NULL, {0}, {0} },
+	    tcp_set_1948phrase, 0, {0}, {0} },
 
 	{ "_listener_limit_conf", MOD_PROTO_TCP,
-	    NULL, tcp_listener_conf_get, {0}, {0} },
+	    0, tcp_listener_conf_get, {0}, {0} },
 
 	{ "_listener_limit_conf_add", MOD_PROTO_TCP,
-	    tcp_listener_conf_add, NULL, {0}, {0} },
+	    tcp_listener_conf_add, 0, {0}, {0} },
 
 	{ "_listener_limit_conf_del", MOD_PROTO_TCP,
-	    tcp_listener_conf_del, NULL, {0}, {0} },
+	    tcp_listener_conf_del, 0, {0}, {0} },
 
 	{ "_iss_incr", MOD_PROTO_TCP,
 	    mod_set_uint32, mod_get_uint32,
@@ -604,9 +604,9 @@ mod_prop_info_t tcp_propinfo_tbl[] = {
 	{ "_abc_l_var", MOD_PROTO_TCP,
 	    mod_set_uint32, mod_get_uint32, {1, UINT32_MAX, 2}, {2} },
 
-	{ "?", MOD_PROTO_TCP, NULL, mod_get_allprop, {0}, {0} },
+	{ "?", MOD_PROTO_TCP, 0, mod_get_allprop, {0}, {0} },
 
-	{ NULL, 0, NULL, NULL, {0}, {0} }
+	{ NULL, 0, 0, 0, {0}, {0} }
 };
 
 int tcp_propinfo_count = A_CNT(tcp_propinfo_tbl);

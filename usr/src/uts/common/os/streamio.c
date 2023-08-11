@@ -152,13 +152,13 @@ static int strdocmd(struct stdata *, struct strcmd *, cred_t *);
  */
 struct module_info strm_info = { 0, "strrhead", 0, INFPSZ, STRHIGH, STRLOW };
 struct module_info stwm_info = { 0, "strwhead", 0, 0, 0, 0 };
-struct qinit strdata = { strrput, NULL, NULL, NULL, NULL, &strm_info };
-struct qinit stwdata = { NULL, strwsrv, NULL, NULL, NULL, &stwm_info };
+struct qinit strdata = { strrput, 0, 0, 0, 0, &strm_info };
+struct qinit stwdata = { 0, strwsrv, 0, 0, 0, &stwm_info };
 struct module_info fiform_info = { 0, "fifostrrhead", 0, PIPE_BUF, FIFOHIWAT,
     FIFOLOWAT };
 struct module_info fifowm_info = { 0, "fifostrwhead", 0, 0, 0, 0 };
-struct qinit fifo_strdata = { strrput, NULL, NULL, NULL, NULL, &fiform_info };
-struct qinit fifo_stwdata = { NULL, strwsrv, NULL, NULL, NULL, &fifowm_info };
+struct qinit fifo_strdata = { strrput, 0, 0, 0, 0, &fiform_info };
+struct qinit fifo_stwdata = { 0, strwsrv, 0, 0, 0, &fifowm_info };
 
 extern kmutex_t	strresources;	/* protects global resources */
 extern kmutex_t muxifier;	/* single-threads multiplexor creation */
@@ -646,10 +646,10 @@ fifo_opendone:
 
 static int strsink(queue_t *, mblk_t *);
 static struct qinit deadrend = {
-	strsink, NULL, NULL, NULL, NULL, &strm_info, NULL
+	strsink, 0, 0, 0, 0, &strm_info, NULL
 };
 static struct qinit deadwend = {
-	NULL, NULL, NULL, NULL, NULL, &stwm_info, NULL
+	0, 0, 0, 0, 0, &stwm_info, NULL
 };
 
 /*

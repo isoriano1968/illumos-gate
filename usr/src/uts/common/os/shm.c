@@ -224,7 +224,7 @@ _init(void)
 	shm_svc = ipcs_create("shmids", rc_project_shmmni, rc_zone_shmmni,
 	    sizeof (kshmid_t), shm_dtor, shm_rmid, AT_IPC_SHM,
 	    offsetof(ipc_rqty_t, ipcq_shmmni));
-	zone_key_create(&shm_zone_key, NULL, shm_remove_zone, NULL);
+	zone_key_create(&shm_zone_key, 0, shm_remove_zone, 0);
 
 	if ((result = mod_install(&modlinkage)) == 0)
 		return (0);

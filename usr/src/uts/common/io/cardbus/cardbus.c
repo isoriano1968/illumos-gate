@@ -207,9 +207,9 @@ static
 struct bus_ops cardbusbus_ops = {
 	BUSO_REV,
 	cardbus_bus_map,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
 	i_ddi_map_fault,
 	cardbus_dma_map,
 	cardbus_dma_allochdl,
@@ -225,14 +225,14 @@ struct bus_ops cardbusbus_ops = {
 	cardbus_add_eventcall,		/* (*bus_add_eventcall)();	*/
 	cardbus_remove_eventcall,	/* (*bus_remove_eventcall)();	*/
 	cardbus_post_event,		/* (*bus_post_event)();		*/
-	NULL,				/* (*bus_intr_ctl)();		*/
-	NULL,				/* (*bus_config)();		*/
-	NULL,				/* (*bus_unconfig)();		*/
-	NULL,				/* (*bus_fm_init)();		*/
-	NULL,				/* (*bus_fm_fini)();		*/
-	NULL,				/* (*bus_enter)();		*/
-	NULL,				/* (*bus_exit)();		*/
-	NULL,				/* (*bus_power)();		*/
+	0,				/* (*bus_intr_ctl)();		*/
+	0,				/* (*bus_config)();		*/
+	0,				/* (*bus_unconfig)();		*/
+	0,				/* (*bus_fm_init)();		*/
+	0,				/* (*bus_fm_fini)();		*/
+	0,				/* (*bus_enter)();		*/
+	0,				/* (*bus_exit)();		*/
+	0,				/* (*bus_power)();		*/
 	cardbus_intr_ops		/* (*bus_intr_op)();		*/
 };
 

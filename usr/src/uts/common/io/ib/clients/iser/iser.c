@@ -88,7 +88,7 @@ static struct dev_ops iser_ops = {
 	nodev,			/* reset */
 	&iser_cb_ops,		/* cb_ops */
 	NULL,			/* bus ops */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed	/* quiesce */
 };
 

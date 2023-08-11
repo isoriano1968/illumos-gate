@@ -233,7 +233,7 @@ const fs_operation_def_t ctfs_tops_ctl[] = {
 	{ VOPNAME_READDIR,	{ .error = fs_notdir } },
 	{ VOPNAME_LOOKUP,	{ .error = fs_notdir } },
 	{ VOPNAME_INACTIVE,	{ .vop_inactive = gfs_vop_inactive } },
-	{ NULL, NULL }
+	{ NULL, 0 }
 };
 
 /*
@@ -332,5 +332,5 @@ const fs_operation_def_t ctfs_tops_stat[] = {
 	{ VOPNAME_READDIR,	{ .error = fs_notdir } },
 	{ VOPNAME_LOOKUP,	{ .error = fs_notdir } },
 	{ VOPNAME_INACTIVE,	{ .vop_inactive = gfs_vop_inactive } },
-	{ NULL, NULL }
+	{ NULL, 0 }
 };

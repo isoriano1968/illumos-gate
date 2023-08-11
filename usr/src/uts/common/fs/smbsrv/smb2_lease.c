@@ -40,7 +40,7 @@ smb2_lease_init()
 		return;
 
 	smb_lease_cache = kmem_cache_create("smb_lease_cache",
-	    sizeof (smb_lease_t), 8, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (smb_lease_t), 8, 0, 0, 0, NULL, NULL, 0);
 }
 
 void

@@ -1018,7 +1018,7 @@ evch_chinit()
 	/*
 	 * Will trigger creation of the global zone's evch state.
 	 */
-	zone_key_create(&evch_zone_key, evch_zoneinit, NULL, evch_zonefree);
+	zone_key_create(&evch_zone_key, evch_zoneinit, 0, evch_zonefree);
 }
 
 /*
@@ -1300,7 +1300,7 @@ evch_chsubscribe(evch_bind_t *bp, int dtype, const char *sid, const char *class,
 		delivfkt = evch_door_deliver;
 	}
 	sdp->sd_ssub =
-	    evch_evq_sub(sdp->sd_queue, NULL, NULL, delivfkt, (void *)sdp);
+	    evch_evq_sub(sdp->sd_queue, 0, NULL, delivfkt, (void *)sdp);
 
 	/* Connect per subscriber queue to main event queue */
 	sdp->sd_msub = evch_evq_sub(eqp, evch_class_filter, clb,

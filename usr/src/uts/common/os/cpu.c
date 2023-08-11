@@ -1236,7 +1236,7 @@ cpu_online(cpu_t *cp, int flags)
 	error = mp_cpu_start(cp);	/* arch-dep hook */
 	if (error == 0) {
 		pg_cpupart_in(cp, cp->cpu_part);
-		pause_cpus(NULL, NULL);
+		pause_cpus(NULL, 0);
 		cpu_add_active_internal(cp);
 		if (cp->cpu_flags & CPU_FAULTED) {
 			cp->cpu_flags &= ~CPU_FAULTED;
@@ -1442,7 +1442,7 @@ again:	for (loop_count = 0; (*bound_func)(cp, 0); loop_count++) {
 		 * Put all the cpus into a known safe place.
 		 * No mutexes can be entered while CPUs are paused.
 		 */
-		pause_cpus(cp, NULL);
+		pause_cpus(cp, 0);
 		/*
 		 * Repeat the operation, if necessary, to make sure that
 		 * all outstanding low-level interrupts run to completion
@@ -1801,7 +1801,7 @@ cpu_add_unit(cpu_t *cp)
 	 * adding the cpu to the list.
 	 */
 	cp->cpu_part = &cp_default;
-	pause_cpus(NULL, NULL);
+	pause_cpus(NULL, 0);
 	cp->cpu_next = cpu_list;
 	cp->cpu_prev = cpu_list->cpu_prev;
 	cpu_list->cpu_prev->cpu_next = cp;
@@ -1896,7 +1896,7 @@ cpu_del_unit(int cpuid)
 	 * has been updated so that we don't waste time
 	 * trying to pause the cpu we're trying to delete.
 	 */
-	pause_cpus(NULL, NULL);
+	pause_cpus(NULL, 0);
 
 	cpnext = cp->cpu_next;
 	cp->cpu_prev->cpu_next = cp->cpu_next;
@@ -1969,7 +1969,7 @@ cpu_add_active(cpu_t *cp)
 {
 	pg_cpupart_in(cp, cp->cpu_part);
 
-	pause_cpus(NULL, NULL);
+	pause_cpus(NULL, 0);
 	cpu_add_active_internal(cp);
 	start_cpus();
 
@@ -2154,7 +2154,7 @@ unregister_cpu_setup_func(cpu_setup_func_t *func, void *arg)
 		cmn_err(CE_PANIC, "Could not find cpu_setup callback to "
 		    "deregister");
 
-	cpu_setups[i].func = NULL;
+	cpu_setups[i].func = 0;
 	cpu_setups[i].arg = 0;
 }
 

@@ -147,15 +147,15 @@ struct kmem_cache	*sctp_conn_cache;
  * Hooks for Sun Cluster. On non-clustered nodes these will remain NULL.
  * PSARC/2005/602.
  */
-void (*cl_sctp_listen)(sa_family_t, uchar_t *, uint_t, in_port_t) = NULL;
-void (*cl_sctp_unlisten)(sa_family_t, uchar_t *, uint_t, in_port_t) = NULL;
+void (*cl_sctp_listen)(sa_family_t, uchar_t *, uint_t, in_port_t) = 0;
+void (*cl_sctp_unlisten)(sa_family_t, uchar_t *, uint_t, in_port_t) = 0;
 void (*cl_sctp_connect)(sa_family_t, uchar_t *, uint_t, in_port_t,
-    uchar_t *, uint_t, in_port_t, boolean_t, cl_sctp_handle_t) = NULL;
-void (*cl_sctp_disconnect)(sa_family_t, cl_sctp_handle_t) = NULL;
+    uchar_t *, uint_t, in_port_t, boolean_t, cl_sctp_handle_t) = 0;
+void (*cl_sctp_disconnect)(sa_family_t, cl_sctp_handle_t) = 0;
 void (*cl_sctp_assoc_change)(sa_family_t, uchar_t *, size_t, uint_t,
-    uchar_t *, size_t, uint_t, int, cl_sctp_handle_t) = NULL;
+    uchar_t *, size_t, uint_t, int, cl_sctp_handle_t) = 0;
 void (*cl_sctp_check_addrs)(sa_family_t, in_port_t, uchar_t **, size_t,
-    uint_t *, boolean_t) = NULL;
+    uint_t *, boolean_t) = 0;
 /*
  * Return the version number of the SCTP kernel interface.
  */
@@ -1519,7 +1519,7 @@ sctp_ddi_g_init(void)
 	 * destroyed in the kernel, so we can maintain the
 	 * set of sctp_stack_t's.
 	 */
-	netstack_register(NS_SCTP, sctp_stack_init, NULL, sctp_stack_fini);
+	netstack_register(NS_SCTP, sctp_stack_init, 0, sctp_stack_fini);
 }
 
 static void *

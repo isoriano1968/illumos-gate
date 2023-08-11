@@ -127,7 +127,7 @@ extern void *(*cis_parser)(int, ...);
 struct regspec *pcmcia_cons_regspec(dev_info_t *, int, uchar_t *,
 					ra_return_t *);
 
-static int (*pcmcia_card_services)(int, ...) = NULL;
+static int (*pcmcia_card_services)(int, ...) = 0;
 
 /*
  * variables used in the logical/physical mappings
@@ -207,13 +207,13 @@ int pcmcia_debug = 0x0;
 static void pcmcia_dump_minors(dev_info_t *);
 #endif
 
-static f_tt *pcmcia_cs_event = NULL;
+static f_tt *pcmcia_cs_event = 0;
 int pcmcia_timer_id;
 dev_info_t	*pcmcia_dip;
 /*
  * XXX - See comments in cs.c
  */
-static f_tt *pcmcia_cis_parser = NULL;
+static f_tt *pcmcia_cis_parser = 0;
 
 extern struct pc_socket_services pc_socket_services;
 
@@ -3031,7 +3031,7 @@ pcmcia_create_dev_info(int socket)
 	reg.dip = NULL;
 	reg.Attributes = INFO_SOCKET_SERVICES;
 	reg.EventMask = 0;
-	reg.event_handler = NULL;
+	reg.event_handler = 0;
 	reg.Version = CS_VERSION;
 
 	bzero(&card_info, sizeof (card_info));

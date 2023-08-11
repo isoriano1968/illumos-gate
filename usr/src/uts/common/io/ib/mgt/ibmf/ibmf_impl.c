@@ -169,7 +169,7 @@ ibmf_init(void)
 	ibmf_statep->ibmf_ibt_modinfo.mi_clnt_class = IBT_IBMA;
 	ibmf_statep->ibmf_ibt_modinfo.mi_async_handler
 	    = ibmf_ibt_async_handler;
-	ibmf_statep->ibmf_ibt_modinfo.mi_reserved = NULL;
+	ibmf_statep->ibmf_ibt_modinfo.mi_reserved = 0;
 	ibmf_statep->ibmf_ibt_modinfo.mi_clnt_name = "ibmf";
 
 	/* setup a connection to IB transport layer (IBTF) */

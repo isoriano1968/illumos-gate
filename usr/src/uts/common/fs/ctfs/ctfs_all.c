@@ -59,7 +59,7 @@ vnode_t *
 ctfs_create_adirnode(vnode_t *pvp)
 {
 	vnode_t *vp = gfs_dir_create(sizeof (ctfs_adirnode_t), pvp,
-	    ctfs_ops_adir, NULL, NULL, CTFS_NAME_MAX, ctfs_adir_do_readdir,
+	    ctfs_ops_adir, NULL, 0, CTFS_NAME_MAX, ctfs_adir_do_readdir,
 	    ctfs_adir_do_lookup);
 
 	return (vp);
@@ -153,5 +153,5 @@ const fs_operation_def_t ctfs_tops_adir[] = {
 	{ VOPNAME_LOOKUP,	{ .vop_lookup = gfs_vop_lookup } },
 	{ VOPNAME_SEEK,		{ .vop_seek = fs_seek } },
 	{ VOPNAME_INACTIVE,	{ .vop_inactive = gfs_vop_inactive } },
-	{ NULL, NULL }
+	{ NULL, 0 }
 };

@@ -439,7 +439,7 @@ static struct dev_ops ksyms_ops = {
 	nodev,			/* reset */
 	&ksyms_cb_ops,		/* driver operations */
 	(struct bus_ops *)0,	/* no bus operations */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

@@ -95,7 +95,7 @@ static struct execsw esw = {
 	0,
 	SHBINMAGIC_LEN,
 	shbinexec,
-	NULL
+	0
 };
 
 /*

@@ -175,7 +175,7 @@ tnet_init(void)
 {
 	ire_gw_secattr_cache = kmem_cache_create("ire_gw_secattr_cache",
 	    sizeof (tsol_ire_gw_secattr_t), 64, ire_gw_secattr_constructor,
-	    ire_gw_secattr_destructor, NULL, NULL, NULL, 0);
+	    ire_gw_secattr_destructor, 0, NULL, NULL, 0);
 
 	gcdb_hash = mod_hash_create_extended("gcdb_hash",
 	    gcdb_hash_size, mod_hash_null_keydtor, mod_hash_null_valdtor,

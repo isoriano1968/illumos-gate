@@ -555,11 +555,11 @@ i_fm_free(nv_alloc_t *nva, void *buf, size_t size)
 }
 
 const nv_alloc_ops_t fm_mem_alloc_ops = {
-	NULL,
-	NULL,
+	0,
+	0,
 	i_fm_alloc,
 	i_fm_free,
-	NULL
+	0
 };
 
 /*

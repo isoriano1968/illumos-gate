@@ -82,7 +82,7 @@ static dld_ioc_info_t simnet_ioc_list[] = {
 	{SIMNET_IOC_DELETE, DLDCOPYIN, sizeof (simnet_ioc_delete_t),
 	    simnet_ioc_delete, secpolicy_dl_config},
 	{SIMNET_IOC_INFO, DLDCOPYINOUT, sizeof (simnet_ioc_info_t),
-	    simnet_ioc_info, NULL},
+	    simnet_ioc_info, 0},
 	{SIMNET_IOC_MODIFY, DLDCOPYIN, sizeof (simnet_ioc_modify_t),
 	    simnet_ioc_modify, secpolicy_dl_config}
 };
@@ -130,8 +130,8 @@ static mac_callbacks_t simnet_m_callbacks = {
 	NULL,
 	simnet_m_ioctl,
 	simnet_m_getcapab,
-	NULL,
-	NULL,
+	0,
+	0,
 	simnet_m_setprop,
 	simnet_m_getprop,
 	simnet_m_propinfo

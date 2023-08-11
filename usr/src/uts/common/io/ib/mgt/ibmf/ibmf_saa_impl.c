@@ -1413,7 +1413,7 @@ ibmf_saa_impl_send_request(saa_impl_trans_info_t *trans_info)
 	/* make only non-blocking calls if this is an async request */
 	if ((trans_info->si_trans_callback == NULL) &&
 	    (trans_info->si_trans_sub_callback == NULL)) {
-		ibmf_callback = NULL;
+		ibmf_callback = 0;
 		ibmf_callback_arg = NULL;
 		sleep_flag = B_TRUE;
 	} else {

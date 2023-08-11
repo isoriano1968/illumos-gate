@@ -322,7 +322,7 @@ _init(void)
 	msq_svc = ipcs_create("msqids", rc_project_msgmni, rc_zone_msgmni,
 	    sizeof (kmsqid_t), msg_dtor, msg_rmid, AT_IPC_MSG,
 	    offsetof(ipc_rqty_t, ipcq_msgmni));
-	zone_key_create(&msg_zone_key, NULL, msg_remove_zone, NULL);
+	zone_key_create(&msg_zone_key, 0, msg_remove_zone, 0);
 
 	if ((result = mod_install(&modlinkage)) == 0)
 		return (0);

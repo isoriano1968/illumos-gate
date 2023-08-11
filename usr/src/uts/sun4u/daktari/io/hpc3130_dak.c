@@ -215,7 +215,7 @@ static struct dev_ops hpc3130_ops = {
 	nodev,
 	&hpc3130_cbops,
 	NULL,			/* bus_ops */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

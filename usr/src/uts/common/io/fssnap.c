@@ -325,11 +325,11 @@ _fini(void)
 	mutex_destroy(&snapshot_mutex);
 
 	/* Clear out the file system operations vector */
-	snapops.fssnap_create = NULL;
-	snapops.fssnap_set_candidate = NULL;
-	snapops.fssnap_create_done = NULL;
-	snapops.fssnap_delete = NULL;
-	snapops.fssnap_strategy = NULL;
+	snapops.fssnap_create = 0;
+	snapops.fssnap_set_candidate = 0;
+	snapops.fssnap_create_done = 0;
+	snapops.fssnap_delete = 0;
+	snapops.fssnap_strategy = 0;
 
 	return (0);
 }
@@ -827,7 +827,7 @@ snap_getchunk(struct snapshot_id *sidp, chunknumber_t chunk, int offset,
 		snapbuf->b_lblkno = lbtodb(chunk * cmap->cmap_chunksz + offset);
 		snapbuf->b_un.b_addr = buffer;
 
-		snapbuf->b_iodone = NULL;
+		snapbuf->b_iodone = 0;
 		snapbuf->b_proc = NULL;		/* i.e. the kernel */
 		snapbuf->b_flags = B_READ | B_BUSY;
 		snapbuf->b_edev = sidp->sid_fvp->v_vfsp->vfs_dev;
@@ -1581,7 +1581,7 @@ fssnap_translate(struct snapshot_id **sidpp, struct buf *wbp)
 		oldbp->b_edev = wbp->b_edev;
 		oldbp->b_bcount = cmap->cmap_chunksz;
 		oldbp->b_bufsize = cmap->cmap_chunksz;
-		oldbp->b_iodone = NULL;
+		oldbp->b_iodone = 0;
 		oldbp->b_proc = NULL;
 		oldbp->b_flags = B_READ;
 		oldbp->b_un.b_addr = kmem_alloc(cmap->cmap_chunksz, KM_SLEEP);

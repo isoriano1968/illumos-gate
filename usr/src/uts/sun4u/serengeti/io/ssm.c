@@ -182,9 +182,9 @@ static struct bus_ops ssm_bus_ops = {
 	0,
 	0,
 	ssm_fm_init_child,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
 	0,
 	i_ddi_intr_ops
 };

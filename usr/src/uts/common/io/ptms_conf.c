@@ -280,13 +280,13 @@ ptms_init(void)
 
 		ptms_cache = kmem_cache_create("pty_map",
 		    sizeof (struct pt_ttys), 0, ptms_constructor,
-		    ptms_destructor, NULL, NULL, NULL, 0);
+		    ptms_destructor, 0, NULL, NULL, 0);
 
 		ptms_nslots = pt_init_cnt;
 
 		/* Allocate integer space for minor numbers */
 		ptms_minor_arena = vmem_create("ptms_minor", (void *)1,
-		    ptms_nslots, 1, NULL, NULL, NULL, 0,
+		    ptms_nslots, 1, 0, 0, NULL, 0,
 		    VM_SLEEP | VMC_IDENTIFIER);
 
 		/*

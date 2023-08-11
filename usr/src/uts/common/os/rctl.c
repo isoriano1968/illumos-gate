@@ -2850,9 +2850,9 @@ void
 rctl_init(void)
 {
 	rctl_cache = kmem_cache_create("rctl_cache", sizeof (rctl_t),
-	    0, NULL, NULL, NULL, NULL, NULL, 0);
+	    0, 0, 0, 0, NULL, NULL, 0);
 	rctl_val_cache = kmem_cache_create("rctl_val_cache",
-	    sizeof (rctl_val_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (rctl_val_t), 0, 0, 0, 0, NULL, NULL, 0);
 
 	rctl_dict = mod_hash_create_extended("rctl_dict",
 	    rctl_dict_size, mod_hash_null_keydtor, rctl_dict_val_dtor,

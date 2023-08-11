@@ -533,7 +533,7 @@ ibmf_tear_down_async_cb(ibmf_handle_t ibmf_handle,
 		 * if using the default QP handle, remove the callback from
 		 * the client context
 		 */
-		clientp->ic_recv_cb = NULL;
+		clientp->ic_recv_cb = 0;
 		clientp->ic_recv_cb_arg = NULL;
 
 		ASSERT((clientp->ic_flags & IBMF_CLIENT_RECV_CB_ACTIVE) == 0);
@@ -568,7 +568,7 @@ ibmf_tear_down_async_cb(ibmf_handle_t ibmf_handle,
 		 * if using an alternate QP handle, remove the callback from
 		 * the alternate QP context
 		 */
-		qpp->isq_recv_cb = NULL;
+		qpp->isq_recv_cb = 0;
 		qpp->isq_recv_cb_arg = NULL;
 
 		ASSERT((qpp->isq_flags & IBMF_CLIENT_RECV_CB_ACTIVE) == 0);

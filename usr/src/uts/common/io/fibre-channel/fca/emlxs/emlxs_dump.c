@@ -773,7 +773,7 @@ emlxs_read_cfg_region(
 			mb->un.varDmp4.rsp_cnt = 0;
 
 			mb->mbxOwner = OWN_HOST;
-			mbq->mbox_cmpl = NULL;
+			mbq->mbox_cmpl = 0;
 
 			if (EMLXS_SLI_ISSUE_MBOX_CMD(hba, mbq, MBX_WAIT, 0) !=
 			    MBX_SUCCESS) {
@@ -821,7 +821,7 @@ emlxs_read_cfg_region(
 			mb->un.varDmp.entry_index = Offset;
 			mb->un.varDmp.word_cnt = ByteCountReq / 4;
 			mb->mbxOwner = OWN_HOST;
-			mbq->mbox_cmpl = NULL;
+			mbq->mbox_cmpl = 0;
 
 			if (EMLXS_SLI_ISSUE_MBOX_CMD(hba, mbq, MBX_WAIT, 0) !=
 			    MBX_SUCCESS) {
@@ -3567,7 +3567,7 @@ emlxs_dump_saturn_log(
 	for (i = 0; i < 10; i++) {
 		bzero((void *)mb, MAILBOX_CMD_BSIZE);
 		mb->mbxCommand = MBX_READ_EVENT_LOG_STATUS;
-		mbq->mbox_cmpl = NULL;
+		mbq->mbox_cmpl = 0;
 
 		if (EMLXS_SLI_ISSUE_MBOX_CMD(hba, mbq, MBX_WAIT, 0) ==
 		    MBX_SUCCESS) {
@@ -3644,7 +3644,7 @@ emlxs_dump_saturn_log(
 		mb->un.varRdEvtLog.un.sp64.tus.f.bdeSize = block_size;
 		mb->un.varRdEvtLog.un.sp64.addrLow = PADDR_LO(tempAddress);
 		mb->un.varRdEvtLog.un.sp64.addrHigh = PADDR_HI(tempAddress);
-		mbq->mbox_cmpl = NULL;
+		mbq->mbox_cmpl = 0;
 
 		if (EMLXS_SLI_ISSUE_MBOX_CMD(hba, mbq, MBX_WAIT, 0) !=
 		    MBX_SUCCESS) {
@@ -3738,7 +3738,7 @@ emlxs_dump_tigershark_log(
 	/* Query FAT */
 	mb->un.varSLIConfig.be.embedded = 0;
 	mbq->nonembed = (void *)mp;
-	mbq->mbox_cmpl = NULL;
+	mbq->mbox_cmpl = 0;
 
 	mb->mbxCommand = MBX_SLI_CONFIG;
 	mb->mbxOwner = OWN_HOST;
@@ -3800,7 +3800,7 @@ emlxs_dump_tigershark_log(
 
 		mb->un.varSLIConfig.be.embedded = 0;
 		mbq->nonembed = (void *)mp;
-		mbq->mbox_cmpl = NULL;
+		mbq->mbox_cmpl = 0;
 
 		mb->mbxCommand = MBX_SLI_CONFIG;
 		mb->mbxOwner = OWN_HOST;

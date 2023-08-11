@@ -108,7 +108,7 @@ opl_fc_ops_t	opl_fc_ops[] = {
 	{	FC_GET_FCODE,		opl_get_fcode},
 	{	"get-hwd-va",		opl_get_hwd_va},
 	{	"master-interrupt",	opl_master_interrupt},
-	{	NULL,			NULL}
+	{	NULL,			0}
 
 };
 
@@ -310,7 +310,7 @@ opl_read_hwd(int board, hwd_header_t **hdrp, hwd_sb_status_t **statp,
 	hwd_domain_info_t **dinfop, hwd_sb_t **sbp)
 {
 	static int (*getinfop)(uint32_t, uint8_t, uint32_t, uint32_t *,
-	    void *) = NULL;
+	    void *) = 0;
 	void *hwdp;
 
 	uint32_t key = KEY_ESCF;	/* required value */

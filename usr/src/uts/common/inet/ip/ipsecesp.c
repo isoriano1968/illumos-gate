@@ -133,12 +133,12 @@ static struct module_info info = {
 };
 
 static struct qinit rinit = {
-	ipsecesp_rput, NULL, ipsecesp_open, ipsecesp_close, NULL, &info,
+	ipsecesp_rput, 0, ipsecesp_open, ipsecesp_close, 0, &info,
 	NULL
 };
 
 static struct qinit winit = {
-	ipsecesp_wput, NULL, ipsecesp_open, ipsecesp_close, NULL, &info,
+	ipsecesp_wput, 0, ipsecesp_open, ipsecesp_close, 0, &info,
 	NULL
 };
 
@@ -407,7 +407,7 @@ ipsecesp_ddi_init(void)
 	 * destroyed in the kernel, so we can maintain the
 	 * set of ipsecesp_stack_t's.
 	 */
-	netstack_register(NS_IPSECESP, ipsecesp_stack_init, NULL,
+	netstack_register(NS_IPSECESP, ipsecesp_stack_init, 0,
 	    ipsecesp_stack_fini);
 
 	return (B_TRUE);

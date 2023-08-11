@@ -144,7 +144,7 @@ log_close(queue_t *q, int flag, cred_t *cr)
 	qprocsoff(q);
 
 	lp->log_inuse = 0;
-	log_update(lp, NULL, 0, NULL);
+	log_update(lp, NULL, 0, 0);
 	freemsg(lp->log_data);
 	lp->log_data = NULL;
 	if (lp->log_major == LOG_CONSMIN)
@@ -290,10 +290,10 @@ static struct module_info logm_info =
 	{ LOG_MID, "LOG", LOG_MINPS, LOG_MAXPS, LOG_HIWAT, LOG_LOWAT };
 
 static struct qinit logrinit =
-	{ NULL, log_rsrv, log_open, log_close, NULL, &logm_info, NULL };
+	{ 0, log_rsrv, log_open, log_close, 0, &logm_info, NULL };
 
 static struct qinit logwinit =
-	{ log_wput, NULL, NULL, NULL, NULL, &logm_info, NULL };
+	{ log_wput, 0, 0, 0, 0, &logm_info, NULL };
 
 static struct streamtab loginfo = { &logrinit, &logwinit, NULL, NULL };
 

@@ -236,7 +236,7 @@ log_init(void)
 	 * initialized yet, but our constructor will be called on the global
 	 * zone when they are.
 	 */
-	zone_key_create(&log_zone_key, log_zoneinit, NULL, log_zonefree);
+	zone_key_create(&log_zone_key, log_zoneinit, 0, log_zonefree);
 
 	/*
 	 * Initialize backlog structure.
@@ -247,7 +247,7 @@ log_init(void)
 	/* Allocate kmem cache for conslog's log structures */
 	log_cons_cache = kmem_cache_create("log_cons_cache",
 	    sizeof (struct log), 0, log_cons_constructor, log_cons_destructor,
-	    NULL, NULL, NULL, 0);
+	    0, NULL, NULL, 0);
 
 	/*
 	 * Let the logging begin.

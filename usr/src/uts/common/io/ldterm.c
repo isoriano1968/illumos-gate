@@ -477,8 +477,8 @@ static int	__ldterm_memwidth_utf8(uchar_t, void *);
 
 static const ldterm_cs_methods_t cs_methods[LDTERM_CS_TYPE_MAX + 1] = {
 	{
-		NULL,
-		NULL
+		0,
+		0
 	},
 	{
 		__ldterm_dispwidth_euc,
@@ -578,7 +578,7 @@ static struct qinit ldtermrinit = {
 	ldtermrsrv,
 	ldtermopen,
 	ldtermclose,
-	NULL,
+	0,
 	&ldtermmiinfo
 };
 
@@ -598,7 +598,7 @@ static struct qinit ldtermwinit = {
 	ldtermwsrv,
 	ldtermopen,
 	ldtermclose,
-	NULL,
+	0,
 	&ldtermmoinfo
 };
 

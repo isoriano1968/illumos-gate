@@ -1403,7 +1403,7 @@ ac97_ctrl_probe_t	ctrl_probe_tbl[] = {
 
 	/* Master PCM Volume */
 	{AUDIO_CTRL_ID_VOLUME, INIT_VAL_MAIN, 0, 100, AUDIO_CTRL_TYPE_MONO,
-	PCMVOL, PCMOVR_MUTE, ac97_master_set, NULL, 5},
+	PCMVOL, PCMOVR_MUTE, ac97_master_set, 0, 5},
 
 	/* LINE out volume */
 	{AUDIO_CTRL_ID_LINEOUT, INIT_VAL_ST, 0, 100, AUDIO_CTRL_TYPE_STEREO,
@@ -1439,7 +1439,7 @@ ac97_ctrl_probe_t	ctrl_probe_tbl[] = {
 
 	/* Record in GAIN */
 	{AUDIO_CTRL_ID_RECGAIN, INIT_IGAIN_ST, 0, 100, AUDIO_CTRL_TYPE_STEREO,
-	RECVOL, RGR_MUTE, ac_recgain_set, NULL, -4},
+	RECVOL, RGR_MUTE, ac_recgain_set, 0, -4},
 
 	/* MIC in volume */
 	{AUDIO_CTRL_ID_MIC, 0, 0, 100, AUDIO_CTRL_TYPE_STEREO,
@@ -1499,7 +1499,7 @@ ac97_ctrl_probe_t	ctrl_probe_tbl[] = {
 
 	/* Loopback on/off switch */
 	{AUDIO_CTRL_ID_LOOPBACK, 0, 0, 1, AUDIO_CTRL_TYPE_BOOLEAN,
-	AC97_RW, 0, ac_loopback_set, NULL, 0},
+	AC97_RW, 0, ac_loopback_set, 0, 0},
 
 	/*
 	 * The following selectors *must* come after the others, as they rely
@@ -1507,7 +1507,7 @@ ac97_ctrl_probe_t	ctrl_probe_tbl[] = {
 	 */
 	/* record src select  (only one port at a time) */
 	{AUDIO_CTRL_ID_RECSRC, (1U << INPUT_MIC), 0, 0, AUDIO_CTRL_TYPE_ENUM,
-	RECCTL, 0, ac_insrc_set, NULL, 0, ac_insrcs},
+	RECCTL, 0, ac_insrc_set, 0, 0, ac_insrcs},
 
 	/* Start of non-standard private controls */
 

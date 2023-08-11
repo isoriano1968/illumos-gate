@@ -499,7 +499,7 @@ ugen_cleanup(ugen_state_t *ugenp)
 			int idx = ugenp->ug_initial_cfgidx;
 			mutex_exit(&ugenp->ug_mutex);
 			(void) usb_set_cfg(dip, idx,
-			    USB_FLAGS_SLEEP, NULL, NULL);
+			    USB_FLAGS_SLEEP, 0, NULL);
 		} else {
 			mutex_exit(&ugenp->ug_mutex);
 		}
@@ -1914,7 +1914,7 @@ ugen_epxs_switch_cfg_alt(ugen_state_t *ugenp, ugen_ep_t *epp, dev_t dev)
 			 * This should never hang forever.
 			 */
 			if ((rval = usb_set_cfg(ugenp->ug_dip,
-			    new_cfgidx, USB_FLAGS_SLEEP, NULL,
+			    new_cfgidx, USB_FLAGS_SLEEP, 0,
 			    NULL)) != USB_SUCCESS) {
 				USB_DPRINTF_L2(UGEN_PRINT_XFER,
 				    ugenp->ug_log_hdl,
@@ -1954,7 +1954,7 @@ ugen_epxs_switch_cfg_alt(ugen_state_t *ugenp, ugen_ep_t *epp, dev_t dev)
 				return (USB_BUSY);
 			}
 			if ((rval = usb_set_alt_if(ugenp->ug_dip, new_if,
-			    new_alt, USB_FLAGS_SLEEP, NULL, NULL)) !=
+			    new_alt, USB_FLAGS_SLEEP, 0, NULL)) !=
 			    USB_SUCCESS) {
 				USB_DPRINTF_L2(UGEN_PRINT_XFER,
 				    ugenp->ug_log_hdl,
@@ -2123,7 +2123,7 @@ ugen_epx_open_pipe(ugen_state_t *ugenp, ugen_ep_t *epp, int flag)
 					mutex_exit(&epp->ep_mutex);
 					usb_pipe_close(ugenp->ug_dip,
 					    epp->ep_ph, USB_FLAGS_SLEEP,
-					    NULL, NULL);
+					    0, NULL);
 					mutex_enter(&epp->ep_mutex);
 
 					epp->ep_ph = NULL;
@@ -2238,12 +2238,12 @@ ugen_epx_close_pipe(ugen_state_t *ugenp, ugen_ep_t *epp)
 
 			(void) usb_pipe_drain_reqs(ugenp->ug_dip,
 			    epp->ep_ph, 0, USB_FLAGS_SLEEP,
-			    NULL, NULL);
+			    0, NULL);
 			mutex_enter(&epp->ep_mutex);
 		} else {
 			mutex_exit(&epp->ep_mutex);
 			usb_pipe_close(ugenp->ug_dip,
-			    epp->ep_ph, USB_FLAGS_SLEEP, NULL, NULL);
+			    epp->ep_ph, USB_FLAGS_SLEEP, 0, NULL);
 
 			mutex_enter(&epp->ep_mutex);
 			epp->ep_ph = NULL;
@@ -2378,10 +2378,10 @@ ugen_epx_req(ugen_state_t *ugenp, struct buf *bp)
 				 */
 				mutex_exit(&epp->ep_mutex);
 				usb_pipe_reset(ugenp->ug_dip, epp->ep_ph,
-				    USB_FLAGS_SLEEP, NULL, NULL);
+				    USB_FLAGS_SLEEP, 0, NULL);
 				(void) usb_pipe_drain_reqs(ugenp->ug_dip,
 				    epp->ep_ph, 0,
-				    USB_FLAGS_SLEEP, NULL, NULL);
+				    USB_FLAGS_SLEEP, 0, NULL);
 
 				mutex_enter(&epp->ep_mutex);
 

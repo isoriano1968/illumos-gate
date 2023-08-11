@@ -75,7 +75,7 @@ static ibt_clnt_modinfo_t ibdma_ibt_modinfo = {
 	IBTI_V_CURR,
 	IBT_DM_AGENT,
 	ibdma_ibt_async_handler,
-	NULL,
+	0,
 	"ibdma"
 };
 
@@ -465,7 +465,7 @@ ibdma_hca_init(ib_guid_t guid)
 		port->ip_ibmf_reg.ir_client_class = DEV_MGT_AGENT;
 
 		status = ibmf_register(&port->ip_ibmf_reg, IBMF_VERSION,
-		    0, NULL, NULL, &port->ip_ibmf_hdl, &port->ip_ibmf_caps);
+		    0, 0, NULL, &port->ip_ibmf_hdl, &port->ip_ibmf_caps);
 		if (status != IBMF_SUCCESS) {
 			cmn_err(CE_NOTE, "hca_init, IBMF register failed (%d)",
 			    status);

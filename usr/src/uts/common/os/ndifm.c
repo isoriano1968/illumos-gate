@@ -169,7 +169,7 @@ void
 ndi_fm_init(void)
 {
 	ndi_fm_entry_cache = kmem_cache_create("ndi_fm_entry_cache",
-	    sizeof (ndi_fmcentry_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (ndi_fmcentry_t), 0, 0, 0, 0, NULL, NULL, 0);
 }
 
 /*

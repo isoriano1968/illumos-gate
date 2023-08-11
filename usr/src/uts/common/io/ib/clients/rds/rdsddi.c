@@ -950,12 +950,12 @@ static struct module_info info = {
 };
 
 static struct qinit rinit = {
-	NULL, rds_rsrv, rds_open, rds_close, NULL, &info
+	0, rds_rsrv, rds_open, rds_close, 0, &info
 };
 
 static struct qinit winit = {
-	rds_wput, NULL, rds_open, rds_close, NULL, &info,
-	NULL, rds_wrw, NULL, STRUIOT_STANDARD
+	rds_wput, 0, rds_open, rds_close, 0, &info,
+	NULL, rds_wrw, 0, STRUIOT_STANDARD
 };
 
 struct streamtab rdsinfo = {

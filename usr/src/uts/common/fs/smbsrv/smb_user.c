@@ -1040,7 +1040,7 @@ smb_user_auth_logoff(smb_user_t *user)
 
 	audit_sid = user->u_audit_sid;
 	(void) smb_kdoor_upcall(sv, SMB_DR_USER_AUTH_LOGOFF,
-	    &audit_sid, xdr_uint32_t, NULL, NULL);
+	    &audit_sid, xdr_uint32_t, NULL, 0);
 }
 
 boolean_t

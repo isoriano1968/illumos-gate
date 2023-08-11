@@ -67,7 +67,7 @@ static const fs_operation_def_t smb_fcn_tmpl[] = {
 	VOPNAME_RMDIR, {.femop_rmdir = smb_fem_fcn_rmdir},
 	VOPNAME_LINK, {.femop_link = smb_fem_fcn_link},
 	VOPNAME_SYMLINK, {.femop_symlink = smb_fem_fcn_symlink},
-	NULL, NULL
+	NULL, 0
 };
 
 /*
@@ -94,7 +94,7 @@ static const fs_operation_def_t smb_oplock_tmpl[] = {
 	VOPNAME_SETATTR, { .femop_setattr = smb_fem_oplock_setattr },
 	VOPNAME_SPACE,	{ .femop_space = smb_fem_oplock_space },
 	VOPNAME_VNEVENT, { .femop_vnevent = smb_fem_oplock_vnevent },
-	NULL, NULL
+	NULL, 0
 };
 
 static int smb_fem_oplock_wait(smb_node_t *, caller_context_t *);
@@ -167,7 +167,7 @@ smb_fem_fcn_install(smb_node_t *node)
 	if (smb_fcn_ops == NULL)
 		return (ENOSYS);
 	rc = fem_install(node->vp, smb_fcn_ops, (void *)node, OPARGUNIQ,
-	    NULL, NULL);
+	    0, 0);
 	return (rc);
 }
 

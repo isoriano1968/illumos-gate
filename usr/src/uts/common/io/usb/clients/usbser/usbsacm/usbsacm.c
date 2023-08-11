@@ -339,11 +339,11 @@ struct module_info usbsacm_modinfo = {
 };
 
 static struct qinit usbsacm_rinit = {
-	NULL,
+	0,
 	usbser_rsrv,
 	usbsacm_open,
 	usbser_close,
-	NULL,
+	0,
 	&usbsacm_modinfo,
 	NULL
 };
@@ -351,9 +351,9 @@ static struct qinit usbsacm_rinit = {
 static struct qinit usbsacm_winit = {
 	usbser_wput,
 	usbser_wsrv,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
 	&usbsacm_modinfo,
 	NULL
 };
@@ -435,7 +435,7 @@ static ds_ops_t usbsacm_ds_ops = {
 	usbsacm_ds_set_modem_ctl,
 	usbsacm_ds_get_modem_ctl,
 	usbsacm_ds_break_ctl,
-	NULL,			/* NULL if h/w doesn't support loopback */
+	0,			/* NULL if h/w doesn't support loopback */
 	usbsacm_ds_tx,
 	usbsacm_ds_rx,
 	usbsacm_ds_stop,
@@ -2069,7 +2069,7 @@ usbsacm_open_port_pipes(usbsacm_port_t *acm_port)
 		    "usbsacm_open_port_pipes: open bulkout pipe failed!");
 
 		usb_pipe_close(acmp->acm_dip, acm_port->acm_bulkin_ph,
-		    USB_FLAGS_SLEEP, NULL, NULL);
+		    USB_FLAGS_SLEEP, 0, NULL);
 
 		return (USB_FAILURE);
 	}
@@ -2084,9 +2084,9 @@ usbsacm_open_port_pipes(usbsacm_port_t *acm_port)
 			    "open control pipe failed");
 
 			usb_pipe_close(acmp->acm_dip, acm_port->acm_bulkin_ph,
-			    USB_FLAGS_SLEEP, NULL, NULL);
+			    USB_FLAGS_SLEEP, 0, NULL);
 			usb_pipe_close(acmp->acm_dip, acm_port->acm_bulkout_ph,
-			    USB_FLAGS_SLEEP, NULL, NULL);
+			    USB_FLAGS_SLEEP, 0, NULL);
 
 			return (USB_FAILURE);
 		}

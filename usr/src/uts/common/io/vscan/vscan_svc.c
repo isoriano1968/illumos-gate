@@ -388,7 +388,7 @@ vscan_svc_disable(void)
 
 	switch (vscan_svc_state) {
 	case VS_SVC_ENABLED:
-		fs_vscan_register(NULL);
+		fs_vscan_register(0);
 		vscan_svc_state = VS_SVC_DISABLED;
 		cv_signal(&vscan_svc_reql_cv); /* wake handler thread */
 		break;

@@ -502,7 +502,7 @@ main(void)
 	 * Create kmem cache for proc structures
 	 */
 	process_cache = kmem_cache_create("process_cache", sizeof (proc_t),
-	    0, NULL, NULL, NULL, NULL, NULL, 0);
+	    0, 0, 0, 0, NULL, NULL, 0);
 
 	vfs_mountroot();	/* Mount the root file system */
 	errorq_init();		/* after vfs_mountroot() so DDI root is ready */

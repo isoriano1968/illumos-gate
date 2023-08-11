@@ -123,7 +123,7 @@ static struct dev_ops xcalwd_dev_ops = {
 	nodev,				/* devo_reset */
 	&xcalwd_cb_ops,			/* devo_cb_ops */
 	NULL,				/* devo_bus_ops */
-	NULL,				/* devo_power */
+	0,				/* devo_power */
 	ddi_quiesce_not_needed,			/* devo_quiesce */
 };
 

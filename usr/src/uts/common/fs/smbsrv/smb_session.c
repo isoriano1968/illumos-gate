@@ -428,7 +428,7 @@ smb_request_init_command_mbuf(smb_request_t *sr)
 void
 smb_request_cancel(smb_request_t *sr)
 {
-	void (*cancel_method)(smb_request_t *) = NULL;
+	void (*cancel_method)(smb_request_t *) = 0;
 
 	mutex_enter(&sr->sr_mutex);
 	switch (sr->sr_state) {

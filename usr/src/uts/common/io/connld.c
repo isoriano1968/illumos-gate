@@ -112,19 +112,19 @@ static struct module_info conn_info = {
 };
 static struct qinit connrinit = {
 	connput,
-	NULL,
+	0,
 	connopen,
 	connclose,
-	NULL,
+	0,
 	&conn_info,
 	NULL
 };
 static struct qinit connwinit = {
 	connput,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
 	&conn_info,
 	NULL
 };

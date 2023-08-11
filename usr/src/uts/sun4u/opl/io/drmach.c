@@ -2081,7 +2081,7 @@ drmach_console_ops(drmachid_t *id, int state)
 		return (0);
 
 	arg.name = "serial";
-	arg.func = NULL;
+	arg.func = 0;
 	if (state == DRMACH_IO_PRE_RELEASE) {
 		msudetp = (int (*)(dev_info_t *))
 		    modgetsymvalue("oplmsu_dr_detach", 0);
@@ -2605,7 +2605,7 @@ static struct {
 	{ "ikdeprobe",	drmach_pt_ikdeprobe	},
 
 	/* the following line must always be last */
-	{ NULL,			NULL				}
+	{ NULL,			0				}
 };
 
 /*ARGSUSED*/

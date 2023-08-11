@@ -164,5 +164,5 @@ const fs_operation_def_t ctfs_tops_tdir[] = {
 	{ VOPNAME_LOOKUP,	{ .vop_lookup = gfs_vop_lookup } },
 	{ VOPNAME_SEEK,		{ .vop_seek = fs_seek } },
 	{ VOPNAME_INACTIVE,	{ .vop_inactive = gfs_vop_inactive } },
-	{ NULL, NULL }
+	{ NULL, 0 }
 };

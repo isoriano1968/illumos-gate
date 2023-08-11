@@ -97,7 +97,7 @@ static struct dev_ops ics951601_dev_ops = {
 	nodev,
 	&ics951601_cb_ops,
 	NULL,
-	NULL,
+	0,
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

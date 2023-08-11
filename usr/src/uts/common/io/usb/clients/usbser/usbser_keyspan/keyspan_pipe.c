@@ -528,7 +528,7 @@ keyspan_close_one_pipe(keyspan_pipe_t *pipe)
 	 */
 	if (pipe->pipe_handle != NULL) {
 		usb_pipe_close(pipe->pipe_ksp->ks_dip, pipe->pipe_handle,
-		    USB_FLAGS_SLEEP, NULL, NULL);
+		    USB_FLAGS_SLEEP, 0, NULL);
 		mutex_enter(&pipe->pipe_mutex);
 		pipe->pipe_handle = NULL;
 		pipe->pipe_state = KEYSPAN_PIPE_CLOSED;
@@ -554,7 +554,7 @@ keyspan_close_pipe_datain_usa49wg(keyspan_pipe_t *pipe)
 			mutex_exit(&ksp->ks_mutex);
 			usb_pipe_close(pipe->pipe_ksp->ks_dip,
 			    pipe->pipe_handle, USB_FLAGS_SLEEP,
-			    NULL, NULL);
+			    0, NULL);
 		} else {
 			mutex_exit(&ksp->ks_mutex);
 		}
@@ -755,7 +755,7 @@ keyspan_close_open_pipes(keyspan_state_t *ksp)
 				mutex_exit(&kp->kp_mutex);
 				usb_pipe_reset(ksp->ks_dip,
 				    kp->kp_datain_pipe.pipe_handle,
-				    USB_FLAGS_SLEEP, NULL, NULL);
+				    USB_FLAGS_SLEEP, 0, NULL);
 				keyspan_close_port_pipes(kp);
 			} else {
 				mutex_exit(&kp->kp_mutex);
@@ -778,7 +778,7 @@ keyspan_close_open_pipes(keyspan_state_t *ksp)
 			kp = &ksp->ks_ports[port_num];
 			usb_pipe_reset(ksp->ks_dip,
 			    kp->kp_datain_pipe.pipe_handle,
-			    USB_FLAGS_SLEEP, NULL, NULL);
+			    USB_FLAGS_SLEEP, 0, NULL);
 		}
 
 		for (i = 0; i < ksp->ks_dev_spec.port_cnt; i++) {

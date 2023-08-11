@@ -93,7 +93,7 @@ hermon_dbr_new_user_page(hermon_state_t *state, uint_t index,
 	    &pagep->upg_umemcookie); /* not HERMON_PAGESIZE here */
 
 	pagep->upg_buf = ddi_umem_iosetup(pagep->upg_umemcookie, 0,
-	    pagesize, B_WRITE, 0, 0, NULL, DDI_UMEM_SLEEP);
+	    pagesize, B_WRITE, 0, 0, 0, DDI_UMEM_SLEEP);
 
 	hermon_dma_attr_init(state, &dma_attr);
 #ifdef	__sparc

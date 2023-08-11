@@ -301,10 +301,10 @@ void
 smb_kshare_g_init(void)
 {
 	smb_kshare_cache_share = kmem_cache_create("smb_share_cache",
-	    sizeof (smb_kshare_t), 8, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (smb_kshare_t), 8, 0, 0, 0, NULL, NULL, 0);
 
 	smb_kshare_cache_unexport = kmem_cache_create("smb_unexport_cache",
-	    sizeof (smb_unshare_t), 8, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (smb_unshare_t), 8, 0, 0, 0, NULL, NULL, 0);
 }
 
 void

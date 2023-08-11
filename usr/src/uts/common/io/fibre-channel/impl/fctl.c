@@ -173,11 +173,11 @@ static struct modlinkage modlinkage = {
 static struct bus_ops fctl_fca_busops = {
 	BUSO_REV,
 	nullbusmap,			/* bus_map */
-	NULL,				/* bus_get_intrspec */
-	NULL,				/* bus_add_intrspec */
-	NULL,				/* bus_remove_intrspec */
+	0,				/* bus_get_intrspec */
+	0,				/* bus_add_intrspec */
+	0,				/* bus_remove_intrspec */
 	i_ddi_map_fault,		/* bus_map_fault */
-	NULL,				/* bus_dma_map */
+	0,				/* bus_dma_map */
 	ddi_dma_allochdl,		/* bus_dma_allochdl */
 	ddi_dma_freehdl,		/* bus_dma_freehdl */
 	ddi_dma_bindhdl,		/* bus_dma_bindhdl */
@@ -187,19 +187,19 @@ static struct bus_ops fctl_fca_busops = {
 	ddi_dma_mctl,			/* bus_dma_ctl */
 	fctl_fca_bus_ctl,		/* bus_ctl */
 	ddi_bus_prop_op,		/* bus_prop_op */
-	NULL,				/* bus_get_eventcookie */
-	NULL,				/* bus_add_eventcall */
-	NULL,				/* bus_remove_event */
-	NULL,				/* bus_post_event */
-	NULL,				/* bus_intr_ctl */
-	NULL,				/* bus_config */
-	NULL,				/* bus_unconfig */
-	NULL,				/* bus_fm_init */
-	NULL,				/* bus_fm_fini */
-	NULL,				/* bus_fm_access_enter */
-	NULL,				/* bus_fm_access_exit */
-	NULL,				/* bus_power */
-	NULL
+	0,				/* bus_get_eventcookie */
+	0,				/* bus_add_eventcall */
+	0,				/* bus_remove_event */
+	0,				/* bus_post_event */
+	0,				/* bus_intr_ctl */
+	0,				/* bus_config */
+	0,				/* bus_unconfig */
+	0,				/* bus_fm_init */
+	0,				/* bus_fm_fini */
+	0,				/* bus_fm_access_enter */
+	0,				/* bus_fm_access_exit */
+	0,				/* bus_power */
+	0
 };
 
 struct kmem_cache *fctl_job_cache;
@@ -518,7 +518,7 @@ _init()
 
 	fctl_job_cache = kmem_cache_create("fctl_cache",
 	    sizeof (job_request_t), 8, fctl_cache_constructor,
-	    fctl_cache_destructor, NULL, NULL, NULL, 0);
+	    fctl_cache_destructor, 0, NULL, NULL, 0);
 
 	if (fctl_job_cache == NULL) {
 		kmem_free(fctl_nwwn_hash_table,
@@ -717,7 +717,7 @@ fc_ulp_add(fc_ulp_modinfo_t *ulp_info)
 	for (fca_port = fctl_fca_portlist; fca_port != NULL;
 	    fca_port = fca_port->port_next) {
 		job = fctl_alloc_job(JOB_ATTACH_ULP, JOB_TYPE_FCTL_ASYNC,
-		    NULL, NULL, KM_SLEEP);
+		    0, NULL, KM_SLEEP);
 
 		fctl_enque_job(fca_port->port_handle, job);
 	}
@@ -996,7 +996,7 @@ fc_ulp_getportmap(opaque_t port_handle, fc_portmap_t **map, uint32_t *len,
 		 * Submit a job request to the job handler
 		 * thread to get the map and wait
 		 */
-		job = fctl_alloc_job(job_code, 0, NULL, NULL, KM_SLEEP);
+		job = fctl_alloc_job(job_code, 0, 0, NULL, KM_SLEEP);
 		job->job_private = (opaque_t)map;
 		job->job_arg = (opaque_t)len;
 		fctl_enque_job(port, job);
@@ -1104,7 +1104,7 @@ fc_ulp_login(opaque_t port_handle, fc_packet_t **ulp_pkt, uint32_t listlen)
 	}
 #endif
 
-	job = fctl_alloc_job(JOB_PLOGI_GROUP, job_flags, NULL, NULL, KM_SLEEP);
+	job = fctl_alloc_job(JOB_PLOGI_GROUP, job_flags, 0, NULL, KM_SLEEP);
 	job->job_ulp_pkts = tmp_array;
 	job->job_ulp_listlen = listlen;
 
@@ -1181,7 +1181,7 @@ fc_ulp_get_remote_port(opaque_t port_handle, la_wwn_t *pwwn, int *error,
 
 		mutex_exit(&port->fp_mutex);
 
-		job = fctl_alloc_job(JOB_NS_CMD, 0, NULL, NULL, KM_SLEEP);
+		job = fctl_alloc_job(JOB_NS_CMD, 0, 0, NULL, KM_SLEEP);
 
 		if (job == NULL) {
 			*error = FC_NOMEM;
@@ -1327,7 +1327,7 @@ fc_ulp_port_ns(opaque_t port_handle, opaque_t pd, fc_ns_cmd_t *ns_req)
 		return (fctl_retrieve_host_ns_values(port, ns_req));
 	}
 
-	job = fctl_alloc_job(JOB_NS_CMD, 0, NULL, NULL, KM_SLEEP);
+	job = fctl_alloc_job(JOB_NS_CMD, 0, 0, NULL, KM_SLEEP);
 	ASSERT(job != NULL);
 
 	ns_cmd = fctl_alloc_ns_cmd(ns_req->ns_req_len,
@@ -1631,7 +1631,7 @@ fc_ulp_linkreset(opaque_t port_handle, la_wwn_t *pwwn, int sleep)
 	}
 
 	if (sleep == KM_SLEEP) {
-		job = fctl_alloc_job(JOB_LINK_RESET, 0, NULL, NULL, sleep);
+		job = fctl_alloc_job(JOB_LINK_RESET, 0, 0, NULL, sleep);
 		ASSERT(job != NULL);
 
 		job->job_private = (void *)pwwn;

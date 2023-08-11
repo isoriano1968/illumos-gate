@@ -3571,7 +3571,7 @@ mrsas_tbolt_config_pd(struct mrsas_instance *instance, uint16_t tgt,
 		sd->sd_address.a_target = (uint16_t)tgt;
 		sd->sd_address.a_lun = (uint8_t)lun;
 
-		if (scsi_hba_probe(sd, NULL) == SCSIPROBE_EXISTS) {
+		if (scsi_hba_probe(sd, 0) == SCSIPROBE_EXISTS) {
 			rval = mrsas_config_scsi_device(instance, sd, ldip);
 			dev_err(instance->dip, CE_CONT,
 			    "?Phys. device found: tgt %d dtype %d: %s\n",

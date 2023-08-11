@@ -110,8 +110,8 @@ static mac_callbacks_t xgell_m_callbacks = {
 	xgell_m_stop,
 	xgell_m_promisc,
 	xgell_m_multicst,
-	NULL,
-	NULL,
+	0,
+	0,
 	NULL,
 	xgell_m_ioctl,
 	xgell_m_getcapab
@@ -1512,8 +1512,8 @@ xgell_fill_group(void *arg, mac_ring_type_t rtype, const int index,
 		rx_ring->group_handle = gh;
 
 		infop->mgi_driver = (mac_group_driver_t)rx_ring;
-		infop->mgi_start = NULL;
-		infop->mgi_stop = NULL;
+		infop->mgi_start = 0;
+		infop->mgi_stop = 0;
 		infop->mgi_addmac = xgell_addmac;
 		infop->mgi_remmac = xgell_remmac;
 		infop->mgi_count = lldev->init_rx_rings / lldev->init_rx_groups;
@@ -1763,7 +1763,7 @@ xgell_tx_ring_open(xgell_tx_ring_t *tx_ring)
 	attr.per_dtr_space	= sizeof (xgell_txd_priv_t);
 	attr.flags		= 0;
 	attr.type		= XGE_HAL_CHANNEL_TYPE_FIFO;
-	attr.dtr_init		= NULL;
+	attr.dtr_init		= 0;
 	attr.dtr_term		= xgell_tx_term;
 	attr.userdata		= tx_ring;
 
@@ -2476,7 +2476,7 @@ xgell_m_getcapab(void *arg, mac_capab_t cap, void *cap_data)
 			cap_rings->mr_rnum = lldev->init_tx_rings;
 			cap_rings->mr_gnum = 0;
 			cap_rings->mr_rget = xgell_fill_ring;
-			cap_rings->mr_gget = NULL;
+			cap_rings->mr_gget = 0;
 			break;
 		default:
 			break;
@@ -2771,15 +2771,15 @@ xgell_device_register(xgelldev_t *lldev, xgell_config_t *config)
 	/*
 	 * Initialize some NDD interface for internal debug.
 	 */
-	if (nd_load(&lldev->ndp, "pciconf", xgell_pciconf_get, NULL,
+	if (nd_load(&lldev->ndp, "pciconf", xgell_pciconf_get, 0,
 	    (caddr_t)lldev) == B_FALSE)
 		goto xgell_ndd_fail;
 
-	if (nd_load(&lldev->ndp, "about", xgell_about_get, NULL,
+	if (nd_load(&lldev->ndp, "about", xgell_about_get, 0,
 	    (caddr_t)lldev) == B_FALSE)
 		goto xgell_ndd_fail;
 
-	if (nd_load(&lldev->ndp, "stats", xgell_stats_get, NULL,
+	if (nd_load(&lldev->ndp, "stats", xgell_stats_get, 0,
 	    (caddr_t)lldev) == B_FALSE)
 		goto xgell_ndd_fail;
 
@@ -2796,7 +2796,7 @@ xgell_device_register(xgelldev_t *lldev, xgell_config_t *config)
 	    (caddr_t)lldev) == B_FALSE)
 		goto xgell_ndd_fail;
 
-	if (nd_load(&lldev->ndp, "devconfig", xgell_devconfig_get, NULL,
+	if (nd_load(&lldev->ndp, "devconfig", xgell_devconfig_get, 0,
 	    (caddr_t)lldev) == B_FALSE)
 		goto xgell_ndd_fail;
 

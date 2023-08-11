@@ -31,71 +31,71 @@ smb2_disp_table[SMB2__NCMDS] = {
 
 	/* text-name, pre, func, post, cmd-code, dialect, flags */
 
-	{  "smb2_negotiate", NULL,
-	    smb2_negotiate, NULL, 0, 0,
+	{  "smb2_negotiate", 0,
+	    smb2_negotiate, 0, 0, 0,
 	    SDDF_SUPPRESS_TID | SDDF_SUPPRESS_UID },
 
-	{  "smb2_session_setup", NULL,
-	    smb2_session_setup, NULL, 0, 0,
+	{  "smb2_session_setup", 0,
+	    smb2_session_setup, 0, 0, 0,
 	    SDDF_SUPPRESS_TID | SDDF_SUPPRESS_UID },
 
-	{  "smb2_logoff", NULL,
-	    smb2_logoff, NULL, 0, 0,
+	{  "smb2_logoff", 0,
+	    smb2_logoff, 0, 0, 0,
 	    SDDF_SUPPRESS_TID },
 
-	{  "smb2_tree_connect", NULL,
-	    smb2_tree_connect, NULL, 0, 0,
+	{  "smb2_tree_connect", 0,
+	    smb2_tree_connect, 0, 0, 0,
 	    SDDF_SUPPRESS_TID },
 
-	{  "smb2_tree_disconn", NULL,
-	    smb2_tree_disconn, NULL, 0, 0 },
+	{  "smb2_tree_disconn", 0,
+	    smb2_tree_disconn, 0, 0, 0 },
 
-	{  "smb2_create", NULL,
-	    smb2_create, NULL, 0, 0 },
+	{  "smb2_create", 0,
+	    smb2_create, 0, 0, 0 },
 
-	{  "smb2_close", NULL,
-	    smb2_close, NULL, 0, 0 },
+	{  "smb2_close", 0,
+	    smb2_close, 0, 0, 0 },
 
-	{  "smb2_flush", NULL,
-	    smb2_flush, NULL, 0, 0 },
+	{  "smb2_flush", 0,
+	    smb2_flush, 0, 0, 0 },
 
-	{  "smb2_read", NULL,
-	    smb2_read, NULL, 0, 0 },
+	{  "smb2_read", 0,
+	    smb2_read, 0, 0, 0 },
 
-	{  "smb2_write", NULL,
-	    smb2_write, NULL, 0, 0 },
+	{  "smb2_write", 0,
+	    smb2_write, 0, 0, 0 },
 
-	{  "smb2_lock", NULL,
-	    smb2_lock, NULL, 0, 0 },
+	{  "smb2_lock", 0,
+	    smb2_lock, 0, 0, 0 },
 
-	{  "smb2_ioctl", NULL,
-	    smb2_ioctl, NULL, 0, 0 },
+	{  "smb2_ioctl", 0,
+	    smb2_ioctl, 0, 0, 0 },
 
-	{  "smb2_cancel", NULL,
-	    smb2_cancel, NULL, 0, 0,
+	{  "smb2_cancel", 0,
+	    smb2_cancel, 0, 0, 0,
 	    SDDF_SUPPRESS_UID | SDDF_SUPPRESS_TID },
 
-	{  "smb2_echo", NULL,
-	    smb2_echo, NULL, 0, 0,
+	{  "smb2_echo", 0,
+	    smb2_echo, 0, 0, 0,
 	    SDDF_SUPPRESS_UID | SDDF_SUPPRESS_TID },
 
-	{  "smb2_query_dir", NULL,
-	    smb2_query_dir, NULL, 0, 0 },
+	{  "smb2_query_dir", 0,
+	    smb2_query_dir, 0, 0, 0 },
 
-	{  "smb2_change_notify", NULL,
-	    smb2_change_notify, NULL, 0, 0 },
+	{  "smb2_change_notify", 0,
+	    smb2_change_notify, 0, 0, 0 },
 
-	{  "smb2_query_info", NULL,
-	    smb2_query_info, NULL, 0, 0 },
+	{  "smb2_query_info", 0,
+	    smb2_query_info, 0, 0, 0 },
 
-	{  "smb2_set_info", NULL,
-	    smb2_set_info, NULL, 0, 0 },
+	{  "smb2_set_info", 0,
+	    smb2_set_info, 0, 0, 0 },
 
-	{  "smb2_oplock_break_ack", NULL,
-	    smb2_oplock_break_ack, NULL, 0, 0 },
+	{  "smb2_oplock_break_ack", 0,
+	    smb2_oplock_break_ack, 0, 0, 0 },
 
-	{  "smb2_invalid_cmd", NULL,
-	    smb2_invalid_cmd, NULL, 0, 0,
+	{  "smb2_invalid_cmd", 0,
+	    smb2_invalid_cmd, 0, 0, 0,
 	    SDDF_SUPPRESS_UID | SDDF_SUPPRESS_TID },
 };
 

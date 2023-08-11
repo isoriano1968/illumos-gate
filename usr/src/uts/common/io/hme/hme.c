@@ -244,7 +244,7 @@ static mii_ops_t hme_mii_ops = {
 	hme_mii_read,
 	hme_mii_write,
 	hme_mii_notify,
-	NULL
+	0
 };
 
 static mac_callbacks_t hme_m_callbacks = {
@@ -257,10 +257,10 @@ static mac_callbacks_t hme_m_callbacks = {
 	hme_m_unicst,
 	hme_m_tx,
 	NULL,
-	NULL,
+	0,
 	hme_m_getcapab,
-	NULL,
-	NULL,
+	0,
+	0,
 	hme_m_setprop,
 	hme_m_getprop,
 	hme_m_propinfo

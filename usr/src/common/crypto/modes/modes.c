@@ -427,11 +427,11 @@ crypto_put_output_data(uchar_t *buf, crypto_data_t *output, int len)
 
 	case CRYPTO_DATA_UIO:
 		return (crypto_uio_data(output, buf, len,
-		    COPY_TO_DATA, NULL, NULL));
+		    COPY_TO_DATA, NULL, 0));
 
 	case CRYPTO_DATA_MBLK:
 		return (crypto_mblk_data(output, buf, len,
-		    COPY_TO_DATA, NULL, NULL));
+		    COPY_TO_DATA, NULL, 0));
 
 	default:
 		return (CRYPTO_ARGUMENTS_BAD);

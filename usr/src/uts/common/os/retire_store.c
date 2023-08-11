@@ -75,7 +75,7 @@ static nvf_ops_t rio_store_ops = {
 	rio_store_decode,		/* decode nvlist into retire_list */
 	rio_store_encode,		/* encode retire_list into nvlist */
 	retire_list_free,		/* free retire_list */
-	NULL				/* write complete callback */
+	0				/* write complete callback */
 };
 
 static nvf_handle_t	rio_store_handle;

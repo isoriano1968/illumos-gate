@@ -115,7 +115,7 @@ static struct dev_ops adm1031_dev_ops = {
 	nodev,
 	&adm1031_cb_ops,
 	NULL,
-	NULL,
+	0,
 	ddi_quiesce_not_supported,	/* devo_quiesce */
 };
 

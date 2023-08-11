@@ -198,10 +198,10 @@ static struct module_info wcm_info = {
 
 static struct qinit wcurinit = {
 	putq,
-	NULL,
+	0,
 	wcopen,
 	wcclose,
-	NULL,
+	0,
 	&wcm_info,
 	NULL
 };
@@ -211,17 +211,17 @@ static struct qinit wcuwinit = {
 	wcuwsrv,
 	wcopen,
 	wcclose,
-	NULL,
+	0,
 	&wcm_info,
 	NULL
 };
 
 static struct qinit wclrinit = {
 	wclrput,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
 	&wcm_info,
 	NULL
 };
@@ -230,11 +230,11 @@ static struct qinit wclrinit = {
  * We always putnext directly to the underlying queue.
  */
 static struct qinit wclwinit = {
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
+	0,
 	&wcm_info,
 	NULL
 };
@@ -1314,9 +1314,9 @@ wclrput(queue_t *q, mblk_t *mp)
 					wscons.wc_kb_polledio = NULL;
 					wscons.wc_kbdqueue = NULL;
 					wscons.wc_polledio.
-					    cons_polledio_getchar = NULL;
+					    cons_polledio_getchar = 0;
 					wscons.wc_polledio.
-					    cons_polledio_ischar = NULL;
+					    cons_polledio_ischar = 0;
 					break;
 				default:
 					DPRINTF(PRINT_L1, PRINT_MASK_ALL,
@@ -1342,9 +1342,9 @@ wclrput(queue_t *q, mblk_t *mp)
 					wscons.wc_kb_polledio = NULL;
 					wscons.wc_kbdqueue = NULL;
 					wscons.wc_polledio.
-					    cons_polledio_getchar = NULL;
+					    cons_polledio_getchar = 0;
 					wscons.wc_polledio.
-					    cons_polledio_ischar = NULL;
+					    cons_polledio_ischar = 0;
 					break;
 				}
 				break;

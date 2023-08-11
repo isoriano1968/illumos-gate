@@ -124,7 +124,7 @@ static struct dev_ops sghsc_dev_ops = {
 	nodev,			/* reset */
 	&sghsc_cb_ops,		/* driver operations */
 	(struct bus_ops *)0,	/* no bus operations */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

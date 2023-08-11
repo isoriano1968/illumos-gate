@@ -1514,7 +1514,7 @@ static const fs_operation_def_t xattr_dir_tops[] = {
 	{ VOPNAME_FID,		{ .vop_fid = xattr_common_fid }		},
 	{ VOPNAME_PATHCONF,	{ .vop_pathconf = xattr_dir_pathconf }	},
 	{ VOPNAME_REALVP,	{ .vop_realvp = xattr_dir_realvp } },
-	{ NULL, NULL }
+	{ NULL, 0 }
 };
 
 static gfs_opsvec_t xattr_opsvec[] = {
@@ -1651,7 +1651,7 @@ xattr_dir_lookup(vnode_t *dvp, vnode_t **vpp, int flags, cred_t *cr)
 		 */
 		*vpp = gfs_dir_create(
 		    sizeof (xattr_dir_t), dvp, xattr_dir_ops, xattr_dirents,
-		    xattrdir_do_ino, MAXNAMELEN, NULL, xattr_lookup_cb);
+		    xattrdir_do_ino, MAXNAMELEN, 0, xattr_lookup_cb);
 		mutex_enter(&dvp->v_lock);
 		if (dvp->v_xattrdir != NULL) {
 			/*

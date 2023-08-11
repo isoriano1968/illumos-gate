@@ -804,7 +804,7 @@ igb_fill_ring(void *arg, mac_ring_type_t rtype, const int rg_index,
 
 		infop->mri_driver = (mac_ring_driver_t)rx_ring;
 		infop->mri_start = igb_ring_start;
-		infop->mri_stop = NULL;
+		infop->mri_stop = 0;
 		infop->mri_poll = (mac_ring_poll_t)igb_rx_ring_poll;
 		infop->mri_stat = igb_rx_ring_stat;
 
@@ -824,8 +824,8 @@ igb_fill_ring(void *arg, mac_ring_type_t rtype, const int rg_index,
 		tx_ring->ring_handle = rh;
 
 		infop->mri_driver = (mac_ring_driver_t)tx_ring;
-		infop->mri_start = NULL;
-		infop->mri_stop = NULL;
+		infop->mri_start = 0;
+		infop->mri_stop = 0;
 		infop->mri_tx = igb_tx_ring_send;
 		infop->mri_stat = igb_tx_ring_stat;
 		if (igb->intr_type & (DDI_INTR_TYPE_MSIX | DDI_INTR_TYPE_MSI)) {
@@ -855,8 +855,8 @@ igb_fill_group(void *arg, mac_ring_type_t rtype, const int index,
 		rx_group->group_handle = gh;
 
 		infop->mgi_driver = (mac_group_driver_t)rx_group;
-		infop->mgi_start = NULL;
-		infop->mgi_stop = NULL;
+		infop->mgi_start = 0;
+		infop->mgi_stop = 0;
 		infop->mgi_addmac = igb_addmac;
 		infop->mgi_remmac = igb_remmac;
 		infop->mgi_count = (igb->num_rx_rings / igb->num_rx_groups);
@@ -966,8 +966,8 @@ igb_m_getcapab(void *arg, mac_capab_t cap, void *cap_data)
 			cap_rings->mr_gnum = igb->num_rx_groups;
 			cap_rings->mr_rget = igb_fill_ring;
 			cap_rings->mr_gget = igb_fill_group;
-			cap_rings->mr_gaddring = NULL;
-			cap_rings->mr_gremring = NULL;
+			cap_rings->mr_gaddring = 0;
+			cap_rings->mr_gremring = 0;
 
 			break;
 		case MAC_RING_TYPE_TX:
@@ -975,7 +975,7 @@ igb_m_getcapab(void *arg, mac_capab_t cap, void *cap_data)
 			cap_rings->mr_rnum = igb->num_tx_rings;
 			cap_rings->mr_gnum = 0;
 			cap_rings->mr_rget = igb_fill_ring;
-			cap_rings->mr_gget = NULL;
+			cap_rings->mr_gget = 0;
 
 			break;
 		default:

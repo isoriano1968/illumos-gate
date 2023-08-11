@@ -209,7 +209,7 @@ static struct qinit msrinit = {
 	msrserv,
 	msopen,
 	msclose,
-	NULL,
+	0,
 	&msmiinfo
 };
 
@@ -224,10 +224,10 @@ static struct module_info msmoinfo = {
 
 static struct qinit mswinit = {
 	mswput,
-	NULL,
+	0,
 	msopen,
 	msclose,
-	NULL,
+	0,
 	&msmoinfo
 };
 

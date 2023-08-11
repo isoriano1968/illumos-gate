@@ -586,7 +586,7 @@ dr_io_configure(dr_vio_req_t *req, dr_vio_res_t *res)
 		br.arg = (void *)&cba;
 		br.type = DEVI_BRANCH_SID;
 		br.create.sid_branch_create = new_dev_node;
-		br.devi_branch_callback = NULL;
+		br.devi_branch_callback = 0;
 
 		rv = e_ddi_branch_create(pdip,
 		    &br, NULL, DEVI_BRANCH_CONFIGURE);

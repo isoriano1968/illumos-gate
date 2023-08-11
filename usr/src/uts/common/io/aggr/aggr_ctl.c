@@ -269,7 +269,7 @@ static dld_ioc_info_t aggr_ioc_list[] = {
 	    secpolicy_dl_config},
 	{LAIOC_DELETE, DLDCOPYIN, sizeof (laioc_delete_t), aggr_ioc_delete,
 	    secpolicy_dl_config},
-	{LAIOC_INFO, DLDCOPYINOUT, sizeof (laioc_info_t), aggr_ioc_info, NULL},
+	{LAIOC_INFO, DLDCOPYINOUT, sizeof (laioc_info_t), aggr_ioc_info, 0},
 	{LAIOC_ADD, DLDCOPYIN, sizeof (laioc_add_rem_t), aggr_ioc_add,
 	    secpolicy_dl_config},
 	{LAIOC_REMOVE, DLDCOPYIN, sizeof (laioc_add_rem_t), aggr_ioc_remove,

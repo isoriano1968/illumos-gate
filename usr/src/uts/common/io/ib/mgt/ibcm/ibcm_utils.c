@@ -830,14 +830,14 @@ ibcm_init_ids(void)
 	_NOTE(NOW_INVISIBLE_TO_OTHER_THREADS(ibcm_local_cid_seed))
 
 	ibcm_local_sid_arena = vmem_create("ibcm_local_sid",
-	    (void *)IBCM_INITIAL_SID, IBCM_MAX_LOCAL_SIDS, 1, NULL, NULL, NULL,
+	    (void *)IBCM_INITIAL_SID, IBCM_MAX_LOCAL_SIDS, 1, 0, 0, NULL,
 	    0, VM_SLEEP | VMC_IDENTIFIER);
 
 	if (!ibcm_local_sid_arena)
 		return (IBCM_FAILURE);
 
 	ibcm_ip_sid_arena = vmem_create("ibcm_ip_sid", (void *)IBCM_INITIAL_SID,
-	    IBCM_MAX_IP_SIDS, 1, NULL, NULL, NULL, 0,
+	    IBCM_MAX_IP_SIDS, 1, 0, 0, NULL, 0,
 	    VM_SLEEP | VMC_IDENTIFIER);
 
 	if (!ibcm_ip_sid_arena)
@@ -873,14 +873,14 @@ ibcm_init_hca_ids(ibcm_hca_info_t *hcap)
 {
 	hcap->hca_comid_arena = vmem_create("ibcm_com_ids",
 	    (void *)IBCM_INITIAL_COMID, IBCM_MAX_COMIDS,
-	    1, NULL, NULL, NULL, 0, VM_SLEEP | VMC_IDENTIFIER);
+	    1, 0, 0, NULL, 0, VM_SLEEP | VMC_IDENTIFIER);
 
 	if (!hcap->hca_comid_arena)
 		return (IBCM_FAILURE);
 
 	hcap->hca_reqid_arena = vmem_create("ibcm_req_ids",
 	    (void *)IBCM_INITIAL_REQID, IBCM_MAX_REQIDS,
-	    1, NULL, NULL, NULL, 0, VM_SLEEP | VMC_IDENTIFIER);
+	    1, 0, 0, NULL, 0, VM_SLEEP | VMC_IDENTIFIER);
 
 	if (!hcap->hca_reqid_arena) {
 		vmem_destroy(hcap->hca_comid_arena);

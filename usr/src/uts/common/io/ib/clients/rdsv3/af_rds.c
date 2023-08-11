@@ -766,11 +766,11 @@ static struct sock_downcalls_s rdsv3_sock_downcalls = {
 	.sd_close =		rdsv3_release,
 	.sd_bind =		rdsv3_bind,
 	.sd_connect =		rdsv3_connect,
-	.sd_accept =		NULL,
+	.sd_accept =		0,
 	.sd_getsockname =	rdsv3_getname,
 	.sd_poll =		rdsv3_poll,
 	.sd_ioctl =		rdsv3_ioctl,
-	.sd_listen =		NULL,
+	.sd_listen =		0,
 	.sd_shutdown =		rdsv3_shutdown,
 	.sd_setsockopt =	rdsv3_setsockopt,
 	.sd_getsockopt =	rdsv3_getsockopt,
@@ -778,8 +778,8 @@ static struct sock_downcalls_s rdsv3_sock_downcalls = {
 	.sd_recv_uio =		rdsv3_recv_uio,
 	.sd_activate =		rdsv3_activate,
 	.sd_getpeername =	rdsv3_getpeername,
-	.sd_send =		NULL,
-	.sd_clr_flowctrl =	NULL
+	.sd_send =		0,
+	.sd_clr_flowctrl =	0
 };
 #else
 static struct sock_downcalls_s rdsv3_sock_downcalls = {

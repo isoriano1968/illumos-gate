@@ -2748,7 +2748,7 @@ dumpsys(void)
 			if (VOP_OPEN(&cmn_cdev_vp, FREAD | FWRITE, kcred, NULL)
 			    == 0) {
 				if (vn_has_cached_data(dumpvp))
-					(void) pvn_vplist_dirty(dumpvp, 0, NULL,
+					(void) pvn_vplist_dirty(dumpvp, 0, 0,
 					    B_INVAL | B_TRUNC, kcred);
 				dumpbuf.cdev_vp = cmn_cdev_vp;
 			} else {

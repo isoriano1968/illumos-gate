@@ -1028,7 +1028,7 @@ cheetah_nudge_init(void)
 	}
 
 	hdlr.cyo_online = cheetah_nudge_onln;
-	hdlr.cyo_offline = NULL;
+	hdlr.cyo_offline = 0;
 	hdlr.cyo_arg = NULL;
 
 	mutex_enter(&cpu_lock);
@@ -5762,7 +5762,7 @@ cpu_init_cache_scrub(void)
 		}
 
 		omni_hdlr.cyo_online = cpu_scrub_cyclic_setup;
-		omni_hdlr.cyo_offline = NULL;
+		omni_hdlr.cyo_offline = 0;
 		omni_hdlr.cyo_arg = (void *)csi;
 
 		offline_hdlr.cyh_func = (cyc_func_t)do_scrub_offline;

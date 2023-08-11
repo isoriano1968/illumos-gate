@@ -1153,8 +1153,8 @@ drv_secobj_init(void)
 {
 	rw_init(&drv_secobj_lock, NULL, RW_DEFAULT, NULL);
 	drv_secobj_cachep = kmem_cache_create("drv_secobj_cache",
-	    sizeof (dld_secobj_t), 0, drv_secobj_ctor, NULL,
-	    NULL, NULL, NULL, 0);
+	    sizeof (dld_secobj_t), 0, drv_secobj_ctor, 0,
+	    0, NULL, NULL, 0);
 	drv_secobj_hash = mod_hash_create_extended("drv_secobj_hash",
 	    SECOBJ_WEP_HASHSZ, mod_hash_null_keydtor, mod_hash_null_valdtor,
 	    mod_hash_bystr, NULL, mod_hash_strkey_cmp, KM_SLEEP);
@@ -1526,9 +1526,9 @@ done:
  */
 static dld_ioc_info_t drv_ioc_list[] = {
 	{DLDIOC_ATTR, DLDCOPYINOUT, sizeof (dld_ioc_attr_t),
-	    drv_ioc_attr, NULL},
+	    drv_ioc_attr, 0},
 	{DLDIOC_PHYS_ATTR, DLDCOPYINOUT, sizeof (dld_ioc_phys_attr_t),
-	    drv_ioc_phys_attr, NULL},
+	    drv_ioc_phys_attr, 0},
 	{DLDIOC_SECOBJ_SET, DLDCOPYIN, sizeof (dld_ioc_secobj_set_t),
 	    drv_ioc_secobj_set, secpolicy_dl_config},
 	{DLDIOC_SECOBJ_GET, DLDCOPYINOUT, sizeof (dld_ioc_secobj_get_t),
@@ -1538,9 +1538,9 @@ static dld_ioc_info_t drv_ioc_list[] = {
 	{DLDIOC_DOORSERVER, DLDCOPYIN, sizeof (dld_ioc_door_t),
 	    drv_ioc_doorserver, secpolicy_dl_config},
 	{DLDIOC_RENAME, DLDCOPYIN, sizeof (dld_ioc_rename_t),
-	    drv_ioc_rename, NULL},
+	    drv_ioc_rename, 0},
 	{DLDIOC_MACADDRGET, DLDCOPYINOUT, sizeof (dld_ioc_macaddrget_t),
-	    drv_ioc_macaddrget, NULL},
+	    drv_ioc_macaddrget, 0},
 	{DLDIOC_ADDFLOW, DLDCOPYIN, sizeof (dld_ioc_addflow_t),
 	    drv_ioc_addflow, secpolicy_dl_config},
 	{DLDIOC_REMOVEFLOW, DLDCOPYIN, sizeof (dld_ioc_removeflow_t),
@@ -1548,21 +1548,21 @@ static dld_ioc_info_t drv_ioc_list[] = {
 	{DLDIOC_MODIFYFLOW, DLDCOPYIN, sizeof (dld_ioc_modifyflow_t),
 	    drv_ioc_modifyflow, secpolicy_dl_config},
 	{DLDIOC_WALKFLOW, DLDCOPYINOUT, sizeof (dld_ioc_walkflow_t),
-	    drv_ioc_walkflow, NULL},
+	    drv_ioc_walkflow, 0},
 	{DLDIOC_USAGELOG, DLDCOPYIN, sizeof (dld_ioc_usagelog_t),
 	    drv_ioc_usagelog, secpolicy_dl_config},
 	{DLDIOC_SETMACPROP, DLDCOPYIN, sizeof (dld_ioc_macprop_t),
-	    drv_ioc_setprop, NULL},
+	    drv_ioc_setprop, 0},
 	{DLDIOC_GETMACPROP, DLDCOPYIN, sizeof (dld_ioc_macprop_t),
-	    drv_ioc_getprop, NULL},
+	    drv_ioc_getprop, 0},
 	{DLDIOC_GETHWGRP, DLDCOPYINOUT, sizeof (dld_ioc_hwgrpget_t),
-	    drv_ioc_hwgrpget, NULL},
+	    drv_ioc_hwgrpget, 0},
 	{DLDIOC_GETTRAN, DLDCOPYINOUT, sizeof (dld_ioc_gettran_t),
-	    drv_ioc_gettran, NULL },
+	    drv_ioc_gettran, 0 },
 	{DLDIOC_READTRAN, DLDCOPYINOUT, sizeof (dld_ioc_tranio_t),
-	    drv_ioc_readtran, NULL },
+	    drv_ioc_readtran, 0 },
 	{DLDIOC_GETLED, DLDCOPYINOUT, sizeof (dld_ioc_led_t),
-	    drv_ioc_getled, NULL },
+	    drv_ioc_getled, 0 },
 	{DLDIOC_SETLED, DLDCOPYIN, sizeof (dld_ioc_led_t),
 	    drv_ioc_setled, secpolicy_dl_config}
 };

@@ -320,7 +320,7 @@ emlxs_thread(emlxs_thread_t *ethread)
 			func = ethread->func;
 			arg1 = ethread->arg1;
 			arg2 = ethread->arg2;
-			ethread->func = NULL;
+			ethread->func = 0;
 			ethread->arg1 = NULL;
 			ethread->arg2 = NULL;
 
@@ -396,7 +396,7 @@ emlxs_thread_destroy(emlxs_thread_t *ethread)
 
 	ethread->flags &= ~EMLXS_THREAD_INITD;
 	ethread->flags |= (EMLXS_THREAD_KILLED | EMLXS_THREAD_TRIGGERED);
-	ethread->func = NULL;
+	ethread->func = 0;
 	ethread->arg1 = NULL;
 	ethread->arg2 = NULL;
 	cv_signal(&ethread->cv_flag);

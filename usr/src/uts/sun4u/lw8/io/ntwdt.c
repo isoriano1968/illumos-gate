@@ -480,7 +480,7 @@ static struct dev_ops ntwdt_ops = {
 	nodev,			/* Reset */
 	&ntwdt_cb_ops,		/* Driver operations */
 	0,			/* Bus operations */
-	NULL			/* Power */
+	0			/* Power */
 };
 
 static struct modldrv modldrv = {

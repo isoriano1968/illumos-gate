@@ -142,8 +142,8 @@ static char	*usbser_ioctl2str(int);
 usb_event_t usbser_usb_events = {
 	usbser_disconnect_cb,	/* disconnect */
 	usbser_reconnect_cb,	/* reconnect */
-	NULL,			/* pre-suspend */
-	NULL,			/* pre-resume */
+	0,			/* pre-suspend */
+	0,			/* pre-resume */
 };
 
 /* debug support */

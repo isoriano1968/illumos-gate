@@ -443,7 +443,7 @@ extern	void aio_close_port(void *, int, pid_t, int);
  */
 struct port_ksource port_ksource_tab[] = {
 	{PORT_SOURCE_AIO, aio_close_port, NULL, NULL},
-	{0, NULL, NULL, NULL}
+	{0, 0, NULL, NULL}
 };
 
 /* local functions */
@@ -476,7 +476,7 @@ int
 _init(void)
 {
 	static const fs_operation_def_t port_vfsops_template[] = {
-		NULL, NULL
+		NULL, 0
 	};
 	extern const	fs_operation_def_t port_vnodeops_template[];
 	vfsops_t	*port_vfsops;
@@ -510,7 +510,7 @@ _init(void)
 
 	/* create kmem_cache for port event structures */
 	port_control.pc_cache = kmem_cache_create("port_cache",
-	    sizeof (port_kevent_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (port_kevent_t), 0, 0, 0, 0, NULL, NULL, 0);
 
 	port_kstat_init();		/* init port kstats */
 	return (mod_install(&modlinkage));
@@ -907,7 +907,7 @@ port_send(port_t *pp, int source, int events, void *user)
 	pev->portkev_object = 0;
 	pev->portkev_events = events;
 	pev->portkev_user = user;
-	pev->portkev_callback = NULL;
+	pev->portkev_callback = 0;
 	pev->portkev_arg = NULL;
 	pev->portkev_flags = 0;
 
@@ -962,7 +962,7 @@ port_dispatch_event(port_t *pp, int opcode, int source, int events,
 		pev->portkev_callback = port_noshare;
 	} else {
 		pev->portkev_flags = 0;
-		pev->portkev_callback = NULL;
+		pev->portkev_callback = 0;
 	}
 
 	port_send_event(pev);
@@ -1035,7 +1035,7 @@ port_sendn(int ports[], int errors[], uint_t nent, int events, void *user,
 		pev->portkev_object = 0;
 		pev->portkev_events = events;
 		pev->portkev_user = user;
-		pev->portkev_callback = NULL;
+		pev->portkev_callback = 0;
 		pev->portkev_arg = NULL;
 		pev->portkev_flags = 0;
 

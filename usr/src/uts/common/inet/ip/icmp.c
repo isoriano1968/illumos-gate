@@ -174,20 +174,20 @@ static struct module_info icmp_mod_info =  {
  * We have separate open functions for the /dev/icmp and /dev/icmp6 devices.
  */
 static struct qinit icmprinitv4 = {
-	NULL, NULL, icmp_openv4, icmp_close, NULL, &icmp_mod_info
+	0, 0, icmp_openv4, icmp_close, 0, &icmp_mod_info
 };
 
 static struct qinit icmprinitv6 = {
-	NULL, NULL, icmp_openv6, icmp_close, NULL, &icmp_mod_info
+	0, 0, icmp_openv6, icmp_close, 0, &icmp_mod_info
 };
 
 static struct qinit icmpwinit = {
-	icmp_wput, ip_wsrv, NULL, NULL, NULL, &icmp_mod_info
+	icmp_wput, ip_wsrv, 0, 0, 0, &icmp_mod_info
 };
 
 /* ICMP entry point during fallback */
 static struct qinit icmp_fallback_sock_winit = {
-	icmp_wput_fallback, NULL, NULL, NULL, NULL, &icmp_mod_info
+	icmp_wput_fallback, 0, 0, 0, 0, &icmp_mod_info
 };
 
 /* For AF_INET aka /dev/icmp */
@@ -280,9 +280,9 @@ static mod_prop_info_t icmp_propinfo_tbl[] = {
 	    mod_set_boolean, mod_get_boolean,
 	    {B_FALSE}, {B_FALSE} },
 
-	{ "?", MOD_PROTO_RAWIP, NULL, mod_get_allprop, {0}, {0} },
+	{ "?", MOD_PROTO_RAWIP, 0, mod_get_allprop, {0}, {0} },
 
-	{ NULL, 0, NULL, NULL, {0}, {0} }
+	{ NULL, 0, 0, 0, {0}, {0} }
 };
 
 #define	is_wroff_extra			is_propinfo_tbl[0].prop_cur_uval
@@ -4982,7 +4982,7 @@ icmp_ddi_g_init(void)
 	 * destroyed in the kernel, so we can maintain the
 	 * set of icmp_stack_t's.
 	 */
-	netstack_register(NS_ICMP, rawip_stack_init, NULL, rawip_stack_fini);
+	netstack_register(NS_ICMP, rawip_stack_init, 0, rawip_stack_fini);
 }
 
 void
@@ -5859,9 +5859,9 @@ sock_downcalls_t sock_rawip_downcalls = {
 	rawip_getsockopt,
 	rawip_setsockopt,
 	rawip_send,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
 	rawip_shutdown,
 	rawip_clr_flowctrl,
 	rawip_ioctl,

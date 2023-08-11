@@ -2143,7 +2143,7 @@ dsl_crypto_recv_raw_objset_sync(dsl_dataset_t *ds, dmu_objset_type_t ostype,
 	if (newds) {
 		dsl_dataset_dirty(ds, tx);
 	} else {
-		zio = zio_root(dp->dp_spa, NULL, NULL, ZIO_FLAG_MUSTSUCCEED);
+		zio = zio_root(dp->dp_spa, 0, NULL, ZIO_FLAG_MUSTSUCCEED);
 		dsl_dataset_sync(ds, zio, tx);
 		VERIFY0(zio_wait(zio));
 

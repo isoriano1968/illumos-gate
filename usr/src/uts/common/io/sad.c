@@ -73,11 +73,11 @@ static struct module_info sad_minfo = {
 };
 
 static struct qinit sad_rinit = {
-	NULL, NULL, sadopen, sadclose, NULL, &sad_minfo, NULL
+	0, 0, sadopen, sadclose, 0, &sad_minfo, NULL
 };
 
 static struct qinit sad_winit = {
-	sadwput, NULL, NULL, NULL, NULL, &sad_minfo, NULL
+	sadwput, 0, 0, 0, 0, &sad_minfo, NULL
 };
 
 struct streamtab sadinfo = {

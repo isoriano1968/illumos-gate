@@ -65,7 +65,7 @@ fc_physio_setup(struct buf **bpp, void *io_base, size_t io_len)
 	struct buf *bp = *bpp;
 
 	bp = getrbuf(KM_SLEEP);
-	bp->b_iodone = NULL;
+	bp->b_iodone = 0;
 	bp->b_resid = 0;
 	*bpp = bp;
 

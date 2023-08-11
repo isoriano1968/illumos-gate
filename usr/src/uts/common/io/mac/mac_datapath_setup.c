@@ -204,11 +204,11 @@ void
 mac_soft_ring_init(void)
 {
 	mac_soft_ring_cache = kmem_cache_create("mac_soft_ring_cache",
-	    sizeof (mac_soft_ring_t), 64, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (mac_soft_ring_t), 64, 0, 0, 0, NULL, NULL, 0);
 
 	mac_srs_cache = kmem_cache_create("mac_srs_cache",
 	    sizeof (mac_soft_ring_set_t),
-	    64, NULL, NULL, NULL, NULL, NULL, 0);
+	    64, 0, 0, 0, NULL, NULL, 0);
 
 	rw_init(&mac_srs_g_lock, NULL, RW_DEFAULT, NULL);
 	mutex_enter(&cpu_lock);
@@ -2540,7 +2540,7 @@ mac_tx_srs_group_setup(mac_client_impl_t *mcip, flow_entry_t *flent,
 
 	if (flent->fe_tx_srs == NULL) {
 		(void) mac_srs_create(mcip, flent, SRST_TX | link_type,
-		    NULL, mcip, NULL, NULL);
+		    0, mcip, NULL, NULL);
 	}
 
 	mac_tx_srs_setup(mcip, flent);
@@ -3820,7 +3820,7 @@ mac_tx_srs_add_ring(mac_soft_ring_set_t *mac_srs, mac_ring_t *tx_ring)
 		soft_ring_type |= ST_RING_WORKER_ONLY;
 	soft_ring = mac_soft_ring_create(count, 0,
 	    soft_ring_type, maxclsyspri, mcip, mac_srs, -1,
-	    NULL, mcip, (mac_resource_handle_t)tx_ring);
+	    0, mcip, (mac_resource_handle_t)tx_ring);
 	mac_srs->srs_tx_ring_count++;
 	mac_srs_update_fanout_list(mac_srs);
 	/*
@@ -3986,7 +3986,7 @@ no_group:
 					}
 					(void) mac_soft_ring_create(i, 0,
 					    soft_ring_type, maxclsyspri,
-					    mcip, tx_srs, -1, NULL, mcip,
+					    mcip, tx_srs, -1, 0, mcip,
 					    (mac_resource_handle_t)ring);
 					break;
 				default:

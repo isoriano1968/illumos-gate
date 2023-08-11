@@ -196,7 +196,7 @@ static void	usb_ac_cpr_resume(dev_info_t *);
 static usb_event_t usb_ac_events = {
 	usb_ac_disconnect_event_cb,
 	usb_ac_reconnect_event_cb,
-	NULL, NULL
+	0, 0
 };
 
 /* misc. support */
@@ -297,7 +297,7 @@ void	*usb_ac_statep;
 static struct dev_ops usb_ac_dev_ops = {
 	DEVO_REV,		/* devo_rev */
 	0,			/* devo_refcnt */
-	NULL,			/* devo_getinfo */
+	0,			/* devo_getinfo */
 	nulldev,		/* devo_identify - obsolete */
 	nulldev,		/* devo_probe - not needed */
 	usb_ac_attach,		/* devo_attach */

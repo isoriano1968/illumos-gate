@@ -292,11 +292,11 @@ static int	scsi_hba_bus_power(
 static struct bus_ops scsi_hba_busops = {
 	BUSO_REV,
 	nullbusmap,			/* bus_map */
-	NULL,				/* bus_get_intrspec */
-	NULL,				/* bus_add_intrspec */
-	NULL,				/* bus_remove_intrspec */
+	0,				/* bus_get_intrspec */
+	0,				/* bus_add_intrspec */
+	0,				/* bus_remove_intrspec */
 	scsi_hba_map_fault,		/* bus_map_fault */
-	NULL,				/* bus_dma_map */
+	0,				/* bus_dma_map */
 	ddi_dma_allochdl,		/* bus_dma_allochdl */
 	ddi_dma_freehdl,		/* bus_dma_freehdl */
 	ddi_dma_bindhdl,		/* bus_dma_bindhdl */
@@ -310,13 +310,13 @@ static struct bus_ops scsi_hba_busops = {
 	scsi_hba_add_eventcall,		/* bus_add_eventcall */
 	scsi_hba_remove_eventcall,	/* bus_remove_eventcall */
 	scsi_hba_post_event,		/* bus_post_event */
-	NULL,				/* bus_intr_ctl */
+	0,				/* bus_intr_ctl */
 	scsi_hba_bus_config,		/* bus_config */
 	scsi_hba_bus_unconfig,		/* bus_unconfig */
 	scsi_hba_fm_init_child,		/* bus_fm_init */
-	NULL,				/* bus_fm_fini */
-	NULL,				/* bus_fm_access_enter */
-	NULL,				/* bus_fm_access_exit */
+	0,				/* bus_fm_fini */
+	0,				/* bus_fm_access_enter */
+	0,				/* bus_fm_access_exit */
 	scsi_hba_bus_power		/* bus_power */
 };
 
@@ -1329,7 +1329,7 @@ scsi_hba_attach_setup(
 
 		tran->tran_pkt_cache_ptr = kmem_cache_create(
 		    cache_name, len, 8, scsi_hba_pkt_constructor,
-		    scsi_hba_pkt_destructor, NULL, tran, NULL, 0);
+		    scsi_hba_pkt_destructor, 0, tran, NULL, 0);
 	}
 
 	/* Perform node setup independent of initiator role */
@@ -1427,7 +1427,7 @@ scsi_hba_fini(struct modlinkage *modlp)
 		hba_dev_ops->devo_cb_ops = NULL;
 
 	if (hba_dev_ops->devo_getinfo == scsi_hba_info)
-		hba_dev_ops->devo_getinfo = NULL;
+		hba_dev_ops->devo_getinfo = 0;
 
 	hba_dev_ops->devo_bus_ops = (struct bus_ops *)NULL;
 }
@@ -9537,7 +9537,7 @@ scsi_hba_iportmap_create(dev_info_t *self, int csync_usec, int settle_usec,
 	    ddi_driver_name(self), ddi_get_instance(self));
 
 	if (damap_create(context, DAMAP_REPORT_PERADDR, DAMAP_SERIALCONFIG,
-	    settle_usec, NULL, NULL, NULL, self,
+	    settle_usec, NULL, 0, 0, self,
 	    scsi_iportmap_config, scsi_iportmap_unconfig, &mapp) !=
 	    DAM_SUCCESS) {
 		return (DDI_FAILURE);
@@ -9697,7 +9697,7 @@ scsi_lunmap_create(dev_info_t *self, impl_scsi_tgtmap_t *tgtmap, char *taddr)
 
 	/* create lundam */
 	if (damap_create(context, DAMAP_REPORT_FULLSET, optflags, 1,
-	    NULL, NULL, NULL, tgtmap, scsi_lunmap_config, scsi_lunmap_unconfig,
+	    NULL, 0, 0, tgtmap, scsi_lunmap_config, scsi_lunmap_unconfig,
 	    &lundam) != DAM_SUCCESS) {
 		SCSI_HBA_LOG((_LOG(1), self, NULL,
 		    "%s create failed, id %d ref %d",
@@ -10115,7 +10115,7 @@ sas_phymap_create(dev_info_t *self, int settle_usec,
 		goto fail;
 
 	if (damap_create(context, DAMAP_REPORT_PERADDR, DAMAP_SERIALCONFIG,
-	    settle_usec, NULL, NULL, NULL,
+	    settle_usec, NULL, 0, 0,
 	    phymap, sas_phymap_config, sas_phymap_unconfig,
 	    &phymap->phymap_dam) != DAM_SUCCESS)
 		goto fail;

@@ -675,7 +675,7 @@ usba_free_usba_device(usba_device_t *usba_device)
 		if (ph_data) {
 			usb_pipe_close(ph_data->p_dip, def_ph,
 			    USB_FLAGS_SLEEP | USBA_FLAGS_PRIVILEGED,
-			    NULL, NULL);
+			    0, NULL);
 		}
 	}
 
@@ -3121,7 +3121,7 @@ usba_check_for_leaks(usba_device_t *usba_device)
 #ifndef DEBUG
 			usb_pipe_close(ph_impl->usba_ph_data->p_dip,
 			    (usb_pipe_handle_t)ph_impl, USB_FLAGS_SLEEP,
-			    NULL, NULL);
+			    0, NULL);
 #endif
 		}
 	}

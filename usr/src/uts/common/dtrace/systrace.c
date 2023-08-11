@@ -218,14 +218,14 @@ static dtrace_pattr_t systrace_attr = {
 
 static dtrace_pops_t systrace_pops = {
 	systrace_provide,
-	NULL,
+	0,
 	systrace_enable,
 	systrace_disable,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
+	0,
 	systrace_destroy
 };
 

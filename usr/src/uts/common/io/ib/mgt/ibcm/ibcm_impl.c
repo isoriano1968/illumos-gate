@@ -228,7 +228,7 @@ static ibt_clnt_modinfo_t ibcm_ibt_modinfo = {	/* Client's modinfop */
 	IBTI_V_CURR,
 	IBT_CM,
 	ibcm_async_handler,
-	NULL,
+	0,
 	"IBCM"
 };
 
@@ -740,7 +740,7 @@ ibcm_fini(void)
 
 	ibcm_stop_timeout_thread();
 
-	ibtl_cm_set_node_info_cb(NULL);
+	ibtl_cm_set_node_info_cb(0);
 	/*
 	 * Detach from IBTL. Waits until all pending asyncs are complete.
 	 * Above cv_broadcast wakes up any waiting hca attach/detach asyncs
@@ -2141,7 +2141,7 @@ ibcm_hca_init_port(ibcm_hca_info_t *hcap, uint8_t port_index)
 		 * register with management framework
 		 */
 		status = ibmf_register(ibmf_reg, IBMF_VERSION,
-		    IBMF_REG_FLAG_NO_OFFLOAD, NULL, NULL,
+		    IBMF_REG_FLAG_NO_OFFLOAD, 0, NULL,
 		    &(hcap->hca_port_info[port_index].port_ibmf_hdl),
 		    &(hcap->hca_port_info[port_index].port_ibmf_caps));
 

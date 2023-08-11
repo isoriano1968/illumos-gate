@@ -704,7 +704,7 @@ rmc_comm_unreg_intr(uint8_t msg_type, rmc_comm_intrfunc_t intr_handler)
 	    msgintr->intr_handler == intr_handler) {
 
 		ddi_remove_softintr(msgintr->intr_id);
-		msgintr->intr_handler = NULL;
+		msgintr->intr_handler = 0;
 		msgintr->intr_id = 0;
 		msgintr->intr_msg_type = 0;
 		msgintr->intr_arg = NULL;

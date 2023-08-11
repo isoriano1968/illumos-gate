@@ -196,39 +196,39 @@ typedef struct iproutedata_s {
  *
  */
 int (*cl_inet_isclusterwide)(netstackid_t stack_id, uint8_t protocol,
-    sa_family_t addr_family, uint8_t *laddrp, void *args) = NULL;
+    sa_family_t addr_family, uint8_t *laddrp, void *args) = 0;
 
 /*
  * Hook function to generate cluster wide ip fragment identifier
  */
 uint32_t (*cl_inet_ipident)(netstackid_t stack_id, uint8_t protocol,
     sa_family_t addr_family, uint8_t *laddrp, uint8_t *faddrp,
-    void *args) = NULL;
+    void *args) = 0;
 
 /*
  * Hook function to generate cluster wide SPI.
  */
 void (*cl_inet_getspi)(netstackid_t, uint8_t, uint8_t *, size_t,
-    void *) = NULL;
+    void *) = 0;
 
 /*
  * Hook function to verify if the SPI is already utlized.
  */
 
-int (*cl_inet_checkspi)(netstackid_t, uint8_t, uint32_t, void *) = NULL;
+int (*cl_inet_checkspi)(netstackid_t, uint8_t, uint32_t, void *) = 0;
 
 /*
  * Hook function to delete the SPI from the cluster wide repository.
  */
 
-void (*cl_inet_deletespi)(netstackid_t, uint8_t, uint32_t, void *) = NULL;
+void (*cl_inet_deletespi)(netstackid_t, uint8_t, uint32_t, void *) = 0;
 
 /*
  * Hook function to inform the cluster when packet received on an IDLE SA
  */
 
 void (*cl_inet_idlesa)(netstackid_t, uint8_t, uint32_t, sa_family_t,
-    in6_addr_t, in6_addr_t, void *) = NULL;
+    in6_addr_t, in6_addr_t, void *) = 0;
 
 /*
  * Synchronization notes:
@@ -783,355 +783,355 @@ extern int ip_propinfo_count;
  * Entry: <command> <copyin_size> <flags> <cmd_type> <function> <restart_func>
  */
 ip_ioctl_cmd_t ip_ndx_ioctl_table[] = {
-	/* 000 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 001 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 002 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 003 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 004 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 005 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 006 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 007 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 008 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 009 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
+	/* 000 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 001 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 002 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 003 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 004 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 005 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 006 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 007 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 008 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 009 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
 
 	/* 010 */ { SIOCADDRT,	sizeof (struct rtentry), IPI_PRIV,
-			MISC_CMD, ip_siocaddrt, NULL },
+			MISC_CMD, ip_siocaddrt, 0 },
 	/* 011 */ { SIOCDELRT,	sizeof (struct rtentry), IPI_PRIV,
-			MISC_CMD, ip_siocdelrt, NULL },
+			MISC_CMD, ip_siocdelrt, 0 },
 
 	/* 012 */ { SIOCSIFADDR, sizeof (struct ifreq), IPI_PRIV | IPI_WR,
 			IF_CMD, ip_sioctl_addr, ip_sioctl_addr_restart },
 	/* 013 */ { SIOCGIFADDR, sizeof (struct ifreq), IPI_GET_CMD,
-			IF_CMD, ip_sioctl_get_addr, NULL },
+			IF_CMD, ip_sioctl_get_addr, 0 },
 
 	/* 014 */ { SIOCSIFDSTADDR, sizeof (struct ifreq), IPI_PRIV | IPI_WR,
 			IF_CMD, ip_sioctl_dstaddr, ip_sioctl_dstaddr_restart },
 	/* 015 */ { SIOCGIFDSTADDR, sizeof (struct ifreq),
-			IPI_GET_CMD, IF_CMD, ip_sioctl_get_dstaddr, NULL },
+			IPI_GET_CMD, IF_CMD, ip_sioctl_get_dstaddr, 0 },
 
 	/* 016 */ { SIOCSIFFLAGS, sizeof (struct ifreq),
 			IPI_PRIV | IPI_WR,
 			IF_CMD, ip_sioctl_flags, ip_sioctl_flags_restart },
 	/* 017 */ { SIOCGIFFLAGS, sizeof (struct ifreq),
 			IPI_MODOK | IPI_GET_CMD,
-			IF_CMD, ip_sioctl_get_flags, NULL },
+			IF_CMD, ip_sioctl_get_flags, 0 },
 
-	/* 018 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 019 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
+	/* 018 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 019 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
 
 	/* copyin size cannot be coded for SIOCGIFCONF */
 	/* 020 */ { O_SIOCGIFCONF, 0, IPI_GET_CMD,
-			MISC_CMD, ip_sioctl_get_ifconf, NULL },
+			MISC_CMD, ip_sioctl_get_ifconf, 0 },
 
 	/* 021 */ { SIOCSIFMTU,	sizeof (struct ifreq), IPI_PRIV | IPI_WR,
-			IF_CMD, ip_sioctl_mtu, NULL },
+			IF_CMD, ip_sioctl_mtu, 0 },
 	/* 022 */ { SIOCGIFMTU,	sizeof (struct ifreq), IPI_GET_CMD,
-			IF_CMD, ip_sioctl_get_mtu, NULL },
+			IF_CMD, ip_sioctl_get_mtu, 0 },
 	/* 023 */ { SIOCGIFBRDADDR, sizeof (struct ifreq),
-			IPI_GET_CMD, IF_CMD, ip_sioctl_get_brdaddr, NULL },
+			IPI_GET_CMD, IF_CMD, ip_sioctl_get_brdaddr, 0 },
 	/* 024 */ { SIOCSIFBRDADDR, sizeof (struct ifreq), IPI_PRIV | IPI_WR,
-			IF_CMD, ip_sioctl_brdaddr, NULL },
+			IF_CMD, ip_sioctl_brdaddr, 0 },
 	/* 025 */ { SIOCGIFNETMASK, sizeof (struct ifreq),
-			IPI_GET_CMD, IF_CMD, ip_sioctl_get_netmask, NULL },
+			IPI_GET_CMD, IF_CMD, ip_sioctl_get_netmask, 0 },
 	/* 026 */ { SIOCSIFNETMASK, sizeof (struct ifreq), IPI_PRIV | IPI_WR,
 			IF_CMD, ip_sioctl_netmask, ip_sioctl_netmask_restart },
 	/* 027 */ { SIOCGIFMETRIC, sizeof (struct ifreq),
-			IPI_GET_CMD, IF_CMD, ip_sioctl_get_metric, NULL },
+			IPI_GET_CMD, IF_CMD, ip_sioctl_get_metric, 0 },
 	/* 028 */ { SIOCSIFMETRIC, sizeof (struct ifreq), IPI_PRIV,
-			IF_CMD, ip_sioctl_metric, NULL },
-	/* 029 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
+			IF_CMD, ip_sioctl_metric, 0 },
+	/* 029 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
 
 	/* See 166-168 below for extended SIOC*XARP ioctls */
 	/* 030 */ { SIOCSARP, sizeof (struct arpreq), IPI_PRIV | IPI_WR,
-			ARP_CMD, ip_sioctl_arp, NULL },
+			ARP_CMD, ip_sioctl_arp, 0 },
 	/* 031 */ { SIOCGARP, sizeof (struct arpreq), IPI_GET_CMD,
-			ARP_CMD, ip_sioctl_arp, NULL },
+			ARP_CMD, ip_sioctl_arp, 0 },
 	/* 032 */ { SIOCDARP, sizeof (struct arpreq), IPI_PRIV | IPI_WR,
-			ARP_CMD, ip_sioctl_arp, NULL },
+			ARP_CMD, ip_sioctl_arp, 0 },
 
-	/* 033 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 034 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 035 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 036 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 037 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 038 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 039 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 040 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 041 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 042 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 043 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 044 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 045 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 046 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 047 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 048 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 049 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 050 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 051 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 052 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 053 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
+	/* 033 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 034 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 035 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 036 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 037 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 038 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 039 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 040 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 041 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 042 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 043 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 044 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 045 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 046 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 047 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 048 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 049 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 050 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 051 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 052 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 053 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
 
 	/* 054 */ { IF_UNITSEL,	sizeof (int), IPI_PRIV | IPI_WR | IPI_MODOK,
 			MISC_CMD, if_unitsel, if_unitsel_restart },
 
-	/* 055 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 056 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 057 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 058 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 059 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 060 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 061 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 062 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 063 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 064 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 065 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 066 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 067 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 068 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 069 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 070 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 071 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 072 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
+	/* 055 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 056 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 057 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 058 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 059 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 060 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 061 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 062 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 063 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 064 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 065 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 066 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 067 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 068 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 069 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 070 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 071 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 072 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
 
 	/* 073 */ { SIOCSIFNAME, sizeof (struct ifreq),
 			IPI_PRIV | IPI_WR | IPI_MODOK,
-			IF_CMD, ip_sioctl_sifname, NULL },
+			IF_CMD, ip_sioctl_sifname, 0 },
 
-	/* 074 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 075 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 076 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 077 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 078 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 079 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 080 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 081 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 082 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 083 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 084 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 085 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 086 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
+	/* 074 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 075 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 076 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 077 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 078 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 079 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 080 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 081 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 082 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 083 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 084 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 085 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 086 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
 
 	/* 087 */ { SIOCGIFNUM, sizeof (int), IPI_GET_CMD,
-			MISC_CMD, ip_sioctl_get_ifnum, NULL },
+			MISC_CMD, ip_sioctl_get_ifnum, 0 },
 	/* 088 */ { SIOCGIFMUXID, sizeof (struct ifreq), IPI_GET_CMD,
-			IF_CMD, ip_sioctl_get_muxid, NULL },
+			IF_CMD, ip_sioctl_get_muxid, 0 },
 	/* 089 */ { SIOCSIFMUXID, sizeof (struct ifreq),
-			IPI_PRIV | IPI_WR, IF_CMD, ip_sioctl_muxid, NULL },
+			IPI_PRIV | IPI_WR, IF_CMD, ip_sioctl_muxid, 0 },
 
 	/* Both if and lif variants share same func */
 	/* 090 */ { SIOCGIFINDEX, sizeof (struct ifreq), IPI_GET_CMD,
-			IF_CMD, ip_sioctl_get_lifindex, NULL },
+			IF_CMD, ip_sioctl_get_lifindex, 0 },
 	/* Both if and lif variants share same func */
 	/* 091 */ { SIOCSIFINDEX, sizeof (struct ifreq),
-			IPI_PRIV | IPI_WR, IF_CMD, ip_sioctl_slifindex, NULL },
+			IPI_PRIV | IPI_WR, IF_CMD, ip_sioctl_slifindex, 0 },
 
 	/* copyin size cannot be coded for SIOCGIFCONF */
 	/* 092 */ { SIOCGIFCONF, 0, IPI_GET_CMD,
-			MISC_CMD, ip_sioctl_get_ifconf, NULL },
-	/* 093 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 094 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 095 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 096 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 097 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 098 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 099 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 100 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 101 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 102 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 103 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 104 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 105 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 106 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 107 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 108 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 109 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
+			MISC_CMD, ip_sioctl_get_ifconf, 0 },
+	/* 093 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 094 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 095 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 096 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 097 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 098 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 099 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 100 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 101 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 102 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 103 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 104 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 105 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 106 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 107 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 108 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 109 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
 
 	/* 110 */ { SIOCLIFREMOVEIF, sizeof (struct lifreq),
 			IPI_PRIV | IPI_WR, LIF_CMD, ip_sioctl_removeif,
 			ip_sioctl_removeif_restart },
 	/* 111 */ { SIOCLIFADDIF, sizeof (struct lifreq),
 			IPI_GET_CMD | IPI_PRIV | IPI_WR,
-			LIF_CMD, ip_sioctl_addif, NULL },
+			LIF_CMD, ip_sioctl_addif, 0 },
 #define	SIOCLIFADDR_NDX 112
 	/* 112 */ { SIOCSLIFADDR, sizeof (struct lifreq), IPI_PRIV | IPI_WR,
 			LIF_CMD, ip_sioctl_addr, ip_sioctl_addr_restart },
 	/* 113 */ { SIOCGLIFADDR, sizeof (struct lifreq),
-			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_addr, NULL },
+			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_addr, 0 },
 	/* 114 */ { SIOCSLIFDSTADDR, sizeof (struct lifreq), IPI_PRIV | IPI_WR,
 			LIF_CMD, ip_sioctl_dstaddr, ip_sioctl_dstaddr_restart },
 	/* 115 */ { SIOCGLIFDSTADDR, sizeof (struct lifreq),
-			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_dstaddr, NULL },
+			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_dstaddr, 0 },
 	/* 116 */ { SIOCSLIFFLAGS, sizeof (struct lifreq),
 			IPI_PRIV | IPI_WR,
 			LIF_CMD, ip_sioctl_flags, ip_sioctl_flags_restart },
 	/* 117 */ { SIOCGLIFFLAGS, sizeof (struct lifreq),
 			IPI_GET_CMD | IPI_MODOK,
-			LIF_CMD, ip_sioctl_get_flags, NULL },
+			LIF_CMD, ip_sioctl_get_flags, 0 },
 
-	/* 118 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 119 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
+	/* 118 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 119 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
 
 	/* 120 */ { O_SIOCGLIFCONF, 0, IPI_GET_CMD, MISC_CMD,
-			ip_sioctl_get_lifconf, NULL },
+			ip_sioctl_get_lifconf, 0 },
 	/* 121 */ { SIOCSLIFMTU, sizeof (struct lifreq), IPI_PRIV | IPI_WR,
-			LIF_CMD, ip_sioctl_mtu, NULL },
+			LIF_CMD, ip_sioctl_mtu, 0 },
 	/* 122 */ { SIOCGLIFMTU, sizeof (struct lifreq), IPI_GET_CMD,
-			LIF_CMD, ip_sioctl_get_mtu, NULL },
+			LIF_CMD, ip_sioctl_get_mtu, 0 },
 	/* 123 */ { SIOCGLIFBRDADDR, sizeof (struct lifreq),
-			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_brdaddr, NULL },
+			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_brdaddr, 0 },
 	/* 124 */ { SIOCSLIFBRDADDR, sizeof (struct lifreq), IPI_PRIV | IPI_WR,
-			LIF_CMD, ip_sioctl_brdaddr, NULL },
+			LIF_CMD, ip_sioctl_brdaddr, 0 },
 	/* 125 */ { SIOCGLIFNETMASK, sizeof (struct lifreq),
-			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_netmask, NULL },
+			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_netmask, 0 },
 	/* 126 */ { SIOCSLIFNETMASK, sizeof (struct lifreq), IPI_PRIV | IPI_WR,
 			LIF_CMD, ip_sioctl_netmask, ip_sioctl_netmask_restart },
 	/* 127 */ { SIOCGLIFMETRIC, sizeof (struct lifreq),
-			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_metric, NULL },
+			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_metric, 0 },
 	/* 128 */ { SIOCSLIFMETRIC, sizeof (struct lifreq), IPI_PRIV | IPI_WR,
-			LIF_CMD, ip_sioctl_metric, NULL },
+			LIF_CMD, ip_sioctl_metric, 0 },
 	/* 129 */ { SIOCSLIFNAME, sizeof (struct lifreq),
 			IPI_PRIV | IPI_WR | IPI_MODOK,
 			LIF_CMD, ip_sioctl_slifname,
 			ip_sioctl_slifname_restart },
 
 	/* 130 */ { SIOCGLIFNUM, sizeof (struct lifnum), IPI_GET_CMD,
-			MISC_CMD, ip_sioctl_get_lifnum, NULL },
+			MISC_CMD, ip_sioctl_get_lifnum, 0 },
 	/* 131 */ { SIOCGLIFMUXID, sizeof (struct lifreq),
-			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_muxid, NULL },
+			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_muxid, 0 },
 	/* 132 */ { SIOCSLIFMUXID, sizeof (struct lifreq),
-			IPI_PRIV | IPI_WR, LIF_CMD, ip_sioctl_muxid, NULL },
+			IPI_PRIV | IPI_WR, LIF_CMD, ip_sioctl_muxid, 0 },
 	/* 133 */ { SIOCGLIFINDEX, sizeof (struct lifreq),
 			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_lifindex, 0 },
 	/* 134 */ { SIOCSLIFINDEX, sizeof (struct lifreq),
 			IPI_PRIV | IPI_WR, LIF_CMD, ip_sioctl_slifindex, 0 },
 	/* 135 */ { SIOCSLIFTOKEN, sizeof (struct lifreq), IPI_PRIV | IPI_WR,
-			LIF_CMD, ip_sioctl_token, NULL },
+			LIF_CMD, ip_sioctl_token, 0 },
 	/* 136 */ { SIOCGLIFTOKEN, sizeof (struct lifreq),
-			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_token, NULL },
+			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_token, 0 },
 	/* 137 */ { SIOCSLIFSUBNET, sizeof (struct lifreq), IPI_PRIV | IPI_WR,
 			LIF_CMD, ip_sioctl_subnet, ip_sioctl_subnet_restart },
 	/* 138 */ { SIOCGLIFSUBNET, sizeof (struct lifreq),
-			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_subnet, NULL },
+			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_subnet, 0 },
 	/* 139 */ { SIOCSLIFLNKINFO, sizeof (struct lifreq), IPI_PRIV | IPI_WR,
-			LIF_CMD, ip_sioctl_lnkinfo, NULL },
+			LIF_CMD, ip_sioctl_lnkinfo, 0 },
 
 	/* 140 */ { SIOCGLIFLNKINFO, sizeof (struct lifreq),
-			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_lnkinfo, NULL },
+			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_lnkinfo, 0 },
 	/* 141 */ { SIOCLIFDELND, sizeof (struct lifreq), IPI_PRIV,
-			LIF_CMD, ip_siocdelndp_v6, NULL },
+			LIF_CMD, ip_siocdelndp_v6, 0 },
 	/* 142 */ { SIOCLIFGETND, sizeof (struct lifreq), IPI_GET_CMD,
-			LIF_CMD, ip_siocqueryndp_v6, NULL },
+			LIF_CMD, ip_siocqueryndp_v6, 0 },
 	/* 143 */ { SIOCLIFSETND, sizeof (struct lifreq), IPI_PRIV,
-			LIF_CMD, ip_siocsetndp_v6, NULL },
+			LIF_CMD, ip_siocsetndp_v6, 0 },
 	/* 144 */ { SIOCTMYADDR, sizeof (struct sioc_addrreq), IPI_GET_CMD,
-			MISC_CMD, ip_sioctl_tmyaddr, NULL },
+			MISC_CMD, ip_sioctl_tmyaddr, 0 },
 	/* 145 */ { SIOCTONLINK, sizeof (struct sioc_addrreq), IPI_GET_CMD,
-			MISC_CMD, ip_sioctl_tonlink, NULL },
+			MISC_CMD, ip_sioctl_tonlink, 0 },
 	/* 146 */ { SIOCTMYSITE, sizeof (struct sioc_addrreq), 0,
-			MISC_CMD, ip_sioctl_tmysite, NULL },
-	/* 147 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 148 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
+			MISC_CMD, ip_sioctl_tmysite, 0 },
+	/* 147 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 148 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
 
 	/* Old *IPSECONFIG ioctls are now deprecated, now see spdsock.c */
-	/* 149 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 150 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 151 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 152 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
+	/* 149 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 150 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 151 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 152 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
 
-	/* 153 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
+	/* 153 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
 
 	/* 154 */ { SIOCGLIFBINDING, sizeof (struct lifreq), IPI_GET_CMD,
-			LIF_CMD, ip_sioctl_get_binding, NULL },
+			LIF_CMD, ip_sioctl_get_binding, 0 },
 	/* 155 */ { SIOCSLIFGROUPNAME, sizeof (struct lifreq),
 			IPI_PRIV | IPI_WR,
 			LIF_CMD, ip_sioctl_groupname, ip_sioctl_groupname },
 	/* 156 */ { SIOCGLIFGROUPNAME, sizeof (struct lifreq),
-			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_groupname, NULL },
+			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_groupname, 0 },
 	/* 157 */ { SIOCGLIFGROUPINFO, sizeof (lifgroupinfo_t),
-			IPI_GET_CMD, MISC_CMD, ip_sioctl_groupinfo, NULL },
+			IPI_GET_CMD, MISC_CMD, ip_sioctl_groupinfo, 0 },
 
 	/* Leave 158-160 unused; used to be SIOC*IFARP ioctls */
-	/* 158 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 159 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 160 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
+	/* 158 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 159 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 160 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
 
-	/* 161 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
+	/* 161 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
 
 	/* These are handled in ip_sioctl_copyin_setup itself */
 	/* 162 */ { SIOCGIP6ADDRPOLICY, 0, IPI_NULL_BCONT,
-			MISC_CMD, NULL, NULL },
+			MISC_CMD, 0, 0 },
 	/* 163 */ { SIOCSIP6ADDRPOLICY, 0, IPI_PRIV | IPI_NULL_BCONT,
-			MISC_CMD, NULL, NULL },
-	/* 164 */ { SIOCGDSTINFO, 0, IPI_GET_CMD, MISC_CMD, NULL, NULL },
+			MISC_CMD, 0, 0 },
+	/* 164 */ { SIOCGDSTINFO, 0, IPI_GET_CMD, MISC_CMD, 0, 0 },
 
 	/* 165 */ { SIOCGLIFCONF, 0, IPI_GET_CMD, MISC_CMD,
-			ip_sioctl_get_lifconf, NULL },
+			ip_sioctl_get_lifconf, 0 },
 
 	/* 166 */ { SIOCSXARP, sizeof (struct xarpreq), IPI_PRIV | IPI_WR,
-			XARP_CMD, ip_sioctl_arp, NULL },
+			XARP_CMD, ip_sioctl_arp, 0 },
 	/* 167 */ { SIOCGXARP, sizeof (struct xarpreq), IPI_GET_CMD,
-			XARP_CMD, ip_sioctl_arp, NULL },
+			XARP_CMD, ip_sioctl_arp, 0 },
 	/* 168 */ { SIOCDXARP, sizeof (struct xarpreq), IPI_PRIV | IPI_WR,
-			XARP_CMD, ip_sioctl_arp, NULL },
+			XARP_CMD, ip_sioctl_arp, 0 },
 
 	/* SIOCPOPSOCKFS is not handled by IP */
-	/* 169 */ { IPI_DONTCARE /* SIOCPOPSOCKFS */, 0, 0, 0, NULL, NULL },
+	/* 169 */ { IPI_DONTCARE /* SIOCPOPSOCKFS */, 0, 0, 0, 0, 0 },
 
 	/* 170 */ { SIOCGLIFZONE, sizeof (struct lifreq),
-			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_lifzone, NULL },
+			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_lifzone, 0 },
 	/* 171 */ { SIOCSLIFZONE, sizeof (struct lifreq),
 			IPI_PRIV | IPI_WR, LIF_CMD, ip_sioctl_slifzone,
 			ip_sioctl_slifzone_restart },
 	/* 172-174 are SCTP ioctls and not handled by IP */
-	/* 172 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 173 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
-	/* 174 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
+	/* 172 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 173 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
+	/* 174 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
 	/* 175 */ { SIOCGLIFUSESRC, sizeof (struct lifreq),
 			IPI_GET_CMD, LIF_CMD,
 			ip_sioctl_get_lifusesrc, 0 },
 	/* 176 */ { SIOCSLIFUSESRC, sizeof (struct lifreq),
 			IPI_PRIV | IPI_WR,
 			LIF_CMD, ip_sioctl_slifusesrc,
-			NULL },
+			0 },
 	/* 177 */ { SIOCGLIFSRCOF, 0, IPI_GET_CMD, MISC_CMD,
-			ip_sioctl_get_lifsrcof, NULL },
+			ip_sioctl_get_lifsrcof, 0 },
 	/* 178 */ { SIOCGMSFILTER, sizeof (struct group_filter), IPI_GET_CMD,
-			MSFILT_CMD, ip_sioctl_msfilter, NULL },
+			MSFILT_CMD, ip_sioctl_msfilter, 0 },
 	/* 179 */ { SIOCSMSFILTER, sizeof (struct group_filter), 0,
-			MSFILT_CMD, ip_sioctl_msfilter, NULL },
+			MSFILT_CMD, ip_sioctl_msfilter, 0 },
 	/* 180 */ { SIOCGIPMSFILTER, sizeof (struct ip_msfilter), IPI_GET_CMD,
-			MSFILT_CMD, ip_sioctl_msfilter, NULL },
+			MSFILT_CMD, ip_sioctl_msfilter, 0 },
 	/* 181 */ { SIOCSIPMSFILTER, sizeof (struct ip_msfilter), 0,
-			MSFILT_CMD, ip_sioctl_msfilter, NULL },
-	/* 182 */ { IPI_DONTCARE, 0, 0, 0, NULL, NULL },
+			MSFILT_CMD, ip_sioctl_msfilter, 0 },
+	/* 182 */ { IPI_DONTCARE, 0, 0, 0, 0, 0 },
 	/* SIOCSENABLESDP is handled by SDP */
-	/* 183 */ { IPI_DONTCARE /* SIOCSENABLESDP */, 0, 0, 0, NULL, NULL },
-	/* 184 */ { IPI_DONTCARE /* SIOCSQPTR */, 0, 0, 0, NULL, NULL },
+	/* 183 */ { IPI_DONTCARE /* SIOCSENABLESDP */, 0, 0, 0, 0, 0 },
+	/* 184 */ { IPI_DONTCARE /* SIOCSQPTR */, 0, 0, 0, 0, 0 },
 	/* 185 */ { SIOCGIFHWADDR, sizeof (struct ifreq), IPI_GET_CMD,
-			IF_CMD, ip_sioctl_get_ifhwaddr, NULL },
-	/* 186 */ { IPI_DONTCARE /* SIOCGSTAMP */, 0, 0, 0, NULL, NULL },
+			IF_CMD, ip_sioctl_get_ifhwaddr, 0 },
+	/* 186 */ { IPI_DONTCARE /* SIOCGSTAMP */, 0, 0, 0, 0, 0 },
 	/* 187 */ { SIOCILB, 0, IPI_PRIV | IPI_GET_CMD, MISC_CMD,
-			ip_sioctl_ilb_cmd, NULL },
-	/* 188 */ { SIOCGETPROP, 0, IPI_GET_CMD, 0, NULL, NULL },
-	/* 189 */ { SIOCSETPROP, 0, IPI_PRIV | IPI_WR, 0, NULL, NULL},
+			ip_sioctl_ilb_cmd, 0 },
+	/* 188 */ { SIOCGETPROP, 0, IPI_GET_CMD, 0, 0, 0 },
+	/* 189 */ { SIOCSETPROP, 0, IPI_PRIV | IPI_WR, 0, 0, 0},
 	/* 190 */ { SIOCGLIFDADSTATE, sizeof (struct lifreq),
-			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_dadstate, NULL },
+			IPI_GET_CMD, LIF_CMD, ip_sioctl_get_dadstate, 0 },
 	/* 191 */ { SIOCSLIFPREFIX, sizeof (struct lifreq), IPI_PRIV | IPI_WR,
 			LIF_CMD, ip_sioctl_prefix, ip_sioctl_prefix_restart },
 	/* 192 */ { SIOCGLIFHWADDR, sizeof (struct lifreq), IPI_GET_CMD,
-			LIF_CMD, ip_sioctl_get_lifhwaddr, NULL }
+			LIF_CMD, ip_sioctl_get_lifhwaddr, 0 }
 };
 
 int ip_ndx_ioctl_count = sizeof (ip_ndx_ioctl_table) / sizeof (ip_ioctl_cmd_t);
 
 ip_ioctl_cmd_t ip_misc_ioctl_table[] = {
-	{ I_LINK,	0, IPI_PRIV | IPI_WR, 0, NULL, NULL },
-	{ I_UNLINK,	0, IPI_PRIV | IPI_WR, 0, NULL, NULL },
-	{ I_PLINK,	0, IPI_PRIV | IPI_WR, 0, NULL, NULL },
-	{ I_PUNLINK,	0, IPI_PRIV | IPI_WR, 0, NULL, NULL },
-	{ ND_GET,	0, 0, 0, NULL, NULL },
-	{ ND_SET,	0, IPI_PRIV | IPI_WR, 0, NULL, NULL },
-	{ IP_IOCTL,	0, 0, 0, NULL, NULL },
+	{ I_LINK,	0, IPI_PRIV | IPI_WR, 0, 0, 0 },
+	{ I_UNLINK,	0, IPI_PRIV | IPI_WR, 0, 0, 0 },
+	{ I_PLINK,	0, IPI_PRIV | IPI_WR, 0, 0, 0 },
+	{ I_PUNLINK,	0, IPI_PRIV | IPI_WR, 0, 0, 0 },
+	{ ND_GET,	0, 0, 0, 0, 0 },
+	{ ND_SET,	0, IPI_PRIV | IPI_WR, 0, 0, 0 },
+	{ IP_IOCTL,	0, 0, 0, 0, 0 },
 	{ SIOCGETVIFCNT, sizeof (struct sioc_vif_req), IPI_GET_CMD,
 		MISC_CMD, mrt_ioctl},
 	{ SIOCGETSGCNT,	sizeof (struct sioc_sg_req), IPI_GET_CMD,
@@ -1187,23 +1187,23 @@ struct module_info ip_mod_info = {
  * We have separate open functions for the /dev/ip and /dev/ip6 devices.
  */
 static struct qinit iprinitv4 = {
-	ip_rput, NULL, ip_openv4, ip_close, NULL, &ip_mod_info
+	ip_rput, 0, ip_openv4, ip_close, 0, &ip_mod_info
 };
 
 struct qinit iprinitv6 = {
-	ip_rput_v6, NULL, ip_openv6, ip_close, NULL, &ip_mod_info
+	ip_rput_v6, 0, ip_openv6, ip_close, 0, &ip_mod_info
 };
 
 static struct qinit ipwinit = {
-	ip_wput_nondata, ip_wsrv, NULL, NULL, NULL, &ip_mod_info
+	ip_wput_nondata, ip_wsrv, 0, 0, 0, &ip_mod_info
 };
 
 static struct qinit iplrinit = {
-	ip_lrput, NULL, ip_openv4, ip_close, NULL, &ip_mod_info
+	ip_lrput, 0, ip_openv4, ip_close, 0, &ip_mod_info
 };
 
 static struct qinit iplwinit = {
-	ip_lwput, NULL, NULL, NULL, NULL, &ip_mod_info
+	ip_lwput, 0, 0, 0, 0, &ip_mod_info
 };
 
 /* For AF_INET aka /dev/ip */
@@ -6371,7 +6371,7 @@ ip_opt_set_multicast_group(conn_t *connp, t_scalar_t name,
 	default:
 		/* Should not be reached. */
 		fmode = MODE_IS_INCLUDE;
-		optfn = NULL;
+		optfn = 0;
 		ASSERT(0);
 	}
 
@@ -6502,7 +6502,7 @@ ip_opt_set_multicast_sources(conn_t *connp, t_scalar_t name,
 		break;
 	default:
 		/* Should not be reached. */
-		optfn = NULL;
+		optfn = 0;
 		fmode = 0;
 		ASSERT(0);
 	}
@@ -12644,7 +12644,7 @@ ip_process_ioctl(ipsq_t *ipsq, queue_t *q, mblk_t *mp, void *arg)
 	}
 
 	ci.ci_ipif = NULL;
-	extract_funcp = NULL;
+	extract_funcp = 0;
 	switch (ipip->ipi_cmd_type) {
 	case MISC_CMD:
 	case MSFILT_CMD:
@@ -12660,7 +12660,7 @@ ip_process_ioctl(ipsq_t *ipsq, queue_t *q, mblk_t *mp, void *arg)
 		ci.ci_sin = NULL;
 		ci.ci_sin6 = NULL;
 		ci.ci_lifr = NULL;
-		extract_funcp = NULL;
+		extract_funcp = 0;
 		break;
 
 	case IF_CMD:

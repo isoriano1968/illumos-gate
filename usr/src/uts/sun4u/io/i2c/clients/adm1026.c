@@ -126,7 +126,7 @@ static struct dev_ops adm1026_ops = {
 	nodev,
 	&adm1026_cbops,
 	NULL,
-	NULL,
+	0,
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

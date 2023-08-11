@@ -117,7 +117,7 @@ _init(void)
 	int err = 0;
 
 	/* register device with the configurator */
-	gptwocfg_register_ops(SAFPTYPE_CPU, gptwocfg_configure_cpu, NULL);
+	gptwocfg_register_ops(SAFPTYPE_CPU, gptwocfg_configure_cpu, 0);
 
 	if ((err = mod_install(&modlinkage)) != 0) {
 		GPTWO_DEBUG1(1, CE_WARN, "gptwo_cpu (CPU/MC Functions) "

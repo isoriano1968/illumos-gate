@@ -91,11 +91,11 @@ static struct module_info pipe_info = {
 };
 
 static struct qinit piperinit = {
-	pipeput, NULL, pipeopen, pipeclose, NULL, &pipe_info, NULL
+	pipeput, 0, pipeopen, pipeclose, 0, &pipe_info, NULL
 };
 
 static struct qinit pipewinit = {
-	pipeput, NULL, NULL, NULL, NULL, &pipe_info, NULL
+	pipeput, 0, 0, 0, 0, &pipe_info, NULL
 };
 
 static struct streamtab pipeinfo = { &piperinit, &pipewinit, NULL, NULL };

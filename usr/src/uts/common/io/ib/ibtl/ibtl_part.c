@@ -46,8 +46,8 @@ void
 ibt_unregister_part_attr_cb(void)
 {
 	mutex_enter(&ibtl_part_attr_mutex);
-	ibtl_get_part_attr_cb = NULL;
-	ibtl_get_all_part_attr_cb = NULL;
+	ibtl_get_part_attr_cb = 0;
+	ibtl_get_all_part_attr_cb = 0;
 	mutex_exit(&ibtl_part_attr_mutex);
 }
 

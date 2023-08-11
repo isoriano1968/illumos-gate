@@ -2837,7 +2837,7 @@ nfs4_subr_init(void)
 	 * Allocate and initialize the client handle cache
 	 */
 	chtab4_cache = kmem_cache_create("client_handle4_cache",
-	    sizeof (struct chtab), 0, NULL, NULL, clreclaim4, NULL,
+	    sizeof (struct chtab), 0, 0, 0, clreclaim4, NULL,
 	    NULL, 0);
 
 	/*
@@ -2850,7 +2850,7 @@ nfs4_subr_init(void)
 	/*
 	 * Initialize the zone_key for per-zone client handle lists.
 	 */
-	zone_key_create(&nfs4clnt_zone_key, clinit4_zone, NULL, clfini4_zone);
+	zone_key_create(&nfs4clnt_zone_key, clinit4_zone, 0, clfini4_zone);
 
 	if (nfs4err_delay_time == 0)
 		nfs4err_delay_time = NFS4ERR_DELAY_TIME;

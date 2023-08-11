@@ -90,7 +90,7 @@ static struct dev_ops fct_ops = {
 	nodev,			/* reset */
 	&fct_cb_ops,
 	NULL,			/* bus_ops */
-	NULL			/* power */
+	0			/* power */
 };
 
 #define	FCT_NAME	"COMSTAR FCT"

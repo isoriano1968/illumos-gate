@@ -95,13 +95,13 @@ static struct dev_ops smp_dev_ops = {
 	0,			/* refcnt  */
 	ddi_getinfo_1to1,	/* info */
 	nulldev,		/* identify */
-	NULL,			/* probe */
+	0,			/* probe */
 	smp_attach,		/* attach */
 	smp_detach,		/* detach */
 	nodev,			/* reset */
 	&smp_cb_ops,		/* driver operations */
 	(struct bus_ops *)0,	/* bus operations */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

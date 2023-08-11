@@ -1900,7 +1900,7 @@ ipif_select_source_v6(ill_t *dstill, const in6_addr_t *dst,
 		rule_addr_type,
 		rule_prefix,			/* local rules before this */
 		rule_must_be_last,		/* must always be last */
-		NULL
+		0
 	};
 
 	ASSERT(dstill->ill_isv6);

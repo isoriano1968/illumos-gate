@@ -113,7 +113,7 @@ static struct cb_ops tavor_cb_ops = {
 	nodev,			/* write */
 	tavor_ioctl,		/* ioctl */
 	tavor_devmap,		/* devmap */
-	NULL,			/* mmap */
+	0,			/* mmap */
 	nodev,			/* segmap */
 	nochpoll,		/* chpoll */
 	ddi_prop_op,		/* prop_op */

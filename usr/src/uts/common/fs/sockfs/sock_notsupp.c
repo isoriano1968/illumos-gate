@@ -158,7 +158,7 @@ sock_close_notsupp(sock_lower_handle_t proto_handle, int flags, cred_t *cr)
 }
 
 sock_downcalls_t sock_down_notsupp = {
-	NULL,
+	0,
 	sock_accept_notsupp,
 	sock_bind_notsupp,
 	sock_listen_notsupp,

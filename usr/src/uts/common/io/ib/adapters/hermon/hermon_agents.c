@@ -715,7 +715,7 @@ hermon_agent_register_all(hermon_state_t *state)
 		ibmf_reg.ir_client_class = curr->agl_mgmtclass;
 
 		status = ibmf_register(&ibmf_reg, IBMF_VERSION, 0,
-		    NULL, NULL, &curr->agl_ibmfhdl, &impl_caps);
+		    0, NULL, &curr->agl_ibmfhdl, &impl_caps);
 		if (status != IBMF_SUCCESS) {
 			goto agents_reg_fail;
 		}

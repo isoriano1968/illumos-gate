@@ -253,7 +253,7 @@ struct dev_ops dump_ops = {
 	nodev,			/* reset */
 	&dump_cb_ops,		/* driver operations */
 	(struct bus_ops *)0,	/* bus operations */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

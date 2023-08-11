@@ -200,17 +200,17 @@ thread_init(void)
 	 * structure and touches it after the mapping has been suspended.
 	 */
 	thread_cache = kmem_cache_create("thread_cache", sizeof (kthread_t),
-	    PTR24_ALIGN, NULL, NULL, NULL, NULL, static_arena, 0);
+	    PTR24_ALIGN, 0, 0, 0, NULL, static_arena, 0);
 
 	lwp_stk_cache_init();
 
 	lwp_cache = kmem_cache_create("lwp_cache", sizeof (klwp_t),
-	    0, NULL, NULL, NULL, NULL, NULL, 0);
+	    0, 0, 0, 0, NULL, NULL, 0);
 #endif
 
 	turnstile_cache = kmem_cache_create("turnstile_cache",
 	    sizeof (turnstile_t), 0,
-	    turnstile_constructor, turnstile_destructor, NULL, NULL, NULL, 0);
+	    turnstile_constructor, turnstile_destructor, 0, NULL, NULL, 0);
 
 	label_init();
 	cred_init();
@@ -890,7 +890,7 @@ thread_reaper()
 	/*
 	 * Register callback to clean up threads when zone is destroyed.
 	 */
-	zone_key_create(&zone_thread_key, NULL, NULL, thread_zone_destroy);
+	zone_key_create(&zone_thread_key, 0, 0, thread_zone_destroy);
 
 	CALLB_CPR_INIT(&cprinfo, &reaplock, callb_generic_cpr, "t_reaper");
 	for (;;) {
@@ -1695,7 +1695,7 @@ tsd_destroy(uint_t *keyp)
 		/*
 		 * actually free the key (NULL destructor == unused)
 		 */
-		tsd_destructor[k] = NULL;
+		tsd_destructor[k] = 0;
 	}
 
 	mutex_exit(&tsd_mutex);

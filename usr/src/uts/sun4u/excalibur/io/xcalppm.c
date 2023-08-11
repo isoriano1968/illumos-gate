@@ -178,7 +178,7 @@ static struct dev_ops xcppm_ops = {
 	nodev,			/* reset */
 	&xcppm_cb_ops,		/* driver operations */
 	&xcppm_bus_ops,		/* bus operations */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_supported,	/* devo_quiesce */
 };
 

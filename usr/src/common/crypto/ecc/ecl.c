@@ -74,12 +74,12 @@ ECGroup_new(int kmflag)
 	MP_DIGITS(&group->genx) = 0;
 	MP_DIGITS(&group->geny) = 0;
 	MP_DIGITS(&group->order) = 0;
-	group->base_point_mul = NULL;
-	group->points_mul = NULL;
-	group->validate_point = NULL;
+	group->base_point_mul = 0;
+	group->points_mul = 0;
+	group->validate_point = 0;
 	group->extra1 = NULL;
 	group->extra2 = NULL;
-	group->extra_free = NULL;
+	group->extra_free = 0;
 	MP_CHECKOK(mp_init(&group->curvea, kmflag));
 	MP_CHECKOK(mp_init(&group->curveb, kmflag));
 	MP_CHECKOK(mp_init(&group->genx, kmflag));
@@ -122,7 +122,7 @@ ECGroup_consGFp(const mp_int *irr, const mp_int *curvea,
 	group->point_sub = &ec_GFp_pt_sub_aff;
 	group->point_dbl = &ec_GFp_pt_dbl_aff;
 	group->point_mul = &ec_GFp_pt_mul_jm_wNAF;
-	group->base_point_mul = NULL;
+	group->base_point_mul = 0;
 	group->points_mul = &ec_GFp_pts_mul_jac;
 	group->validate_point = &ec_GFp_validate_point;
 
@@ -165,7 +165,7 @@ ECGroup_consGFp_mont(const mp_int *irr, const mp_int *curvea,
 	group->point_sub = &ec_GFp_pt_sub_aff;
 	group->point_dbl = &ec_GFp_pt_dbl_aff;
 	group->point_mul = &ec_GFp_pt_mul_jm_wNAF;
-	group->base_point_mul = NULL;
+	group->base_point_mul = 0;
 	group->points_mul = &ec_GFp_pts_mul_jac;
 	group->validate_point = &ec_GFp_validate_point;
 
@@ -208,7 +208,7 @@ ECGroup_consGF2m(const mp_int *irr, const unsigned int irr_arr[5],
 	group->point_sub = &ec_GF2m_pt_sub_aff;
 	group->point_dbl = &ec_GF2m_pt_dbl_aff;
 	group->point_mul = &ec_GF2m_pt_mul_mont;
-	group->base_point_mul = NULL;
+	group->base_point_mul = 0;
 	group->points_mul = &ec_pts_mul_basic;
 	group->validate_point = &ec_GF2m_validate_point;
 

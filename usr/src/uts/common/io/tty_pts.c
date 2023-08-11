@@ -92,17 +92,17 @@ static struct qinit ptslrinit = {
 	ptslrserv,
 	ptslopen,
 	ptslclose,
-	NULL,
+	0,
 	&ptslm_info,
 	NULL
 };
 
 static struct qinit ptslwinit = {
 	ptslwput,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
 	&ptslm_info,
 	NULL
 };

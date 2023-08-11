@@ -96,7 +96,7 @@ struct dev_ops	ptc_ops = {
 	nodev,			/* reset */
 	&ptc_cb_ops,		/* driver operations */
 	(struct bus_ops *)0,	/* bus operations */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_supported,	/* devo_quiesce */
 };
 

@@ -3021,7 +3021,7 @@ static int
 
 	/* If driver is not attached we ignore the driver property list. */
 	if ((dip == NULL) || !i_ddi_devi_attached((dev_info_t *)dip))
-		return (NULL);
+		return (0);
 
 	/*
 	 * Some nexus drivers incorrectly set cb_prop_op to nodev, nulldev,
@@ -3034,7 +3034,7 @@ static int
 	    (ops->devo_cb_ops->cb_prop_op != nulldev) &&
 	    (ops->devo_cb_ops->cb_prop_op != NULL))
 		return (ops->devo_cb_ops->cb_prop_op);
-	return (NULL);
+	return (0);
 }
 
 static di_off_t
@@ -3190,7 +3190,7 @@ di_getprop(int list, struct ddi_prop **pprop, di_off_t *off_p,
 	    list, (void *)*pprop));
 
 	/* get pointer to driver's prop_op(9E) implementation if DRV_LIST */
-	prop_op = (list == DI_PROP_DRV_LIST) ? di_getprop_prop_op(dip) : NULL;
+	prop_op = (list == DI_PROP_DRV_LIST) ? di_getprop_prop_op(dip) : 0;
 
 	/*
 	 * Form private list of properties, holding devi_lock for properties

@@ -3975,7 +3975,7 @@ page_xresv(pgcnt_t npages, uint_t flags, int (*cb_wait)(void))
 int
 page_resv(pgcnt_t npages, uint_t flags)
 {
-	return (page_xresv(npages, flags, NULL));
+	return (page_xresv(npages, flags, 0));
 }
 
 /*
@@ -6304,7 +6304,7 @@ page_capture_unregister_callback(uint_t index)
 	rw_enter(&pc_cb[index].cb_rwlock, RW_WRITER);
 	ASSERT(pc_cb[index].cb_active == 1);
 	pc_cb[index].duration = 0;	/* Paranoia */
-	pc_cb[index].cb_func = NULL;	/* Paranoia */
+	pc_cb[index].cb_func = 0;	/* Paranoia */
 	pc_cb[index].cb_active = 0;
 	rw_exit(&pc_cb[index].cb_rwlock);
 

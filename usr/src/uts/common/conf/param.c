@@ -251,7 +251,7 @@ void	(*init_tbl[])(void) = {
 	clock_highres_init,
 	clock_thread_init,
 	clock_process_init,
-	NULL
+	0
 };
 
 
@@ -373,17 +373,17 @@ char *execswnames[] = {
 };
 
 struct execsw execsw[] = {
-	{ elf32magicstr, 0, 5, NULL, NULL, NULL },
+	{ elf32magicstr, 0, 5, 0, 0, NULL },
 #ifdef _LP64
-	{ elf64magicstr, 0, 5, NULL, NULL, NULL },
+	{ elf64magicstr, 0, 5, 0, 0, NULL },
 #endif
-	{ intpmagicstr, 0, 2, NULL, NULL, NULL },
-	{ shbinmagicstr, 0, SHBINMAGIC_LEN, NULL, NULL, NULL },
-	{ javamagicstr, 0, 4, NULL, NULL, NULL },
-	{ nomagicstr, 0, 0, NULL, NULL, NULL },
-	{ nomagicstr, 0, 0, NULL, NULL, NULL },
-	{ nomagicstr, 0, 0, NULL, NULL, NULL },
-	{ nomagicstr, 0, 0, NULL, NULL, NULL }
+	{ intpmagicstr, 0, 2, 0, 0, NULL },
+	{ shbinmagicstr, 0, SHBINMAGIC_LEN, 0, 0, NULL },
+	{ javamagicstr, 0, 4, 0, 0, NULL },
+	{ nomagicstr, 0, 0, 0, 0, NULL },
+	{ nomagicstr, 0, 0, 0, 0, NULL },
+	{ nomagicstr, 0, 0, 0, 0, NULL },
+	{ nomagicstr, 0, 0, 0, 0, NULL }
 };
 int nexectype = sizeof (execsw) / sizeof (execsw[0]);	/* # of exec types */
 kmutex_t execsw_lock;	/* Used for allocation of execsw entries */
@@ -432,15 +432,15 @@ extern classfuncs_t sys_classfuncs;
 
 sclass_t sclass[] = {
 	{ "SYS",	sys_init,	&sys_classfuncs, STATIC_SCHED, 0 },
-	{ "",	NULL,	NULL,	NULL, 0 },
-	{ "",	NULL,	NULL,	NULL, 0 },
-	{ "",	NULL,	NULL,	NULL, 0 },
-	{ "",	NULL,	NULL,	NULL, 0 },
-	{ "",	NULL,	NULL,	NULL, 0 },
-	{ "",	NULL,	NULL,	NULL, 0 },
-	{ "",	NULL,	NULL,	NULL, 0 },
-	{ "",	NULL,	NULL,	NULL, 0 },
-	{ "",	NULL,	NULL,	NULL, 0 }
+	{ "",	0,	NULL,	NULL, 0 },
+	{ "",	0,	NULL,	NULL, 0 },
+	{ "",	0,	NULL,	NULL, 0 },
+	{ "",	0,	NULL,	NULL, 0 },
+	{ "",	0,	NULL,	NULL, 0 },
+	{ "",	0,	NULL,	NULL, 0 },
+	{ "",	0,	NULL,	NULL, 0 },
+	{ "",	0,	NULL,	NULL, 0 },
+	{ "",	0,	NULL,	NULL, 0 }
 };
 
 int loaded_classes = 1;		/* for loaded classes */

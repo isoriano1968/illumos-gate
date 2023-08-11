@@ -77,7 +77,7 @@ static struct dev_ops hci1394_ops = {
 	nodev,			/* reset */
 	&hci1394_cb_ops,	/* cb_ops */
 	NULL,			/* bus_ops */
-	NULL,			/* power */
+	0,			/* power */
 	hci1394_quiesce,	/* devo_quiesce */
 };
 

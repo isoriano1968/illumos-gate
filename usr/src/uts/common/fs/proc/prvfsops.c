@@ -145,7 +145,7 @@ prinit(int fstype, char *name)
 		VFSNAME_UNMOUNT,	{ .vfs_unmount = prunmount },
 		VFSNAME_ROOT,		{ .vfs_root = prroot },
 		VFSNAME_STATVFS,	{ .vfs_statvfs = prstatvfs },
-		NULL,			NULL
+		NULL,			0
 	};
 	extern const fs_operation_def_t pr_vnodeops_template[];
 	int error;

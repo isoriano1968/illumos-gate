@@ -755,7 +755,7 @@ idm_state_s6_in_logout(idm_conn_t *ic, idm_conn_event_ctx_t *event_ctx)
 
 		/* restore client callback */
 		pdu->isp_callback =  ic->ic_client_callback;
-		ic->ic_client_callback = NULL;
+		ic->ic_client_callback = 0;
 		idm_pdu_complete(pdu, pdu->isp_status);
 		idm_update_state(ic, CS_S11_COMPLETE, event_ctx);
 		break;
@@ -763,7 +763,7 @@ idm_state_s6_in_logout(idm_conn_t *ic, idm_conn_event_ctx_t *event_ctx)
 		pdu = (idm_pdu_t *)event_ctx->iec_info;
 		/* restore client callback */
 		pdu->isp_callback =  ic->ic_client_callback;
-		ic->ic_client_callback = NULL;
+		ic->ic_client_callback = 0;
 		idm_pdu_complete(pdu, pdu->isp_status);
 		idm_update_state(ic, CS_S8_CLEANUP, event_ctx);
 		break;
@@ -950,7 +950,7 @@ idm_state_s8_cleanup(idm_conn_t *ic, idm_conn_event_ctx_t *event_ctx)
 		pdu = (idm_pdu_t *)event_ctx->iec_info;
 		/* restore client callback */
 		pdu->isp_callback =  ic->ic_client_callback;
-		ic->ic_client_callback = NULL;
+		ic->ic_client_callback = 0;
 		idm_pdu_complete(pdu, pdu->isp_status);
 		break;
 	case CE_LOGOUT_SESSION_RCV:
@@ -1014,7 +1014,7 @@ idm_state_s9b_wait_snd_done(idm_conn_t *ic, idm_conn_event_ctx_t *event_ctx)
 		pdu = (idm_pdu_t *)event_ctx->iec_info;
 		/* restore client callback */
 		pdu->isp_callback =  ic->ic_client_callback;
-		ic->ic_client_callback = NULL;
+		ic->ic_client_callback = 0;
 		idm_pdu_complete(pdu, pdu->isp_status);
 		idm_update_state(ic, CS_S9_INIT_ERROR, event_ctx);
 		break;
@@ -1053,7 +1053,7 @@ idm_state_s10_in_cleanup(idm_conn_t *ic, idm_conn_event_ctx_t *event_ctx)
 		pdu = (idm_pdu_t *)event_ctx->iec_info;
 		/* restore client callback */
 		pdu->isp_callback =  ic->ic_client_callback;
-		ic->ic_client_callback = NULL;
+		ic->ic_client_callback = 0;
 		idm_pdu_complete(pdu, pdu->isp_status);
 		break;
 	case CE_TX_PROTOCOL_ERROR:
@@ -1091,7 +1091,7 @@ idm_state_s11_complete(idm_conn_t *ic, idm_conn_event_ctx_t *event_ctx)
 		pdu = (idm_pdu_t *)event_ctx->iec_info;
 		/* restore client callback */
 		pdu->isp_callback =  ic->ic_client_callback;
-		ic->ic_client_callback = NULL;
+		ic->ic_client_callback = 0;
 		idm_pdu_complete(pdu, pdu->isp_status);
 		break;
 	}

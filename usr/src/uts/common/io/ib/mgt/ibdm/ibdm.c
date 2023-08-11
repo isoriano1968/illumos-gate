@@ -181,7 +181,7 @@ static ibt_clnt_modinfo_t ibdm_ibt_modinfo = {
 	IBTI_V_CURR,
 	IBT_DM,
 	ibdm_event_hdlr,
-	NULL,
+	0,
 	"ibdm"
 };
 
@@ -778,7 +778,7 @@ ibdm_initialize_port(ibdm_port_attr_t *port)
 		ibmf_reg.ir_port_num		= port->pa_port_num;
 		ibmf_reg.ir_client_class	= DEV_MGT_MANAGER;
 
-		if (ibmf_register(&ibmf_reg, IBMF_VERSION, 0, NULL, NULL,
+		if (ibmf_register(&ibmf_reg, IBMF_VERSION, 0, 0, NULL,
 		    &port->pa_ibmf_hdl, &port->pa_ibmf_caps) != IBMF_SUCCESS) {
 			IBTF_DPRINTF_L2("ibdm", "\tinitialize_port: "
 			    "IBMF registration failed");
@@ -1909,7 +1909,7 @@ ibdm_is_dev_mgt_supported(ibdm_dp_gidinfo_t *gid_info)
 	qargs.sq_access_type	= IBMF_SAA_RETRIEVE;
 	qargs.sq_component_mask = SA_PORTINFO_COMPMASK_PORTLID;
 	qargs.sq_template	= &req;
-	qargs.sq_callback	= NULL;
+	qargs.sq_callback	= 0;
 	qargs.sq_callback_arg	= NULL;
 
 	ret = ibmf_sa_access(gid_info->gl_sa_hdl,
@@ -1958,7 +1958,7 @@ ibdm_get_node_port_guids(ibmf_saa_handle_t sa_hdl, ib_lid_t dlid,
 	qargs.sq_access_type	= IBMF_SAA_RETRIEVE;
 	qargs.sq_component_mask = SA_NODEINFO_COMPMASK_NODELID;
 	qargs.sq_template	= &req;
-	qargs.sq_callback	= NULL;
+	qargs.sq_callback	= 0;
 	qargs.sq_callback_arg	= NULL;
 
 	ret = ibmf_sa_access(sa_hdl, &qargs, 0, &length, (void **)&resp);
@@ -4604,7 +4604,7 @@ ibdm_get_node_records(ibmf_saa_handle_t sa_hdl, size_t *length, ib_guid_t guid)
 	args.sq_access_type 	= IBMF_SAA_RETRIEVE;
 	args.sq_component_mask 	= SA_NODEINFO_COMPMASK_NODEGUID;
 	args.sq_template	= &req;
-	args.sq_callback	= NULL;
+	args.sq_callback	= 0;
 	args.sq_callback_arg 	= NULL;
 
 	ret = ibmf_sa_access(sa_hdl, &args, 0, length, (void **) &resp);
@@ -4647,7 +4647,7 @@ ibdm_get_portinfo(ibmf_saa_handle_t sa_hdl, size_t *length, ib_lid_t lid)
 	args.sq_access_type	= IBMF_SAA_RETRIEVE;
 	args.sq_component_mask	= SA_PORTINFO_COMPMASK_PORTLID;
 	args.sq_template	= &req;
-	args.sq_callback	= NULL;
+	args.sq_callback	= 0;
 	args.sq_callback_arg	= NULL;
 
 	ret = ibmf_sa_access(sa_hdl, &args, 0, length, (void **) &resp);
@@ -4687,7 +4687,7 @@ ibdm_ibnex_unregister_callback()
 {
 	IBTF_DPRINTF_L4("ibdm", "\tibnex_unregister_callbacks");
 	mutex_enter(&ibdm.ibdm_ibnex_mutex);
-	ibdm.ibdm_ibnex_callback = NULL;
+	ibdm.ibdm_ibnex_callback = 0;
 	mutex_exit(&ibdm.ibdm_ibnex_mutex);
 }
 
@@ -5608,7 +5608,7 @@ ibdm_get_node_record_by_port(ibmf_saa_handle_t sa_hdl, ib_guid_t guid,
 	args.sq_access_type 	= IBMF_SAA_RETRIEVE;
 	args.sq_component_mask 	= SA_NODEINFO_COMPMASK_PORTGUID;
 	args.sq_template	= &req;
-	args.sq_callback	= NULL;
+	args.sq_callback	= 0;
 	args.sq_callback_arg 	= NULL;
 
 	ret = ibmf_sa_access(sa_hdl, &args, 0, length, (void **) resp);

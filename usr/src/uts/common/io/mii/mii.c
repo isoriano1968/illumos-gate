@@ -214,7 +214,7 @@ phy_probe_t _phy_probes[] = {
 	phy_marvell_probe,
 	phy_realtek_probe,
 	phy_other_probe,
-	NULL
+	0
 };
 
 /*

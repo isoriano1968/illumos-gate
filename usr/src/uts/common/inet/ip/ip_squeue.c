@@ -137,7 +137,7 @@ static squeue_set_t	**sqset_global_list; /* list 0 is the unbound list */
 static uint_t		sqset_global_size;
 kmutex_t		sqset_lock;
 
-static void (*ip_squeue_create_callback)(squeue_t *) = NULL;
+static void (*ip_squeue_create_callback)(squeue_t *) = 0;
 
 static squeue_t *ip_squeue_create(pri_t);
 static squeue_set_t *ip_squeue_set_create(processorid_t);

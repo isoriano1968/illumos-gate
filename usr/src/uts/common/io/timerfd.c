@@ -466,7 +466,7 @@ timerfd_attach(dev_info_t *devi, ddi_attach_cmd_t cmd)
 	timerfd_devi = devi;
 
 	timerfd_minor = vmem_create("timerfd_minor", (void *)TIMERFDMNRN_CLONE,
-	    UINT32_MAX - TIMERFDMNRN_CLONE, 1, NULL, NULL, NULL, 0,
+	    UINT32_MAX - TIMERFDMNRN_CLONE, 1, 0, 0, NULL, 0,
 	    VM_SLEEP | VMC_IDENTIFIER);
 
 	mutex_exit(&timerfd_lock);

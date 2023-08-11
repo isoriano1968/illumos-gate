@@ -92,7 +92,7 @@ static crypto_digest_ops_t skein_digest_ops = {
 	skein_digest_init,
 	skein_digest,
 	skein_update,
-	NULL,
+	0,
 	skein_final,
 	skein_digest_atomic
 };
@@ -105,11 +105,11 @@ static int skein_mac_atomic(crypto_provider_handle_t, crypto_session_id_t,
 
 static crypto_mac_ops_t skein_mac_ops = {
 	skein_mac_init,
-	NULL,
+	0,
 	skein_update,	/* using regular digest update is OK here */
 	skein_final,	/* using regular digest final is OK here */
 	skein_mac_atomic,
-	NULL
+	0
 };
 
 static int skein_create_ctx_template(crypto_provider_handle_t,

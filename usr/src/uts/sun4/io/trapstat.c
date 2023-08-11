@@ -2637,7 +2637,7 @@ static struct dev_ops trapstat_ops = {
 	nulldev,		/* reset */
 	&trapstat_cb_ops,	/* cb_ops */
 	(struct bus_ops *)0,	/* bus_ops */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 

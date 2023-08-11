@@ -1378,10 +1378,10 @@ nxge_hio_group_get(void *arg, mac_ring_type_t type, int groupid,
 		group->sindex = 0;	/* not yet bound to a share */
 
 		infop->mgi_driver = (mac_group_driver_t)group;
-		infop->mgi_start = NULL;
-		infop->mgi_stop = NULL;
-		infop->mgi_addmac = NULL;	/* not needed */
-		infop->mgi_remmac = NULL;	/* not needed */
+		infop->mgi_start = 0;
+		infop->mgi_stop = 0;
+		infop->mgi_addmac = 0;	/* not needed */
+		infop->mgi_remmac = 0;	/* not needed */
 		/* no rings associated with group initially */
 		infop->mgi_count = 0;
 		break;

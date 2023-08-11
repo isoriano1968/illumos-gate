@@ -2269,18 +2269,18 @@ ip_ire_g_init()
 	 * ire_add() expects the cache to be created.
 	 */
 	ire_cache = kmem_cache_create("ire_cache",
-	    sizeof (ire_t), 0, NULL, NULL,
+	    sizeof (ire_t), 0, 0, 0,
 	    ip_ire_reclaim, NULL, NULL, 0);
 
 	ncec_cache = kmem_cache_create("ncec_cache",
-	    sizeof (ncec_t), 0, NULL, NULL,
+	    sizeof (ncec_t), 0, 0, 0,
 	    ip_nce_reclaim, NULL, NULL, 0);
 	nce_cache = kmem_cache_create("nce_cache",
-	    sizeof (nce_t), 0, NULL, NULL,
-	    NULL, NULL, NULL, 0);
+	    sizeof (nce_t), 0, 0, 0,
+	    0, NULL, NULL, 0);
 
 	rt_entry_cache = kmem_cache_create("rt_entry",
-	    sizeof (struct rt_entry), 0, NULL, NULL, NULL, NULL, NULL, 0);
+	    sizeof (struct rt_entry), 0, 0, 0, 0, NULL, NULL, 0);
 
 	/*
 	 * Have radix code setup kmem caches etc.

@@ -483,7 +483,7 @@ iscsi_login(iscsi_conn_t *icp, uint8_t *status_class, uint8_t *status_detail)
 		rval = ISCSI_STATUS_INTERNAL_ERROR;
 
 		text_pdu = idm_pdu_alloc(sizeof (iscsi_hdr_t), 0);
-		idm_pdu_init(text_pdu, icp->conn_ic, NULL, NULL);
+		idm_pdu_init(text_pdu, icp->conn_ic, NULL, 0);
 
 		/*
 		 * fill in the PDU header and text data based on the

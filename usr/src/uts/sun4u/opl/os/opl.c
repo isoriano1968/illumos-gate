@@ -392,7 +392,7 @@ set_platform_cage_params(void)
 int
 plat_cpu_poweron(struct cpu *cp)
 {
-	int (*opl_cpu_poweron)(struct cpu *) = NULL;
+	int (*opl_cpu_poweron)(struct cpu *) = 0;
 
 	opl_cpu_poweron =
 	    (int (*)(struct cpu *))kobj_getsymvalue("drmach_cpu_poweron", 0);
@@ -408,7 +408,7 @@ plat_cpu_poweron(struct cpu *cp)
 int
 plat_cpu_poweroff(struct cpu *cp)
 {
-	int (*opl_cpu_poweroff)(struct cpu *) = NULL;
+	int (*opl_cpu_poweroff)(struct cpu *) = 0;
 
 	opl_cpu_poweroff =
 	    (int (*)(struct cpu *))kobj_getsymvalue("drmach_cpu_poweroff", 0);

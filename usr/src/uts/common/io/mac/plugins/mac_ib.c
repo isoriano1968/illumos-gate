@@ -299,7 +299,7 @@ static mactype_ops_t mac_ib_type_ops = {
 	mac_ib_sap_verify,
 	mac_ib_header,
 	mac_ib_header_info,
-	NULL,
+	0,
 	mac_ib_header_cook,
 	mac_ib_header_uncook,
 	mac_ib_link_details

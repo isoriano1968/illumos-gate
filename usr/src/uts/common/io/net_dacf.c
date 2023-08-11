@@ -46,7 +46,7 @@ static int	net_predetach(dacf_infohdl_t, dacf_arghdl_t, int);
 static dacf_op_t net_config_op[] = {
 	{ DACF_OPID_POSTATTACH,	net_postattach	},
 	{ DACF_OPID_PREDETACH,	net_predetach	},
-	{ DACF_OPID_END,	NULL		},
+	{ DACF_OPID_END,	0		},
 };
 
 static dacf_opset_t opsets[] = {

@@ -269,7 +269,7 @@ const fs_operation_def_t	port_vnodesrc_template[] = {
 	VOPNAME_SYMLINK,	{ .femop_symlink = port_fop_symlink },
 	VOPNAME_SETSECATTR,	{ .femop_setsecattr = port_fop_setsecattr },
 	VOPNAME_VNEVENT,	{ .femop_vnevent = port_fop_vnevent },
-	NULL,	NULL
+	NULL,	0
 };
 
 /*
@@ -277,7 +277,7 @@ const fs_operation_def_t	port_vnodesrc_template[] = {
  */
 const fs_operation_def_t	port_vfssrc_template[] = {
 	VFSNAME_UNMOUNT,	{ .fsemop_unmount = port_fop_unmount },
-	NULL,	NULL
+	NULL,	0
 };
 
 fem_t *fop_femop;
@@ -982,7 +982,7 @@ port_fop_associate_source(portfop_cache_t **pfcpp, port_t *pp, int source)
 	 */
 	if ((pse = port_getsrc(pp, PORT_SOURCE_FILE)) == NULL) {
 		if (error = port_associate_ksource(pp->port_fd, source,
-		    &pse, port_close_fop, pp, NULL)) {
+		    &pse, port_close_fop, pp, 0)) {
 			*pfcpp = NULL;
 			return (error);
 		}
@@ -1036,7 +1036,7 @@ port_fop_pvfsadd(portfop_vp_t *pvp)
 	if (!pvfsp) {
 		if ((fsemp = port_fop_fsemop()) != NULL) {
 			if ((error = fsem_install(vp->v_vfsp, fsemp,
-			    vp->v_vfsp, OPUNIQ, NULL, NULL))) {
+			    vp->v_vfsp, OPUNIQ, 0, 0))) {
 				mutex_exit(&pvfsh->pvfshash_mutex);
 				return (error);
 			}
@@ -1166,7 +1166,7 @@ port_pfp_setup(portfop_t **pfpp, port_t *pp, vnode_t *vp, portfop_cache_t *pfcp,
 	if (pvp->pvp_femp == NULL) {
 		if ((femp = port_fop_femop()) != NULL) {
 			if (!(error = fem_install(pfp->pfop_vp, femp,
-			    (void *)vp, OPUNIQ, NULL, NULL))) {
+			    (void *)vp, OPUNIQ, 0, 0))) {
 				pvp->pvp_femp = femp;
 				/*
 				 * add fsem_t hooks to the vfsp and add pvp to

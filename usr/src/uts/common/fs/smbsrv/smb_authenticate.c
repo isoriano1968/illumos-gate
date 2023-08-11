@@ -668,7 +668,7 @@ smb_authsock_sendrecv(smb_request_t *sr, smb_lsa_msg_hdr_t *hdr,
 	}
 
 	mutex_enter(&sr->sr_mutex);
-	sr->cancel_method = NULL;
+	sr->cancel_method = 0;
 	sr->cancel_arg2 = NULL;
 	switch (sr->sr_state) {
 	case SMB_REQ_STATE_WAITING_AUTH:
@@ -802,7 +802,7 @@ smb_authsock_open(smb_request_t *sr)
 	}
 
 	mutex_enter(&sr->sr_mutex);
-	sr->cancel_method = NULL;
+	sr->cancel_method = 0;
 	sr->cancel_arg2 = NULL;
 	switch (sr->sr_state) {
 	case SMB_REQ_STATE_WAITING_AUTH:

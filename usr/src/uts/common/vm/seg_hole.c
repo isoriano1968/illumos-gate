@@ -59,8 +59,8 @@ static struct seg_ops seghole_ops = {
 	seghole_faulta,
 	seghole_setprot,
 	seghole_checkprot,
-	NULL,			/* kluster: disabled */
-	NULL,			/* swapout: disabled */
+	0,			/* kluster: disabled */
+	0,			/* swapout: disabled */
 	seghole_sync,
 	seghole_incore,
 	seghole_lockop,
@@ -72,8 +72,8 @@ static struct seg_ops seghole_ops = {
 	seghole_dump,
 	seghole_pagelock,
 	seghole_setpagesize,
-	NULL,			/* getmemid: disabled */
-	NULL,			/* getpolicy: disabled */
+	0,			/* getmemid: disabled */
+	0,			/* getpolicy: disabled */
 	seghole_capable,
 	seg_inherit_notsup
 };

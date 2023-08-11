@@ -83,7 +83,7 @@ uint_t spdsock_max_optsize; /* initialized in spdsock_ddi_init() */
  */
 
 optdb_obj_t spdsock_opt_obj = {
-	NULL,			/* SPDSOCK default value function pointer */
+	0,			/* SPDSOCK default value function pointer */
 	spdsock_opt_get,	/* SPDSOCK get function pointer */
 	spdsock_opt_set,	/* SPDSOCK set function pointer */
 	SPDSOCK_OPT_ARR_CNT,	/* SPDSOCK option database count of entries */

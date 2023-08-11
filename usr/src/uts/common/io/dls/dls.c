@@ -132,7 +132,7 @@ dls_close(dld_str_t *dsp)
 	 * reset above waited for promisc callbacks to finish. Now we can
 	 * safely reset ds_rx to NULL
 	 */
-	dsp->ds_rx = NULL;
+	dsp->ds_rx = 0;
 	dsp->ds_rx_arg = NULL;
 
 	dsp->ds_dlp = NULL;

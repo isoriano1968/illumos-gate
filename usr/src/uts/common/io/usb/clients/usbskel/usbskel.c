@@ -655,7 +655,7 @@ usbskel_close(dev_t dev, int flag, int otyp, cred_t *cred_p)
 	 */
 	(void) usb_pipe_drain_reqs(usbskelp->usbskel_dip,
 	    usbskelp->usbskel_reg->dev_default_ph, 0,
-	    USB_FLAGS_SLEEP, NULL, 0);
+	    USB_FLAGS_SLEEP, 0, 0);
 
 	mutex_enter(&usbskelp->usbskel_mutex);
 	usbskel_close_pipes(usbskelp);
@@ -1248,7 +1248,7 @@ usbskel_close_pipes(usbskel_state_t *usbskelp)
 		mutex_exit(&usbskelp->usbskel_mutex);
 
 		usb_pipe_close(usbskelp->usbskel_dip, pipe_handle,
-		    USB_FLAGS_SLEEP, NULL, 0);
+		    USB_FLAGS_SLEEP, 0, 0);
 
 		mutex_enter(&usbskelp->usbskel_mutex);
 	}

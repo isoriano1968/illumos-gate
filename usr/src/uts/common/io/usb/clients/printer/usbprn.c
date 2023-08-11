@@ -127,7 +127,7 @@ static	void	usbprn_cpr_resume(dev_info_t *);
 static usb_event_t usbprn_events = {
 	usbprn_disconnect_event_cb,
 	usbprn_reconnect_event_cb,
-	NULL, NULL
+	0, 0
 };
 
 /* PM handling */
@@ -718,7 +718,7 @@ usbprn_get_descriptors(usbprn_state_t *usbprnp)
 
 
 	if ((rval = usb_set_alt_if(dip, interface, alt, USB_FLAGS_SLEEP,
-	    NULL, NULL)) != USB_SUCCESS) {
+	    0, NULL)) != USB_SUCCESS) {
 		USB_DPRINTF_L2(PRINT_MASK_ATTA, usbprnp->usbprn_log_handle,
 		    "usbprn_get_descriptors: set alternate failed (%d)",
 		    rval);
@@ -1718,7 +1718,7 @@ usbprn_close_usb_pipes(usbprn_state_t *usbprnp)
 		    "usbprn_close_usb_pipes: Closing bulk out pipe");
 
 		usb_pipe_close(usbprnp->usbprn_dip, bulk_out->ps_handle,
-		    USB_FLAGS_SLEEP, NULL, NULL);
+		    USB_FLAGS_SLEEP, 0, NULL);
 		bulk_out->ps_handle = NULL;
 	}
 	if (bulk_in->ps_handle) {
@@ -1727,7 +1727,7 @@ usbprn_close_usb_pipes(usbprn_state_t *usbprnp)
 		    "usbprn_close_usb_pipes: Closing bulk in pipe");
 
 		usb_pipe_close(usbprnp->usbprn_dip, bulk_in->ps_handle,
-		    USB_FLAGS_SLEEP, NULL, NULL);
+		    USB_FLAGS_SLEEP, 0, NULL);
 		bulk_in->ps_handle = NULL;
 	}
 }
@@ -2593,7 +2593,7 @@ usbprn_restore_device_state(dev_info_t *dip, usbprn_state_t *usbprnp)
 
 	iface = usb_owns_device(dip) ? 0 :  usb_get_if_number(dip);
 	if ((rval = usb_set_alt_if(dip, iface, alt,
-	    USB_FLAGS_SLEEP, NULL, NULL)) != USB_SUCCESS) {
+	    USB_FLAGS_SLEEP, 0, NULL)) != USB_SUCCESS) {
 		USB_DPRINTF_L2(PRINT_MASK_ATTA, usbprnp->usbprn_log_handle,
 		    "usbprn_restore_device_state: set alternate failed (%d)",
 		    rval);

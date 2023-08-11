@@ -92,7 +92,7 @@ tem_safe_callbacks_t tem_safe_text_callbacks = {
 	&tem_safe_text_display,
 	&tem_safe_text_copy,
 	&tem_safe_text_cursor,
-	NULL,
+	0,
 	&tem_safe_text_cls
 };
 tem_safe_callbacks_t tem_safe_pix_callbacks = {

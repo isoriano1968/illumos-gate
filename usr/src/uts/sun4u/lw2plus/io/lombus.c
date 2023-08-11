@@ -2236,7 +2236,7 @@ static struct dev_ops lombus_dev_ops =
 	lombus_reset,			/* reset		*/
 	&lombus_cb_ops,			/* driver operations	*/
 	&lombus_bus_ops,		/* bus operations	*/
-	NULL,				/* power		*/
+	0,				/* power		*/
 	ddi_quiesce_not_supported,	/* devo_quiesce		*/
 };
 

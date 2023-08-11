@@ -204,31 +204,31 @@ static int cpu_idle_prop_update_intr_cnt(void *arg, uint64_t seqnum,
 static cpu_idle_prop_item_t cpu_idle_prop_array[] = {
 	{
 	    CPU_IDLE_PROP_TYPE_INTPTR, CPU_IDLE_PROP_IDLE_STATE,
-	    NULL, NULL, NULL
+	    0, NULL, NULL
 	},
 	{
 	    CPU_IDLE_PROP_TYPE_HRTIME, CPU_IDLE_PROP_ENTER_TIMESTAMP,
-	    NULL, NULL, NULL
+	    0, NULL, NULL
 	},
 	{
 	    CPU_IDLE_PROP_TYPE_HRTIME, CPU_IDLE_PROP_EXIT_TIMESTAMP,
-	    NULL, NULL, NULL
+	    0, NULL, NULL
 	},
 	{
 	    CPU_IDLE_PROP_TYPE_HRTIME, CPU_IDLE_PROP_LAST_IDLE_TIME,
-	    NULL, NULL, NULL
+	    0, NULL, NULL
 	},
 	{
 	    CPU_IDLE_PROP_TYPE_HRTIME, CPU_IDLE_PROP_LAST_BUSY_TIME,
-	    NULL, NULL, NULL
+	    0, NULL, NULL
 	},
 	{
 	    CPU_IDLE_PROP_TYPE_HRTIME, CPU_IDLE_PROP_TOTAL_IDLE_TIME,
-	    NULL, NULL, NULL
+	    0, NULL, NULL
 	},
 	{
 	    CPU_IDLE_PROP_TYPE_HRTIME, CPU_IDLE_PROP_TOTAL_BUSY_TIME,
-	    NULL, NULL, NULL
+	    0, NULL, NULL
 	},
 	{
 	    CPU_IDLE_PROP_TYPE_UINT64, CPU_IDLE_PROP_INTERRUPT_COUNT,
@@ -396,7 +396,7 @@ cpu_idle_insert_callback(cpu_idle_cb_impl_t *cip)
 	 * after pause_cpus().
 	 */
 	if (!cpus_paused()) {
-		pause_cpus(NULL, NULL);
+		pause_cpus(NULL, 0);
 		unpause = 1;
 	}
 
@@ -462,7 +462,7 @@ cpu_idle_remove_callback(cpu_idle_cb_impl_t *cip)
 	 * after pause_cpus().
 	 */
 	if (!cpus_paused()) {
-		pause_cpus(NULL, NULL);
+		pause_cpus(NULL, 0);
 		unpause = 1;
 	}
 

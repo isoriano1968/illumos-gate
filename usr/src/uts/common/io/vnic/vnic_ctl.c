@@ -53,7 +53,7 @@ static dld_ioc_info_t vnic_ioc_list[] = {
 	{VNIC_IOC_DELETE, DLDCOPYIN, sizeof (vnic_ioc_delete_t),
 	    vnic_ioc_delete, secpolicy_dl_config},
 	{VNIC_IOC_INFO, DLDCOPYINOUT, sizeof (vnic_ioc_info_t),
-	    vnic_ioc_info, NULL},
+	    vnic_ioc_info, 0},
 	{VNIC_IOC_MODIFY, DLDCOPYIN, sizeof (vnic_ioc_modify_t),
 	    vnic_ioc_modify, secpolicy_dl_config}
 };

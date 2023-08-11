@@ -2222,7 +2222,7 @@ sadb_form_query(keysock_in_t *ksi, uint32_t req, uint32_t match,
 	ipsa_match_fn_t *mfpp = &(sq->matchers[0]);
 
 	for (i = 0; i < IPSA_NMATCH; i++)
-		sq->matchers[i] = NULL;
+		sq->matchers[i] = 0;
 
 	ASSERT((req & ~match) == 0);
 

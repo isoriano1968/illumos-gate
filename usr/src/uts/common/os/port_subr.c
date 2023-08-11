@@ -450,7 +450,7 @@ port_free_event(port_kevent_t *pkevp)
 	port_block(portq);
 	if (pkevp->portkev_flags & PORT_KEV_DONEQ) {
 		pkevp->portkev_flags |= PORT_KEV_FREE;
-		pkevp->portkev_callback = NULL;
+		pkevp->portkev_callback = 0;
 		port_unblock(portq);
 		mutex_exit(&portq->portq_mutex);
 		return;

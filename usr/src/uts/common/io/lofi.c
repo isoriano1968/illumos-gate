@@ -240,10 +240,10 @@ static int lzma_decompress(void *src, size_t srclen, void *dst,
 	size_t *dstlen, int level);
 
 lofi_compress_info_t lofi_compress_table[LOFI_COMPRESS_FUNCTIONS] = {
-	{gzip_decompress,	NULL,	6,	"gzip"}, /* default */
-	{gzip_decompress,	NULL,	6,	"gzip-6"},
-	{gzip_decompress,	NULL,	9,	"gzip-9"},
-	{lzma_decompress,	NULL,	0,	"lzma"}
+	{gzip_decompress,	0,	6,	"gzip"}, /* default */
+	{gzip_decompress,	0,	6,	"gzip-6"},
+	{gzip_decompress,	0,	9,	"gzip-9"},
+	{lzma_decompress,	0,	0,	"lzma"}
 };
 
 static void lofi_strategy_task(void *);
@@ -2046,7 +2046,7 @@ lofi_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 			return (DDI_FAILURE);
 		}
 
-		zone_key_create(&lofi_zone_key, NULL, lofi_zone_shutdown, NULL);
+		zone_key_create(&lofi_zone_key, 0, lofi_zone_shutdown, 0);
 
 		lsp->ls_dip = dip;
 	} else {
@@ -3612,7 +3612,7 @@ static struct dev_ops lofi_ops = {
 	nodev,			/* reset */
 	&lofi_cb_ops,		/* driver operations */
 	NULL,			/* no bus operations */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,	/* quiesce */
 };
 

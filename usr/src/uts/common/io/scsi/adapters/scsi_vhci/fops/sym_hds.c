@@ -74,8 +74,8 @@ struct scsi_failover_ops scsi_vhci_failover_ops = {
 	hds_sym_init,
 	hds_sym_device_probe,
 	hds_sym_device_unprobe,
-	NULL,
-	NULL,
+	0,
+	0,
 	hds_sym_get_opinfo,
 	/* The rest of the implementation comes from SFO_NAME_SYM import  */
 };
@@ -247,7 +247,7 @@ hds_get_inquiry_vpd_page(struct scsi_device *sd, unsigned char page,
 
 	ap = &sd->sd_address;
 	pkt = scsi_init_pkt(ap, NULL, bp, CDB_GROUP0,
-	    sizeof (struct scsi_arq_status), 0, 0, NULL, NULL);
+	    sizeof (struct scsi_arq_status), 0, 0, 0, NULL);
 	if (pkt == NULL) {
 		VHCI_DEBUG(4, (CE_WARN, NULL,
 		    "hds_get_inquiry_vpd_page:"

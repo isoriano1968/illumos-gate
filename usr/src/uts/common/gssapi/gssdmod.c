@@ -47,7 +47,7 @@ _init()
 
 	mutex_init(&gssrpcb_lock, NULL, MUTEX_DEFAULT, NULL);
 	mutex_init(&__kgss_mech_lock, NULL, MUTEX_DEFAULT, NULL);
-	zone_key_create(&gss_zone_key, gss_zone_init, NULL, gss_zone_fini);
+	zone_key_create(&gss_zone_key, gss_zone_init, 0, gss_zone_fini);
 
 	if ((retval = mod_install(&modlinkage)) != 0) {
 		mutex_destroy(&__kgss_mech_lock);

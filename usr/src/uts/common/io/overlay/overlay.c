@@ -2006,7 +2006,7 @@ static dld_ioc_info_t overlay_ioc_list[] = {
 		secpolicy_dl_config },
 	{ OVERLAY_IOC_STATUS, DLDCOPYIN | DLDCOPYOUT,
 		sizeof (overlay_ioc_status_t), overlay_i_status,
-		NULL }
+		0 }
 };
 
 static int
@@ -2111,7 +2111,7 @@ static struct dev_ops overlay_dev_ops = {
 	nulldev,		/* devo_reset */
 	&overlay_cbops,		/* devo_cb_ops */
 	NULL,			/* devo_bus_ops */
-	NULL,			/* devo_power */
+	0,			/* devo_power */
 	ddi_quiesce_not_supported	/* devo_quiesce */
 };
 

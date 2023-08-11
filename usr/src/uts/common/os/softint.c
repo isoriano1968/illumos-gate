@@ -514,7 +514,7 @@ softint(void)
 
 out:
 	if ((func = kdi_softcall_func) != NULL) {
-		kdi_softcall_func = NULL;
+		kdi_softcall_func = 0;
 		func();
 	}
 }

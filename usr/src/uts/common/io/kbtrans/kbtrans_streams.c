@@ -161,11 +161,11 @@ static int kbtrans_gkey(struct kbtrans_lower *, struct kiockeymap *);
 struct keyboard_callback	untrans_event_callback  = {
 	kbtrans_untrans_keypressed_raw,
 	kbtrans_untrans_keyreleased_raw,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
+	0,
 };
 
 /*
@@ -174,8 +174,8 @@ struct keyboard_callback	untrans_event_callback  = {
  * Functions to be called when ISO 8859/1 codes are reported
  */
 struct keyboard_callback	ascii_callback  = {
-	NULL,
-	NULL,
+	0,
+	0,
 	kbtrans_ascii_keypressed,
 	kbtrans_ascii_keyreleased,
 	kbtrans_ascii_setup_repeat,
@@ -189,8 +189,8 @@ struct keyboard_callback	ascii_callback  = {
  * Functions to be called when firm_events are reported.
  */
 struct keyboard_callback	trans_event_callback  = {
-	NULL,
-	NULL,
+	0,
+	0,
 	kbtrans_trans_event_keypressed,
 	kbtrans_trans_event_keyreleased,
 	kbtrans_trans_event_setup_repeat,

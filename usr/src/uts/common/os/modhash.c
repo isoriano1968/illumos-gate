@@ -405,7 +405,7 @@ mod_hash_init(void)
 {
 	ASSERT(mh_e_cache == NULL);
 	mh_e_cache = kmem_cache_create("mod_hash_entries",
-	    sizeof (struct mod_hash_entry), 0, NULL, NULL, NULL, NULL,
+	    sizeof (struct mod_hash_entry), 0, 0, 0, 0, NULL,
 	    NULL, 0);
 }
 

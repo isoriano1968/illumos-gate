@@ -172,11 +172,11 @@ static struct module_info ptm_info = {
 };
 
 static struct qinit ptmrint = {
-	NULL,
+	0,
 	ptmrsrv,
 	ptmopen,
 	ptmclose,
-	NULL,
+	0,
 	&ptm_info,
 	NULL
 };
@@ -184,9 +184,9 @@ static struct qinit ptmrint = {
 static struct qinit ptmwint = {
 	ptmwput,
 	ptmwsrv,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
 	&ptm_info,
 	NULL
 };

@@ -1861,7 +1861,7 @@ sctp_faddr_init(void)
 {
 	sctp_kmem_faddr_cache = kmem_cache_create("sctp_faddr_cache",
 	    sizeof (sctp_faddr_t), 0, faddr_constructor, faddr_destructor,
-	    NULL, NULL, NULL, 0);
+	    0, NULL, NULL, 0);
 }
 
 void

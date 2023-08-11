@@ -79,7 +79,7 @@ static struct qinit vuidmice_rinit = {
 	vuidmice_rsrv,
 	vuidmice_open,
 	vuidmice_close,
-	NULL,
+	0,
 	&vuidmice_iinfo,
 	NULL
 };
@@ -95,10 +95,10 @@ static struct module_info vuidmice_oinfo = {
 
 static struct qinit vuidmice_winit = {
 	vuidmice_wput,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	0,
+	0,
+	0,
+	0,
 	&vuidmice_oinfo,
 	NULL
 };

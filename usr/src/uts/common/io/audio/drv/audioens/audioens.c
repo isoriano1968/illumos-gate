@@ -759,9 +759,9 @@ audio_engine_ops_t audioens_engine_ops = {
 	audioens_channels,
 	audioens_rate,
 	audioens_sync,
-	NULL,
+	0,
 	audioens_chinfo,
-	NULL,
+	0,
 };
 
 void
@@ -1273,7 +1273,7 @@ static int audioens_ddi_detach(dev_info_t *, ddi_detach_cmd_t);
 static struct dev_ops audioens_dev_ops = {
 	DEVO_REV,		/* rev */
 	0,			/* refcnt */
-	NULL,			/* getinfo */
+	0,			/* getinfo */
 	nulldev,		/* identify */
 	nulldev,		/* probe */
 	audioens_ddi_attach,	/* attach */
@@ -1281,7 +1281,7 @@ static struct dev_ops audioens_dev_ops = {
 	nodev,			/* reset */
 	NULL,			/* cb_ops */
 	NULL,			/* bus_ops */
-	NULL,			/* power */
+	0,			/* power */
 	audioens_quiesce,	/* quiesce */
 };
 

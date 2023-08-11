@@ -147,7 +147,7 @@ static uint8_t	usbecm_broadcast[ETHERADDRL] = {
 static usb_event_t usbecm_events = {
 	usbecm_disconnect_event_cb,
 	usbecm_reconnect_event_cb,
-	NULL, NULL
+	0, 0
 };
 
 #define	ECM_DS_OP_VALID(op) ((ecmp->ecm_ds_ops) && (ecmp->ecm_ds_ops->op))
@@ -166,12 +166,12 @@ static mac_callbacks_t usbecm_m_callbacks = {
 	usbecm_m_tx,		/* Transmit a packet */
 	NULL,
 	usbecm_m_ioctl,		/* Process an unknown ioctl */
-	NULL,			/* mc_getcapab */
-	NULL,			/* mc_open */
-	NULL,			/* mc_close */
+	0,			/* mc_getcapab */
+	0,			/* mc_open */
+	0,			/* mc_close */
 	usbecm_m_setprop, 	/* mc_setprop */
 	usbecm_m_getprop,	/* mc_getprop */
-	NULL
+	0
 };
 
 
@@ -204,7 +204,7 @@ static struct cb_ops cb_usbecm = {
 static struct dev_ops usbecm_devops = {
 	DEVO_REV,		/* devo_rev */
 	0,			/* devo_refcnt */
-	NULL,			/* devo_getinfo */
+	0,			/* devo_getinfo */
 	nulldev,		/* devo_identify */
 	nulldev,		/* devo_probe */
 	usbecm_attach,		/* devo_attach */
@@ -2444,7 +2444,7 @@ usbecm_get_descriptors(usbecm_state_t *ecmp)
 	if ((usb_dev_desc->idVendor == SUN_SP_VENDOR_ID) &&
 	    (usb_dev_desc->idProduct == SUN_SP_PRODUCT_ID)) {
 		if (usb_set_cfg(ecmp->ecm_dip, ecmp->ecm_cfg_index,
-		    USB_FLAGS_SLEEP, NULL, NULL) != USB_SUCCESS) {
+		    USB_FLAGS_SLEEP, 0, NULL) != USB_SUCCESS) {
 			USB_DPRINTF_L2(PRINT_MASK_ATTA, ecmp->ecm_lh,
 			    "usbecm_get_descriptors: fail to set cfg ");
 		} else {
@@ -2945,7 +2945,7 @@ usbecm_open_pipes(usbecm_state_t *ecmp)
 	    ecmp->ecm_data_if_no, altif);
 
 	if ((rval = usb_set_alt_if(ecmp->ecm_dip, ecmp->ecm_data_if_no,
-	    altif, USB_FLAGS_SLEEP, NULL, NULL)) != USB_SUCCESS) {
+	    altif, USB_FLAGS_SLEEP, 0, NULL)) != USB_SUCCESS) {
 		USB_DPRINTF_L2(PRINT_MASK_ATTA, ecmp->ecm_lh,
 		    "usbecm_open_pipes: set alternate failed (%d)",
 		    rval);
@@ -2971,7 +2971,7 @@ usbecm_open_pipes(usbecm_state_t *ecmp)
 		    "usbecm_open_pipes: open bulkout pipe failed!");
 
 		usb_pipe_close(ecmp->ecm_dip, ecmp->ecm_bulkin_ph,
-		    USB_FLAGS_SLEEP, NULL, NULL);
+		    USB_FLAGS_SLEEP, 0, NULL);
 
 		return (USB_FAILURE);
 	}
@@ -2985,9 +2985,9 @@ usbecm_open_pipes(usbecm_state_t *ecmp)
 			    "open intr pipe failed");
 
 			usb_pipe_close(ecmp->ecm_dip, ecmp->ecm_bulkin_ph,
-			    USB_FLAGS_SLEEP, NULL, NULL);
+			    USB_FLAGS_SLEEP, 0, NULL);
 			usb_pipe_close(ecmp->ecm_dip, ecmp->ecm_bulkout_ph,
-			    USB_FLAGS_SLEEP, NULL, NULL);
+			    USB_FLAGS_SLEEP, 0, NULL);
 
 			return (USB_FAILURE);
 		}
@@ -3049,24 +3049,24 @@ usbecm_close_pipes(usbecm_state_t *ecmp)
 	/* reset the data interface's altsetting to 0 */
 	if ((ecmp->ecm_dev_state == USB_DEV_ONLINE) &&
 	    (usb_set_alt_if(ecmp->ecm_dip, ecmp->ecm_data_if_no,
-	    0, USB_FLAGS_SLEEP, NULL, NULL) != USB_SUCCESS)) {
+	    0, USB_FLAGS_SLEEP, 0, NULL) != USB_SUCCESS)) {
 		USB_DPRINTF_L2(PRINT_MASK_ATTA, ecmp->ecm_lh,
 		    "usbecm_close_pipes: reset alternate failed ");
 	}
 
 	/* Close pipes */
 	usb_pipe_reset(ecmp->ecm_dip, ecmp->ecm_bulkin_ph,
-	    USB_FLAGS_SLEEP, NULL, 0);
+	    USB_FLAGS_SLEEP, 0, 0);
 	usb_pipe_close(ecmp->ecm_dip, ecmp->ecm_bulkin_ph,
-	    USB_FLAGS_SLEEP, NULL, 0);
+	    USB_FLAGS_SLEEP, 0, 0);
 	usb_pipe_close(ecmp->ecm_dip, ecmp->ecm_bulkout_ph,
-	    USB_FLAGS_SLEEP, NULL, 0);
+	    USB_FLAGS_SLEEP, 0, 0);
 
 	if (ecmp->ecm_intr_ph != NULL) {
 		usb_pipe_stop_intr_polling(ecmp->ecm_intr_ph,
 		    USB_FLAGS_SLEEP);
 		usb_pipe_close(ecmp->ecm_dip, ecmp->ecm_intr_ph,
-		    USB_FLAGS_SLEEP, NULL, 0);
+		    USB_FLAGS_SLEEP, 0, 0);
 	}
 
 	mutex_enter(&ecmp->ecm_mutex);

@@ -92,14 +92,14 @@ static struct bus_ops pci_bus_ops = {
 	ndi_busop_add_eventcall,	/* (*bus_add_eventcall)(); */
 	ndi_busop_remove_eventcall,	/* (*bus_remove_eventcall)(); */
 	ndi_post_event,			/* (*bus_post_event)(); */
-	NULL,				/* (*bus_intr_ctl)(); */
-	NULL,				/* (*bus_config)(); */
-	NULL,				/* (*bus_unconfig)(); */
+	0,				/* (*bus_intr_ctl)(); */
+	0,				/* (*bus_config)(); */
+	0,				/* (*bus_unconfig)(); */
 	pci_fm_init_child,		/* (*bus_fm_init)(); */
-	NULL,				/* (*bus_fm_fini)(); */
+	0,				/* (*bus_fm_fini)(); */
 	pci_bus_enter,			/* (*bus_fm_access_enter)(); */
 	pci_bus_exit,			/* (*bus_fm_access_fini)(); */
-	NULL,				/* (*bus_power)(); */
+	0,				/* (*bus_power)(); */
 	pci_intr_ops			/* (*bus_intr_op)(); */
 };
 
@@ -814,7 +814,7 @@ pci_dma_unbindhdl(dev_info_t *dip, dev_info_t *rdip, ddi_dma_handle_t handle)
 	mp->dmai_flags &= DMAI_FLAGS_PRESERVE;
 	SYNC_BUF_PA(mp) = 0;
 
-	mp->dmai_error.err_cf = NULL;
+	mp->dmai_error.err_cf = 0;
 	mp->dmai_ncookies = 0;
 	mp->dmai_curcookie = 0;
 

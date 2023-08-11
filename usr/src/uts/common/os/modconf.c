@@ -1030,7 +1030,7 @@ mod_installfs(struct modlfs *modl, struct modlinkage *modlp)
 			vswp->vsw_name = "";
 		}
 		vswp->vsw_flag = 0;
-		vswp->vsw_init = NULL;
+		vswp->vsw_init = 0;
 	}
 
 	/* We don't want to hold the vfssw[] write lock over a kmem_alloc() */
@@ -1094,7 +1094,7 @@ mod_removefs(struct modlfs *modl, struct modlinkage *modlp)
 	vswp->vsw_optproto.mo_count = 0;
 
 	vswp->vsw_flag = 0;
-	vswp->vsw_init = NULL;
+	vswp->vsw_init = 0;
 	vfs_unrefvfssw(vswp);
 	WUNLOCK_VFSSW();
 	return (0);
@@ -1285,7 +1285,7 @@ mod_removesched(struct modlsched *modl, struct modlinkage *modlp)
 	    !rw_tryenter(clp->cl_lock, RW_WRITER))
 		return (EBUSY);
 
-	clp->cl_init = NULL;
+	clp->cl_init = 0;
 	clp->cl_funcs = NULL;
 	rw_exit(clp->cl_lock);
 	return (0);
@@ -1372,8 +1372,8 @@ mod_removeexec(struct modlexec *modl, struct modlinkage *modlp)
 	if (moddebug & MODDEBUG_NOAUL_EXEC ||
 	    !rw_tryenter(eswp->exec_lock, RW_WRITER))
 		return (EBUSY);
-	eswp->exec_func = NULL;
-	eswp->exec_core = NULL;
+	eswp->exec_func = 0;
+	eswp->exec_core = 0;
 	rw_exit(eswp->exec_lock);
 	return (0);
 }

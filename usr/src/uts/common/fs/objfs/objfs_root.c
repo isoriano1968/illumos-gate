@@ -44,7 +44,7 @@ vnode_t *
 objfs_create_root(vfs_t *vfsp)
 {
 	vnode_t *vp = gfs_root_create(sizeof (objfs_rootnode_t), vfsp,
-	    objfs_ops_root, OBJFS_INO_ROOT, NULL, NULL, OBJFS_NAME_MAX,
+	    objfs_ops_root, OBJFS_INO_ROOT, NULL, 0, OBJFS_NAME_MAX,
 	    objfs_root_do_readdir, objfs_root_do_lookup);
 
 	return (vp);

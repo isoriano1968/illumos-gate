@@ -63,15 +63,15 @@ static crypto_control_ops_t n2rng_control_ops = {
 
 
 static crypto_random_number_ops_t n2rng_rng_ops = {
-	NULL,		/* seed_random */
+	0,		/* seed_random */
 	n2rng_random_number
 };
 
 static crypto_provider_management_ops_t n2rng_extinfo_op = {
 	ext_info,	/* ext_info */
-	NULL,		/* init_token */
-	NULL,		/* init_pin */
-	NULL,		/* set_pin */
+	0,		/* init_token */
+	0,		/* init_pin */
+	0,		/* set_pin */
 };
 
 static crypto_ops_t n2rng_ops = {

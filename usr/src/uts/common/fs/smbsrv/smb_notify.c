@@ -354,7 +354,7 @@ smb_notify_act3(smb_request_t *sr)
 	mutex_enter(&sr->sr_mutex);
 	ASSERT3P(sr->sr_worker, ==, NULL);
 	sr->sr_worker = curthread;
-	sr->cancel_method = NULL;
+	sr->cancel_method = 0;
 
 	list_remove(&nc->nc_waiters, sr);
 

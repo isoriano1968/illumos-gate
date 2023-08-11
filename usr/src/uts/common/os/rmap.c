@@ -32,7 +32,7 @@
 void *
 rmallocmap(size_t mapsize)
 {
-	return (vmem_create("rmap", NULL, 0, 1, NULL, NULL, NULL, 0,
+	return (vmem_create("rmap", NULL, 0, 1, 0, 0, NULL, 0,
 	    VM_NOSLEEP));
 }
 
@@ -40,7 +40,7 @@ rmallocmap(size_t mapsize)
 void *
 rmallocmap_wait(size_t mapsize)
 {
-	return (vmem_create("rmap", NULL, 0, 1, NULL, NULL, NULL, 0, VM_SLEEP));
+	return (vmem_create("rmap", NULL, 0, 1, 0, 0, NULL, 0, VM_SLEEP));
 }
 
 void

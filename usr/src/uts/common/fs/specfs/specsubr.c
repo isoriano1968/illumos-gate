@@ -796,7 +796,7 @@ specinit(int fstype, char *name)
 {
 	static const fs_operation_def_t spec_vfsops_template[] = {
 		VFSNAME_SYNC, { .vfs_sync = spec_sync },
-		NULL, NULL
+		NULL, 0
 	};
 	extern struct vnodeops *spec_vnodeops;
 	extern const fs_operation_def_t spec_vnodeops_template[];
@@ -827,7 +827,7 @@ specinit(int fstype, char *name)
 	 * Create snode cache
 	 */
 	snode_cache = kmem_cache_create("snode_cache", sizeof (struct snode),
-	    0, snode_constructor, snode_destructor, NULL, NULL, NULL, 0);
+	    0, snode_constructor, snode_destructor, 0, NULL, NULL, 0);
 
 	/*
 	 * Associate vfs operations with spec_vfs

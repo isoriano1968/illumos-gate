@@ -1463,7 +1463,7 @@ ibcm_close_rc_channel(ibt_channel_hdl_t channel, ibcm_state_data_t *statep,
 
 			/* a sanity setting */
 			if (mode == IBT_NOCALLBACKS)
-				statep->cm_handler = NULL;
+				statep->cm_handler = 0;
 			IBCM_REF_CNT_DECR(statep);
 
 			/*
@@ -1518,7 +1518,7 @@ ibcm_close_rc_channel(ibt_channel_hdl_t channel, ibcm_state_data_t *statep,
 				    IBCM_BLOCK)
 					cv_wait(&statep->block_client_cv,
 					    &statep->state_mutex);
-				statep->cm_handler = NULL; /* sanity setting */
+				statep->cm_handler = 0; /* sanity setting */
 				if (statep->close_ret_status)
 					*statep->close_ret_status =
 					    IBT_CM_CLOSED_ALREADY;
@@ -1568,7 +1568,7 @@ ibcm_close_rc_channel(ibt_channel_hdl_t channel, ibcm_state_data_t *statep,
 
 	if (mode == IBT_NOCALLBACKS) {
 		statep->close_nocb_state = IBCM_FAIL;
-		statep->cm_handler = NULL;
+		statep->cm_handler = 0;
 		ibtl_cm_chan_is_closing(statep->channel);
 		IBTF_DPRINTF_L4(cmlog, "ibcm_close_rc_channel: "
 		    "NOCALLBACKS on in statep = %p", statep);
@@ -2574,7 +2574,7 @@ ibcm_rem_stale_srec(ibmf_saa_handle_t saa_handle, sa_service_record_t *srec)
 	access_args.sq_component_mask = component_mask;
 	access_args.sq_template = srec;
 	access_args.sq_template_length = sizeof (sa_service_record_t);
-	access_args.sq_callback = NULL;
+	access_args.sq_callback = 0;
 	access_args.sq_callback_arg = NULL;
 
 	retval = ibcm_contact_sa_access(saa_handle, &access_args, &length,
@@ -3577,7 +3577,7 @@ ibt_query_ar(ib_gid_t *sgid, ibt_ar_t *queryp, ibt_ar_t *resultp)
 	access_args.sq_component_mask = component_mask;
 	access_args.sq_template = &svcrec_req;
 	access_args.sq_template_length = sizeof (sa_service_record_t);
-	access_args.sq_callback = NULL;
+	access_args.sq_callback = 0;
 	access_args.sq_callback_arg = NULL;
 
 	retval = ibcm_contact_sa_access(saa_handle, &access_args, &length,
@@ -5059,7 +5059,7 @@ ibcm_process_join_mcg(void *taskq_arg)
 	access_args.sq_component_mask = component_mask;
 	access_args.sq_template = &mcg_req;
 	access_args.sq_template_length = sizeof (sa_mcmember_record_t);
-	access_args.sq_callback = NULL;
+	access_args.sq_callback = 0;
 	access_args.sq_callback_arg = NULL;
 
 	retval = ibcm_contact_sa_access(saa_handle, &access_args, &length,
@@ -5279,7 +5279,7 @@ ibt_leave_mcg(ib_gid_t rgid, ib_gid_t mc_gid, ib_gid_t port_gid,
 	access_args.sq_component_mask = component_mask;
 	access_args.sq_template = &mcg_req;
 	access_args.sq_template_length = sizeof (sa_mcmember_record_t);
-	access_args.sq_callback = NULL;
+	access_args.sq_callback = 0;
 	access_args.sq_callback_arg = NULL;
 
 	ibcm_sa_access_enter();
@@ -5494,7 +5494,7 @@ ibt_query_mcg(ib_gid_t rgid, ibt_mcg_attr_t *mcg_attr, uint_t mcgs_max_num,
 	access_args.sq_component_mask = component_mask;
 	access_args.sq_template = &mcg_req;
 	access_args.sq_template_length = sizeof (sa_mcmember_record_t);
-	access_args.sq_callback = NULL;
+	access_args.sq_callback = 0;
 	access_args.sq_callback_arg = NULL;
 
 	retval = ibcm_contact_sa_access(saa_handle, &access_args, &length,
@@ -5901,7 +5901,7 @@ ibcm_get_node_rec(ibmf_saa_handle_t saa_handle, sa_node_record_t *nr_req,
 	args.sq_access_type = IBMF_SAA_RETRIEVE;
 	args.sq_template_length = sizeof (sa_node_record_t);
 	args.sq_component_mask = component_mask;
-	args.sq_callback = NULL;
+	args.sq_callback = 0;
 	args.sq_callback_arg = NULL;
 
 	retval = ibcm_contact_sa_access(saa_handle, &args, &length, result_p);

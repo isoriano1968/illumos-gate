@@ -340,15 +340,15 @@ err:
 }
 
 static dtrace_pops_t sdt_pops = {
-	NULL,
+	0,
 	sdt_provide_module,
 	sdt_enable,
 	sdt_disable,
-	NULL,
-	NULL,
+	0,
+	0,
 	sdt_getargdesc,
-	NULL,
-	NULL,
+	0,
+	0,
 	sdt_destroy
 };
 
@@ -380,7 +380,7 @@ sdt_attach(dev_info_t *devi, ddi_attach_cmd_t cmd)
 
 		if (prov->sdtp_priv == DTRACE_PRIV_NONE) {
 			priv = DTRACE_PRIV_KERNEL;
-			sdt_pops.dtps_mode = NULL;
+			sdt_pops.dtps_mode = 0;
 		} else {
 			priv = prov->sdtp_priv;
 			ASSERT(priv == DTRACE_PRIV_USER);

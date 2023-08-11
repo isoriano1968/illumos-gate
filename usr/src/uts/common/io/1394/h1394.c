@@ -187,8 +187,8 @@ h1394_attach(h1394_halinfo_t *halinfo, ddi_attach_cmd_t cmd, void **sl_private)
 	cmd_size = sizeof (cmd1394_cmd_t) + sizeof (s1394_cmd_priv_t) +
 	    hal->halinfo.hal_overhead;
 
-	hal->hal_kmem_cachep = kmem_cache_create(buf, cmd_size, 8, NULL, NULL,
-	    NULL, NULL, NULL, 0);
+	hal->hal_kmem_cachep = kmem_cache_create(buf, cmd_size, 8, 0, 0,
+	    0, NULL, NULL, 0);
 
 	/* Setup the event stuff */
 	ret = nx1394_define_events(hal);

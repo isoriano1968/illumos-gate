@@ -326,7 +326,7 @@ struct dev_ops bd_dev_ops = {
 	nodev,			/* reset */
 	&bd_cb_ops,		/* driver operations */
 	NULL,			/* bus operations */
-	NULL,			/* power */
+	0,			/* power */
 	ddi_quiesce_not_needed,	/* quiesce */
 };
 
@@ -729,7 +729,7 @@ bd_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 	bd->d_dle_state = 0;
 
 	bd->d_cache = kmem_cache_create(kcache, sizeof (bd_xfer_impl_t), 8,
-	    bd_xfer_ctor, bd_xfer_dtor, NULL, bd, NULL, 0);
+	    bd_xfer_ctor, bd_xfer_dtor, 0, bd, NULL, 0);
 
 	bd->d_ksp = kstat_create(ddi_driver_name(dip), inst, NULL, "disk",
 	    KSTAT_TYPE_IO, 1, KSTAT_FLAG_PERSISTENT);
@@ -2564,11 +2564,11 @@ bd_mod_init(struct dev_ops *devops)
 	static struct bus_ops bd_bus_ops = {
 		BUSO_REV,		/* busops_rev */
 		nullbusmap,		/* bus_map */
-		NULL,			/* bus_get_intrspec (OBSOLETE) */
-		NULL,			/* bus_add_intrspec (OBSOLETE) */
-		NULL,			/* bus_remove_intrspec (OBSOLETE) */
+		0,			/* bus_get_intrspec (OBSOLETE) */
+		0,			/* bus_add_intrspec (OBSOLETE) */
+		0,			/* bus_remove_intrspec (OBSOLETE) */
 		i_ddi_map_fault,	/* bus_map_fault */
-		NULL,			/* bus_dma_map (OBSOLETE) */
+		0,			/* bus_dma_map (OBSOLETE) */
 		ddi_dma_allochdl,	/* bus_dma_allochdl */
 		ddi_dma_freehdl,	/* bus_dma_freehdl */
 		ddi_dma_bindhdl,	/* bus_dma_bindhdl */
@@ -2578,19 +2578,19 @@ bd_mod_init(struct dev_ops *devops)
 		ddi_dma_mctl,		/* bus_dma_ctl */
 		bd_bus_ctl,		/* bus_ctl */
 		ddi_bus_prop_op,	/* bus_prop_op */
-		NULL,			/* bus_get_eventcookie */
-		NULL,			/* bus_add_eventcall */
-		NULL,			/* bus_remove_eventcall */
-		NULL,			/* bus_post_event */
-		NULL,			/* bus_intr_ctl (OBSOLETE) */
-		NULL,			/* bus_config */
-		NULL,			/* bus_unconfig */
-		NULL,			/* bus_fm_init */
-		NULL,			/* bus_fm_fini */
-		NULL,			/* bus_fm_access_enter */
-		NULL,			/* bus_fm_access_exit */
-		NULL,			/* bus_power */
-		NULL,			/* bus_intr_op */
+		0,			/* bus_get_eventcookie */
+		0,			/* bus_add_eventcall */
+		0,			/* bus_remove_eventcall */
+		0,			/* bus_post_event */
+		0,			/* bus_intr_ctl (OBSOLETE) */
+		0,			/* bus_config */
+		0,			/* bus_unconfig */
+		0,			/* bus_fm_init */
+		0,			/* bus_fm_fini */
+		0,			/* bus_fm_access_enter */
+		0,			/* bus_fm_access_exit */
+		0,			/* bus_power */
+		0,			/* bus_intr_op */
 	};
 
 	devops->devo_bus_ops = &bd_bus_ops;

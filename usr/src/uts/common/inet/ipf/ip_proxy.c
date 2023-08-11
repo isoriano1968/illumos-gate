@@ -126,19 +126,19 @@ int		ipf_proxy_debug = 2;
 static aproxy_t	lcl_ap_proxies[] = {
 #ifdef	IPF_FTP_PROXY
 	{ NULL, "ftp", (char)IPPROTO_TCP, 0, 0, NULL, ippr_ftp_init, ippr_ftp_fini,
-	  ippr_ftp_new, NULL, ippr_ftp_in, ippr_ftp_out, NULL },
+	  ippr_ftp_new, 0, ippr_ftp_in, ippr_ftp_out, 0 },
 #endif
 #ifdef	IPF_IRC_PROXY
 	{ NULL, "irc", (char)IPPROTO_TCP, 0, 0, NULL, ippr_irc_init, ippr_irc_fini,
-	  ippr_irc_new, NULL, NULL, ippr_irc_out, NULL, NULL },
+	  ippr_irc_new, 0, 0, ippr_irc_out, 0, 0 },
 #endif
 #ifdef	IPF_RCMD_PROXY
 	{ NULL, "rcmd", (char)IPPROTO_TCP, 0, 0, NULL, ippr_rcmd_init, ippr_rcmd_fini,
-	  ippr_rcmd_new, NULL, ippr_rcmd_in, ippr_rcmd_out, NULL, NULL },
+	  ippr_rcmd_new, 0, ippr_rcmd_in, ippr_rcmd_out, 0, 0 },
 #endif
 #ifdef	IPF_RAUDIO_PROXY
 	{ NULL, "raudio", (char)IPPROTO_TCP, 0, 0, NULL, ippr_raudio_init, ippr_raudio_fini,
-	  ippr_raudio_new, NULL, ippr_raudio_in, ippr_raudio_out, NULL, NULL },
+	  ippr_raudio_new, 0, ippr_raudio_in, ippr_raudio_out, 0, 0 },
 #endif
 #ifdef	IPF_MSNRPC_PROXY
 	{ NULL, "msnrpc", (char)IPPROTO_TCP, 0, 0, NULL, ippr_msnrpc_init, ippr_msnrpc_fini,
@@ -146,23 +146,23 @@ static aproxy_t	lcl_ap_proxies[] = {
 #endif
 #ifdef	IPF_NETBIOS_PROXY
 	{ NULL, "netbios", (char)IPPROTO_UDP, 0, 0, NULL, ippr_netbios_init, ippr_netbios_fini,
-	  NULL, NULL, NULL, ippr_netbios_out, NULL, NULL },
+	  0, 0, 0, ippr_netbios_out, 0, 0 },
 #endif
 #ifdef	IPF_IPSEC_PROXY
 	{ NULL, "ipsec", (char)IPPROTO_UDP, 0, 0, NULL,
 	  ippr_ipsec_init, ippr_ipsec_fini, ippr_ipsec_new, ippr_ipsec_del,
-	  ippr_ipsec_inout, ippr_ipsec_inout, ippr_ipsec_match, NULL },
+	  ippr_ipsec_inout, ippr_ipsec_inout, ippr_ipsec_match, 0 },
 #endif
 #ifdef	IPF_PPTP_PROXY
 	{ NULL, "pptp", (char)IPPROTO_TCP, 0, 0, NULL,
 	  ippr_pptp_init, ippr_pptp_fini, ippr_pptp_new, ippr_pptp_del,
-	  ippr_pptp_inout, ippr_pptp_inout, NULL, NULL },
+	  ippr_pptp_inout, ippr_pptp_inout, 0, 0 },
 #endif
 #ifdef  IPF_H323_PROXY
 	{ NULL, "h323", (char)IPPROTO_TCP, 0, 0, NULL, ippr_h323_init, ippr_h323_fini,
-	  ippr_h323_new, ippr_h323_del, ippr_h323_in, NULL, NULL },
-	{ NULL, "h245", (char)IPPROTO_TCP, 0, 0, NULL, NULL, NULL,
-	  ippr_h245_new, NULL, NULL, ippr_h245_out, NULL },
+	  ippr_h323_new, ippr_h323_del, ippr_h323_in, 0, 0 },
+	{ NULL, "h245", (char)IPPROTO_TCP, 0, 0, NULL, 0, 0,
+	  ippr_h245_new, 0, 0, ippr_h245_out, 0 },
 #endif
 #ifdef	IPF_RPCB_PROXY
 # if 0
@@ -172,9 +172,9 @@ static aproxy_t	lcl_ap_proxies[] = {
 # endif
 	{ NULL, "rpcbu", (char)IPPROTO_UDP, 0, 0, NULL,
 	  ippr_rpcb_init, ippr_rpcb_fini, ippr_rpcb_new, ippr_rpcb_del,
-	  ippr_rpcb_in, ippr_rpcb_out, NULL, NULL },
+	  ippr_rpcb_in, ippr_rpcb_out, 0, 0 },
 #endif
-	{ NULL, "", '\0', 0, 0, NULL, NULL, NULL, NULL, NULL }
+	{ NULL, "", '\0', 0, 0, NULL, 0, 0, 0, 0 }
 };
 
 /*

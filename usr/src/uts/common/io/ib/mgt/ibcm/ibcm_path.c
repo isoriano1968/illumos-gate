@@ -415,7 +415,7 @@ ibt_get_paths(ibt_clnt_hdl_t ibt_hdl, ibt_path_flags_t flags,
 		return (IBT_SUCCESS);
 
 	retval = ibcm_handle_get_path(attrp, flags, max_paths, paths,
-	    num_paths_p, NULL, NULL);
+	    num_paths_p, 0, NULL);
 
 	if (retval == IBT_SUCCESS)
 		ibcm_path_cache_add(flags, attrp, max_paths, paths);
@@ -1289,7 +1289,7 @@ ibcm_get_single_pathrec(ibcm_path_tqargs_t *p_arg, ibtl_cm_port_list_t *sl,
 			access_args.sq_template_length =
 			    sizeof (sa_path_record_t);
 			access_args.sq_component_mask = c_mask;
-			access_args.sq_callback = NULL;
+			access_args.sq_callback = 0;
 			access_args.sq_callback_arg = NULL;
 
 			retval = ibcm_contact_sa_access(saa_handle,
@@ -1566,7 +1566,7 @@ ibcm_get_multi_pathrec(ibcm_path_tqargs_t *p_arg, ibtl_cm_port_list_t *sl,
 	access_args.sq_component_mask = c_mask;
 	access_args.sq_template = mpr_req;
 	access_args.sq_template_length = sizeof (sa_multipath_record_t);
-	access_args.sq_callback = NULL;
+	access_args.sq_callback = 0;
 	access_args.sq_callback_arg = NULL;
 
 	retval = ibcm_contact_sa_access(sl->p_saa_hdl, &access_args, &length,
@@ -2096,7 +2096,7 @@ ibcm_saa_service_rec(ibcm_path_tqargs_t *p_arg, ibtl_cm_port_list_t *sl,
 	access_args.sq_component_mask = component_mask;
 	access_args.sq_template = &svcrec_req;
 	access_args.sq_template_length = sizeof (sa_service_record_t);
-	access_args.sq_callback = NULL;
+	access_args.sq_callback = 0;
 	access_args.sq_callback_arg = NULL;
 
 	for (s = 0; s < sl->p_count; s++) {
@@ -2914,7 +2914,7 @@ get_alt_proceed:
 	access_args.sq_component_mask = c_mask;
 	access_args.sq_template = mpr_req;
 	access_args.sq_template_length = sizeof (sa_multipath_record_t);
-	access_args.sq_callback = NULL;
+	access_args.sq_callback = 0;
 	access_args.sq_callback_arg = NULL;
 
 	retval = ibcm_contact_sa_access(saa_handle, &access_args, &length,
@@ -3301,7 +3301,7 @@ ibcm_get_ip_spr(ibcm_ip_path_tqargs_t *p_arg, ibtl_cm_port_list_t *sl,
 			access_args.sq_template_length =
 			    sizeof (sa_path_record_t);
 			access_args.sq_component_mask = c_mask;
-			access_args.sq_callback = NULL;
+			access_args.sq_callback = 0;
 			access_args.sq_callback_arg = NULL;
 
 			retval = ibcm_contact_sa_access(saa_handle,
@@ -3554,7 +3554,7 @@ ibcm_get_ip_mpr(ibcm_ip_path_tqargs_t *p_arg, ibtl_cm_port_list_t *sl,
 	access_args.sq_component_mask = c_mask;
 	access_args.sq_template = mpr_req;
 	access_args.sq_template_length = sizeof (sa_multipath_record_t);
-	access_args.sq_callback = NULL;
+	access_args.sq_callback = 0;
 	access_args.sq_callback_arg = NULL;
 
 	retval = ibcm_contact_sa_access(sl->p_saa_hdl, &access_args, &length,
@@ -4237,7 +4237,7 @@ ibt_get_ip_paths(ibt_clnt_hdl_t ibt_hdl, ibt_path_flags_t flags,
 		*num_paths_p = 0;
 
 	return (ibcm_get_ip_path(ibt_hdl, flags, attrp, paths, num_paths_p,
-	    src_ip_p, NULL, NULL));
+	    src_ip_p, 0, NULL));
 }
 
 
@@ -4591,7 +4591,7 @@ get_ip_alt_proceed:
 	access_args.sq_component_mask = c_mask;
 	access_args.sq_template = mpr_req;
 	access_args.sq_template_length = sizeof (sa_multipath_record_t);
-	access_args.sq_callback = NULL;
+	access_args.sq_callback = 0;
 	access_args.sq_callback_arg = NULL;
 
 	retval = ibcm_contact_sa_access(saa_handle, &access_args, &length,

@@ -76,7 +76,7 @@ int fsem_err();
 
 
 #define	_FEMOPDEF(name, member)  \
-	{ VOPNAME_##name, offsetof(fem_t, femop_##member), NULL, fem_err }
+	{ VOPNAME_##name, offsetof(fem_t, femop_##member), 0, fem_err }
 
 static fs_operation_trans_def_t	fem_opdef[] = {
 	_FEMOPDEF(OPEN,		open),
@@ -125,7 +125,7 @@ static fs_operation_trans_def_t	fem_opdef[] = {
 	_FEMOPDEF(VNEVENT,	vnevent),
 	_FEMOPDEF(REQZCBUF,	reqzcbuf),
 	_FEMOPDEF(RETZCBUF,	retzcbuf),
-	{ NULL, 0, NULL, NULL }
+	{ NULL, 0, 0, 0 }
 };
 
 
@@ -179,12 +179,12 @@ static struct fs_operation_def fem_guard_ops[] = {
 	_FEMGUARD(VNEVENT,	vnevent),
 	_FEMGUARD(REQZCBUF,	reqzcbuf),
 	_FEMGUARD(RETZCBUF,	retzcbuf),
-	{ NULL, NULL }
+	{ NULL, 0 }
 };
 
 
 #define	_FSEMOPDEF(name, member)  \
-	{ VFSNAME_##name, offsetof(fsem_t, fsemop_##member), NULL, fsem_err }
+	{ VFSNAME_##name, offsetof(fsem_t, fsemop_##member), 0, fsem_err }
 
 static fs_operation_trans_def_t fsem_opdef[] = {
 	_FSEMOPDEF(MOUNT,	mount),
@@ -196,7 +196,7 @@ static fs_operation_trans_def_t fsem_opdef[] = {
 	_FSEMOPDEF(MOUNTROOT,	mountroot),
 	_FSEMOPDEF(FREEVFS,	freevfs),
 	_FSEMOPDEF(VNSTATE,	vnstate),
-	{ NULL, 0, NULL, NULL }
+	{ NULL, 0, 0, 0 }
 };
 
 #define	_FSEMGUARD(name, ignore)  \
@@ -212,7 +212,7 @@ static struct fs_operation_def fsem_guard_ops[] = {
 	_FSEMGUARD(MOUNTROOT,	mountroot),
 	_FSEMGUARD(FREEVFS,	freevfs),
 	_FSEMGUARD(VNSTATE,	vnstate),
-	{ NULL, NULL}
+	{ NULL, 0}
 };
 
 
@@ -2006,7 +2006,7 @@ static struct fs_operation_def fhead_vn_spec[] = {
 	{ VOPNAME_VNEVENT, (femop_t *)vhead_vnevent },
 	{ VOPNAME_REQZCBUF, (femop_t *)vhead_reqzcbuf },
 	{ VOPNAME_RETZCBUF, (femop_t *)vhead_retzcbuf },
-	{	NULL,	NULL	}
+	{	NULL,	0	}
 };
 
 /*
@@ -2024,7 +2024,7 @@ static struct fs_operation_def fshead_vfs_spec[]  = {
 	{ VFSNAME_MOUNTROOT, (femop_t *)fshead_mountroot },
 	{ VFSNAME_FREEVFS, (femop_t *)fshead_freevfs },
 	{ VFSNAME_VNSTATE, (femop_t *)fshead_vnstate },
-	{	NULL,	NULL	}
+	{	NULL,	0	}
 };
 
 /*
@@ -2047,7 +2047,7 @@ static struct fs_operation_def fshead_vfs_spec[]  = {
 int
 vnext_open(femarg_t *vf, int mode, cred_t *cr, caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2062,7 +2062,7 @@ int
 vnext_close(femarg_t *vf, int flag, int count, offset_t offset, cred_t *cr,
     caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2077,7 +2077,7 @@ int
 vnext_read(femarg_t *vf, uio_t *uiop, int ioflag, cred_t *cr,
     caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2092,7 +2092,7 @@ int
 vnext_write(femarg_t *vf, uio_t *uiop, int ioflag, cred_t *cr,
     caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2107,7 +2107,7 @@ int
 vnext_ioctl(femarg_t *vf, int cmd, intptr_t arg, int flag, cred_t *cr,
     int *rvalp, caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2122,7 +2122,7 @@ int
 vnext_setfl(femarg_t *vf, int oflags, int nflags, cred_t *cr,
     caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2137,7 +2137,7 @@ int
 vnext_getattr(femarg_t *vf, vattr_t *vap, int flags, cred_t *cr,
     caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2152,7 +2152,7 @@ int
 vnext_setattr(femarg_t *vf, vattr_t *vap, int flags, cred_t *cr,
     caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2167,7 +2167,7 @@ int
 vnext_access(femarg_t *vf, int mode, int flags, cred_t *cr,
     caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2183,7 +2183,7 @@ vnext_lookup(femarg_t *vf, char *nm, vnode_t **vpp, pathname_t *pnp,
     int flags, vnode_t *rdir, cred_t *cr, caller_context_t *ct,
     int *direntflags, pathname_t *realpnp)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2200,7 +2200,7 @@ vnext_create(femarg_t *vf, char *name, vattr_t *vap, vcexcl_t excl,
     int mode, vnode_t **vpp, cred_t *cr, int flag, caller_context_t *ct,
     vsecattr_t *vsecp)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2215,7 +2215,7 @@ int
 vnext_remove(femarg_t *vf, char *nm, cred_t *cr, caller_context_t *ct,
     int flags)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2230,7 +2230,7 @@ int
 vnext_link(femarg_t *vf, vnode_t *svp, char *tnm, cred_t *cr,
     caller_context_t *ct, int flags)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2245,7 +2245,7 @@ int
 vnext_rename(femarg_t *vf, char *snm, vnode_t *tdvp, char *tnm, cred_t *cr,
     caller_context_t *ct, int flags)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2260,7 +2260,7 @@ int
 vnext_mkdir(femarg_t *vf, char *dirname, vattr_t *vap, vnode_t **vpp,
     cred_t *cr, caller_context_t *ct, int flags, vsecattr_t *vsecp)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2275,7 +2275,7 @@ int
 vnext_rmdir(femarg_t *vf, char *nm, vnode_t *cdir, cred_t *cr,
     caller_context_t *ct, int flags)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2290,7 +2290,7 @@ int
 vnext_readdir(femarg_t *vf, uio_t *uiop, cred_t *cr, int *eofp,
     caller_context_t *ct, int flags)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2305,7 +2305,7 @@ int
 vnext_symlink(femarg_t *vf, char *linkname, vattr_t *vap, char *target,
     cred_t *cr, caller_context_t *ct, int flags)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2319,7 +2319,7 @@ vnext_symlink(femarg_t *vf, char *linkname, vattr_t *vap, char *target,
 int
 vnext_readlink(femarg_t *vf, uio_t *uiop, cred_t *cr, caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2333,7 +2333,7 @@ vnext_readlink(femarg_t *vf, uio_t *uiop, cred_t *cr, caller_context_t *ct)
 int
 vnext_fsync(femarg_t *vf, int syncflag, cred_t *cr, caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2347,7 +2347,7 @@ vnext_fsync(femarg_t *vf, int syncflag, cred_t *cr, caller_context_t *ct)
 void
 vnext_inactive(femarg_t *vf, cred_t *cr, caller_context_t *ct)
 {
-	void (*func)() = NULL;
+	void (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2361,7 +2361,7 @@ vnext_inactive(femarg_t *vf, cred_t *cr, caller_context_t *ct)
 int
 vnext_fid(femarg_t *vf, fid_t *fidp, caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2375,7 +2375,7 @@ vnext_fid(femarg_t *vf, fid_t *fidp, caller_context_t *ct)
 int
 vnext_rwlock(femarg_t *vf, int write_lock, caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2389,7 +2389,7 @@ vnext_rwlock(femarg_t *vf, int write_lock, caller_context_t *ct)
 void
 vnext_rwunlock(femarg_t *vf, int write_lock, caller_context_t *ct)
 {
-	void (*func)() = NULL;
+	void (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2403,7 +2403,7 @@ vnext_rwunlock(femarg_t *vf, int write_lock, caller_context_t *ct)
 int
 vnext_seek(femarg_t *vf, offset_t ooff, offset_t *noffp, caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2417,7 +2417,7 @@ vnext_seek(femarg_t *vf, offset_t ooff, offset_t *noffp, caller_context_t *ct)
 int
 vnext_cmp(femarg_t *vf, vnode_t *vp2, caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2433,7 +2433,7 @@ vnext_frlock(femarg_t *vf, int cmd, struct flock64 *bfp, int flag,
     offset_t offset, struct flk_callback *flk_cbp, cred_t *cr,
     caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2448,7 +2448,7 @@ int
 vnext_space(femarg_t *vf, int cmd, struct flock64 *bfp, int flag,
     offset_t offset, cred_t *cr, caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2462,7 +2462,7 @@ vnext_space(femarg_t *vf, int cmd, struct flock64 *bfp, int flag,
 int
 vnext_realvp(femarg_t *vf, vnode_t **vpp, caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2478,7 +2478,7 @@ vnext_getpage(femarg_t *vf, offset_t off, size_t len, uint_t *protp,
     struct page **plarr, size_t plsz, struct seg *seg, caddr_t addr,
     enum seg_rw rw, cred_t *cr, caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2494,7 +2494,7 @@ int
 vnext_putpage(femarg_t *vf, offset_t off, size_t len, int flags,
     cred_t *cr, caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2510,7 +2510,7 @@ vnext_map(femarg_t *vf, offset_t off, struct as *as, caddr_t *addrp,
     size_t len, uchar_t prot, uchar_t maxprot, uint_t flags,
     cred_t *cr, caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2527,7 +2527,7 @@ vnext_addmap(femarg_t *vf, offset_t off, struct as *as, caddr_t addr,
     size_t len, uchar_t prot, uchar_t maxprot, uint_t flags,
     cred_t *cr, caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2544,7 +2544,7 @@ vnext_delmap(femarg_t *vf, offset_t off, struct as *as, caddr_t addr,
     size_t len, uint_t prot, uint_t maxprot, uint_t flags,
     cred_t *cr, caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2560,7 +2560,7 @@ int
 vnext_poll(femarg_t *vf, short events, int anyyet, short *reventsp,
     struct pollhead **phpp, caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2575,7 +2575,7 @@ int
 vnext_dump(femarg_t *vf, caddr_t addr, offset_t lbdn, offset_t dblks,
     caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2590,7 +2590,7 @@ int
 vnext_pathconf(femarg_t *vf, int cmd, ulong_t *valp, cred_t *cr,
     caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2605,7 +2605,7 @@ int
 vnext_pageio(femarg_t *vf, struct page *pp, u_offset_t io_off,
     size_t io_len, int flags, cred_t *cr, caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2619,7 +2619,7 @@ vnext_pageio(femarg_t *vf, struct page *pp, u_offset_t io_off,
 int
 vnext_dumpctl(femarg_t *vf, int action, offset_t *blkp, caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2634,7 +2634,7 @@ void
 vnext_dispose(femarg_t *vf, struct page *pp, int flag, int dn, cred_t *cr,
     caller_context_t *ct)
 {
-	void (*func)() = NULL;
+	void (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2649,7 +2649,7 @@ int
 vnext_setsecattr(femarg_t *vf, vsecattr_t *vsap, int flag, cred_t *cr,
     caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2664,7 +2664,7 @@ int
 vnext_getsecattr(femarg_t *vf, vsecattr_t *vsap, int flag, cred_t *cr,
     caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2679,7 +2679,7 @@ int
 vnext_shrlock(femarg_t *vf, int cmd, struct shrlock *shr, int flag,
     cred_t *cr, caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2694,7 +2694,7 @@ int
 vnext_vnevent(femarg_t *vf, vnevent_t vnevent, vnode_t *dvp, char *cname,
     caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2709,7 +2709,7 @@ int
 vnext_reqzcbuf(femarg_t *vf, enum uio_rw ioflag, xuio_t *xuiop, cred_t *cr,
     caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2723,7 +2723,7 @@ vnext_reqzcbuf(femarg_t *vf, enum uio_rw ioflag, xuio_t *xuiop, cred_t *cr,
 int
 vnext_retzcbuf(femarg_t *vf, xuio_t *xuiop, cred_t *cr, caller_context_t *ct)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2737,7 +2737,7 @@ vnext_retzcbuf(femarg_t *vf, xuio_t *xuiop, cred_t *cr, caller_context_t *ct)
 int
 vfsnext_mount(fsemarg_t *vf, vnode_t *mvp, struct mounta *uap, cred_t *cr)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2751,7 +2751,7 @@ vfsnext_mount(fsemarg_t *vf, vnode_t *mvp, struct mounta *uap, cred_t *cr)
 int
 vfsnext_unmount(fsemarg_t *vf, int flag, cred_t *cr)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2765,7 +2765,7 @@ vfsnext_unmount(fsemarg_t *vf, int flag, cred_t *cr)
 int
 vfsnext_root(fsemarg_t *vf, vnode_t **vpp)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2779,7 +2779,7 @@ vfsnext_root(fsemarg_t *vf, vnode_t **vpp)
 int
 vfsnext_statvfs(fsemarg_t *vf, statvfs64_t *sp)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2793,7 +2793,7 @@ vfsnext_statvfs(fsemarg_t *vf, statvfs64_t *sp)
 int
 vfsnext_sync(fsemarg_t *vf, short flag, cred_t *cr)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2807,7 +2807,7 @@ vfsnext_sync(fsemarg_t *vf, short flag, cred_t *cr)
 int
 vfsnext_vget(fsemarg_t *vf, vnode_t **vpp, fid_t *fidp)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2821,7 +2821,7 @@ vfsnext_vget(fsemarg_t *vf, vnode_t **vpp, fid_t *fidp)
 int
 vfsnext_mountroot(fsemarg_t *vf, enum whymountroot reason)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2835,7 +2835,7 @@ vfsnext_mountroot(fsemarg_t *vf, enum whymountroot reason)
 void
 vfsnext_freevfs(fsemarg_t *vf)
 {
-	void (*func)() = NULL;
+	void (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2849,7 +2849,7 @@ vfsnext_freevfs(fsemarg_t *vf)
 int
 vfsnext_vnstate(fsemarg_t *vf, vnode_t *vp, vntrans_t nstate)
 {
-	int (*func)() = NULL;
+	int (*func)() = 0;
 	void *arg0 = NULL;
 
 	ASSERT(vf != NULL);
@@ -2923,8 +2923,8 @@ femlist_construct(void *baseops, int type, int numnodes)
 	sp->feml_nodes[0] = FEM_GUARD(type);
 	sp->feml_nodes[1].fn_op.anon = baseops;
 	sp->feml_nodes[1].fn_available = NULL;
-	sp->feml_nodes[1].fn_av_hold = NULL;
-	sp->feml_nodes[1].fn_av_rele = NULL;
+	sp->feml_nodes[1].fn_av_hold = 0;
+	sp->feml_nodes[1].fn_av_rele = 0;
 	sp->feml_tos = 1;
 	return (sp);
 }
@@ -3556,31 +3556,31 @@ fem_init()
 	fi = femtype + FEMTYPE_NULL;
 	fi->errf = fem_err;
 	fi->guard.fn_available = (void *)&fi->guard;
-	fi->guard.fn_av_hold = NULL;
-	fi->guard.fn_av_rele = NULL;
+	fi->guard.fn_av_hold = 0;
+	fi->guard.fn_av_rele = 0;
 	fi->guard.fn_op.anon = NULL;
 
 	fi = femtype + FEMTYPE_VNODE;
 	fi->errf = fem_err;
 	fi->head.fn_available = NULL;
-	fi->head.fn_av_hold = NULL;
-	fi->head.fn_av_rele = NULL;
+	fi->head.fn_av_hold = 0;
+	fi->head.fn_av_rele = 0;
 	(void) vn_make_ops("fem-head", fhead_vn_spec, &fi->head.fn_op.vnode);
 	fi->guard.fn_available = (void *)&fi->guard;
-	fi->guard.fn_av_hold = NULL;
-	fi->guard.fn_av_rele = NULL;
+	fi->guard.fn_av_hold = 0;
+	fi->guard.fn_av_rele = 0;
 	(void) fem_create("fem-guard", fem_guard_ops, &fi->guard.fn_op.fem);
 
 	fi = femtype + FEMTYPE_VFS;
 	fi->errf = fsem_err;
 	fi->head.fn_available = NULL;
-	fi->head.fn_av_hold = NULL;
-	fi->head.fn_av_rele = NULL;
+	fi->head.fn_av_hold = 0;
+	fi->head.fn_av_rele = 0;
 	(void) vfs_makefsops(fshead_vfs_spec, &fi->head.fn_op.vfs);
 
 	fi->guard.fn_available = (void *)&fi->guard;
-	fi->guard.fn_av_hold = NULL;
-	fi->guard.fn_av_rele = NULL;
+	fi->guard.fn_av_hold = 0;
+	fi->guard.fn_av_rele = 0;
 	(void) fsem_create("fem-guard", fsem_guard_ops, &fi->guard.fn_op.fsem);
 }
 

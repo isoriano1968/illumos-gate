@@ -216,7 +216,7 @@ init_core(void)
 	 * initialize the zsd key.
 	 */
 	if (INGLOBALZONE(curproc)) {
-		zone_key_create(&core_zone_key, core_init_zone, NULL,
+		zone_key_create(&core_zone_key, core_init_zone, 0,
 		    core_free_zone);
 	}
 

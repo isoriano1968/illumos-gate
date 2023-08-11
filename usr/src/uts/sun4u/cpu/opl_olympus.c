@@ -2164,7 +2164,7 @@ cpu_mp_init(void)
 	cyc_omni_handler_t hdlr;
 
 	hdlr.cyo_online = opl_ras_online;
-	hdlr.cyo_offline = NULL;
+	hdlr.cyo_offline = 0;
 	hdlr.cyo_arg = NULL;
 	mutex_enter(&cpu_lock);
 	(void) cyclic_add_omni(&hdlr);

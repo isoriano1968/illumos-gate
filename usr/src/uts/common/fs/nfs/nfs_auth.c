@@ -201,7 +201,7 @@ void
 nfsauth_init(void)
 {
 	exi_cache_handle = kmem_cache_create("exi_cache_handle",
-	    sizeof (struct auth_cache), 0, NULL, NULL,
+	    sizeof (struct auth_cache), 0, 0, 0,
 	    exi_cache_reclaim, NULL, NULL, 0);
 }
 

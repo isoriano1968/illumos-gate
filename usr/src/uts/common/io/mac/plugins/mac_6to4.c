@@ -113,7 +113,7 @@ static mactype_ops_t	mac_6to4_type_ops = {
 	mac_ipv4_header,
 	mac_ipv4_header_info,
 	mac_ipv4_pdata_verify,
-	NULL,
-	NULL,
-	NULL
+	0,
+	0,
+	0
 };

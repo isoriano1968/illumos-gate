@@ -109,7 +109,7 @@ static crypto_cipher_ops_t rc4_cipher_ops = {
 static int rc4_free_context(crypto_ctx_t *);
 
 static crypto_ctx_ops_t rc4_ctx_ops = {
-	NULL,
+	0,
 	rc4_free_context
 };
 

@@ -175,7 +175,7 @@ static struct dev_ops devops = {
 	nodev,			/* devo_reset */
 	&cbops,			/* devo_cb_ops */
 	NULL,			/* devo_bus_ops */
-	NULL,			/* devo_power */
+	0,			/* devo_power */
 	ddi_quiesce_not_needed,		/* devo_quiesce */
 };
 
@@ -1033,7 +1033,7 @@ static int dprov_free_mechanism(crypto_provider_handle_t,
     crypto_mechanism_t *);
 
 static crypto_ctx_ops_t dprov_ctx_ops = {
-	NULL,
+	0,
 	dprov_free_context
 };
 
@@ -1843,10 +1843,10 @@ dprov_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 	dprov_prov_info.pi_provider_handle = softc;
 
 	if (dprov_no_multipart) { /* Export only single part */
-		dprov_digest_ops.digest_update = NULL;
-		dprov_digest_ops.digest_key = NULL;
-		dprov_digest_ops.digest_final = NULL;
-		dprov_object_ops.object_create = NULL;
+		dprov_digest_ops.digest_update = 0;
+		dprov_digest_ops.digest_key = 0;
+		dprov_digest_ops.digest_final = 0;
+		dprov_object_ops.object_create = 0;
 	}
 
 	if ((ret = crypto_register_provider(&dprov_prov_info,

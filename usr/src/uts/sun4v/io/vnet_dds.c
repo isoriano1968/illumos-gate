@@ -1087,7 +1087,7 @@ vdds_create_new_node(vdds_cb_arg_t *cbap, dev_info_t *pdip,
 	br.arg = (void *)cbap;
 	br.type = DEVI_BRANCH_SID;
 	br.create.sid_branch_create = new_node_func;
-	br.devi_branch_callback = NULL;
+	br.devi_branch_callback = 0;
 
 	if (pdip == NULL) {
 		pdip = ddi_root_node();

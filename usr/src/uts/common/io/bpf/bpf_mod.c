@@ -219,7 +219,7 @@ bpf_detach(dev_info_t *dip, ddi_detach_cmd_t cmd)
 			return (DDI_FAILURE);
 		net_instance_free(bpf_inst);
 
-		ipnet_set_itap(NULL);
+		ipnet_set_itap(0);
 		error = bpfilterdetach();
 		if (error != 0)
 			return (DDI_FAILURE);

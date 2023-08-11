@@ -215,7 +215,7 @@ emlxs_mb_resetport(emlxs_hba_t *hba, MAILBOXQ *mbq)
 
 	bzero((void *) mb4, MAILBOX_CMD_SLI4_BSIZE);
 	mbq->nonembed = NULL;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	/*
@@ -249,7 +249,7 @@ emlxs_mb_request_features(emlxs_hba_t *hba, MAILBOXQ *mbq, uint32_t mask)
 
 	bzero((void *) mb4, MAILBOX_CMD_SLI4_BSIZE);
 	mbq->nonembed = NULL;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	mb4->mbxCommand = MBX_REQUEST_FEATURES;
@@ -271,7 +271,7 @@ emlxs_mb_noop(emlxs_hba_t *hba, MAILBOXQ *mbq)
 
 	bzero((void *) mb4, MAILBOX_CMD_SLI4_BSIZE);
 	mbq->nonembed = NULL;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	/*
@@ -318,7 +318,7 @@ emlxs_mbext_noop(emlxs_hba_t *hba, MAILBOXQ *mbq)
 	 */
 	mb4->un.varSLIConfig.be.embedded = 0;
 	mbq->nonembed = (void *)mp;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	mb4->mbxCommand = MBX_SLI_CONFIG;
@@ -348,7 +348,7 @@ emlxs_mb_eq_create(emlxs_hba_t *hba, MAILBOXQ *mbq, uint32_t num)
 
 	bzero((void *) mb4, MAILBOX_CMD_SLI4_BSIZE);
 	mbq->nonembed = NULL;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	/*
@@ -398,7 +398,7 @@ emlxs_mb_cq_create(emlxs_hba_t *hba, MAILBOXQ *mbq, uint32_t num)
 
 	bzero((void *) mb4, MAILBOX_CMD_SLI4_BSIZE);
 	mbq->nonembed = NULL;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	/*
@@ -493,7 +493,7 @@ emlxs_mb_get_port_name(emlxs_hba_t *hba, MAILBOXQ *mbq)
 
 	bzero((void *) mb4, MAILBOX_CMD_SLI4_BSIZE);
 	mbq->nonembed = NULL;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	mb4->un.varSLIConfig.be.embedded = 1;
@@ -534,7 +534,7 @@ emlxs_mb_get_sli4_params(emlxs_hba_t *hba, MAILBOXQ *mbq)
 
 	bzero((void *) mb4, MAILBOX_CMD_SLI4_BSIZE);
 	mbq->nonembed = NULL;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	mb4->un.varSLIConfig.be.embedded = 1;
@@ -565,7 +565,7 @@ emlxs_mb_get_extents_info(emlxs_hba_t *hba, MAILBOXQ *mbq, uint16_t type)
 
 	bzero((void *) mb4, MAILBOX_CMD_SLI4_BSIZE);
 	mbq->nonembed = NULL;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	mb4->un.varSLIConfig.be.embedded = 1;
@@ -604,7 +604,7 @@ emlxs_mb_get_extents(emlxs_hba_t *hba, MAILBOXQ *mbq, uint16_t type)
 
 	bzero((void *) mb4, MAILBOX_CMD_SLI4_BSIZE);
 	mbq->nonembed = NULL;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	mb4->un.varSLIConfig.be.embedded = 1;
@@ -644,7 +644,7 @@ emlxs_mb_alloc_extents(emlxs_hba_t *hba, MAILBOXQ *mbq, uint16_t type,
 
 	bzero((void *) mb4, MAILBOX_CMD_SLI4_BSIZE);
 	mbq->nonembed = NULL;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	mb4->un.varSLIConfig.be.embedded = 1;
@@ -686,7 +686,7 @@ emlxs_mb_dealloc_extents(emlxs_hba_t *hba, MAILBOXQ *mbq, uint16_t type)
 
 	bzero((void *) mb4, MAILBOX_CMD_SLI4_BSIZE);
 	mbq->nonembed = NULL;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	mb4->un.varSLIConfig.be.embedded = 1;
@@ -728,7 +728,7 @@ emlxs_mb_wq_create(emlxs_hba_t *hba, MAILBOXQ *mbq, uint32_t num)
 
 	bzero((void *) mb4, MAILBOX_CMD_SLI4_BSIZE);
 	mbq->nonembed = NULL;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	/*
@@ -815,7 +815,7 @@ emlxs_mb_rq_create(emlxs_hba_t *hba, MAILBOXQ *mbq, uint32_t num)
 
 	bzero((void *) mb4, MAILBOX_CMD_SLI4_BSIZE);
 	mbq->nonembed = NULL;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	/*
@@ -902,7 +902,7 @@ emlxs_mb_mq_create(emlxs_hba_t *hba, MAILBOXQ *mbq)
 
 	bzero((void *) mb4, MAILBOX_CMD_SLI4_BSIZE);
 	mbq->nonembed = NULL;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	/*
@@ -949,7 +949,7 @@ emlxs_mb_mq_create_ext(emlxs_hba_t *hba, MAILBOXQ *mbq)
 
 	bzero((void *) mb4, MAILBOX_CMD_SLI4_BSIZE);
 	mbq->nonembed = NULL;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	/*
@@ -1036,7 +1036,7 @@ emlxs_mb_async_event(emlxs_hba_t *hba, MAILBOXQ *mbq)
 	mb->mbxCommand = MBX_ASYNC_EVENT;
 	mb->mbxOwner = OWN_HOST;
 	mb->un.varWords[0] = hba->channel_els;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	return;
@@ -1054,7 +1054,7 @@ emlxs_mb_heartbeat(emlxs_hba_t *hba, MAILBOXQ *mbq)
 
 	mb->mbxCommand = MBX_HEARTBEAT;
 	mb->mbxOwner = OWN_HOST;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed for hbeat */
+	mbq->mbox_cmpl = 0; /* no cmpl needed for hbeat */
 	mbq->port = (void *)&PPORT;
 
 	return;
@@ -1137,7 +1137,7 @@ emlxs_mb_config_msi(emlxs_hba_t *hba, MAILBOXQ *mbq, uint32_t *intr_map,
 	}
 
 	mb->mbxOwner = OWN_HOST;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	return;
@@ -1218,7 +1218,7 @@ emlxs_mb_config_msix(emlxs_hba_t *hba, MAILBOXQ *mbq, uint32_t *intr_map,
 	}
 
 	mb->mbxOwner = OWN_HOST;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	return;
@@ -1240,7 +1240,7 @@ emlxs_mb_reset_ring(emlxs_hba_t *hba, MAILBOXQ *mbq, uint32_t ringno)
 	mb->mbxCommand = MBX_RESET_RING;
 	mb->un.varRstRing.ring_no = ringno;
 	mb->mbxOwner = OWN_HOST;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	return;
@@ -1295,7 +1295,7 @@ emlxs_mb_dump_vpd(emlxs_hba_t *hba, MAILBOXQ *mbq, uint32_t offset)
 		mb->mbxOwner = OWN_HOST;
 	}
 
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 } /* emlxs_mb_dump_vpd() */
@@ -1332,7 +1332,7 @@ emlxs_mb_dump_fcoe(emlxs_hba_t *hba, MAILBOXQ *mbq, uint32_t offset)
 
 	mb4->mbxOwner = OWN_HOST;
 
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 } /* emlxs_mb_dump_fcoe() */
@@ -1383,7 +1383,7 @@ emlxs_mb_dump(emlxs_hba_t *hba, MAILBOXQ *mbq, uint32_t offset, uint32_t words)
 		mb->mbxOwner = OWN_HOST;
 	}
 
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	return;
@@ -1404,7 +1404,7 @@ emlxs_mb_read_nv(emlxs_hba_t *hba, MAILBOXQ *mbq)
 
 	mb->mbxCommand = MBX_READ_NV;
 	mb->mbxOwner = OWN_HOST;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 } /* emlxs_mb_read_nv() */
@@ -1434,7 +1434,7 @@ emlxs_mb_read_rev(emlxs_hba_t *hba, MAILBOXQ *mbq, uint32_t v3)
 
 	mb->mbxCommand = MBX_READ_REV;
 	mb->mbxOwner = OWN_HOST;
-	mbq->mbox_cmpl = NULL;
+	mbq->mbox_cmpl = 0;
 	mbq->port = (void *)&PPORT;
 
 } /* emlxs_mb_read_rev() */
@@ -1460,7 +1460,7 @@ emlxs_mb_run_biu_diag(emlxs_hba_t *hba, MAILBOXQ *mbq, uint64_t out,
 	mb->un.varBIUdiag.un.s2.rcv_bde64.addrHigh = PADDR_HI(in);
 	mb->un.varBIUdiag.un.s2.rcv_bde64.addrLow = PADDR_LO(in);
 	mb->mbxOwner = OWN_HOST;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	return (0);
@@ -1925,7 +1925,7 @@ emlxs_mb_read_status(emlxs_hba_t *hba, MAILBOXQ *mbq)
 
 	mb->mbxCommand = MBX_READ_STATUS;
 	mb->mbxOwner = OWN_HOST;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 } /* fc_read_status() */
@@ -1944,7 +1944,7 @@ emlxs_mb_read_lnk_stat(emlxs_hba_t *hba, MAILBOXQ *mbq)
 
 	mb->mbxCommand = MBX_READ_LNK_STAT;
 	mb->mbxOwner = OWN_HOST;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 } /* emlxs_mb_read_lnk_stat() */
@@ -1994,7 +1994,7 @@ emlxs_mb_config_ring(emlxs_hba_t *hba, int32_t ring, MAILBOXQ *mbq)
 	mb->un.varCfgRing.numMask = hba->sli.sli3.ring_masks[ring];
 	mb->mbxCommand = MBX_CONFIG_RING;
 	mb->mbxOwner = OWN_HOST;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	return;
@@ -2038,7 +2038,7 @@ emlxs_mb_config_link(emlxs_hba_t *hba, MAILBOXQ *mbq)
 	mb->un.varCfgLnk.citov = hba->fc_citov;
 	mb->mbxCommand = MBX_CONFIG_LINK;
 	mb->mbxOwner = OWN_HOST;
-	mbq->mbox_cmpl = NULL;
+	mbq->mbox_cmpl = 0;
 	mbq->port = (void *)port;
 
 	return;
@@ -2098,7 +2098,7 @@ emlxs_mb_init_link(emlxs_hba_t *hba, MAILBOXQ *mbq, uint32_t topology,
 	    (SLI4_FCOE_MODE)) {
 		bzero((void *) mb, MAILBOX_CMD_SLI4_BSIZE);
 		mbq->nonembed = NULL;
-		mbq->mbox_cmpl = NULL; /* no cmpl needed */
+		mbq->mbox_cmpl = 0; /* no cmpl needed */
 		mbq->port = (void *)&PPORT;
 
 		mb->mbxCommand = (volatile uint8_t) MBX_INIT_LINK;
@@ -2215,7 +2215,7 @@ emlxs_mb_down_link(emlxs_hba_t *hba, MAILBOXQ *mbq)
 
 	mb->mbxCommand = MBX_DOWN_LINK;
 	mb->mbxOwner = OWN_HOST;
-	mbq->mbox_cmpl = NULL;
+	mbq->mbox_cmpl = 0;
 	mbq->port = (void *)&PPORT;
 
 	return;
@@ -2362,7 +2362,7 @@ emlxs_mb_read_rpi(emlxs_hba_t *hba, uint32_t rpi, MAILBOXQ *mbq,
 	mb->un.varRdRPI.reqRpi = (volatile uint16_t) rpi;
 	mb->mbxCommand = MBX_READ_RPI64;
 	mb->mbxOwner = OWN_HOST;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	return (0);
@@ -2388,7 +2388,7 @@ emlxs_mb_read_xri(emlxs_hba_t *hba, uint32_t xri, MAILBOXQ *mbq,
 	mb->un.varRdXRI.reqXri = (volatile uint16_t)xri;
 	mb->mbxCommand = MBX_READ_XRI;
 	mb->mbxOwner = OWN_HOST;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 	return (0);
@@ -2479,7 +2479,7 @@ emlxs_mb_set_var(emlxs_hba_t *hba, MAILBOXQ *mbq, uint32_t addr,
 	mb->un.varWords[1] = value;
 	mb->mbxCommand = MBX_SET_VARIABLE;
 	mb->mbxOwner = OWN_HOST;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 } /* emlxs_mb_set_var() */
@@ -2501,7 +2501,7 @@ emlxs_disable_tc(emlxs_hba_t *hba, MAILBOXQ *mbq)
 	mb->un.varWords[2] = 0xfffffffe;
 	mb->mbxCommand = MBX_SET_VARIABLE;
 	mb->mbxOwner = OWN_HOST;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 } /* emlxs_disable_tc() */
@@ -2530,7 +2530,7 @@ emlxs_mb_config_hbq(emlxs_hba_t *hba, MAILBOXQ *mbq, int hbq_id)
 	mb->un.varCfgHbq.hbqaddrHigh = PADDR_HI(hbq->HBQ_host_buf.phys);
 	mb->mbxCommand = MBX_CONFIG_HBQ;
 	mb->mbxOwner = OWN_HOST;
-	mbq->mbox_cmpl = NULL;
+	mbq->mbox_cmpl = 0;
 	mbq->port = (void *)&PPORT;
 
 	/* Copy info for profiles 2,3,5. Other profiles this area is reserved */
@@ -2805,7 +2805,7 @@ emlxs_mb_config_farp(emlxs_hba_t *hba, MAILBOXQ *mbq)
 	mb->un.varCfgFarp.nodeName = 1;
 	mb->mbxCommand = MBX_CONFIG_FARP;
 	mb->mbxOwner = OWN_HOST;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 } /* emlxs_mb_config_farp() */
@@ -2829,7 +2829,7 @@ emlxs_mb_read_config(emlxs_hba_t *hba, MAILBOXQ *mbq)
 
 	mb->mbxCommand = MBX_READ_CONFIG;
 	mb->mbxOwner = OWN_HOST;
-	mbq->mbox_cmpl = NULL; /* no cmpl needed */
+	mbq->mbox_cmpl = 0; /* no cmpl needed */
 	mbq->port = (void *)&PPORT;
 
 } /* emlxs_mb_read_config() */

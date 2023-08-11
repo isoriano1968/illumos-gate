@@ -393,13 +393,13 @@ _init(void)
 	error =  mod_install(&modlinkage);
 	if (error != 0) {
 		if (&opl_get_mem_unum)
-			opl_get_mem_unum = NULL;
+			opl_get_mem_unum = 0;
 		if (&opl_get_mem_sid)
-			opl_get_mem_sid = NULL;
+			opl_get_mem_sid = 0;
 		if (&opl_get_mem_offset)
-			opl_get_mem_offset = NULL;
+			opl_get_mem_offset = 0;
 		if (&opl_get_mem_addr)
-			opl_get_mem_addr = NULL;
+			opl_get_mem_addr = 0;
 		mutex_destroy(&mcmutex);
 		mc_poll_fini();
 		ddi_soft_state_fini(&mc_statep);
@@ -416,13 +416,13 @@ _fini(void)
 		return (error);
 
 	if (&opl_get_mem_unum)
-		opl_get_mem_unum = NULL;
+		opl_get_mem_unum = 0;
 	if (&opl_get_mem_sid)
-		opl_get_mem_sid = NULL;
+		opl_get_mem_sid = 0;
 	if (&opl_get_mem_offset)
-		opl_get_mem_offset = NULL;
+		opl_get_mem_offset = 0;
 	if (&opl_get_mem_addr)
-		opl_get_mem_addr = NULL;
+		opl_get_mem_addr = 0;
 
 	mutex_destroy(&mcmutex);
 	mc_poll_fini();

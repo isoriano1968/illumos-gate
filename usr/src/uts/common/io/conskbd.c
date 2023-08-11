@@ -115,7 +115,7 @@ static struct module_info conskbdm_info = {
  */
 /* upper read queue processing procedure structures */
 static struct qinit conskbdurinit = {
-	NULL,			/* qi_putp */
+	0,			/* qi_putp */
 	(int (*)())NULL,	/* qi_srvp */
 	conskbdopen,		/* qi_qopen */
 	conskbdclose,		/* qi_qclose */
@@ -200,7 +200,7 @@ static struct dev_ops conskbd_ops = {
 	nodev,			/* devo_reset */
 	&(cb_conskbd_ops),	/* devo_cb_ops */
 	(struct bus_ops *)NULL,	/* devo_bus_ops */
-	NULL,			/* devo_power */
+	0,			/* devo_power */
 	ddi_quiesce_not_needed,		/* quiesce */
 };
 
@@ -579,7 +579,7 @@ conskbdopen(queue_t *q, dev_t *devp, int flag, int sflag, cred_t *crp)
 	conskbd.conskbd_polledio.cons_polledio_version = CONSPOLLEDIO_V1;
 	conskbd.conskbd_polledio.cons_polledio_argument =
 	    (cons_polledio_arg_t)&conskbd;
-	conskbd.conskbd_polledio.cons_polledio_putchar = NULL;
+	conskbd.conskbd_polledio.cons_polledio_putchar = 0;
 	conskbd.conskbd_polledio.cons_polledio_getchar =
 	    (int (*)(cons_polledio_arg_t)) conskbd_polledio_getchar;
 	conskbd.conskbd_polledio.cons_polledio_ischar =

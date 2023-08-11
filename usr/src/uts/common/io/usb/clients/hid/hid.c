@@ -176,11 +176,11 @@ static struct module_info hid_mod_info = {
 
 /* read queue information structure */
 static struct qinit rinit = {
-	NULL,				/* put procedure not needed */
-	NULL,				/* service procedure not needed */
+	0,				/* put procedure not needed */
+	0,				/* service procedure not needed */
 	hid_open,			/* called on startup */
 	hid_close,			/* called on finish */
-	NULL,				/* for future use */
+	0,				/* for future use */
 	&hid_mod_info,			/* module information structure */
 	NULL				/* module statistics structure */
 };
@@ -189,9 +189,9 @@ static struct qinit rinit = {
 static struct qinit winit = {
 	hid_wput,			/* put procedure */
 	hid_wsrv,			/* service procedure */
-	NULL,				/* open not used on write side */
-	NULL,				/* close not used on write side */
-	NULL,				/* for future use */
+	0,				/* open not used on write side */
+	0,				/* close not used on write side */
+	0,				/* for future use */
 	&hid_mod_info,			/* module information structure */
 	NULL				/* module statistics structure */
 };
@@ -252,8 +252,8 @@ static struct modlinkage modlinkage = {
 static usb_event_t hid_events = {
 	hid_disconnect_event_callback,
 	hid_restore_state_event_callback,
-	NULL,
-	NULL,
+	0,
+	0,
 };
 
 
@@ -1089,7 +1089,7 @@ hid_open(queue_t *q, dev_t *devp, int flag, int sflag, cred_t *credp)
 		mutex_exit(&hidp->hid_mutex);
 
 		usb_pipe_close(hidp->hid_dip, hidp->hid_interrupt_pipe,
-		    USB_FLAGS_SLEEP, NULL, NULL);
+		    USB_FLAGS_SLEEP, 0, NULL);
 
 		mutex_enter(&hidp->hid_mutex);
 		hidp->hid_interrupt_pipe = NULL;
@@ -1175,7 +1175,7 @@ hid_close(queue_t *q, int flag, cred_t *credp)
 	 * the default pipe, wait forever for them to complete.
 	 */
 	(void) usb_pipe_drain_reqs(hidp->hid_dip,
-	    hidp->hid_default_pipe, 0, USB_FLAGS_SLEEP, NULL, 0);
+	    hidp->hid_default_pipe, 0, USB_FLAGS_SLEEP, 0, 0);
 
 	mutex_enter(&hidp->hid_mutex);
 	wq = WR(q);
@@ -1190,7 +1190,7 @@ hid_close(queue_t *q, int flag, cred_t *credp)
 
 	qprocsoff(q);
 
-	q->q_ptr = NULL;
+	q->q_ptr = 0;
 	wq->q_ptr = NULL;
 
 	mutex_enter(&hidp->hid_mutex);
@@ -1837,7 +1837,7 @@ hid_cpr_suspend(hid_state_t *hidp)
 		/* drain all request outstanding on the default control pipe */
 		rval = usb_pipe_drain_reqs(hidp->hid_dip,
 		    hidp->hid_default_pipe, hid_default_pipe_drain_timeout,
-		    USB_FLAGS_SLEEP, NULL, 0);
+		    USB_FLAGS_SLEEP, 0, 0);
 
 		/* fail checkpoint if we haven't finished the job yet */
 		mutex_enter(&hidp->hid_mutex);
@@ -2425,7 +2425,7 @@ hid_close_intr_pipe(hid_state_t *hidp)
 		 */
 		mutex_exit(&hidp->hid_mutex);
 		usb_pipe_close(hidp->hid_dip, hidp->hid_interrupt_pipe,
-		    USB_FLAGS_SLEEP, NULL, NULL);
+		    USB_FLAGS_SLEEP, 0, NULL);
 		mutex_enter(&hidp->hid_mutex);
 		hidp->hid_interrupt_pipe = NULL;
 	}

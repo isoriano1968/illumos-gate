@@ -298,7 +298,7 @@ const fs_operation_def_t nfs4_trigger_vnodeops_template[] = {
 	VOPNAME_DISPOSE,	{ .error = fs_error },
 	VOPNAME_SHRLOCK,	{ .error = fs_error },
 	VOPNAME_VNEVENT,	{ .vop_vnevent = fs_vnevent_support },
-	NULL, NULL
+	NULL, 0
 };
 
 static void

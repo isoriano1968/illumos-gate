@@ -95,11 +95,11 @@ s32 ixgbe_init_ops_generic(struct ixgbe_hw *hw)
 
 	/* MAC */
 	mac->ops.init_hw = ixgbe_init_hw_generic;
-	mac->ops.reset_hw = NULL;
+	mac->ops.reset_hw = 0;
 	mac->ops.start_hw = ixgbe_start_hw_generic;
 	mac->ops.clear_hw_cntrs = ixgbe_clear_hw_cntrs_generic;
-	mac->ops.get_media_type = NULL;
-	mac->ops.get_supported_physical_layer = NULL;
+	mac->ops.get_media_type = 0;
+	mac->ops.get_supported_physical_layer = 0;
 	mac->ops.enable_rx_dma = ixgbe_enable_rx_dma_generic;
 	mac->ops.get_mac_addr = ixgbe_get_mac_addr_generic;
 	mac->ops.stop_adapter = ixgbe_stop_adapter_generic;
@@ -120,18 +120,18 @@ s32 ixgbe_init_ops_generic(struct ixgbe_hw *hw)
 	/* RAR, Multicast, VLAN */
 	mac->ops.set_rar = ixgbe_set_rar_generic;
 	mac->ops.clear_rar = ixgbe_clear_rar_generic;
-	mac->ops.insert_mac_addr = NULL;
-	mac->ops.set_vmdq = NULL;
-	mac->ops.clear_vmdq = NULL;
+	mac->ops.insert_mac_addr = 0;
+	mac->ops.set_vmdq = 0;
+	mac->ops.clear_vmdq = 0;
 	mac->ops.init_rx_addrs = ixgbe_init_rx_addrs_generic;
 	mac->ops.update_uc_addr_list = ixgbe_update_uc_addr_list_generic;
 	mac->ops.update_mc_addr_list = ixgbe_update_mc_addr_list_generic;
 	mac->ops.enable_mc = ixgbe_enable_mc_generic;
 	mac->ops.disable_mc = ixgbe_disable_mc_generic;
-	mac->ops.clear_vfta = NULL;
-	mac->ops.set_vfta = NULL;
-	mac->ops.set_vlvf = NULL;
-	mac->ops.init_uta_tables = NULL;
+	mac->ops.clear_vfta = 0;
+	mac->ops.set_vfta = 0;
+	mac->ops.set_vlvf = 0;
+	mac->ops.init_uta_tables = 0;
 	mac->ops.enable_rx = ixgbe_enable_rx_generic;
 	mac->ops.disable_rx = ixgbe_disable_rx_generic;
 
@@ -141,12 +141,12 @@ s32 ixgbe_init_ops_generic(struct ixgbe_hw *hw)
 	mac->ops.fc_autoneg = ixgbe_fc_autoneg;
 
 	/* Link */
-	mac->ops.get_link_capabilities = NULL;
-	mac->ops.setup_link = NULL;
-	mac->ops.check_link = NULL;
-	mac->ops.dmac_config = NULL;
-	mac->ops.dmac_update_tcs = NULL;
-	mac->ops.dmac_config_tcs = NULL;
+	mac->ops.get_link_capabilities = 0;
+	mac->ops.setup_link = 0;
+	mac->ops.check_link = 0;
+	mac->ops.dmac_config = 0;
+	mac->ops.dmac_update_tcs = 0;
+	mac->ops.dmac_config_tcs = 0;
 
 	return IXGBE_SUCCESS;
 }
