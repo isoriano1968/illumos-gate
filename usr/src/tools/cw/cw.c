@@ -156,7 +156,7 @@
  * -B<[static|dynamic]>		pass-thru (syntax error for anything else)
  * -C				pass-thru
  * -c				pass-thru
- * -cg92			-m32 -mcpu=v8 -mtune=supersparc (SPARC only)
+ * -cg92			-m32 -mcpu=ultrasparc -mvis (SPARC only)
  * -D<name[=token]>		pass-thru
  * -E				pass-thru
  * -erroff=E_EMPTY_TRANSLATION_UNIT ignore
@@ -346,20 +346,22 @@ static const xarch_table_t xtbl[] = {
 	{ "sse",	SS11, { "-msse", "-mfpmath=sse" } },
 	{ "sse2",	SS11, { "-msse2", "-mfpmath=sse" } },
 #elif defined(__sparc)
-	{ "generic",	(SS11|M32), { "-m32", "-mcpu=v8" } },
-	{ "generic64",	(SS11|M64), { "-m64", "-mcpu=v9" } },
-	{ "v8",		(SS11|M32), { "-m32", "-mcpu=v8", "-mno-v8plus" } },
-	{ "v8plus",	(SS11|M32), { "-m32", "-mcpu=v9", "-mv8plus" } },
+	{ "v8",		(SS11|M32), { "-m32", "-mcpu=v8", "-mv8plus", "-mvis" } },
+	{ "v8plus",	(SS11|M32), { "-m32", "-mcpu=v9", "-mv8plus", "-mvis" } },
 	{ "v8plusa",	(SS11|M32), { "-m32", "-mcpu=ultrasparc", "-mv8plus",
 			"-mvis" } },
 	{ "v8plusb",	(SS11|M32), { "-m32", "-mcpu=ultrasparc3", "-mv8plus",
 			"-mvis" } },
-	{ "v9",		(SS11|M64), { "-m64", "-mcpu=v9" } },
+	{ "v9",		(SS11|M64), { "-m64", "-mcpu=ultrasparc", "-mvis" } },
 	{ "v9a",	(SS11|M64), { "-m64", "-mcpu=ultrasparc", "-mvis" } },
 	{ "v9b",	(SS11|M64), { "-m64", "-mcpu=ultrasparc3", "-mvis" } },
-	{ "sparc",	SS12, { "-mcpu=v9", "-mv8plus" } },
+	{ "sparc",	SS12, { "-m32", "-mcpu=-mcpu=ultrasparc", "-mvis" } },
 	{ "sparcvis",	SS12, { "-mcpu=ultrasparc", "-mvis" } },
-	{ "sparcvis2",	SS12, { "-mcpu=ultrasparc3", "-mvis" } }
+	{ "sparcvis2",	SS12, { "-mcpu=ultrasparc3", "-mvis" } },
+	{ "sparcvis3",	SS12, { "-m64", "-mcpu=niagara3", "-mvis" } },
+	{ "niagara",	SS12, { "-m64", "-mcpu=niagara", "-mvis" } },
+	{ "niagara2",	SS12, { "-m64", "-mcpu=niagara2", "-mvis" } },
+	{ "niagara3",	SS12, { "-m64", "-mcpu=niagara3", "-mvis" } }
 #endif
 };
 
@@ -372,9 +374,11 @@ static const char *xchip_tbl[] = {
 	"pentium",	"-mtune=pentium", NULL,
 	"pentium_pro",  "-mtune=pentiumpro", NULL,
 #elif defined(__sparc)
-	"super",	"-mtune=supersparc", NULL,
 	"ultra",	"-mtune=ultrasparc", NULL,
 	"ultra3",	"-mtune=ultrasparc3", NULL,
+	"niagara",	"-mtune=niagara", NULL,
+	"niagara2",	"-mtune=niagara2", NULL,
+	"niagara3",	"-mtune=niagara3", NULL,
 #endif
 	NULL,		NULL
 };
@@ -609,22 +613,6 @@ is_source_file(const char *path)
 	return (false);
 }
 
-static bool
-is_asm_file(const char *path)
-{
-	char *ext = strrchr(path, '.');
-
-	if ((ext == NULL) || (*(ext + 1) == '\0'))
-		return (false);
-
-	ext += 1;
-
-	if (strcasecmp(ext, "s") == 0)
-		return (true);
-
-	return (false);
-}
-
 static void
 do_gcc(cw_ictx_t *ctx)
 {
@@ -648,17 +636,6 @@ do_gcc(cw_ictx_t *ctx)
 	newae(ctx->i_ae, "-fno-asm");
 	newae(ctx->i_ae, "-fdiagnostics-show-option");
 	newae(ctx->i_ae, "-nodefaultlibs");
-
-#if defined(__sparc)
-	/*
-	 * The SPARC ldd and std instructions require 8-byte alignment of
-	 * their address operand.  gcc correctly uses them only when the
-	 * ABI requires 8-byte alignment; unfortunately we have a number of
-	 * pieces of buggy code that doesn't conform to the ABI.  This
-	 * flag makes gcc work more like Studio with -xmemalign=4.
-	 */
-	newae(ctx->i_ae, "-mno-integer-ldd-std");
-#endif
 
 	/*
 	 * This is needed because 'u' is defined
@@ -734,8 +711,8 @@ do_gcc(cw_ictx_t *ctx)
 			}
 #if defined(__sparc)
 			if (strcmp(arg, "-cg92") == 0) {
-				mflag |= xlate_xtb(ctx->i_ae, "v8");
-				xlate(ctx->i_ae, "super", xchip_tbl);
+				mflag |= xlate_xtb(ctx->i_ae, "sparcvis");
+				xlate(ctx->i_ae, "ultra", xchip_tbl);
 				continue;
 			}
 #endif	/* __sparc */
@@ -1212,31 +1189,11 @@ do_gcc(cw_ictx_t *ctx)
 	case 0:
 		/* FALLTHROUGH */
 	case M32:
-#if defined(__sparc)
-		/*
-		 * Only -m32 is defined and so put in the missing xarch
-		 * translation.
-		 */
-		newae(ctx->i_ae, "-mcpu=v8");
-		newae(ctx->i_ae, "-mno-v8plus");
-#endif
-		break;
+		/* FALLTHROUGH */
 	case M64:
-#if defined(__sparc)
-		/*
-		 * Only -m64 is defined and so put in the missing xarch
-		 * translation.
-		 */
-		newae(ctx->i_ae, "-mcpu=v9");
-#endif
-		break;
+		/* FALLTHROUGH */
 	case SS12:
-#if defined(__sparc)
-		/* no -m32/-m64 flag used - this is an error for sparc builds */
-		(void) fprintf(stderr, "No -m32/-m64 flag defined\n");
-		exit(2);
-#endif
-		break;
+		/* FALLTHROUGH */
 	case SS11:
 		/* FALLTHROUGH */
 	case (SS11|M32):
@@ -1293,12 +1250,6 @@ do_smatch(cw_ictx_t *ctx)
 		char *arg = ctx->i_oldargv[i];
 
 		if (strcmp(arg, "-_smatch=off") == 0) {
-			ctx->i_flags &= ~(CW_F_EXEC | CW_F_ECHO);
-			return;
-		}
-
-		/* smatch can't handle asm */
-		if ((arg[0] != '-') && is_asm_file(arg)) {
 			ctx->i_flags &= ~(CW_F_EXEC | CW_F_ECHO);
 			return;
 		}
