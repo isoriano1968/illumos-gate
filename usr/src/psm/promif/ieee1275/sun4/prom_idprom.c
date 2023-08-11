@@ -39,7 +39,7 @@
 int
 prom_getidprom(caddr_t addr, int size)
 {
-	u_char *cp, val = 0;
+	uchar_t *cp, val = 0;
 	/*LINTED [idprom unused]*/
 	idprom_t idprom;
 	int i;
@@ -57,13 +57,13 @@ prom_getidprom(caddr_t addr, int size)
 	}
 
 	(void) prom_getprop(prom_rootnode(), OBP_IDPROM,
-		(caddr_t) addr);
+	    (caddr_t)addr);
 
 	/*
 	 * Test the checksum for sanity
 	 */
-	for (cp = (u_char *)addr, i = 0;
-			i < (sizeof (idprom) - sizeof (idprom.id_undef)); i++)
+	for (cp = (uchar_t *)addr, i = 0;
+	    i < (sizeof (idprom) - sizeof (idprom.id_undef)); i++)
 		val ^= *cp++;
 
 	if (val != 0)

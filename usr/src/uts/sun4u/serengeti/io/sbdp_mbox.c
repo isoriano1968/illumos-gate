@@ -163,16 +163,16 @@ sbdp_get_board_status(sbdp_handle_t *hp, sbd_stat_t *stp)
 	 * This domain has no access to this board. Return failure
 	 */
 	if ((resp->msg_status == SG_MBOX_STATUS_BOARD_ACCESS_DENIED) ||
-		(resp->msg_status == SG_MBOX_STATUS_ILLEGAL_SLOT) ||
-		(resp->msg_status == SG_MBOX_STATUS_ILLEGAL_NODE)) {
+	    (resp->msg_status == SG_MBOX_STATUS_ILLEGAL_SLOT) ||
+	    (resp->msg_status == SG_MBOX_STATUS_ILLEGAL_NODE)) {
 
-		/*
-		 * invalidate cached copy.
-		 */
-		bdp->valid_cp = -1;
+	/*
+	 * invalidate cached copy.
+	 */
+	bdp->valid_cp = -1;
 
-		sbdp_set_err(sep, ESGT_GET_BOARD_STAT, NULL);
-		return (EIO);
+	sbdp_set_err(sep, ESGT_GET_BOARD_STAT, NULL);
+	return (EIO);
 	}
 
 	/*
@@ -217,12 +217,12 @@ sbdp_get_board_status(sbdp_handle_t *hp, sbd_stat_t *stp)
 
 
 	SBDP_DBG_MBOX("Showboard: board\t%d\n\trevision\t%d\n\ts_cond\t%d\n\t"
-		"s_power\t%d\n\ts_assigned\t%d\n\ts_claimed\t%d\n\t"
-		"s_present\t%d\n\ts_ledstatus\t%d\n\ts_type\t%s\n\t"
-		"s_info\t%s\n",
-			board, shbp->revision, shbp->s_cond, shbp->s_power,
-			shbp->s_assigned, shbp->s_claimed, shbp->s_present,
-			shbp->s_ledstatus, shbp->s_type, shbp->s_info);
+	    "s_power\t%d\n\ts_assigned\t%d\n\ts_claimed\t%d\n\t"
+	    "s_present\t%d\n\ts_ledstatus\t%d\n\ts_type\t%s\n\t"
+	    "s_info\t%s\n",
+	    board, shbp->revision, shbp->s_cond, shbp->s_power,
+	    shbp->s_assigned, shbp->s_claimed, shbp->s_present,
+	    shbp->s_ledstatus, shbp->s_type, shbp->s_info);
 
 	/*
 	 * Now that we got the info run through the sbd-sbdp translator
@@ -701,7 +701,7 @@ sbdp_get_diag(sbdp_opts_t *opts)
 		} else if (strncmp(cptr, "min", sizeof ("min")) == 0) {
 			return (SBDP_DIAG_MIN);
 		} else if (strncmp(cptr, "default", sizeof ("default")) == 0 ||
-			strncmp(cptr, "max", sizeof ("max")) == 0) {
+		    strncmp(cptr, "max", sizeof ("max")) == 0) {
 			return (SBDP_DIAG_DEFAULT);
 		} else if (strncmp(cptr, "mem1", sizeof ("mem1")) == 0) {
 			return (SBDP_DIAG_MEM1);

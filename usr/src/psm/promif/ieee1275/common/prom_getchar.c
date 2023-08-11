@@ -27,7 +27,7 @@
 #include <sys/promif.h>
 #include <sys/promimpl.h>
 
-u_char
+uchar_t
 prom_getchar(void)
 {
 	int c;
@@ -35,7 +35,7 @@ prom_getchar(void)
 	while ((c = prom_mayget()) == -1)
 		;
 
-	return ((u_char)c);
+	return ((uchar_t)c);
 }
 
 int

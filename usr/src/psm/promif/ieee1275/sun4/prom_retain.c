@@ -33,7 +33,7 @@
  * Returns *phys_hi, *phys_lo only if successful.
  */
 int
-prom_retain(char *id, size_t size, u_int align, unsigned long long *physaddr)
+prom_retain(char *id, size_t size, uint_t align, unsigned long long *physaddr)
 {
 	cell_t ci[11];
 	int rv;

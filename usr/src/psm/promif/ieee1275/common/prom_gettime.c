@@ -34,7 +34,7 @@
  * on to update the time.
  */
 
-u_int
+uint_t
 prom_gettime(void)
 {
 	cell_t ci[4];

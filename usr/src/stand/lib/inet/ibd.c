@@ -457,7 +457,7 @@ ibd_input(int index)
 #ifdef	DEBUG
 	    (now = prom_gettime()) < timeout);
 #else
-	    prom_gettime() < timeout);
+	prom_gettime() < timeout);
 #endif	/* DEBUG */
 
 #ifdef	DEBUG

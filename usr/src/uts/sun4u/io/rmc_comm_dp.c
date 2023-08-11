@@ -113,11 +113,11 @@ dp_get_buffer(struct rmc_comm_state *rcs, uint8_t type)
 	ASSERT(MUTEX_HELD(rcs->dp_state.dp_mutex));
 
 	if ((type != DP_TX_BUFFER && type != DP_RX_BUFFER) ||
-		dbuf[type].in_use) {
+	    dbuf[type].in_use) {
 
 		DPRINTF(rcs, DMEM,
-			(CE_CONT, "get buffer err. type=%d, in_use=%d\n",
-			type, dbuf[type].in_use));
+		    (CE_CONT, "get buffer err. type=%d, in_use=%d\n",
+		    type, dbuf[type].in_use));
 
 		return (NULL);
 	}
@@ -141,8 +141,8 @@ dp_release_buffer(struct rmc_comm_state *rcs, uint8_t type)
 
 	if (type != DP_TX_BUFFER && type != DP_RX_BUFFER) {
 		DPRINTF(rcs, DMEM,
-			(CE_CONT, "free buffer err. type=%d, in_use=%d\n",
-			type, dbuf[type].in_use));
+		    (CE_CONT, "free buffer err. type=%d, in_use=%d\n",
+		    type, dbuf[type].in_use));
 		return;
 	}
 	DPRINTF(rcs, DMEM, (CE_CONT, "free buffer type=%d\n", type));
@@ -833,8 +833,8 @@ rmc_comm_dp_drecv(struct rmc_comm_state *rcs, uint8_t *buf, int buflen)
 				if (*pkt->inbuf == SYNC_CHAR) {
 
 					DPRINTF(rcs, DPKT,
-						(CE_CONT, "drecv sync in hdr, "
-						"bufpos=%d\n", pkt->bufpos));
+					    (CE_CONT, "drecv sync in hdr, "
+					    "bufpos=%d\n", pkt->bufpos));
 
 					dp_release_buffer(rcs, DP_RX_BUFFER);
 					pkt->buf = NULL;

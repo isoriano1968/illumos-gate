@@ -80,7 +80,7 @@ pci_debug_flag_to_string_t pci_flags_to_string [] = {
 
 void
 pci_debug(uint64_t flag, dev_info_t *dip, char *fmt,
-	uintptr_t a1, uintptr_t a2, uintptr_t a3, uintptr_t a4, uintptr_t a5)
+    uintptr_t a1, uintptr_t a2, uintptr_t a3, uintptr_t a4, uintptr_t a5)
 {
 	char *s = NULL;
 	uint_t cont = 0;

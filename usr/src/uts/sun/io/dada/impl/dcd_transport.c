@@ -80,7 +80,7 @@ dcd_transport(struct dcd_pkt *pkt)
 	if (!do_polled_io && ((pkt->pkt_flags & FLAG_NOINTR) == 0)) {
 		return ((*A_TO_TRAN(ap)->tran_start)(ap, pkt));
 	} else if ((curthread->t_flag & T_INTR_THREAD) || (do_polled_io) ||
-			(pkt->pkt_flags & FLAG_FORCENOINTR)) {
+	    (pkt->pkt_flags & FLAG_FORCENOINTR)) {
 
 		if (pkt->pkt_flags & FLAG_FORCENOINTR) {
 			/*
@@ -137,11 +137,11 @@ dcd_transport(struct dcd_pkt *pkt)
 		pkt->pkt_flags |= FLAG_IMMEDIATE_CB;
 
 		if ((status = (*A_TO_TRAN(ap)->tran_start)(ap, pkt)) ==
-			TRAN_ACCEPT) {
+		    TRAN_ACCEPT) {
 			mutex_enter(& dcd_flag_nointr_mutex);
 			while (pkt->pkt_comp != NULL) {
 				cv_wait(&dcd_flag_nointr_cv,
-					&dcd_flag_nointr_mutex);
+				    &dcd_flag_nointr_mutex);
 			}
 			mutex_exit(&dcd_flag_nointr_mutex);
 		}

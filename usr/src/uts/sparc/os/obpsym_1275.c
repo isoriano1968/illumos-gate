@@ -115,11 +115,11 @@ static char symbol[MAX_NAME];
 static void
 ieee_value_to_sym(cell_t *cif)
 {
-	u_int	nargs, nresults;
-	u_long	value;
-	u_int	offset;
+	uint_t	nargs, nresults;
+	ulong_t	value;
+	uint_t	offset;
 	char	*name = symbol;
-	extern u_long value_to_name(uintptr_t value, char *symbol);
+	extern ulong_t value_to_name(uintptr_t value, char *symbol);
 
 	nargs = p1275_cell2uint(cif[1]);
 	nresults = p1275_cell2uint(cif[2]);
@@ -132,7 +132,7 @@ ieee_value_to_sym(cell_t *cif)
 	 * Otherwise, try to translate the value to a symbol-name/offset.
 	 */
 	*name = (char)0;
-	offset = (u_int)-1;
+	offset = (uint_t)-1;
 	if (nargs != 0) {
 		value = p1275_cell2uintptr(cif[3]); /* argument 0 */
 		offset = value_to_name(value, name);

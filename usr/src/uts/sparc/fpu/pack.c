@@ -87,20 +87,20 @@ round(
 		break;
 	}
 	if (increment) {
-	    pu->significand[3]++;
-	    if (pu->significand[3] == 0) {
+	pu->significand[3]++;
+		if (pu->significand[3] == 0) {
 		pu->significand[2]++;
 		if (pu->significand[2] == 0) {
-		    pu->significand[1]++;
-		    if (pu->significand[1] == 0) {
+		pu->significand[1]++;
+			if (pu->significand[1] == 0) {
 			pu->significand[0]++;	/* rounding carried out */
 			if (pu->significand[0] == 0x20000) {
-			    pu->exponent++;
-			    pu->significand[0] = 0x10000;
+			pu->exponent++;
+				pu->significand[0] = 0x10000;
 			}
-		    }
 		}
-	    }
+		}
+	}
 	}
 	if ((pfpsd->fp_direction == fp_nearest) &&
 	    (pu->sticky == 0) && increment != 0) {	/* ambiguous case */
@@ -168,7 +168,7 @@ packint64(
 			if ((pu->sign == 0) ||
 			    (pu->significand[2] > 0x80000000) ||
 			    (((pu->significand[2] == 0x80000000) &&
-				(pu->significand[3] > 0))))
+			    (pu->significand[3] > 0))))
 				goto overflow;
 		x.i[0] = pu->significand[2];
 		x.i[1] = pu->significand[3];
@@ -237,7 +237,7 @@ infinity:
 			if (pfpsd->fp_fsrtem & (1<<fp_underflow)) {
 				fpu_set_exception(pfpsd, fp_underflow);
 				pfpsd->fp_current_exceptions &=
-						~(1 << (int)fp_inexact);
+				    ~(1 << (int)fp_inexact);
 			}
 			return;
 		}
@@ -251,7 +251,7 @@ infinity:
 			fpu_set_exception(pfpsd, fp_inexact);
 			if (pfpsd->fp_fsrtem & (1<<fp_overflow)) {
 				pfpsd->fp_current_exceptions &=
-						~(1 << (int)fp_inexact);
+				    ~(1 << (int)fp_inexact);
 			}
 			if (overflow_to_infinity(pfpsd, pu->sign))
 				goto infinity;
@@ -318,7 +318,7 @@ infinity:
 			if (pfpsd->fp_fsrtem & (1<<fp_underflow)) {
 				fpu_set_exception(pfpsd, fp_underflow);
 				pfpsd->fp_current_exceptions &=
-						~(1 << (int)fp_inexact);
+				    ~(1 << (int)fp_inexact);
 			}
 			return;
 		}
@@ -332,7 +332,7 @@ infinity:
 			fpu_set_exception(pfpsd, fp_inexact);
 			if (pfpsd->fp_fsrtem & (1<<fp_overflow)) {
 				pfpsd->fp_current_exceptions &=
-						~(1 << (int)fp_inexact);
+				    ~(1 << (int)fp_inexact);
 			}
 			if (overflow_to_infinity(pfpsd, pu->sign))
 				goto infinity;
@@ -407,7 +407,7 @@ infinity:
 			if (pfpsd->fp_fsrtem & (1<<fp_underflow)) {
 				fpu_set_exception(pfpsd, fp_underflow);
 				pfpsd->fp_current_exceptions &=
-						~(1 << (int)fp_inexact);
+				    ~(1 << (int)fp_inexact);
 			}
 			px->significand = pu->significand[0];
 			*py = pu->significand[1];
@@ -421,7 +421,7 @@ infinity:
 			fpu_set_exception(pfpsd, fp_inexact);
 			if (pfpsd->fp_fsrtem & (1<<fp_overflow)) {
 				pfpsd->fp_current_exceptions &=
-						~(1 << (int)fp_inexact);
+				    ~(1 << (int)fp_inexact);
 			}
 			if (overflow_to_infinity(pfpsd, pu->sign))
 				goto infinity;
@@ -443,11 +443,10 @@ infinity:
 
 void
 _fp_pack(
-	fp_simd_type	*pfpsd,	/* Pointer to simulator data */
-	unpacked	*pu,	/* unpacked operand */
-	uint_t		n,	/* register where datum starts */
-	enum fp_op_type type)	/* type of datum */
-
+    fp_simd_type	*pfpsd,	/* Pointer to simulator data */
+    unpacked		*pu,	/* unpacked operand */
+    uint_t		n,	/* register where datum starts */
+    enum fp_op_type type)	/* type of datum */
 {
 	switch (type) {
 	case fp_op_int32:
@@ -467,7 +466,7 @@ _fp_pack(
 			if ((n & 0x1) == 1)	/* fix register encoding */
 				n = (n & 0x1e) | 0x20;
 			if (!(pfpsd->fp_current_exceptions & pfpsd->fp_fsrtem))
-			    pfpsd->fp_current_write_dreg(&x, DOUBLE(n), pfpsd);
+			pfpsd->fp_current_write_dreg(&x, DOUBLE(n), pfpsd);
 			break;
 		}
 	case fp_op_single:
@@ -493,7 +492,7 @@ _fp_pack(
 				if ((n & 0x1) == 1) /* fix register encoding */
 					n = (n & 0x1e) | 0x20;
 				pfpsd->fp_current_write_dreg(&db.ll, DOUBLE(n),
-					pfpsd);
+				    pfpsd);
 			}
 			break;
 		}
@@ -545,15 +544,15 @@ _fp_pack(
 				}
 			}
 			packextended(pfpsd, pu, &ex.x, &ex.y[1],
-						&ex.y[2], &ex.y[3]);
+			    &ex.y[2], &ex.y[3]);
 			if (!(pfpsd->fp_current_exceptions &
 			    pfpsd->fp_fsrtem)) {
 				if ((n & 0x1) == 1) /* fix register encoding */
 					n = (n & 0x1e) | 0x20;
 				pfpsd->fp_current_write_dreg(&ex.ll[0],
-							QUAD_E(n), pfpsd);
+				    QUAD_E(n), pfpsd);
 				pfpsd->fp_current_write_dreg(&ex.ll[1],
-							QUAD_F(n), pfpsd);
+				    QUAD_F(n), pfpsd);
 			}
 
 			break;

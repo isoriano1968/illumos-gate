@@ -126,9 +126,9 @@ nfs4getdents(struct nfs_file *nfp, struct dirent *dep, unsigned size)
 			 */
 			rdbuf.etlist[j].b_name.utf8string_len = NFS_MAXNAMLEN;
 			rdbuf.etlist[j].b_name.utf8string_val =
-				rdbuf.names[(MAXDENTS-1) - j];
+			    rdbuf.names[(MAXDENTS-1) - j];
 			rdbuf.etlist[j].b_nextentry =
-				(j < (MAXDENTS-1)) ? &rdbuf.etlist[j+1] : 0;
+			    (j < (MAXDENTS-1)) ? &rdbuf.etlist[j+1] : 0;
 		}
 
 		readdir_res.rd_entries = rdbuf.etlist;
@@ -139,7 +139,7 @@ nfs4getdents(struct nfs_file *nfp, struct dirent *dep, unsigned size)
 		 */
 		readdir_args.rd_dircount = MAXDENTS * MINSIZ;
 		readdir_args.rd_maxcount = sizeof (readdir4res_t) +
-							(MAXDENTS * MINSIZ);
+		    (MAXDENTS * MINSIZ);
 		bzero((caddr_t)rdbuf.names, sizeof (rdbuf.names));
 
 		/*
@@ -151,8 +151,8 @@ nfs4getdents(struct nfs_file *nfp, struct dirent *dep, unsigned size)
 		readdir_args.rd_attr_req.b_bitmap_val[0] = bitmap1.word;
 
 		status = CLNT_CALL(root_CLIENT, NFSPROC4_COMPOUND,
-			xdr_readdir4_args, (caddr_t)&readdir_args,
-			xdr_readdir4_res, (caddr_t)&readdir_res, zero_timeout);
+		    xdr_readdir4_args, (caddr_t)&readdir_args,
+		    xdr_readdir4_res, (caddr_t)&readdir_res, zero_timeout);
 
 		if (status != RPC_SUCCESS) {
 			dprintf("nfs4_getdents: RPC error\n");

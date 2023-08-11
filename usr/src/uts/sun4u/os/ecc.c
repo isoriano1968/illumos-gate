@@ -127,7 +127,7 @@ bus_async_log_err(struct async_flt *aflt)
 	 * Note that aflt->flt_stat is not the CPU afsr.
 	 */
 	(void) cpu_get_mem_unum_aflt(AFLT_STAT_INVALID, aflt,
-		    unum, UNUM_NAMLEN, &len);
+	    unum, UNUM_NAMLEN, &len);
 	aflt->flt_func(aflt, unum);
 }
 
@@ -150,10 +150,10 @@ ecc_cpu_call(struct async_flt *ecc, char *unum, int err_type)
 		cpu_check_allcpus(ecc);
 
 	(void) cpu_get_mem_unum(AFLT_STAT_VALID, ecc->flt_synd,
-					(uint64_t)-1, ecc->flt_addr,
-					ecc->flt_bus_id, ecc->flt_in_memory,
-					ecc->flt_status, unum,
-					UNUM_NAMLEN, &len);
+	    (uint64_t)-1, ecc->flt_addr,
+	    ecc->flt_bus_id, ecc->flt_in_memory,
+	    ecc->flt_status, unum,
+	    UNUM_NAMLEN, &len);
 
 	if (err_type == ECC_IO_CE)
 		cpu_ce_count_unum(ecc, len, unum);

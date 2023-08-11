@@ -202,7 +202,7 @@ ehc_start_pcf8584(struct ehc_envcunit *ehcp, uint8_t byteaddress)
 	do {
 		drv_usecwait(1000);
 		poll_status =
-			ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1);
+		    ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1);
 		i++;
 	} while (((poll_status & EHC_S1_NBB) == 0) && i < EHC_MAX_WAIT);
 
@@ -233,14 +233,14 @@ ehc_start_pcf8584(struct ehc_envcunit *ehcp, uint8_t byteaddress)
 
 	/* generate the "start condition" and clock out the slave address */
 	ddi_put8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1,
-		EHC_S1_PIN | EHC_S1_ES0 | EHC_S1_STA | EHC_S1_ACK);
+	    EHC_S1_PIN | EHC_S1_ES0 | EHC_S1_STA | EHC_S1_ACK);
 
 	/* wait for completion of transmission */
 	i = 0;
 	do {
 		drv_usecwait(1000);
 		poll_status =
-			ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1);
+		    ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1);
 		i++;
 	} while ((poll_status & EHC_S1_PIN) && i < EHC_MAX_WAIT);
 
@@ -269,7 +269,7 @@ ehc_start_pcf8584(struct ehc_envcunit *ehcp, uint8_t byteaddress)
 	do {
 		drv_usecwait(1000);
 		poll_status =
-			ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1);
+		    ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1);
 		i++;
 	} while ((poll_status & EHC_S1_PIN) && i < EHC_MAX_WAIT);
 
@@ -295,7 +295,7 @@ ehc_start_pcf8584(struct ehc_envcunit *ehcp, uint8_t byteaddress)
 	 * clock out the slave address
 	 */
 	ddi_put8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1,
-		EHC_S1_ES0 | EHC_S1_STA | EHC_S1_ACK);
+	    EHC_S1_ES0 | EHC_S1_STA | EHC_S1_ACK);
 
 	/* load the slave address */
 	ddi_put8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s0, byteaddress);
@@ -305,7 +305,7 @@ ehc_start_pcf8584(struct ehc_envcunit *ehcp, uint8_t byteaddress)
 	do {
 		drv_usecwait(1000);
 		poll_status =
-			ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1);
+		    ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1);
 		i++;
 	} while ((poll_status & EHC_S1_PIN) && i < EHC_MAX_WAIT);
 
@@ -347,15 +347,15 @@ ehc_start_pcf8584(struct ehc_envcunit *ehcp, uint8_t byteaddress)
 
 		/* wait for completion of transmission */
 		do {
-			drv_usecwait(1000);
-			poll_status =
-			ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1);
-			i++;
+		drv_usecwait(1000);
+		poll_status =
+		    ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1);
+		i++;
 		} while ((poll_status & EHC_S1_PIN) && i < EHC_MAX_WAIT);
 
 		if (i == EHC_MAX_WAIT) {
 			DCMN_ERR(CE_WARN,
-				"ehc_start_pcf8584(): read of S1 failed");
+			    "ehc_start_pcf8584(): read of S1 failed");
 			return (EHC_FAILURE);
 		}
 
@@ -366,7 +366,7 @@ ehc_start_pcf8584(struct ehc_envcunit *ehcp, uint8_t byteaddress)
 		}
 		if (poll_status & EHC_S1_LAB) {
 			DCMN2_ERR(CE_WARN,
-				"ehc_start_pcf8584()3: Lost Arbitration");
+			    "ehc_start_pcf8584()3: Lost Arbitration");
 			ehc_init_pcf8584(ehcp);
 			return (EHC_FAILURE);
 		}
@@ -383,7 +383,7 @@ static void
 ehc_stop_pcf8584(struct ehc_envcunit *ehcp)
 {
 	ddi_put8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1,
-		EHC_S1_PIN | EHC_S1_ES0 | EHC_S1_STO | EHC_S1_ACK);
+	    EHC_S1_PIN | EHC_S1_ES0 | EHC_S1_STO | EHC_S1_ACK);
 }
 
 static int
@@ -399,7 +399,7 @@ ehc_read_pcf8584(struct ehc_envcunit *ehcp, uint8_t *data)
 	do {
 		drv_usecwait(1000);
 		poll_status =
-			ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1);
+		    ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1);
 		i++;
 	} while ((poll_status & EHC_S1_PIN) && i < EHC_MAX_WAIT);
 
@@ -441,7 +441,7 @@ ehc_write_pcf8584(struct ehc_envcunit *ehcp, uint8_t data)
 	do {
 		drv_usecwait(1000);
 		poll_status =
-			ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1);
+		    ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1);
 		i++;
 	} while ((poll_status & EHC_S1_PIN) && i < EHC_MAX_WAIT);
 
@@ -490,7 +490,7 @@ ehc_after_read_pcf8584(struct ehc_envcunit *ehcp, uint8_t *data)
 	do {
 		drv_usecwait(1000);
 		poll_status =
-			ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1);
+		    ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1);
 		i++;
 	} while ((poll_status & EHC_S1_PIN) && i < EHC_MAX_WAIT);
 
@@ -561,7 +561,7 @@ ehc_init_pcf8584(struct ehc_envcunit *ehcp)
 	 */
 
 	ddi_put8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1,
-		EHC_S1_PIN | EHC_S1_ES1);
+	    EHC_S1_PIN | EHC_S1_ES1);
 
 	/*
 	 * Write the value into register that sets internal system clock
@@ -579,7 +579,7 @@ ehc_init_pcf8584(struct ehc_envcunit *ehcp)
 	 */
 
 	ddi_put8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1,
-		EHC_S1_PIN | EHC_S1_ES0 | EHC_S1_ACK);
+	    EHC_S1_PIN | EHC_S1_ES0 | EHC_S1_ACK);
 
 	/*
 	 * Multi-Master: Wait for a period of time equal to the
@@ -611,7 +611,7 @@ ehc_read_tda8444(struct ehc_envcunit *ehcp)
  */
 int
 ehc_write_tda8444(struct ehc_envcunit *ehcp, int byteaddress, int instruction,
-	int subaddress, uint8_t *buf, int size)
+    int subaddress, uint8_t *buf, int size)
 {
 	uint8_t control;
 	int i, status;
@@ -645,7 +645,7 @@ ehc_write_tda8444(struct ehc_envcunit *ehcp, int byteaddress, int instruction,
 
 	for (i = 0; i < size; i++) {
 		if ((status = ehc_write_pcf8584(ehcp, (buf[i] & 0x3f))) !=
-			EHC_SUCCESS) {
+		    EHC_SUCCESS) {
 			if (status == EHC_NO_SLAVE_ACK)
 				ehc_stop_pcf8584(ehcp);
 			return (EHC_FAILURE);
@@ -663,7 +663,7 @@ ehc_write_tda8444(struct ehc_envcunit *ehcp, int byteaddress, int instruction,
  */
 int
 ehc_read_pcf8574a(struct ehc_envcunit *ehcp, int byteaddress, uint8_t *buf,
-	int size)
+    int size)
 {
 	int i;
 	int status;
@@ -676,19 +676,19 @@ ehc_read_pcf8574a(struct ehc_envcunit *ehcp, int byteaddress, uint8_t *buf,
 	 * Put the bus into the start condition
 	 */
 	if ((status = ehc_start_pcf8584(ehcp, EHC_BYTE_READ | byteaddress)) !=
-			EHC_SUCCESS) {
+	    EHC_SUCCESS) {
 		if (status == EHC_NO_SLAVE_ACK) {
-			/*
-			 * Send the "stop" condition.
-			 */
-			ehc_stop_pcf8584(ehcp);
-			/*
-			 * Read the last byte - discard it.
-			 */
-			discard =
-			ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s0);
+		/*
+		 * Send the "stop" condition.
+		 */
+		ehc_stop_pcf8584(ehcp);
+		/*
+		 * Read the last byte - discard it.
+		 */
+		discard =
+		    ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s0);
 #ifdef lint
-			discard = discard;
+		discard = discard;
 #endif
 		}
 		return (EHC_FAILURE);
@@ -718,7 +718,7 @@ ehc_read_pcf8574a(struct ehc_envcunit *ehcp, int byteaddress, uint8_t *buf,
  */
 int
 ehc_write_pcf8574a(struct ehc_envcunit *ehcp, int byteaddress, uint8_t *buf,
-	int size)
+    int size)
 {
 	int i;
 	int status;
@@ -765,7 +765,7 @@ ehc_write_pcf8574a(struct ehc_envcunit *ehcp, int byteaddress, uint8_t *buf,
  */
 int
 ehc_read_pcf8574(struct ehc_envcunit *ehcp, int byteaddress, uint8_t *buf,
-	int size)
+    int size)
 {
 	int i;
 	int status;
@@ -778,19 +778,19 @@ ehc_read_pcf8574(struct ehc_envcunit *ehcp, int byteaddress, uint8_t *buf,
 	 * Put the bus into the start condition
 	 */
 	if ((status = ehc_start_pcf8584(ehcp, EHC_BYTE_READ | byteaddress)) !=
-			EHC_SUCCESS) {
+	    EHC_SUCCESS) {
 		if (status == EHC_NO_SLAVE_ACK) {
-			/*
-			 * Send the "stop" condition.
-			 */
-			ehc_stop_pcf8584(ehcp);
-			/*
-			 * Read the last byte - discard it.
-			 */
-			discard =
-			ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s0);
+		/*
+		 * Send the "stop" condition.
+		 */
+		ehc_stop_pcf8584(ehcp);
+		/*
+		 * Read the last byte - discard it.
+		 */
+		discard =
+		    ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s0);
 #ifdef lint
-			discard = discard;
+		discard = discard;
 #endif
 		}
 		return (EHC_FAILURE);
@@ -820,7 +820,7 @@ ehc_read_pcf8574(struct ehc_envcunit *ehcp, int byteaddress, uint8_t *buf,
  */
 int
 ehc_write_pcf8574(struct ehc_envcunit *ehcp, int byteaddress, uint8_t *buf,
-	int size)
+    int size)
 {
 	int i;
 	int status;
@@ -866,7 +866,7 @@ ehc_write_pcf8574(struct ehc_envcunit *ehcp, int byteaddress, uint8_t *buf,
  */
 int
 ehc_read_lm75(struct ehc_envcunit *ehcp, int byteaddress, uint8_t *buf,
-	int size)
+    int size)
 {
 	int i;
 	int status;
@@ -879,19 +879,19 @@ ehc_read_lm75(struct ehc_envcunit *ehcp, int byteaddress, uint8_t *buf,
 	 * Put the bus into the start condition
 	 */
 	if ((status = ehc_start_pcf8584(ehcp, EHC_BYTE_READ | byteaddress)) !=
-			EHC_SUCCESS) {
+	    EHC_SUCCESS) {
 		if (status == EHC_NO_SLAVE_ACK) {
-			/*
-			 * Send the stop condition.
-			 */
-			ehc_stop_pcf8584(ehcp);
-			/*
-			 * Read the last byte - discard it.
-			 */
-			discard =
-			ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s0);
+		/*
+		 * Send the stop condition.
+		 */
+		ehc_stop_pcf8584(ehcp);
+		/*
+		 * Read the last byte - discard it.
+		 */
+		discard =
+		    ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s0);
 #ifdef lint
-			discard = discard;
+		discard = discard;
 #endif
 		}
 		return (EHC_FAILURE);
@@ -920,7 +920,7 @@ ehc_read_lm75(struct ehc_envcunit *ehcp, int byteaddress, uint8_t *buf,
  */
 int
 ehc_write_pcf8583(struct ehc_envcunit *ehcp, int byteaddress, uint8_t *buf,
-	int size)
+    int size)
 {
 	int i;
 	int status;
@@ -963,7 +963,7 @@ ehc_write_pcf8583(struct ehc_envcunit *ehcp, int byteaddress, uint8_t *buf,
  */
 int
 ehc_read_pcf8591(struct ehc_envcunit *ehcp, int byteaddress, int channel,
-	int autoinc, int amode, int aenable,  uint8_t *buf, int size)
+    int autoinc, int amode, int aenable,  uint8_t *buf, int size)
 {
 	int i;
 	int status;
@@ -1004,17 +1004,17 @@ ehc_read_pcf8591(struct ehc_envcunit *ehcp, int byteaddress, int channel,
 	 */
 
 	ddi_put8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1,
-		EHC_S1_ES0 | EHC_S1_STA | EHC_S1_ACK);
+	    EHC_S1_ES0 | EHC_S1_STA | EHC_S1_ACK);
 
 	ddi_put8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s0,
-		EHC_BYTE_READ | byteaddress);
+	    EHC_BYTE_READ | byteaddress);
 
 	i = 0;
 
 	do {
 		drv_usecwait(1000);
 		status =
-			ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1);
+		    ddi_get8(ehcp->ctlr_handle, &ehcp->bus_ctl_regs->s1);
 		i++;
 	} while ((status & EHC_S1_PIN) && i < EHC_MAX_WAIT);
 
@@ -1083,7 +1083,7 @@ ehc_read_pcf8591(struct ehc_envcunit *ehcp, int byteaddress, int channel,
  */
 int
 ehc_write_pcf8591(struct ehc_envcunit *ehcp, int byteaddress, int channel,
-	int autoinc, int amode, int aenable, uint8_t *buf, int size)
+    int autoinc, int amode, int aenable, uint8_t *buf, int size)
 {
 	int i, status;
 	register uint8_t control;

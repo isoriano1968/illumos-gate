@@ -41,7 +41,6 @@ fbcc_sim(
 	fp_inst_type    pinst,	/* FPU instruction to simulate. */
 	struct regs	*pregs,	/* Pointer to PCB image of registers. */
 	kfpu_t		*pfpu)	/* Pointer to FPU register block. */
-
 {
 	fsr_type	fsr;
 	int fbpcc = 0;
@@ -140,20 +139,20 @@ fbcc_sim(
 		if (annul && (icc == fba)) {	/* fba,a is wierd */
 			if (fbpcc) {
 				pregs->r_pc = tpc +
-					(int)((fp.i << 13) >> 11);
+				    (int)((fp.i << 13) >> 11);
 			} else {
 				pregs->r_pc = tpc +
-					(int)((fp.i << 10) >> 8);
+				    (int)((fp.i << 10) >> 8);
 			}
 			pregs->r_npc = pregs->r_pc + 4;
 		} else {
 			pregs->r_pc = pregs->r_npc;
 			if (fbpcc) {
 				pregs->r_npc = tpc +
-					(int)((fp.i << 13) >> 11);
+				    (int)((fp.i << 13) >> 11);
 			} else {
 				pregs->r_npc = tpc +
-					(int)((fp.i << 10) >> 8);
+				    (int)((fp.i << 10) >> 8);
 			}
 		}
 	} else {		/* Branch not taken. */
@@ -186,13 +185,13 @@ _fp_iu_simulator(
 		case 0x28:
 			if (pinst.rs1 == 0x13)
 				return (vis_rdgsr(pfpsd, pinst, pregs,
-					prw, pfpu));
+				    prw, pfpu));
 			else
 				return (ftt_unimplemented);
 		case 0x30:
 			if (pinst.rd == 0x13)
 				return (vis_wrgsr(pfpsd, pinst, pregs,
-					prw, pfpu));
+				    prw, pfpu));
 			else
 				return (ftt_unimplemented);
 		case 0x2C:

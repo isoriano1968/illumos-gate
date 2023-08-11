@@ -66,7 +66,7 @@ static ddi_acc_handle_t isa_handle;		/* handle for ISA pci space */
 void
 load_platform_drivers(void)
 {
-	dev_info_t 		*dip;		/* dip of the ISA driver */
+	dev_info_t		*dip;		/* dip of the ISA driver */
 
 	/*
 	 * Install power driver which handles the power button.
@@ -208,7 +208,7 @@ plat_get_mem_unum(int synd_code, uint64_t flt_addr, int flt_bus_id,
 {
 	if (flt_in_memory && (p2get_mem_unum != NULL))
 		return (p2get_mem_unum(synd_code, P2ALIGN(flt_addr, 8),
-			buf, buflen, lenp));
+		    buf, buflen, lenp));
 	else
 		return (ENOTSUP);
 }

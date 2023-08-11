@@ -206,7 +206,7 @@ pci_pwr_add_components(pci_pwr_t *pwr_p, dev_info_t *cdip, pci_pwr_chld_t *p)
  */
 static void
 pci_pwr_update_comp(pci_pwr_t *pwr_p, pci_pwr_chld_t *p, int comp,
-			int lvl)
+    int lvl)
 {
 	ASSERT(MUTEX_HELD(&pwr_p->pwr_mutex));
 
@@ -408,7 +408,7 @@ pci_pwr_ops(pci_pwr_t *pwr_p, dev_info_t *dip, void *impl_arg,
 		p_chld = pci_pwr_get_info(pwr_p, rdip);
 		DEBUG5(DBG_PWR, dip, "%s@%s CHANGED_POWER cmp = %d "
 		    "old = %d new = %d\n",
-			ddi_node_name(rdip), ddi_get_name_addr(rdip),
+		    ddi_node_name(rdip), ddi_get_name_addr(rdip),
 		    bpc->bpc_comp, bpc->bpc_olevel, bpc->bpc_nlevel);
 
 		if (*res == DDI_FAILURE) {
@@ -548,7 +548,7 @@ pci_pwr_resume(dev_info_t *dip, pci_pwr_t *pwr_p)
 	 * resume without an actual power cycle. (ie if suspend fails).
 	 */
 	for (cdip = ddi_get_child(dip); cdip != NULL;
-		cdip = ddi_get_next_sibling(cdip)) {
+	    cdip = ddi_get_next_sibling(cdip)) {
 
 		/*
 		 * Not interested in children who are not already

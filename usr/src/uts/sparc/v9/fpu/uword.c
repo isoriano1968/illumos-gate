@@ -226,7 +226,7 @@ read_iureg(
 			*pvalue = (uint64_t)res;
 		} else {
 			uint64_t res, *addr, *rw = (uint64_t *)
-					((uintptr_t)prw + STACK_BIAS);
+			    ((uintptr_t)prw + STACK_BIAS);
 
 			addr = (uint64_t *)&rw[n - 16];
 			ftt = _fp_read_extword(addr, &res, pfpsd);
@@ -286,7 +286,7 @@ write_iureg(
 			ftt = _fp_write_word(addr, res, pfpsd);
 		} else {
 			uint64_t *addr, *rw = (uint64_t *)
-				((uintptr_t)prw + STACK_BIAS);
+			    ((uintptr_t)prw + STACK_BIAS);
 			uint64_t res;
 
 			addr = &rw[n - 16];

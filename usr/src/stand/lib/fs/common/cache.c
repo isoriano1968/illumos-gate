@@ -307,7 +307,7 @@ set_icache(int dev, int inum, void *ip, int size)
 	 * subsequent call to get_icache.
 	 */
 	ic_t *icp = (ic_t *)set_cache(&ic_hash[IC_HASH(dev, inum)],
-								&ic_head, 0);
+	    &ic_head, 0);
 	icp->ic_num = inum;
 	icp->ic_hdr.data = ip;
 	icp->ic_hdr.dev = dev;
@@ -325,7 +325,7 @@ set_ricache(int dev, int inum, void *ip, int size)
 	 * without a purge.
 	 */
 	ic_t *icp = (ic_t *)set_cache(&ic_hash[IC_HASH(dev, inum)],
-					&ic_head, 1);
+	    &ic_head, 1);
 
 	if (icp == NULL)
 		return (1);
@@ -445,8 +445,8 @@ set_rdcache(int dev, char *name, int pnum, int inum)
 	 */
 	int len = strlen(name) + 1;
 	dc_t *dcp =
-		(dc_t *)set_cache(&dc_hash[DC_HASH(dev, name, len)],
-								&dc_head, 1);
+	    (dc_t *)set_cache(&dc_hash[DC_HASH(dev, name, len)],
+	    &dc_head, 1);
 
 	if (dcp == NULL)
 		return (1);
@@ -552,8 +552,8 @@ set_bcache(fileid_t *fp)
 		x_blkno = fp->fi_blocknum;
 		x_dev = fp->fi_devp->di_dcookie;
 		bcp = (bc_t *)
-			set_cache(&bc_hash[BC_HASH(x_dev, x_blkno, x_len)],
-								&bc_head, 0);
+		    set_cache(&bc_hash[BC_HASH(x_dev, x_blkno, x_len)],
+		    &bc_head, 0);
 		bcp->bc_blk = x_blkno;
 		bcp->bc_hdr.dev = x_dev;
 		bcp->bc_hdr.size = x_len;

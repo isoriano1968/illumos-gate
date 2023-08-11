@@ -63,7 +63,7 @@ _init()
  */
 int
 _info(modinfop)
-struct modinfo *modinfop;
+    struct modinfo *modinfop;
 {
 
 	return (mod_info(&modlinkage, modinfop));
@@ -115,8 +115,8 @@ dcd_hba_probe(struct dcd_device *devp, int (*callback)())
 #endif
 
 		devp->dcd_ident = (struct dcd_identify *)
-			kmem_alloc(SUN_IDENTSIZE, ((callback == SLEEP_FUNC)?
-						KM_SLEEP : KM_NOSLEEP));
+		    kmem_alloc(SUN_IDENTSIZE, ((callback == SLEEP_FUNC)?
+		    KM_SLEEP : KM_NOSLEEP));
 		if (devp->dcd_ident == NULL) {
 				goto out;
 		}
@@ -129,15 +129,15 @@ dcd_hba_probe(struct dcd_device *devp, int (*callback)())
 	}
 
 	ident_bp = dcd_alloc_consistent_buf(ROUTE, (struct buf *)NULL,
-			(uint_t)SUN_IDENTSIZE, B_READ, cb_flag, NULL);
+	    (uint_t)SUN_IDENTSIZE, B_READ, cb_flag, NULL);
 	if (ident_bp == NULL) {
 		goto out;
 	}
 
 	ident_pkt = dcd_init_pkt(ROUTE, (struct dcd_pkt *)NULL,
-			ident_bp, sizeof (struct dcd_cmd), 2, 0,
-			PKT_CONSISTENT,
-			callback, NULL);
+	    ident_bp, sizeof (struct dcd_cmd), 2, 0,
+	    PKT_CONSISTENT,
+	    callback, NULL);
 
 	if (ident_pkt == NULL) {
 		if (ident_bp->b_error == 0)
@@ -150,7 +150,7 @@ dcd_hba_probe(struct dcd_device *devp, int (*callback)())
 	bzero((caddr_t)devp->dcd_ident, SUN_IDENTSIZE);
 
 	makecommand(ident_pkt, FLAG_NOINTR, IDENTIFY, 0, ADD_LBA_MODE,
-		SUN_IDENTSIZE, DATA_READ, 0);
+	    SUN_IDENTSIZE, DATA_READ, 0);
 
 	/*
 	 * The first identify will tell us whether the target responded
@@ -177,13 +177,13 @@ dcd_hba_probe(struct dcd_device *devp, int (*callback)())
 
 #ifdef DEBUG1
 	printf("Pkt reason %x, scsbp %x\n", ident_pkt->pkt_reason,
-		*ident_pkt->pkt_scbp);
+	    *ident_pkt->pkt_scbp);
 #endif
 	/*
 	 * If we are lucky, this identify succeeded
 	 */
 	if ((ident_pkt->pkt_reason == CMD_CMPLT) &&
-		(((*ident_pkt->pkt_scbp) & STATUS_ATA_MASK) == 0)) {
+	    (((*ident_pkt->pkt_scbp) & STATUS_ATA_MASK) == 0)) {
 		goto done;
 	}
 
@@ -213,11 +213,11 @@ done:
 	 * If we got no error then receive the indentify data,
 	 */
 	if ((ident_pkt->pkt_state & STATE_XFERRED_DATA) == 0 &&
-		ident_pkt->pkt_resid > 0) {
+	    ident_pkt->pkt_resid > 0) {
 		rval = DCDPROBE_NONCCS;
 	} else {
 		bcopy((caddr_t)ident_bp->b_un.b_addr,
-			(caddr_t)devp->dcd_ident, SUN_IDENTSIZE);
+		    (caddr_t)devp->dcd_ident, SUN_IDENTSIZE);
 		rval = DCDPROBE_EXISTS;
 	}
 
@@ -248,7 +248,7 @@ dcd_test(struct dcd_pkt *pkt)
 	if (dcd_transport(pkt) != TRAN_ACCEPT) {
 		goto error;
 	} else if (pkt->pkt_reason == CMD_INCOMPLETE &&
-			pkt->pkt_state == 0) {
+	    pkt->pkt_state == 0) {
 		goto error;
 	} else if (pkt->pkt_reason != CMD_CMPLT) {
 		goto error;
@@ -267,13 +267,13 @@ error:
 
 void
 makecommand(struct dcd_pkt *pkt,
-		int	flags,
-		uchar_t	command,
-		uint32_t block,
-		uchar_t	address_mode,
-		uint32_t size,
-		uchar_t	direction,
-		uchar_t	features)
+    int		flags,
+    uchar_t	command,
+    uint32_t	block,
+    uchar_t	address_mode,
+    uint32_t	size,
+    uchar_t	direction,
+    uchar_t	features)
 {
 
 	struct	dcd_cmd *cdbp = (struct dcd_cmd *)pkt->pkt_cdbp;
@@ -290,7 +290,7 @@ makecommand(struct dcd_pkt *pkt,
 	printf("pkt flags set in dada %x\n", pkt->pkt_flags);
 
 	printf("command %x, flags %x, block %x, address_mode %x, size %x\n",
-		command, flags, block, address_mode, size);
+	    command, flags, block, address_mode, size);
 #endif
 
 

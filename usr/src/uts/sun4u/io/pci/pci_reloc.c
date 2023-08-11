@@ -93,7 +93,7 @@ pci_dvma_unregister_callbacks(pci_t *pci_p, ddi_dma_impl_t *mp)
 
 static int
 pci_dvma_postrelocator(caddr_t va, uint_t len, uint_t flags, void *mpvoid,
-	pfn_t newpfn)
+    pfn_t newpfn)
 {
 	ddi_dma_impl_t *mp = (ddi_dma_impl_t *)mpvoid;
 	dev_info_t *rdip = mp->dmai_rdip;
@@ -139,7 +139,7 @@ pci_dvma_postrelocator(caddr_t va, uint_t len, uint_t flags, void *mpvoid,
 	if ((mp)->dmai_ndvmapages == 1) {
 		DEBUG2(DBG_RELOC, rdip, "pfn remap (1) 0x%x -> 0x%x\n",
 		    mp->dmai_pfnlst, newpfn);
-		    mp->dmai_pfnlst = (void *)newpfn;
+		mp->dmai_pfnlst = (void *)newpfn;
 	} else {
 		DEBUG3(DBG_RELOC, rdip, "pfn remap (%d) 0x%x -> 0x%x\n",
 		    index, ((iopfn_t *)mp->dmai_pfnlst)[index], newpfn);
@@ -168,7 +168,7 @@ pci_dma_relocerr(caddr_t va, uint_t len, uint_t errorcode, void *mpvoid)
 	int errlevel = pci_dma_panic_on_leak? CE_PANIC : CE_WARN;
 	if (errorcode == HAT_CB_ERR_LEAKED) {
 		cmn_err(errlevel, "object 0x%p has a bound DMA handle 0x%p\n",
-			va, mpvoid);
+		    va, mpvoid);
 		return (0);
 	}
 
@@ -186,7 +186,7 @@ pci_dma_relocerr(caddr_t va, uint_t len, uint_t errorcode, void *mpvoid)
  */
 int
 pci_dvma_remap(dev_info_t *dip, dev_info_t *rdip, ddi_dma_impl_t *mp,
-	off_t offset, size_t length)
+    off_t offset, size_t length)
 {
 	pci_t *pci_p = get_pci_soft_state(ddi_get_instance(dip));
 	iommu_t *iommu_p = pci_p->pci_iommu_p;
@@ -211,7 +211,7 @@ pci_dvma_remap(dev_info_t *dip, dev_info_t *rdip, ddi_dma_impl_t *mp,
 
 void
 pci_fdvma_remap(ddi_dma_impl_t *mp, caddr_t kvaddr, dvma_addr_t dvma_pg,
-	size_t npages, size_t index, pfn_t newpfn)
+    size_t npages, size_t index, pfn_t newpfn)
 {
 	fdvma_t *fdvma_p = (fdvma_t *)mp->dmai_fdvma;
 	pci_t *pci_p = (pci_t *)fdvma_p->softsp;
@@ -227,9 +227,9 @@ pci_fdvma_remap(ddi_dma_impl_t *mp, caddr_t kvaddr, dvma_addr_t dvma_pg,
 	    kvaddr, npages);
 	if (index + npages > mp->dmai_ndvmapages) {
 		cmn_err(pci_panic_on_fatal_errors ? CE_PANIC : CE_WARN,
-			"%s%d: fdvma remap index(%lx)+pgs(%lx) exceeds limit\n",
-			ddi_driver_name(dip), ddi_get_instance(dip),
-			index, npages);
+		    "%s%d: fdvma remap index(%lx)+pgs(%lx) exceeds limit\n",
+		    ddi_driver_name(dip), ddi_get_instance(dip),
+		    index, npages);
 		return;
 	}
 
@@ -251,7 +251,7 @@ pci_fdvma_remap(ddi_dma_impl_t *mp, caddr_t kvaddr, dvma_addr_t dvma_pg,
 	return;
 bad_pfn:
 	cmn_err(CE_WARN, "%s%d: fdvma remap can't get page frame for vaddr %p",
-		ddi_driver_name(dip), ddi_get_instance(dip), kvaddr);
+	    ddi_driver_name(dip), ddi_get_instance(dip), kvaddr);
 }
 
 static int
@@ -277,7 +277,7 @@ pci_fdvma_prerelocator(caddr_t va, uint_t len, uint_t flags, void *mpvoid)
 
 static int
 pci_fdvma_postrelocator(caddr_t va, uint_t len, uint_t flags, void *mpvoid,
-	pfn_t pfn)
+    pfn_t pfn)
 {
 	ddi_dma_impl_t *mp = (ddi_dma_impl_t *)mpvoid;
 	dev_info_t *rdip = mp->dmai_rdip;
@@ -342,7 +342,7 @@ pci_fdvma_postrelocator(caddr_t va, uint_t len, uint_t flags, void *mpvoid,
 
 void
 pci_fdvma_unregister_callbacks(pci_t *pci_p, fdvma_t *fdvma_p,
-	ddi_dma_impl_t *mp, uint_t index)
+    ddi_dma_impl_t *mp, uint_t index)
 {
 	size_t npgs = fdvma_p->pagecnt[index];
 	caddr_t kva = fdvma_p->kvbase[index];
@@ -429,13 +429,13 @@ pci_reloc_init(void)
 	mutex_init(&pci_reloc_mutex, NULL, MUTEX_DEFAULT, NULL);
 	cv_init(&pci_reloc_cv, NULL, CV_DEFAULT, NULL);
 	pci_dvma_cbid = hat_register_callback(
-		key + ('D'<<24 | 'V'<<16 | 'M'<<8 | 'A'),
-		pci_common_prerelocator, pci_dvma_postrelocator,
-		pci_dma_relocerr, 1);
+	    key + ('D'<<24 | 'V'<<16 | 'M'<<8 | 'A'),
+	    pci_common_prerelocator, pci_dvma_postrelocator,
+	    pci_dma_relocerr, 1);
 	pci_fast_dvma_cbid = hat_register_callback(
-		key + ('F'<<24 | 'D'<<16 | 'M'<<8 | 'A'),
-		pci_common_prerelocator,
-		pci_fdvma_postrelocator, pci_dma_relocerr, 1);
+	    key + ('F'<<24 | 'D'<<16 | 'M'<<8 | 'A'),
+	    pci_common_prerelocator,
+	    pci_fdvma_postrelocator, pci_dma_relocerr, 1);
 }
 
 void

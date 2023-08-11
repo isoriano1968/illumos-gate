@@ -54,7 +54,7 @@ prom_sunfire_cpu_off(void)
  * These interfaces allow the client to attach/detach board.
  */
 int
-prom_sunfire_attach_board(u_int board)
+prom_sunfire_attach_board(uint_t board)
 {
 	cell_t ci[5];
 	int rv;
@@ -77,7 +77,7 @@ prom_sunfire_attach_board(u_int board)
 }
 
 int
-prom_sunfire_detach_board(u_int board)
+prom_sunfire_detach_board(uint_t board)
 {
 	cell_t ci[5];
 	int rv;

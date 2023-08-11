@@ -32,15 +32,15 @@ prom_create_encoded_prop(char *propname, void *prop_data, int prop_datalen,
     enum encode_how how)
 {
 	char encode_bytes_command[] =	"my-self >r  0 to my-self"
-					" push-package"
-					" encode-bytes  2swap property"
-					" pop-package"
-					" r> to my-self";
+	    " push-package"
+	    " encode-bytes  2swap property"
+	    " pop-package"
+	    " r> to my-self";
 	char encode_string_command[] =	"my-self >r  0 to my-self"
-					" push-package"
-					" encode-string  2swap property"
-					" pop-package"
-					" r> to my-self";
+	    " push-package"
+	    " encode-string  2swap property"
+	    " pop-package"
+	    " r> to my-self";
 	char *command;
 	static pnode_t cn = OBP_NONODE;
 

@@ -470,12 +470,11 @@ fmovr(
  */
 enum ftt_type
 movcc(
-	fp_simd_type	*pfpsd, /* Pointer to fpu simulator data */
-	fp_inst_type    pinst,	/* FPU instruction to simulate. */
-	struct regs	*pregs,	/* Pointer to PCB image of registers. */
-	void		*prw,	/* Pointer to locals and ins. */
-	kfpu_t		*pfpu)	/* Pointer to FPU register block. */
-
+    fp_simd_type	*pfpsd, /* Pointer to fpu simulator data */
+    fp_inst_type	pinst,	/* FPU instruction to simulate. */
+    struct regs		*pregs,	/* Pointer to PCB image of registers. */
+    void		*prw,	/* Pointer to locals and ins. */
+    kfpu_t		*pfpu)	/* Pointer to FPU register block. */
 {
 	fsr_type	fsr;
 	enum cc_type	cc;

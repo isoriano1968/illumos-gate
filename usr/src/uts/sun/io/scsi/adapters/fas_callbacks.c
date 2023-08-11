@@ -145,13 +145,13 @@ fas_call_pkt_comp(register struct fas *fas, register struct fas_cmd *sp)
 		if (sp->cmd_pkt->pkt_reason != CMD_CMPLT) {
 			IPRINTF6("completion for %d.%d, sp=0x%p, "
 			    "reason=%s, stats=%x, state=%x\n",
-				Tgt(sp), Lun(sp), (void *)sp,
-				scsi_rname(sp->cmd_pkt->pkt_reason),
-				sp->cmd_pkt->pkt_statistics,
-				sp->cmd_pkt->pkt_state);
+			    Tgt(sp), Lun(sp), (void *)sp,
+			    scsi_rname(sp->cmd_pkt->pkt_reason),
+			    sp->cmd_pkt->pkt_statistics,
+			    sp->cmd_pkt->pkt_state);
 		} else {
 			EPRINTF2("completion queued for %d.%dn",
-				Tgt(sp), Lun(sp));
+			    Tgt(sp), Lun(sp));
 		}
 
 		/*

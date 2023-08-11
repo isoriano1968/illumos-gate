@@ -170,9 +170,9 @@ loop:
 		b = 8;
 u_number:
 		if (ells == 0)
-			ul = (uint64_t)va_arg(adx, u_int);
+			ul = (uint64_t)va_arg(adx, uint_t);
 		else if (ells == 1)
-			ul = (uint64_t)va_arg(adx, u_long);
+			ul = (uint64_t)va_arg(adx, ulong_t);
 		else
 			ul = (uint64_t)va_arg(adx, uint64_t);
 number:

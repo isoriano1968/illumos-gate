@@ -96,7 +96,7 @@ kobj_sync_instruction_memory(caddr_t addr, size_t len)
 /* ARGSUSED3 */
 int
 get_progbits_size(struct module *mp, struct proginfo *tp, struct proginfo *dp,
-	struct proginfo *sdp)
+    struct proginfo *sdp)
 {
 	struct proginfo *pp;
 	uint_t shn;

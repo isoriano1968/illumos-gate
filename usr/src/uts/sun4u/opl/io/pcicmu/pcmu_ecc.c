@@ -363,10 +363,10 @@ pcmu_ecc_err_handler(pcmu_ecc_errstate_t *ecc_err_p)
 
 	pcmu_ecc_errstate_get(ecc_err_p);
 	pri_err = (ecc_err_p->ecc_afsr >> PCMU_ECC_UE_AFSR_PE_SHIFT) &
-		PCMU_ECC_UE_AFSR_E_MASK;
+	    PCMU_ECC_UE_AFSR_E_MASK;
 
 	sec_err = (ecc_err_p->ecc_afsr >> PCMU_ECC_UE_AFSR_SE_SHIFT) &
-		PCMU_ECC_UE_AFSR_E_MASK;
+	    PCMU_ECC_UE_AFSR_E_MASK;
 
 	switch (ecc_ii_p->pecc_type) {
 	case CBNINTR_UE:
@@ -375,8 +375,8 @@ pcmu_ecc_err_handler(pcmu_ecc_errstate_t *ecc_err_p)
 			ecc_err_p->pecc_pri = 1;
 			pcmu_ecc_classify(pri_err, ecc_err_p);
 			errorq_dispatch(pcmu_ecc_queue, (void *)ecc_err_p,
-				sizeof (pcmu_ecc_errstate_t),
-				ecc_err_p->ecc_aflt.flt_panic);
+			    sizeof (pcmu_ecc_errstate_t),
+			    ecc_err_p->ecc_aflt.flt_panic);
 		}
 		if (sec_err) {
 			pcmu_ecc_errstate_t ecc_sec_err;
@@ -385,7 +385,7 @@ pcmu_ecc_err_handler(pcmu_ecc_errstate_t *ecc_err_p)
 			ecc_sec_err.pecc_pri = 0;
 			pcmu_ecc_classify(sec_err, &ecc_sec_err);
 			pcmu_ecc_ereport_post(pcmu_p->pcmu_dip,
-					&ecc_sec_err);
+			    &ecc_sec_err);
 		}
 		/*
 		 * Check for PCI bus errors that may have resulted from or
@@ -458,9 +458,9 @@ pcmu_ecc_ereport_post(dev_info_t *dip, pcmu_ecc_errstate_t *ecc_err)
 		aux_msg = "PIO secondary uncorrectable error";
 	}
 	cmn_err(CE_WARN, "%s %s: %s %s=0x%lx, %s=0x%lx, %s=0x%x",
-		(pcmu_p->pcmu_pcbm_p)->pcbm_nameinst_str,
-		(pcmu_p->pcmu_pcbm_p)->pcbm_nameaddr_str,
-		aux_msg, PCI_ECC_AFSR, ecc_err->ecc_afsr,
-		PCI_ECC_AFAR, ecc_err->ecc_aflt.flt_addr,
-		"portid", ecc_err->ecc_aflt.flt_bus_id);
+	    (pcmu_p->pcmu_pcbm_p)->pcbm_nameinst_str,
+	    (pcmu_p->pcmu_pcbm_p)->pcbm_nameaddr_str,
+	    aux_msg, PCI_ECC_AFSR, ecc_err->ecc_afsr,
+	    PCI_ECC_AFAR, ecc_err->ecc_aflt.flt_addr,
+	    "portid", ecc_err->ecc_aflt.flt_bus_id);
 }

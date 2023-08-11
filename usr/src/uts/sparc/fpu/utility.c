@@ -130,7 +130,7 @@ fpu_rightshift(unpacked *pu, int n)
 	uint_t m, k, j, u0, u1, u2, u3;
 	if (n > 113) {		/* drastic */
 		if (((*pu).significand[0] | (*pu).significand[1]
-			| (*pu).significand[2] | (*pu).significand[3]) == 0) {
+		    | (*pu).significand[2] | (*pu).significand[3]) == 0) {
 						/* really zero */
 			pu->fpclass = fp_zero;
 			return;
@@ -175,9 +175,8 @@ fpu_rightshift(unpacked *pu, int n)
  * Set the exception bit in the current exception register.
  */
 void
-fpu_set_exception(pfpsd, ex)
-	fp_simd_type	*pfpsd;	/* Pointer to simulator data */
-	enum fp_exception_type ex;
+fpu_set_exception(pfpsd, ex) fp_simd_type *pfpsd;
+    enum fp_exception_type ex;
 {
 	pfpsd->fp_current_exceptions |= 1 << (int)ex;
 }
@@ -187,8 +186,8 @@ fpu_set_exception(pfpsd, ex)
  */
 void
 fpu_error_nan(pfpsd, pu)
-	fp_simd_type	*pfpsd;	/* Pointer to simulator data */
-	unpacked	*pu;
+    fp_simd_type	*pfpsd;	/* Pointer to simulator data */
+    unpacked		*pu;
 {
 	fpu_set_exception(pfpsd, fp_invalid);
 	pu->sign = 0;
@@ -210,7 +209,8 @@ fpu_error_nan(pfpsd, pu)
  */
 uint_t
 fpu_add3wc(uint_t *z, uint_t x, uint_t y, uint_t carry)
-{				/*  *z = x + y + carry, set carry; */
+{
+/*  *z = x + y + carry, set carry; */
 	if (carry == 0) {
 		*z = x+y;
 		return (*z < y);
@@ -232,7 +232,8 @@ fpu_add3wc(uint_t *z, uint_t x, uint_t y, uint_t carry)
  */
 uint_t
 fpu_sub3wc(uint_t *z, uint_t x, uint_t y, uint_t carry)
-{				/*  *z = x - y - carry, set carry; */
+{
+/*  *z = x - y - carry, set carry; */
 	if (carry == 0) {
 		*z = x-y;
 		return (*z > x);
@@ -254,7 +255,8 @@ fpu_sub3wc(uint_t *z, uint_t x, uint_t y, uint_t carry)
  */
 uint_t
 fpu_neg2wc(uint_t *z, uint_t x, uint_t carry)
-{				/*  *x = 0 - *x - carry, set carry; */
+{
+/*  *x = 0 - *x - carry, set carry; */
 	if (carry == 0) {
 		*z = -x;
 		return ((*z) != 0);
@@ -266,7 +268,8 @@ fpu_neg2wc(uint_t *z, uint_t x, uint_t carry)
 
 int
 fpu_cmpli(uint_t *x, uint_t *y, int n)
-{				/* compare two uint_t array */
+{
+/* compare two uint_t array */
 	int i;
 	i = 0;
 
@@ -289,7 +292,7 @@ fpu_cmpli(uint_t *x, uint_t *y, int n)
  */
 void
 display_unpacked(pu)
-	unpacked	*pu;
+    unpacked *pu;
 {
 	(void) printf(" unpacked ");
 	if (pu->sign)
@@ -313,8 +316,8 @@ display_unpacked(pu)
 		break;
 	}
 	(void) printf(" %X %X %X %X (%X, %X) exponent %X \n",
-		pu->significand[0], pu->significand[1], pu->significand[2],
-		pu->significand[3], (pu->rounded != 0),
-		(pu->sticky != 0), pu->exponent);
+	    pu->significand[0], pu->significand[1], pu->significand[2],
+	    pu->significand[3], (pu->rounded != 0),
+	    (pu->sticky != 0), pu->exponent)
 }
 #endif

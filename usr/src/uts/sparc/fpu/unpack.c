@@ -279,7 +279,7 @@ _fp_unpack(
 		pfpsd->fp_current_read_dreg(&fp.ll[0], QUAD_E(n), pfpsd);
 		pfpsd->fp_current_read_dreg(&fp.ll[1], QUAD_F(n), pfpsd);
 		unpackextended(pfpsd, pu, fp.f.extended_reg, fp.y[1],
-					fp.y[2], fp.y[3]);
+		    fp.y[2], fp.y[3]);
 		break;
 	}
 }

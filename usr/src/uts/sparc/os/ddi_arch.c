@@ -56,7 +56,7 @@ int ddi_map_debug_flag = 1;
  */
 int
 i_ddi_bus_map(dev_info_t *dip, dev_info_t *rdip, ddi_map_req_t *mp,
-	off_t offset, off_t len, caddr_t *vaddrp)
+    off_t offset, off_t len, caddr_t *vaddrp)
 {
 	struct regspec tmp_reg, *rp;
 	ddi_map_req_t mr = *mp;	 /* Get private copy of request */
@@ -140,8 +140,8 @@ i_ddi_bus_map(dev_info_t *dip, dev_info_t *rdip, ddi_map_req_t *mp,
  */
 int
 i_ddi_map_fault(dev_info_t *dip, dev_info_t *rdip,
-	struct hat *hat, struct seg *seg, caddr_t addr,
-	struct devpage *dp, pfn_t pfn, uint_t prot, uint_t lock)
+    struct hat *hat, struct seg *seg, caddr_t addr,
+    struct devpage *dp, pfn_t pfn, uint_t prot, uint_t lock)
 {
 	dev_info_t *pdip;
 

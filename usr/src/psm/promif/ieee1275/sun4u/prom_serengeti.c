@@ -154,7 +154,7 @@ prom_serengeti_cpu_off(pnode_t node)
  */
 int
 prom_serengeti_get_ecacheunum(int cpuid, unsigned long long physaddr, char *buf,
-		uint_t buflen, int *ustrlen)
+    uint_t buflen, int *ustrlen)
 {
 	cell_t ci[12];
 	int rv;

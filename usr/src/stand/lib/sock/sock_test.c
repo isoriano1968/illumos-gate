@@ -759,7 +759,7 @@ st_echo(void)
 		return (-1);
 	}
 	printf("@ Accepted connection: %s/%d\n", inet_ntoa(addr.sin_addr),
-		ntohs(addr.sin_port));
+	    ntohs(addr.sin_port));
 	(void) st_local_socket_close(listen_fd);
 
 	if ((buf = bkmem_zalloc(buf_len)) == NULL) {

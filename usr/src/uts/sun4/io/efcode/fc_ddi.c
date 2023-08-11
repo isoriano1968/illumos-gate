@@ -80,12 +80,12 @@ fc_ddi_dma_buf_bind_handle(ddi_dma_handle_t handle, struct buf *bp,
 		dmareq.dmar_object.dmao_obj.virt_obj.v_addr = bp->b_un.b_addr;
 		if ((bp->b_flags & (B_SHADOW|B_REMAPPED)) == B_SHADOW) {
 			dmareq.dmar_object.dmao_obj.virt_obj.v_priv =
-							bp->b_shadow;
+			    bp->b_shadow;
 			dmareq.dmar_object.dmao_type = DMA_OTYP_BUFVADDR;
 		} else {
 			dmareq.dmar_object.dmao_type =
-				(bp->b_flags & (B_PHYS | B_REMAPPED))?
-				DMA_OTYP_BUFVADDR : DMA_OTYP_VADDR;
+			    (bp->b_flags & (B_PHYS | B_REMAPPED))?
+			    DMA_OTYP_BUFVADDR : DMA_OTYP_VADDR;
 			dmareq.dmar_object.dmao_obj.virt_obj.v_priv = NULL;
 		}
 
@@ -141,7 +141,7 @@ fc_ddi_dma_sync(ddi_dma_handle_t h, off_t o, size_t l, uint_t whom)
 	ddi_dma_impl_t *hp = (ddi_dma_impl_t *)h;
 	dev_info_t *dip;
 	int (*funcp)(dev_info_t *, dev_info_t *, ddi_dma_handle_t, off_t,
-		size_t, uint_t);
+	    size_t, uint_t);
 
 	/*
 	 * the DMA nexus driver will set DMP_NOSYNC if the

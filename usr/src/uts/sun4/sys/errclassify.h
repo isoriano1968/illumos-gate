@@ -128,37 +128,49 @@ typedef enum {
  *	   afar  ec	      ce1  ce2	initial disp and next action	\
  *	  match  state							\
  */									\
-CE_DISPACT(a, 0, 0,		0, 0) = CE_DISP_UNKNOWN | CE_ACT_DONE; \
-CE_DISPACT(a, 0, 0,		0, 1) = CE_DISP_POSS_STICKY | CE_ACT_PTNRCHK; \
-CE_DISPACT(a, 0, 0,		1, 0) = CE_DISP_POSS_PERS | CE_ACT_LKYCHK; \
-CE_DISPACT(a, 0, 0,		1, 1) = CE_DISP_POSS_STICKY | CE_ACT_PTNRCHK; \
-CE_DISPACT(a, 1, EC_STATE_M,	0, 0) = CE_DISP_UNKNOWN | CE_ACT_DONE; \
-CE_DISPACT(a, 1, EC_STATE_M,	0, 1) = CE_DISP_UNKNOWN | CE_ACT_DONE; \
-CE_DISPACT(a, 1, EC_STATE_M,	1, 0) = CE_DISP_UNKNOWN | CE_ACT_DONE; \
-CE_DISPACT(a, 1, EC_STATE_M,	1, 1) = CE_DISP_POSS_STICKY | CE_ACT_PTNRCHK; \
-CE_DISPACT(a, 1, EC_STATE_O,	0, 0) = CE_DISP_UNKNOWN | CE_ACT_DONE; \
-CE_DISPACT(a, 1, EC_STATE_O,	0, 1) = CE_DISP_UNKNOWN | CE_ACT_DONE; \
-CE_DISPACT(a, 1, EC_STATE_O,	1, 0) = CE_DISP_UNKNOWN | CE_ACT_DONE; \
-CE_DISPACT(a, 1, EC_STATE_O,	1, 1) = CE_DISP_POSS_STICKY | CE_ACT_PTNRCHK; \
-CE_DISPACT(a, 1, EC_STATE_E,	0, 0) = CE_DISP_INTERMITTENT | CE_ACT_DONE; \
-CE_DISPACT(a, 1, EC_STATE_E,	0, 1) = CE_DISP_UNKNOWN | CE_ACT_DONE; \
-CE_DISPACT(a, 1, EC_STATE_E,	1, 0) = CE_DISP_POSS_PERS | CE_ACT_LKYCHK; \
-CE_DISPACT(a, 1, EC_STATE_E,	1, 1) = CE_DISP_POSS_STICKY | CE_ACT_PTNRCHK; \
-CE_DISPACT(a, 1, EC_STATE_S,	0, 0) = CE_DISP_INTERMITTENT | CE_ACT_DONE; \
-CE_DISPACT(a, 1, EC_STATE_S,	0, 1) = CE_DISP_POSS_STICKY | CE_ACT_PTNRCHK; \
-CE_DISPACT(a, 1, EC_STATE_S,	1, 0) = CE_DISP_POSS_PERS | CE_ACT_LKYCHK; \
-CE_DISPACT(a, 1, EC_STATE_S,	1, 1) = CE_DISP_POSS_STICKY | CE_ACT_PTNRCHK; \
-CE_DISPACT(a, 1, EC_STATE_I,	0, 0) = CE_DISP_UNKNOWN | CE_ACT_DONE; \
-CE_DISPACT(a, 1, EC_STATE_I,	0, 1) = CE_DISP_POSS_STICKY | CE_ACT_PTNRCHK; \
-CE_DISPACT(a, 1, EC_STATE_I,	1, 0) = CE_DISP_POSS_PERS | CE_ACT_LKYCHK; \
-CE_DISPACT(a, 1, EC_STATE_I,	1, 1) = CE_DISP_POSS_STICKY | CE_ACT_PTNRCHK; \
+	CE_DISPACT(a, 0, 0, 0, 0) = CE_DISP_UNKNOWN | CE_ACT_DONE; \
+	CE_DISPACT(a, 0, 0, 0, 1) = CE_DISP_POSS_STICKY | CE_ACT_PTNRCHK; \
+	CE_DISPACT(a, 0, 0, 1, 0) = CE_DISP_POSS_PERS | CE_ACT_LKYCHK; \
+	CE_DISPACT(a, 0, 0, 1, 1) = CE_DISP_POSS_STICKY | CE_ACT_PTNRCHK; \
+	CE_DISPACT(a, 1, EC_STATE_M, 0, 0) = CE_DISP_UNKNOWN | CE_ACT_DONE; \
+	CE_DISPACT(a, 1, EC_STATE_M, 0, 1) = CE_DISP_UNKNOWN | CE_ACT_DONE; \
+	CE_DISPACT(a, 1, EC_STATE_M, 1, 0) = CE_DISP_UNKNOWN | CE_ACT_DONE; \
+	CE_DISPACT(a, 1, EC_STATE_M, 1, 1) = CE_DISP_POSS_STICKY | \
+	CE_ACT_PTNRCHK; \
+	CE_DISPACT(a, 1, EC_STATE_O, 0, 0) = CE_DISP_UNKNOWN | CE_ACT_DONE; \
+	CE_DISPACT(a, 1, EC_STATE_O, 0, 1) = CE_DISP_UNKNOWN | CE_ACT_DONE; \
+	CE_DISPACT(a, 1, EC_STATE_O, 1, 0) = CE_DISP_UNKNOWN | CE_ACT_DONE; \
+	CE_DISPACT(a, 1, EC_STATE_O, 1, 1) = CE_DISP_POSS_STICKY | \
+	CE_ACT_PTNRCHK; \
+	CE_DISPACT(a, 1, EC_STATE_E, 0, 0) = CE_DISP_INTERMITTENT | \
+	CE_ACT_DONE; \
+	CE_DISPACT(a, 1, EC_STATE_E, 0, 1) = CE_DISP_UNKNOWN | CE_ACT_DONE; \
+	CE_DISPACT(a, 1, EC_STATE_E, 1, 0) = CE_DISP_POSS_PERS | \
+	CE_ACT_LKYCHK; \
+	CE_DISPACT(a, 1, EC_STATE_E, 1, 1) = CE_DISP_POSS_STICKY | \
+	CE_ACT_PTNRCHK; \
+	CE_DISPACT(a, 1, EC_STATE_S, 0, 0) = CE_DISP_INTERMITTENT | \
+	CE_ACT_DONE; \
+	CE_DISPACT(a, 1, EC_STATE_S, 0, 1) = CE_DISP_POSS_STICKY | \
+	CE_ACT_PTNRCHK; \
+	CE_DISPACT(a, 1, EC_STATE_S, 1, 0) = CE_DISP_POSS_PERS | \
+	CE_ACT_LKYCHK; \
+	CE_DISPACT(a, 1, EC_STATE_S, 1, 1) = CE_DISP_POSS_STICKY | \
+	CE_ACT_PTNRCHK; \
+	CE_DISPACT(a, 1, EC_STATE_I, 0, 0) = CE_DISP_UNKNOWN | CE_ACT_DONE; \
+	CE_DISPACT(a, 1, EC_STATE_I, 0, 1) = CE_DISP_POSS_STICKY | \
+	CE_ACT_PTNRCHK; \
+	CE_DISPACT(a, 1, EC_STATE_I, 1, 0) = CE_DISP_POSS_PERS | \
+	CE_ACT_LKYCHK; \
+	CE_DISPACT(a, 1, EC_STATE_I, 1, 1) = CE_DISP_POSS_STICKY | \
+	CE_ACT_PTNRCHK; \
 }
 
-#endif	/* !_ASM */
+#endif /* !_ASM */
 
-/*
- * Legacy error type names corresponding to the flt_status bits
- */
+	/*
+	 * Legacy error type names corresponding to the flt_status bits
+	 */
 #define	ERR_TYPE_DESC_INTERMITTENT	"Intermittent"
 #define	ERR_TYPE_DESC_PERSISTENT	"Persistent"
 #define	ERR_TYPE_DESC_STICKY		"Sticky"
@@ -168,11 +180,12 @@ CE_DISPACT(a, 1, EC_STATE_I,	1, 1) = CE_DISP_POSS_STICKY | CE_ACT_PTNRCHK; \
  * flt_disp for a CE will record all scrub test data for the extended
  * classification attempt.
  *
- * --------------------------------------------------------------------------
- * |            | partner |   |          | leaky   | partner | detector     |
- * | partner id | type    | - | skipcode | results | results | results      |
- * |63	      32|31     30|   |27      24|23     16|15      8|7            0|
- * --------------------------------------------------------------------------
+ * --------------------------------------------------------------------
+ * | partner  |	partner	|   |	       | leaky	 | partner | detector |
+ * |	id    |	 type	| - | skipcode | results | results | results  |
+ * |63	    32|3      30|   |27	     24|23     16|15	  8|7	     0|
+ * |63	    32|3      30|   |27	     24|23     16|15	  8|7	     0|
+ * --------------------------------------------------------------------
  */
 #define	CE_XDIAG_DTCRMASK		0xffULL
 #define	CE_XDIAG_PTNRSHIFT		8
@@ -185,9 +198,9 @@ CE_DISPACT(a, 1, EC_STATE_I,	1, 1) = CE_DISP_POSS_STICKY | CE_ACT_PTNRCHK; \
 #define	CE_XDIAG_PTNRTYPEMASK		(0x3ULL << CE_XDIAG_PTNRTYPESHIFT)
 #define	CE_XDIAG_PTNRIDSHIFT		32
 
-/*
- * Given a CE flt_disp set the given field
- */
+	/*
+	 * Given a CE flt_disp set the given field
+	 */
 #define	CE_XDIAG_SETPTNRID(disp, id) \
 	((disp) |= (uint64_t)(id) << CE_XDIAG_PTNRIDSHIFT)
 #define	CE_XDIAG_SETPTNRTYPE(disp, type) \
@@ -201,12 +214,12 @@ CE_DISPACT(a, 1, EC_STATE_I,	1, 1) = CE_DISP_POSS_STICKY | CE_ACT_PTNRCHK; \
 #define	CE_XDIAG_SETDTCRINFO(disp, result) \
 	((disp) |= (uint64_t)result)
 
-/*
- * Given a CE flt_disp extract the requested component
- */
+	/*
+	 * Given a CE flt_disp extract the requested component
+	 */
 #define	CE_XDIAG_DTCRINFO(disp)	((disp) & CE_XDIAG_DTCRMASK)
 #define	CE_XDIAG_PTNRINFO(disp)	(((disp) & CE_XDIAG_PTNRMASK) >> \
-    CE_XDIAG_PTNRSHIFT)
+CE_XDIAG_PTNRSHIFT)
 #define	CE_XDIAG_LKYINFO(disp)	(((disp) & CE_XDIAG_LKYMASK) >> \
     CE_XDIAG_LKYSHIFT)
 #define	CE_XDIAG_SKIPCODE(disp)	(((disp) & CE_XDIAG_SKIPCODEMASK) >> \
@@ -215,14 +228,14 @@ CE_DISPACT(a, 1, EC_STATE_I,	1, 1) = CE_DISP_POSS_STICKY | CE_ACT_PTNRCHK; \
     CE_XDIAG_PTNRTYPESHIFT)
 #define	CE_XDIAG_PTNRID(disp)	((disp) >> CE_XDIAG_PTNRIDSHIFT)
 
-/*
- * Format of individual detector/partner/leaky test results.  CE_XDIAG_EXTALG
- * in the detector case indicates that the extended classification algorithm
- * has been applied;  common code uses this to distinguish between old and new.
- * In the partner check and leaky check cases CE_XDIAG_EXTALG is used to
- * indicate that the given test has run and recorded its results in its
- * result field.
- */
+	/*
+	 * Format of individual detector/partner/leaky test results
+	 * CE_XDIAG_EXTALG in the detector case indicates that the extended
+	 * classification algorithm has been applied; common code uses this to
+	 * distinguish between. old and new. In the partner check and leaky
+	 * check cases CE_XDIAG_EXTALG is used to indicate that the given test
+	 * has run and recorded its results in its result field.
+	 */
 #define	CE_XDIAG_STATE_MASK	0x7	/* Low 3 bits are for MOESI state */
 #define	CE_XDIAG_AFARMATCH	0x08	/* Line at e$ index matched AFAR */
 #define	CE_XDIAG_NOLOGOUT	0x10	/* Logout data unavailable */
@@ -230,10 +243,10 @@ CE_DISPACT(a, 1, EC_STATE_I,	1, 1) = CE_DISP_POSS_STICKY | CE_ACT_PTNRCHK; \
 #define	CE_XDIAG_CE2		0x40	/* CE logged on post-scrub reread */
 #define	CE_XDIAG_EXTALG		0x80	/* Extended algorithm applied */
 
-/*
- * Extract classification information for detector/partner.  Expects
- * a value from one of CE_XDIAG_{DTCR,PTNR,LKY}_INFO.
- */
+	/*
+	 * Extract classification information for detector/partner.  Expects
+	 * a value from one of CE_XDIAG_{DTCR,PTNR,LKY}_INFO.
+	 */
 #define	CE_XDIAG_AFARMATCHED(c)		(((c) & CE_XDIAG_AFARMATCH) != 0)
 #define	CE_XDIAG_LOGOUTVALID(c)		(((c) & CE_XDIAG_NOLOGOUT) == 0)
 #define	CE_XDIAG_CE1SEEN(c)		(((c) & CE_XDIAG_CE1) != 0)
@@ -242,16 +255,17 @@ CE_DISPACT(a, 1, EC_STATE_I,	1, 1) = CE_DISP_POSS_STICKY | CE_ACT_PTNRCHK; \
 	((c) & CE_XDIAG_STATE_MASK) : 0)
 #define	CE_XDIAG_EXT_ALG_APPLIED(c)	(((c) & CE_XDIAG_EXTALG) != 0)
 
-/*
- * A leaky or partner test is considered valid if the line was not present
- * in cache, or was present but Invalid, at the time of the additional scrub.
- */
+	/*
+	 * A leaky or partner test is considered valid if the line was not
+	 * present in cache, or was present but Invalid, at the time of the
+	 * additional scrub.
+	 */
 #define	CE_XDIAG_TESTVALID(c) (CE_XDIAG_EXT_ALG_APPLIED(c) && \
 	(!CE_XDIAG_AFARMATCHED(c) || CE_XDIAG_STATE(c) == EC_STATE_I))
 
-/*
- * Skipcodes - reasons for not applying extended diags; 4 bits
- */
+	/*
+	 * Skipcodes - reasons for not applying extended diags; 4 bits
+	 */
 #define	CE_XDIAG_SKIP_NOPP		0x1	/* Can't lookup page pointer */
 #define	CE_XDIAG_SKIP_PAGEDET		0x2	/* Page deteriorating/retired */
 #define	CE_XDIAG_SKIP_NOTMEM		0x3	/* AFAR is not memory */
@@ -261,9 +275,9 @@ CE_DISPACT(a, 1, EC_STATE_I,	1, 1) = CE_DISP_POSS_STICKY | CE_ACT_PTNRCHK; \
 #define	CE_XDIAG_SKIP_ACTBAD		0x7	/* bad action lookup - bug */
 #define	CE_XDIAG_SKIP_NOSCRUB		0x8	/* detector did not scrub */
 
-/*
- * Partner type information.
- */
+	/*
+	 * Partner type information.
+	 */
 #define	CE_XDIAG_PTNR_REMOTE	0x0	/* partner in different lgroup */
 #define	CE_XDIAG_PTNR_LOCAL	0x1	/* partner in same lgroup */
 #define	CE_XDIAG_PTNR_SIBLING	0x2	/* partner is a sibling core */

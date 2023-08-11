@@ -152,7 +152,7 @@ ac_add_bank(struct bd_list *add, ac_cfga_pkt_t *pkt)
 
 			/* fill the target page */
 			ac_blkcopy(fill_buf, base_va,
-				ADD_PAGESIZE/linesize, linesize);
+			    ADD_PAGESIZE/linesize, linesize);
 
 			/* tear down translation */
 			ac_unmap(base_va);

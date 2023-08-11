@@ -33,7 +33,7 @@
  */
 uint64_t
 prom_set_sun4v_api_version(uint64_t api_group, uint64_t major, uint64_t minor,
-	uint64_t *supported_minor)
+    uint64_t *supported_minor)
 {
 	cell_t ci[8];
 

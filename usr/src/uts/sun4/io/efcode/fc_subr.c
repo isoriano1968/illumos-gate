@@ -619,7 +619,7 @@ fc_remove_subtree(struct fc_device_tree *dp)
 			np->peer = NULL;
 		}
 		fc_remove_subtree(dp->peer)
-		dp->peer = NULL;
+		    dp->peer = NULL;
 	}
 
 	ASSERT((dp->child == NULL) && (dp->peer == NULL));

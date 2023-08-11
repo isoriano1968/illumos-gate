@@ -63,7 +63,8 @@ uint_t pcmu_intr_wrapper(caddr_t, caddr_t);
  * on this ino is blocked by not idling the interrupt state machine.
  */
 static int
-pcmu_spurintr(pcmu_ib_ino_info_t *ino_p) {
+pcmu_spurintr(pcmu_ib_ino_info_t *ino_p)
+{
 	int i;
 	ih_t *ih_p = ino_p->pino_ih_start;
 	pcmu_t *pcmu_p = ino_p->pino_ib_p->pib_pcmu_p;

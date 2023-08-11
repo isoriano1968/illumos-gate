@@ -149,7 +149,7 @@ ac_mem_stat(ac_cfga_pkt_t *pkt, int flag)
 				 */
 				cmn_err(CE_WARN, "ac_mem_stat(): "
 				    "memq.phys_pages != npgs (%ld != %ld)",
-				    (u_long)memq.phys_pages, (u_long)npgs);
+				    (ulong_t)memq.phys_pages, (ulong_t)npgs);
 			}
 		}
 #endif /* DEBUG */

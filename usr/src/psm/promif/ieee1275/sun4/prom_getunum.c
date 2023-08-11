@@ -35,7 +35,7 @@
  */
 int
 prom_get_unum(int syn_code, unsigned long long physaddr, char *buf,
-		uint_t buflen, int *ustrlen)
+    uint_t buflen, int *ustrlen)
 {
 	cell_t ci[12];
 	int rv;

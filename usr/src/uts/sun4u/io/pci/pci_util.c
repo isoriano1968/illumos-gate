@@ -65,7 +65,7 @@ get_pci_properties(pci_t *pci_p, dev_info_t *dip)
 	 */
 	if ((pci_p->pci_id = (uint32_t)pci_get_portid(dip)) == -1u) {
 		cmn_err(CE_WARN, "%s%d: no portid property\n",
-			ddi_driver_name(dip), ddi_get_instance(dip));
+		    ddi_driver_name(dip), ddi_get_instance(dip));
 		return (DDI_FAILURE);
 	}
 
@@ -80,14 +80,14 @@ get_pci_properties(pci_t *pci_p, dev_info_t *dip)
 		return (DDI_FAILURE);
 	}
 	DEBUG2(DBG_ATTACH, dip, "get_pci_properties: bus-range (%x,%x)\n",
-		pci_p->pci_bus_range.lo, pci_p->pci_bus_range.hi);
+	    pci_p->pci_bus_range.lo, pci_p->pci_bus_range.hi);
 
 	/*
 	 * disable streaming cache if necessary, this must be done
 	 * before PBM is configured.
 	 */
 	if (ddi_prop_exists(DDI_DEV_T_ANY, dip, DDI_PROP_DONTPASS,
-			"no-streaming-cache")) {
+	    "no-streaming-cache")) {
 		pci_stream_buf_enable = 0;
 		pci_stream_buf_exists = 0;
 	}
@@ -96,15 +96,15 @@ get_pci_properties(pci_t *pci_p, dev_info_t *dip)
 	 * Get the ranges property.
 	 */
 	if (ddi_getlongprop(DDI_DEV_T_ANY, dip, DDI_PROP_DONTPASS, "ranges",
-		(caddr_t)&pci_p->pci_ranges, &pci_p->pci_ranges_length) !=
-		DDI_SUCCESS) {
+	    (caddr_t)&pci_p->pci_ranges, &pci_p->pci_ranges_length) !=
+	    DDI_SUCCESS) {
 
 		cmn_err(CE_WARN, "%s%d: no ranges property\n",
-			ddi_driver_name(dip), ddi_get_instance(dip));
+		    ddi_driver_name(dip), ddi_get_instance(dip));
 		return (DDI_FAILURE);
 	}
 	pci_fix_ranges(pci_p->pci_ranges,
-		pci_p->pci_ranges_length / sizeof (pci_ranges_t));
+	    pci_p->pci_ranges_length / sizeof (pci_ranges_t));
 
 	/*
 	 * Determine the number upa slot interrupts.
@@ -114,8 +114,8 @@ get_pci_properties(pci_t *pci_p, dev_info_t *dip)
 	    pci_p->pci_numproxy);
 
 	pci_p->pci_thermal_interrupt =
-		ddi_getprop(DDI_DEV_T_ANY, dip, DDI_PROP_DONTPASS,
-				"thermal-interrupt", -1);
+	    ddi_getprop(DDI_DEV_T_ANY, dip, DDI_PROP_DONTPASS,
+	    "thermal-interrupt", -1);
 	DEBUG1(DBG_ATTACH, dip, "get_pci_properties: thermal_interrupt=%d\n",
 	    pci_p->pci_thermal_interrupt);
 	return (DDI_SUCCESS);
@@ -152,15 +152,15 @@ free_pci_properties(pci_t *pci_p)
  */
 int
 pci_reloc_reg(dev_info_t *dip, dev_info_t *rdip, pci_t *pci_p,
-	pci_regspec_t *rp)
+    pci_regspec_t *rp)
 {
 	int assign_len, assign_entries, i;
 	pci_regspec_t *assign_p;
 	register uint32_t phys_hi = rp->pci_phys_hi;
 
 	DEBUG5(DBG_MAP | DBG_CONT, dip, "\tpci_reloc_reg fr: %x.%x.%x %x.%x\n",
-		rp->pci_phys_hi, rp->pci_phys_mid, rp->pci_phys_low,
-		rp->pci_size_hi, rp->pci_size_low);
+	    rp->pci_phys_hi, rp->pci_phys_mid, rp->pci_phys_low,
+	    rp->pci_size_hi, rp->pci_size_low);
 
 	if ((phys_hi & PCI_RELOCAT_B) || !(phys_hi & PCI_ADDR_MASK))
 		return (DDI_SUCCESS);
@@ -168,12 +168,12 @@ pci_reloc_reg(dev_info_t *dip, dev_info_t *rdip, pci_t *pci_p,
 	/* phys_mid must be 0 regardless space type. */
 	if (rp->pci_phys_mid != 0 || rp->pci_size_hi != 0) {
 		DEBUG0(DBG_MAP | DBG_CONT, pci_p->pci_dip,
-			"phys_mid or size_hi not 0\n");
+		    "phys_mid or size_hi not 0\n");
 		return (DDI_ME_INVAL);
 	}
 
 	if (ddi_getlongprop(DDI_DEV_T_ANY, rdip, DDI_PROP_DONTPASS,
-		"assigned-addresses", (caddr_t)&assign_p, &assign_len))
+	    "assigned-addresses", (caddr_t)&assign_p, &assign_len))
 		return (DDI_ME_INVAL);
 
 	assign_entries = assign_len / sizeof (pci_regspec_t);
@@ -197,8 +197,8 @@ pci_reloc_reg(dev_info_t *dip, dev_info_t *rdip, pci_t *pci_p,
 	}
 	kmem_free(assign_p - i, assign_len);
 	DEBUG5(DBG_MAP | DBG_CONT, dip, "\tpci_reloc_reg to: %x.%x.%x %x.%x\n",
-		rp->pci_phys_hi, rp->pci_phys_mid, rp->pci_phys_low,
-		rp->pci_size_hi, rp->pci_size_low);
+	    rp->pci_phys_hi, rp->pci_phys_mid, rp->pci_phys_low,
+	    rp->pci_size_hi, rp->pci_size_low);
 	return (i < assign_entries ? DDI_SUCCESS : DDI_ME_INVAL);
 }
 
@@ -245,8 +245,8 @@ pci_xlate_reg(pci_t *pci_p, pci_regspec_t *pci_rp, struct regspec *new_rp)
 	new_rp->regspec_bustype = rng_p->parent_high;
 	new_rp->regspec_size = sz;
 	DEBUG4(DBG_MAP | DBG_CONT, pci_p->pci_dip,
-		"\tpci_xlate_reg: entry %d new_rp %x.%x %x\n",
-		n, new_rp->regspec_bustype, new_rp->regspec_addr, sz);
+	    "\tpci_xlate_reg: entry %d new_rp %x.%x %x\n",
+	    n, new_rp->regspec_bustype, new_rp->regspec_addr, sz);
 
 	return (DDI_SUCCESS);
 }
@@ -346,10 +346,10 @@ name_child(dev_info_t *child, char *name, int namelen)
 		func = PCI_REG_FUNC_G(pci_rp[0].pci_phys_hi);
 		if (func != 0)
 			(void) snprintf(name, namelen, "%x,%x",
-				PCI_REG_DEV_G(pci_rp[0].pci_phys_hi), func);
+			    PCI_REG_DEV_G(pci_rp[0].pci_phys_hi), func);
 		else
 			(void) snprintf(name, namelen, "%x",
-				PCI_REG_DEV_G(pci_rp[0].pci_phys_hi));
+			    PCI_REG_DEV_G(pci_rp[0].pci_phys_hi));
 		ddi_prop_free(pci_rp);
 		return (DDI_SUCCESS);
 	}
@@ -549,7 +549,7 @@ init_child(pci_t *pci_p, dev_info_t *child)
 	 */
 	command_preserve =
 	    ddi_prop_get_int(DDI_DEV_T_ANY, child, DDI_PROP_DONTPASS,
-		"command-preserve", 0);
+	    "command-preserve", 0);
 	DEBUG2(DBG_INIT_CLD, pci_p->pci_dip, "%s: command-preserve=%x\n",
 	    ddi_driver_name(child), command_preserve);
 	command = pci_config_get16(config_handle, PCI_CONF_COMM);
@@ -580,7 +580,7 @@ init_child(pci_t *pci_p, dev_info_t *child)
 	 */
 	if (pci_set_cache_line_size_register &&
 	    ddi_getprop(DDI_DEV_T_ANY, child, DDI_PROP_DONTPASS,
-		"cache-line-size", 0) == 0) {
+	    "cache-line-size", 0) == 0) {
 
 		pci_config_put8(config_handle, PCI_CONF_CACHE_LINESZ,
 		    PCI_CACHE_LINE_SIZE);
@@ -595,7 +595,7 @@ init_child(pci_t *pci_p, dev_info_t *child)
 	 */
 	if (pci_set_latency_timer_register &&
 	    ddi_getprop(DDI_DEV_T_ANY, child, DDI_PROP_DONTPASS,
-		"latency-timer", 0) == 0) {
+	    "latency-timer", 0) == 0) {
 
 		latency_timer = pci_latency_timer;
 		if ((header_type & PCI_HEADER_TYPE_M) == PCI_HEADER_ONE) {
@@ -707,14 +707,14 @@ pci_get_cfg_pabase(pci_t *pci_p)
 
 	if (i >= nrange)
 		cmn_err(CE_PANIC, "no cfg space in pci(%p) ranges prop.\n",
-			(void *)pci_p);
+		    (void *)pci_p);
 
 	return (((uint64_t)rangep->parent_high << 32) | rangep->parent_low);
 }
 
 int
 pci_cfg_report(dev_info_t *dip, ddi_fm_error_t *derr, pci_errstate_t *pci_err_p,
-	int caller, uint32_t prierr)
+    int caller, uint32_t prierr)
 {
 	int fatal = 0;
 	int nonfatal = 0;
@@ -730,8 +730,8 @@ pci_cfg_report(dev_info_t *dip, ddi_fm_error_t *derr, pci_errstate_t *pci_err_p,
 			char buf[FM_MAX_CLASS];
 
 			(void) snprintf(buf, FM_MAX_CLASS, "%s.%s",
-					PCI_ERROR_SUBCLASS,
-					pci_err_tbl[i].err_class);
+			    PCI_ERROR_SUBCLASS,
+			    pci_err_tbl[i].err_class);
 			ddi_fm_ereport_post(dip, buf, derr->fme_ena,
 			    DDI_NOSLEEP, FM_VERSION, DATA_TYPE_UINT8, 0,
 			    PCI_CONFIG_STATUS, DATA_TYPE_UINT16,

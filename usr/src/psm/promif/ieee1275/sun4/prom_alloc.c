@@ -44,14 +44,14 @@
  */
 
 caddr_t
-prom_alloc(caddr_t virthint, size_t size, u_int align)
+prom_alloc(caddr_t virthint, size_t size, uint_t align)
 {
 
 	caddr_t virt = virthint;
 	unsigned long long physaddr;
 
 	if (align == 0)
-		align = (u_int)1;
+		align = (uint_t)1;
 
 	/*
 	 * First, allocate or claim the virtual address space.
@@ -104,7 +104,7 @@ prom_alloc(caddr_t virthint, size_t size, u_int align)
  * These two routines belong in the common directory.
  */
 caddr_t
-prom_malloc(caddr_t virt, size_t size, u_int align)
+prom_malloc(caddr_t virt, size_t size, uint_t align)
 {
 	cell_t ci[7];
 	int rv;

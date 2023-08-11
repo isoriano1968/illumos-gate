@@ -21,7 +21,12 @@
  *
  * Copyright 2000 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
+ *
+ * Copyright 2023 Klaus Ziegler, All rights reserved.
  */
+
+#ifndef _SYS_FS_HSFS_SIG_H
+#define	_SYS_FS_HSFS_SIG_H
 
 static char *hsfs_sig_tab[] = {
 	SUSP_SP,
@@ -57,3 +62,5 @@ static int hsfs_num_sig = sizeof (hsfs_sig_tab) / sizeof (hsfs_sig_tab[0]);
 #define	RRIP_RF_IX	11
 #define	RRIP_RR_IX	12
 #define	RRIP_NM_IX	13
+
+#endif	/* _SYS_FS_HSFS_SIG_H */

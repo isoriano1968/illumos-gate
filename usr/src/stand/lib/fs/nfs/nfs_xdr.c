@@ -238,7 +238,7 @@ xdr_b_entry(XDR *xdrs, entry *objp)
 		return (FALSE);
 	}
 	return (xdr_pointer(xdrs, (char **)&objp->nextentry, sizeof (entry),
-						(xdrproc_t)xdr_b_entry));
+	    (xdrproc_t)xdr_b_entry));
 }
 
 static bool_t

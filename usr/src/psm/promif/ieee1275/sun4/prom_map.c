@@ -35,7 +35,7 @@
  */
 
 caddr_t
-prom_map(caddr_t virthint, unsigned long long physaddr, u_int size)
+prom_map(caddr_t virthint, unsigned long long physaddr, uint_t size)
 {
 	caddr_t virt;
 
@@ -45,7 +45,7 @@ prom_map(caddr_t virthint, unsigned long long physaddr, u_int size)
 	 * already claimed, or not appearing in a resource list.
 	 */
 	if (virthint == (caddr_t)0)  {
-		if ((virt = prom_allocate_virt((u_int)1, size)) == 0)
+		if ((virt = prom_allocate_virt((uint_t)1, size)) == 0)
 			return ((caddr_t)0);
 	} else {
 		virt = virthint;
@@ -65,7 +65,7 @@ prom_map(caddr_t virthint, unsigned long long physaddr, u_int size)
 }
 
 void
-prom_unmap(caddr_t virt, u_int size)
+prom_unmap(caddr_t virt, uint_t size)
 {
 	(void) prom_unmap_virt(size, virt);
 	prom_free_virt(size, virt);

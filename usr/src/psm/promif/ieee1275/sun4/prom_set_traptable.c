@@ -38,8 +38,8 @@ prom_set_traptable(void *tba_addr)
 	cell_t ci[4];
 
 	ci[0] = p1275_ptr2cell("SUNW,set-trap-table");	/* Service name */
-	ci[1] = (cell_t) 1;			/* #argument cells */
-	ci[2] = (cell_t) 0;			/* #result cells */
+	ci[1] = (cell_t)1;			/* #argument cells */
+	ci[2] = (cell_t)0;			/* #result cells */
 	ci[3] = p1275_ptr2cell(tba_addr);	/* Arg1: tba address */
 
 	promif_preprom();

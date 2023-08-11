@@ -87,9 +87,9 @@ load_platform_drivers(void)
 
 
 	if (simba_present)
-	    dip = e_ddi_hold_devi_by_path(PLATFORM_ISA_PATHNAME_WITH_SIMBA, 0);
+	dip = e_ddi_hold_devi_by_path(PLATFORM_ISA_PATHNAME_WITH_SIMBA, 0);
 	else
-	    dip = e_ddi_hold_devi_by_path(PLATFORM_ISA_PATHNAME, 0);
+	dip = e_ddi_hold_devi_by_path(PLATFORM_ISA_PATHNAME, 0);
 
 	if (dip == NULL) {
 		cmn_err(CE_PANIC, "Could not install the isa driver\n");

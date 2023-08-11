@@ -859,7 +859,7 @@ fco_local_ether_addr(dev_info_t *ap, fco_handle_t rp, fc_ci_t *cp)
 #ifdef DEBUG
 void
 fc_debug(char *fmt, uintptr_t a1, uintptr_t a2, uintptr_t a3,
-	uintptr_t a4, uintptr_t a5)
+    uintptr_t a4, uintptr_t a5)
 {
 	cmn_err(CE_CONT, fmt, a1, a2, a3, a4, a5);
 }

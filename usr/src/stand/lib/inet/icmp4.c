@@ -53,7 +53,7 @@
  */
 void
 icmp4(struct inetgram *igp, struct ip *iphp, uint16_t iphlen,
-struct in_addr ipsrc)
+    struct in_addr ipsrc)
 {
 	int		icmp_len;
 	struct in_addr	our_ip;

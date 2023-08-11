@@ -88,11 +88,11 @@ dvma_reserve(dev_info_t *dip,  ddi_dma_lim_t *limp, uint_t pages,
 			uint_t np = mp->dmai_ndvmapages;
 
 			mp->dmai_mapping = (ulong_t)kmem_alloc(
-				sizeof (ddi_dma_lim_t), KM_SLEEP);
+			    sizeof (ddi_dma_lim_t), KM_SLEEP);
 			bcopy((char *)&dma_lim, (char *)mp->dmai_mapping,
 			    sizeof (ddi_dma_lim_t));
 			mp->dmai_minfo = kmem_alloc(
-				np * sizeof (ddi_dma_handle_t), KM_SLEEP);
+			    np * sizeof (ddi_dma_handle_t), KM_SLEEP);
 		}
 	}
 	return (ret);
@@ -114,7 +114,7 @@ dvma_release(ddi_dma_handle_t h)
 
 void
 dvma_kaddr_load(ddi_dma_handle_t h, caddr_t a, uint_t len, uint_t index,
-	ddi_dma_cookie_t *cp)
+    ddi_dma_cookie_t *cp)
 {
 	register ddi_dma_impl_t *mp = (ddi_dma_impl_t *)h;
 	struct fast_dvma *nexus_private;

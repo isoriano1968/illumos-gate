@@ -37,7 +37,7 @@ static bool_t
 xdr_b_nfs_fh3(XDR *xdrs, nfs_fh3 *objp)
 {
 	return (xdr_bytes(xdrs, (char **)&objp->data.data_val,
-				(uint_t *)&objp->data.data_len, NFS3_FHSIZE));
+	    (uint_t *)&objp->data.data_len, NFS3_FHSIZE));
 }
 
 static bool_t
@@ -184,7 +184,7 @@ xdr_READLINK3res(XDR *xdrs, READLINK3res *objp)
 		return (FALSE);
 	if (objp->status == NFS3_OK)
 		return (xdr_b_READLINK3resok(xdrs,
-						&objp->READLINK3res_u.resok));
+		    &objp->READLINK3res_u.resok));
 	return (xdr_b_READLINK3resfail(xdrs, &objp->READLINK3res_u.resfail));
 }
 
@@ -208,7 +208,7 @@ xdr_b_READ3resok(XDR *xdrs, READ3resok *objp)
 	if (!xdr_bool(xdrs, &objp->eof))
 		return (FALSE);
 	return (xdr_bytes(xdrs, (char **)&objp->data.data_val,
-					(uint_t *)&objp->data.data_len, ~0));
+	    (uint_t *)&objp->data.data_len, ~0));
 }
 
 static bool_t
@@ -249,7 +249,7 @@ xdr_b_entry3(XDR *xdrs, entry3 *objp)
 	if (!xdr_u_longlong_t(xdrs, &objp->cookie))
 		return (FALSE);
 	return (xdr_pointer(xdrs, (char **)&objp->nextentry,
-				sizeof (entry3), (xdrproc_t)xdr_b_entry3));
+	    sizeof (entry3), (xdrproc_t)xdr_b_entry3));
 }
 
 static bool_t
@@ -260,7 +260,7 @@ xdr_b_READDIR3resok(XDR *xdrs, READDIR3resok *objp)
 	if (!xdr_opaque(xdrs, objp->cookieverf, NFS3_COOKIEVERFSIZE))
 		return (FALSE);
 	if (!xdr_pointer(xdrs, (char **)&objp->reply.entries,
-				sizeof (entry3), (xdrproc_t)xdr_b_entry3))
+	    sizeof (entry3), (xdrproc_t)xdr_b_entry3))
 		return (FALSE);
 	return (xdr_bool(xdrs, &objp->reply.eof));
 }

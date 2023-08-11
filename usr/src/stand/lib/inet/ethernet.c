@@ -463,9 +463,9 @@ ether_input(int index)
 		}
 	} while (attempts < ETHER_INPUT_ATTEMPTS &&
 #ifdef	DEBUG
-		(now = prom_gettime()) < timeout);
+	    (now = prom_gettime()) < timeout);
 #else
-		prom_gettime() < timeout);
+	prom_gettime() < timeout);
 #endif	/* DEBUG */
 
 #ifdef	DEBUG

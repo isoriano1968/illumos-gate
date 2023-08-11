@@ -37,8 +37,8 @@ prom_power_off()
 	cell_t ci[3];
 
 	ci[0] = p1275_ptr2cell("SUNW,power-off");	/* Service name */
-	ci[1] = (cell_t) 0;				/* #argument cells */
-	ci[2] = (cell_t) 0;				/* #result cells */
+	ci[1] = (cell_t)0;				/* #argument cells */
+	ci[2] = (cell_t)0;				/* #result cells */
 
 	promif_preprom();
 	(void) p1275_cif_handler(&ci);

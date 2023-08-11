@@ -35,7 +35,7 @@ prom_stdinpath(void)
 {
 	ihandle_t	istdin;
 
-	if (stdinpath != (char *) 0)		/* Got it already? */
+	if (stdinpath != (char *)0)		/* Got it already? */
 		return (stdinpath);
 
 	istdin = prom_stdin_ihandle();

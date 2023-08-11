@@ -43,11 +43,11 @@ prom_stdout_is_framebuffer(void)
 		return (remember);
 
 	remember = prom_devicetype((pnode_t)prom_stdout_node(),
-		OBP_DISPLAY);
+	    OBP_DISPLAY);
 
 	if (remember == 0)
 		remember = prom_devicetype((pnode_t)prom_stdout_node(),
-			OBP_DISPLAY_CONSOLE);
+		    OBP_DISPLAY_CONSOLE);
 
 	return (remember);
 }

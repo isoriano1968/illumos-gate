@@ -78,8 +78,8 @@ pcmu_cb_set_nintr_reg(pcmu_cb_t *pcb_p, pcmu_ib_ino_t ino, uint64_t value)
 	uint64_t pa = pcmu_cb_ino_to_clr_pa(pcb_p, ino);
 
 	PCMU_DBG3(PCMU_DBG_CB|PCMU_DBG_CONT, NULL,
-		"pci-%x pcmu_cb_set_nintr_reg: ino=%x PA=%016llx\n",
-		pcb_p->pcb_pcmu_p->pcmu_id, ino, pa);
+	    "pci-%x pcmu_cb_set_nintr_reg: ino=%x PA=%016llx\n",
+	    pcb_p->pcb_pcmu_p->pcmu_id, ino, pa);
 
 	stdphysio(pa, value);
 	(void) lddphysio(pa);	/* flush the previous write */
@@ -150,8 +150,8 @@ pcmu_cb_disable_nintr_reg(pcmu_cb_t *pcb_p, pcmu_ib_ino_t ino, int wait)
 		jump = TICK_TO_NSEC(xc_tick_jump_limit);
 		start_time = curr = gethrtime();
 		while ((((lddphysio(state_reg_pa) >> shift) &
-			PCMU_CLEAR_INTR_REG_MASK) ==
-			PCMU_CLEAR_INTR_REG_PENDING) && !panicstr) {
+		    PCMU_CLEAR_INTR_REG_MASK) ==
+		    PCMU_CLEAR_INTR_REG_PENDING) && !panicstr) {
 			/*
 			 * If we have a really large jump in hrtime, it is most
 			 * probably because we entered the debugger (or OBP,
@@ -192,7 +192,7 @@ pcmu_cb_disable_nintr(pcmu_cb_t *pcb_p, pcmu_cb_nintr_index_t idx, int wait)
 	pcb_p->pcb_inos[idx] = 0;
 	mutex_exit(&pcb_p->pcb_intr_lock);
 	u2u_ittrans_cleanup((u2u_ittrans_data_t *)(pcb_p->pcb_ittrans_cookie),
-			imr_p);
+	    imr_p);
 }
 
 void

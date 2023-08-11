@@ -417,7 +417,7 @@ ac_bank_write_pattern(struct bd_list *del, enum ac_bank_id bank)
 
 		/* fill the target page */
 		ac_blkcopy(fill_buf, base_va,
-			DEL_PAGESIZE/linesize, linesize);
+		    DEL_PAGESIZE/linesize, linesize);
 
 		/* tear down translation */
 		ac_unmap(base_va);

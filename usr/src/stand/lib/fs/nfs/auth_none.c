@@ -65,7 +65,7 @@ authnone_create(void)
 		ap->no_client.ah_ops = authnone_ops();
 		xdrs = &xdr_stream;
 		xdrmem_create(xdrs, ap->marshalled_client,
-			(uint_t)MAX_MARSHEL_SIZE, XDR_ENCODE);
+		    (uint_t)MAX_MARSHEL_SIZE, XDR_ENCODE);
 		(void) xdr_opaque_auth(xdrs, &ap->no_client.ah_cred);
 		(void) xdr_opaque_auth(xdrs, &ap->no_client.ah_verf);
 		ap->mcnt = XDR_GETPOS(xdrs);

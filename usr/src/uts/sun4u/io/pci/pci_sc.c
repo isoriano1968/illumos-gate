@@ -66,14 +66,14 @@ sc_create(pci_t *pci_p)
 	sc_p->sc_sync_reg_pa = va_to_pa((char *)sc_p->sc_sync_reg);
 
 	DEBUG3(DBG_ATTACH, dip, "sc_create: ctrl=%x, invl=%x, sync=%x\n",
-		sc_p->sc_ctrl_reg, sc_p->sc_invl_reg,
-		sc_p->sc_sync_reg);
+	    sc_p->sc_ctrl_reg, sc_p->sc_invl_reg,
+	    sc_p->sc_sync_reg);
 	DEBUG2(DBG_ATTACH, dip, "sc_create: ctx_invl=%x ctx_match=%x\n",
-		sc_p->sc_ctx_invl_reg, sc_p->sc_ctx_match_reg);
+	    sc_p->sc_ctx_invl_reg, sc_p->sc_ctx_match_reg);
 	DEBUG3(DBG_ATTACH, dip,
-		"sc_create: data_diag=%x, tag_diag=%x, ltag_diag=%x\n",
-		sc_p->sc_data_diag_acc, sc_p->sc_tag_diag_acc,
-		sc_p->sc_ltag_diag_acc);
+	    "sc_create: data_diag=%x, tag_diag=%x, ltag_diag=%x\n",
+	    sc_p->sc_data_diag_acc, sc_p->sc_tag_diag_acc,
+	    sc_p->sc_ltag_diag_acc);
 
 	/*
 	 * Allocate the flush/sync buffer.  Make sure it's properly
@@ -81,7 +81,7 @@ sc_create(pci_t *pci_p)
 	 */
 	sc_p->sc_sync_flag_base =
 	    vmem_xalloc(static_alloc_arena, PCI_SYNC_FLAG_SIZE,
-		PCI_SYNC_FLAG_SIZE, 0, 0, NULL, NULL, VM_SLEEP);
+	    PCI_SYNC_FLAG_SIZE, 0, 0, NULL, NULL, VM_SLEEP);
 	sc_p->sc_sync_flag_vaddr = (uint64_t *)sc_p->sc_sync_flag_base;
 	paddr = (uint64_t)hat_getpfnum(kas.a_hat,
 	    (caddr_t)sc_p->sc_sync_flag_vaddr);

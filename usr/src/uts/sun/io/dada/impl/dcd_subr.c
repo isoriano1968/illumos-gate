@@ -101,7 +101,7 @@ dcd_poll(struct dcd_pkt *pkt)
 		} else if (pkt->pkt_reason  != CMD_CMPLT) {
 			break;
 		} else if (((*pkt->pkt_scbp) & STATUS_ATA_MASK)
-			    == STATUS_ATA_BUSY) {
+		    == STATUS_ATA_BUSY) {
 			drv_usecwait(1000000);
 		} else {
 			rval = 0;
@@ -136,12 +136,12 @@ dcd_log(dev_info_t *dev, char *label, uint_t level, const char *fmt, ...)
 
 		if (level == CE_PANIC || level == CE_WARN) {
 			(void) sprintf(name, "%s (%s%d):\n",
-				ddi_pathname(dev, dcd_log_buffer), label,
-				ddi_get_instance(dev));
+			    ddi_pathname(dev, dcd_log_buffer), label,
+			    ddi_get_instance(dev));
 		} else if (level == CE_NOTE ||
-			level >= (uint_t)DCD_DEBUG) {
+		    level >= (uint_t)DCD_DEBUG) {
 			(void) sprintf(name, "%s%d:", label,
-						ddi_get_instance(dev));
+			    ddi_get_instance(dev));
 		} else if (level == CE_CONT) {
 			name[0] = '\0';
 		}
@@ -177,22 +177,22 @@ dcd_log(dev_info_t *dev, char *label, uint_t level, const char *fmt, ...)
 	case CE_PANIC:
 		if (boot_only) {
 			cmn_err(level, "?%s\t%s", name,
-				&dcd_log_buffer[1]);
+			    &dcd_log_buffer[1]);
 		} else if (console_only) {
 			cmn_err(level, "^%s\t%s", name,
-				&dcd_log_buffer[1]);
+			    &dcd_log_buffer[1]);
 		} else if (log_only) {
 			cmn_err(level, "!%s\t%s", name,
-				&dcd_log_buffer[1]);
+			    &dcd_log_buffer[1]);
 		} else {
 			cmn_err(level, "%s\t%s", name,
-				dcd_log_buffer);
+			    dcd_log_buffer);
 		}
 		break;
 	case (uint_t)DCD_DEBUG:
 	default:
 		cmn_err(CE_CONT, "^DEBUG: %s\t%s\n", name,
-				dcd_log_buffer);
+		    dcd_log_buffer);
 		break;
 	}
 
