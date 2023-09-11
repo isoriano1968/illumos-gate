@@ -549,7 +549,8 @@ i386_MANFILES=			\
 		pptadm.8	\
 		rdmsr.8
 
-sparc_MANFILES=	dcs.8		\
+sparc_MANFILES=	cvcd.8		\
+		dcs.8		\
 		drd.8		\
 		efdaemon.8	\
 		ldmad.8		\
