@@ -96,7 +96,8 @@ etm_ckpt_str_hash(char *str)
  *     store the ereport.
  */
 static void
-etm_ckpt_id2str(etm_ckpt_erpt_id_t *id, char *str, size_t size) {
+etm_ckpt_id2str(etm_ckpt_erpt_id_t *id, char *str, size_t size)
+{
 	(void) snprintf(str, size, "%s_%llx_%d_%x_%d", ETM_CKPT_ERPT_PREFIX,
 	    id->ei_ena, id->ei_hash, id->ei_tod1, id->ei_pri);
 }
@@ -108,7 +109,8 @@ etm_ckpt_id2str(etm_ckpt_erpt_id_t *id, char *str, size_t size) {
  */
 static int
 etm_ckpt_erpt2id(fmd_hdl_t *hdl, nvlist_t *erpt, etm_ckpt_erpt_id_t *id,
-    char *str, int size) {
+    char *str, int size)
+{
 	char		*class = NULL;
 	uint64_t	*tod;
 	uint_t		sz;
@@ -269,7 +271,8 @@ etm_ckpt_il_find(fmd_hdl_t *hdl, etm_ckpt_erpt_id_t *id)
  *     Add an ereport id in the list.
  */
 static int
-etm_ckpt_il_add(fmd_hdl_t *hdl, etm_ckpt_erpt_id_t *id) {
+etm_ckpt_il_add(fmd_hdl_t *hdl, etm_ckpt_erpt_id_t *id)
+{
 	int			next;
 	etm_ckpt_erpt_id_t	*p, *s;	/* temp id */
 
@@ -311,7 +314,8 @@ etm_ckpt_il_add(fmd_hdl_t *hdl, etm_ckpt_erpt_id_t *id) {
  *     Delete an ereport id from the list.
  */
 int
-etm_ckpt_il_delete(fmd_hdl_t *hdl, etm_ckpt_erpt_id_t *id) {
+etm_ckpt_il_delete(fmd_hdl_t *hdl, etm_ckpt_erpt_id_t *id)
+{
 
 	int			i, next;	/* temp counter */
 	etm_ckpt_erpt_id_t	*p, *s;		/* temp id pointers */
@@ -532,7 +536,8 @@ etm_ckpt_recover(fmd_hdl_t *hdl)
  *     Save an ereport for persistence.
  */
 int
-etm_ckpt_add_entry(fmd_hdl_t *hdl, nvlist_t *erpt) {
+etm_ckpt_add_entry(fmd_hdl_t *hdl, nvlist_t *erpt)
+{
 	etm_ckpt_erpt_id_t	id;
 	char			name[ETM_LINE_LEN];
 	int			rc;			/* gen use */
@@ -602,7 +607,8 @@ etm_ckpt_add_entry(fmd_hdl_t *hdl, nvlist_t *erpt) {
  *     Delete an ereport id in the list.
  */
 static int
-etm_ckpt_delete_entry(fmd_hdl_t *hdl, nvlist_t *erpt) {
+etm_ckpt_delete_entry(fmd_hdl_t *hdl, nvlist_t *erpt)
+{
 	etm_ckpt_erpt_id_t	id;
 	char			name[ETM_LINE_LEN];
 	int			rc;			/* return code */
@@ -638,7 +644,8 @@ etm_ckpt_delete_entry(fmd_hdl_t *hdl, nvlist_t *erpt) {
 }
 
 int
-etm_ckpt_add(fmd_hdl_t *hdl, nvlist_t *erpt) {
+etm_ckpt_add(fmd_hdl_t *hdl, nvlist_t *erpt)
+{
 
 	int		rc;		/* return code */
 
@@ -652,7 +659,8 @@ etm_ckpt_add(fmd_hdl_t *hdl, nvlist_t *erpt) {
 }
 
 int
-etm_ckpt_delete(fmd_hdl_t *hdl, nvlist_t *erpt) {
+etm_ckpt_delete(fmd_hdl_t *hdl, nvlist_t *erpt)
+{
 	int		rc;		/* return code */
 
 	(void) pthread_mutex_lock(&etm_id_lst_lock);
@@ -666,13 +674,15 @@ etm_ckpt_delete(fmd_hdl_t *hdl, nvlist_t *erpt) {
 
 /* ARGSUSED */
 void
-etm_ckpt_init(fmd_hdl_t *hdl) {
+etm_ckpt_init(fmd_hdl_t *hdl)
+{
 	(void) pthread_mutex_init(&etm_id_lst_lock, NULL);
 	etm_id_lst = NULL;
 }
 
 void
-etm_ckpt_fini(fmd_hdl_t *hdl) {
+etm_ckpt_fini(fmd_hdl_t *hdl)
+{
 	if (etm_id_lst != NULL) {
 		fmd_hdl_free(hdl, etm_id_lst,
 		    sizeof (etm_ckpt_id_list_t) + etm_id_lst->il_ids_sz);

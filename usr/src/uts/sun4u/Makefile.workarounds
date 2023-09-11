@@ -52,7 +52,7 @@ WORKAROUND_DEFS += -DSF_ERRATA_51	# the IMU gets
 
 # The following is required to support all Spitfires and Blackbirds
 WORKAROUND_DEFS += -DSF_ERRATA_54	# membar sync not good enough
-					# before ldxa from ASI_INTR_DISPATCH 
+					# before ldxa from ASI_INTR_DISPATCH
 
 # The following is required to support Spitfires and Blackbirds
 WORKAROUND_DEFS += -DSF_ERRATA_57	# VA Hole

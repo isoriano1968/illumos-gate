@@ -31,7 +31,7 @@
 extern "C" {
 #endif
 
-#define	PCF8591_IOCTL 		('P' << 8)
+#define	PCF8591_IOCTL		('P' << 8)
 
 #define	PCF8591_SET_IPMODE	(PCF8591_IOCTL | 0)	/* (uchar_t *) */
 

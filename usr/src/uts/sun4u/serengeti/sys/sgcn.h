@@ -117,9 +117,9 @@ typedef struct sgcn {
 	kmutex_t sgcn_lock;		/* protects sgcn_t (soft state)	*/
 
 	/* these are required by sbbc driver */
-	kmutex_t sgcn_sbbc_in_lock;	/* input data lock 		*/
-	kmutex_t sgcn_sbbc_outspace_lock; /* output data lock 		*/
-	kmutex_t sgcn_sbbc_brk_lock;	/* break sequence lock 		*/
+	kmutex_t sgcn_sbbc_in_lock;	/* input data lock		*/
+	kmutex_t sgcn_sbbc_outspace_lock; /* output data lock		*/
+	kmutex_t sgcn_sbbc_brk_lock;	/* break sequence lock		*/
 	uint_t sgcn_sbbc_in_state;	/* input data state		*/
 	uint_t sgcn_sbbc_outspace_state; /* output data state		*/
 	uint_t sgcn_sbbc_brk_state;	/* break sequence state		*/

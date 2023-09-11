@@ -404,7 +404,7 @@ extern "C" {
  * assigned new bit positions within the PCI-X Error Status Register to
  * match what is actually implemented in the XMITS ASIC:
  *
- *      			Spec		New
+ *                              Spec            New
  * Error			Bit Position	Bit Position
  * --------------------		------------	------------
  * XMITS_PCIX_STAT_SMMU		0x8ull		0x4ull

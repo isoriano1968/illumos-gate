@@ -23,7 +23,7 @@
 # Use is subject to license terms.
 #
 
-MODULE = scsi_vhci.so 
+MODULE = scsi_vhci.so
 MDBTGT = kvm
 
 MODSRCS = scsi_vhci.c

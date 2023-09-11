@@ -192,7 +192,7 @@ kmdb_context_off.h: ../../../sparc/kmdb/kmdb_context_off.in
 $(ROOT_MISC_DIR) $(ROOT_MISC_DIR_64):
 	-$(INS.dir)
 
-$(ROOT_MISC_DIR)/%: 	% $(ROOT_MISC_DIR)
+$(ROOT_MISC_DIR)/%:	% $(ROOT_MISC_DIR)
 	$(INS.file)
 
 $(ROOT_MISC_DIR_64)/%:	% $(ROOT_MISC_DIR_64)

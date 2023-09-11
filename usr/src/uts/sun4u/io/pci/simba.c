@@ -502,7 +502,7 @@ simba_detach(dev_info_t *devi, ddi_detach_cmd_t cmd)
 /*ARGSUSED*/
 static int
 simba_bus_map(dev_info_t *dip, dev_info_t *rdip, ddi_map_req_t *mp,
-	off_t offset, off_t len, caddr_t *vaddrp)
+    off_t offset, off_t len, caddr_t *vaddrp)
 {
 	register dev_info_t *pdip;
 
@@ -577,7 +577,7 @@ static char *ops[] =
 /*ARGSUSED*/
 static int
 simba_ctlops(dev_info_t *dip, dev_info_t *rdip, ddi_ctl_enum_t ctlop,
-	void *arg, void *result)
+    void *arg, void *result)
 {
 	int reglen;
 	int rn;
@@ -1115,7 +1115,7 @@ simba_close(dev_t dev, int flags, int otyp, cred_t *credp)
 /* ARGSUSED */
 static int
 simba_ioctl(dev_t dev, int cmd, intptr_t arg, int mode, cred_t *credp,
-	int *rvalp)
+    int *rvalp)
 {
 	simba_devstate_t *simba_p;
 	dev_info_t *self;
@@ -1191,7 +1191,7 @@ simba_ioctl(dev_t dev, int cmd, intptr_t arg, int mode, cred_t *credp,
 /*ARGSUSED*/
 static int
 simba_fm_init_child(dev_info_t *dip, dev_info_t *tdip, int cap,
-		ddi_iblock_cookie_t *ibc)
+    ddi_iblock_cookie_t *ibc)
 {
 	simba_devstate_t *simba_p = ddi_get_soft_state(simba_state,
 	    ddi_get_instance(dip));

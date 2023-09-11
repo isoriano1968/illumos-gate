@@ -156,7 +156,7 @@ typedef enum cmd_BUG_ptrsubtype {
 #define	CMD_TIMERTYPE_CPU_XR_WAITER	2
 #define	CMD_TIMERTYPE_MEM		3
 #define	CMD_TIMERTYPE_DP		4
-#define	CMD_TIMERTYPE_ANONYMOUS_TAG_ERROR 	5
+#define	CMD_TIMERTYPE_ANONYMOUS_TAG_ERROR	5
 
 #define	CMD_TIMERTYPE_ISCPU(timer)	((timer) != CMD_TIMERTYPE_MEM && \
 					(timer) != CMD_TIMERTYPE_DP)

@@ -140,7 +140,7 @@ ses_start(uint64_t fd)
 
 #else /* DCS_MULTI_THREAD */
 
-	int 	pid;
+	int	pid;
 
 
 	pid = fork();

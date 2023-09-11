@@ -28,15 +28,15 @@
 <topology name='SUNW,SPARC-Enterprise-T5120' scheme='hc'>
   <range name='motherboard' min='0' max='0'>
    <enum-method name='motherboard' version='1'/>
- 
+
      <dependents grouping='children'>
        <range name='chip' min='0' max='0'>
          <enum-method name='chip' version='1'/>
- 
+
          <dependents grouping='children'>
            <range name='hostbridge' min='0' max='254'>
              <enum-method name='hostbridge' version='1'/>
- 
+
              <dependents grouping='children'>
                <range name='niu' min='0' max='0'>
                 <enum-method name='niu' version='1'/>

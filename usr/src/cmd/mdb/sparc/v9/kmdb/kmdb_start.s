@@ -68,7 +68,7 @@ kmdb_first_start(void)
 	mov	0, %fp
 	save	%sp, -SA64(MINFRAME64), %sp
 
-	/* start the debugger */	
+	/* start the debugger */
 	call	kmdb_main
 	nop
 

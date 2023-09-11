@@ -41,7 +41,7 @@ extern "C" {
  */
 
 /* Advance the ring buffer */
-#define	ADVANCE_CRUMB_POINTER(cpusave, tmp1, tmp2) 	\
+#define	ADVANCE_CRUMB_POINTER(cpusave, tmp1, tmp2)	\
 	ld	[cpusave + KRS_CURCRUMBIDX], tmp1;	\
 	cmp	tmp1, KAIF_NCRUMBS - 1;			\
 	bge	1f;					\
@@ -62,7 +62,7 @@ extern "C" {
 	stx	%g0, [tmp1 + tmp2]
 
 /* Set a value in the current breadcrumb buffer */
-#define	ADD_CRUMB(cpusave, offset, value, tmp) 		\
+#define	ADD_CRUMB(cpusave, offset, value, tmp)		\
 	ldx	[cpusave + KRS_CURCRUMB], tmp;		\
 	stx	value, [tmp + offset];
 

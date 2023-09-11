@@ -86,7 +86,7 @@ _topo_fini(topo_mod_t *mod)
 }
 static int
 devprop_set(tnode_t *tn, di_node_t dn,
-	const char *tpgrp, const char *tpnm, topo_mod_t *mod)
+    const char *tpgrp, const char *tpnm, topo_mod_t *mod)
 {
 	char *path;
 	int err, e;
@@ -105,7 +105,7 @@ devprop_set(tnode_t *tn, di_node_t dn,
 /*ARGSUSED*/
 static int
 driverprop_set(tnode_t *tn, di_node_t dn,
-	const char *tpgrp, const char *tpnm, topo_mod_t *mod)
+    const char *tpgrp, const char *tpnm, topo_mod_t *mod)
 {
 	char *dnm;
 	int err;
@@ -120,7 +120,7 @@ driverprop_set(tnode_t *tn, di_node_t dn,
 /*ARGSUSED*/
 static int
 moduleprop_set(tnode_t *tn, di_node_t dn,
-	const char *tpgrp, const char *tpnm, topo_mod_t *mod)
+    const char *tpgrp, const char *tpnm, topo_mod_t *mod)
 {
 	nvlist_t *module;
 	char *dnm;
@@ -216,7 +216,7 @@ niu_asru_set(tnode_t *tn, di_node_t dn, topo_mod_t *mod)
 /*ARGSUSED*/
 static tnode_t *
 niu_declare(tnode_t *parent, const char *name, topo_instance_t i,
-	void *priv, topo_mod_t *mod)
+    void *priv, topo_mod_t *mod)
 {
 	tnode_t *ntn;
 	int err;
@@ -242,7 +242,7 @@ niu_declare(tnode_t *parent, const char *name, topo_instance_t i,
 /*ARGSUSED*/
 static tnode_t *
 niufn_declare(tnode_t *parent, const char *name, topo_instance_t i,
-	void *priv, topo_mod_t *mod)
+    void *priv, topo_mod_t *mod)
 {
 	tnode_t *ntn;
 	int err;
@@ -296,7 +296,7 @@ niufn_instance_get(topo_mod_t *mod, di_node_t node, topo_instance_t *inst)
 
 static int
 niufn_instantiate(tnode_t *parent, const char *name, di_node_t pnode,
-	topo_mod_t *mod)
+    topo_mod_t *mod)
 {
 	di_node_t sib;
 	tnode_t *ntn;
@@ -347,7 +347,7 @@ xaui_enum_load(topo_mod_t *mp)
 /*ARGSUSED*/
 static int
 niu_enum(topo_mod_t *mod, tnode_t *rnode, const char *name,
-	topo_instance_t min, topo_instance_t max, void *arg, void *notused)
+    topo_instance_t min, topo_instance_t max, void *arg, void *notused)
 {
 	tnode_t *niun;
 	di_node_t devtree;

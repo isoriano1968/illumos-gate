@@ -90,7 +90,7 @@ upath_t	*oplmsu_search_upath_info(int);
 
 void	oplmsu_iocack(queue_t *, mblk_t *, int);
 void	oplmsu_delete_upath_info(void);
-int 	oplmsu_set_ioctl_path(lpath_t *, queue_t *, mblk_t *);
+int	oplmsu_set_ioctl_path(lpath_t *, queue_t *, mblk_t *);
 void	oplmsu_clear_ioctl_path(lpath_t *);
 
 int	oplmsu_get_inst_status(void);

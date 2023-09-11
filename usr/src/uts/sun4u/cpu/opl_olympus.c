@@ -1371,7 +1371,7 @@ flt_to_trap_type(struct async_flt *aflt)
 /* ARGSUSED */
 static void
 cpu_payload_add_aflt(struct async_flt *aflt, nvlist_t *payload,
-		nvlist_t *resource)
+    nvlist_t *resource)
 {
 	opl_async_flt_t *opl_flt = (opl_async_flt_t *)aflt;
 	char unum[UNUM_NAMLEN];
@@ -2248,12 +2248,16 @@ cpu_disable_errors(void)
 
 void
 cpu_enable_errors(void)
-{ ASSERT(0); }
+{
+	ASSERT(0);
+}
 
 /*ARGSUSED*/
 void
 cpu_ce_scrub_mem_err(struct async_flt *ecc, boolean_t t)
-{ ASSERT(0); }
+{
+	ASSERT(0);
+}
 
 /*ARGSUSED*/
 void
@@ -2273,17 +2277,23 @@ cpu_check_allcpus(struct async_flt *aflt)
 /*ARGSUSED*/
 void
 cpu_ce_log_err(struct async_flt *aflt, errorq_elem_t *t)
-{ ASSERT(0); }
+{
+	ASSERT(0);
+}
 
 /*ARGSUSED*/
 void
 cpu_check_ce(int flag, uint64_t pa, caddr_t va, uint_t psz)
-{ ASSERT(0); }
+{
+	ASSERT(0);
+}
 
 /*ARGSUSED*/
 void
 cpu_ce_count_unum(struct async_flt *ecc, int len, char *unum)
-{ ASSERT(0); }
+{
+	ASSERT(0);
+}
 
 /*ARGSUSED*/
 void
@@ -2298,7 +2308,9 @@ cpu_idle_ecache_scrub(struct cpu *cp)
 /* ARGSUSED */
 void
 cpu_change_speed(uint64_t divisor, uint64_t arg2)
-{ ASSERT(0); }
+{
+	ASSERT(0);
+}
 
 void
 cpu_init_cache_scrub(void)
@@ -2340,17 +2352,23 @@ cpu_get_mem_offset(uint64_t flt_addr, uint64_t *offp)
 /*ARGSUSED*/
 void
 itlb_rd_entry(uint_t entry, tte_t *tte, uint64_t *va_tag)
-{ ASSERT(0); }
+{
+	ASSERT(0);
+}
 
 /*ARGSUSED*/
 void
 dtlb_rd_entry(uint_t entry, tte_t *tte, uint64_t *va_tag)
-{ ASSERT(0); }
+{
+	ASSERT(0);
+}
 
 /*ARGSUSED*/
 void
 read_ecc_data(struct async_flt *aflt, short verbose, short ce_err)
-{ ASSERT(0); }
+{
+	ASSERT(0);
+}
 
 /*ARGSUSED*/
 int

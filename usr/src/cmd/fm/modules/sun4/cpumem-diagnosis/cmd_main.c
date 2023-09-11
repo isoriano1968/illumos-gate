@@ -105,7 +105,7 @@ opl_opluecpu_detio(fmd_hdl_t *hdl, fmd_event_t *ep, nvlist_t *nvl,
 
 static cmd_subscriber_t cmd_subscribers[] = {
 #ifdef sun4u
-	{ "ereport.cpu.*.ucc", 		cmd_xxc,	CMD_ERRCL_UCC |
+	{ "ereport.cpu.*.ucc",		cmd_xxc,	CMD_ERRCL_UCC |
     CMD_CPU_LEVEL_CORE },
 	{ "ereport.cpu.*.ucu",		cmd_xxu,	CMD_ERRCL_UCU |
     CMD_CPU_LEVEL_CORE },
@@ -123,7 +123,7 @@ static cmd_subscriber_t cmd_subscribers[] = {
     CMD_CPU_LEVEL_CORE },
 	{ "ereport.cpu.*.edu-bl",	cmd_xxu,	CMD_ERRCL_EDU_BL |
     CMD_CPU_LEVEL_CORE },
-	{ "ereport.cpu.*.l3-ucc", 	cmd_xxc,	CMD_ERRCL_L3_UCC |
+	{ "ereport.cpu.*.l3-ucc",	cmd_xxc,	CMD_ERRCL_L3_UCC |
     CMD_CPU_LEVEL_CORE },
 	{ "ereport.cpu.*.l3-ucu",	cmd_xxu,	CMD_ERRCL_L3_UCU |
     CMD_CPU_LEVEL_CORE },
@@ -176,11 +176,11 @@ static cmd_subscriber_t cmd_subscribers[] = {
 	{ "ereport.io.*.ecc.s-dwue",	cmd_ioxe_sec },
 	{ "ereport.io.fire.jbc.ce_asyn", cmd_ioxe,	CMD_ERRCL_IOCE },
 	{ "ereport.io.fire.jbc.ue_asyn", cmd_ioxe,	CMD_ERRCL_IOUE },
-	{ "ereport.asic.*.cds.cds-dp", 	cmd_dp_cds },
+	{ "ereport.asic.*.cds.cds-dp",	cmd_dp_cds },
 	{ "ereport.asic.*.dx.dx-dp",	cmd_dp_dx },
-	{ "ereport.asic.*.sdi.sdi-dp", 	cmd_dp_ex },
-	{ "ereport.asic.*.cp.cp-dp", 	cmd_dp_cp },
-	{ "ereport.asic.*.rp.rp-dp", 	cmd_dp_cp },
+	{ "ereport.asic.*.sdi.sdi-dp",	cmd_dp_ex },
+	{ "ereport.asic.*.cp.cp-dp",	cmd_dp_cp },
+	{ "ereport.asic.*.rp.rp-dp",	cmd_dp_cp },
 	{ "ereport.asic.mac.mi-ue",			cmd_opl_mac_common },
 	{ "ereport.asic.mac.ptrl-ue",			cmd_opl_mac_common },
 	{ "ereport.asic.mac.mi-ce",			cmd_opl_mac_common },
@@ -239,7 +239,7 @@ static cmd_subscriber_t cmd_subscribers[] = {
 	{ "ereport.io.oberon.ubc.piorbeue-path",	cmd_nop },
 #else /* i.e. sun4v */
 	{ "ereport.cpu.*.irc",		cmd_irc },
-	{ "ereport.cpu.*.iru", 		cmd_iru },
+	{ "ereport.cpu.*.iru",		cmd_iru },
 	{ "ereport.cpu.*.frc",		cmd_frc },
 	{ "ereport.cpu.*.fru",		cmd_fru },
 	{ "ereport.cpu.*.mau",		cmd_mau },
@@ -315,16 +315,16 @@ static cmd_subscriber_t cmd_subscribers[] = {
 	{ "ereport.cpu.*.l2nd",		cmd_nop_train,	CMD_ERRCL_L2ND },
 	{ "ereport.cpu.*.mal2nd",	cmd_nop_train,	CMD_ERRCL_L2ND },
 	{ "ereport.cpu.*.cwql2nd",	cmd_nop_train,	CMD_ERRCL_L2ND },
-	{ "ereport.cpu.*.ldac",		cmd_xxc, 	CMD_ERRCL_LDAC |
+	{ "ereport.cpu.*.ldac",		cmd_xxc,	CMD_ERRCL_LDAC |
 	    CMD_CPU_LEVEL_CHIP },
 	{ "ereport.cpu.*.ldwc",		cmd_xxc,	CMD_ERRCL_LDWC |
 	    CMD_CPU_LEVEL_CHIP },
 	{ "ereport.cpu.*.ldrc",		cmd_xxc,	CMD_ERRCL_LDRC |
 	    CMD_CPU_LEVEL_CHIP },
-	{ "ereport.cpu.*.ldsc", 	cmd_xxc,	CMD_ERRCL_LDSC |
+	{ "ereport.cpu.*.ldsc",	cmd_xxc,	CMD_ERRCL_LDSC |
 	    CMD_CPU_LEVEL_CHIP },
 	{ "ereport.cpu.*.ltc",		cmd_txce,	CMD_CPU_LEVEL_CHIP },
-	{ "ereport.cpu.*.ldau",		cmd_xxu, 	CMD_ERRCL_LDAU |
+	{ "ereport.cpu.*.ldau",		cmd_xxu,	CMD_ERRCL_LDAU |
 	    CMD_CPU_LEVEL_CHIP },
 	{ "ereport.cpu.*.ldwu",		cmd_xxu,	CMD_ERRCL_LDWU |
 	    CMD_CPU_LEVEL_CHIP },
@@ -332,7 +332,7 @@ static cmd_subscriber_t cmd_subscribers[] = {
 	    CMD_CPU_LEVEL_CHIP },
 	{ "ereport.cpu.*.ldsu",		cmd_xxu,	CMD_ERRCL_LDSU |
 	    CMD_CPU_LEVEL_CHIP },
-	{ "ereport.cpu.*.lvu",		cmd_l2ctl, 	CMD_CPU_LEVEL_CHIP },
+	{ "ereport.cpu.*.lvu",		cmd_l2ctl,	CMD_CPU_LEVEL_CHIP },
 	{ "ereport.cpu.*.lru",		cmd_l2ctl,	CMD_CPU_LEVEL_CHIP },
 	{ "ereport.cpu.*.fbr",		cmd_fb },
 	{ "ereport.cpu.*.fbu",		cmd_fb_train,	CMD_ERRCL_FBU },
@@ -383,8 +383,8 @@ static cmd_subscriber_t cmd_subscribers[] = {
 	{ "ereport.cpu.*.lfu-mlf",	cmd_lfu_ue,	CMD_CPU_LEVEL_CHIP },
 	{ "ereport.cpu.*.frack",	cmd_lfu_pe,	CMD_CPU_LEVEL_CHIP },
 	{ "ereport.cpu.*.fsr",		cmd_lfu_pe,	CMD_CPU_LEVEL_CHIP },
-	{ "ereport.cpu.*.fdr", 		cmd_lfu_pe,	CMD_CPU_LEVEL_CHIP },
-	{ "ereport.cpu.*.to",  		cmd_lfu_pe,	CMD_CPU_LEVEL_CHIP },
+	{ "ereport.cpu.*.fdr",		cmd_lfu_pe,	CMD_CPU_LEVEL_CHIP },
+	{ "ereport.cpu.*.to",		cmd_lfu_pe,	CMD_CPU_LEVEL_CHIP },
 	{ "ereport.cpu.*.snptyp",	cmd_lfu_pe,	CMD_CPU_LEVEL_CHIP },
 	{ "ereport.fm.ferg.invalid",	cmd_fw_defect },
 #endif /* sun4u */

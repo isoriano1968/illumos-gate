@@ -53,7 +53,8 @@ hb_free(void *data, size_t size)
  *     Return the pointer of hostbridge entry
  */
 md_hb_t *
-hb_find_hb(md_info_t *phbmd, int hbid) {
+hb_find_hb(md_info_t *phbmd, int hbid)
+{
 	int i;
 	md_hb_t *phb;
 

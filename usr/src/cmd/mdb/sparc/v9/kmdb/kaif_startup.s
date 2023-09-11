@@ -69,8 +69,8 @@
  * context to zero.  The updated value is stored in the ctx parameter.
  */
 #define	KAIF_MAKE_NEW_CTXREG(ctx, tmp)		\
-	srlx	ctx, CTXREG_NEXT_SHIFT, ctx ;	\
-	sllx 	ctx, CTXREG_NEXT_SHIFT, ctx;	\
+	srlx	ctx, CTXREG_NEXT_SHIFT, ctx;	\
+	sllx	ctx, CTXREG_NEXT_SHIFT, ctx;	\
 	sllx	ctx, 3, tmp;			\
 	srlx	tmp, CTXREG_NEXT_SHIFT, tmp;	\
 	sllx	tmp, CTXREG_EXT_SHIFT, tmp;	\
@@ -79,7 +79,7 @@
 	sllx	tmp, CTXREG_EXT_SHIFT, tmp;	\
 	or	ctx, tmp, ctx
 #endif /* sun4v */
-	
+
 #if !defined(__lint)
 
 	/*
@@ -341,8 +341,8 @@
 	 *    or a programmed entry trap, and is *NOT* coming from OBP.  The CPU
 	 *    is allowed direct entry into the debugger.
 	 *
-	 * 2. A CPU was cross-called into kaif_slave_entry while executing in 
-	 *    OBP.  The CPU was released, but a programmed entry trap was 
+	 * 2. A CPU was cross-called into kaif_slave_entry while executing in
+	 *    OBP.  The CPU was released, but a programmed entry trap was
 	 *    activated, designed to be encountered when the cross-called CPU
 	 *    returned from OBP.  The CPU is allowed to enter the debugger.  We
 	 *    don't know how many other CPUs need the PROM-return trap, so we'll
@@ -758,7 +758,7 @@ kaif_trap_obp(void)
 	/*
 	 * The debugger fault code will need access to saved copies of the outs
 	 * and %y if the user elects to panic.  We'll also need the saved outs if
-	 * they decide to debug the fault with the debugger, as we'll have 
+	 * they decide to debug the fault with the debugger, as we'll have
 	 * trashed the outs while asking the user how to handle the fault.
 	 */
 	set	kaif_cb_save, %g4

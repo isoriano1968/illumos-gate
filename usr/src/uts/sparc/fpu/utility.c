@@ -87,7 +87,7 @@ fpu_normalize(unpacked *pu)
 			u0 = u1; u1 = u2; u2 = u3; u3 = 0;
 			(*pu).exponent = (*pu).exponent - 32;
 		}
-		if (u0 >= 0x20000) { 	/* u3 should be zero */
+		if (u0 >= 0x20000) {		/* u3 should be zero */
 			n = 1; U = u0 >> 1;
 			while (U >= 0x20000) {
 				U >>= 1;

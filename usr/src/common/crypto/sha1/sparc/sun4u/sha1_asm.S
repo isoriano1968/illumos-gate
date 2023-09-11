@@ -743,7 +743,7 @@ SHA1TransformVIS(uint64_t *X0, uint64_t *blk, uint32_t *cstate, uint64_t *VIS)
 
 	add		%l0, %l2, %o4
 
-	ld 		[%i3 + 4 + 16], %g1
+	ld		[%i3 + 4 + 16], %g1
 
 ! Starting round 20
 	sll		%o4, 5, %l0
@@ -1323,7 +1323,7 @@ SHA1TransformVIS(uint64_t *X0, uint64_t *blk, uint32_t *cstate, uint64_t *VIS)
 	fors		%f5, %f3, %f31
 
 	fors		%f12, %f11, %f17
-	ld 		[%i3 + 8 + 16], %g1
+	ld		[%i3 + 8 + 16], %g1
 
 ! Starting round 40
 	sll		%o2, 5, %l0
@@ -1945,7 +1945,7 @@ SHA1TransformVIS(uint64_t *X0, uint64_t *blk, uint32_t *cstate, uint64_t *VIS)
 
 	or		%l5, %l7, %o2
 	add		%l0, %l2, %o0
-	ld 		[%i3 + 12 + 16], %g1
+	ld		[%i3 + 12 + 16], %g1
 
 ! Starting round 60
 	sll		%o0, 5, %l0
@@ -2433,20 +2433,20 @@ SHA1TransformVIS(uint64_t *X0, uint64_t *blk, uint32_t *cstate, uint64_t *VIS)
 	ld		[%i2 + 16], %i5
 
 ! Compute final hash values for this block and store back to SHA1_CTX
-	add 		%i0, %o4, %o4
-	st 		%o4, [%i2 + 0]
+	add		%i0, %o4, %o4
+	st		%o4, [%i2 + 0]
 
-	add 		%i1, %o5, %o5
-	st 		%o5, [%i2 + 4]
+	add		%i1, %o5, %o5
+	st		%o5, [%i2 + 4]
 
-	add 		%i3, %o0, %o0
-	st 		%o0, [%i2 + 8]
+	add		%i3, %o0, %o0
+	st		%o0, [%i2 + 8]
 
-	add 		%i4, %o1, %o1
-	st 		%o1, [%i2 + 12]
+	add		%i4, %o1, %o1
+	st		%o1, [%i2 + 12]
 
-	add 		%i5, %o2, %o2
-	st 		%o2, [%i2 + 16]
+	add		%i5, %o2, %o2
+	st		%o2, [%i2 + 16]
 
 	ret
 	restore

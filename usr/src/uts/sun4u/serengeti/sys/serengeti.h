@@ -113,7 +113,7 @@ extern "C" {
  *	Aid <1:0>			: CPU ID
  * For IO boards:
  *	(Aid <4:0> - 24) / 2 + 6	: Board ID/Number
- * 	(Aid <4:0> - 24) % 2		: Schizo ID
+ *	(Aid <4:0> - 24) % 2		: Schizo ID
  */
 
 /*

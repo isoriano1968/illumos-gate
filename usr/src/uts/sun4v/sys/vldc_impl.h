@@ -83,7 +83,7 @@ extern "C" {
  * port.
  */
 typedef struct vldc_minor {
-	kmutex_t 	lock;			/* protects port/in_use count */
+	kmutex_t	lock;			/* protects port/in_use count */
 	kcondvar_t	cv;			/* for waiting on in use */
 	uint_t		in_use;			/* in use counter */
 	uint_t		portno;			/* port number */
@@ -115,13 +115,13 @@ typedef struct vldc_port {
  * vldc driver's soft state structure
  */
 typedef struct vldc {
-	kmutex_t 		lock;		/* serializes detach and MDEG */
-	boolean_t		detaching; 	/* true iff busy detaching */
+	kmutex_t		lock;		/* serializes detach and MDEG */
+	boolean_t		detaching;	/* true iff busy detaching */
 	dev_info_t		*dip;		/* dev_info */
 	mdeg_node_spec_t	*inst_spec;	/* vldc instance specifier */
 	mdeg_handle_t		mdeg_hdl;	/* MD event handle */
 
-	uint_t 			num_ports;
+	uint_t			num_ports;
 	vldc_port_t		port[VLDC_MAX_PORTS];
 
 	/* table for assigned minors */

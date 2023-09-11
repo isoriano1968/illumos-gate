@@ -38,7 +38,7 @@
 	.align		8
 
 	/*
-	 * A jump table containing the addresses for register argument copy 
+	 * A jump table containing the addresses for register argument copy
 	 * code.
 	 */
 copyargs:
@@ -56,7 +56,7 @@ copyargsend:
 #if defined(__lint)
 /*ARGSUSED*/
 uintptr_t
-kaif_invoke(uintptr_t funcva, uint_t argc, const uintptr_t *argv, 
+kaif_invoke(uintptr_t funcva, uint_t argc, const uintptr_t *argv,
     kreg_t g6, kreg_t g7)
 {
 	return (0);
@@ -76,7 +76,7 @@ kaif_invoke(uintptr_t funcva, uint_t argc, const uintptr_t *argv,
 	sllx	%i1, 3, %i1	! (argc - 6) * 8
 
 	/*
-	 * We have fewer than six arguments.  Below, starting at the cp6arg 
+	 * We have fewer than six arguments.  Below, starting at the cp6arg
 	 * label, we've got code that'll copy these arguments to the out
 	 * registers in descending order (%o5 is copied, then %o4, and so on).
 	 * We only want to move valid arguments, so we'll jump into this copy
@@ -86,9 +86,9 @@ kaif_invoke(uintptr_t funcva, uint_t argc, const uintptr_t *argv,
 	 * %i6 is now a negative word-scaled offset, which we can use to
 	 * retrieve the appropriate address from the jump table.  We start at
 	 * bottom of the table, and let the negative offset jump back to the
-	 * correct location.  If we have four arguments, %i1 will be -16.  
+	 * correct location.  If we have four arguments, %i1 will be -16.
 	 * Starting from copyargs+48 (the address of the last slot), we get
-	 * copyargs+32, which contains the address (cp4arg) to be used to copy 
+	 * copyargs+32, which contains the address (cp4arg) to be used to copy
 	 * four arguments.
 	 */
 	setx	copyargsend, %l1, %l0
@@ -96,7 +96,7 @@ kaif_invoke(uintptr_t funcva, uint_t argc, const uintptr_t *argv,
 	jmp	%l0
 	nop
 
-savestackargs:	
+savestackargs:
 	/*
 	 * We have more than six arguments, and will thus need to allocate space
 	 * for the seventh and beyond on the stack.  %i1 is the number of bytes
@@ -111,7 +111,7 @@ savestackargs:
 	add	%i2, 6*8, %l0			! %l0 is &argv[6]
 	add	%sp, STACK_BIAS+MINFRAME, %l1	! %l1 is base of stack reg save
 
-	/* 
+	/*
 	 * Copy arguments to the stack.  %i1 is the offset from the seventh arg
 	 * in argv and the offset from the base of the stack save area.
 	 */
@@ -150,5 +150,5 @@ cp0arg:
 	restore	%g0, %o0, %o0
 
 	SET_SIZE(kaif_invoke)
-	
+
 #endif

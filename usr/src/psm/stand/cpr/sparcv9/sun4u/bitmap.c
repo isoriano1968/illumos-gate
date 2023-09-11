@@ -569,7 +569,7 @@ cb_relocate(void)
 		 * if (original stack page)
 		 *	clash doesn't matter, just skip the page
 		 * else (not original stack page)
-		 * 	if (no clash)
+		 *	if (no clash)
 		 *		setbit to avoid later alloc and overwrite
 		 *	else (clash)
 		 *		relocate phys page

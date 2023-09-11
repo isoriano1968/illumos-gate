@@ -544,7 +544,7 @@ sghsc_detach(dev_info_t *dip, ddi_detach_cmd_t cmd)
 /*
  * Set up and register slot 0 to num_slots with hotplug
  *     framework
- * 	Assume SGHSC_MUTEX is held
+ *	Assume SGHSC_MUTEX is held
  *
  * Return val: DDI_SUCCESS
  *	       DDI_FAILURE
@@ -555,7 +555,7 @@ sghsc_register_slots(sghsc_t *sghsc, int board_type)
 	int  i;
 	dev_info_t	*dip = sghsc->sghsc_dip;
 	hpc_slot_ops_t	*slot_ops = NULL;
-	sdesc_t 	*slot2bus;
+	sdesc_t	*slot2bus;
 
 
 	DEBUGF(1, (CE_NOTE, "sghsc%d: slot table has %d entries for "
@@ -724,7 +724,7 @@ sghsc_register_slots(sghsc_t *sghsc, int board_type)
  *	slot_switch	 N/A	   NO/YES	  YES
  *
  * Return val:	HPC_SUCCESS if the slot(s) are enabled
- * 		HPC_ERR_FAILED if the slot can't be enabled
+ *		HPC_ERR_FAILED if the slot can't be enabled
  */
 /* ARGSUSED */
 static int

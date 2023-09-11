@@ -110,7 +110,8 @@ kdi_tickwait(clock_t nticks)
 {
 	clock_t endtick = gettick() + nticks;
 
-	while (gettick() < endtick);
+	while (gettick() < endtick)
+		;
 }
 
 static void

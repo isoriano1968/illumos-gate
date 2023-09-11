@@ -51,7 +51,7 @@ client_handler(void *cif_handler, void *arg_array)
 	wrpr	%l6, 0, %pstate			! Set PSTATE_AM = 0
 	jmpl	%i0, %o7			! Call cif handler
 	nop
-	wrpr	%l4, 0, %pstate			! Just restore 
+	wrpr	%l4, 0, %pstate			! Just restore
 	ret					! Return result ...
 	restore	%o0, %g0, %o0			! delay; result in %o0
 	SET_SIZE(client_handler)

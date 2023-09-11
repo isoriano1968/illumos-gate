@@ -278,7 +278,7 @@ extern	uint_t x_rstat[NCPU][4];
 #define	XC_LOOP		1
 #define	XC_SERV		2
 
-#define	XC_STAT_INIT(cpuid) 				\
+#define	XC_STAT_INIT(cpuid)				\
 {							\
 	x_dstat[cpuid][XC_CPUID] = 0xffffff00 | cpuid;	\
 	x_rstat[cpuid][XC_CPUID] = 0xffffff00 | cpuid;	\

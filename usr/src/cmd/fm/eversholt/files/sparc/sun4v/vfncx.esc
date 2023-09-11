@@ -18,36 +18,36 @@
  *
  * CDDL HEADER END
  */
-/* 
- * Copyright 2007 Sun Microsystems, Inc.  All rights reserved. 
- * Use is subject to license terms. 
- */ 
- 
-#pragma dictionary "SUN4V" 
+/*
+ * Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
+ * Use is subject to license terms.
+ */
+
+#pragma dictionary "SUN4V"
 
 /*
  * Eversholt rules for the VF PIU extention to Fire nexus driver
  */
-#define HB_FIT			400 
+#define HB_FIT			400
 
 /*
  * Faults, upsets and defects
  */
 /* VF Asic */
-fru hostbridge/pciexrc; 
-asru hostbridge/pciexrc; 
-event fault.io.vf.ncx@hostbridge/pciexrc, 
-    FITrate=HB_FIT, FRU=hostbridge/pciexrc, ASRU=hostbridge/pciexrc; 
+fru hostbridge/pciexrc;
+asru hostbridge/pciexrc;
+event fault.io.vf.ncx@hostbridge/pciexrc,
+    FITrate=HB_FIT, FRU=hostbridge/pciexrc, ASRU=hostbridge/pciexrc;
 
 /* fault.io.vf.ncx */
-event ereport.io.vf.ncx.to-fdr@hostbridge/pciexrc{within(0s)}; 
-event ereport.io.vf.ncx.to-fsr@hostbridge/pciexrc{within(0s)}; 
-event ereport.io.vf.ncx.fre@hostbridge/pciexrc{within(0s)}; 
-event ereport.io.vf.ncx.fse@hostbridge/pciexrc{within(0s)}; 
-event ereport.io.vf.ncx.fde@hostbridge/pciexrc{within(0s)}; 
+event ereport.io.vf.ncx.to-fdr@hostbridge/pciexrc{within(0s)};
+event ereport.io.vf.ncx.to-fsr@hostbridge/pciexrc{within(0s)};
+event ereport.io.vf.ncx.fre@hostbridge/pciexrc{within(0s)};
+event ereport.io.vf.ncx.fse@hostbridge/pciexrc{within(0s)};
+event ereport.io.vf.ncx.fde@hostbridge/pciexrc{within(0s)};
 
 /* fault.io.vf.ncx */
-prop fault.io.vf.ncx@hostbridge/pciexrc (1)-> 
+prop fault.io.vf.ncx@hostbridge/pciexrc (1)->
 	ereport.io.vf.ncx.to-fdr@hostbridge/pciexrc,
 	ereport.io.vf.ncx.to-fsr@hostbridge/pciexrc,
 	ereport.io.vf.ncx.fre@hostbridge/pciexrc,

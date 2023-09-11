@@ -57,7 +57,7 @@
  */
 ddi_dma_impl_t *
 px_dma_allocmp(dev_info_t *dip, dev_info_t *rdip, int (*waitfp)(caddr_t),
-	caddr_t arg)
+    caddr_t arg)
 {
 	register ddi_dma_impl_t *mp;
 	int sleep = (waitfp == DDI_DMA_SLEEP) ? KM_SLEEP : KM_NOSLEEP;
@@ -176,7 +176,7 @@ px_dma_freepfn(ddi_dma_impl_t *mp)
  */
 ddi_dma_impl_t *
 px_dma_lmts2hdl(dev_info_t *dip, dev_info_t *rdip, px_mmu_t *mmu_p,
-	ddi_dma_req_t *dmareq)
+    ddi_dma_req_t *dmareq)
 {
 	ddi_dma_impl_t *mp;
 	ddi_dma_attr_t *attr_p;
@@ -379,9 +379,9 @@ px_dma_attr2hdl(px_t *px_p, ddi_dma_impl_t *mp)
  *	dma handle members affected (set on exit):
  *	mp->dmai_object		- dmareq->dmar_object
  *	mp->dmai_rflags		- consistent?, nosync?, dmareq->dmar_flags
- *	mp->dmai_flags   	- DMA type
- *	mp->dmai_pfn0   	- 1st page pfn (if va/size pair and not shadow)
- *	mp->dmai_roffset 	- initialized to starting MMU page offset
+ *	mp->dmai_flags		- DMA type
+ *	mp->dmai_pfn0		- 1st page pfn (if va/size pair and not shadow)
+ *	mp->dmai_roffset	- initialized to starting MMU page offset
  *	mp->dmai_ndvmapages	- # of total MMU pages of entire object
  */
 int
@@ -895,8 +895,8 @@ px_dvma_unmap(px_mmu_t *mmu_p, ddi_dma_impl_t *mp)
  */
 int
 px_dvma_ctl(dev_info_t *dip, dev_info_t *rdip, ddi_dma_impl_t *mp,
-	enum ddi_dma_ctlops cmd, off_t *offp, size_t *lenp, caddr_t *objp,
-	uint_t cache_flags)
+    enum ddi_dma_ctlops cmd, off_t *offp, size_t *lenp, caddr_t *objp,
+    uint_t cache_flags)
 {
 	switch (cmd) {
 	default:
@@ -952,8 +952,8 @@ px_dma_freewin(ddi_dma_impl_t *mp)
 /*ARGSUSED*/
 static int
 px_dma_newwin(dev_info_t *dip, ddi_dma_req_t *dmareq, ddi_dma_impl_t *mp,
-	uint32_t cookie_no, uint32_t start_idx, uint32_t end_idx,
-	px_dma_win_t **win_pp, uint64_t count_max, uint64_t bypass)
+    uint32_t cookie_no, uint32_t start_idx, uint32_t end_idx,
+    px_dma_win_t **win_pp, uint64_t count_max, uint64_t bypass)
 {
 	int (*waitfp)(caddr_t) = dmareq->dmar_fp;
 	ddi_dma_cookie_t *cookie_p;
@@ -1245,8 +1245,8 @@ err:
 
 int
 px_dma_ctl(dev_info_t *dip, dev_info_t *rdip, ddi_dma_impl_t *mp,
-	enum ddi_dma_ctlops cmd, off_t *offp, size_t *lenp, caddr_t *objp,
-	uint_t cache_flags)
+    enum ddi_dma_ctlops cmd, off_t *offp, size_t *lenp, caddr_t *objp,
+    uint_t cache_flags)
 {
 	switch (cmd) {
 	default:
@@ -1308,7 +1308,7 @@ px_dvma_debug_fini(px_mmu_t *mmu_p)
 
 void
 px_dvma_alloc_debug(px_mmu_t *mmu_p, char *address, uint_t len,
-	ddi_dma_impl_t *mp)
+    ddi_dma_impl_t *mp)
 {
 	struct px_dvma_rec *ptr;
 	mutex_enter(&mmu_p->dvma_debug_lock);

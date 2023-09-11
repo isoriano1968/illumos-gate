@@ -79,12 +79,12 @@
 #define	EHC_DEV3	0x06
 #define	EHC_DEV4	0x08
 #define	EHC_DEV5	0x0A
-#define	EHC_DEV6    	0x0C
+#define	EHC_DEV6	0x0C
 #define	EHC_DEV7	0x0E
 
 
 /*
- * 		CONTROL OF CHIP
+ *              CONTROL OF CHIP
  * PCF8591 Temp sensing control register definitions
  *
  * ---------------------------------------------

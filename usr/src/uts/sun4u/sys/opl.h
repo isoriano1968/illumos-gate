@@ -95,7 +95,7 @@ typedef enum {
 typedef struct opl_model_info {
 	char		model_name[MAXSYSNAME];	/* OPL model name */
 	int		model_max_boards;	/* Maximum boards per model */
-	opl_type_t 	model_type;		/* Model type */
+	opl_type_t	model_type;		/* Model type */
 	int		model_cmds;		/* Model specific cmds */
 } opl_model_info_t;
 

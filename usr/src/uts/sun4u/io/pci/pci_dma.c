@@ -47,7 +47,7 @@
 
 static void
 pci_sc_pg_inv(dev_info_t *dip, sc_t *sc_p, ddi_dma_impl_t *mp, off_t off,
-	size_t len)
+    size_t len)
 {
 	dvma_addr_t dvma_addr, pg_off;
 	volatile uint64_t *invl_va = sc_p->sc_invl_reg;
@@ -146,7 +146,7 @@ done:
  */
 int
 pci_dma_sync(dev_info_t *dip, dev_info_t *rdip, ddi_dma_handle_t handle,
-	off_t off, size_t len, uint32_t sync_flag)
+    off_t off, size_t len, uint32_t sync_flag)
 {
 	ddi_dma_impl_t *mp = (ddi_dma_impl_t *)handle;
 	int ret = ddi_get_instance(dip);
@@ -248,7 +248,7 @@ pci_dma_handle_clean(dev_info_t *rdip, ddi_dma_handle_t h)
  */
 ddi_dma_impl_t *
 pci_dma_allocmp(dev_info_t *dip, dev_info_t *rdip, int (*waitfp)(caddr_t),
-	caddr_t arg)
+    caddr_t arg)
 {
 	ddi_dma_impl_t *mp;
 	int sleep = (waitfp == DDI_DMA_SLEEP) ? KM_SLEEP : KM_NOSLEEP;
@@ -357,7 +357,7 @@ pci_dma_freepfn(ddi_dma_impl_t *mp)
  */
 ddi_dma_impl_t *
 pci_dma_lmts2hdl(dev_info_t *dip, dev_info_t *rdip, iommu_t *iommu_p,
-	ddi_dma_req_t *dmareq)
+    ddi_dma_req_t *dmareq)
 {
 	ddi_dma_impl_t *mp;
 	ddi_dma_attr_t *attr_p;
@@ -542,9 +542,9 @@ pci_dma_consist_check(uint32_t req_flags, pbm_t *pbm_p)
  *	dma handle members affected (set on exit):
  *	mp->dmai_object		- dmareq->dmar_object
  *	mp->dmai_rflags		- consistent?, nosync?, dmareq->dmar_flags
- *	mp->dmai_flags   	- DMA type
- *	mp->dmai_pfn0   	- 1st page pfn (if va/size pair and not shadow)
- *	mp->dmai_roffset 	- initialized to starting IOMMU page offset
+ *	mp->dmai_flags		- DMA type
+ *	mp->dmai_pfn0		- 1st page pfn (if va/size pair and not shadow)
+ *	mp->dmai_roffset	- initialized to starting IOMMU page offset
  *	mp->dmai_ndvmapages	- # of total IOMMU pages of entire object
  *	mp->pdh_sync_buf_pa	- dma sync buffer PA is DMA flow is supported
  */
@@ -699,7 +699,7 @@ pci_dma_pgpfn(pci_t *pci_p, ddi_dma_impl_t *mp, uint_t npages)
  */
 static int
 pci_dma_vapfn(pci_t *pci_p, ddi_dma_req_t *dmareq, ddi_dma_impl_t *mp,
-	uint_t npages)
+    uint_t npages)
 {
 	dev_info_t *dip = pci_p->pci_dip;
 	int i;
@@ -1111,8 +1111,8 @@ pci_dma_sync_unmap(dev_info_t *dip, dev_info_t *rdip, ddi_dma_impl_t *mp)
  */
 int
 pci_dvma_ctl(dev_info_t *dip, dev_info_t *rdip, ddi_dma_impl_t *mp,
-	enum ddi_dma_ctlops cmd, off_t *offp, size_t *lenp, caddr_t *objp,
-	uint_t cache_flags)
+    enum ddi_dma_ctlops cmd, off_t *offp, size_t *lenp, caddr_t *objp,
+    uint_t cache_flags)
 {
 	switch (cmd) {
 
@@ -1173,8 +1173,8 @@ pci_dma_freewin(ddi_dma_impl_t *mp)
  */
 static int
 pci_dma_newwin(ddi_dma_req_t *dmareq, ddi_dma_impl_t *mp, uint32_t cookie_no,
-	uint32_t start_idx, uint32_t end_idx, pci_dma_win_t **win_pp,
-	uint64_t count_max, uint64_t bypass_prefix)
+    uint32_t start_idx, uint32_t end_idx, pci_dma_win_t **win_pp,
+    uint64_t count_max, uint64_t bypass_prefix)
 {
 	int (*waitfp)(caddr_t) = dmareq->dmar_fp;
 	ddi_dma_cookie_t *cookie_p;
@@ -1427,8 +1427,8 @@ err:
 /*ARGSUSED*/
 int
 pci_dma_ctl(dev_info_t *dip, dev_info_t *rdip, ddi_dma_impl_t *mp,
-	enum ddi_dma_ctlops cmd, off_t *offp, size_t *lenp, caddr_t *objp,
-	uint_t cache_flags)
+    enum ddi_dma_ctlops cmd, off_t *offp, size_t *lenp, caddr_t *objp,
+    uint_t cache_flags)
 {
 	switch (cmd) {
 
@@ -1548,7 +1548,7 @@ pci_dvma_debug_fini(iommu_t *iommu_p)
 
 void
 pci_dvma_alloc_debug(iommu_t *iommu_p, char *address, uint_t len,
-	ddi_dma_impl_t *mp)
+    ddi_dma_impl_t *mp)
 {
 	struct dvma_rec *ptr;
 	mutex_enter(&iommu_p->dvma_debug_lock);
@@ -1581,7 +1581,7 @@ done:
 
 void
 pci_dvma_free_debug(iommu_t *iommu_p, char *address, uint_t len,
-	ddi_dma_impl_t *mp)
+    ddi_dma_impl_t *mp)
 {
 	struct dvma_rec *ptr, *ptr_save;
 	mutex_enter(&iommu_p->dvma_debug_lock);

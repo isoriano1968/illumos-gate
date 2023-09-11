@@ -305,7 +305,8 @@ etm_filter_find_ldom_name(fmd_hdl_t *hdl, uint64_t did, char *name,
  */
 void
 etm_filter_handle_ldom_event(fmd_hdl_t *hdl, etm_async_event_type_t event,
-    char *name) {
+    char *name)
+{
 	int		i;			/* loop counter */
 	etm_prc_t	*prc;			/* root complex */
 
@@ -338,7 +339,8 @@ etm_filter_handle_ldom_event(fmd_hdl_t *hdl, etm_async_event_type_t event,
 
 /* ARGSUSED */
 void
-etm_filter_init(fmd_hdl_t *hdl) {
+etm_filter_init(fmd_hdl_t *hdl)
+{
 	etm_rcs = NULL;
 	etm_rc_cnt = 0;
 	etm_rc_max = 0;
@@ -347,7 +349,8 @@ etm_filter_init(fmd_hdl_t *hdl) {
 }
 
 void
-etm_filter_fini(fmd_hdl_t *hdl) {
+etm_filter_fini(fmd_hdl_t *hdl)
+{
 	int		i;			/* loop counter */
 	etm_prc_t	*prc;			/* root complex pointer */
 

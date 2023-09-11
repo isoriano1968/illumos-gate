@@ -304,7 +304,7 @@ struct envctrl_pcd8584_regs {
 #define	LM75_COMP_MASK_UPPER	0xFF
 
 /*
- * 		CONTROL OF CHIP
+ *              CONTROL OF CHIP
  * PCF8591 Temp sensing control register definitions
  *
  *   7      6     5   4  3   2      1   0

@@ -961,7 +961,7 @@ get_l2_cache_node_count(md_t *mdp)
  */
 static int
 get_l2_cache_info(md_t *mdp, mde_cookie_t cpu_node_cookie,
-	    uint64_t *associativity, uint64_t *size, uint64_t *linesize)
+    uint64_t *associativity, uint64_t *size, uint64_t *linesize)
 {
 	mde_cookie_t *cachelist;
 	int ncaches, i;

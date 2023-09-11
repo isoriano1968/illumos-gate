@@ -91,7 +91,7 @@ clkstart(void)
  * might be too high early on. We can get a pretty good approximation
  * of this by setting it as:
  *
- * 	sys_clock_mhz = (sys_tick_freq + 500000) / 1000000
+ *	sys_clock_mhz = (sys_tick_freq + 500000) / 1000000
  *
  * setcpudelay is called twice during the boot process. The first time
  * is before the TOD driver is loaded so cpu_init_tick_freq cannot

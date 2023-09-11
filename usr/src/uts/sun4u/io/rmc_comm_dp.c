@@ -523,7 +523,7 @@ dp_got_full_msg(struct rmc_comm_state *rcs, dp_packet_t *pkt)
 static int
 dp_get_msglen(struct rmc_comm_state *rcs, uint8_t *buf)
 {
-	dp_header_t 	*dp_msgp;
+	dp_header_t	*dp_msgp;
 	uint16_t	 crc;
 
 	dp_msgp = (dp_header_t *)buf;
@@ -723,8 +723,8 @@ rmc_comm_dp_fini(struct rmc_comm_state *rcs)
 void
 rmc_comm_dp_drecv(struct rmc_comm_state *rcs, uint8_t *buf, int buflen)
 {
-	rmc_comm_dp_state_t 	*dps = &rcs->dp_state;
-	dp_packet_t 		*pkt = &dps->dp_packet;
+	rmc_comm_dp_state_t	*dps = &rcs->dp_state;
+	dp_packet_t		*pkt = &dps->dp_packet;
 	uint8_t			 quit;
 	int			 count;
 	int			 max;
@@ -1098,7 +1098,7 @@ rmc_comm_dp_mrecv(struct rmc_comm_state *rcs, uint8_t *buf)
 	if (dmi->intr_handler != NULL &&
 	    dmi->intr_msg_type == dp_msgp->type) {
 
-		rmc_comm_msg_t 	*msgi = (rmc_comm_msg_t *)dmi->intr_arg;
+		rmc_comm_msg_t	*msgi = (rmc_comm_msg_t *)dmi->intr_arg;
 
 		DPRINTF(rcs, DPRO, (CE_CONT,
 		    "mrecv process async msg len=%d, max=%d\n",
@@ -1197,7 +1197,7 @@ rmc_comm_dp_ctlsend(struct rmc_comm_state *rcs, uint8_t type)
 int
 rmc_comm_dp_msend(struct rmc_comm_state *rcs, dp_message_t *req)
 {
-	rmc_comm_dp_state_t 	*dps = &rcs->dp_state;
+	rmc_comm_dp_state_t	*dps = &rcs->dp_state;
 	dp_req_resp_t		*drr = &dps->req_resp;
 	dp_message_t		*pkt;
 	dp_header_t		*dp_msgp;

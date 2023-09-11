@@ -141,35 +141,55 @@ cmd_##name(fmd_hdl_t *hdl, fmd_event_t *ep, nvlist_t *nvl,		\
 }
 
 #ifdef sun4u
-CMD_CPU_TAGHANDLER(txce, l2tag, CMD_PTR_CPU_L2TAG, "l2tag", "l2cachetag")
-CMD_CPU_TAGHANDLER(l3_thce, l3tag, CMD_PTR_CPU_L3TAG, "l3tag", "l3cachetag")
+    CMD_CPU_TAGHANDLER(txce, l2tag, CMD_PTR_CPU_L2TAG,
+	"l2tag", "l2cachetag")
+    CMD_CPU_TAGHANDLER(l3_thce, l3tag, CMD_PTR_CPU_L3TAG,
+	"l3tag", "l3cachetag")
 #else
-CMD_CPU_SIMPLEHANDLER(txce, l2tag, CMD_PTR_CPU_L2TAG, "l2tag", "l2cachetag")
-CMD_CPU_SIMPLEHANDLER(l3_thce, l3tag, CMD_PTR_CPU_L3TAG, "l3tag", "l3cachetag")
+    CMD_CPU_SIMPLEHANDLER(txce, l2tag, CMD_PTR_CPU_L2TAG,
+	"l2tag", "l2cachetag")
+    CMD_CPU_SIMPLEHANDLER(l3_thce, l3tag, CMD_PTR_CPU_L3TAG,
+	"l3tag", "l3cachetag")
 #endif
-CMD_CPU_SIMPLEHANDLER(icache, icache, CMD_PTR_CPU_ICACHE, "icache", "icache")
-CMD_CPU_SIMPLEHANDLER(dcache, dcache, CMD_PTR_CPU_DCACHE, "dcache", "dcache")
-CMD_CPU_SIMPLEHANDLER(pcache, pcache, CMD_PTR_CPU_PCACHE, "pcache", "pcache")
-CMD_CPU_SIMPLEHANDLER(itlb, itlb, CMD_PTR_CPU_ITLB, "itlb", "itlb")
-CMD_CPU_SIMPLEHANDLER(dtlb, dtlb, CMD_PTR_CPU_DTLB, "dtlb", "dtlb")
-CMD_CPU_SIMPLEHANDLER(irc, ireg, CMD_PTR_CPU_IREG, "ireg", "ireg")
-CMD_CPU_SIMPLEHANDLER(frc, freg, CMD_PTR_CPU_FREG, "freg", "freg")
-CMD_CPU_SIMPLEHANDLER(mau, mau, CMD_PTR_CPU_MAU, "mau", "mau")
-CMD_CPU_SIMPLEHANDLER(miscregs_ce, misc_regs, CMD_PTR_CPU_MISC_REGS,
+    CMD_CPU_SIMPLEHANDLER(icache, icache, CMD_PTR_CPU_ICACHE,
+	"icache", "icache")
+    CMD_CPU_SIMPLEHANDLER(dcache, dcache, CMD_PTR_CPU_DCACHE,
+	"dcache", "dcache")
+    CMD_CPU_SIMPLEHANDLER(pcache, pcache, CMD_PTR_CPU_PCACHE,
+	"pcache", "pcache")
+    CMD_CPU_SIMPLEHANDLER(itlb, itlb, CMD_PTR_CPU_ITLB,
+	"itlb", "itlb")
+    CMD_CPU_SIMPLEHANDLER(dtlb, dtlb, CMD_PTR_CPU_DTLB,
+	"dtlb", "dtlb")
+    CMD_CPU_SIMPLEHANDLER(irc, ireg, CMD_PTR_CPU_IREG,
+	"ireg", "ireg")
+    CMD_CPU_SIMPLEHANDLER(frc, freg, CMD_PTR_CPU_FREG,
+	"freg", "freg")
+    CMD_CPU_SIMPLEHANDLER(mau, mau, CMD_PTR_CPU_MAU,
+	"mau", "mau")
+    CMD_CPU_SIMPLEHANDLER(miscregs_ce, misc_regs, CMD_PTR_CPU_MISC_REGS,
 	"misc_regs", "misc_reg")
-CMD_CPU_SIMPLEHANDLER(l2c, l2data, CMD_PTR_CPU_L2DATA, "l2data", "l2data-c")
+    CMD_CPU_SIMPLEHANDLER(l2c, l2data, CMD_PTR_CPU_L2DATA,
+	"l2data", "l2data-c")
 
-CMD_CPU_SIMPLEHANDLER(fpu, fpu, CMD_PTR_CPU_FPU, "", "fpu")
-CMD_CPU_SIMPLEHANDLER(l2ctl, l2ctl, CMD_PTR_CPU_L2CTL, "", "l2cachectl")
-CMD_CPU_SIMPLEHANDLER(iru, ireg, CMD_PTR_CPU_IREG, "", "ireg")
-CMD_CPU_SIMPLEHANDLER(fru, freg, CMD_PTR_CPU_FREG, "", "freg")
-CMD_CPU_SIMPLEHANDLER(miscregs_ue, misc_regs, CMD_PTR_CPU_MISC_REGS,
+    CMD_CPU_SIMPLEHANDLER(fpu, fpu, CMD_PTR_CPU_FPU,
+	"", "fpu")
+    CMD_CPU_SIMPLEHANDLER(l2ctl, l2ctl, CMD_PTR_CPU_L2CTL,
+	"", "l2cachectl")
+    CMD_CPU_SIMPLEHANDLER(iru, ireg, CMD_PTR_CPU_IREG,
+	"", "ireg")
+    CMD_CPU_SIMPLEHANDLER(fru, freg, CMD_PTR_CPU_FREG,
+	"", "freg")
+    CMD_CPU_SIMPLEHANDLER(miscregs_ue, misc_regs, CMD_PTR_CPU_MISC_REGS,
 	"", "misc_reg")
-CMD_CPU_SIMPLEHANDLER(l2u, l2data, CMD_PTR_CPU_L2DATA, "", "l2data-u")
-CMD_CPU_SIMPLEHANDLER(lfu_ue, lfu, CMD_PTR_CPU_LFU, "", "lfu-u")
-CMD_CPU_SIMPLEHANDLER(lfu_ce, lfu, CMD_PTR_CPU_LFU, "", "lfu-f")
-CMD_CPU_SIMPLEHANDLER(lfu_pe, lfu, CMD_PTR_CPU_LFU, "", "lfu-p")
-
+    CMD_CPU_SIMPLEHANDLER(l2u, l2data, CMD_PTR_CPU_L2DATA,
+	"", "l2data-u")
+    CMD_CPU_SIMPLEHANDLER(lfu_ue, lfu, CMD_PTR_CPU_LFU,
+	"", "lfu-u")
+    CMD_CPU_SIMPLEHANDLER(lfu_ce, lfu, CMD_PTR_CPU_LFU,
+	"", "lfu-f")
+    CMD_CPU_SIMPLEHANDLER(lfu_pe, lfu, CMD_PTR_CPU_LFU,
+	"", "lfu-p")
 
 #ifdef sun4u
 /*
@@ -231,33 +251,39 @@ cmd_##name(fmd_hdl_t *hdl, fmd_event_t *ep, nvlist_t *nvl,		\
 /*
  * CPU errors without resource
  */
-CMD_OPL_UEHANDLER(oplinv_urg, opl_inv_urg, CMD_PTR_CPU_UGESR_INV_URG, "core", 0)
-CMD_OPL_UEHANDLER(oplcre, opl_cre, CMD_PTR_CPU_UGESR_CRE, "core", 0)
-CMD_OPL_UEHANDLER(opltsb_ctx, opl_tsb_ctx, CMD_PTR_CPU_UGESR_TSB_CTX, "core", 0)
-CMD_OPL_UEHANDLER(opltsbp, opl_tsbp, CMD_PTR_CPU_UGESR_TSBP, "core", 0)
-CMD_OPL_UEHANDLER(oplpstate, opl_pstate, CMD_PTR_CPU_UGESR_PSTATE, "core", 0)
-CMD_OPL_UEHANDLER(opltstate, opl_tstate, CMD_PTR_CPU_UGESR_TSTATE, "core", 0)
-CMD_OPL_UEHANDLER(opliug_f, opl_iug_f, CMD_PTR_CPU_UGESR_IUG_F, "core", 0)
-CMD_OPL_UEHANDLER(opliug_r, opl_iug_r, CMD_PTR_CPU_UGESR_IUG_R, "core", 0)
-CMD_OPL_UEHANDLER(oplsdc, opl_sdc, CMD_PTR_CPU_UGESR_SDC, "chip", 0)
-CMD_OPL_UEHANDLER(oplwdt, opl_wdt, CMD_PTR_CPU_UGESR_WDT, "core", 0)
-CMD_OPL_UEHANDLER(opldtlb, opl_dtlb, CMD_PTR_CPU_UGESR_DTLB, "core", 0)
-CMD_OPL_UEHANDLER(oplitlb, opl_itlb, CMD_PTR_CPU_UGESR_ITLB, "core", 0)
-CMD_OPL_UEHANDLER(oplcore_err, opl_core_err, CMD_PTR_CPU_UGESR_CORE_ERR,
-"core", 0)
-CMD_OPL_UEHANDLER(opldae, opl_dae, CMD_PTR_CPU_UGESR_DAE, "core", 0)
-CMD_OPL_UEHANDLER(opliae, opl_iae, CMD_PTR_CPU_UGESR_IAE, "core", 0)
-CMD_OPL_UEHANDLER(opluge, opl_uge, CMD_PTR_CPU_UGESR_UGE, "core", 0)
+    CMD_OPL_UEHANDLER(oplinv_urg, opl_inv_urg, CMD_PTR_CPU_UGESR_INV_URG,
+	"core", 0)
+    CMD_OPL_UEHANDLER(oplcre, opl_cre, CMD_PTR_CPU_UGESR_CRE, "core", 0)
+    CMD_OPL_UEHANDLER(opltsb_ctx, opl_tsb_ctx, CMD_PTR_CPU_UGESR_TSB_CTX,
+	"core", 0)
+    CMD_OPL_UEHANDLER(opltsbp, opl_tsbp, CMD_PTR_CPU_UGESR_TSBP, "core", 0)
+    CMD_OPL_UEHANDLER(oplpstate, opl_pstate, CMD_PTR_CPU_UGESR_PSTATE,
+	"core", 0)
+    CMD_OPL_UEHANDLER(opltstate, opl_tstate, CMD_PTR_CPU_UGESR_TSTATE,
+	"core", 0)
+    CMD_OPL_UEHANDLER(opliug_f, opl_iug_f, CMD_PTR_CPU_UGESR_IUG_F, "core", 0)
+    CMD_OPL_UEHANDLER(opliug_r, opl_iug_r, CMD_PTR_CPU_UGESR_IUG_R, "core", 0)
+    CMD_OPL_UEHANDLER(oplsdc, opl_sdc, CMD_PTR_CPU_UGESR_SDC, "chip", 0)
+    CMD_OPL_UEHANDLER(oplwdt, opl_wdt, CMD_PTR_CPU_UGESR_WDT, "core", 0)
+    CMD_OPL_UEHANDLER(opldtlb, opl_dtlb, CMD_PTR_CPU_UGESR_DTLB, "core", 0)
+    CMD_OPL_UEHANDLER(oplitlb, opl_itlb, CMD_PTR_CPU_UGESR_ITLB, "core", 0)
+    CMD_OPL_UEHANDLER(oplcore_err, opl_core_err, CMD_PTR_CPU_UGESR_CORE_ERR,
+	"core", 0)
+    CMD_OPL_UEHANDLER(opldae, opl_dae, CMD_PTR_CPU_UGESR_DAE, "core", 0)
+    CMD_OPL_UEHANDLER(opliae, opl_iae, CMD_PTR_CPU_UGESR_IAE, "core", 0)
+    CMD_OPL_UEHANDLER(opluge, opl_uge, CMD_PTR_CPU_UGESR_UGE, "core", 0)
 
 /*
  * UEs with resource
  */
-CMD_OPL_UEHANDLER(oplinv_sfsr, opl_invsfsr, CMD_PTR_CPU_INV_SFSR, "strand", 1)
-CMD_OPL_UEHANDLER(opluecpu_detcpu, oplue_detcpu, CMD_PTR_CPU_UE_DET_CPU,
-"core", 1)
-CMD_OPL_UEHANDLER(opluecpu_detio, oplue_detio, CMD_PTR_CPU_UE_DET_IO, "core", 1)
-CMD_OPL_UEHANDLER(oplmtlb, opl_mtlb, CMD_PTR_CPU_MTLB, "core", 1)
-CMD_OPL_UEHANDLER(opltlbp, opl_tlbp, CMD_PTR_CPU_TLBP, "core", 1)
+    CMD_OPL_UEHANDLER(oplinv_sfsr, opl_invsfsr, CMD_PTR_CPU_INV_SFSR,
+	"strand", 1)
+    CMD_OPL_UEHANDLER(opluecpu_detcpu, oplue_detcpu, CMD_PTR_CPU_UE_DET_CPU,
+	"core", 1)
+    CMD_OPL_UEHANDLER(opluecpu_detio, oplue_detio, CMD_PTR_CPU_UE_DET_IO,
+	"core", 1)
+    CMD_OPL_UEHANDLER(oplmtlb, opl_mtlb, CMD_PTR_CPU_MTLB, "core", 1)
+    CMD_OPL_UEHANDLER(opltlbp, opl_tlbp, CMD_PTR_CPU_TLBP, "core", 1)
 #endif	/* sun4u */
 
 /*ARGSUSED*/

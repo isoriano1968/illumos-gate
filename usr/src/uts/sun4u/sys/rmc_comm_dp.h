@@ -114,9 +114,9 @@ typedef struct dp_req_resp {
 
 	uint8_t		flags;		/* status of the data transfer */
 
-#define	MSG_ERROR 	0x01
-#define	MSG_SENT 	0x02
-#define	MSG_ACKED 	0x04
+#define	MSG_ERROR	0x01
+#define	MSG_SENT	0x02
+#define	MSG_ACKED	0x04
 #define	MSG_REPLY_RXED	0x08
 #define	MSG_NAKED	0x10
 #define	MSG_RESET	0x20
@@ -127,7 +127,7 @@ typedef struct dp_req_resp {
 
 	uint8_t		retries_left;   /* number of retries left */
 
-	kcondvar_t  	cv_wait_reply[1];	/* cv variable used to signal */
+	kcondvar_t	cv_wait_reply[1];	/* cv variable used to signal */
 						/* threads waiting for a */
 						/* reply */
 

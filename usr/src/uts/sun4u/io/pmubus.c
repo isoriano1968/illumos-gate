@@ -145,7 +145,7 @@ static struct dev_ops pmubus_ops = {
 extern struct mod_ops mod_driverops;
 
 static struct modldrv modldrv = {
-	&mod_driverops, 	/* Type of module.  This one is a driver */
+	&mod_driverops,		/* Type of module.  This one is a driver */
 	"pmubus nexus driver",	/* Name of module. */
 	&pmubus_ops,		/* driver ops */
 };
@@ -652,7 +652,7 @@ pmubus_mask(pmubus_obpregspec_t *regs, int32_t rnumber,
  */
 static int
 pmubus_map(dev_info_t *dip, dev_info_t *rdip, ddi_map_req_t *mp,
-	off_t off, off_t len, caddr_t *addrp)
+    off_t off, off_t len, caddr_t *addrp)
 {
 	pmubus_devstate_t *pmubusp = ddi_get_soft_state(per_pmubus_state,
 	    ddi_get_instance(dip));

@@ -155,7 +155,7 @@ struct pbm {
 	uint32_t pbm_pio_limit;
 	volatile uint32_t pbm_pio_counter;
 
-#define	PBM_NAMESTR_BUFLEN 	64
+#define	PBM_NAMESTR_BUFLEN	64
 	/* driver name & instance */
 	char pbm_nameinst_str[PBM_NAMESTR_BUFLEN];
 

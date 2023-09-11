@@ -1906,7 +1906,7 @@ vd_flush_write(vd_t *vd)
 static void
 vd_flush_write_task(void *vd)
 {
-	(void)vd_flush_write(vd);
+	(void) vd_flush_write(vd);
 }
 
 static void

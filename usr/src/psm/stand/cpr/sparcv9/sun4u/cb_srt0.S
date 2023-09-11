@@ -124,7 +124,7 @@ local_cif:
 
 /*
  * args from cprboot main:
- * 	%o0	prom cookie
+ *	%o0	prom cookie
  *	%o1	struct sun4u_machdep *mdp
  *
  * Any change to this register assignment requires

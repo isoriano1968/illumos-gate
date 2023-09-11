@@ -35,7 +35,7 @@ extern "C" {
  * Sparc IEEE floating-point support PUBLIC include file.
  */
 
-/*	PUBLIC TYPES 	*/
+/*	PUBLIC TYPES	*/
 
 /*
  * IEEE Arithmetic types... numbered to correspond to fsr fields.
@@ -78,7 +78,7 @@ enum fp_exception_type {
 enum fp_class_type {
 	fp_zero		= 0,
 	fp_normal	= 1,		/* Includes subnormal. */
-	fp_infinity   	= 2,
+	fp_infinity	= 2,
 	fp_nan		= 3,		/* Includes quiet and signaling NaN. */
 };
 

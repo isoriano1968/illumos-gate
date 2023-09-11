@@ -61,7 +61,7 @@ static ddi_acc_handle_t platform_isa_handle;	/* handle for isa pci space */
 void
 load_platform_drivers(void)
 {
-	dev_info_t 		*dip;		/* dip of the isa driver */
+	dev_info_t		*dip;		/* dip of the isa driver */
 	int			simba_present = 0;
 	dev_info_t		*root_child_node;
 

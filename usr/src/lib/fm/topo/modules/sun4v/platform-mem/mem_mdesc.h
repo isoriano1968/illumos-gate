@@ -47,7 +47,7 @@ extern "C" {
 typedef struct mem_dimm_map {
 	struct mem_dimm_map *dm_next;	/* The next DIMM map */
 	char *dm_label;			/* The UNUM for this DIMM */
-	char *dm_serid; 		/* Cached serial number */
+	char *dm_serid;		/* Cached serial number */
 	char *dm_part;			/* DIMM part number */
 	uint64_t dm_drgen;		/* DR gen count for cached S/N */
 } mem_dimm_map_t;

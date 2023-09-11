@@ -982,11 +982,11 @@ extern "C" {
 #define	CHP_DCSNTAG_PARITY(tag)		(tag & CHP_DC_SNTAG)
 #define	CHP_DC_TAG			0x1
 #define	CHP_DC_SNTAG			0x2
-#define	PN_DC_DATA_PARITY_SHIFT    	8
-#define	PN_DC_DATA_PARITY_MASK    	0xff
-#define	PN_DC_DATA_ALL_PARITY_MASK    	0xffffffff
+#define	PN_DC_DATA_PARITY_SHIFT		8
+#define	PN_DC_DATA_PARITY_MASK		0xff
+#define	PN_DC_DATA_ALL_PARITY_MASK	0xffffffff
 #endif	/* CHEETAH_PLUS || JALAPENO || SERRANO */
-#define	PN_DC_DATA_PARITY_BIT_SHIFT    	16
+#define	PN_DC_DATA_PARITY_BIT_SHIFT	16
 
 /*
  * Macros for Cheetah Icache diagnostic accesses.

@@ -87,7 +87,7 @@ extern "C" {
 #define	FM_EREPORT_CPU_BTO		"bto"
 #define	FM_EREPORT_CPU_MTLB		"mtlb"
 #define	FM_EREPORT_CPU_TLBP		"tlbp"
-#define	FM_EREPORT_CPU_INV_SFSR 	"inv-sfsr"
+#define	FM_EREPORT_CPU_INV_SFSR	"inv-sfsr"
 
 /*
  * FM_EREPORT_PAYLOAD_URGENT
@@ -104,10 +104,10 @@ extern "C" {
 #define	FM_EREPORT_CPU_WDT	"wdt"
 #define	FM_EREPORT_CPU_DTLB	"dtlb"
 #define	FM_EREPORT_CPU_ITLB	"itlb"
-#define	FM_EREPORT_CPU_CORE 	"core-err"
-#define	FM_EREPORT_CPU_DAE 	"dae"
-#define	FM_EREPORT_CPU_IAE 	"iae"
-#define	FM_EREPORT_CPU_UGE 	"uge"
+#define	FM_EREPORT_CPU_CORE	"core-err"
+#define	FM_EREPORT_CPU_DAE	"dae"
+#define	FM_EREPORT_CPU_IAE	"iae"
+#define	FM_EREPORT_CPU_UGE	"uge"
 #define	FM_EREPORT_CPU_INV_URG	"inv-uge"
 
 #ifdef	__cplusplus

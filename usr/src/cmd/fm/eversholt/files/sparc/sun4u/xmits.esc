@@ -83,7 +83,7 @@ event ereport.io.xmits.pbmx.cnmmu@PCI_HB_DEV_PATH{within(5s)};
  *  - plla:	a PLL lock error on the PCIA Leaf PLL.
  *  - pllb:	a PLL lock error on the PCIB Leaf PLL.
  *  - plls:	a PLL lock error on the Safari block PLL.
- *  - stdst 	a streaming DMA split completion encounters a DSTAT error
+ *  - stdst	a streaming DMA split completion encounters a DSTAT error
  *  - cndst	a consistant DMA split completion encounters a DSTAT error
  *  - bca:	bad safari command from PCI block A.
  *  - bcb:	bad safari command from PCI block B.

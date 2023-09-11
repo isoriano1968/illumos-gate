@@ -265,7 +265,7 @@ fmovcc_icc(
 	fp_inst_type	inst,	/* FPU instruction to simulate. */
 	enum cc_type	cc)	/* CCR condition code field from tstate */
 {
-	int 	moveit;
+	int	moveit;
 	enum icc_type {
 		fmovn, fmove, fmovle, fmovl, fmovleu, fmovcs, fmovneg, fmovvs,
 		fmova, fmovne, fmovg, fmovge, fmovgu, fmovcc, fmovpos, fmovvc

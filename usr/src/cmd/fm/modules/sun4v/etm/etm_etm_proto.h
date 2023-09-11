@@ -149,7 +149,7 @@ typedef enum {
 typedef struct etm_proto_v1_ctl_hdr {
 
 	etm_proto_v1_pp_t	ctl_pp;		/* protocol preamble */
-	uint32_t  		ctl_len;	/* length of control body */
+	uint32_t		ctl_len;	/* length of control body */
 
 	/* uint8_t ctl_body[];	   contig accompanying control data */
 
@@ -158,8 +158,8 @@ typedef struct etm_proto_v1_ctl_hdr {
 typedef struct etm_proto_v1_resp_hdr {
 
 	etm_proto_v1_pp_t	resp_pp;	/* protocol preamble */
-	int32_t   		resp_code;	/* -errno or success code */
-	uint32_t  		resp_len;	/* length of response body */
+	int32_t			resp_code;	/* -errno or success code */
+	uint32_t		resp_len;	/* length of response body */
 
 	/* uint8_t resp_body[];	   contig accompanying response data */
 

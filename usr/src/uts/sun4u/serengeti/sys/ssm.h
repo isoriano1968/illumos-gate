@@ -71,11 +71,11 @@ typedef struct {
 #ifdef DEBUG
 #define	CMD2EVNT(m)	((m) == SGDR_BD_ABSENT	? SG_EVT_BOARD_ABSENT :	\
 			    (m) == SGDR_BD_PRESENT ? SG_EVT_BOARD_PRESENT :\
-			    (m) == SGDR_UNASSIGN ? SG_EVT_UNASSIGN : 	\
+			    (m) == SGDR_UNASSIGN ? SG_EVT_UNASSIGN :	\
 			    (m) == SGDR_ASSIGN ? SG_EVT_ASSIGN :	\
 			    (m) == SGDR_UNAVAILABLE ? SG_EVT_UNAVAILABLE :\
-			    (m) == SGDR_AVAILABLE ? SG_EVT_AVAILABLE : 	\
-			    (m) == SGDR_POWER_OFF ? SG_EVT_POWER_OFF : 	\
+			    (m) == SGDR_AVAILABLE ? SG_EVT_AVAILABLE :	\
+			    (m) == SGDR_POWER_OFF ? SG_EVT_POWER_OFF :	\
 			    (m) == SGDR_POWER_ON ? SG_EVT_POWER_ON :	\
 			    (m) == SGDR_PASSED_TEST ? SG_EVT_PASSED_TEST :\
 			    (m) == SGDR_FAILED_TEST ? SG_EVT_FAILED_TEST :\

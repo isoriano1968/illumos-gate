@@ -163,7 +163,7 @@ typedef	struct machcpu	machcpu_t;
  */
 #define	ECACHE_CPU_IDLE		0x0		/* CPU is idle */
 #define	ECACHE_CPU_BUSY		0x1		/* CPU is busy */
-#define	ECACHE_CPU_MIRROR 	0x2		/* E$ is mirrored */
+#define	ECACHE_CPU_MIRROR	0x2		/* E$ is mirrored */
 #define	ECACHE_CPU_NON_MIRROR	0x3		/* E$ is not mirrored */
 
 /*

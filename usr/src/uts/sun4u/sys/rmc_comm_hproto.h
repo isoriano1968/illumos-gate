@@ -484,16 +484,16 @@ enum sensor_status {
 
 typedef struct dp_tempr_status {
 	dp_handle_t	handle;
-	rsci8		sensor_status; 	/* tells whether the reading is */
+	rsci8		sensor_status;	/* tells whether the reading is */
 					/* available or not */
-	dp_tempr_t	value;	/* temperature value (celsius). */
+	dp_tempr_t	value;		/* temperature value (celsius). */
 
-	dp_tempr_t 	low_warning;
-	dp_tempr_t 	low_soft_shutdown;
-	dp_tempr_t 	low_hard_shutdown;
-	dp_tempr_t 	high_warning;
-	dp_tempr_t 	high_soft_shutdown;
-	dp_tempr_t 	high_hard_shutdown;
+	dp_tempr_t	low_warning;
+	dp_tempr_t	low_soft_shutdown;
+	dp_tempr_t	low_hard_shutdown;
+	dp_tempr_t	high_warning;
+	dp_tempr_t	high_soft_shutdown;
+	dp_tempr_t	high_hard_shutdown;
 
 } dp_tempr_status_t;
 
@@ -514,9 +514,9 @@ typedef struct dp_get_fan_status {
 
 typedef struct dp_fan_status {
 	dp_handle_t	handle;
-	rsci8		sensor_status; 	/* tells whether the reading is */
+	rsci8		sensor_status;	/* tells whether the reading is */
 					/* available or not */
-	rsci8 		flag;
+	rsci8		flag;
 
 #define	DP_FAN_PRESENCE		0x01	/* FAN presence (bit set=FAN present) */
 #define	DP_FAN_SPEED_VAL_UNIT	0x02	/* speed unit	(bit set=relative, */
@@ -544,17 +544,17 @@ typedef struct dp_get_psu_status {
 #define	DP_GET_PSU_STATUS_R	0x29
 typedef struct dp_psu_status {
 	dp_handle_t	handle;
-	rsci8		sensor_status; 	/* tells whether the reading is */
+	rsci8		sensor_status;	/* tells whether the reading is */
 					/* available or not */
-	rsci16 		mask;		/* flag bit mask (feature presence) */
-	rsci16 		flag;		/* status bits */
+	rsci16		mask;		/* flag bit mask (feature presence) */
+	rsci16		flag;		/* status bits */
 
 #define	DP_PSU_PRESENCE			0x0001	/* PSU presence  */
 #define	DP_PSU_OUTPUT_STATUS		0x0002	/* output status */
 #define	DP_PSU_INPUT_STATUS		0x0004	/* input status */
 #define	DP_PSU_SEC_INPUT_STATUS		0x0008	/* secondary input status */
 #define	DP_PSU_OVERTEMP_FAULT		0x0010	/* over temperature fault */
-#define	DP_PSU_FAN_FAULT    		0x0020	/* FAN fault */
+#define	DP_PSU_FAN_FAULT		0x0020	/* FAN fault */
 #define	DP_PSU_FAIL_STATUS		0x0040	/* PSU generic fault */
 #define	DP_PSU_OUTPUT_VLO_STATUS	0x0080	/* output under voltage */
 #define	DP_PSU_OUTPUT_VHI_STATUS	0x0100	/* output over voltage */
@@ -563,7 +563,7 @@ typedef struct dp_psu_status {
 #define	DP_PSU_PDCT_FAN			0x0800	/* predicted fan fail */
 #define	DP_PSU_NR_WARNING		0x1000	/* non-redundancy condition */
 
-			/* presence: 	bit clear=not present */
+			/* presence:    bit clear=not present */
 			/*		bit set=present */
 			/* status:	bit clear=ok */
 			/*		bit set=generic fault */
@@ -587,7 +587,7 @@ typedef struct dp_get_fru_status {
 typedef struct dp_fru_status {
 
 	dp_handle_t	handle;
-	rsci8		sensor_status; 	/* tells whether the reading is */
+	rsci8		sensor_status;	/* tells whether the reading is */
 					/* available or not */
 	rsci8		presence;	/* 1=FRU present */
 	rsci8		status;
@@ -638,7 +638,7 @@ typedef struct dp_get_device_r {
 
 typedef struct dp_set_cpu_signature {
 	int		cpu_id;		/* see PSARC 2000/205 for more */
-	ushort_t	sig; 		/* information on the value/meaning */
+	ushort_t	sig;		/* information on the value/meaning */
 	uchar_t		states;		/* of these fields */
 	uchar_t		sub_state;
 
@@ -665,7 +665,7 @@ typedef struct dp_get_led_state {
 
 typedef struct dp_led_state {
 	dp_handle_t	handle;
-	rsci8		sensor_status; 	/* tells whether the reading is */
+	rsci8		sensor_status;	/* tells whether the reading is */
 					/* available or not */
 	rsci8		state;
 	rsci8		colour;
@@ -725,7 +725,7 @@ typedef struct dp_get_alarm_state {
 
 typedef struct dp_alarm_state {
 	dp_handle_t	handle;
-	rsci8		sensor_status; 	/* tells whether the reading is */
+	rsci8		sensor_status;	/* tells whether the reading is */
 					/* available or not */
 	rsci8		state;
 } dp_alarm_state_t;
@@ -798,7 +798,7 @@ typedef rscis16		dp_volt_reading_t;	/* unit in mV */
 
 typedef struct dp_volt_status {
 	dp_handle_t		handle;
-	rsci8			sensor_status; 	/* tells whether the reading */
+	rsci8			sensor_status;	/* tells whether the reading */
 						/* is available or not */
 	rsci8			status;		/* 0=ok, 1=error */
 	dp_volt_reading_t	reading;	/* value in mV. */
@@ -829,7 +829,7 @@ typedef struct dp_get_circuit_brks {
 
 typedef struct dp_circuit_brk_status {
 	dp_handle_t	handle;
-	rsci8		sensor_status; 	/* tells whether the reading is */
+	rsci8		sensor_status;	/* tells whether the reading is */
 					/* available or not */
 	rsci8		status;		/* 0=ok, 1=error */
 
@@ -859,20 +859,20 @@ typedef struct dp_get_handle_name {
 
 typedef struct dp_get_handle_name_r {
 	dp_handle_t	handle;
-	char 		name[DP_MAX_HANDLE_NAME];
+	char		name[DP_MAX_HANDLE_NAME];
 } dp_get_handle_name_r_t;
 
 
 #define	DP_GET_HANDLE		0x4C
 
 typedef struct dp_get_handle {
-	char 		name[DP_MAX_HANDLE_NAME];
+	char		name[DP_MAX_HANDLE_NAME];
 } dp_get_handle_t;
 
 #define	DP_GET_HANDLE_R		0x4D
 
 typedef struct dp_get_handle_r {
-	dp_handle_t 	handle;
+	dp_handle_t	handle;
 } dp_get_handle_r_t;
 
 
@@ -949,7 +949,7 @@ typedef union dp_event_info {
 
 typedef struct dp_event_notification {
 	dp_event_t	event;
-	rsci32		event_seqno; 	/* event sequence number */
+	rsci32		event_seqno;	/* event sequence number */
 	rsci32		timestamp;	/* timestamp of the event */
 	dp_event_info_t	event_info;	/* event information */
 } dp_event_notification_t;
@@ -957,7 +957,7 @@ typedef struct dp_event_notification {
 #define	DP_RMC_EVENTS_R		0x5F
 
 typedef struct dp_event_notification_r {
-	rsci32		event_seqno; 	/* event sequence number */
+	rsci32		event_seqno;	/* event sequence number */
 } dp_event_notification_r_t;
 
 #define	DP_GET_CHASSIS_SERIALNUM	0x2E
@@ -968,7 +968,7 @@ typedef struct dp_get_serialnum_r {
 
 #define	DP_GET_CONSOLE_LOG	0x1A
 typedef struct dp_get_console_log {
-	rsci64		start_seq; 	/* sequence number of first log byte */
+	rsci64		start_seq;	/* sequence number of first log byte */
 	rsci16		length;		/* expected size of retrieved data */
 } dp_get_console_log_t;
 

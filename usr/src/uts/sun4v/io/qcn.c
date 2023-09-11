@@ -251,7 +251,7 @@ qcn_add_intrs(void)
 {
 	dev_info_t	*devinfo = qcn_state->qcn_dip;
 	int		actual, count = 0;
-	int 		x, y, rc, inum = 0;
+	int		x, y, rc, inum = 0;
 
 
 	/* get number of interrupts */

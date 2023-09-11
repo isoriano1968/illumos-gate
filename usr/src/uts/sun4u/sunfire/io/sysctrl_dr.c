@@ -105,16 +105,16 @@ int enable_redist = 1;
 static void sysc_dr_err_decode(sysc_dr_handle_t *, dev_info_t *, int);
 static uint_t
 sysc_policy_enough_cooling(struct sysctrl_soft_state *softsp,
-	sysc_cfga_stat_t *sysc_stat, uint_t ps_mutex_is_held);
+    sysc_cfga_stat_t *sysc_stat, uint_t ps_mutex_is_held);
 static uint_t
 sysc_policy_enough_precharge(struct sysctrl_soft_state *softsp,
-	sysc_cfga_stat_t *sysc_stat);
+    sysc_cfga_stat_t *sysc_stat);
 static uint_t
 sysc_policy_enough_power(struct sysctrl_soft_state *softsp,
-	int plus_load, uint_t ps_mutex_is_held);
+    int plus_load, uint_t ps_mutex_is_held);
 static uint_t
 sysc_policy_hardware_compatible(struct sysctrl_soft_state *softsp,
-	sysc_cfga_stat_t *sysc_stat, sysc_cfga_pkt_t *pkt);
+    sysc_cfga_stat_t *sysc_stat, sysc_cfga_pkt_t *pkt);
 static void sysc_policy_empty_condition(
 	struct sysctrl_soft_state *softsp,
 	sysc_cfga_stat_t *sysc_stat, uint_t failure,
@@ -158,7 +158,7 @@ static int find_and_setup_cpu_start(void *cpuid_arg, int has_changed);
 /*ARGSUSED*/
 static uint_t
 sysc_policy_enough_power(struct sysctrl_soft_state *softsp,
-	int plus_load, uint_t ps_mutex_is_held)
+    int plus_load, uint_t ps_mutex_is_held)
 {
 	int retval = 0;
 
@@ -197,7 +197,7 @@ sysc_policy_enough_power(struct sysctrl_soft_state *softsp,
  */
 static uint_t
 sysc_policy_enough_cooling(struct sysctrl_soft_state *softsp,
-	sysc_cfga_stat_t *sysc_stat, uint_t ps_mutex_is_held)
+    sysc_cfga_stat_t *sysc_stat, uint_t ps_mutex_is_held)
 {
 	int	retval = 0;
 
@@ -210,9 +210,9 @@ sysc_policy_enough_cooling(struct sysctrl_soft_state *softsp,
 	 * for fans then check all the common fans.
 	 */
 	retval = ((softsp->ps_stats[FHC_BOARD2PS(sysc_stat->board)].pshadow ==
-			PRES_IN) &&
-		(softsp->ps_stats[FHC_BOARD2PS(sysc_stat->board)].dcshadow ==
-			PS_OK));
+	    PRES_IN) &&
+	    (softsp->ps_stats[FHC_BOARD2PS(sysc_stat->board)].dcshadow ==
+	    PS_OK));
 	if (!ps_mutex_is_held) {
 		mutex_exit(&softsp->ps_fail_lock);
 	}
@@ -225,7 +225,7 @@ sysc_policy_enough_cooling(struct sysctrl_soft_state *softsp,
 /*ARGSUSED*/
 static uint_t
 sysc_policy_enough_precharge(struct sysctrl_soft_state *softsp,
-	sysc_cfga_stat_t *sysc_stat)
+    sysc_cfga_stat_t *sysc_stat)
 {
 	int	retval = 0;
 	int	ppsval = 0;
@@ -238,15 +238,15 @@ sysc_policy_enough_precharge(struct sysctrl_soft_state *softsp,
 		 *	supplies all of the precharge voltages.
 		 */
 	ppsval = (softsp->ps_stats[SYS_PPS0_INDEX].pshadow == PRES_IN) &&
-		(softsp->ps_stats[SYS_PPS0_INDEX].dcshadow == PS_OK);
+	    (softsp->ps_stats[SYS_PPS0_INDEX].dcshadow == PS_OK);
 
 		/*
 		 *	check all the precharge status
 		 */
 	retval = ((softsp->ps_stats[SYS_V3_PCH_INDEX].pshadow == PRES_IN) &&
-		(softsp->ps_stats[SYS_V3_PCH_INDEX].dcshadow == PS_OK) &&
-		(softsp->ps_stats[SYS_V5_PCH_INDEX].pshadow == PRES_IN) &&
-		(softsp->ps_stats[SYS_V5_PCH_INDEX].dcshadow == PS_OK));
+	    (softsp->ps_stats[SYS_V3_PCH_INDEX].dcshadow == PS_OK) &&
+	    (softsp->ps_stats[SYS_V5_PCH_INDEX].pshadow == PRES_IN) &&
+	    (softsp->ps_stats[SYS_V5_PCH_INDEX].dcshadow == PS_OK));
 
 	mutex_exit(&softsp->ps_fail_lock);
 	return (retval&&ppsval);
@@ -276,7 +276,7 @@ set_clockbrd_info(void)
 /*ARGSUSED*/
 static uint_t
 sysc_policy_hardware_compatible(struct sysctrl_soft_state *softsp,
-	sysc_cfga_stat_t *sysc_stat, sysc_cfga_pkt_t *pkt)
+    sysc_cfga_stat_t *sysc_stat, sysc_cfga_pkt_t *pkt)
 {
 	int status;
 
@@ -311,20 +311,20 @@ sysc_policy_hardware_compatible(struct sysctrl_soft_state *softsp,
 
 			if (sysc_stat->bd.cpu[i].cpu_speed < cpu_freq) {
 				cmn_err(CE_WARN, "board %d, cpu module %c "
-					"rated at %d Mhz, system freq %d Mhz",
-					sysc_stat->board, (i == 0) ? 'A' : 'B',
-					sysc_stat->bd.cpu[i].cpu_speed,
-					cpu_freq);
+				    "rated at %d Mhz, system freq %d Mhz",
+				    sysc_stat->board, (i == 0) ? 'A' : 'B',
+				    sysc_stat->bd.cpu[i].cpu_speed,
+				    cpu_freq);
 				status = FALSE;
 			}
 
 			if (sram_mode != sysc_stat->bd.cpu[i].cpu_sram_mode) {
 				cmn_err(CE_WARN, "board %d, cpu module %c "
-					"incompatible sram mode of %dx, "
-					"system is %dx", sysc_stat->board,
-					(i == 0) ? 'A' : 'B',
-					sysc_stat->bd.cpu[i].cpu_sram_mode,
-					sram_mode);
+				    "incompatible sram mode of %dx, "
+				    "system is %dx", sysc_stat->board,
+				    (i == 0) ? 'A' : 'B',
+				    sysc_stat->bd.cpu[i].cpu_sram_mode,
+				    sram_mode);
 				status = FALSE;
 			}
 		}
@@ -372,7 +372,7 @@ sysc_policy_hardware_compatible(struct sysctrl_soft_state *softsp,
 /*ARGSUSED*/
 int
 sysc_policy_connect(struct sysctrl_soft_state *softsp,
-		sysc_cfga_pkt_t *pkt, sysc_cfga_stat_t *sysc_stat)
+    sysc_cfga_pkt_t *pkt, sysc_cfga_stat_t *sysc_stat)
 {
 	int retval;
 
@@ -432,15 +432,15 @@ sysc_policy_connect(struct sysctrl_soft_state *softsp,
 			return (ENOTSUP);
 		}
 		sysc_policy_audit_messages(SYSC_AUDIT_RSTATE_CONNECT,
-			sysc_stat);
+		    sysc_stat);
 
 		retval = sysc_bd_connect(sysc_stat->board, pkt);
 		if (!retval) {
 			sysc_stat->rstate = SYSC_CFGA_RSTATE_CONNECTED;
 			sysc_policy_connected_condition(softsp,
-				sysc_stat, FALSE);
+			    sysc_stat, FALSE);
 			sysc_policy_audit_messages(SYSC_AUDIT_RSTATE_SUCCEEDED,
-				sysc_stat);
+			    sysc_stat);
 		} else {
 			uint_t prom_failure;
 
@@ -448,10 +448,10 @@ sysc_policy_connect(struct sysctrl_soft_state *softsp,
 			    pkt->cmd_cfga.errtype == SYSC_ERR_PROM) ?
 			    TRUE : FALSE;
 			sysc_policy_disconnected_condition(softsp,
-				sysc_stat, prom_failure, FALSE);
+			    sysc_stat, prom_failure, FALSE);
 			sysc_policy_audit_messages(
-				SYSC_AUDIT_RSTATE_CONNECT_FAILED,
-				sysc_stat);
+			    SYSC_AUDIT_RSTATE_CONNECT_FAILED,
+			    sysc_stat);
 		}
 		break;
 	case SYSC_CFGA_RSTATE_EMPTY:
@@ -477,7 +477,7 @@ sysc_policy_connect(struct sysctrl_soft_state *softsp,
 /*ARGSUSED*/
 int
 sysc_policy_disconnect(struct sysctrl_soft_state *softsp,
-			sysc_cfga_pkt_t *pkt, sysc_cfga_stat_t *sysc_stat)
+    sysc_cfga_pkt_t *pkt, sysc_cfga_stat_t *sysc_stat)
 {
 	int retval;
 
@@ -506,47 +506,47 @@ sysc_policy_disconnect(struct sysctrl_soft_state *softsp,
 			}
 
 			if (!sysc_policy_hardware_compatible(softsp,
-				sysc_stat, pkt)) {
+			    sysc_stat, pkt)) {
 				cmn_err(CE_WARN, "%s board %d disconnect"
 				" is not yet supported.",
-				fhc_bd_typestr(sysc_stat->type),
-					sysc_stat->board);
+				    fhc_bd_typestr(sysc_stat->type),
+				    sysc_stat->board);
 				SYSC_ERR_SET(pkt, SYSC_ERR_HW_COMPAT);
 				return (ENOTSUP);
 			}
 
 			if (fhc_bd_is_jtag_master(sysc_stat->board)) {
 				sysc_policy_update(softsp, sysc_stat,
-					SYSC_EVT_BD_CORE_RESOURCE_DISCONNECT);
+				    SYSC_EVT_BD_CORE_RESOURCE_DISCONNECT);
 				SYSC_ERR_SET(pkt, SYSC_ERR_CORE_RESOURCE);
 				return (EINVAL);
 			}
 
 			sysc_policy_audit_messages(SYSC_AUDIT_RSTATE_DISCONNECT,
-				sysc_stat);
+			    sysc_stat);
 
 			retval = sysc_bd_disconnect(sysc_stat->board, pkt);
 			if (!retval) {
 				sysc_stat->rstate =
-					SYSC_CFGA_RSTATE_DISCONNECTED;
+				    SYSC_CFGA_RSTATE_DISCONNECTED;
 				DPRINTF(SYSCTRL_ATTACH_DEBUG,
 				    ("disconnect starting bd_remove_poll()"));
 				bd_remove_poll(softsp);
 				sysc_policy_disconnected_condition(
-					softsp,
-					sysc_stat, FALSE, FALSE);
+				    softsp,
+				    sysc_stat, FALSE, FALSE);
 				sysc_policy_audit_messages(
-					SYSC_AUDIT_RSTATE_SUCCEEDED,
-					sysc_stat);
+				    SYSC_AUDIT_RSTATE_SUCCEEDED,
+				    sysc_stat);
 				cmn_err(CE_NOTE,
-					"board %d is ready to remove",
-					sysc_stat->board);
+				    "board %d is ready to remove",
+				    sysc_stat->board);
 			} else {
 				sysc_policy_connected_condition(
-					softsp, sysc_stat, FALSE);
+				    softsp, sysc_stat, FALSE);
 				sysc_policy_audit_messages(
-					SYSC_AUDIT_RSTATE_DISCONNECT_FAILED,
-					sysc_stat);
+				    SYSC_AUDIT_RSTATE_DISCONNECT_FAILED,
+				    sysc_stat);
 			}
 			break;
 		case SYSC_CFGA_OSTATE_CONFIGURED:
@@ -579,7 +579,7 @@ sysc_policy_disconnect(struct sysctrl_soft_state *softsp,
 /*ARGSUSED*/
 int
 sysc_policy_unconfigure(struct sysctrl_soft_state *softsp,
-			sysc_cfga_pkt_t *pkt, sysc_cfga_stat_t *sysc_stat)
+    sysc_cfga_pkt_t *pkt, sysc_cfga_stat_t *sysc_stat)
 {
 	int retval;
 
@@ -598,24 +598,24 @@ sysc_policy_unconfigure(struct sysctrl_soft_state *softsp,
 		if (!sysc_policy_hardware_compatible(softsp, sysc_stat, pkt)) {
 			cmn_err(CE_WARN, "%s board %d unconfigure"
 			" is not yet supported.",
-			fhc_bd_typestr(sysc_stat->type), sysc_stat->board);
+			    fhc_bd_typestr(sysc_stat->type), sysc_stat->board);
 			SYSC_ERR_SET(pkt, SYSC_ERR_HW_COMPAT);
 			return (ENOTSUP);
 		}
 
 		sysc_policy_audit_messages(SYSC_AUDIT_OSTATE_UNCONFIGURE,
-			sysc_stat);
+		    sysc_stat);
 
 		retval = sysc_bd_unconfigure(sysc_stat->board, pkt);
 		if (!retval) {
-		    sysc_stat->ostate = SYSC_CFGA_OSTATE_UNCONFIGURED;
-		    sysc_policy_audit_messages(
-			SYSC_AUDIT_OSTATE_SUCCEEDED,
-			sysc_stat);
+		sysc_stat->ostate = SYSC_CFGA_OSTATE_UNCONFIGURED;
+		sysc_policy_audit_messages(
+		    SYSC_AUDIT_OSTATE_SUCCEEDED,
+		    sysc_stat);
 		} else {
-		    sysc_policy_audit_messages(
-			SYSC_AUDIT_OSTATE_UNCONFIGURE_FAILED,
-			sysc_stat);
+		sysc_policy_audit_messages(
+		    SYSC_AUDIT_OSTATE_UNCONFIGURE_FAILED,
+		    sysc_stat);
 		}
 		sysc_policy_connected_condition(softsp, sysc_stat, FALSE);
 		break;
@@ -643,7 +643,7 @@ sysc_policy_unconfigure(struct sysctrl_soft_state *softsp,
 /*ARGSUSED*/
 int
 sysc_policy_configure(struct sysctrl_soft_state *softsp,
-			sysc_cfga_pkt_t *pkt, sysc_cfga_stat_t *sysc_stat)
+    sysc_cfga_pkt_t *pkt, sysc_cfga_stat_t *sysc_stat)
 {
 	int retval;
 
@@ -662,19 +662,19 @@ sysc_policy_configure(struct sysctrl_soft_state *softsp,
 			}
 
 			sysc_policy_audit_messages(SYSC_AUDIT_OSTATE_CONFIGURE,
-				sysc_stat);
+			    sysc_stat);
 			retval = sysc_bd_configure(sysc_stat->board, pkt);
 			sysc_stat->ostate = SYSC_CFGA_OSTATE_CONFIGURED;
 			sysc_policy_connected_condition(softsp,
-				sysc_stat, FALSE);
+			    sysc_stat, FALSE);
 			if (!retval) {
 				sysc_policy_audit_messages(
-					SYSC_AUDIT_OSTATE_SUCCEEDED,
-					sysc_stat);
+				    SYSC_AUDIT_OSTATE_SUCCEEDED,
+				    sysc_stat);
 			} else {
 				sysc_policy_audit_messages(
-					SYSC_AUDIT_OSTATE_CONFIGURE_FAILED,
-					sysc_stat);
+				    SYSC_AUDIT_OSTATE_CONFIGURE_FAILED,
+				    sysc_stat);
 			}
 			break;
 		case SYSC_CFGA_OSTATE_CONFIGURED:
@@ -706,8 +706,8 @@ sysc_policy_configure(struct sysctrl_soft_state *softsp,
 /*ARGSUSED*/
 static void
 sysc_policy_empty_condition(struct sysctrl_soft_state *softsp,
-	sysc_cfga_stat_t *sysc_stat, uint_t failure,
-	uint_t ps_mutex_is_held)
+    sysc_cfga_stat_t *sysc_stat, uint_t failure,
+    uint_t ps_mutex_is_held)
 {
 	ASSERT(fhc_bdlist_locked());
 
@@ -718,26 +718,26 @@ sysc_policy_empty_condition(struct sysctrl_soft_state *softsp,
 	case SYSC_CFGA_COND_FAILED:
 	/* nothing in the slot so just check power supplies */
 	case SYSC_CFGA_COND_UNUSABLE:
-	    if (sysc_policy_enough_cooling(softsp, sysc_stat,
-		ps_mutex_is_held) &&
-		sysc_policy_enough_power(softsp, FALSE,
-		ps_mutex_is_held)) {
+	if (sysc_policy_enough_cooling(softsp, sysc_stat,
+	    ps_mutex_is_held) &&
+	    sysc_policy_enough_power(softsp, FALSE,
+	    ps_mutex_is_held)) {
 		sysc_stat->condition = SYSC_CFGA_COND_UNKNOWN;
-	    } else {
+	} else {
 		sysc_stat->condition = SYSC_CFGA_COND_UNUSABLE;
-	    }
-	    sysc_stat->last_change = gethrestime_sec();
-	    break;
+	}
+	sysc_stat->last_change = gethrestime_sec();
+	break;
 	default:
-	    ASSERT(FALSE);
-	    break;
+		ASSERT(FALSE);
+		break;
 	}
 }
 /*ARGSUSED*/
 static void
 sysc_policy_disconnected_condition(struct sysctrl_soft_state *softsp,
-	sysc_cfga_stat_t *sysc_stat, uint_t failure,
-	uint_t ps_mutex_is_held)
+    sysc_cfga_stat_t *sysc_stat, uint_t failure,
+    uint_t ps_mutex_is_held)
 {
 	ASSERT(fhc_bdlist_locked());
 
@@ -771,16 +771,16 @@ sysc_policy_disconnected_condition(struct sysctrl_soft_state *softsp,
 	 * in an attempt to protect the board.
 	 */
 	case SYSC_CFGA_COND_FAILING:
-	    if (sysc_policy_enough_cooling(softsp, sysc_stat,
-		ps_mutex_is_held) &&
-		sysc_policy_enough_power(softsp, FALSE,
-		ps_mutex_is_held)) {
+	if (sysc_policy_enough_cooling(softsp, sysc_stat,
+	    ps_mutex_is_held) &&
+	    sysc_policy_enough_power(softsp, FALSE,
+	    ps_mutex_is_held)) {
 		sysc_stat->condition = SYSC_CFGA_COND_UNKNOWN;
-	    } else {
+	} else {
 		sysc_stat->condition = SYSC_CFGA_COND_UNUSABLE;
-	    }
-	    sysc_stat->last_change = gethrestime_sec();
-	    break;
+	}
+	sysc_stat->last_change = gethrestime_sec();
+	break;
 	/*
 	 * if failed, we have failed POST and must stay in this
 	 * condition until the board has been removed
@@ -797,8 +797,8 @@ sysc_policy_disconnected_condition(struct sysctrl_soft_state *softsp,
 /*ARGSUSED*/
 static void
 sysc_policy_connected_condition(struct sysctrl_soft_state *softsp,
-		sysc_cfga_stat_t *sysc_stat,
-		uint_t ps_mutex_is_held)
+    sysc_cfga_stat_t *sysc_stat,
+    uint_t ps_mutex_is_held)
 {
 	ASSERT(fhc_bdlist_locked());
 
@@ -807,28 +807,28 @@ sysc_policy_connected_condition(struct sysctrl_soft_state *softsp,
 	case SYSC_CFGA_COND_OK:
 	case SYSC_CFGA_COND_FAILING:
 	case SYSC_CFGA_COND_UNUSABLE:
-	    if (sysc_policy_enough_cooling(softsp, sysc_stat,
-		ps_mutex_is_held) &&
-		sysc_policy_enough_power(softsp, FALSE,
-		ps_mutex_is_held) &&
-		(fhc_env_temp_state(sysc_stat->board) == TEMP_OK)) {
+	if (sysc_policy_enough_cooling(softsp, sysc_stat,
+	    ps_mutex_is_held) &&
+	    sysc_policy_enough_power(softsp, FALSE,
+	    ps_mutex_is_held) &&
+	    (fhc_env_temp_state(sysc_stat->board) == TEMP_OK)) {
 			sysc_stat->condition = SYSC_CFGA_COND_OK;
-	    } else {
+	} else {
 			sysc_stat->condition = SYSC_CFGA_COND_FAILING;
-	    }
-	    sysc_stat->last_change = gethrestime_sec();
-	    break;
+	}
+	sysc_stat->last_change = gethrestime_sec();
+		break;
 	case SYSC_CFGA_COND_FAILED:
-	    break;
+		break;
 	default:
-	    ASSERT(FALSE);
-	    break;
+		ASSERT(FALSE);
+		break;
 	}
 }
 
 static void
 sysc_policy_set_condition(void *sp, sysc_cfga_stat_t *sysc_stat,
-		uint_t ps_mutex_is_held)
+    uint_t ps_mutex_is_held)
 {
 	struct sysctrl_soft_state *softsp = (struct sysctrl_soft_state *)sp;
 
@@ -837,15 +837,15 @@ sysc_policy_set_condition(void *sp, sysc_cfga_stat_t *sysc_stat,
 	switch (sysc_stat->rstate) {
 	case SYSC_CFGA_RSTATE_EMPTY:
 		sysc_policy_empty_condition(softsp, sysc_stat,
-			FALSE, ps_mutex_is_held);
+		    FALSE, ps_mutex_is_held);
 		break;
 	case SYSC_CFGA_RSTATE_DISCONNECTED:
 		sysc_policy_disconnected_condition(softsp, sysc_stat,
-			FALSE, ps_mutex_is_held);
+		    FALSE, ps_mutex_is_held);
 		break;
 	case SYSC_CFGA_RSTATE_CONNECTED:
 		sysc_policy_connected_condition(softsp, sysc_stat,
-			ps_mutex_is_held);
+		    ps_mutex_is_held);
 		break;
 	default:
 		ASSERT(FALSE);
@@ -855,7 +855,7 @@ sysc_policy_set_condition(void *sp, sysc_cfga_stat_t *sysc_stat,
 
 void
 sysc_policy_update(void *softsp, sysc_cfga_stat_t *sysc_stat,
-	sysc_evt_t event)
+    sysc_evt_t event)
 {
 	fhc_bd_t *list;
 
@@ -885,22 +885,22 @@ sysc_policy_update(void *softsp, sysc_cfga_stat_t *sysc_stat,
 		sysc_stat->ostate = SYSC_CFGA_OSTATE_UNCONFIGURED;
 		sysc_stat->condition = SYSC_CFGA_COND_UNKNOWN;
 		sysc_policy_disconnected_condition(softsp,
-			sysc_stat, FALSE, FALSE);
+		    sysc_stat, FALSE, FALSE);
 		cmn_err(CE_NOTE,
-			"disabled %s board in slot %d",
-			fhc_bd_typestr(sysc_stat->type),
-			sysc_stat->board);
+		    "disabled %s board in slot %d",
+		    fhc_bd_typestr(sysc_stat->type),
+		    sysc_stat->board);
 		break;
 	case SYSC_EVT_BD_FAILED:
 		sysc_stat->rstate = SYSC_CFGA_RSTATE_DISCONNECTED;
 		sysc_stat->ostate = SYSC_CFGA_OSTATE_UNCONFIGURED;
 		sysc_stat->condition = SYSC_CFGA_COND_UNUSABLE;
 		sysc_policy_disconnected_condition(softsp, sysc_stat,
-			TRUE, FALSE);
+		    TRUE, FALSE);
 		cmn_err(CE_WARN,
-			"failed %s board in slot %d",
-			fhc_bd_typestr(sysc_stat->type),
-			sysc_stat->board);
+		    "failed %s board in slot %d",
+		    fhc_bd_typestr(sysc_stat->type),
+		    sysc_stat->board);
 		break;
 	case SYSC_EVT_BD_OVERTEMP:
 	case SYSC_EVT_BD_TEMP_OK:
@@ -910,23 +910,23 @@ sysc_policy_update(void *softsp, sysc_cfga_stat_t *sysc_stat,
 		for (list = fhc_bd_first(); list; list = fhc_bd_next(list)) {
 			sysc_stat = &(list->sc);
 			sysc_policy_set_condition((void *)softsp,
-				sysc_stat, TRUE);
+			    sysc_stat, TRUE);
 		}
 		break;
 	case SYSC_EVT_BD_INS_FAILED:
 		cmn_err(CE_WARN, "powerdown of board %d failed",
-			sysc_stat->board);
+		    sysc_stat->board);
 		break;
 	case SYSC_EVT_BD_INSERTED:
 		sysc_stat->rstate = SYSC_CFGA_RSTATE_DISCONNECTED;
 		sysc_stat->ostate = SYSC_CFGA_OSTATE_UNCONFIGURED;
 		sysctrl_post_config_change(softsp);
 		sysc_policy_disconnected_condition(softsp,
-			sysc_stat, FALSE, FALSE);
+		    sysc_stat, FALSE, FALSE);
 		cmn_err(CE_NOTE, "%s board has been inserted into slot %d",
-			fhc_bd_typestr(sysc_stat->type), sysc_stat->board);
+		    fhc_bd_typestr(sysc_stat->type), sysc_stat->board);
 		cmn_err(CE_NOTE,
-			"board %d can be removed", sysc_stat->board);
+		    "board %d can be removed", sysc_stat->board);
 		break;
 	case SYSC_EVT_BD_REMOVED:
 		sysc_stat->rstate = SYSC_CFGA_RSTATE_EMPTY;
@@ -941,21 +941,21 @@ sysc_policy_update(void *softsp, sysc_cfga_stat_t *sysc_stat,
 		sysc_stat->fhc_compid = 0;
 		sysc_stat->ac_compid = 0;
 		(void) bzero(&(sysc_stat->prom_rev),
-			sizeof (sysc_stat->prom_rev));
+		    sizeof (sysc_stat->prom_rev));
 		(void) bzero(&(sysc_stat->bd),
-			sizeof (union bd_un));
+		    sizeof (union bd_un));
 		sysc_stat->no_detach = sysc_stat->plus_board = 0;
 		sysc_policy_disconnected_condition(softsp,
-			sysc_stat, FALSE, FALSE);
+		    sysc_stat, FALSE, FALSE);
 		cmn_err(CE_NOTE, "board %d has been removed",
-			sysc_stat->board);
+		    sysc_stat->board);
 		break;
 	case SYSC_EVT_BD_HP_DISABLED:
 		cmn_err(CE_NOTE, "Hot Plug not supported in this system");
 		break;
 	case SYSC_EVT_BD_CORE_RESOURCE_DISCONNECT:
 		cmn_err(CE_WARN, "board %d cannot be disconnected because it"
-			" is a core system resource", sysc_stat->board);
+		    " is a core system resource", sysc_stat->board);
 		break;
 	default:
 		ASSERT(FALSE);
@@ -979,7 +979,7 @@ sysctrl_post_config_change(struct sysctrl_soft_state *softsp)
 	 */
 	*softsp->clk_freq1 = 0;
 	*softsp->clk_freq2 &=
-		~(CLOCK_FREQ_8 | CLOCK_DIV_1 | CLOCK_RANGE | CLOCK_DIV_0);
+	    ~(CLOCK_FREQ_8 | CLOCK_DIV_1 | CLOCK_RANGE | CLOCK_DIV_0);
 }
 
 static int
@@ -1692,97 +1692,97 @@ sysc_policy_audit_messages(sysc_audit_evt_t event, sysc_cfga_stat_t *sysc_stat)
 	switch (event) {
 		case SYSC_AUDIT_RSTATE_CONNECT:
 			cmn_err(CE_NOTE,
-				"%s %s board in slot %d",
-				sysc_rstate_typestr(SYSC_CFGA_RSTATE_CONNECTED,
-				event),
-				fhc_bd_typestr(sysc_stat->type),
-				sysc_stat->board);
+			    "%s %s board in slot %d",
+			    sysc_rstate_typestr(SYSC_CFGA_RSTATE_CONNECTED,
+			    event),
+			    fhc_bd_typestr(sysc_stat->type),
+			    sysc_stat->board);
 			break;
 		case SYSC_AUDIT_RSTATE_DISCONNECT:
 			cmn_err(CE_NOTE,
-				"%s %s board in slot %d",
-				sysc_rstate_typestr(
-					SYSC_CFGA_RSTATE_DISCONNECTED,
-					event),
-				fhc_bd_typestr(sysc_stat->type),
-				sysc_stat->board);
+			    "%s %s board in slot %d",
+			    sysc_rstate_typestr(
+			    SYSC_CFGA_RSTATE_DISCONNECTED,
+			    event),
+			    fhc_bd_typestr(sysc_stat->type),
+			    sysc_stat->board);
 			break;
 		case SYSC_AUDIT_RSTATE_SUCCEEDED:
 			cmn_err(CE_NOTE,
-				"%s board in slot %d is %s",
-				fhc_bd_typestr(sysc_stat->type),
-				sysc_stat->board,
-				sysc_rstate_typestr(sysc_stat->rstate,
-					event));
+			    "%s board in slot %d is %s",
+			    fhc_bd_typestr(sysc_stat->type),
+			    sysc_stat->board,
+			    sysc_rstate_typestr(sysc_stat->rstate,
+			    event));
 			break;
 		case SYSC_AUDIT_RSTATE_CONNECT_FAILED:
 			cmn_err(CE_NOTE,
-				"%s board in slot %d failed to %s",
-				fhc_bd_typestr(sysc_stat->type),
-				sysc_stat->board,
-				sysc_rstate_typestr(SYSC_CFGA_RSTATE_CONNECTED,
-					event));
+			    "%s board in slot %d failed to %s",
+			    fhc_bd_typestr(sysc_stat->type),
+			    sysc_stat->board,
+			    sysc_rstate_typestr(SYSC_CFGA_RSTATE_CONNECTED,
+			    event));
 			break;
 		case SYSC_AUDIT_RSTATE_DISCONNECT_FAILED:
 			cmn_err(CE_NOTE,
-				"%s board in slot %d failed to %s",
-				fhc_bd_typestr(sysc_stat->type),
-				sysc_stat->board,
-				sysc_rstate_typestr(
-					SYSC_CFGA_RSTATE_DISCONNECTED,
-					event));
+			    "%s board in slot %d failed to %s",
+			    fhc_bd_typestr(sysc_stat->type),
+			    sysc_stat->board,
+			    sysc_rstate_typestr(
+			    SYSC_CFGA_RSTATE_DISCONNECTED,
+			    event));
 			break;
 		case SYSC_AUDIT_OSTATE_CONFIGURE:
 			cmn_err(CE_NOTE,
-				"%s %s board in slot %d",
-				sysc_ostate_typestr(SYSC_CFGA_OSTATE_CONFIGURED,
-				event),
-				fhc_bd_typestr(sysc_stat->type),
-				sysc_stat->board);
+			    "%s %s board in slot %d",
+			    sysc_ostate_typestr(SYSC_CFGA_OSTATE_CONFIGURED,
+			    event),
+			    fhc_bd_typestr(sysc_stat->type),
+			    sysc_stat->board);
 			break;
 		case SYSC_AUDIT_OSTATE_UNCONFIGURE:
 			cmn_err(CE_NOTE,
-				"%s %s board in slot %d",
-				sysc_ostate_typestr(
-					SYSC_CFGA_OSTATE_UNCONFIGURED,
-					event),
-				fhc_bd_typestr(sysc_stat->type),
-				sysc_stat->board);
+			    "%s %s board in slot %d",
+			    sysc_ostate_typestr(
+			    SYSC_CFGA_OSTATE_UNCONFIGURED,
+			    event),
+			    fhc_bd_typestr(sysc_stat->type),
+			    sysc_stat->board);
 			break;
 		case SYSC_AUDIT_OSTATE_SUCCEEDED:
 			cmn_err(CE_NOTE,
-				"%s board in slot %d is %s",
-				fhc_bd_typestr(sysc_stat->type),
-				sysc_stat->board,
-				sysc_ostate_typestr(sysc_stat->ostate,
-					event));
+			    "%s board in slot %d is %s",
+			    fhc_bd_typestr(sysc_stat->type),
+			    sysc_stat->board,
+			    sysc_ostate_typestr(sysc_stat->ostate,
+			    event));
 			break;
 		case SYSC_AUDIT_OSTATE_CONFIGURE_FAILED:
 			cmn_err(CE_NOTE,
-				"%s board in slot %d partially %s",
-				fhc_bd_typestr(sysc_stat->type),
-				sysc_stat->board,
-				sysc_ostate_typestr(
-					SYSC_CFGA_OSTATE_CONFIGURED,
-					event));
+			    "%s board in slot %d partially %s",
+			    fhc_bd_typestr(sysc_stat->type),
+			    sysc_stat->board,
+			    sysc_ostate_typestr(
+			    SYSC_CFGA_OSTATE_CONFIGURED,
+			    event));
 			break;
 		case SYSC_AUDIT_OSTATE_UNCONFIGURE_FAILED:
 			cmn_err(CE_NOTE,
-				"%s board in slot %d partially %s",
-				fhc_bd_typestr(sysc_stat->type),
-				sysc_stat->board,
-				sysc_ostate_typestr(
-					SYSC_CFGA_OSTATE_UNCONFIGURED,
-					event));
+			    "%s board in slot %d partially %s",
+			    fhc_bd_typestr(sysc_stat->type),
+			    sysc_stat->board,
+			    sysc_ostate_typestr(
+			    SYSC_CFGA_OSTATE_UNCONFIGURED,
+			    event));
 			break;
 		default:
 			cmn_err(CE_NOTE,
-				"unknown audit of a %s %s board in"
-				" slot %d",
-				sysc_rstate_typestr(sysc_stat->rstate,
-					event),
-				fhc_bd_typestr(sysc_stat->type),
-				sysc_stat->board);
+			    "unknown audit of a %s %s board in"
+			    " slot %d",
+			    sysc_rstate_typestr(sysc_stat->rstate,
+			    event),
+			    fhc_bd_typestr(sysc_stat->type),
+			    sysc_stat->board);
 			break;
 	}
 }

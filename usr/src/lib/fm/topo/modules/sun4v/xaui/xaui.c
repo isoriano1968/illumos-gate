@@ -451,7 +451,7 @@ xaui_label_set(topo_mod_t *mod, tnode_t *node, topo_instance_t n, void *priv)
 /*ARGSUSED*/
 static tnode_t *
 xaui_declare(tnode_t *parent, const char *name, topo_instance_t i,
-	void *priv, topo_mod_t *mod)
+    void *priv, topo_mod_t *mod)
 {
 	tnode_t *ntn;
 	nvlist_t *fmri = NULL;
@@ -508,7 +508,7 @@ xfp_enum_load(topo_mod_t *mp)
 /*ARGSUSED*/
 static int
 xaui_enum(topo_mod_t *mod, tnode_t *rnode, const char *name,
-	topo_instance_t min, topo_instance_t max, void *arg, void *priv)
+    topo_instance_t min, topo_instance_t max, void *arg, void *priv)
 {
 	tnode_t *xauin;
 

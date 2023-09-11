@@ -69,7 +69,7 @@ extern "C" {
  * ------------------------------------------------------------------------
  * tod_get_value	Solaris 1 second         SC      twice per second
  * tod_domain_skew	Solaris 1 second         Solaris when needed
- * 			SC (see following NOTE)
+ *			SC (see following NOTE)
  * tod_i_am_alive	SC      twice per second Solaris 1 second
  * tod_timeout_period	SC      twice per second Solaris when needed
  *

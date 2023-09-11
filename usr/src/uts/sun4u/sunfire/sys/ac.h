@@ -289,7 +289,7 @@ typedef struct {
 
 /*
  * Data will be transferred in/out of the buffer at:
- * 		(page_buf + (line_offset*line_size))
+ *		(page_buf + (line_offset*line_size))
  */
 typedef struct {
 	mem_test_handle_t	handle;

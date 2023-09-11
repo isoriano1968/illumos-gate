@@ -46,7 +46,7 @@
 /* ARGSUSED */
 int
 display_sbbc_softstate_t(uintptr_t addr, uint_t flags, int argc,
-	const mdb_arg_t *argv)
+    const mdb_arg_t *argv)
 {
 	sbbc_softstate_t	softp;
 
@@ -79,7 +79,7 @@ display_sbbc_softstate_t(uintptr_t addr, uint_t flags, int argc,
 
 	offset = (int)(uintptr_t)&softp.port_int_regs - (int)(uintptr_t)&softp;
 	mdb_printf("%p: port_int_regs: %21ll#r\n", addr + offset,
-		softp.port_int_regs);
+	    softp.port_int_regs);
 
 	offset = (int)(uintptr_t)&softp.epld_regs - (int)(uintptr_t)&softp;
 	mdb_printf("%p: epld_regs: %25p\n", addr + offset, softp.epld_regs);
@@ -88,21 +88,21 @@ display_sbbc_softstate_t(uintptr_t addr, uint_t flags, int argc,
 	mdb_printf("%p: sram_toc: %26d\n", addr + offset,  softp.sram_toc);
 
 	offset = (int)(uintptr_t)&softp.sbbc_reg_handle1 -
-		(int)(uintptr_t)&softp;
+	    (int)(uintptr_t)&softp;
 	mdb_printf("%p: sbbc_reg_handle1: %18ll#r\n", addr + offset,
-		softp.sbbc_reg_handle1);
+	    softp.sbbc_reg_handle1);
 
 	offset = (int)(uintptr_t)&softp.sbbc_reg_handle2 -
-		(int)(uintptr_t)&softp;
+	    (int)(uintptr_t)&softp;
 	mdb_printf("%p: sbbc_reg_handle2: %18ll#r\n", addr + offset,
-		softp.sbbc_reg_handle2);
+	    softp.sbbc_reg_handle2);
 
 	offset = (int)(uintptr_t)&softp.inumber - (int)(uintptr_t)&softp;
 	mdb_printf("%p: inumber: %27ll#r\n", addr + offset,  softp.inumber);
 
 	offset = (int)(uintptr_t)&softp.intr_hdlrs - (int)(uintptr_t)&softp;
 	mdb_printf("%p: intr_hdlrs: %24ll#r\n", addr + offset,
-		softp.intr_hdlrs);
+	    softp.intr_hdlrs);
 
 	offset = (int)(uintptr_t)&softp.suspended - (int)(uintptr_t)&softp;
 	mdb_printf("%p: suspended: %25ll#r\n", addr + offset,  softp.suspended);

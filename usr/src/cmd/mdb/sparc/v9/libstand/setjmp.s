@@ -54,7 +54,7 @@ JB_I7		= (4*8)
 
 #if defined(__lint)
 /* ARGSUSED */
-int 
+int
 setjmp(jmp_buf env)
 {
 	return (0);
@@ -119,13 +119,13 @@ sigsetjmp(sigjmp_buf env, int savemask)
 
 #if defined(__lint)
 /* ARGSUSED */
-void 
+void
 longjmp(jmp_buf env, int val)
 {
 }
 
 /* ARGSUSED */
-void 
+void
 siglongjmp(sigjmp_buf env, int val)
 {
 }

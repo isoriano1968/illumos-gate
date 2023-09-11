@@ -109,7 +109,7 @@ extern "C" {
 #define	PCI_PSYCHO_MID_MASK		(0x1f<<25)	/* mid mask, reads 0 */
 #define	PCI_PSYCHO_BLK			(1<<31)		/* block, reads 0 */
 #define	PCI_PSYCHO_BYTE_MASK		(0xffff<<32)	/* byte mask, reads 0 */
-#define	PCI_PSYCHO_SEC_APERR		(1<<54)    	/* 2ndary adr par err */
+#define	PCI_PSYCHO_SEC_APERR		(1<<54)		/* 2ndary adr par err */
 #define	PCI_PSYCHO_PRI_APERR		(1<<55)		/* pri addr par err */
 #define	PCI_PSYCHO_SEC_PERR		(1<<56)		/* 2nd data par err */
 #define	PCI_PSYCHO_SEC_RTRY_ERR		(1<<57)		/* 2nd retry err */

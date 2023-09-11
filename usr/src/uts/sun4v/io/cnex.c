@@ -361,7 +361,7 @@ static int
 cnex_intr_new_cpu(cnex_soft_state_t *ssp, cnex_intr_t *iinfo)
 {
 	int	intr_state;
-	int 	rv;
+	int	rv;
 
 	/* Determine if the interrupt is enabled */
 	rv = hvldc_intr_getvalid(ssp->cfghdl, iinfo->ino, &intr_state);
@@ -968,11 +968,11 @@ cnex_clr_intr(dev_info_t *dip, uint64_t id, cnex_intrtype_t itype)
 static uint_t
 cnex_intr_wrapper(caddr_t arg, caddr_t arg1 __unused)
 {
-	int 			res;
-	uint_t 			(*handler)();
-	caddr_t 		handler_arg1;
-	caddr_t 		handler_arg2;
-	cnex_intr_t 		*iinfo = (cnex_intr_t *)arg;
+	int		res;
+	uint_t		(*handler)();
+	caddr_t		handler_arg1;
+	caddr_t		handler_arg2;
+	cnex_intr_t	*iinfo = (cnex_intr_t *)arg;
 
 	ASSERT(iinfo != NULL);
 
@@ -1011,7 +1011,7 @@ cnex_intr_wrapper(caddr_t arg, caddr_t arg1 __unused)
 static int
 cnex_attach(dev_info_t *devi, ddi_attach_cmd_t cmd)
 {
-	int 		rv, instance, reglen;
+	int		rv, instance, reglen;
 	cnex_regspec_t	*reg_p;
 	ldc_cnex_t	cinfo;
 	cnex_soft_state_t *cnex_ssp;
@@ -1090,7 +1090,7 @@ cnex_attach(dev_info_t *devi, ddi_attach_cmd_t cmd)
 static int
 cnex_detach(dev_info_t *devi, ddi_detach_cmd_t cmd)
 {
-	int 		instance;
+	int		instance;
 	ldc_cnex_t	cinfo;
 	cnex_soft_state_t *cnex_ssp;
 
@@ -1258,7 +1258,7 @@ cnex_ctl(dev_info_t *dip, dev_info_t *rdip, ddi_ctl_enum_t ctlop,
 
 /*
  * cnex_find_chan_dip -- Find the dip of a device that is corresponding
- * 	to the specific channel. Below are the details on how the dip
+ *	to the specific channel. Below are the details on how the dip
  *	is derived.
  *
  *	- In the MD, the cfg-handle is expected to be unique for

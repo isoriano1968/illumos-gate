@@ -214,7 +214,7 @@ extern "C" {
 #define	PCI_HDR_SIZE	64
 
 typedef struct db_pci_header {
-	uint16_t 	venid;
+	uint16_t	venid;
 	uint16_t	devid;
 	uint16_t	command;
 	uint16_t	status;
@@ -233,8 +233,8 @@ typedef struct db_pci_header {
 	uint32_t	bar4;
 	uint32_t	bar5;
 	uint32_t	cardbus_cisp;
-	uint16_t 	sub_venid;
-	uint16_t 	sub_devid;
+	uint16_t	sub_venid;
+	uint16_t	sub_devid;
 	uint32_t	exprom_bar;
 	uint32_t	res1;
 	uint32_t	res2;

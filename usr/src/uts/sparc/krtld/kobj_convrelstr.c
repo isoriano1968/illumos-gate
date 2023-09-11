@@ -86,7 +86,7 @@ static const char	*rels[R_SPARC_NUM] = {
 const char *
 conv_reloc_SPARC_type(Word type)
 {
-	static char 	strbuf[32];
+	static char	strbuf[32];
 	int		ndx = 31;
 
 	if (type < R_SPARC_NUM)

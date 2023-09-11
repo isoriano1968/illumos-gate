@@ -91,7 +91,7 @@ extern int sysc_debug_print_level;
  * these revisions.
  *
  * They are:
- * 	0	Clock frequency registers
+ *	0	Clock frequency registers
  *	1	Misc registers
  *	2       Clock version register
  */

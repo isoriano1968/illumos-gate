@@ -301,11 +301,11 @@ extern uint8_t ecc_indictment_mailbox_flags;
 #define	PLAT_ECC_INDICT_SIZE	128
 
 typedef struct {
-	uint8_t 	version;		/* Starting with 1 */
-	uint8_t 	indictment_type;	/* see below for values */
-	uint8_t 	indictment_uncertain;
+	uint8_t		version;		/* Starting with 1 */
+	uint8_t		indictment_type;	/* see below for values */
+	uint8_t		indictment_uncertain;
 				/* Value of ecc_indictment_mailbox_disable */
-	uint8_t 	board_num;		/* board number of dimm/E$ */
+	uint8_t		board_num;		/* board number of dimm/E$ */
 	uint16_t	detecting_proc;		/* Processor Number of CPU */
 						/* reporting error */
 	uint16_t	syndrome;		/* syndrome of last error */
@@ -313,7 +313,7 @@ typedef struct {
 	uint16_t	future[7];		/* For future use */
 	uint64_t	afsr;			/* AFSR of last error */
 	uint64_t	afar;			/* AFAR of last error */
-	char    	solaris_version[1];
+	char		solaris_version[1];
 						/* Solaris version string */
 } plat_ecc_indict_msg_contents_t;
 

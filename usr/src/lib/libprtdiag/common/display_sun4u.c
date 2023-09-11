@@ -54,9 +54,9 @@
 
 int
 display(Sys_tree *tree,
-	Prom_node *root,
-	struct system_kstat_data *kstats,
-	int syserrlog)
+    Prom_node *root,
+    struct system_kstat_data *kstats,
+    int syserrlog)
 {
 	int exit_code = 0;	/* init to all OK */
 	void *value;		/* used for opaque PROM data */
@@ -163,7 +163,7 @@ display_hp_fail_fault(Sys_tree *tree, struct system_kstat_data *kstats)
 
 void
 display_diaginfo(int flag, Prom_node *root, Sys_tree *tree,
-			struct system_kstat_data *kstats)
+    struct system_kstat_data *kstats)
 {
 #ifdef	lint
 	flag = flag;

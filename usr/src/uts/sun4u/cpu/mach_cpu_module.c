@@ -91,16 +91,22 @@ cpu_ue_log_err(struct async_flt *ecc)
 int
 ce_scrub_xdiag_recirc(struct async_flt *aflt, errorq_t *eqp,
     errorq_elem_t *eqep, size_t afltoffset)
-{ return (0); }
+{
+	return (0);
+}
 
 /*ARGSUSED*/
 char *
 flt_to_error_type(struct async_flt *aflt)
-{ return (NULL); }
+{
+	return (NULL);
+}
 
 int
 cpu_aflt_size(void)
-{ return (0); }
+{
+	return (0);
+}
 
 void
 cpu_async_panic_callb(void)
@@ -114,54 +120,72 @@ cpu_check_allcpus(struct async_flt *aflt)
 /*ARGSUSED*/
 int
 cpu_get_mem_sid(char *unum, char *buf, int buflen, int *lenp)
-{ return (ENOTSUP); }
+{
+	return (ENOTSUP);
+}
 
 /*ARGSUSED*/
 int
 cpu_get_mem_offset(uint64_t flt_addr, uint64_t *offp)
-{ return (ENOTSUP); }
+{
+	return (ENOTSUP);
+}
 
 /*ARGSUSED*/
 int
 cpu_get_mem_addr(char *unum, char *sid, uint64_t offset,
     uint64_t *addrp)
-{ return (ENOTSUP); }
+{
+	return (ENOTSUP);
+}
 
 /*ARGSUSED*/
 int
 cpu_get_mem_unum(int synd_stat, ushort_t synd, uint64_t afsr, uint64_t afar,
     int cpuid, int flt_in_memory, ushort_t flt_status, char *buf,
     int buflen, int *lenp)
-{ return (ENOTSUP); }
+{
+	return (ENOTSUP);
+}
 
 /*ARGSUSED*/
 int
 cpu_get_mem_unum_aflt(int synd_stat, struct async_flt *aflt,
     char *buf, int buflen, int *lenp)
-{ return (ENOTSUP); }
+{
+	return (ENOTSUP);
+}
 
 /*ARGSUSED*/
 int
 cpu_get_cpu_unum(int cpuid, char *buf, int buflen, int *lenp)
-{ return (ENOTSUP); }
+{
+	return (ENOTSUP);
+}
 
 /*ARGSUSED*/
 int
 cpu_get_mem_name(uint64_t synd, uint64_t *afsr, uint64_t afar,
     char *buf, int buflen, int *lenp)
-{ return (ENOTSUP); }
+{
+	return (ENOTSUP);
+}
 
 /*ARGSUSED*/
 size_t
 cpu_get_name_bufsize()
-{ return (0); }
+{
+	return (0);
+}
 
 /*ARGSUSED*/
 int
 cpu_get_mem_info(uint64_t synd, uint64_t afar,
     uint64_t *mem_sizep, uint64_t *seg_sizep, uint64_t *bank_sizep,
     int *segsp, int *banksp, int *mcidp)
-{ return (ENOTSUP); }
+{
+	return (ENOTSUP);
+}
 
 /*ARGSUSED*/
 void
@@ -203,7 +227,7 @@ dtlb_rd_entry(uint_t entry, tte_t *tte, uint64_t *va_tag)
 
 void
 cpu_clearticknpt(void)
-{ }
+{}
 
 /*
  * Ecache scrub operations

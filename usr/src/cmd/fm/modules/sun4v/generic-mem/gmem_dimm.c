@@ -419,7 +419,8 @@ find_dimm_hc_fmri(topo_hdl_t *thp, tnode_t *node, void *arg)
 }
 
 nvlist_t *
-gmem_find_dimm_by_sn(fmd_hdl_t *hdl, dimmid_t *dimmid) {
+gmem_find_dimm_by_sn(fmd_hdl_t *hdl, dimmid_t *dimmid)
+{
 	topo_hdl_t *thp;
 	topo_walk_t *twp;
 	int err;

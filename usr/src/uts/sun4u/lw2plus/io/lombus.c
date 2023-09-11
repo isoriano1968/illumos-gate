@@ -346,7 +346,7 @@ static ddi_device_acc_attr_t lombus_dev_acc_attr[1] =
 
 static void
 lombus_trace(struct lombus_state *ssp, char code, const char *caller,
-	const char *fmt, ...)
+    const char *fmt, ...)
 {
 	char buf[256];
 	char *p;
@@ -848,9 +848,9 @@ lombus_cmd(HANDLE_TYPE *hdlp, ptrdiff_t vreg, uint_t val, uint_t cmd)
 	 * We have exclusive ownership, so assemble the command (backwards):
 	 *
 	 * [byte 0]	Command:	modified by XADDR and/or WMSB bits
-	 * [Optional] Parameter: 	Value to write (low 7 bits)
-	 * [Optional] Parameter: 	Register number (high 7 bits)
-	 * [Optional] Parameter: 	Register number (low 7 bits)
+	 * [Optional] Parameter:	Value to write (low 7 bits)
+	 * [Optional] Parameter:	Register number (high 7 bits)
+	 * [Optional] Parameter:	Register number (low 7 bits)
 	 */
 	p = &ssp->cmdbuf[0];
 	*p++ = LOMBUS_CMD | ssp->sequence | cmd;
@@ -1017,7 +1017,7 @@ lombus_vreg_put8(HANDLE_TYPE *hdlp, uint8_t *addr, uint8_t val)
 
 static void
 lombus_vreg_rep_get8(HANDLE_TYPE *hdlp, uint8_t *host_addr,
-	uint8_t *dev_addr, size_t repcount, uint_t flags)
+    uint8_t *dev_addr, size_t repcount, uint_t flags)
 {
 	size_t inc;
 
@@ -1028,7 +1028,7 @@ lombus_vreg_rep_get8(HANDLE_TYPE *hdlp, uint8_t *host_addr,
 
 static void
 lombus_vreg_rep_put8(HANDLE_TYPE *hdlp, uint8_t *host_addr,
-	uint8_t *dev_addr, size_t repcount, uint_t flags)
+    uint8_t *dev_addr, size_t repcount, uint_t flags)
 {
 	size_t inc;
 
@@ -1111,7 +1111,7 @@ lombus_pat_put8(HANDLE_TYPE *hdlp, uint8_t *addr, uint8_t val)
 
 static void
 lombus_pat_rep_get8(HANDLE_TYPE *hdlp, uint8_t *host_addr,
-	uint8_t *dev_addr, size_t repcount, uint_t flags)
+    uint8_t *dev_addr, size_t repcount, uint_t flags)
 {
 	size_t inc;
 
@@ -1122,7 +1122,7 @@ lombus_pat_rep_get8(HANDLE_TYPE *hdlp, uint8_t *host_addr,
 
 static void
 lombus_pat_rep_put8(HANDLE_TYPE *hdlp, uint8_t *host_addr,
-	uint8_t *dev_addr, size_t repcount, uint_t flags)
+    uint8_t *dev_addr, size_t repcount, uint_t flags)
 {
 	size_t inc;
 
@@ -1191,7 +1191,7 @@ lombus_event_put16(HANDLE_TYPE *hdlp, uint16_t *addr, uint16_t val)
 
 static void
 lombus_event_rep_get16(HANDLE_TYPE *hdlp, uint16_t *host_addr,
-	uint16_t *dev_addr, size_t repcount, uint_t flags)
+    uint16_t *dev_addr, size_t repcount, uint_t flags)
 {
 	size_t inc;
 
@@ -1202,7 +1202,7 @@ lombus_event_rep_get16(HANDLE_TYPE *hdlp, uint16_t *host_addr,
 
 static void
 lombus_event_rep_put16(HANDLE_TYPE *hdlp, uint16_t *host_addr,
-	uint16_t *dev_addr, size_t repcount, uint_t flags)
+    uint16_t *dev_addr, size_t repcount, uint_t flags)
 {
 	size_t inc;
 
@@ -1312,7 +1312,7 @@ lombus_meta_put32(HANDLE_TYPE *hdlp, uint32_t *addr, uint32_t val)
 
 static void
 lombus_meta_rep_get32(HANDLE_TYPE *hdlp, uint32_t *host_addr,
-	uint32_t *dev_addr, size_t repcount, uint_t flags)
+    uint32_t *dev_addr, size_t repcount, uint_t flags)
 {
 	size_t inc;
 
@@ -1323,7 +1323,7 @@ lombus_meta_rep_get32(HANDLE_TYPE *hdlp, uint32_t *host_addr,
 
 static void
 lombus_meta_rep_put32(HANDLE_TYPE *hdlp, uint32_t *host_addr,
-	uint32_t *dev_addr, size_t repcount, uint_t flags)
+    uint32_t *dev_addr, size_t repcount, uint_t flags)
 {
 	size_t inc;
 
@@ -1362,7 +1362,7 @@ lombus_no_put8(HANDLE_TYPE *hdlp, uint8_t *addr, uint8_t val)
 
 static void
 lombus_no_rep_get8(HANDLE_TYPE *hdlp, uint8_t *host_addr,
-		uint8_t *dev_addr, size_t repcount, uint_t flags)
+    uint8_t *dev_addr, size_t repcount, uint_t flags)
 {
 	_NOTE(ARGUNUSED(host_addr, dev_addr, repcount, flags))
 
@@ -1374,7 +1374,7 @@ lombus_no_rep_get8(HANDLE_TYPE *hdlp, uint8_t *host_addr,
 
 static void
 lombus_no_rep_put8(HANDLE_TYPE *hdlp, uint8_t *host_addr,
-	uint8_t *dev_addr, size_t repcount, uint_t flags)
+    uint8_t *dev_addr, size_t repcount, uint_t flags)
 {
 	_NOTE(ARGUNUSED(host_addr, dev_addr, repcount, flags))
 
@@ -1409,7 +1409,7 @@ lombus_no_put16(HANDLE_TYPE *hdlp, uint16_t *addr, uint16_t val)
 
 static void
 lombus_no_rep_get16(HANDLE_TYPE *hdlp, uint16_t *host_addr,
-		uint16_t *dev_addr, size_t repcount, uint_t flags)
+    uint16_t *dev_addr, size_t repcount, uint_t flags)
 {
 	_NOTE(ARGUNUSED(host_addr, dev_addr, repcount, flags))
 
@@ -1421,7 +1421,7 @@ lombus_no_rep_get16(HANDLE_TYPE *hdlp, uint16_t *host_addr,
 
 static void
 lombus_no_rep_put16(HANDLE_TYPE *hdlp, uint16_t *host_addr,
-	uint16_t *dev_addr, size_t repcount, uint_t flags)
+    uint16_t *dev_addr, size_t repcount, uint_t flags)
 {
 	_NOTE(ARGUNUSED(host_addr, dev_addr, repcount, flags))
 
@@ -1456,7 +1456,7 @@ lombus_no_put64(HANDLE_TYPE *hdlp, uint64_t *addr, uint64_t val)
 
 static void
 lombus_no_rep_get64(HANDLE_TYPE *hdlp, uint64_t *host_addr,
-	uint64_t *dev_addr, size_t repcount, uint_t flags)
+    uint64_t *dev_addr, size_t repcount, uint_t flags)
 {
 	_NOTE(ARGUNUSED(host_addr, dev_addr, repcount, flags))
 
@@ -1468,7 +1468,7 @@ lombus_no_rep_get64(HANDLE_TYPE *hdlp, uint64_t *host_addr,
 
 static void
 lombus_no_rep_put64(HANDLE_TYPE *hdlp, uint64_t *host_addr,
-	uint64_t *dev_addr, size_t repcount, uint_t flags)
+    uint64_t *dev_addr, size_t repcount, uint_t flags)
 {
 	_NOTE(ARGUNUSED(host_addr, dev_addr, repcount, flags))
 
@@ -1686,8 +1686,8 @@ static const ndi_acc_fns_t lombus_event_acc_fns = {
 
 static int
 lombus_map_handle(struct lombus_state *ssp, ddi_map_op_t op,
-	int space, caddr_t vaddr, off_t len,
-	ndi_acc_handle_t *hdlp, caddr_t *addrp)
+    int space, caddr_t vaddr, off_t len,
+    ndi_acc_handle_t *hdlp, caddr_t *addrp)
 {
 	switch (op) {
 	default:
@@ -1726,8 +1726,8 @@ lombus_map_handle(struct lombus_state *ssp, ddi_map_op_t op,
 
 static int
 lombus_map_handle(struct lombus_state *ssp, ddi_map_op_t op,
-	int space, caddr_t vaddr, off_t len,
-	ddi_acc_hdl_t *hdlp, caddr_t *addrp)
+    int space, caddr_t vaddr, off_t len,
+    ddi_acc_hdl_t *hdlp, caddr_t *addrp)
 {
 	ddi_acc_impl_t *aip = hdlp->ah_platform_private;
 
@@ -1828,7 +1828,7 @@ lombus_map_handle(struct lombus_state *ssp, ddi_map_op_t op,
 
 static int
 lombus_map(dev_info_t *dip, dev_info_t *rdip, ddi_map_req_t *mp,
-	off_t off, off_t len, caddr_t *addrp)
+    off_t off, off_t len, caddr_t *addrp)
 {
 	struct lombus_child_info *lcip;
 	struct lombus_state *ssp;
@@ -1870,7 +1870,7 @@ lombus_map(dev_info_t *dip, dev_info_t *rdip, ddi_map_req_t *mp,
 
 static int
 lombus_ctlops(dev_info_t *dip, dev_info_t *rdip, ddi_ctl_enum_t op,
-	void *arg, void *result)
+    void *arg, void *result)
 {
 	struct lombus_child_info *lcip;
 	struct lombus_state *ssp;
@@ -2178,7 +2178,7 @@ static struct cb_ops lombus_cb_ops =
 	nodev,			/* b/c close	*/
 	nodev,			/* b   strategy	*/
 	nodev,			/* b   print	*/
-	nodev,			/* b   dump 	*/
+	nodev,			/* b   dump	*/
 	nodev,			/* c   read	*/
 	nodev,			/* c   write	*/
 	nodev,			/* c   ioctl	*/

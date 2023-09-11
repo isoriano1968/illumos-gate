@@ -1559,10 +1559,10 @@ fhc_xlate_intrs(ddi_intr_handle_impl_t *hdlp, uint32_t ign)
 
 static int
 #ifdef	DEBUG
-fhc_ctlops_peekpoke(ddi_ctl_enum_t cmd, peekpoke_ctlops_t *in_args,
+    fhc_ctlops_peekpoke(ddi_ctl_enum_t cmd, peekpoke_ctlops_t *in_args,
     void *result __unused)
 #else
-fhc_ctlops_peekpoke(ddi_ctl_enum_t cmd, peekpoke_ctlops_t *in_args,
+    fhc_ctlops_peekpoke(ddi_ctl_enum_t cmd, peekpoke_ctlops_t *in_args,
     void *result)
 #endif
 {

@@ -48,7 +48,7 @@
  * the # of times we have retired a cache line for each category.
  */
 
-#define	CMD_CPU_SERD_AGG_1  	64
+#define	CMD_CPU_SERD_AGG_1	64
 #define	CMD_CPU_SERD_AGG_2	64
 
 static int8_t cmd_lowest_way[16] = {
@@ -470,8 +470,8 @@ cmd_Lxcache_fini(fmd_hdl_t *hdl, cmd_cpu_t *cpu)
 
 char *
 cmd_Lxcache_serdnm_create(fmd_hdl_t *hdl, uint32_t cpu_id,
-			    cmd_ptrsubtype_t pstype,
-			    int32_t index, int8_t way, int16_t bit)
+    cmd_ptrsubtype_t pstype,
+    int32_t index, int8_t way, int16_t bit)
 {
 	const char *fmt = "cpu_%d:%s_%d_%d_%d_serd";
 	const char *serdbase;
@@ -487,8 +487,8 @@ cmd_Lxcache_serdnm_create(fmd_hdl_t *hdl, uint32_t cpu_id,
 
 char *
 cmd_Lxcache_anonymous_serdnm_create(fmd_hdl_t *hdl, uint32_t cpu_id,
-			    cmd_ptrsubtype_t pstype,
-			    int32_t index, int8_t way, int16_t bit)
+    cmd_ptrsubtype_t pstype,
+    int32_t index, int8_t way, int16_t bit)
 {
 	const char *fmt = "cpu_%d:%s_%d_%d_%d_anonymous_serd";
 	const char *serdbase;
@@ -549,7 +549,7 @@ cmd_fault_the_cpu(fmd_hdl_t *hdl, cmd_cpu_t *cpu, cmd_ptrsubtype_t pstype,
     const char *fltnm)
 {
 	fmd_case_t	*cp;
-	const char 	*uuid;
+	const char	*uuid;
 
 	cp = cmd_case_create(hdl, &cpu->cpu_header, pstype,
 	    &uuid);
@@ -589,7 +589,7 @@ cmd_retire_cpu_if_limits_exceeded(fmd_hdl_t *hdl, cmd_cpu_t *cpu,
 
 void
 cmd_Lxcache_fault(fmd_hdl_t *hdl, cmd_cpu_t *cpu, cmd_Lxcache_t *Lxcache,
-	const char *fltnm, nvlist_t *rsrc, uint_t cert)
+    const char *fltnm, nvlist_t *rsrc, uint_t cert)
 {
 	char fltmsg[64];
 	nvlist_t *flt;
@@ -702,7 +702,7 @@ cmd_Lxcache_gc(fmd_hdl_t *hdl)
 
 cmd_evdisp_t
 get_tagdata(cmd_cpu_t *cpu, cmd_ptrsubtype_t pstype,
-	    int32_t index, uint64_t	*tag_data)
+    int32_t index, uint64_t	*tag_data)
 {
 	int		fd;
 	cache_info_t	cache_info;

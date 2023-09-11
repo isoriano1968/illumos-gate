@@ -44,12 +44,12 @@ extern "C" {
 /*
  * OS <-> SC Interrupt Reasons
  */
-#define	SBBC_CONSOLE_IN			0x1 	/* console input available */
+#define	SBBC_CONSOLE_IN			0x1	/* console input available */
 #define	SBBC_CONSOLE_OUT		0x2	/* console output available */
 #define	SBBC_CONSOLE_BRK		0x4	/* break */
 #define	SBBC_CONSOLE_SPACE_IN		0x8	/* console has in space */
 #define	SBBC_CONSOLE_SPACE_OUT		0x10	/* console has out space */
-#define	SBBC_MAILBOX_IN 		0x20	/* mailbox message in */
+#define	SBBC_MAILBOX_IN			0x20	/* mailbox message in */
 #define	SBBC_MAILBOX_OUT		0x40	/* mailbox message out */
 #define	SBBC_MAILBOX_SPACE_IN		0x80	/* mailbox has in space */
 #define	SBBC_MAILBOX_SPACE_OUT		0x100	/* mailbox has out space */

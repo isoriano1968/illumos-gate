@@ -506,7 +506,7 @@ etm_xport_dup_addr(fmd_hdl_t *hdl, etm_xport_addr_t addr)
 
 static ssize_t
 etm_xport_raw_peek(fmd_hdl_t *hdl, _etm_xport_conn_t *_conn,
-			void *buf, size_t byte_cnt)
+    void *buf, size_t byte_cnt)
 {
 	ssize_t			rv;		/* ret val */
 	ssize_t			n;		/* gen use */
@@ -588,7 +588,7 @@ etm_xport_raw_peek(fmd_hdl_t *hdl, _etm_xport_conn_t *_conn,
 
 static ssize_t
 etm_xport_buffered_read(fmd_hdl_t *hdl, _etm_xport_conn_t *_conn,
-			void *buf, size_t byte_cnt)
+    void *buf, size_t byte_cnt)
 {
 	ssize_t		i, n;		/* gen use */
 
@@ -1155,7 +1155,7 @@ etm_xport_free_addrv(fmd_hdl_t *hdl, etm_xport_addr_t *addrv)
 
 etm_xport_conn_t *
 etm_xport_get_addr_conn(fmd_hdl_t *hdl, etm_xport_conn_t *connv,
-			    etm_xport_addr_t addr)
+    etm_xport_addr_t addr)
 {
 	_etm_xport_conn_t	**_connv; /* vector of connections */
 	_etm_xport_conn_t	**_mcv;	/* matching connections vector */
@@ -1291,7 +1291,7 @@ etm_xport_fini(fmd_hdl_t *hdl)
 
 ssize_t
 etm_xport_read(fmd_hdl_t *hdl, etm_xport_conn_t conn, void *buf,
-							size_t byte_cnt)
+    size_t byte_cnt)
 {
 	return (etm_xport_buffered_read(hdl, conn, buf, byte_cnt));
 
@@ -1306,7 +1306,7 @@ etm_xport_read(fmd_hdl_t *hdl, etm_xport_conn_t conn, void *buf,
 
 ssize_t
 etm_xport_write(fmd_hdl_t *hdl, etm_xport_conn_t conn, void *buf,
-							size_t byte_cnt)
+    size_t byte_cnt)
 {
 	_etm_xport_conn_t	*_conn;		/* connection handle */
 	int			n;		/* byte cnt */

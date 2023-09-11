@@ -180,7 +180,7 @@ prop fault.memory.memlink@CHIP
 
 prop fault.memory.memlink@MEM_CTRL
     { DIAGNOSE_ERPT && CONTAINS_MEMCTRL && SET_SERDN &&
-    SET_SERDT && SET_RATIO } (0)->  
+    SET_SERDT && SET_RATIO } (0)->
     ereport.cpu.generic-sparc.membuf-crc@MEM_BUFF<>;
 
 /*

@@ -20,7 +20,7 @@
  */
 /*	Copyright (c) 1990, 1991 UNIX System Laboratories, Inc.	*/
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989, 1990 AT&T	*/
-/*	  All Rights Reserved 	*/
+/*	All Rights Reserved	*/
 
 /*
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
@@ -45,16 +45,16 @@ extern "C" {
  */
 
 /* defined as offsets from the data register */
-#define	DAT		0 	/* receive/transmit data */
-#define	ICR		1  	/* interrupt control register */
-#define	ISR		2   	/* interrupt status register */
-#define	LCR		3   	/* line control register */
-#define	MCR		4   	/* modem control register */
-#define	LSR		5   	/* line status register */
-#define	MSR		6   	/* modem status register */
-#define	SPR		7   	/* scratchpad register for ST16C554D */
-#define	DLL		0   	/* divisor latch (lsb) */
-#define	DLH		1   	/* divisor latch (msb) */
+#define	DAT		0	/* receive/transmit data */
+#define	ICR		1	/* interrupt control register */
+#define	ISR		2	/* interrupt status register */
+#define	LCR		3	/* line control register */
+#define	MCR		4	/* modem control register */
+#define	LSR		5	/* line status register */
+#define	MSR		6	/* modem status register */
+#define	SPR		7	/* scratchpad register for ST16C554D */
+#define	DLL		0	/* divisor latch (lsb) */
+#define	DLH		1	/* divisor latch (msb) */
 #define	FIFOR		ISR	/* FIFO register for 16550 */
 #define	OUTB(offset, value)	ddi_put8(asy->asy_handle, \
 				    asy->asy_ioaddr+offset, value)
@@ -70,15 +70,15 @@ extern "C" {
 #define	STB		0x04	/* number of stop bits */
 #define	PEN		0x08	/* parity enable */
 #define	EPS		0x10	/* even parity select */
-#define	SETBREAK 	0x40	/* break key */
+#define	SETBREAK	0x40	/* break key */
 #define	DLAB		0x80	/* divisor latch access bit */
-#define	RXLEN   	0x03   	/* # of data bits per received/xmitted char */
-#define	STOP1   	0x00
-#define	STOP2   	0x04
-#define	PAREN   	0x08
-#define	PAREVN  	0x10
-#define	PARMARK 	0x20
-#define	SNDBRK  	0x40
+#define	RXLEN		0x03	/* # of data bits per received/xmitted char */
+#define	STOP1		0x00
+#define	STOP2		0x04
+#define	PAREN		0x08
+#define	PAREVN		0x10
+#define	PARMARK		0x20
+#define	SNDBRK		0x40
 
 
 #define	BITS5		0x00	/* 5 bits per char */
@@ -101,7 +101,7 @@ extern "C" {
 #define	OVRRUN		0x02	/* overrun error */
 #define	PARERR		0x04	/* parity error */
 #define	FRMERR		0x08	/* framing error */
-#define	BRKDET  	0x10	/* a break has arrived */
+#define	BRKDET		0x10	/* a break has arrived */
 #define	XHRE		0x20	/* tx hold reg is now empty */
 #define	XSRE		0x40	/* tx shift reg is now empty */
 #define	RFBE		0x80	/* rx FIFO Buffer error */
@@ -111,8 +111,8 @@ extern "C" {
 #define	NOINTERRUPT	0x01	/* no interrupt pending */
 #define	TxRDY		0x02	/* Transmitter Holding Register Empty */
 #define	RxRDY		0x04	/* Receiver Data Available */
-#define	FFTMOUT 	0x0c	/* FIFO timeout - 16550AF */
-#define	RSTATUS 	0x06	/* Receiver Line Status */
+#define	FFTMOUT		0x0c	/* FIFO timeout - 16550AF */
+#define	RSTATUS		0x06	/* Receiver Line Status */
 
 /* Interrupt Enable Register */
 #define	RIEN		0x01	/* Received Data Ready */
@@ -283,7 +283,7 @@ struct asyncline {
 	dev_t		async_dev;	/* device major/minor numbers */
 	mblk_t		*async_xmitblk;	/* transmit: active msg block */
 	struct asycom	*async_common;	/* device common data */
-	tty_common_t 	async_ttycommon; /* tty driver common data */
+	tty_common_t	async_ttycommon; /* tty driver common data */
 	bufcall_id_t	async_wbufcid;	/* id for pending write-side bufcall */
 	timeout_id_t	async_polltid;	/* softint poll timeout id */
 
@@ -359,7 +359,7 @@ struct asyncline {
  * Different devices this driver supports and what it is used to drive
  * currently
  */
-#define	ASY_KEYBOARD 	0x01
+#define	ASY_KEYBOARD	0x01
 #define	ASY_MOUSE	0x02
 #define	ASY_SERIAL	0x03
 

@@ -37,7 +37,7 @@ extern "C" {
 #define	PCI_BUS_VERS    1
 
 #define	CPUBOARD_PX_DEVTYPE	"pciex"		/* T5440 is PCI-Ex devtype */
-#define	CPUBOARD_PX_DRV  	"px"
+#define	CPUBOARD_PX_DRV		"px"
 
 #define	CPUBOARD_MAX		4		/* Max 4 cpuboards */
 #define	CHIP_MAX		CPUBOARD_MAX	/* Max 4 chips */

@@ -147,13 +147,13 @@ extern cmd_Lxcache_t *cmd_Lxcache_lookup_by_type_index_way_bit(cmd_cpu_t *,
 
 extern cmd_Lxcache_t *
 cmd_Lxcache_lookup_by_index_way(cmd_cpu_t *, cmd_ptrsubtype_t,
-	int32_t, int8_t);
+    int32_t, int8_t);
 extern cmd_Lxcache_t *
 cmd_Lxcache_lookup_by_type_index_way_reason(cmd_cpu_t *, cmd_ptrsubtype_t,
-	int32_t, int8_t, int32_t);
+    int32_t, int8_t, int32_t);
 extern cmd_Lxcache_t *
 cmd_Lxcache_lookup_by_type_index_bit_reason(cmd_cpu_t *, cmd_ptrsubtype_t,
-	int32_t, int16_t, int32_t);
+    int32_t, int16_t, int32_t);
 extern int8_t cmd_Lxcache_get_next_retirable_way(cmd_cpu_t *, int32_t,
 	cmd_ptrsubtype_t, int8_t);
 extern int8_t cmd_Lxcache_get_lowest_retirable_way(cmd_cpu_t *,

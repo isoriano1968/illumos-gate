@@ -353,12 +353,12 @@ set_cpu_props(dev_info_t *new_child, void *arg, uint_t flags)
  * Set properties common to cpu (non-CMP) and core (CMP) nodes.
  *
  *	cpuid
- * 	device_type
+ *	device_type
  *	manufacturer#
- * 	implementation#
+ *	implementation#
  *	mask#
  *	sparc-version
- * 	clock-frequency
+ *	clock-frequency
  *	#dtlb-entries
  *	#itlb-entries
  */
@@ -446,10 +446,10 @@ set_cpu_common_props(dev_info_t *new_child, struct bca *bcp)
  * Set cpu node properties for Cheetah and Cheetah+.
  *
  *	name
- * 	portid
- * 	reg
- * 	icache-size
- * 	icache-line-size
+ *	portid
+ *	reg
+ *	icache-size
+ *	icache-line-size
  *	icache-associativity
  *	dcache-size
  *	dcache-line-size
@@ -625,9 +625,9 @@ set_cpu_us3_props(dev_info_t *new_child, struct bca *bcp)
 /*
  * Set cmp core node properties for Jaguar and Panther.
  *
- * 	name
- * 	compatible
- * 	reg
+ *	name
+ *	compatible
+ *	reg
  *	l1-icache-size
  *	l1-icache-line-size
  *	l1-icache-associativity
@@ -1014,7 +1014,7 @@ get_new_child(dev_info_t *rdip, void *arg, uint_t flags)
 #ifdef DEBUG
 static void
 debug(char *fmt, uintptr_t a1, uintptr_t a2, uintptr_t a3,
-	uintptr_t a4, uintptr_t a5)
+    uintptr_t a4, uintptr_t a5)
 {
 	cmn_err(CE_CONT, fmt, a1, a2, a3, a4, a5);
 }

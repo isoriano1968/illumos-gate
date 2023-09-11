@@ -46,19 +46,19 @@ extern int	prom_debug;
 }
 
 #define	PRM_INFO(l)	if (prom_debug)					\
-	(prom_printf("%s:%d: ", __FILE__, __LINE__), 			\
+	(prom_printf("%s:%d: ", __FILE__, __LINE__),			\
 	prom_printf(l), prom_printf("\n"))
 
 #define	PRM_INFO1(str, a)	if (prom_debug)				\
-	(prom_printf("%s:%d: ", __FILE__, __LINE__), 			\
+	(prom_printf("%s:%d: ", __FILE__, __LINE__),			\
 	prom_printf((str), (a)))
 
 #define	PRM_INFO2(str, a, b)	if (prom_debug)				\
-	(prom_printf("%s:%d: ", __FILE__, __LINE__), 			\
+	(prom_printf("%s:%d: ", __FILE__, __LINE__),			\
 	prom_printf((str), (a), (b)))
 
 #define	STUB(n)		if (prom_debug)					\
-	(prom_printf("%s:%d: ", __FILE__, __LINE__), 			\
+	(prom_printf("%s:%d: ", __FILE__, __LINE__),			\
 	prom_printf("STUB: %s", #n))
 
 #else

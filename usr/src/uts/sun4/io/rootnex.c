@@ -330,8 +330,8 @@ rootnex_map_regspec(ddi_map_req_t *mp, caddr_t *vaddrp, uint_t mapping_attr)
 	uint64_t base;
 	caddr_t kaddr;
 	pgcnt_t npages;
-	pfn_t 	pfn;
-	uint_t 	pgoffset;
+	pfn_t	pfn;
+	uint_t	pgoffset;
 	struct regspec *rp = mp->map_obj.rp;
 	ddi_acc_hdl_t *hp;
 

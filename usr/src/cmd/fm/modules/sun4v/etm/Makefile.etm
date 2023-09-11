@@ -59,7 +59,7 @@ lint:
 install_h:
 
 $(ROOTCONF): $$(@D) $(CONF)
-	$(RM) $@ 
+	$(RM) $@
 	$(INS) -s -m 0644 -f $(@D) $(CONF)
 	$(RM) $(plat_ROOTPROG)
 	$(LN) -s $(sun4v_ROOTPROG) $(plat_ROOTPROG)

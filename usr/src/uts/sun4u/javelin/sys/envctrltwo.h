@@ -40,7 +40,7 @@ struct envctrlunit {
 	int instance;
 	dev_info_t *dip;			/* device information */
 	struct envctrl_ps2 ps_kstats[ENVCTRL_MAX_DEVS];	/* kstats for ps */
-	struct envctrl_fan fan_kstats; 		/* kstats for fans */
+	struct envctrl_fan fan_kstats;		/* kstats for fans */
 	struct envctrl_encl encl_kstats;		/* kstats for FSP */
 	struct envctrl_temp temp_kstats[ENVCTRL_MAX_DEVS]; /* tempreratures */
 	struct envctrl_disk disk_kstats[ENVCTRL_MAX_DEVS]; /* disks */
@@ -64,7 +64,7 @@ struct envctrlunit {
 	timeout_id_t timeout_id;				/* timeout id */
 	timeout_id_t pshotplug_id;			/* ps poll id */
 	int activity_led_blink;
-	int present_led_state; 			/* is it on or off?? */
+	int present_led_state;			/* is it on or off?? */
 	timeout_id_t blink_timeout_id;
 	int initting; /* 1 is TRUE , 0 is FALSE , used to mask intrs */
 	boolean_t shutdown; /* TRUE = power off in error event */

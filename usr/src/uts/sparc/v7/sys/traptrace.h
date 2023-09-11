@@ -61,26 +61,26 @@ extern "C" {
  * Example buffer header in locore.s:
  *
  * trap_trace_ctl:
- * 	.word	trap_tr0		! next	CPU 0
- * 	.word	trap_tr0		! first
- * 	.word	trap_tr0 + TRAP_TSIZE	! limit
- * 	.word	0			! junk for alignment of prom dump
+ *	.word	trap_tr0		! next	CPU 0
+ *	.word	trap_tr0		! first
+ *	.word	trap_tr0 + TRAP_TSIZE	! limit
+ *	.word	0			! junk for alignment of prom dump
  *
- * 	.word	trap_tr1		! next	CPU 1
- * 	.word	trap_tr1		! first
- * 	.word	trap_tr1 + TRAP_TSIZE	! limit
- * 	.word	0			! junk for alignment of prom dump
+ *	.word	trap_tr1		! next	CPU 1
+ *	.word	trap_tr1		! first
+ *	.word	trap_tr1 + TRAP_TSIZE	! limit
+ *	.word	0			! junk for alignment of prom dump
  *
- * 	.word	trap_tr2		! next	CPU 2
- * 	.word	trap_tr2		! first
- * 	.word	trap_tr2 + TRAP_TSIZE	! limit
- * 	.word	0			! junk for alignment of prom dump
+ *	.word	trap_tr2		! next	CPU 2
+ *	.word	trap_tr2		! first
+ *	.word	trap_tr2 + TRAP_TSIZE	! limit
+ *	.word	0			! junk for alignment of prom dump
  *
- * 	.word	trap_tr3		! next	CPU 3
- * 	.word	trap_tr3		! first
- * 	.word	trap_tr3 + TRAP_TSIZE	! limit
- * 	.word	0			! junk for alignment of prom dump
- * 	.align	16
+ *	.word	trap_tr3		! next	CPU 3
+ *	.word	trap_tr3		! first
+ *	.word	trap_tr3 + TRAP_TSIZE	! limit
+ *	.word	0			! junk for alignment of prom dump
+ *	.align	16
  *
  * Offsets of words in trap_trace_ctl:
  */
@@ -100,7 +100,7 @@ extern "C" {
 #define	TRACE_PTR(ptr, scr1)			\
 	CPU_INDEX(scr1);			\
 	sll	scr1, TRAPTR_SIZE_SHIFT, scr1;	\
-	set	trap_trace_ctl, ptr; 		\
+	set	trap_trace_ctl, ptr;		\
 	ld	[ptr + scr1], ptr;		\
 	set	panicstr, scr1;			\
 	ld	[scr1], scr1;			\

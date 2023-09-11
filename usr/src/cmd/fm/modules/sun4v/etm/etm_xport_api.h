@@ -158,7 +158,7 @@ etm_xport_free_addrv(fmd_hdl_t *hdl, etm_xport_addr_t *addrv);
 
 etm_xport_conn_t *
 etm_xport_get_addr_conn(fmd_hdl_t *hdl, etm_xport_conn_t *connv,
-			    etm_xport_addr_t addr);
+    etm_xport_addr_t addr);
 
 /*
  * etm_xport_get_any_lcc - indicate which endpoint has undergone
@@ -202,7 +202,7 @@ etm_xport_fini(fmd_hdl_t *hdl);
 
 ssize_t
 etm_xport_read(fmd_hdl_t *hdl, etm_xport_conn_t conn, void* buf,
-							size_t byte_cnt);
+    size_t byte_cnt);
 
 /*
  * etm_xport_write - try to write N bytes to the connection
@@ -213,7 +213,7 @@ etm_xport_read(fmd_hdl_t *hdl, etm_xport_conn_t conn, void* buf,
 
 ssize_t
 etm_xport_write(fmd_hdl_t *hdl, etm_xport_conn_t conn, void* buf,
-							size_t byte_cnt);
+    size_t byte_cnt);
 
 /*
  * ------------------------ miscellaneous functions --------------------------

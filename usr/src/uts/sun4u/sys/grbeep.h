@@ -51,7 +51,7 @@ extern "C" {
  * register is the frequency divisor.
  * The formula to find freq. divisoer would be
  *
- * 	divisor = GRBEEP_INPUT_FREQ / freq
+ *	divisor = GRBEEP_INPUT_FREQ / freq
  *
  */
 #define	GRBEEP_INPUT_FREQ	1193000

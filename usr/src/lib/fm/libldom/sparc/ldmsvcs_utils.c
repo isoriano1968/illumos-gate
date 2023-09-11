@@ -269,7 +269,7 @@ poller_handle_data(int fd, size_t payloadsize)
  */
 static int
 poller_recv_data(struct ldom_hdl *lhp, uint64_t req_num, int index,
-		void **resp, size_t *resplen)
+    void **resp, size_t *resplen)
 {
 	struct timespec twait;
 	int ier;
@@ -1282,8 +1282,8 @@ channel_init(struct ldom_hdl *lhp)
 
 static int
 sendrecv(struct ldom_hdl *lhp, uint64_t req_num,
-	void *msg, size_t msglen, ds_svc_hdl_t *svc_hdl, char *svcname,
-	void **resp, size_t *resplen)
+    void *msg, size_t msglen, ds_svc_hdl_t *svc_hdl, char *svcname,
+    void **resp, size_t *resplen)
 {
 	struct ldmsvcs_info *lsp;
 	fds_svc_t *svc;
@@ -1428,7 +1428,7 @@ cpu_request(struct ldom_hdl *lhp, uint32_t msg_type, uint32_t cpuid)
  */
 static int
 mem_request(struct ldom_hdl *lhp, uint32_t msg_type, uint64_t pa,
-	    uint64_t pgsize)
+    uint64_t pgsize)
 {
 	ds_hdr_t *H;
 	ds_data_handle_t *D;
@@ -1502,7 +1502,7 @@ mem_request(struct ldom_hdl *lhp, uint32_t msg_type, uint64_t pa,
 				rc = 0;		/* is successfully unretired */
 		} if (respmsg->result == FMA_MEM_RESP_FAILURE) {
 			if (respmsg->status == FMA_MEM_STAT_RETIRED)
-				rc = EAGAIN; 	/* page couldn't be locked */
+				rc = EAGAIN;	/* page couldn't be locked */
 			else if (respmsg->status == FMA_MEM_STAT_NOTRETIRED)
 				rc = EIO;	/* page isn't retired already */
 			else if (respmsg->status == FMA_MEM_STAT_ILLEGAL)

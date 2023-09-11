@@ -89,15 +89,15 @@ static void vnex_free_id(vnex_id_t *vid_p);
 uint_t vnex_intr_wrapper(caddr_t, caddr_t);
 
 static struct vnex_pil_map vnex_name_to_pil[] = {
-	{"console", 	PIL_12},
+	{"console",	PIL_12},
 	{"fma",		PIL_5},
-	{"echo", 	PIL_3},
-	{"loop", 	PIL_3},
-	{"sunmc", 	PIL_3},
-	{"sunvts", 	PIL_3},
-	{"explorer", 	PIL_3},
-	{"ncp", 	PIL_8},
-	{"crypto", 	PIL_8}
+	{"echo",	PIL_3},
+	{"loop",	PIL_3},
+	{"sunmc",	PIL_3},
+	{"sunvts",	PIL_3},
+	{"explorer",	PIL_3},
+	{"ncp",		PIL_8},
+	{"crypto",	PIL_8}
 };
 
 #define	VNEX_MAX_DEVS	(sizeof (vnex_name_to_pil) /	\
@@ -302,7 +302,7 @@ vnex_detach(dev_info_t *dip, ddi_detach_cmd_t cmd)
 
 static int
 vnex_ctl(dev_info_t *dip, dev_info_t *rdip,
-	ddi_ctl_enum_t ctlop, void *arg, void *result)
+    ddi_ctl_enum_t ctlop, void *arg, void *result)
 {
 	char	name[12];	/* enough for a decimal integer */
 	int		reglen;
@@ -522,7 +522,7 @@ vnex_add_intr(dev_info_t *dip, dev_info_t *rdip,
 
 static int
 vnex_remove_intr(dev_info_t *rdip,
-	ddi_intr_handle_impl_t *hdlp)
+    ddi_intr_handle_impl_t *hdlp)
 {
 	vnex_id_t *vid_p;
 	uint32_t ino;

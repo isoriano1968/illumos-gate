@@ -1690,8 +1690,8 @@ pci_free_resource(dev_info_t *dip, pci_regspec_t phys_spec)
 
 int
 pci_map_phys(dev_info_t *dip, pci_regspec_t *phys_spec,
-	caddr_t *addrp, ddi_device_acc_attr_t *accattrp,
-	ddi_acc_handle_t *handlep)
+    caddr_t *addrp, ddi_device_acc_attr_t *accattrp,
+    ddi_acc_handle_t *handlep)
 {
 	ddi_map_req_t mr;
 	ddi_acc_hdl_t *hp;

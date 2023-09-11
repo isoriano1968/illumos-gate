@@ -76,7 +76,7 @@ typedef enum vd_media {
  */
 typedef struct vd_attr_msg {
 	/* Common tag */
-	vio_msg_tag_t 	tag;
+	vio_msg_tag_t	tag;
 
 	/* vdisk-attribute-specific payload */
 	uint8_t		xfer_mode;	/* data exchange method. */

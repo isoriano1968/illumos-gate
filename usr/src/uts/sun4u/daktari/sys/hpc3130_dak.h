@@ -92,7 +92,7 @@ extern "C" {
 #define	HPC3130_ATTN_SHIFT(led)	(led<<1)			/* 0 or 2 */
 
 #define	HPC3130_ATTN_OFF	0x00
-#define	HPC3130_ATTN_SLO	0x01 		/* not used by Daktari */
+#define	HPC3130_ATTN_SLO	0x01		/* not used by Daktari */
 #define	HPC3130_ATTN_FST	0x02
 #define	HPC3130_ATTN_ON		0x03
 

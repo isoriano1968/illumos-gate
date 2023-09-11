@@ -444,7 +444,7 @@ ecc_type_to_info_t ecc_type_to_info[] = {
 		CPU_FATAL,	"PERR Fatal",
 		FM_EREPORT_PAYLOAD_SYSTEM2,
 		FM_EREPORT_CPU_USIII_PERR,
-	C_AFSR_IERR,		"IERR ", 	ECC_ALL_TRAPS,
+	C_AFSR_IERR,		"IERR ",	ECC_ALL_TRAPS,
 		CPU_FATAL,	"IERR Fatal",
 		FM_EREPORT_PAYLOAD_SYSTEM2,
 		FM_EREPORT_CPU_USIII_IERR,
@@ -452,19 +452,19 @@ ecc_type_to_info_t ecc_type_to_info[] = {
 		CPU_FATAL,	"ISAP Fatal",
 		FM_EREPORT_PAYLOAD_SYSTEM1,
 		FM_EREPORT_CPU_USIII_ISAP,
-	C_AFSR_L3_TUE_SH,	"L3_TUE_SH ", 	ECC_C_TRAP,
+	C_AFSR_L3_TUE_SH,	"L3_TUE_SH ",	ECC_C_TRAP,
 		CPU_FATAL,	"L3_TUE_SH Fatal",
 		FM_EREPORT_PAYLOAD_L3_TAG_ECC,
 		FM_EREPORT_CPU_USIII_L3_TUE_SH,
-	C_AFSR_L3_TUE,		"L3_TUE ", 	ECC_C_TRAP,
+	C_AFSR_L3_TUE,		"L3_TUE ",	ECC_C_TRAP,
 		CPU_FATAL,	"L3_TUE Fatal",
 		FM_EREPORT_PAYLOAD_L3_TAG_ECC,
 		FM_EREPORT_CPU_USIII_L3_TUE,
-	C_AFSR_TUE_SH,		"TUE_SH ", 	ECC_C_TRAP,
+	C_AFSR_TUE_SH,		"TUE_SH ",	ECC_C_TRAP,
 		CPU_FATAL,	"TUE_SH Fatal",
 		FM_EREPORT_PAYLOAD_L2_TAG_ECC,
 		FM_EREPORT_CPU_USIII_TUE_SH,
-	C_AFSR_TUE,		"TUE ", 	ECC_ALL_TRAPS,
+	C_AFSR_TUE,		"TUE ",	ECC_ALL_TRAPS,
 		CPU_FATAL,	"TUE Fatal",
 		FM_EREPORT_PAYLOAD_L2_TAG_ECC,
 		FM_EREPORT_CPU_USIII_TUE,
@@ -889,7 +889,8 @@ set_cpu_error_state(ch_cpu_errors_t *cpu_error_regs)
 }
 
 void
-pn_cpu_log_diag_l2_info(ch_async_flt_t *ch_flt) {
+pn_cpu_log_diag_l2_info(ch_async_flt_t *ch_flt)
+{
 	struct async_flt *aflt = (struct async_flt *)ch_flt;
 	ch_ec_data_t *l2_data = &ch_flt->flt_diag_data.chd_l2_data[0];
 	uint64_t faddr = aflt->flt_addr;
@@ -930,9 +931,10 @@ pn_cpu_log_diag_l2_info(ch_async_flt_t *ch_flt) {
  * index is being used.
  */
 static int
-pn_matching_valid_l2_line(uint64_t faddr, ch_ec_data_t *clo_l2_data) {
+pn_matching_valid_l2_line(uint64_t faddr, ch_ec_data_t *clo_l2_data)
+{
 	if ((!PN_L2_LINE_INVALID(clo_l2_data->ec_tag)) &&
-	((faddr & P2ALIGN(C_AFAR_PA, PN_L2_SET_SIZE)) ==
+	    ((faddr & P2ALIGN(C_AFAR_PA, PN_L2_SET_SIZE)) ==
 	    PN_L2TAG_TO_PA(clo_l2_data->ec_tag)))
 		return (1);
 	return (0);
@@ -971,7 +973,8 @@ static uint64_t tlb_pgsz_to_size[] = {
  * not expected to happen at TL>0.
  */
 void
-cpu_tlb_parity_error(struct regs *rp, ulong_t trap_va, ulong_t tlb_info) {
+cpu_tlb_parity_error(struct regs *rp, ulong_t trap_va, ulong_t tlb_info)
+{
 	ch_async_flt_t ch_flt;
 	struct async_flt *aflt;
 	pn_tlb_logout_t *tlop = NULL;
@@ -1061,7 +1064,8 @@ cpu_tlb_parity_error(struct regs *rp, ulong_t trap_va, ulong_t tlb_info) {
  * or 'ce_drain'ed from the errorq.
  */
 void
-cpu_async_log_tlb_parity_err(void *flt) {
+cpu_async_log_tlb_parity_err(void *flt)
+{
 	ch_async_flt_t *ch_flt = (ch_async_flt_t *)flt;
 	struct async_flt *aflt = (struct async_flt *)flt;
 #ifdef lint

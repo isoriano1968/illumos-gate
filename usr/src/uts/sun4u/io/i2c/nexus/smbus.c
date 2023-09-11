@@ -95,15 +95,15 @@ static struct bus_ops smbus_busops = {
 	0,				/* bus_add_eventcall */
 	0,				/* bus_remove_eventcall */
 	0,				/* bus_post_event */
-	0,				/* bus_intr_ctl 	*/
-	0,				/* bus_config		*/
-	0,				/* bus_unconfig		*/
-	0,				/* bus_fm_init		*/
-	0,				/* bus_fm_fini		*/
-	0,				/* bus_fm_access_enter	*/
-	0,				/* bus_fm_access_exit	*/
-	0,				/* bus_power		*/
-	i_ddi_intr_ops			/* bus_intr_op		*/
+	0,				/* bus_intr_ctl */
+	0,				/* bus_config */
+	0,				/* bus_unconfig */
+	0,				/* bus_fm_init */
+	0,				/* bus_fm_fini */
+	0,				/* bus_fm_access_enter */
+	0,				/* bus_fm_access_exit */
+	0,				/* bus_power */
+	i_ddi_intr_ops			/* bus_intr_op */
 };
 
 struct cb_ops smbus_cb_ops = {

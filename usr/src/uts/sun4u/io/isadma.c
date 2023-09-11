@@ -139,7 +139,7 @@ static struct dev_ops isadma_ops = {
 #include <sys/modctl.h>
 
 static struct modldrv modldrv = {
-	&mod_driverops, 	/* Type of module.  This one is a driver */
+	&mod_driverops,		/* Type of module.  This one is a driver */
 	"isadma nexus driver",	/* Name of module. */
 	&isadma_ops,		/* driver ops */
 };
@@ -603,11 +603,13 @@ exit:
 
 /*ARGSUSED*/
 void
-isadma_noput32(ddi_acc_impl_t *hdlp, uint32_t *addr, uint32_t value) {}
+isadma_noput32(ddi_acc_impl_t *hdlp, uint32_t *addr, uint32_t value)
+{}
 
 /*ARGSUSED*/
 void
-isadma_noput64(ddi_acc_impl_t *hdlp, uint64_t *addr, uint64_t value) {}
+isadma_noput64(ddi_acc_impl_t *hdlp, uint64_t *addr, uint64_t value)
+{}
 
 #define	IS_SAME_REG(r1, r2) (((r1)->ebus_addr_hi == (r2)->ebus_addr_hi) && \
 	((r1)->ebus_addr_low == (r2)->ebus_addr_low))
@@ -619,7 +621,7 @@ isadma_noput64(ddi_acc_impl_t *hdlp, uint64_t *addr, uint64_t value) {}
  */
 static int
 isadma_map(dev_info_t *dip, dev_info_t *rdip, ddi_map_req_t *mp,
-	off_t off, off_t len, caddr_t *addrp)
+    off_t off, off_t len, caddr_t *addrp)
 {
 	isadma_devstate_t *isadmap = ddi_get_soft_state(per_isadma_state,
 	    ddi_get_instance(dip));

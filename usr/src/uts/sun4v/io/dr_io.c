@@ -110,7 +110,7 @@ typedef struct {
 static int
 dr_io_check_node(dev_info_t *dip, void *arg)
 {
-	char 		*name;
+	char		*name;
 	uint64_t	devid;
 	dr_search_arg_t	*sarg = (dr_search_arg_t *)arg;
 

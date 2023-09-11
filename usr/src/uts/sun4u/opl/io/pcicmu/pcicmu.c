@@ -685,7 +685,7 @@ static int pcmu_prop_op(dev_t dev, dev_info_t *dip, ddi_prop_op_t prop_op,
  */
 static int
 pcmu_map(dev_info_t *dip, dev_info_t *rdip, ddi_map_req_t *mp,
-	off_t off, off_t len, caddr_t *addrp)
+    off_t off, off_t len, caddr_t *addrp)
 {
 	pcmu_t *pcmu_p = get_pcmu_soft_state(ddi_get_instance(dip));
 	struct regspec p_regspec;
@@ -840,9 +840,11 @@ pcmu_do_peek(pcmu_t *pcmu_p, peekpoke_ctlops_t *in_args)
 
 static int
 #ifdef	DEBUG
-pcmu_ctlops_peek(pcmu_t *pcmu_p, peekpoke_ctlops_t *in_args, void *result __unused)
+	pcmu_ctlops_peek(pcmu_t *pcmu_p, peekpoke_ctlops_t *in_args,
+	    void *result __unused)
 #else
-pcmu_ctlops_peek(pcmu_t *pcmu_p, peekpoke_ctlops_t *in_args, void *result)
+	pcmu_ctlops_peek(pcmu_t *pcmu_p, peekpoke_ctlops_t *in_args,
+	    void *result)
 #endif
 {
 	result = (void *)in_args->host_addr;
@@ -871,7 +873,7 @@ pcmu_ctlops_peek(pcmu_t *pcmu_p, peekpoke_ctlops_t *in_args, void *result)
  */
 static int
 pcmu_ctlops(dev_info_t *dip, dev_info_t *rdip,
-	ddi_ctl_enum_t op, void *arg, void *result)
+    ddi_ctl_enum_t op, void *arg, void *result)
 {
 	pcmu_t *pcmu_p = get_pcmu_soft_state(ddi_get_instance(dip));
 
@@ -1886,7 +1888,7 @@ u2u_translate_tgtid(pcmu_t *pcmu_p, uint_t cpu_id,
  */
 void
 u2u_ittrans_cleanup(u2u_ittrans_data_t *ittrans_cookie,
-			volatile uint64_t *pino_map_reg)
+    volatile uint64_t *pino_map_reg)
 {
 
 	int ix;
@@ -2004,7 +2006,7 @@ pcmu_clear_error(pcmu_t *pcmu_p, pcmu_pbm_errstate_t *pbm_err_p)
 /*ARGSUSED*/
 int
 pcmu_pbm_err_handler(dev_info_t *dip, ddi_fm_error_t *derr,
-		const void *impl_data, int caller)
+    const void *impl_data, int caller)
 {
 	int fatal = 0;
 	int nonfatal = 0;

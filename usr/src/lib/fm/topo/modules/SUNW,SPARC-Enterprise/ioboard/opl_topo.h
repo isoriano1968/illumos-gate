@@ -40,7 +40,7 @@ extern "C" {
  * OPL uses the Jupiter Bus Bindings (see FWARC/2005/076) which specifies
  * the hostbridge port id (the part of the bus address before the comma) as
  *	[10:9] = 00
- * 	[8]    = LSB_ID[4] = 0
+ *	[8]    = LSB_ID[4] = 0
  *	[7:4]  = LSB_ID[3:0]
  *	[3]    = IO_Channel#[2] = 0
  *	[2:1]  = IO_Channel#[1:0]

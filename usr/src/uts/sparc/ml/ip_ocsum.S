@@ -31,7 +31,7 @@
  * Do a 16 bit one's complement sum of a given number of (16-bit)
  * halfwords. The halfword pointer must not be odd.
  *	%o0 address; %o1 count; %o2 sum accumulator; %o4 temp
- * 	%g2 and %g3 used in main loop
+ *	%g2 and %g3 used in main loop
  *
  * (from @(#)ocsum.s 1.3 89/02/24 SMI)
  *
@@ -81,7 +81,7 @@
 	subcc	%o1, 16, %o1	! decrement count (in halfwords)
 	bge	4b
 	add	%o0, 32, %o0	! delay slot, increment address
-	
+
 	add	%o1, 16, %o1	! add back in
 	!
 	! Do any remaining halfwords

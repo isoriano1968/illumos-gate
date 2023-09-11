@@ -125,9 +125,9 @@ static struct dev_ops pmugpio_ops = {
 };
 
 static struct modldrv modldrv = {
-	&mod_driverops, 		/* This one is a driver */
-	"Pmugpio Driver", 		/* Name of the module. */
-	&pmugpio_ops,			/* Driver ops */
+	&mod_driverops,		/* This one is a driver */
+	"Pmugpio Driver",	/* Name of the module. */
+	&pmugpio_ops,		/* Driver ops */
 };
 
 static struct modlinkage modlinkage = {
@@ -226,7 +226,7 @@ pmugpio_detach(dev_info_t *dip, ddi_detach_cmd_t cmd)
 /* ARGSUSED */
 static int
 pmugpio_info(dev_info_t *dip, ddi_info_cmd_t infocmd,
-		void *arg, void **result)
+    void *arg, void **result)
 {
 	dev_t dev;
 	int instance, error;

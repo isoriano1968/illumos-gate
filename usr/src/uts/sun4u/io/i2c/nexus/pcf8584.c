@@ -519,7 +519,7 @@ pcf8584_close(dev_t  dev,  int  flag,  int  otyp,  cred_t *cred_p)
 /*ARGSUSED*/
 static int
 pcf8584_ioctl(dev_t dev, int cmd, intptr_t arg, int mode, cred_t *credp,
-	int *rvalp)
+    int *rvalp)
 {
 	pcf8584_t *i2c;
 	dev_info_t *self;

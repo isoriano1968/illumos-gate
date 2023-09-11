@@ -18,20 +18,20 @@
  *
  * CDDL HEADER END
  */
-/* 
- * Copyright 2009 Sun Microsystems, Inc.  All rights reserved. 
- * Use is subject to license terms. 
- */ 
- 
-#pragma dictionary "SUN4V" 
+/*
+ * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
+ * Use is subject to license terms.
+ */
+
+#pragma dictionary "SUN4V"
 
 /*
  * Eversholt rules for the N2 PIU extention to Fire nexus driver
  */
-#define HB_FIT			400 
+#define HB_FIT			400
 #define NONFATAL_COUNT		10
 #define NONFATAL_TIME		1hour
-#define PCIEX_DEV_FIT		1000 
+#define PCIEX_DEV_FIT		1000
 #define LINK_EVENTS_COUNT	10
 #define LINK_EVENTS_TIME	1h
 
@@ -63,22 +63,22 @@
  * Faults, upsets and defects
  */
 /* N2 Asic */
-fru hostbridge/pciexrc; 
-asru hostbridge/pciexrc; 
-event fault.io.fire.asic@hostbridge/pciexrc, 
-    FITrate=HB_FIT, FRU=hostbridge/pciexrc, ASRU=hostbridge/pciexrc; 
-event fault.io.n2.soc@hostbridge/pciexrc, 
-    FITrate=HB_FIT, FRU=hostbridge/pciexrc, ASRU=hostbridge/pciexrc; 
-event fault.io.n2.crossbar@hostbridge/pciexrc, 
-    FITrate=HB_FIT, FRU=hostbridge/pciexrc, ASRU=hostbridge/pciexrc; 
-event fault.io.n2.dmu@hostbridge/pciexrc, 
-    FITrate=HB_FIT, FRU=hostbridge/pciexrc, ASRU=hostbridge/pciexrc; 
-event fault.io.n2.ncu@hostbridge/pciexrc, 
-    FITrate=HB_FIT, FRU=hostbridge/pciexrc, ASRU=hostbridge/pciexrc; 
-event fault.io.n2.siu@hostbridge/pciexrc, 
-    FITrate=HB_FIT, FRU=hostbridge/pciexrc, ASRU=hostbridge/pciexrc; 
-event fault.io.n2.niu@hostbridge/pciexrc, 
-    FITrate=HB_FIT, FRU=hostbridge/pciexrc, ASRU=hostbridge/pciexrc; 
+fru hostbridge/pciexrc;
+asru hostbridge/pciexrc;
+event fault.io.fire.asic@hostbridge/pciexrc,
+    FITrate=HB_FIT, FRU=hostbridge/pciexrc, ASRU=hostbridge/pciexrc;
+event fault.io.n2.soc@hostbridge/pciexrc,
+    FITrate=HB_FIT, FRU=hostbridge/pciexrc, ASRU=hostbridge/pciexrc;
+event fault.io.n2.crossbar@hostbridge/pciexrc,
+    FITrate=HB_FIT, FRU=hostbridge/pciexrc, ASRU=hostbridge/pciexrc;
+event fault.io.n2.dmu@hostbridge/pciexrc,
+    FITrate=HB_FIT, FRU=hostbridge/pciexrc, ASRU=hostbridge/pciexrc;
+event fault.io.n2.ncu@hostbridge/pciexrc,
+    FITrate=HB_FIT, FRU=hostbridge/pciexrc, ASRU=hostbridge/pciexrc;
+event fault.io.n2.siu@hostbridge/pciexrc,
+    FITrate=HB_FIT, FRU=hostbridge/pciexrc, ASRU=hostbridge/pciexrc;
+event fault.io.n2.niu@hostbridge/pciexrc,
+    FITrate=HB_FIT, FRU=hostbridge/pciexrc, ASRU=hostbridge/pciexrc;
 
 /* No diagnosis */
 event upset.io.fire.nodiag@hostbridge;
@@ -87,59 +87,59 @@ event upset.io.fire.nodiag@hostbridge;
  * Additional "DMC" errors to fire.
  * N2 asic parity error
  */
-event ereport.io.n2.dmu.iotsbdesc_dpe@hostbridge/pciexrc{within(5s)}; 
+event ereport.io.n2.dmu.iotsbdesc_dpe@hostbridge/pciexrc{within(5s)};
 
 /*
  * Additional "PEC" errors to fire.
  */
-event ereport.io.n2.peu.err_sds_los@hostbridge/pciexrc{within(5s)}; 
+event ereport.io.n2.peu.err_sds_los@hostbridge/pciexrc{within(5s)};
 event ereport.io.n2.peu.lwc@hostbridge/pciexrc{within(5s)};
-event ereport.io.n2.peu.nfp@hostbridge/pciexrc{within(5s)}; 
+event ereport.io.n2.peu.nfp@hostbridge/pciexrc{within(5s)};
 
 /*
  * Unique SOC errors to N2
  */
 /* fault.io.n2.soc */
-event ereport.io.n2.soc.ncumondotable@hostbridge/pciexrc{within(5s)}; 
-event ereport.io.n2.soc.ncuctagce@hostbridge/pciexrc{within(5s)}; 
-event ereport.io.n2.soc.ncuinttable@hostbridge/pciexrc{within(5s)}; 
-event ereport.io.n2.soc.ncudataparity@hostbridge/pciexrc{within(5s)}; 
+event ereport.io.n2.soc.ncumondotable@hostbridge/pciexrc{within(5s)};
+event ereport.io.n2.soc.ncuctagce@hostbridge/pciexrc{within(5s)};
+event ereport.io.n2.soc.ncuinttable@hostbridge/pciexrc{within(5s)};
+event ereport.io.n2.soc.ncudataparity@hostbridge/pciexrc{within(5s)};
 
 /* fault.io.n2.crossbar */
-event ereport.io.n2.soc.ncupcxdata@hostbridge/pciexrc{within(5s)}; 
-event ereport.io.n2.soc.ncudmucredit@hostbridge/pciexrc{within(5s)}; 
+event ereport.io.n2.soc.ncupcxdata@hostbridge/pciexrc{within(5s)};
+event ereport.io.n2.soc.ncudmucredit@hostbridge/pciexrc{within(5s)};
 
 /* fault.io.n2.dmu */
-event ereport.io.n2.soc.siidmuctague@hostbridge/pciexrc{within(5s)}; 
-event ereport.io.n2.soc.siidmuctagce@hostbridge/pciexrc{within(5s)}; 
-event ereport.io.n2.soc.siidmuaparity@hostbridge/pciexrc{within(5s)}; 
-event ereport.io.n2.soc.siidmudparity@hostbridge/pciexrc{within(5s)}; 
+event ereport.io.n2.soc.siidmuctague@hostbridge/pciexrc{within(5s)};
+event ereport.io.n2.soc.siidmuctagce@hostbridge/pciexrc{within(5s)};
+event ereport.io.n2.soc.siidmuaparity@hostbridge/pciexrc{within(5s)};
+event ereport.io.n2.soc.siidmudparity@hostbridge/pciexrc{within(5s)};
 event ereport.io.n2.soc.dmuinternal@hostbridge/pciexrc;
 
 /* fault.io.n2.ncu */
-event ereport.io.n2.soc.ncupcxue@hostbridge/pciexrc{within(5s)}; 
-event ereport.io.n2.soc.dmuncucredit@hostbridge/pciexrc{within(5s)}; 
-event ereport.io.n2.soc.ncumondofifo@hostbridge/pciexrc{within(5s)}; 
-event ereport.io.n2.soc.ncucpxue@hostbridge/pciexrc{within(5s)}; 
-event ereport.io.n2.soc.ncudmuue@hostbridge/pciexrc{within(5s)}; 
+event ereport.io.n2.soc.ncupcxue@hostbridge/pciexrc{within(5s)};
+event ereport.io.n2.soc.dmuncucredit@hostbridge/pciexrc{within(5s)};
+event ereport.io.n2.soc.ncumondofifo@hostbridge/pciexrc{within(5s)};
+event ereport.io.n2.soc.ncucpxue@hostbridge/pciexrc{within(5s)};
+event ereport.io.n2.soc.ncudmuue@hostbridge/pciexrc{within(5s)};
 
 /* fault.io.n2.siu */
-event ereport.io.n2.soc.ncuctague@hostbridge/pciexrc{within(5s)}; 
-event ereport.io.n2.soc.sioctague@hostbridge/pciexrc{within(5s)}; 
-event ereport.io.n2.soc.dmusiicredit@hostbridge/pciexrc{within(5s)}; 
-event ereport.io.n2.soc.dmudataparity@hostbridge/pciexrc{within(5s)}; 
-event ereport.io.n2.soc.sioctagce@hostbridge/pciexrc{within(5s)}; 
-event ereport.io.n2.soc.dmuctagce@hostbridge/pciexrc{within(5s)}; 
-event ereport.io.n2.soc.dmuctague@hostbridge/pciexrc{within(5s)}; 
+event ereport.io.n2.soc.ncuctague@hostbridge/pciexrc{within(5s)};
+event ereport.io.n2.soc.sioctague@hostbridge/pciexrc{within(5s)};
+event ereport.io.n2.soc.dmusiicredit@hostbridge/pciexrc{within(5s)};
+event ereport.io.n2.soc.dmudataparity@hostbridge/pciexrc{within(5s)};
+event ereport.io.n2.soc.sioctagce@hostbridge/pciexrc{within(5s)};
+event ereport.io.n2.soc.dmuctagce@hostbridge/pciexrc{within(5s)};
+event ereport.io.n2.soc.dmuctague@hostbridge/pciexrc{within(5s)};
 
 /* fault.io.n2.niu */
-event ereport.io.n2.soc.siiniuctagce@hostbridge/pciexrc{within(5s)}; 
-event ereport.io.n2.soc.siiniuctague@hostbridge/pciexrc{within(5s)}; 
-event ereport.io.n2.soc.siiniuaparity@hostbridge/pciexrc{within(5s)}; 
-event ereport.io.n2.soc.siiniudparity@hostbridge/pciexrc{within(5s)}; 
-event ereport.io.n2.soc.niuctague@hostbridge/pciexrc{within(5s)}; 
+event ereport.io.n2.soc.siiniuctagce@hostbridge/pciexrc{within(5s)};
+event ereport.io.n2.soc.siiniuctague@hostbridge/pciexrc{within(5s)};
+event ereport.io.n2.soc.siiniuaparity@hostbridge/pciexrc{within(5s)};
+event ereport.io.n2.soc.siiniudparity@hostbridge/pciexrc{within(5s)};
+event ereport.io.n2.soc.niuctague@hostbridge/pciexrc{within(5s)};
 event ereport.io.n2.soc.niuctagce@hostbridge/pciexrc{within(5s)};
-event ereport.io.n2.soc.niudataparity@hostbridge/pciexrc{within(5s)}; 
+event ereport.io.n2.soc.niudataparity@hostbridge/pciexrc{within(5s)};
 
 /* fault.io.niu/niufn */
 event ereport.io.device.inval_state@niu/niufn{within(5s)};
@@ -153,7 +153,7 @@ event ereport.io.device.nf-device@niu/niufn;
 /*
  * Fault at the adjacent node which is right below the Fire ASIC
  */
-event error.io.fire.pec.adjacentnode@hostbridge/pciexrc; 
+event error.io.fire.pec.adjacentnode@hostbridge/pciexrc;
 
 prop error.io.fire.pec.adjacentnode@hostbridge/pciexrc (0) ->
     ereport.io.n2.peu.nfp@hostbridge/pciexrc;
@@ -161,32 +161,32 @@ prop error.io.fire.pec.adjacentnode@hostbridge/pciexrc (0) ->
 /*
  * DMU N2 asic parity error
  */
-prop fault.io.fire.asic@hostbridge/pciexrc (0)-> 
+prop fault.io.fire.asic@hostbridge/pciexrc (0)->
     ereport.io.n2.dmu.iotsbdesc_dpe@hostbridge/pciexrc;
 
 /*
  * Surprise remove or serdes los, similar to fire ldn event,
  * don't diag.
  */
-prop upset.io.fire.nodiag@hostbridge (0)-> 
+prop upset.io.fire.nodiag@hostbridge (0)->
     ereport.io.n2.peu.err_sds_los@hostbridge/pciexrc,
     ereport.io.n2.peu.lwc@hostbridge/pciexrc;
 
-/* SOC Errors */ 
+/* SOC Errors */
 /* fault.io.n2.soc */
-prop fault.io.n2.soc@hostbridge/pciexrc (1)-> 
+prop fault.io.n2.soc@hostbridge/pciexrc (1)->
 	ereport.io.n2.soc.ncumondotable@hostbridge/pciexrc,
 	ereport.io.n2.soc.ncuctagce@hostbridge/pciexrc,
 	ereport.io.n2.soc.ncuinttable@hostbridge/pciexrc,
 	ereport.io.n2.soc.ncudataparity@hostbridge/pciexrc;
 
 /* fault.io.n2.crossbar */
-prop fault.io.n2.crossbar@hostbridge/pciexrc (1)-> 
+prop fault.io.n2.crossbar@hostbridge/pciexrc (1)->
 	ereport.io.n2.soc.ncudmucredit@hostbridge/pciexrc,
 	ereport.io.n2.soc.ncupcxdata@hostbridge/pciexrc;
 
 /* fault.io.n2.dmu */
-prop fault.io.n2.dmu@hostbridge/pciexrc (1)-> 
+prop fault.io.n2.dmu@hostbridge/pciexrc (1)->
 	ereport.io.n2.soc.siidmuctague@hostbridge/pciexrc,
 	ereport.io.n2.soc.siidmuctagce@hostbridge/pciexrc,
 	ereport.io.n2.soc.siidmuaparity@hostbridge/pciexrc,
@@ -194,7 +194,7 @@ prop fault.io.n2.dmu@hostbridge/pciexrc (1)->
 	ereport.io.n2.soc.dmuinternal@hostbridge/pciexrc;
 
 /* fault.io.n2.ncu */
-prop fault.io.n2.ncu@hostbridge/pciexrc (1)-> 
+prop fault.io.n2.ncu@hostbridge/pciexrc (1)->
 	ereport.io.n2.soc.ncupcxue@hostbridge/pciexrc,
 	ereport.io.n2.soc.dmuncucredit@hostbridge/pciexrc,
 	ereport.io.n2.soc.ncumondofifo@hostbridge/pciexrc,
@@ -202,7 +202,7 @@ prop fault.io.n2.ncu@hostbridge/pciexrc (1)->
 	ereport.io.n2.soc.ncudmuue@hostbridge/pciexrc;
 
 /* fault.io.n2.siu */
-prop fault.io.n2.siu@hostbridge/pciexrc (1)-> 
+prop fault.io.n2.siu@hostbridge/pciexrc (1)->
 	ereport.io.n2.soc.ncuctague@hostbridge/pciexrc,
 	ereport.io.n2.soc.sioctague@hostbridge/pciexrc,
 	ereport.io.n2.soc.dmusiicredit@hostbridge/pciexrc,
@@ -212,7 +212,7 @@ prop fault.io.n2.siu@hostbridge/pciexrc (1)->
 	ereport.io.n2.soc.dmuctague@hostbridge/pciexrc;
 
 /* fault.io.n2.niu */
-prop fault.io.n2.niu@hostbridge/pciexrc (0)-> 
+prop fault.io.n2.niu@hostbridge/pciexrc (0)->
 	ereport.io.n2.soc.siiniuctague@hostbridge/pciexrc,
 	ereport.io.n2.soc.siiniuaparity@hostbridge/pciexrc,
 	ereport.io.n2.soc.siiniudparity@hostbridge/pciexrc,

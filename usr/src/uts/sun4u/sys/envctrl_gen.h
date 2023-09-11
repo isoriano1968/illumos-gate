@@ -227,15 +227,15 @@ typedef struct envctrl_disk {
  */
 #define	ENVCTRL_IOC_GETMODE	(int)(_IOR('p', 87, uchar_t))
 #define	ENVCTRL_IOC_SETTEMP2	(int)(_IOW('p', 88, struct envctrl_chip))
-#define	ENVCTRL_IOC_SETFAN2 	(int)(_IOW('p', 89, struct envctrl_chip))
-#define	ENVCTRL_IOC_GETFAN2 	(int)(_IOR('p', 90, struct envctrl_chip))
-#define	ENVCTRL_IOC_GETTEMP2 	(int)(_IOR('p', 91, struct envctrl_chip))
+#define	ENVCTRL_IOC_SETFAN2	(int)(_IOW('p', 89, struct envctrl_chip))
+#define	ENVCTRL_IOC_GETFAN2	(int)(_IOR('p', 90, struct envctrl_chip))
+#define	ENVCTRL_IOC_GETTEMP2	(int)(_IOR('p', 91, struct envctrl_chip))
 #define	ENVCTRL_IOC_SETFSP2	(int)(_IOW('p', 92, struct envctrl_chip))
 #define	ENVCTRL_IOC_GETFSP2	(int)(_IOR('p', 93, struct envctrl_chip))
-#define	ENVCTRL_IOC_SETDSKLED2 	(int)(_IOW('p', 94, struct envctrl_chip))
-#define	ENVCTRL_IOC_GETDSKLED2 	(int)(_IOR('p', 95, struct envctrl_chip))
-#define	ENVCTRL_IOC_SETRAW 	(int)(_IOW('p', 96, struct envctrl_chip))
-#define	ENVCTRL_IOC_GETRAW 	(int)(_IOR('p', 97, struct envctrl_chip))
+#define	ENVCTRL_IOC_SETDSKLED2	(int)(_IOW('p', 94, struct envctrl_chip))
+#define	ENVCTRL_IOC_GETDSKLED2	(int)(_IOR('p', 95, struct envctrl_chip))
+#define	ENVCTRL_IOC_SETRAW	(int)(_IOW('p', 96, struct envctrl_chip))
+#define	ENVCTRL_IOC_GETRAW	(int)(_IOR('p', 97, struct envctrl_chip))
 
 #ifdef	__cplusplus
 }

@@ -135,7 +135,7 @@ zam_tnode_create(topo_mod_t *mod, tnode_t *parent,
 /*ARGSUSED*/
 static tnode_t *
 zam_declare(tnode_t *parent, const char *name, topo_instance_t i,
-	void *priv, topo_mod_t *mod)
+    void *priv, topo_mod_t *mod)
 {
 	tnode_t *ntn;
 	nvlist_t *fmri = NULL;
@@ -165,7 +165,7 @@ zam_declare(tnode_t *parent, const char *name, topo_instance_t i,
 /*ARGSUSED*/
 static int
 zambezi_enum(topo_mod_t *mod, tnode_t *rnode, const char *name,
-	topo_instance_t min, topo_instance_t max, void *notused, void *data)
+    topo_instance_t min, topo_instance_t max, void *notused, void *data)
 {
 	int i;
 

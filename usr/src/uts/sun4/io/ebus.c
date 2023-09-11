@@ -64,10 +64,10 @@ static uint8_t ebus_latency_timer = 0x40;	/* 64 PCI cycles */
  */
 static int
 ebus_map(dev_info_t *dip, dev_info_t *rdip, ddi_map_req_t *mp,
-	off_t offset, off_t len, caddr_t *addrp);
+    off_t offset, off_t len, caddr_t *addrp);
 static int
 ebus_ctlops(dev_info_t *dip, dev_info_t *rdip,
-	ddi_ctl_enum_t op, void *arg, void *result);
+    ddi_ctl_enum_t op, void *arg, void *result);
 static int
 ebus_intr_ops(dev_info_t *dip, dev_info_t *rdip, ddi_intr_op_t intr_op,
     ddi_intr_handle_impl_t *hdlp, void *result);
@@ -176,8 +176,8 @@ static struct dev_ops ebus_ops = {
 extern struct mod_ops mod_driverops;
 
 static struct modldrv modldrv = {
-	&mod_driverops, 	/* Type of module.  This one is a driver */
-	"ebus nexus driver", /* Name of module. */
+	&mod_driverops,		/* Type of module.  This one is a driver */
+	"ebus nexus driver",	/* Name of module. */
 	&ebus_ops,		/* driver ops */
 };
 
@@ -449,15 +449,15 @@ ebus_get_cells_prop(ebus_devstate_t *ebus_p)
 /*
  * bus map entry point:
  *
- * 	if map request is for an rnumber
- *		get the corresponding regspec from device node
- * 	build a new regspec in our parent's format
+ *	if map request is for an rnumber
+ *	get the corresponding regspec from device node
+ *	build a new regspec in our parent's format
  *	build a new map_req with the new regspec
  *	call up the tree to complete the mapping
  */
 static int
 ebus_map(dev_info_t *dip, dev_info_t *rdip, ddi_map_req_t *mp,
-	off_t off, off_t len, caddr_t *addrp)
+    off_t off, off_t len, caddr_t *addrp)
 {
 	ebus_devstate_t *ebus_p = get_ebus_soft_state(ddi_get_instance(dip));
 	ebus_regspec_t *ebus_rp, *ebus_regs;
@@ -551,7 +551,8 @@ ebus_map(dev_info_t *dip, dev_info_t *rdip, ddi_map_req_t *mp,
  */
 static int
 ebus_apply_range(ebus_devstate_t *ebus_p, dev_info_t *rdip,
-    ebus_regspec_t *ebus_rp, vregspec_t *rp) {
+    ebus_regspec_t *ebus_rp, vregspec_t *rp)
+{
 	int b, i;
 	int nrange = ebus_p->vrange_cnt;
 	uint32_t addr_offset, rng_caddr_hi, rng_caddr_low, rng_sz;
@@ -654,7 +655,7 @@ ebus_name_child(dev_info_t *child, char *name, int namelen)
  */
 static int
 ebus_ctlops(dev_info_t *dip, dev_info_t *rdip,
-	ddi_ctl_enum_t op, void *arg, void *result)
+    ddi_ctl_enum_t op, void *arg, void *result)
 {
 #ifdef DEBUG
 	ebus_devstate_t *ebus_p = get_ebus_soft_state(ddi_get_instance(dip));
@@ -914,7 +915,7 @@ extern void prom_printf(const char *, ...);
 
 static void
 ebus_debug(uint_t flag, ebus_devstate_t *ebus_p, char *fmt,
-	uintptr_t a1, uintptr_t a2, uintptr_t a3, uintptr_t a4, uintptr_t a5)
+    uintptr_t a1, uintptr_t a2, uintptr_t a3, uintptr_t a4, uintptr_t a5)
 {
 	char *s;
 
@@ -1027,7 +1028,7 @@ ebus_close(dev_t dev, int flags, int otyp, cred_t *credp)
 /* ARGSUSED */
 static int
 ebus_ioctl(dev_t dev, int cmd, intptr_t arg, int mode, cred_t *credp,
-	int *rvalp)
+    int *rvalp)
 {
 	ebus_devstate_t *ebus_p;
 	dev_info_t *self;

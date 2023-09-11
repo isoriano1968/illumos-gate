@@ -2343,7 +2343,7 @@ cpu_async_log_err(void *flt)
 static void
 xc_get_cpu_status(uint64_t arg1, uint64_t arg2 __unused)
 {
-	(void)get_cpu_status(arg1);
+	(void) get_cpu_status(arg1);
 }
 
 /*

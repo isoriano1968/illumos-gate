@@ -38,7 +38,8 @@ nvlist_t *mb_nvl;
 nvlist_t *rsc_nvl;
 
 nvlist_t *
-cmd_fault_add_location(fmd_hdl_t *hdl, nvlist_t *flt, const char *locstr) {
+cmd_fault_add_location(fmd_hdl_t *hdl, nvlist_t *flt, const char *locstr)
+{
 
 	char *t, *s;
 
@@ -86,7 +87,8 @@ static tr_ent_t tr_tbl[] = {
 #define	tr_tbl_n	sizeof (tr_tbl) / sizeof (tr_ent_t)
 
 int
-map_name(const char *p) {
+map_name(const char *p)
+{
 	int i;
 
 	for (i = 0; i < tr_tbl_n; i++) {
@@ -154,7 +156,8 @@ cmd_breakup_components(char *str, char *sep, nvlist_t **hc_nvl)
 }
 
 char *
-cmd_getfru_loc(fmd_hdl_t *hdl, nvlist_t *asru) {
+cmd_getfru_loc(fmd_hdl_t *hdl, nvlist_t *asru)
+{
 
 	char *fru_loc, *cpufru;
 	if (nvlist_lookup_string(asru, FM_FMRI_CPU_CPUFRU, &cpufru) == 0) {
@@ -170,7 +173,8 @@ cmd_getfru_loc(fmd_hdl_t *hdl, nvlist_t *asru) {
 }
 
 nvlist_t *
-cmd_mkboard_fru(fmd_hdl_t *hdl, char *frustr, char *serialstr, char *partstr) {
+cmd_mkboard_fru(fmd_hdl_t *hdl, char *frustr, char *serialstr, char *partstr)
+{
 
 	char *nac, *nac_name;
 	int n, i, len;

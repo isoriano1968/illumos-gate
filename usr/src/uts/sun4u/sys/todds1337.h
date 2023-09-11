@@ -114,7 +114,7 @@ typedef struct ds1337_state {
 	ddi_periodic_t		cycid; /* periodical callback */
 	struct rtc_t		rtc;
 	i2c_transfer_t		*i2c_tp;
-	ddi_softintr_t   	soft_intr_id;
+	ddi_softintr_t		soft_intr_id;
 	uint32_t		progress;
 }ds1337_state_t;
 

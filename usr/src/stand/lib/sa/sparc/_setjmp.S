@@ -70,8 +70,8 @@ _setjmp(jmp_buf_ptr buf_ptr)
 	SS_ONSTACK =	4
 
 	ENTRY(_setjmp)
-	st	%o7, [%o0 + PCVAL] 	! return pc
-	st	%sp, [%o0 + SPVAL] 	! save caller's sp
+	st	%o7, [%o0 + PCVAL]	! return pc
+	st	%sp, [%o0 + SPVAL]	! save caller's sp
 	clr	[%o0 + SIGMASK]		! clear the remainder of the jmp_buf
 	clr	[%o0 + SIGSTACK + SS_SP]
 	clr	[%o0 + SIGSTACK + SS_ONSTACK]
@@ -107,7 +107,7 @@ _longjmp(jmp_buf_ptr buf_ptr, int val)
 	save	%sp, -WINDOWSIZE, %sp
 	!
 	! flush all register windows to the stack.
-	! 
+	!
 	set	nwindows, %g7
 	ld	[%g7], %g7
 	sub	%g7, 2, %g6

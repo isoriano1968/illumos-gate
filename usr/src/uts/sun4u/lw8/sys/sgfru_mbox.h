@@ -46,25 +46,25 @@ extern "C" {
  *
  *	Request (from Solaris to SC):
  *		msg_len = CONTAINER_HDL_SIZE
- *  		msg_buf = pointer to unpadded container_hdl_t
- *  	Response (from SC to Solaris):
+ *		msg_buf = pointer to unpadded container_hdl_t
+ *	Response (from SC to Solaris):
  *		msg_len = FRU_CNT_SIZE
- *  		msg_buf = pointer to unpadded fru_cnt_t
- *  		msg_status = return value, see below.
+ *		msg_buf = pointer to unpadded fru_cnt_t
+ *		msg_status = return value, see below.
  *  Error Notes:
  */
 #define	SGFRU_MBOX_GETNUMSECTIONS		0x7001
 /*
  *	Request (from Solaris to SC):
  *		msg_len = FRU_INFO_SIZE
- *  		msg_buf = pointer to unpadded fru_info_t containing:
+ *		msg_buf = pointer to unpadded fru_info_t containing:
  *		    parent container_hdl_t and max fru_cnt_t (in #sections)
- *  	Response (from SC to Solaris):
+ *	Response (from SC to Solaris):
  *		msg_len = FRU_INFO_SIZE + (SECTION_SIZE * max fru_cnt_t)
  *              msg_buf = caddr_t of msg_len, contains:
  *		    unpadded container_hdl_t and actual fru_cnt_t
  *		    unpadded section_t array
- *  		msg_status = return value, see below.
+ *		msg_status = return value, see below.
  *  Error Notes:
  *  Please return SG_MBOX_STATUS_NO_MEMORY if the buffer is not big enough.
  */
@@ -72,11 +72,11 @@ extern "C" {
 /*
  *	Request (from Solaris to SC):
  *		msg_len = SECTION_HDL_SIZE
- *  		msg_buf = pointer to unpadded section_hdl_t
- *  	Response (from SC to Solaris):
+ *		msg_buf = pointer to unpadded section_hdl_t
+ *	Response (from SC to Solaris):
  *		msg_len = FRU_CNT_SIZE
- *  		msg_buf = pointer to unpadded fru_cnt_t
- *  		msg_status = return value, see below.
+ *		msg_buf = pointer to unpadded fru_cnt_t
+ *		msg_status = return value, see below.
  *  Error Notes:
  */
 #define	SGFRU_MBOX_GETNUMSEGMENTS		0x7003
@@ -85,14 +85,14 @@ extern "C" {
  *
  *	Request (from Solaris to SC):
  *		msg_len = FRU_INFO_SIZE
- *  		msg_buf = pointer to unpadded fru_info_t containing:
+ *		msg_buf = pointer to unpadded fru_info_t containing:
  *		    parent section_hdl_t and max fru_cnt_t (in #segments)
- *  	Response (from SC to Solaris):
+ *	Response (from SC to Solaris):
  *		msg_len = FRU_INFO_SIZE + (SEGMENT_SIZE * max fru_cnt_t)
  *              msg_buf = caddr_t of msg_len, contains:
  *		    unpadded parent section_hdl_t and actual fru_cnt_t
  *		    unpadded segment_t array
- *  		msg_status = return value, see below.
+ *		msg_status = return value, see below.
  *  Error Notes:
  *  Please return SG_MBOX_STATUS_NO_MEMORY if the buffer is not big enough.
  */
@@ -100,15 +100,15 @@ extern "C" {
 /*
  *	Request (from Solaris to SC):
  *		msg_len = SECTION_HDL_SIZE + SEGMENT_SIZE
- *  		msg_buf = caddr_t of msg_len, contains:
+ *		msg_buf = caddr_t of msg_len, contains:
  *		    unpadded parent section_hdl_t
  *		    unpadded segment_t
- *  	Response (from SC to Solaris):
- *  		msg_len = SEGMENT_HDL_SIZE
+ *	Response (from SC to Solaris):
+ *		msg_len = SEGMENT_HDL_SIZE
  *              msg_buf = pointer to:
  *		    segment_hdl_t of newly created segment
  *		    updated parent section_hdl_t
- *  		msg_status = return value, see below.
+ *		msg_status = return value, see below.
  *  Error Notes:
  *  Please return SG_MBOX_STATUS_STALE_OBJECT if the section_hdl_t is stale.
  *  Please return SG_MBOX_STATUS_NO_SEPROM_SPACE if the seprom is out of space
@@ -117,25 +117,25 @@ extern "C" {
 /*
  *	Request (from Solaris to SC):
  *		msg_len = SEGMENT_HDL_SIZE
- *  		msg_buf = pointer to segment_hdl_t of segment to be deleted
- *  	Response (from SC to Solaris):
+ *		msg_buf = pointer to segment_hdl_t of segment to be deleted
+ *	Response (from SC to Solaris):
  *		msg_len = SECTION_HDL_SIZE
- *  		msg_buf = pointer to updated section_hdl_t of deleted segment
- *  		msg_status = return value, see below
+ *		msg_buf = pointer to updated section_hdl_t of deleted segment
+ *		msg_status = return value, see below
  *  Error Notes:
  */
 #define	SGFRU_MBOX_DELETESEGMENT		0x7006
 /*
  *	Request (from Solaris to SC):
  *		msg_len = FRU_INFO_SIZE
- *  		msg_buf = caddr_t of msg_len, contains:
+ *		msg_buf = caddr_t of msg_len, contains:
  *		    unpadded fru_info_t: segment_hdl_t and max count in bytes
- *  	Response (from SC to Solaris):
+ *	Response (from SC to Solaris):
  *		msg_len = FRU_INFO_SIZE
  *              msg_buf = caddr_t of msg_len, contains:
  *		    unpadded fru_info_t: segment_hdl_t and actual count in bytes
  *		    unpadded data of actual fru_cnt_t bytes
- *  		msg_status = return value, see below.
+ *		msg_status = return value, see below.
  *  Error Notes:
  *  Please return SG_MBOX_STATUS_NO_MEMORY if the buffer is not big enough.
  */
@@ -143,41 +143,41 @@ extern "C" {
 /*
  *	Request (from Solaris to SC):
  *		msg_len = FRU_INFO_SIZE + fru_cnt_t bytes
- *  		msg_buf = caddr_t of msg_len, contains:
+ *		msg_buf = caddr_t of msg_len, contains:
  *		    unpadded fru_info_t: segment_hdl_t and count in bytes
  *		    unpadded data of fru_cnt_t bytes
- *  	Response (from SC to Solaris):
+ *	Response (from SC to Solaris):
  *		msg_len = FRU_INFO_SIZE
  *              msg_buf = caddr_t of msg_len, contains:
  *		    unpadded fru_info_t: segment_hdl_t and count in bytes
- *  		msg_status = return value, see below.
+ *		msg_status = return value, see below.
  *  Error Notes:
  *  Please return SG_MBOX_STATUS_ILLEGAL_PARAMETER if it's
- *  	not an opaque segment.
+ *	not an opaque segment.
  */
 #define	SGFRU_MBOX_WRITERAWSEGMENT		0x7008
 /*
  *	Request (from Solaris to SC):
  *		msg_len = SEGMENT_HDL_SIZE
- *  		msg_buf = pointer to unpadded segment_hdl_t
- *  	Response (from SC to Solaris):
+ *		msg_buf = pointer to unpadded segment_hdl_t
+ *	Response (from SC to Solaris):
  *		msg_len = FRU_CNT_SIZE
- *  		msg_buf = pointer to unpadded fru_cnt_t
- *  		msg_status = return value, see below.
+ *		msg_buf = pointer to unpadded fru_cnt_t
+ *		msg_status = return value, see below.
  *  Error Notes:
  */
 #define	SGFRU_MBOX_GETNUMPACKETS		0x7009
 /*
  *	Request (from Solaris to SC):
  *		msg_len = FRU_INFO_SIZE
- *  		msg_buf = pointer to unpadded fru_info_t, containing:
+ *		msg_buf = pointer to unpadded fru_info_t, containing:
  *		    unpadded segment_hdl_t plus max fru_cnt_t in bytes
- *  	Response (from SC to Solaris):
+ *	Response (from SC to Solaris):
  *		msg_len = FRU_INFO_SIZE + (PACKET_SIZE * max fru_cnt_t)
  *              msg_buf = caddr_t of msg_len, contains:
  *		    unpadded parent segment_hdl_t and actual fru_cnt_t
  *		    unpadded packet_t array
- *  		msg_status = return value, see below.
+ *		msg_status = return value, see below.
  *  Error Notes:
  *  Please return SG_MBOX_STATUS_NO_MEMORY if the buffer is not big enough.
  */
@@ -185,16 +185,16 @@ extern "C" {
 /*
  *	Request (from Solaris to SC):
  *		msg_len = FRU_INFO_SIZE + PACKET_SIZE + fru_cnt_t size
- *  		msg_buf = caddr_t of msg_len, contains:
+ *		msg_buf = caddr_t of msg_len, contains:
  *		    unpadded fru_info_t with parent segment_hdl_t and fru_cnt_t
  *		    unpadded packet_t
  *		    unpadded data of size fru_cnt_t (in bytes)
- *  	Response (from SC to Solaris):
- *  		msg_len = SEGMENT_HDL_SIZE + PACKET_HDL_SIZE
+ *	Response (from SC to Solaris):
+ *		msg_len = SEGMENT_HDL_SIZE + PACKET_HDL_SIZE
  *              msg_buf = pointer to:
  *		    packet_hdl_t of newly created packet
  *		    updated parent segment_hdl_t
- *  		msg_status = return value, see below.
+ *		msg_status = return value, see below.
  *  Error Notes:
  *  Please return SG_MBOX_STATUS_NO_SEPROM_SPACE if the seprom is out of space
  */
@@ -202,11 +202,11 @@ extern "C" {
 /*
  *	Request (from Solaris to SC):
  *		msg_len = PACKET_HDL_SIZE
- *  		msg_buf = pointer to packet_hdl_t of packet to be deleted
- *  	Response (from SC to Solaris):
+ *		msg_buf = pointer to packet_hdl_t of packet to be deleted
+ *	Response (from SC to Solaris):
  *		msg_len = SEGMENT_HDL_SIZE
- *  		msg_buf = pointer to updated segment_hdl_t of deleted packet
- *  		msg_status = return value, see below
+ *		msg_buf = pointer to updated segment_hdl_t of deleted packet
+ *		msg_status = return value, see below
  *  Error Notes:
  */
 #define	SGFRU_MBOX_DELETEPACKET			0x700c
@@ -215,12 +215,12 @@ extern "C" {
  *		msg_len = FRU_INFO_SIZE
  *              msg_buf = caddr_t of msg_len, contains:
  *		    unpadded fru_info_t with packet_hdl_t and max fru_cnt_t
- *  	Response (from SC to Solaris):
+ *	Response (from SC to Solaris):
  *		msg_len = FRU_INFO_SIZE + max fru_cnt_t
  *              msg_buf = caddr_t of msg_len, contains:
  *		    unpadded fru_info_t with packet_hdl_t and actual fru_cnt_t
  *		    unpadded data of size fru_cnt_t (in bytes)
- *  		msg_status = return value, see below.
+ *		msg_status = return value, see below.
  *  Error Notes:
  *  Please return SG_MBOX_STATUS_NO_MEMORY if the buffer is not big enough.
  */
@@ -231,12 +231,12 @@ extern "C" {
  *              msg_buf = caddr_t of msg_len, contains:
  *		    unpadded fru_info_t with packet_hdl_t and actual count
  *		    unpadded payload data buf of fru_cnt_t size (in bytes)
- *  	Response (from SC to Solaris):
+ *	Response (from SC to Solaris):
  *		msg_len = FRU_INFO_SIZE
- *  		msg_buf = caddr_t of msg_len, contains:
+ *		msg_buf = caddr_t of msg_len, contains:
  *		    unpadded fru_hdl_t with updated handle
  *		    unpadded data of size fru_cnt_t (in bytes)
- *  		msg_status = return value, see below.
+ *		msg_status = return value, see below.
  *  Error Notes:
  *  Please return SG_MBOX_STATUS_NO_SEPROM_SPACE if the seprom is out of space
  */

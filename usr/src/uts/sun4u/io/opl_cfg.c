@@ -170,8 +170,7 @@ _fini(void)
 }
 
 int
-_info(modinfop)
-struct modinfo *modinfop;
+_info(struct modinfo *modinfop)
 {
 	return (mod_info(&modlinkage, modinfop));
 }
@@ -307,7 +306,7 @@ opl_dump_hwd(opl_probe_t *probe)
 /*ARGSUSED*/
 int
 opl_read_hwd(int board, hwd_header_t **hdrp, hwd_sb_status_t **statp,
-	hwd_domain_info_t **dinfop, hwd_sb_t **sbp)
+    hwd_domain_info_t **dinfop, hwd_sb_t **sbp)
 {
 	static int (*getinfop)(uint32_t, uint8_t, uint32_t, uint32_t *,
 	    void *) = 0;
@@ -452,7 +451,7 @@ opl_init_nodes(dev_info_t *parent, opl_init_func_t init)
 {
 	dev_info_t	*node;
 	char		*name;
-	int 		circ, ret;
+	int		circ, ret;
 	int		len;
 
 	ASSERT(parent != NULL);
@@ -1145,8 +1144,8 @@ opl_probe_memory(opl_probe_t *probe)
 static
 fco_handle_t
 opl_fc_ops_alloc_handle(dev_info_t *parent, dev_info_t *child,
-			void *fcode, size_t fcode_size, char *unit_address,
-			char *my_args)
+    void *fcode, size_t fcode_size, char *unit_address,
+    char *my_args)
 {
 	fco_handle_t	rp;
 	phandle_t	h;
@@ -1901,7 +1900,7 @@ opl_map_phys(dev_info_t *dip, struct regspec *phys_spec,
     caddr_t *addrp, ddi_device_acc_attr_t *accattrp,
     ddi_acc_handle_t *handlep)
 {
-	ddi_map_req_t 	mapreq;
+	ddi_map_req_t	mapreq;
 	ddi_acc_hdl_t	*acc_handlep;
 	int		result;
 	struct regspec	*rspecp;
@@ -2350,7 +2349,7 @@ opl_create_leaf(dev_info_t *node, void *arg, uint_t flags)
 static char *
 opl_get_probe_string(opl_probe_t *probe, int channel, int leaf)
 {
-	char 		*probe_string;
+	char		*probe_string;
 	int		portid;
 
 	probe_string = kmem_zalloc(PROBE_STR_SIZE, KM_SLEEP);
@@ -2516,7 +2515,7 @@ opl_init_leaves(int myboard)
 {
 	dev_info_t	*parent, *node;
 	char		*name;
-	int 		circ, ret;
+	int		circ, ret;
 	int		len, portid, board, channel, leaf;
 	opl_board_cfg_t	*cfg;
 

@@ -48,7 +48,7 @@ extern "C" {
  *	  0  9  8  7  6  5  4  3   2  1    0
  *      ---------------------------------------
  *	| 1 |   LSB ID    | CHIP | CORE | CPU |
- * 	---------------------------------------
+ *	---------------------------------------
  */
 #define	OPL_CPUID_TO_LSB(devid)	((devid >> 5) & OPL_LSBID_MASK)
 #define	OPL_CPU_CHIP(devid)	((devid >> 3) & 0x3)
@@ -66,7 +66,7 @@ extern "C" {
  */
 #define	OPL_PROC_AS(board, chip)					\
 									\
-	((1ULL << 46) | ((uint64_t)board << 40) | (1ULL << 39) | 	\
+	((1ULL << 46) | ((uint64_t)board << 40) | (1ULL << 39) |	\
 		(1ULL << 33) | ((uint64_t)chip << 4))
 
 /*
@@ -76,7 +76,7 @@ extern "C" {
  *	  0   9   8  7  6  5  4   3  2  1  0
  *      -------------------------------------
  *	| 0 | 1 |     LSB ID    |    0      |
- * 	-------------------------------------
+ *	-------------------------------------
  */
 #define	OPL_LSB_TO_PSEUDOMC_PORTID(board)	((1 << 9) | (board << 4))
 
@@ -85,7 +85,7 @@ extern "C" {
  */
 #define	OPL_MC_AS(board)						\
 									\
-	((1ULL << 46) | ((uint64_t)board << 40) | (1ULL << 39) | 	\
+	((1ULL << 46) | ((uint64_t)board << 40) | (1ULL << 39) |	\
 		(1ULL << 33))
 
 /*
@@ -102,7 +102,7 @@ extern "C" {
  *	  0  9  8  7  6  5  4  3   2  1    0
  *      ---------------------------------------
  *	| 0  0 |   LSB ID    | IO CHAN | LEAF |
- * 	---------------------------------------
+ *	---------------------------------------
  */
 #define	OPL_PORTID_MASK			0x7FF
 #define	OPL_IO_PORTID_TO_LSB(portid)	(((portid) >> 4) & OPL_LSBID_MASK)

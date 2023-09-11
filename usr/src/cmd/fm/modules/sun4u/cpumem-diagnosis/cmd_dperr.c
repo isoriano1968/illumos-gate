@@ -214,12 +214,12 @@ cmd_dp_add_suspects(fmd_hdl_t *hdl, cmd_dp_t *dp)
 /*ARGSUSED*/
 cmd_evdisp_t
 cmd_dp_common(fmd_hdl_t *hdl, fmd_event_t *ep, nvlist_t *nvl, const char *class,
-	cmd_errcl_t clcode, uint8_t dperr)
+    cmd_errcl_t clcode, uint8_t dperr)
 {
 	const char	*funcname = "cmd_dp_common()";
 	const char	*uuidp;
 	cmd_dp_t	*dpt, *ept;
-	int 		err, i, fltflg;
+	int		err, i, fltflg;
 	uint16_t	*cpuid_list;
 	uint64_t	*serid_list;
 	uint32_t	ncpuids;

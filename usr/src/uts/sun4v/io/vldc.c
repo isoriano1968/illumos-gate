@@ -146,7 +146,7 @@ static struct dev_ops vldc_ops = {
 extern struct mod_ops mod_driverops;
 
 static struct modldrv md = {
-	&mod_driverops, 			/* Type - it is a driver */
+	&mod_driverops,			/* Type - it is a driver */
 	"sun4v Virtual LDC Driver",		/* Name of the module */
 	&vldc_ops,				/* driver specific ops */
 };
@@ -255,7 +255,7 @@ _fini(void)
 static uint_t
 i_vldc_cb(uint64_t event, caddr_t arg)
 {
-	int 		rv;
+	int		rv;
 	vldc_port_t	*vport = (vldc_port_t *)arg;
 	ldc_status_t	old_status;
 	short		pollevents = 0;
@@ -871,7 +871,7 @@ i_vldc_close_port(vldc_t *vldcp, uint_t portno)
 static int
 vldc_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 {
-	int 	i, instance;
+	int	i, instance;
 	vldc_t	*vldcp;
 
 	switch (cmd) {
@@ -934,7 +934,7 @@ vldc_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 static int
 vldc_detach(dev_info_t *dip, ddi_detach_cmd_t cmd)
 {
-	int 		i, instance;
+	int		i, instance;
 	vldc_t		*vldcp;
 
 	switch (cmd) {
@@ -1330,7 +1330,7 @@ i_vldc_ioctl_write_cookie(vldc_port_t *vport, int vldc_instance, void *arg,
 static int
 i_vldc_ioctl_opt_op(vldc_port_t *vport, vldc_t *vldcp, void *arg, int mode)
 {
-	vldc_opt_op_t 	vldc_cmd;
+	vldc_opt_op_t	vldc_cmd;
 	uint32_t	new_mtu;
 	int		rv = 0;
 

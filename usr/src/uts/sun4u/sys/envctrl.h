@@ -359,7 +359,7 @@ struct envctrl_pcd8584_regs {
 #define	LM75_COMP_MASK_UPPER	0xFF
 
 /*
- * 		CONTROL OF CHIP
+ *              CONTROL OF CHIP
  * PCF8591 Temp sensing control register definitions
  *
  *   7      6     5   4  3   2      1   0
@@ -712,7 +712,7 @@ static short fan_speed[] = {
 #define	ENVCTRL_IOC_SETFSP	(int)(_IOW('p', 84, uchar_t))
 #define	ENVCTRL_IOC_SETDSKLED (int)(_IOW('p', 85, struct envctrl_pcf8574_chip))
 #define	ENVCTRL_IOC_GETDSKLED (int)(_IOR('p', 86, struct envctrl_pcf8574_chip))
-#define	ENVCTRL_IOC_GETMODE 	(int)(_IOR('p', 87, uchar_t))
+#define	ENVCTRL_IOC_GETMODE	(int)(_IOR('p', 87, uchar_t))
 
 #if defined(_KERNEL)
 

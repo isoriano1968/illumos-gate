@@ -40,8 +40,8 @@ extern "C" {
 #define	VLDC_IOCTL		('1' << VLDC_IOCTL_SHIFT)
 
 #define	VLDC_IOCTL_OPT_OP	(VLDC_IOCTL | 0x1)	/* ctrl op */
-#define	VLDC_IOCTL_READ_COOKIE	(VLDC_IOCTL | 0x2)   	/* read cookie */
-#define	VLDC_IOCTL_WRITE_COOKIE	(VLDC_IOCTL | 0x3)   	/* write cookie */
+#define	VLDC_IOCTL_READ_COOKIE	(VLDC_IOCTL | 0x2)	/* read cookie */
+#define	VLDC_IOCTL_WRITE_COOKIE	(VLDC_IOCTL | 0x3)	/* write cookie */
 
 /* supported ctrl operations */
 #define	VLDC_OP_GET		0x1	    /* get specified value */

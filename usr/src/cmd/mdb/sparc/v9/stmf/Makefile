@@ -23,7 +23,7 @@
 # Use is subject to license terms.
 #
 
-MODULE = stmf.so 
+MODULE = stmf.so
 MDBTGT = kvm
 
 MODSRCS = stmf.c

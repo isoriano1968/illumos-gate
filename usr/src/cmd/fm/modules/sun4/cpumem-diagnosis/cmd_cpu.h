@@ -438,7 +438,7 @@ struct cmd_cpu {
 #define	cpu_l3data		cpu_cases.cpuc_l3data
 #define	cpu_l3tag		cpu_cases.cpuc_l3tag
 #define	cpu_fpu			cpu_cases.cpuc_fpu
-#define	cpu_ireg 		cpu_cases.cpuc_ireg
+#define	cpu_ireg		cpu_cases.cpuc_ireg
 #define	cpu_freg		cpu_cases.cpuc_freg
 #define	cpu_mau			cpu_cases.cpuc_mau
 #define	cpu_l2ctl		cpu_cases.cpuc_l2ctl
@@ -705,7 +705,7 @@ extern cmd_evdisp_t cmd_lfu_ce(fmd_hdl_t *, fmd_event_t *, nvlist_t *,
  * Type                                          Fault
  * ---------------------------------------------------------------------
  * Coherency link protocol errors
- * to        Transaction timed out  		fault.cpu.T2plus.lfu-p
+ * to        Transaction timed out		fault.cpu.T2plus.lfu-p
  * frack     Invalid or redundant request ack
  * fsr       Invalid or redundant snoop response
  * fdr       Invalid or redundant data return

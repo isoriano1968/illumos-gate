@@ -55,7 +55,7 @@
 
 /*
  * Bcopy routine used by DR to copy
- * between physical addresses. 
+ * between physical addresses.
  * Borrowed from Starfire DR 2.6.
  */
 #if defined(lint)
@@ -136,7 +136,7 @@ flush_ecache_il(uint64_t physaddr, uint_t size, uint_t linesize)
 void
 stphysio_il(uint64_t physaddr, u_int value)
 {}
- 
+
 /*ARGSUSED*/
 u_int
 ldphysio_il(uint64_t physaddr)
@@ -223,7 +223,7 @@ ldxasi_il(uint64_t physaddr, uint_t asi)
 void
 sbdp_exec_script_il(void *sp)
 {}
- 
+
 #else /* lint */
 
 	ENTRY_NP(sbdp_exec_script_il)
@@ -264,7 +264,7 @@ sbdp_exec_script_il(void *sp)
 4:
 	b	1b			/* caching done */
 	nop
-5:	
+5:
 	retl
 	wrpr	%g0, %o4, %pstate	/* restore the PSTATE */
 	SET_SIZE(sbdp_exec_script_il)

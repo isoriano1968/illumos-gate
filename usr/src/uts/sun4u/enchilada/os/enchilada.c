@@ -63,7 +63,7 @@ static ddi_acc_handle_t isa_handle;		/* handle for isa pci space */
 void
 load_platform_drivers(void)
 {
-	dev_info_t 		*dip;		/* dip of the isa driver */
+	dev_info_t		*dip;		/* dip of the isa driver */
 
 	/*
 	 * Install power driver which handles the power button.

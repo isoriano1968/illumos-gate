@@ -112,9 +112,9 @@ static struct dev_ops grbeep_ops = {
 
 
 static struct modldrv modldrv = {
-	&mod_driverops, 		/* This one is a driver */
-	"SMBUS Beep Driver", 		/* Name of the module. */
-	&grbeep_ops,			/* Driver ops */
+	&mod_driverops,		/* This one is a driver */
+	"SMBUS Beep Driver",	/* Name of the module. */
+	&grbeep_ops,		/* Driver ops */
 };
 
 
@@ -285,7 +285,7 @@ grbeep_detach(dev_info_t *dip, ddi_detach_cmd_t cmd)
 /* ARGSUSED */
 static int
 grbeep_info(dev_info_t *dip, ddi_info_cmd_t infocmd,
-		void *arg, void **result)
+    void *arg, void **result)
 {
 	dev_t dev;
 	grbeep_state_t  *grbeeptr;
@@ -325,7 +325,7 @@ grbeep_info(dev_info_t *dip, ddi_info_cmd_t infocmd,
 
 /*
  * grbeep_freq() :
- * 	Set beep frequency
+ * Set beep frequency
  */
 static void
 grbeep_freq(void *arg, int freq)
@@ -384,7 +384,7 @@ grbeep_on(void *arg)
 
 /*
  * grbeep_off() :
- * 	Turn the beeper off
+ * Turn the beeper off
  */
 static void
 grbeep_off(void *arg)

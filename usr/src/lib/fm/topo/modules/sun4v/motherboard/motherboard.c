@@ -355,7 +355,7 @@ mb_tnode_create(topo_mod_t *mod, tnode_t *parent,
 /*ARGSUSED*/
 static tnode_t *
 mb_declare(tnode_t *parent, const char *name, topo_instance_t i,
-	void *priv, topo_mod_t *mp)
+    void *priv, topo_mod_t *mp)
 {
 	tnode_t *ntn;
 	nvlist_t *fmri;
@@ -387,7 +387,7 @@ mb_declare(tnode_t *parent, const char *name, topo_instance_t i,
 /*ARGSUSED*/
 static int
 mb_enum(topo_mod_t *mod, tnode_t *pn, const char *name,
-	topo_instance_t min, topo_instance_t max, void *arg, void *notused)
+    topo_instance_t min, topo_instance_t max, void *arg, void *notused)
 {
 	tnode_t *mbn;
 

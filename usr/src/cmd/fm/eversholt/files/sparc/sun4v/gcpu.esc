@@ -35,7 +35,7 @@
  */
 
 #define DIAGNOSE_ERPT (payloadprop_defined("diagnose") && \
-	payloadprop("diagnose") != 0x0)  
+	payloadprop("diagnose") != 0x0)
 
 #define SET_SERDT (!payloadprop_defined("serd_t") || \
 	setserdt(payloadprop("serd_t")))
@@ -46,7 +46,7 @@
 #define	SET_RATIO	\
 	((payloadprop_defined("filter_ratio") && \
 	payloadprop("filter_ratio") != 0x0) ? \
-	(setserdincrement(payloadprop("filter_ratio"))) : 1)	
+	(setserdincrement(payloadprop("filter_ratio"))) : 1)
 
 /*
  * The ereport and fault events are declared at multiple levels:
@@ -69,7 +69,7 @@
  * - the 'serd_n' and 'serd_t' payload members in the
  * incoming ereport
  * - the built-in default values
- * 
+ *
  * The increment rate of the SERD engines can also be
  * controlled via the ereport payload using the 'filter_ratio'
  * payload member. N in incremented by the value of
@@ -120,12 +120,12 @@ ERPT_EVENT(strand, gstrand-uc);
 
 /*
  * Propagations for CPU UE errors
- * A fault is produced immediately for a CPU UE errors. 
+ * A fault is produced immediately for a CPU UE errors.
  */
 #define FLT_CPU_UE(level, erptleaf, fltleaf)				\
 	event fault.cpu.generic-sparc.fltleaf@level;			\
 									\
-	prop fault.cpu.generic-sparc.fltleaf@level 			\
+	prop fault.cpu.generic-sparc.fltleaf@level			\
 	    { DIAGNOSE_ERPT } (0)->					\
 	    ereport.cpu.generic-sparc.erptleaf@level;			\
 									\
@@ -173,7 +173,7 @@ FLT_CPU_UE(strand, gstrand-uc, strand-uc);
 	event fault.cpu.generic-sparc.fltleaf@level,			\
 	    retire=0;							\
 									\
-	prop fault.cpu.generic-sparc.fltleaf@level 			\
+	prop fault.cpu.generic-sparc.fltleaf@level			\
 	    { DIAGNOSE_ERPT } (0)->					\
 	    ereport.cpu.generic-sparc.erptleaf@level;			\
 									\

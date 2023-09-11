@@ -810,8 +810,8 @@ i_cpr_save_to_storage(void)
  * It's assumed that those segments are the only areas that can be
  * contaminated by memory allocations during statefile dumping.
  * The space allocated here contains:
- * 	A list of descriptors describing the saved sensitive pages.
- * 	The storage area for saving the compressed sensitive kernel pages.
+ * A list of descriptors describing the saved sensitive pages.
+ * The storage area for saving the compressed sensitive kernel pages.
  * Since storage pages are allocated from segkmem, they need to be
  * excluded when saving.
  */

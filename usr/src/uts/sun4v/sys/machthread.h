@@ -68,7 +68,7 @@ extern "C" {
  * Used when coming in from a user trap - cannot use THREAD_REG.
  * Args are destination register and one scratch register.
  */
-#define	CPU_ADDR(reg, scr) 		\
+#define	CPU_ADDR(reg, scr)		\
 	.global	cpu;			\
 	CPU_INDEX(scr, reg);		\
 	sll	scr, CPTRSHIFT, scr;	\

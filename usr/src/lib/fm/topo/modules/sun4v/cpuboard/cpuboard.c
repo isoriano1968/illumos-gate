@@ -308,7 +308,7 @@ cpuboard_fru_set(topo_mod_t *mp, tnode_t *tn)
 
 static int
 cpuboard_label_set(topo_mod_t *mod, tnode_t *parent, tnode_t *node,
-	topo_instance_t n)
+    topo_instance_t n)
 {
 	char *label = NULL;
 	char *plabel = NULL;
@@ -341,7 +341,7 @@ cpuboard_label_set(topo_mod_t *mod, tnode_t *parent, tnode_t *node,
 /*ARGSUSED*/
 static tnode_t *
 cpuboard_declare(tnode_t *parent, const char *name, topo_instance_t i,
-	void *priv, topo_mod_t *mod, cpuboard_contents_t *cpubc)
+    void *priv, topo_mod_t *mod, cpuboard_contents_t *cpubc)
 {
 	tnode_t *ntn;
 	nvlist_t *fmri = NULL;
@@ -455,7 +455,7 @@ cpuboard_free_pri_info(topo_mod_t *mod, cpuboard_contents_t cpuboard_list[],
 /*ARGSUSED*/
 static int
 cpuboard_enum(topo_mod_t *mod, tnode_t *parent, const char *name,
-	topo_instance_t min, topo_instance_t max, void *arg, void *notused)
+    topo_instance_t min, topo_instance_t max, void *arg, void *notused)
 {
 	tnode_t *cpuboardn;
 	topo_instance_t i = 0;

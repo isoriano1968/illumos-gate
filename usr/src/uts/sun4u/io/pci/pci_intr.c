@@ -71,14 +71,14 @@ uint_t ino_to_pil[] = {
 
 	/* pil */		/* ino */
 
-	0, 0, 0, 0,  		/* 0x00 - 0x03: bus A slot 0 int#A, B, C, D */
+	0, 0, 0, 0,		/* 0x00 - 0x03: bus A slot 0 int#A, B, C, D */
 	0, 0, 0, 0,		/* 0x04 - 0x07: bus A slot 1 int#A, B, C, D */
-	0, 0, 0, 0,  		/* 0x08 - 0x0B: unused */
+	0, 0, 0, 0,		/* 0x08 - 0x0B: unused */
 	0, 0, 0, 0,		/* 0x0C - 0x0F: unused */
 
-	0, 0, 0, 0,  		/* 0x10 - 0x13: bus B slot 0 int#A, B, C, D */
+	0, 0, 0, 0,		/* 0x10 - 0x13: bus B slot 0 int#A, B, C, D */
 	0, 0, 0, 0,		/* 0x14 - 0x17: bus B slot 1 int#A, B, C, D */
-	0, 0, 0, 0,  		/* 0x18 - 0x1B: bus B slot 2 int#A, B, C, D */
+	0, 0, 0, 0,		/* 0x18 - 0x1B: bus B slot 2 int#A, B, C, D */
 	4, 0, 0, 0,		/* 0x1C - 0x1F: bus B slot 3 int#A, B, C, D */
 
 	4,			/* 0x20: SCSI */
@@ -217,7 +217,8 @@ map_pcidev_cfg_reg(dev_info_t *dip, dev_info_t *rdip, ddi_acc_handle_t *hdl_p)
  * on this ino is blocked by not idling the interrupt state machine.
  */
 static int
-pci_spurintr(ib_ino_pil_t *ipil_p) {
+pci_spurintr(ib_ino_pil_t *ipil_p)
+{
 	ib_ino_info_t	*ino_p = ipil_p->ipil_ino_p;
 	ih_t		*ih_p = ipil_p->ipil_ih_start;
 	pci_t		*pci_p = ino_p->ino_ib_p->ib_pci_p;

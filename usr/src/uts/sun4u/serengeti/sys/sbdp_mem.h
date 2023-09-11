@@ -167,9 +167,9 @@ typedef struct {
 } sbdp_rename_script_t;
 
 typedef struct {
-	sbdp_bd_t	*s_bdp;	/* pointer to src bd info */
-	sbdp_bd_t	*t_bdp;	/* pointer to tgt bd info */
-	sbdp_rename_script_t *script; 	/* points to the actual script */
+	sbdp_bd_t	*s_bdp;		/* pointer to src bd info */
+	sbdp_bd_t	*t_bdp;		/* pointer to tgt bd info */
+	sbdp_rename_script_t *script;	/* points to the actual script */
 	uint64_t	ret;
 	sbdp_mc_idle_script_t *busy_mc;
 } sbdp_cr_handle_t;

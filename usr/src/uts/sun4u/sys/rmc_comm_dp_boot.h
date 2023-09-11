@@ -41,7 +41,7 @@ extern "C" {
 #define	BP_OBP_MACADDR		0xC5
 #define	BP_OBP_BOOTMODE		0xC6
 #define	BP_OBP_HOST_MACADDR	0xC7
-#define	BP_OBP_SOFT_GPIO 	0xC8
+#define	BP_OBP_SOFT_GPIO	0xC8
 
 #define	BP_RSC_TESTACK		0xD0
 #define	BP_RSC_DIAG		0xD1

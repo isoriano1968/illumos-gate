@@ -936,7 +936,8 @@ clock_freq:
 			log_printf("%-10s", no_prop_value);
 			goto compatible;
 		}
-		status = picl_get_propval(proph, unsigned_int_value, propinfo.size);
+		status = picl_get_propval(proph, unsigned_int_value,
+		    propinfo.size);
 		if (status != PICL_SUCCESS) {
 			log_printf("%-10s", no_prop_value);
 		} else {

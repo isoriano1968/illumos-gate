@@ -24,7 +24,7 @@
 # Use is subject to license terms.
 #
 
-CLASS = common 
+CLASS = common
 DTDFILE = topology.dtd.1
 TOPOFILE = xfp-hc-topology.xml
 SRCDIR = ../sparc

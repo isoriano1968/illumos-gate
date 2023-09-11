@@ -44,7 +44,8 @@ cpu_free(void *data, size_t size)
 }
 
 md_proc_t *
-cpu_find_proc(md_info_t *chip, uint32_t procid) {
+cpu_find_proc(md_info_t *chip, uint32_t procid)
+{
 	int i;
 	md_proc_t *procp;
 
@@ -59,7 +60,8 @@ cpu_find_proc(md_info_t *chip, uint32_t procid) {
 }
 
 md_cpumap_t *
-cpu_find_cpumap(md_info_t *chip, uint32_t cpuid) {
+cpu_find_cpumap(md_info_t *chip, uint32_t cpuid)
+{
 	int i;
 	md_cpumap_t *mcmp;
 

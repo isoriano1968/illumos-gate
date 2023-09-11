@@ -490,7 +490,7 @@ mc_close(dev_t devp, int flag, int otyp, cred_t *credp)
 /* ARGSUSED */
 static int
 mc_ioctl(dev_t dev, int cmd, intptr_t arg, int flag, cred_t *cred_p,
-	int *rval_p)
+    int *rval_p)
 {
 	size_t	size;
 	struct mc_memconf mcmconf;

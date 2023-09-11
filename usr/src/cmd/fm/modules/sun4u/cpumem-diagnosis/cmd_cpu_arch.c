@@ -196,13 +196,15 @@ cmd_cpu_getfrustr(fmd_hdl_t *hdl, cmd_cpu_t *cp)
 
 /*ARGSUSED*/
 char *
-cmd_cpu_getpartstr(fmd_hdl_t *hdl, cmd_cpu_t *cp) {
+cmd_cpu_getpartstr(fmd_hdl_t *hdl, cmd_cpu_t *cp)
+{
 	return (NULL);
 }
 
 /*ARGSUSED*/
 char *
-cmd_cpu_getserialstr(fmd_hdl_t *hdl, cmd_cpu_t *cp) {
+cmd_cpu_getserialstr(fmd_hdl_t *hdl, cmd_cpu_t *cp)
+{
 	return (NULL);
 }
 

@@ -62,7 +62,7 @@ extern "C" {
 #define	ENVCTRL_UE250_FSP_OFF		0x4F
 
 #define	ENVCTRL_UE250_MAX_DISKS		6
-#define	ENVCTRL_UE250_MAXPS 		0x02	/* 0 based array */
+#define	ENVCTRL_UE250_MAXPS		0x02	/* 0 based array */
 
 #define	ENVCTRL_UE250_PDB_TEMP_DEV	0x94
 #define	ENVCTRL_UE250_CPU_TEMP_DEV	0x9E

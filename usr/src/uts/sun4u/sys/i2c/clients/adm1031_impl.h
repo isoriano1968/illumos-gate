@@ -53,7 +53,7 @@ extern "C" {
 #define	ADM1031_STAT_2_REG			0x03
 #define	ADM1031_DEVICE_ID_REG			0x3D
 #define	ADM1031_CONFIG_REG_1			0x00
-#define	ADM1031_CONFIG_REG_2 			0x01
+#define	ADM1031_CONFIG_REG_2			0x01
 #define	ADM1031_FAN_CHAR_1_REG			0x20
 #define	ADM1031_FAN_CHAR_2_REG			0x21
 #define	ADM1031_FAN_SPEED_CONFIG_REG		0x22
@@ -107,7 +107,7 @@ extern "C" {
 #define	ADM1031_CHECK_FAN_CMD(x)	\
 	(((x >= 6) && (x < 11)) || ((x >= 36) && (x < 41)))
 
-#define	ADM1031_CHECK_TEMPERATURE_CMD(x) 	\
+#define	ADM1031_CHECK_TEMPERATURE_CMD(x)	\
 	(((x >= 11) && (x < 27)) || ((x >= 41) && (x < 57)))
 
 #define	ADM1031_CHECK_CONTROL_CMD(x)	\

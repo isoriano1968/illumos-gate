@@ -134,11 +134,11 @@ static struct page **nfpp;
  * There are several reasons why creating too many non-fault segments
  * could cause problems.
  *
- * 	First, excessive allocation of kernel resources for the seg
+ *	First, excessive allocation of kernel resources for the seg
  *	structures and the HAT data to map the zero pages.
  *
- * 	Secondly, creating nofault segments actually uses up user virtual
- * 	address space. This makes it unavailable for subsequent mmap(0, ...)
+ *	Secondly, creating nofault segments actually uses up user virtual
+ *	address space. This makes it unavailable for subsequent mmap(0, ...)
  *	calls which use as_gap() to find empty va regions.  Creation of too
  *	many nofault segments could thus interfere with the ability of the
  *	runtime linker to load a shared object.

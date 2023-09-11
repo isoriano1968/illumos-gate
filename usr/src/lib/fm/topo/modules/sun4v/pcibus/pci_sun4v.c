@@ -230,7 +230,7 @@ platform_pci_fru_cb(topo_mod_t *mod, tnode_t *node, void *private)
 	_pci_fru_t	*walkdata = (_pci_fru_t *)private;
 	nvlist_t	*fmri;
 	char		*location;
-	int 		result, rc;
+	int		result, rc;
 
 	if (node == walkdata->node) {
 		/* This is the starting node.  Do not check the location */

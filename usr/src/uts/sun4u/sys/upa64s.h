@@ -45,7 +45,7 @@ typedef enum { INO_FREE = 0, INO_INUSE } ino_state_t;
  * INO related macros:
  */
 #define	UPA64S_MAKE_MONDO(id, ino)	((id) << 6 | (ino))
-#define	UPA64S_MONDO_TO_INO(mondo) 	((mondo) & 0x3f)
+#define	UPA64S_MONDO_TO_INO(mondo)	((mondo) & 0x3f)
 
 /*
  * Interrupt Mapping Registers

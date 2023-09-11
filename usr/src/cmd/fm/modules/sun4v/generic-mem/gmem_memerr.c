@@ -42,7 +42,7 @@
 #include <sys/async.h>
 #include <sys/errclassify.h>
 
-#define	OFFBIT  	0xFFFFFFFFFFFC07FFULL
+#define	OFFBIT		0xFFFFFFFFFFFC07FFULL
 #define	BIT28_32	0x00000001F0000000ULL
 #define	BIT13_17	0x000000000003E000ULL
 #define	BIT18_19	0x00000000000C0000ULL
@@ -133,7 +133,8 @@ find_fault_fru(topo_hdl_t *thp, tnode_t *node, void *arg)
 }
 
 nvlist_t *
-gmem_find_fault_fru(fmd_hdl_t *hdl, nvlist_t *nvl) {
+gmem_find_fault_fru(fmd_hdl_t *hdl, nvlist_t *nvl)
+{
 	topo_hdl_t *thp;
 	topo_walk_t *twp;
 	int err;

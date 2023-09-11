@@ -75,8 +75,8 @@ membar_producer(void)
 #else
 
 	/*
-	 * US I has a problem with membars in the delay slot.  We don't care 
-	 * about performance here, so for safety's sake, we'll assume that all 
+	 * US I has a problem with membars in the delay slot.  We don't care
+	 * about performance here, so for safety's sake, we'll assume that all
 	 * the world's an US I.
 	 */
 	ENTRY(membar_producer)

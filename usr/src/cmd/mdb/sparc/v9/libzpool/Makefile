@@ -47,7 +47,7 @@ CPPFLAGS += -I../../../../../lib/libzpool/common \
 
 CSTD=	$(CSTD_GNU99)
 
-CERRWARN 	+= -_gcc=-Wno-type-limits
+CERRWARN	+= -_gcc=-Wno-type-limits
 
 dmod/%.o: $(GENUNIX_DIR)/%.c
 	$(COMPILE.c) -o $@ $<

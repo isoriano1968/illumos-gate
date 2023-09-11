@@ -154,7 +154,7 @@ ldom_pri_fini(void)
 
 static ssize_t
 ldom_pri_get(uint8_t wait, uint64_t *token, uint64_t **buf,
-		void *(*allocp)(size_t), void (*freep)(void *, size_t))
+    void *(*allocp)(size_t), void (*freep)(void *, size_t))
 {
 	assert(ldom_pri_ref_cnt > 0);
 
@@ -761,7 +761,7 @@ ldom_unregister_event(ldom_hdl_t *lhp)
  */
 ldom_hdl_t *
 ldom_init(void *(*allocp)(size_t size),
-	void (*freep)(void *addr, size_t size))
+    void (*freep)(void *addr, size_t size))
 {
 	struct ldom_hdl *lhp;
 

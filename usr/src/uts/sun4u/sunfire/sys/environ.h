@@ -40,7 +40,7 @@ extern "C" {
  * OBP supplies us with 1 register set for the environment node
  *
  * It is:
- * 	0	Temperature register
+ *	0	Temperature register
  */
 
 #if defined(_KERNEL)

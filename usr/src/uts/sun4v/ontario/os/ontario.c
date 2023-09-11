@@ -69,8 +69,8 @@ plat_tod_fault(enum tod_fault_type tod_bad)
 void
 load_platform_drivers(void)
 {
-	dev_info_t 		*dip;		/* dip of the isa driver */
-	pnode_t 		nodeid;
+	dev_info_t		*dip;		/* dip of the isa driver */
+	pnode_t		nodeid;
 
 	/*
 	 * Install ISA driver. This is required for the southbridge IDE

@@ -142,7 +142,7 @@ extern struct mod_ops mod_driverops;
 static char vcc_ident[] = "sun4v Virtual Console Concentrator Driver";
 
 static struct modldrv md = {
-	&mod_driverops, 	/* Type - it is a driver */
+	&mod_driverops,	/* Type - it is a driver */
 	vcc_ident,		/* Name of the module */
 	&vcc_ops,		/* driver specfic opts */
 };
@@ -409,7 +409,7 @@ i_vcc_set_port_status(vcc_port_t *vport, kcondvar_t *cv, uint32_t status)
 static int
 i_vcc_ldc_init(vcc_t *vccp, vcc_port_t *vport)
 {
-	ldc_attr_t 	attr;
+	ldc_attr_t	attr;
 	int		rv = EIO;
 
 	ASSERT(mutex_owned(&vport->lock));
@@ -466,7 +466,7 @@ i_vcc_ldc_init(vcc_t *vccp, vcc_port_t *vport)
 static void
 i_vcc_ldc_fini(vcc_port_t *vport)
 {
-	int 		rv = EIO;
+	int		rv = EIO;
 	vcc_msg_t	buf;
 	size_t		sz;
 	int		retry = 0;
@@ -560,8 +560,8 @@ i_vcc_read_ldc(vcc_port_t *vport, char *data_buf, size_t *sz)
 	int		rv;
 	size_t		size;
 	size_t		space_left = *sz;
-	vcc_msg_t  	buf;
-	int 		i;
+	vcc_msg_t	buf;
+	int		i;
 
 
 
@@ -677,8 +677,8 @@ vcc_ldc_cb(uint64_t event, caddr_t arg)
 static int
 i_vcc_config_port(vcc_t *vccp, uint_t portno, uint64_t ldc_id)
 {
-	int 		rv = EIO;
-	vcc_port_t 	*vport;
+	int		rv = EIO;
+	vcc_port_t	*vport;
 
 	if ((portno >= VCC_MAX_PORTS) || (portno == VCC_CONTROL_PORT)) {
 		cmn_err(CE_CONT, "i_vcc_config_port: invalid port number %d\n",
@@ -731,10 +731,10 @@ static int
 i_vcc_add_port(vcc_t *vccp, char *group_name, uint64_t tcp_port,
     uint_t portno, char *domain_name)
 {
-	int 		instance;
+	int		instance;
 	int		rv = MDEG_FAILURE;
-	minor_t 	minor;
-	vcc_port_t 	*vport;
+	minor_t	minor;
+	vcc_port_t	*vport;
 	uint_t		minor_idx;
 	char		name[MAXPATHLEN];
 
@@ -931,10 +931,10 @@ i_vcc_cleanup_port_table(vcc_t *vccp)
 static int
 vcc_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 {
-	int 		i, instance, inst;
-	int 		rv = DDI_FAILURE;
+	int		i, instance, inst;
+	int		rv = DDI_FAILURE;
 	vcc_t		*vccp;
-	minor_t 	minor;
+	minor_t	minor;
 	vcc_port_t	*vport;
 
 	switch (cmd) {
@@ -1995,7 +1995,7 @@ vcc_read(dev_t dev, struct uio *uiop, cred_t *credp)
 	vcc_t	    *vccp;
 	vcc_port_t  *vport;
 	int	    rv = EIO;	/* by default fail ! */
-	char 		*buf;
+	char		*buf;
 	size_t		uio_size;
 	size_t		size;
 
@@ -2376,7 +2376,7 @@ static int
 vcc_mdeg_cb(void *cb_argp, mdeg_result_t *resp)
 {
 	int	idx;
-	vcc_t 	*vccp;
+	vcc_t	*vccp;
 	int	rv;
 
 	vccp = (vcc_t *)cb_argp;

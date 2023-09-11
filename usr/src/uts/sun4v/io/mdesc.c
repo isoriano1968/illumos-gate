@@ -58,7 +58,7 @@
 
 static void		*mdesc_state_head;
 static vmem_t		*mdesc_minor;
-static uint16_t 	mdesc_max_opens = 256;
+static uint16_t	mdesc_max_opens = 256;
 static uint16_t		mdesc_opens = 0;
 static int		mdesc_attached = 0;
 static dev_info_t	*mdesc_devi;

@@ -175,7 +175,7 @@ sbbc_mbox_init()
 	 */
 	for (i = 0; i < SBBC_MBOX_MSG_TYPES; i++) {
 		mutex_init(&master_mbox->mbox_wait_lock[i],
-			NULL, MUTEX_DEFAULT, NULL);
+		    NULL, MUTEX_DEFAULT, NULL);
 		master_mbox->mbox_wait_list[i] = NULL;
 	}
 
@@ -189,19 +189,19 @@ sbbc_mbox_init()
 	master_mbox->mbox_in = kmem_zalloc(sizeof (sbbc_mbox_t), KM_NOSLEEP);
 	if (master_mbox->mbox_in == NULL) {
 		cmn_err(CE_PANIC,
-			"Can't allocate memory for inbound mailbox\n");
+		    "Can't allocate memory for inbound mailbox\n");
 	}
 
 	master_mbox->mbox_out = kmem_zalloc(sizeof (sbbc_mbox_t), KM_NOSLEEP);
 	if (master_mbox->mbox_out == NULL) {
 		cmn_err(CE_PANIC,
-			"Can't allocate memory for outbound mailbox\n");
+		    "Can't allocate memory for outbound mailbox\n");
 	}
 
 	mutex_init(&master_mbox->mbox_in->mb_lock, NULL,
-		MUTEX_DEFAULT, NULL);
+	    MUTEX_DEFAULT, NULL);
 	mutex_init(&master_mbox->mbox_out->mb_lock, NULL,
-		MUTEX_DEFAULT, NULL);
+	    MUTEX_DEFAULT, NULL);
 
 	/*
 	 * Add PANIC_SHUTDOWN Event mutex
@@ -218,7 +218,7 @@ sbbc_mbox_init()
 	 * NOT USED YET
 	 */
 	master_mbox->mbox_in->mb_type =
-		master_mbox->mbox_out->mb_type = 0;
+	    master_mbox->mbox_out->mb_type = 0;
 
 	cv_init(&outbox_queue, NULL, CV_DEFAULT, NULL);
 	mutex_init(&outbox_queue_lock, NULL, MUTEX_DEFAULT, NULL);
@@ -261,22 +261,22 @@ sbbc_mbox_fini()
 		ddi_remove_softintr(panic_softintr_id);
 
 		err = sbbc_mbox_unreg_intr(MBOX_EVENT_PANIC_SHUTDOWN,
-			sbbc_panic_shutdown_handler);
+		    sbbc_panic_shutdown_handler);
 		if (err != 0) {
 			cmn_err(CE_WARN, "Failed to unreg Panic Shutdown "
-				"handler. Err=%d", err);
+			    "handler. Err=%d", err);
 		}
 	}
 	if (dp_softintr_id != 0) {
 		ddi_remove_softintr(dp_softintr_id);
 
 		err = sbbc_mbox_unreg_intr(MBOX_EVENT_DP_ERROR,
-			sbbc_datapath_error_msg_handler);
+		    sbbc_datapath_error_msg_handler);
 		err |= sbbc_mbox_unreg_intr(MBOX_EVENT_DP_FAULT,
-			sbbc_datapath_fault_msg_handler);
+		    sbbc_datapath_fault_msg_handler);
 		if (err != 0) {
 			cmn_err(CE_WARN, "Failed to unreg Datapath Error "
-				"handler. Err=%d", err);
+			    "handler. Err=%d", err);
 		}
 	}
 
@@ -333,21 +333,21 @@ sbbc_mbox_switch(sbbc_softstate_t *softsp)
 	for (msg_type = 0; msg_type < SBBC_MBOX_MSG_TYPES; msg_type++) {
 
 		for (intr = master_mbox->intrs[msg_type]; intr != NULL;
-			intr = intr->sbbc_intr_next) {
+		    intr = intr->sbbc_intr_next) {
 
 			if (intr->sbbc_intr_id) {
 				ddi_remove_softintr(intr->sbbc_intr_id);
 
 				if (ddi_add_softintr(softsp->dip,
-					DDI_SOFTINT_HIGH,
-					&intr->sbbc_intr_id, NULL, NULL,
-					intr->sbbc_handler, intr->sbbc_arg)
-					!= DDI_SUCCESS) {
+				    DDI_SOFTINT_HIGH,
+				    &intr->sbbc_intr_id, NULL, NULL,
+				    intr->sbbc_handler, intr->sbbc_arg)
+				    != DDI_SUCCESS) {
 
 					cmn_err(CE_WARN,
-						"Can't add SBBC mailbox "
-						"softint for msg_type %x\n",
-							msg_type);
+					    "Can't add SBBC mailbox "
+					    "softint for msg_type %x\n",
+					    msg_type);
 					rc = ENXIO;
 				}
 			}
@@ -361,14 +361,14 @@ sbbc_mbox_switch(sbbc_softstate_t *softsp)
 		ddi_remove_softintr(panic_softintr_id);
 
 		err = ddi_add_softintr(softsp->dip, DDI_SOFTINT_LOW,
-			&panic_softintr_id, NULL, NULL,
-			sbbc_do_fast_shutdown, NULL);
+		    &panic_softintr_id, NULL, NULL,
+		    sbbc_do_fast_shutdown, NULL);
 
 		if (err != DDI_SUCCESS) {
 			cmn_err(CE_WARN, "Failed to register Panic "
-				"Shutdown handler. Err=%d", err);
+			    "Shutdown handler. Err=%d", err);
 			(void) sbbc_mbox_unreg_intr(MBOX_EVENT_PANIC_SHUTDOWN,
-				sbbc_panic_shutdown_handler);
+			    sbbc_panic_shutdown_handler);
 			rc = ENXIO;
 		}
 
@@ -380,16 +380,16 @@ sbbc_mbox_switch(sbbc_softstate_t *softsp)
 		ddi_remove_softintr(dp_softintr_id);
 
 		err = ddi_add_softintr(softsp->dip, DDI_SOFTINT_LOW,
-			&dp_softintr_id, NULL, NULL,
-			sbbc_dp_trans_event, NULL);
+		    &dp_softintr_id, NULL, NULL,
+		    sbbc_dp_trans_event, NULL);
 
 		if (err != DDI_SUCCESS) {
 			cmn_err(CE_WARN, "Failed to register Datapath "
-				"Error Event handler. Err=%d", err);
+			    "Error Event handler. Err=%d", err);
 			(void) sbbc_mbox_unreg_intr(MBOX_EVENT_DP_ERROR,
-				sbbc_datapath_error_msg_handler);
+			    sbbc_datapath_error_msg_handler);
 			(void) sbbc_mbox_unreg_intr(MBOX_EVENT_DP_FAULT,
-				sbbc_datapath_fault_msg_handler);
+			    sbbc_datapath_fault_msg_handler);
 			rc = ENXIO;
 		}
 
@@ -440,8 +440,8 @@ sbbc_mbox_create(sbbc_softstate_t *softsp)
 	 */
 	for (i = 0; i < MBOX_INTRS; i++) {
 		sbbc_intrfunc_t		intr_handler;
-		uint_t 			*state;
-		kmutex_t 		*lock;
+		uint_t			*state;
+		kmutex_t		*lock;
 		uint32_t		intr_num;
 
 		switch (i) {
@@ -465,10 +465,10 @@ sbbc_mbox_create(sbbc_softstate_t *softsp)
 		state = (uint_t *)&master_mbox->intr_state[i].mbox_intr_state;
 		lock = &master_mbox->intr_state[i].mbox_intr_lock;
 		if (iosram_reg_intr(intr_num, intr_handler, NULL,
-			state, lock)) {
+		    state, lock)) {
 
 			cmn_err(CE_WARN,
-				"Can't register Mailbox interrupts \n");
+			    "Can't register Mailbox interrupts \n");
 		}
 	}
 
@@ -479,20 +479,20 @@ sbbc_mbox_create(sbbc_softstate_t *softsp)
 	panic_payload_msg.msg_len = sizeof (panic_payload);
 
 	err = ddi_add_softintr(softsp->dip, DDI_SOFTINT_LOW, &panic_softintr_id,
-		NULL, NULL, sbbc_do_fast_shutdown, NULL);
+	    NULL, NULL, sbbc_do_fast_shutdown, NULL);
 
 	if (err == DDI_SUCCESS) {
 		err = sbbc_mbox_reg_intr(MBOX_EVENT_PANIC_SHUTDOWN,
-			sbbc_panic_shutdown_handler, &panic_payload_msg,
-			NULL, &panic_hdlr_lock);
+		    sbbc_panic_shutdown_handler, &panic_payload_msg,
+		    NULL, &panic_hdlr_lock);
 		if (err != 0) {
 			cmn_err(CE_WARN, "Failed to register Panic "
-				"Shutdown handler. Err=%d", err);
+			    "Shutdown handler. Err=%d", err);
 		}
 
 	} else {
 		cmn_err(CE_WARN, "Failed to add Panic Shutdown "
-			"softintr handler");
+		    "softintr handler");
 	}
 
 	/*
@@ -502,23 +502,23 @@ sbbc_mbox_create(sbbc_softstate_t *softsp)
 	dp_payload_msg.msg_len = sizeof (dp_payload);
 
 	err = ddi_add_softintr(softsp->dip, DDI_SOFTINT_LOW, &dp_softintr_id,
-		NULL, NULL, sbbc_dp_trans_event, NULL);
+	    NULL, NULL, sbbc_dp_trans_event, NULL);
 
 	if (err == DDI_SUCCESS) {
 		err = sbbc_mbox_reg_intr(MBOX_EVENT_DP_ERROR,
-			sbbc_datapath_error_msg_handler, &dp_payload_msg,
-			NULL, &dp_hdlr_lock);
+		    sbbc_datapath_error_msg_handler, &dp_payload_msg,
+		    NULL, &dp_hdlr_lock);
 		err |= sbbc_mbox_reg_intr(MBOX_EVENT_DP_FAULT,
-			sbbc_datapath_fault_msg_handler, &dp_payload_msg,
-			NULL, &dp_hdlr_lock);
+		    sbbc_datapath_fault_msg_handler, &dp_payload_msg,
+		    NULL, &dp_hdlr_lock);
 		if (err != 0) {
 			cmn_err(CE_WARN, "Failed to register Datapath "
-				"error handler. Err=%d", err);
+			    "error handler. Err=%d", err);
 		}
 
 	} else {
 		cmn_err(CE_WARN, "Failed to add Datapath error "
-			"softintr handler");
+		    "softintr handler");
 	}
 
 	/*
@@ -562,14 +562,14 @@ sbbc_mbox_post_reg(sbbc_softstate_t *softsp)
 		while (intr != NULL) {
 			if (!intr->registered) {
 				SGSBBC_DBG_INTR(CE_CONT, "sbbc_mbox_post_reg: "
-					"postreg for msgtype=%x\n", msg_type);
+				    "postreg for msgtype=%x\n", msg_type);
 				if (ddi_add_softintr(softsp->dip,
-					DDI_SOFTINT_HIGH, &intr->sbbc_intr_id,
-					NULL, NULL, intr->sbbc_handler,
-					(caddr_t)intr->sbbc_arg)
-						!= DDI_SUCCESS) {
+				    DDI_SOFTINT_HIGH, &intr->sbbc_intr_id,
+				    NULL, NULL, intr->sbbc_handler,
+				    (caddr_t)intr->sbbc_arg)
+				    != DDI_SUCCESS) {
 					cmn_err(CE_WARN, "Can't add SBBC "
-						"deferred mailbox softint \n");
+					    "deferred mailbox softint \n");
 				} else
 					intr->registered = 1;
 			}
@@ -586,7 +586,7 @@ sbbc_mbox_post_reg(sbbc_softstate_t *softsp)
  */
 int
 sbbc_mbox_reg_intr(uint32_t msg_type, sbbc_intrfunc_t intr_handler,
-		sbbc_msg_t *arg, uint_t *state, kmutex_t *lock)
+    sbbc_msg_t *arg, uint_t *state, kmutex_t *lock)
 {
 	sbbc_intrs_t	*intr, *previntr;
 	int		rc = 0;
@@ -646,16 +646,16 @@ sbbc_mbox_reg_intr(uint32_t msg_type, sbbc_intrfunc_t intr_handler,
 	 */
 	if (master_iosram->iosram_sbbc) {
 		if (ddi_add_softintr(master_iosram->iosram_sbbc->dip,
-			DDI_SOFTINT_HIGH,
-			&intr->sbbc_intr_id, NULL, NULL,
-			intr_handler, (caddr_t)arg) != DDI_SUCCESS) {
+		    DDI_SOFTINT_HIGH,
+		    &intr->sbbc_intr_id, NULL, NULL,
+		    intr_handler, (caddr_t)arg) != DDI_SUCCESS) {
 			cmn_err(CE_WARN, "Can't add SBBC mailbox softint \n");
 			rc = ENXIO;
 		} else
 			intr->registered = 1;
 	} else {
 		SGSBBC_DBG_INTR(CE_CONT, "sbbc_mbox_reg_intr: "
-				"deferring msg=%x registration\n", msg_type);
+		    "deferring msg=%x registration\n", msg_type);
 	}
 
 	mutex_exit(&master_iosram->iosram_lock);
@@ -680,7 +680,7 @@ sbbc_mbox_unreg_intr(uint32_t msg_type, sbbc_intrfunc_t intr_handler)
 	msg_type &= SBBC_MSG_TYPE_MASK;
 
 	if (msg_type >= SBBC_MBOX_MSG_TYPES ||
-		intr_handler == (sbbc_intrfunc_t)NULL) {
+	    intr_handler == (sbbc_intrfunc_t)NULL) {
 
 		return (EINVAL);
 	}
@@ -740,7 +740,7 @@ sbbc_mbox_msgin(caddr_t arg __unused)
 {
 	mutex_enter(&master_mbox->intr_state[MBOX_MSGIN_INTR].mbox_intr_lock);
 	master_mbox->intr_state[MBOX_MSGIN_INTR].mbox_intr_state =
-		SBBC_INTR_RUNNING;
+	    SBBC_INTR_RUNNING;
 	mutex_exit(&master_mbox->intr_state[MBOX_MSGIN_INTR].mbox_intr_lock);
 
 	/*
@@ -767,19 +767,19 @@ sbbc_mbox_msgin(caddr_t arg __unused)
 		(void) iosram_send_intr(SBBC_MAILBOX_SPACE_IN);
 
 		mutex_enter(&master_mbox->intr_state[MBOX_MSGIN_INTR].
-			mbox_intr_lock);
+		    mbox_intr_lock);
 		/*
 		 * Read the inbox one more time to see if new messages
 		 * has come in after we exit the loop.
 		 */
 		if (sbbc_mbox_recv_msg() == 0) {
 			mutex_exit(&master_mbox->intr_state[MBOX_MSGIN_INTR].
-				mbox_intr_lock);
+			    mbox_intr_lock);
 		} else {
 			master_mbox->intr_state[MBOX_MSGIN_INTR].
-				mbox_intr_state = SBBC_INTR_IDLE;
+			    mbox_intr_state = SBBC_INTR_IDLE;
 			mutex_exit(&master_mbox->intr_state[MBOX_MSGIN_INTR].
-				mbox_intr_lock);
+			    mbox_intr_lock);
 			break;
 		}
 	}
@@ -841,7 +841,7 @@ sbbc_mbox_spaceout(caddr_t arg __unused)
  * The main interface will be
  *
  * sbbc_mbox_request_response(sbbc_msg_t *request,
- * 			sbbc_msg_t *response, time_t wait_time)
+ *			sbbc_msg_t *response, time_t wait_time)
  *
  * 1) the client calls request_response
  * 2) a new unique msg ID is assigned for that msg
@@ -881,7 +881,7 @@ sbbc_mbox_spaceout(caddr_t arg __unused)
  */
 int
 sbbc_mbox_request_response(sbbc_msg_t *request,
-		sbbc_msg_t *response, time_t wait_time)
+    sbbc_msg_t *response, time_t wait_time)
 {
 
 	struct sbbc_msg_waiter	*waiter;
@@ -896,9 +896,9 @@ sbbc_mbox_request_response(sbbc_msg_t *request,
 	static fn_t		f = "sbbc_mbox_request_response";
 
 	if ((request == NULL) ||
-		(request->msg_type.type >= SBBC_MBOX_MSG_TYPES) ||
-		((response != NULL) &&
-		(response->msg_type.type >= SBBC_MBOX_MSG_TYPES)))
+	    (request->msg_type.type >= SBBC_MBOX_MSG_TYPES) ||
+	    ((response != NULL) &&
+	    (response->msg_type.type >= SBBC_MBOX_MSG_TYPES)))
 		return (EINVAL);
 
 	msg_type = request->msg_type.type;
@@ -937,7 +937,7 @@ sbbc_mbox_request_response(sbbc_msg_t *request,
 		msg_id = ++(master_mbox->mbox_msg_id);
 
 	SGSBBC_DBG_MBOX("%s: msg_id = 0x%x, msg_len = 0x%x\n",
-		f, msg_id, request->msg_len);
+	    f, msg_id, request->msg_len);
 
 	/*
 	 * A new message can actually grab the lock before the thread
@@ -952,7 +952,7 @@ sbbc_mbox_request_response(sbbc_msg_t *request,
 	while (outbox_busy) {
 
 		clockleft = cv_timedwait(&outbox_queue, &outbox_queue_lock,
-			stop_time);
+		    stop_time);
 
 		SGSBBC_DBG_MBOX("%s: msg_id = 0x%x is woken up\n", f, msg_id);
 
@@ -961,9 +961,9 @@ sbbc_mbox_request_response(sbbc_msg_t *request,
 		 */
 		if (clockleft < 0) {
 			SGSBBC_DBG_MBOX("%s: msg_id = 0x%x has timed out\n",
-				f, msg_id);
+			    f, msg_id);
 			cmn_err(CE_NOTE,
-				"Timed out obtaining SBBC outbox lock");
+			    "Timed out obtaining SBBC outbox lock");
 			request->msg_status = ETIMEDOUT;
 			if (response != NULL)
 				response->msg_status = ETIMEDOUT;
@@ -991,7 +991,7 @@ sbbc_mbox_request_response(sbbc_msg_t *request,
 	 */
 	if (response == NULL) {
 		rc = sbbc_mbox_send_msg(request, flags, msg_id, wait_time,
-			stop_time);
+		    stop_time);
 		SGSBBC_DBG_MBOX("%s: msg_id = 0x%x send rc = %d\n",
 		    f, msg_id, rc);
 
@@ -1072,7 +1072,7 @@ sbbc_mbox_request_response(sbbc_msg_t *request,
 	clockleft = cv_timedwait(&waiter->w_cv, mbox_wait_lock, stop_time);
 
 	SGSBBC_DBG_MBOX("%s: msg_id = 0x%x is woken up for response\n",
-		f, msg_id);
+	    f, msg_id);
 
 	/*
 	 * If we have timed out, set msg_status to ETIMEDOUT,
@@ -1091,16 +1091,16 @@ sbbc_mbox_request_response(sbbc_msg_t *request,
 		 * If we can find the waiter, it has timed out.
 		 */
 		SGSBBC_DBG_MBOX("%s: msg_id = 0x%x has timed out\n",
-			f, msg_id);
+		    f, msg_id);
 		if (mbox_find_waiter(msg_type, msg_id) == NULL) {
 			if (waiter->w_msg->msg_status == EINPROGRESS) {
 				SGSBBC_DBG_MBOX("%s: Waiting for msg_id = 0x%x "
-					"complete.\n", f, msg_id);
+				    "complete.\n", f, msg_id);
 				cv_wait(&waiter->w_cv, mbox_wait_lock);
 			}
 		} else {
 			SGSBBC_DBG_MBOX("%s: setting msg_id = 0x%x "
-				"to ETIMEDOUT\n", f, msg_id);
+			    "to ETIMEDOUT\n", f, msg_id);
 			cmn_err(CE_NOTE, "Timed out waiting for SC response");
 			rc = waiter->w_msg->msg_status = ETIMEDOUT;
 		}
@@ -1135,7 +1135,7 @@ wakeup_next()
 /* ARGSUSED */
 int
 sbbc_mbox_send_msg(sbbc_msg_t *msg, int flags, uint_t msg_id,
-	time_t wait_time, clock_t stop_time)
+    time_t wait_time, clock_t stop_time)
 {
 	struct sbbc_mbox_header	header;
 	struct sbbc_fragment	frag;
@@ -1149,7 +1149,7 @@ sbbc_mbox_send_msg(sbbc_msg_t *msg, int flags, uint_t msg_id,
 	 * First check that the SC has enabled its mailbox
 	 */
 	rc = iosram_read(SBBC_INTR_SC_ENABLED_KEY, 0,
-		(caddr_t)&intr_enabled, sizeof (intr_enabled));
+	    (caddr_t)&intr_enabled, sizeof (intr_enabled));
 
 	if (rc)
 		return (rc);
@@ -1235,8 +1235,8 @@ sbbc_mbox_send_msg(sbbc_msg_t *msg, int flags, uint_t msg_id,
 		}
 
 		SGSBBC_DBG_MBOX("%s: msg_id = 0x%x, bytes_written = 0x%x, "
-			"msg_len = 0x%x\n", f,
-				msg_id, bytes_written, msg->msg_len);
+		    "msg_len = 0x%x\n", f,
+		    msg_id, bytes_written, msg->msg_len);
 	} while ((bytes_written < msg->msg_len) || (rc == ENOSPC));
 
 	/*
@@ -1285,7 +1285,7 @@ sbbc_mbox_recv_msg()
 	 * First check that the OS has enabled its mailbox
 	 */
 	rc = iosram_read(SBBC_SC_INTR_ENABLED_KEY, 0,
-		(caddr_t)&intr_enabled, sizeof (intr_enabled));
+	    (caddr_t)&intr_enabled, sizeof (intr_enabled));
 
 	if (rc) {
 		return (rc);
@@ -1306,7 +1306,7 @@ sbbc_mbox_recv_msg()
 	 * messages
 	 */
 	if ((header.mailboxes[SBBC_INBOX].mbox_consumer ==
-		header.mailboxes[SBBC_INBOX].mbox_producer)) {
+	    header.mailboxes[SBBC_INBOX].mbox_producer)) {
 
 		return (-1);
 	}
@@ -1388,7 +1388,7 @@ sbbc_mbox_recv_msg()
 				if (i == type)
 					continue;
 				if ((waiter = mbox_find_waiter(i, f_id))
-					!= NULL)
+				    != NULL)
 					break;
 			}
 		}
@@ -1406,27 +1406,27 @@ sbbc_mbox_recv_msg()
 			first_hdlr = last_hdlr = type;
 		} else {
 			SGSBBC_DBG_MBOX("%s: f_id = 0x%x, msg_id = 0x%x, "
-				"msg_len = 0x%x\n",
-					f, f_id, waiter->w_id,
-					waiter->w_msg->msg_len);
+			    "msg_len = 0x%x\n",
+			    f, f_id, waiter->w_id,
+			    waiter->w_msg->msg_len);
 
 			rc = mbox_read(&header, &frag, waiter->w_msg);
 
 			SGSBBC_DBG_MBOX("%s: f_id = 0x%x, offset = 0x%x, "
-				"len = 0x%x, total_len = 0x%x\n",
-					f, frag.f_id, frag.f_frag_offset,
-					frag.f_frag_len, frag.f_total_len);
+			    "len = 0x%x, total_len = 0x%x\n",
+			    f, frag.f_id, frag.f_frag_offset,
+			    frag.f_frag_len, frag.f_total_len);
 
 			if (rc || ((frag.f_frag_offset + frag.f_frag_len) ==
-				frag.f_total_len)) {
+			    frag.f_total_len)) {
 				/*
 				 * failed or all the message has been read in
 				 */
 				mutex_enter(mbox_wait_lock);
 				waiter->w_msg->msg_status = (rc == ENOMEM)?
-					rc : frag.f_status;
+				    rc : frag.f_status;
 				SGSBBC_DBG_MBOX("%s: msg_status = %d\n",
-					f, waiter->w_msg->msg_status);
+				    f, waiter->w_msg->msg_status);
 				cv_signal(&waiter->w_cv);
 				mutex_exit(mbox_wait_lock);
 
@@ -1443,13 +1443,13 @@ sbbc_mbox_recv_msg()
 
 				if (master_mbox->mbox_wait_list[type] == NULL) {
 					master_mbox->mbox_wait_list[type] =
-						waiter;
+					    waiter;
 					waiter->w_next = NULL;
 				} else {
 					struct sbbc_msg_waiter	*tmp;
 					tmp = master_mbox->mbox_wait_list[type];
 					master_mbox->mbox_wait_list[type] =
-						waiter;
+					    waiter;
 					waiter->w_next = tmp;
 				}
 				mutex_exit(mbox_wait_lock);
@@ -1473,11 +1473,11 @@ sbbc_mbox_recv_msg()
 
 	/* Allocate space for msg_buf */
 	if (f_frag_len != 0 && (tmpmsg.msg_buf =
-		kmem_alloc(f_frag_len, KM_NOSLEEP)) == NULL) {
+	    kmem_alloc(f_frag_len, KM_NOSLEEP)) == NULL) {
 
 		rc = ENOMEM;
 		cmn_err(CE_WARN, "Can't allocate memory"
-			" for unsolicited messages\n");
+		    " for unsolicited messages\n");
 	} else {
 		/* Save the incoming message in tmpmsg */
 		rc = mbox_read(&header, &frag, &tmpmsg);
@@ -1500,9 +1500,9 @@ sbbc_mbox_recv_msg()
 					if (arg->msg_len >= frag.f_total_len) {
 						if (f_frag_len > 0)
 							bcopy(tmpmsg.msg_buf,
-								arg->msg_buf +
-								f_frag_offset,
-								f_frag_len);
+							    arg->msg_buf +
+							    f_frag_offset,
+							    f_frag_len);
 					} else {
 						arg->msg_status = ENOMEM;
 					}
@@ -1513,10 +1513,10 @@ sbbc_mbox_recv_msg()
 				 * have received the whole message.
 				 */
 				if (f_frag_offset + f_frag_len ==
-					frag.f_total_len) {
+				    frag.f_total_len) {
 
 					ddi_trigger_softintr(
-						intr->sbbc_intr_id);
+					    intr->sbbc_intr_id);
 				}
 				intr = intr->sbbc_intr_next;
 			}
@@ -1543,25 +1543,25 @@ mbox_has_free_space(struct sbbc_mbox_header *header)
 	ASSERT(MUTEX_HELD(&master_mbox->mbox_out->mb_lock));
 
 	if (header->mailboxes[SBBC_OUTBOX].mbox_producer ==
-		header->mailboxes[SBBC_OUTBOX].mbox_consumer) {
+	    header->mailboxes[SBBC_OUTBOX].mbox_consumer) {
 		/*
 		 * mailbox is empty
 		 */
 		space += header->mailboxes[SBBC_OUTBOX].mbox_len -
-			header->mailboxes[SBBC_OUTBOX].mbox_producer;
+		    header->mailboxes[SBBC_OUTBOX].mbox_producer;
 		space +=
-			header->mailboxes[SBBC_OUTBOX].mbox_producer;
+		    header->mailboxes[SBBC_OUTBOX].mbox_producer;
 	} else if (header->mailboxes[SBBC_OUTBOX].mbox_producer >
-		header->mailboxes[SBBC_OUTBOX].mbox_consumer) {
+	    header->mailboxes[SBBC_OUTBOX].mbox_consumer) {
 		space += header->mailboxes[SBBC_OUTBOX].mbox_len -
-			header->mailboxes[SBBC_OUTBOX].mbox_producer;
+		    header->mailboxes[SBBC_OUTBOX].mbox_producer;
 		space += header->mailboxes[SBBC_OUTBOX].mbox_consumer;
 	} else {
 		/*
 		 * mailbox wrapped around
 		 */
 		space += header->mailboxes[SBBC_OUTBOX].mbox_consumer -
-			header->mailboxes[SBBC_OUTBOX].mbox_producer;
+		    header->mailboxes[SBBC_OUTBOX].mbox_producer;
 	}
 
 	/*
@@ -1595,7 +1595,7 @@ mbox_has_free_space(struct sbbc_mbox_header *header)
  */
 static int
 mbox_write(struct sbbc_mbox_header *header,
-	struct sbbc_fragment *frag, sbbc_msg_t *msg)
+    struct sbbc_fragment *frag, sbbc_msg_t *msg)
 {
 	int		bytes_written, bytes_remaining, free_space;
 	int		rc = 0;
@@ -1622,7 +1622,7 @@ mbox_write(struct sbbc_mbox_header *header,
 	frag_header_size = sizeof (struct sbbc_fragment);
 
 	SGSBBC_DBG_MBOX("%s: mbox_consumer = 0x%x, "
-		"mbox_producer = 0x%x\n", f, mbox_consumer, mbox_producer);
+	    "mbox_producer = 0x%x\n", f, mbox_consumer, mbox_producer);
 
 	/*
 	 * Write pointer in SRAM
@@ -1667,7 +1667,7 @@ mbox_write(struct sbbc_mbox_header *header,
 	}
 
 	SGSBBC_DBG_MBOX("%s: space_at_end = 0x%x, space_at_start = 0x%x\n",
-		f, space_at_end, space_at_start);
+	    f, space_at_end, space_at_start);
 
 	free_space = space_at_end + space_at_start;
 
@@ -1687,7 +1687,7 @@ mbox_write(struct sbbc_mbox_header *header,
 	frag->f_frag_len = min(bytes_remaining, free_space - frag_header_size);
 
 	SGSBBC_DBG_MBOX("%s: writing header:sram_dst = 0x%x\n",
-		f, sram_dst);
+	    f, sram_dst);
 
 	/*
 	 * we can write the fragment header and some data
@@ -1695,7 +1695,7 @@ mbox_write(struct sbbc_mbox_header *header,
 	 */
 	if (space_at_end >=  frag_header_size) {
 		rc = iosram_write(SBBC_MAILBOX_KEY, sram_dst, (caddr_t)frag,
-			frag_header_size);
+		    frag_header_size);
 		if (rc)
 			return (rc);
 
@@ -1711,14 +1711,14 @@ mbox_write(struct sbbc_mbox_header *header,
 		/* wraparound */
 		if (space_at_end) {
 			rc = iosram_write(SBBC_MAILBOX_KEY, sram_dst,
-				(caddr_t)frag, space_at_end);
+			    (caddr_t)frag, space_at_end);
 			if (rc)
 				return (rc);
 			sram_dst = (uint32_t)mbox_offset;
 		}
 		rc = iosram_write(SBBC_MAILBOX_KEY, sram_dst,
-			(caddr_t)((caddr_t)frag + space_at_end),
-			(frag_header_size - space_at_end));
+		    (caddr_t)((caddr_t)frag + space_at_end),
+		    (frag_header_size - space_at_end));
 		if (rc)
 			return (rc);
 		sram_dst += frag_header_size - space_at_end;
@@ -1727,7 +1727,7 @@ mbox_write(struct sbbc_mbox_header *header,
 	}
 
 	SGSBBC_DBG_MBOX("%s: space_at_end = 0x%x, space_at_start = 0x%x\n",
-		f, space_at_end, space_at_start);
+	    f, space_at_end, space_at_start);
 
 	/*
 	 * Now the fragment data
@@ -1737,15 +1737,15 @@ mbox_write(struct sbbc_mbox_header *header,
 	bytes_written = 0;
 	if (space_at_end) {
 		SGSBBC_DBG_MBOX("%s: writing data:sram_dst = 0x%x, "
-			"bytes_remaining = 0x%x\n",
-				f, sram_dst, bytes_remaining);
+		    "bytes_remaining = 0x%x\n",
+		    f, sram_dst, bytes_remaining);
 
 		if (space_at_end < bytes_remaining)
 			bytes_written = space_at_end;
 		else
 			bytes_written = bytes_remaining;
 		rc = iosram_write(SBBC_MAILBOX_KEY, sram_dst, src,
-			bytes_written);
+		    bytes_written);
 		if (rc)
 			return (rc);
 
@@ -1762,15 +1762,15 @@ mbox_write(struct sbbc_mbox_header *header,
 
 	if ((bytes_remaining > 0) && space_at_start) {
 		SGSBBC_DBG_MBOX("%s: writing the rest:sram_dst = 0x%x, "
-			"bytes_remaining = 0x%x\n",
-				f, sram_dst, bytes_remaining);
+		    "bytes_remaining = 0x%x\n",
+		    f, sram_dst, bytes_remaining);
 		if (space_at_start < bytes_remaining) {
 			rc = iosram_write(SBBC_MAILBOX_KEY, sram_dst, src,
-				space_at_start);
+			    space_at_start);
 			bytes_written += space_at_start;
 		} else {
 			rc = iosram_write(SBBC_MAILBOX_KEY, sram_dst, src,
-				bytes_remaining);
+			    bytes_remaining);
 			bytes_written += bytes_remaining;
 		}
 		if (rc)
@@ -1788,7 +1788,7 @@ mbox_write(struct sbbc_mbox_header *header,
 	}
 
 	SGSBBC_DBG_MBOX("%s: after writing data:sram_dst = 0x%x, "
-		"bytes_written = 0x%x\n", f, sram_dst, bytes_written);
+	    "bytes_written = 0x%x\n", f, sram_dst, bytes_written);
 
 	header->mailboxes[SBBC_OUTBOX].mbox_producer = sram_dst;
 
@@ -1806,7 +1806,7 @@ mbox_write(struct sbbc_mbox_header *header,
  */
 static int
 mbox_read(struct sbbc_mbox_header *header,
-	struct sbbc_fragment *frag, sbbc_msg_t *msg)
+    struct sbbc_fragment *frag, sbbc_msg_t *msg)
 {
 	int			rc = 0;
 	uint32_t		sram_src, sram_end;
@@ -1880,8 +1880,8 @@ mbox_read(struct sbbc_mbox_header *header,
 	 */
 
 	SGSBBC_DBG_MBOX("%s: mbox_consumer = 0x%x, mbox_producer = 0x%x, "
-		"frag_len = 0x%x\n",
-			f, mbox_consumer, mbox_producer, f_frag_len);
+	    "frag_len = 0x%x\n",
+	    f, mbox_consumer, mbox_producer, f_frag_len);
 
 	if (mbox_producer == mbox_consumer) {
 		bytes_at_end = bytes_at_start = 0;
@@ -1894,7 +1894,7 @@ mbox_read(struct sbbc_mbox_header *header,
 	}
 
 	SGSBBC_DBG_MBOX("%s: bytes_at_end = 0x%x, "
-		"bytes_at_start = 0x%x\n", f, bytes_at_end, bytes_at_start);
+	    "bytes_at_start = 0x%x\n", f, bytes_at_end, bytes_at_start);
 
 	if ((bytes_at_end + bytes_at_start) < frag_total_size) {
 
@@ -1919,11 +1919,11 @@ mbox_read(struct sbbc_mbox_header *header,
 		 */
 		bytes_at_end -= frag_header_size;
 		bytes_to_read = (bytes_at_end >= f_frag_len)?
-			f_frag_len : bytes_at_end;
+		    f_frag_len : bytes_at_end;
 		SGSBBC_DBG_MBOX("%s: reading data: sram_src = 0x%x, "
-			"bytes_to_read = 0x%x\n", f, sram_src, bytes_to_read);
+		    "bytes_to_read = 0x%x\n", f, sram_src, bytes_to_read);
 		rc = iosram_read(SBBC_MAILBOX_KEY, sram_src, msg_buf,
-			bytes_to_read);
+		    bytes_to_read);
 		if (rc) {
 			goto done;
 		}
@@ -1943,9 +1943,9 @@ mbox_read(struct sbbc_mbox_header *header,
 	 */
 	if (bytes_to_read > 0) {
 		SGSBBC_DBG_MBOX("%s: reading the rest: sram_src = 0x%x, "
-			"bytes_to_read = 0x%x\n", f, sram_src, bytes_to_read);
+		    "bytes_to_read = 0x%x\n", f, sram_src, bytes_to_read);
 		rc = iosram_read(SBBC_MAILBOX_KEY, sram_src, msg_buf,
-			bytes_to_read);
+		    bytes_to_read);
 	}
 
 done:
@@ -1977,11 +1977,11 @@ mbox_skip_next_msg(struct sbbc_mbox_header *header)
 	next_msg += frag.f_frag_len;
 	if (next_msg >= header->mailboxes[SBBC_INBOX].mbox_len) {
 		next_msg = (next_msg +
-			header->mailboxes[SBBC_INBOX].mbox_len) %
-			header->mailboxes[SBBC_INBOX].mbox_len;
+		    header->mailboxes[SBBC_INBOX].mbox_len) %
+		    header->mailboxes[SBBC_INBOX].mbox_len;
 	}
 	header->mailboxes[SBBC_INBOX].mbox_consumer =
-		next_msg;
+	    next_msg;
 
 	mbox_update_header(SBBC_INBOX, header);
 
@@ -1996,14 +1996,14 @@ mbox_find_waiter(uint16_t msg_type, uint32_t msg_id)
 
 	prev = NULL;
 	for (waiter = master_mbox->mbox_wait_list[msg_type];
-		waiter != NULL; waiter = waiter->w_next) {
+	    waiter != NULL; waiter = waiter->w_next) {
 
 		if (waiter->w_id == msg_id) {
 			if (prev != NULL) {
 				prev->w_next = waiter->w_next;
 			} else {
 				master_mbox->mbox_wait_list[msg_type] =
-					waiter->w_next;
+				    waiter->w_next;
 			}
 			break;
 		}
@@ -2089,14 +2089,14 @@ mbox_update_header(uint32_t mailbox, struct sbbc_mbox_header *header)
 	case SBBC_INBOX:
 		value = header->mailboxes[SBBC_INBOX].mbox_consumer;
 		offset = (uint32_t)(uintptr_t)
-			(&hd->mailboxes[SBBC_INBOX].mbox_consumer);
+		    (&hd->mailboxes[SBBC_INBOX].mbox_consumer);
 
 		mbox_len = header->mailboxes[SBBC_INBOX].mbox_len;
 		break;
 	case SBBC_OUTBOX:
 		value = header->mailboxes[SBBC_OUTBOX].mbox_producer;
 		offset = (uint32_t)(uintptr_t)
-			(&hd->mailboxes[SBBC_OUTBOX].mbox_producer);
+		    (&hd->mailboxes[SBBC_OUTBOX].mbox_producer);
 		mbox_len = header->mailboxes[SBBC_OUTBOX].mbox_len;
 		break;
 	default:
@@ -2117,7 +2117,7 @@ mbox_update_header(uint32_t mailbox, struct sbbc_mbox_header *header)
 	}
 
 	if (iosram_write(SBBC_MAILBOX_KEY, offset, (caddr_t)&value,
-		sizeof (uint32_t))) {
+	    sizeof (uint32_t))) {
 		cmn_err(CE_PANIC, "Mailbox Corrupt ! \n");
 	}
 
@@ -2138,7 +2138,7 @@ mbox_update_header(uint32_t mailbox, struct sbbc_mbox_header *header)
 
 static int
 mbox_read_frag(struct sbbc_mbox_header *header,
-	struct sbbc_fragment *frag)
+    struct sbbc_fragment *frag)
 {
 	int			rc = 0;
 	uint32_t		sram_src, bytes;
@@ -2149,18 +2149,18 @@ mbox_read_frag(struct sbbc_mbox_header *header,
 	 * read the fragment header for this message
 	 */
 	sram_src = (uint32_t)(header->mailboxes[SBBC_INBOX].mbox_offset +
-		header->mailboxes[SBBC_INBOX].mbox_consumer);
+	    header->mailboxes[SBBC_INBOX].mbox_consumer);
 
 	/*
 	 * wraparound ?
 	 */
 	if ((header->mailboxes[SBBC_INBOX].mbox_consumer +
-		sizeof (struct sbbc_fragment)) >=
-		header->mailboxes[SBBC_INBOX].mbox_len) {
+	    sizeof (struct sbbc_fragment)) >=
+	    header->mailboxes[SBBC_INBOX].mbox_len) {
 
 		dst = (caddr_t)frag;
 		bytes = header->mailboxes[SBBC_INBOX].mbox_len -
-			header->mailboxes[SBBC_INBOX].mbox_consumer;
+		    header->mailboxes[SBBC_INBOX].mbox_consumer;
 
 		if (rc = iosram_read(SBBC_MAILBOX_KEY, sram_src, dst, bytes)) {
 			return (rc);
@@ -2169,11 +2169,11 @@ mbox_read_frag(struct sbbc_mbox_header *header,
 		dst += bytes;
 		sram_src = header->mailboxes[SBBC_INBOX].mbox_offset;
 		bytes = (header->mailboxes[SBBC_INBOX].mbox_consumer +
-			sizeof (struct sbbc_fragment)) %
-			header->mailboxes[SBBC_INBOX].mbox_len;
+		    sizeof (struct sbbc_fragment)) %
+		    header->mailboxes[SBBC_INBOX].mbox_len;
 
 		if (rc = iosram_read(SBBC_MAILBOX_KEY, sram_src,
-			dst, bytes)) {
+		    dst, bytes)) {
 			return (rc);
 		}
 	} else {
@@ -2267,7 +2267,7 @@ sbbc_panic_shutdown_handler(char *arg)
 
 	default:
 		SGSBBC_DBG_EVENT(CE_NOTE, "%s: Unknown payload:%d", f,
-			*payload);
+		    *payload);
 		return (DDI_INTR_UNCLAIMED);
 	}
 
@@ -2467,12 +2467,12 @@ sbbc_dp_trans_event(char *arg)
 
 	cmn_err(CE_NOTE, "%s: msgtype=0x%x\n", f, msgtype);
 	cmn_err(CE_NOTE, "type=0x%x cpuid=0x%x t_value=0x%x\n", dpmsg->type,
-		dpmsg->cpuid, dpmsg->t_value);
+	    dpmsg->cpuid, dpmsg->t_value);
 
 	/* check for valid type */
 	if (dpmsg->type > DP_RP_TYPE) {
 		cmn_err(CE_WARN, "%s: dpmsg type 0x%x invalid\n",
-			f, dpmsg->type);
+		    f, dpmsg->type);
 		return (DDI_INTR_CLAIMED);
 	}
 
@@ -2544,19 +2544,19 @@ sbbc_dp_trans_event(char *arg)
 
 	/* build ereport class name */
 	(void) snprintf(buf, FM_MAX_CLASS, "asic.serengeti.%s.%s-%s",
-		dperrtype[dpmsg->type], dperrtype[dpmsg->type],
-		FM_ERROR_DATAPATH);
+	    dperrtype[dpmsg->type], dperrtype[dpmsg->type],
+	    FM_ERROR_DATAPATH);
 
 	fm_ereport_set(erp, FM_EREPORT_VERSION, buf,
-		fm_ena_generate(0, FM_ENA_FMT1), detector, NULL);
+	    fm_ena_generate(0, FM_ENA_FMT1), detector, NULL);
 
 	/* add payload elements */
 	if (msgtype == MBOX_EVENT_DP_ERROR)
 		fm_payload_set(erp,
-			DP_EREPORT_TYPE, DATA_TYPE_UINT16, DP_ERROR, NULL);
+		    DP_EREPORT_TYPE, DATA_TYPE_UINT16, DP_ERROR, NULL);
 	else
 		fm_payload_set(erp,
-			DP_EREPORT_TYPE, DATA_TYPE_UINT16, DP_FAULT, NULL);
+		    DP_EREPORT_TYPE, DATA_TYPE_UINT16, DP_FAULT, NULL);
 
 	fm_payload_set(erp, DP_TVALUE, DATA_TYPE_UINT32, dpmsg->t_value, NULL);
 
@@ -2640,7 +2640,7 @@ sbbc_mbox_ecc_output(sbbc_ecc_mbox_t *msgp)
 	plat_ecc_msg_hdr_t		*hdr;
 
 	rv = sbbc_mbox_request_response(&msgp->ecc_req, &msgp->ecc_resp,
-		sbbc_mbox_default_timeout);
+	    sbbc_mbox_default_timeout);
 
 	if (rv != 0) {
 		/*
@@ -2764,7 +2764,7 @@ sbbc_mbox_ecc_output(sbbc_ecc_mbox_t *msgp)
 static void
 sbbc_mbox_ecc_output_task(void *msgp)
 {
-	(void)sbbc_mbox_ecc_output(msgp);
+	(void) sbbc_mbox_ecc_output(msgp);
 }
 
 /*
@@ -2804,9 +2804,9 @@ sbbc_mbox_queue_ecc_event(sbbc_ecc_mbox_t *sbbc_ecc_msgp)
 			}
 
 			kmem_free((void *)sbbc_ecc_msgp->ecc_req.msg_buf,
-				(size_t)sbbc_ecc_msgp->ecc_req.msg_len);
+			    (size_t)sbbc_ecc_msgp->ecc_req.msg_len);
 			kmem_free((void *)sbbc_ecc_msgp,
-				sizeof (sbbc_ecc_mbox_t));
+			    sizeof (sbbc_ecc_mbox_t));
 			return;
 		}
 
@@ -2826,14 +2826,14 @@ sbbc_mbox_queue_ecc_event(sbbc_ecc_mbox_t *sbbc_ecc_msgp)
 
 		if (sbbc_ecc_mbox_taskq_errs == 0) {
 			cmn_err(CE_NOTE, "Unable to send ECC event "
-				"message to System Controller");
+			    "message to System Controller");
 		}
 		if (++sbbc_ecc_mbox_taskq_errs >= sbbc_ecc_mbox_err_throttle) {
 			sbbc_ecc_mbox_taskq_errs = 0;
 		}
 
 		kmem_free((void *)sbbc_ecc_msgp->ecc_req.msg_buf,
-				(size_t)sbbc_ecc_msgp->ecc_req.msg_len);
+		    (size_t)sbbc_ecc_msgp->ecc_req.msg_len);
 		kmem_free((void *)sbbc_ecc_msgp, sizeof (sbbc_ecc_mbox_t));
 	}
 }

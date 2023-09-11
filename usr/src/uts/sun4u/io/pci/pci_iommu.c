@@ -260,7 +260,7 @@ config:
 
 void
 iommu_map_pages(iommu_t *iommu_p, ddi_dma_impl_t *mp,
-		dvma_addr_t dvma_pg, size_t npages, size_t pfn_index)
+    dvma_addr_t dvma_pg, size_t npages, size_t pfn_index)
 {
 	int i;
 	dvma_addr_t pg_index = dvma_pg - iommu_p->dvma_base_pg;
@@ -357,7 +357,7 @@ iommu_unmap_pages(iommu_t *iommu_p, dvma_addr_t dvma_pg, uint_t npages)
 
 void
 iommu_remap_pages(iommu_t *iommu_p, ddi_dma_impl_t *mp, dvma_addr_t dvma_pg,
-	size_t npages, size_t pfn_index)
+    size_t npages, size_t pfn_index)
 {
 	iommu_unmap_pages(iommu_p, dvma_pg, npages);
 	iommu_map_pages(iommu_p, mp, dvma_pg, npages, pfn_index);

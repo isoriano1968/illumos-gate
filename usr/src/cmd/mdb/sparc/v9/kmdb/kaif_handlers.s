@@ -173,7 +173,7 @@ kaif_itlb_handler(void)
 	ITLB_STUFF(tte, scr1, scr2, scr3, scr4)
 
 #endif /* sun4v */
-	
+
 /*
  * KAIF_CALL_KDI_VATOTTE
  *
@@ -203,8 +203,8 @@ patch_lbl:							\
 0:	brz	%g1, 1f
 	nop
 
-	/* 
-	 * kdi_vatotte gave us a TTE to use.  Load it up and head back 
+	/*
+	 * kdi_vatotte gave us a TTE to use.  Load it up and head back
 	 * into the world, but first bump a counter.
 	 */
 
@@ -217,7 +217,7 @@ patch_lbl:							\
 	KAIF_DTLB_STUFF(%g1, 1f, %g2, %g3, %g4, %g5)
 	retry
 
-1:	/* 
+1:	/*
 	 * kdi_vatotte didn't give us a tte, which is unfortunate.  We're
 	 * going to need to jump into the debugger so as to allow it to
 	 * handle the trap.  The debugger itself isn't locked into the TLB,
@@ -261,8 +261,8 @@ patch_lbl:							\
 0:	brz	%g1, 1f
 	nop
 
-	/* 
-	 * kdi_vatotte gave us a TTE to use.  Load it up and head back 
+	/*
+	 * kdi_vatotte gave us a TTE to use.  Load it up and head back
 	 * into the world, but first bump a counter.
 	 */
 #ifdef	KMDB_TRAPCOUNT			/* Trap counter.  See top comment */
@@ -274,7 +274,7 @@ patch_lbl:							\
 	KAIF_ITLB_STUFF(%g1, 1f, %g2, %g3, %g4, %g5)
 	retry
 
-1:	/* 
+1:	/*
 	 * kdi_vatotte didn't give us a tte, which is unfortunate.  We're
 	 * going to need to jump into the debugger so as to allow it to
 	 * handle the trap.  The debugger itself isn't locked into the TLB,

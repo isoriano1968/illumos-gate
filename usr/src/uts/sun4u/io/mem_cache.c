@@ -899,7 +899,7 @@ retry_l2_retire:
 /*ARGSUSED*/
 static int
 mem_cache_ioctl(dev_t dev, int cmd, intptr_t arg, int mode, cred_t *credp,
-		int *rvalp)
+    int *rvalp)
 {
 	int	inst;
 	struct mem_cache_softc *softc;

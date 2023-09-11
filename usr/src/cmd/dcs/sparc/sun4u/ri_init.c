@@ -218,7 +218,7 @@ ri_init(int n_apids, char **ap_ids, int flags, ri_hdl_t **hdlp)
 	cfga_list_data_t	*cfga_ldata;
 	apd_t			*apd, *apd_tbl = NULL;
 	int			(*cm_info)(ri_ap_t *, cfga_list_data_t *,
-				    int, rcmd_t *);
+	    int, rcmd_t *);
 	int			rv = RI_SUCCESS;
 	int			cm_info_rv;
 
@@ -578,7 +578,7 @@ static int
 rcm_query_init(rcmd_t *rcm, apd_t apd_tbl[], int napds)
 {
 	apd_t			*apd;
-	int 			i, j;
+	int			i, j;
 	cfga_list_data_t	*cfga_ldata;
 	int			(*cm_rcm_qpass)(cfga_list_data_t *, rcmd_t *);
 #ifdef DEBUG
@@ -782,7 +782,7 @@ mem_cap_request(ri_hdl_t *ri_hdl, rcmd_t *rcm)
 {
 	nvlist_t	*nvl;
 	rcm_info_t	*rcm_info = NULL;
-	long 		newpages;
+	long		newpages;
 	int		rv = 0;
 
 	if (nvlist_alloc(&nvl, NV_UNIQUE_NAME, 0) != 0) {

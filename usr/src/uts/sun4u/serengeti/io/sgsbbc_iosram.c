@@ -104,13 +104,13 @@ sgsbbc_iosram_is_chosen(sbbc_softstate_t *softsp)
 	 * get the full OBP pathname of this node
 	 */
 	if (prom_phandle_to_path((phandle_t)tunnel, chosen_iosram,
-		sizeof (chosen_iosram)) < 0) {
+	    sizeof (chosen_iosram)) < 0) {
 		cmn_err(CE_NOTE, "prom_phandle_to_path(%x) failed\n", tunnel);
 		return (0);
 	}
 
 	SGSBBC_DBG_ALL("sgsbbc_iosram(%d): prom_phandle_to_path(%x) is '%s'\n",
-	softsp->sbbc_instance, nodeid, chosen_iosram);
+	    softsp->sbbc_instance, nodeid, chosen_iosram);
 
 	(void) ddi_pathname(softsp->dip, pn);
 	SGSBBC_DBG_ALL("sgsbbc_iosram(%d): ddi_pathname(%p) is '%s'\n",
@@ -188,10 +188,10 @@ check_iosram_ver(uint16_t version)
 {
 	uint8_t	max_ver = MAX_IOSRAM_TOC_VER;
 	uint8_t	major_ver =
-		(version >> IOSRAM_TOC_VER_SHIFT) & IOSRAM_TOC_VER_MASK;
+	    (version >> IOSRAM_TOC_VER_SHIFT) & IOSRAM_TOC_VER_MASK;
 
 	SGSBBC_DBG_ALL("IOSRAM TOC version: %d.%d\n", major_ver,
-		version & IOSRAM_TOC_VER_MASK);
+	    version & IOSRAM_TOC_VER_MASK);
 	SGSBBC_DBG_ALL("Max supported IOSRAM TOC version: %d\n", max_ver);
 	if (major_ver > max_ver) {
 		panic("Up-rev System Controller version.\n"
@@ -229,7 +229,7 @@ tunnel_init(sbbc_softstate_t *softsp, tunnel_t *new_tunnel)
 	ASSERT(MUTEX_HELD(&master_iosram->iosram_lock));
 
 	if ((softsp == (sbbc_softstate_t *)NULL) ||
-		(new_tunnel == (tunnel_t *)NULL)) {
+	    (new_tunnel == (tunnel_t *)NULL)) {
 
 		return (DDI_FAILURE);
 	}
@@ -239,16 +239,16 @@ tunnel_init(sbbc_softstate_t *softsp, tunnel_t *new_tunnel)
 	attr.devacc_attr_dataorder = DDI_STRICTORDER_ACC;
 
 	SGSBBC_DBG_ALL("map in the IOSRAM TOC at offset %x\n",
-		softsp->sram_toc);
+	    softsp->sram_toc);
 
 	/*
 	 * First map in the TOC, then set up the tunnel
 	 */
 	if (ddi_regs_map_setup(softsp->dip, RNUM_SBBC_REGS,
-		(caddr_t *)&toc,
-		SBBC_SRAM_OFFSET + softsp->sram_toc,
-		sizeof (struct iosram_toc),
-		&attr, &toc_handle) != DDI_SUCCESS) {
+	    (caddr_t *)&toc,
+	    SBBC_SRAM_OFFSET + softsp->sram_toc,
+	    sizeof (struct iosram_toc),
+	    &attr, &toc_handle) != DDI_SUCCESS) {
 			cmn_err(CE_WARN, "sbbc%d: unable to map SRAM "
 			    "registers", ddi_get_instance(softsp->dip));
 			return (DDI_FAILURE);
@@ -271,10 +271,10 @@ tunnel_init(sbbc_softstate_t *softsp, tunnel_t *new_tunnel)
 			 * address
 			 */
 			if (ddi_regs_map_setup(softsp->dip, RNUM_SBBC_REGS,
-				(caddr_t *)&tunnel->base,
-				SBBC_SRAM_OFFSET + toc->iosram_keys[i].offset,
-				toc->iosram_keys[i].size, &attr,
-				&tunnel->reg_handle) != DDI_SUCCESS) {
+			    (caddr_t *)&tunnel->base,
+			    SBBC_SRAM_OFFSET + toc->iosram_keys[i].offset,
+			    toc->iosram_keys[i].size, &attr,
+			    &tunnel->reg_handle) != DDI_SUCCESS) {
 				cmn_err(CE_WARN, "sbbc%d: unable to map SRAM "
 				    "registers", ddi_get_instance(softsp->dip));
 				return (DDI_FAILURE);
@@ -343,7 +343,7 @@ clear_break()
 	intr_in_reason = (uint32_t *)tunnel_key.base;
 	intr_in_handle = tunnel_key.reg_handle;
 	ddi_put32(intr_in_handle, intr_in_reason,
-		ddi_get32(intr_in_handle, intr_in_reason) & ~SBBC_CONSOLE_BRK);
+	    ddi_get32(intr_in_handle, intr_in_reason) & ~SBBC_CONSOLE_BRK);
 }
 
 int
@@ -383,7 +383,7 @@ static int
 iosram_rw(int key, uint32_t offset, caddr_t buf, uint32_t size, int flag)
 {
 	struct	tunnel_key	*tunnel;
-	caddr_t 		sram_src;
+	caddr_t		sram_src;
 
 	/*
 	 * Return right away if there is nothing to read/write.
@@ -423,7 +423,7 @@ iosram_rw(int key, uint32_t offset, caddr_t buf, uint32_t size, int flag)
 		case sizeof (uint32_t):
 		case sizeof (uint64_t):
 			if (IS_P2ALIGNED(sram_src, size) &&
-				IS_P2ALIGNED(buf, size)) {
+			    IS_P2ALIGNED(buf, size)) {
 
 				if (size == sizeof (uint16_t))
 					IOSRAM_GET(tunnel, sram_src, buf, 16);
@@ -436,7 +436,7 @@ iosram_rw(int key, uint32_t offset, caddr_t buf, uint32_t size, int flag)
 			/* FALLTHRU */
 		default:
 			IOSRAM_GETB(tunnel, (uint8_t *)buf,
-				(uint8_t *)sram_src, (size_t)size);
+			    (uint8_t *)sram_src, (size_t)size);
 			break;
 		}
 	} else {
@@ -445,7 +445,7 @@ iosram_rw(int key, uint32_t offset, caddr_t buf, uint32_t size, int flag)
 		case sizeof (uint32_t):
 		case sizeof (uint64_t):
 			if (IS_P2ALIGNED(sram_src, size) &&
-				IS_P2ALIGNED(buf, size)) {
+			    IS_P2ALIGNED(buf, size)) {
 
 				if (size == sizeof (uint16_t))
 					IOSRAM_PUT(tunnel, sram_src, buf, 16);
@@ -458,7 +458,7 @@ iosram_rw(int key, uint32_t offset, caddr_t buf, uint32_t size, int flag)
 			/* FALLTHRU */
 		default:
 			IOSRAM_PUTB(tunnel, (uint8_t *)buf,
-				(uint8_t *)sram_src, (size_t)size);
+			    (uint8_t *)sram_src, (size_t)size);
 			break;
 		}
 	}
@@ -530,7 +530,7 @@ iosram_send_intr(uint32_t intr_num)
 	 * First check the interrupts enabled by the SC
 	 */
 	if ((rc = iosram_read(SBBC_INTR_SC_ENABLED_KEY, 0,
-		(caddr_t)&intr_enabled, sizeof (intr_enabled))) != 0) {
+	    (caddr_t)&intr_enabled, sizeof (intr_enabled))) != 0) {
 
 		goto send_intr_exit;
 	}
@@ -545,7 +545,7 @@ iosram_send_intr(uint32_t intr_num)
 	}
 
 	if ((rc = iosram_read(SBBC_INTR_SC_KEY, 0,
-		(caddr_t)&intr_reason, sizeof (intr_reason))) != 0) {
+	    (caddr_t)&intr_reason, sizeof (intr_reason))) != 0) {
 
 		goto send_intr_exit;
 	}
@@ -561,7 +561,7 @@ iosram_send_intr(uint32_t intr_num)
 	intr_reason |= intr_num;
 
 	if ((rc = iosram_write(SBBC_INTR_SC_KEY, 0,
-		(caddr_t)&intr_reason, sizeof (intr_reason))) != 0) {
+	    (caddr_t)&intr_reason, sizeof (intr_reason))) != 0) {
 
 		goto send_intr_exit;
 	}
@@ -584,7 +584,7 @@ send_intr_exit:
  */
 int
 iosram_reg_intr(uint32_t intr_num, sbbc_intrfunc_t intr_handler,
-		caddr_t arg, uint_t *state, kmutex_t *lock)
+    caddr_t arg, uint_t *state, kmutex_t *lock)
 {
 	sbbc_softstate_t	*softsp;
 	int			rc = 0;
@@ -610,8 +610,8 @@ iosram_reg_intr(uint32_t intr_num, sbbc_intrfunc_t intr_handler,
 	 * Check the parameters
 	 */
 	if ((intr_no < 0) || (intr_no >= SBBC_MAX_INTRS) ||
-		(intr_handler == NULL) || (state == NULL) ||
-		(lock == NULL))
+	    (intr_handler == NULL) || (state == NULL) ||
+	    (lock == NULL))
 		return (EINVAL);
 
 	mutex_enter(&master_iosram->iosram_lock);
@@ -642,11 +642,11 @@ iosram_reg_intr(uint32_t intr_num, sbbc_intrfunc_t intr_handler,
 	 * the sbbc iblock cookie
 	 */
 	mutex_init(lock, NULL, MUTEX_DRIVER,
-		(void *)softsp->iblock);
+	    (void *)softsp->iblock);
 
 	if (ddi_add_softintr(softsp->dip, DDI_SOFTINT_HIGH,
-		&intr->sbbc_intr_id, NULL, NULL,
-		intr_handler, (caddr_t)arg) != DDI_SUCCESS) {
+	    &intr->sbbc_intr_id, NULL, NULL,
+	    intr_handler, (caddr_t)arg) != DDI_SUCCESS) {
 
 		cmn_err(CE_WARN, "Can't add SBBC softint");
 		rc = EAGAIN;
@@ -658,7 +658,7 @@ iosram_reg_intr(uint32_t intr_num, sbbc_intrfunc_t intr_handler,
 	 * interrupt
 	 */
 	if ((rc = iosram_read(SBBC_SC_INTR_ENABLED_KEY, 0,
-		(caddr_t)&intr_enabled, sizeof (intr_enabled))) != 0) {
+	    (caddr_t)&intr_enabled, sizeof (intr_enabled))) != 0) {
 
 		goto reg_intr_exit;
 	}
@@ -666,7 +666,7 @@ iosram_reg_intr(uint32_t intr_num, sbbc_intrfunc_t intr_handler,
 	intr_enabled |= intr_num;
 
 	if ((rc = iosram_write(SBBC_SC_INTR_ENABLED_KEY, 0,
-		(caddr_t)&intr_enabled, sizeof (intr_enabled))) != 0) {
+	    (caddr_t)&intr_enabled, sizeof (intr_enabled))) != 0) {
 
 		goto reg_intr_exit;
 	}
@@ -732,7 +732,7 @@ iosram_unreg_intr(uint32_t intr_num)
 	 * interrupt
 	 */
 	if ((rc = iosram_read(SBBC_SC_INTR_ENABLED_KEY, 0,
-		(caddr_t)&intr_enabled, sizeof (intr_enabled))) != 0) {
+	    (caddr_t)&intr_enabled, sizeof (intr_enabled))) != 0) {
 
 		goto unreg_intr_exit;
 	}
@@ -740,7 +740,7 @@ iosram_unreg_intr(uint32_t intr_num)
 	intr_enabled &= ~intr_num;
 
 	if ((rc = iosram_write(SBBC_SC_INTR_ENABLED_KEY, 0,
-		(caddr_t)&intr_enabled, sizeof (intr_enabled))) != 0) {
+	    (caddr_t)&intr_enabled, sizeof (intr_enabled))) != 0) {
 
 		goto unreg_intr_exit;
 	}
@@ -868,7 +868,7 @@ iosram_switch_tunnel(int instance)
 
 	pdip = ddi_get_parent(to_softsp->dip);
 	if ((portid = ddi_getprop(DDI_DEV_T_ANY, pdip, DDI_PROP_DONTPASS,
-		"portid", -1)) < 0) {
+	    "portid", -1)) < 0) {
 
 		SGSBBC_DBG_ALL("%s: couldn't get portid\n", f);
 		return (DDI_FAILURE);
@@ -930,7 +930,7 @@ iosram_switch_tunnel(int instance)
 		 * If OBP switch is unsuccessful, abort the switch.
 		 */
 		if ((rc = prom_serengeti_tunnel_switch(node, board))
-			!= DDI_SUCCESS) {
+		    != DDI_SUCCESS) {
 
 			/*
 			 * Restart other CPUs.
@@ -1063,13 +1063,13 @@ iosram_switch_intr()
 			ddi_remove_softintr(intr->sbbc_intr_id);
 
 			if (ddi_add_softintr(master_iosram->iosram_sbbc->dip,
-				DDI_SOFTINT_HIGH,
-				&intr->sbbc_intr_id, NULL, NULL,
-				intr->sbbc_handler, intr->sbbc_arg)
-				!= DDI_SUCCESS) {
+			    DDI_SOFTINT_HIGH,
+			    &intr->sbbc_intr_id, NULL, NULL,
+			    intr->sbbc_handler, intr->sbbc_arg)
+			    != DDI_SUCCESS) {
 
 				cmn_err(CE_WARN, "Can't add SBBC softint for "
-					"interrupt %x", intr_no << 1);
+				    "interrupt %x", intr_no << 1);
 				rc = EAGAIN;
 			}
 		}

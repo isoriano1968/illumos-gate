@@ -49,7 +49,7 @@ extern "C" {
 
 #define	LOM_SERIAL_EVENTS_ON	0x100
 #define	LOM_SERIAL_EVENTS_OFF	0x200
-#define	LOM_SERIAL_EVENTS_DEF 	0x300
+#define	LOM_SERIAL_EVENTS_DEF	0x300
 
 typedef struct {
 	int alarm_no;
@@ -145,7 +145,7 @@ typedef struct {
 typedef struct {
 	char    location[MAX_LOCATION_LEN];
 	char	id[MAX_ID_LEN];
-	int 	status;
+	int	status;
 	int	position;
 	char	color[MAX_COLOR_LEN];
 	char	next_id[MAX_ID_LEN];
@@ -154,7 +154,7 @@ typedef struct {
 typedef struct {
 	char    location[MAX_LOCATION_LEN];
 	char	id[MAX_ID_LEN];
-	int 	status;
+	int	status;
 } lom_set_led_t;
 
 #ifdef	__cplusplus

@@ -134,7 +134,7 @@ kaif_resume(int work_required)
 	wrpr	%g0, 1, %tl
 
 	/*
-	 * Restore the MMU primary context.  
+	 * Restore the MMU primary context.
 	 */
 	mov	MMU_PCONTEXT, %g3
 	ldx	[%g6 + KRS_MMU_PCONTEXT], %g4
@@ -147,12 +147,12 @@ kaif_resume(int work_required)
 
 	ldx	[%g5 + KREG_OFF(KREG_PC)], %g4
 	wrpr	%g4, %tpc
-	
+
 	ldx	[%g5 + KREG_OFF(KREG_NPC)], %g4
 	wrpr	%g4, %tnpc
 
 	/*
-	 * If we're here because of the debugger trap (most likely from 
+	 * If we're here because of the debugger trap (most likely from
 	 * kaif_entry), we don't want to jump back to %tpc, since it
 	 * is likely to be the ta that brought us here in the first place.
 	 * We'll test for it here, and we'll leave %xcc untouched until

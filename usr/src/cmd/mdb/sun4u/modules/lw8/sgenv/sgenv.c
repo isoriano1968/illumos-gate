@@ -53,7 +53,7 @@ sgenv_parameters(uintptr_t addr, uint_t flags, int argc, const mdb_arg_t *argv)
 	err = mdb_readvar(&mbox_wait_time, "sgenv_max_mbox_wait_time");
 	if (err != -1) {
 		mdb_printf("sgenv_max_mbox_wait_time    = %d seconds\n",
-			mbox_wait_time);
+		    mbox_wait_time);
 	}
 
 	err = mdb_readvar(&debug_flag, "sgenv_debug");
@@ -97,7 +97,7 @@ sgenv_variables(uintptr_t addr, uint_t flags, int argc, const mdb_arg_t *argv)
 	rv = mdb_readvar(&env_cache_updated, "env_cache_updated");
 	if (rv == sizeof (env_cache_updated)) {
 		mdb_printf("env_cache_updated\t\t= %s\n",
-			(env_cache_updated ? "TRUE": "FALSE"));
+		    (env_cache_updated ? "TRUE": "FALSE"));
 	}
 
 	rv = mdb_readvar(&env_writer_count, "env_writer_count");
@@ -108,7 +108,7 @@ sgenv_variables(uintptr_t addr, uint_t flags, int argc, const mdb_arg_t *argv)
 	rv = mdb_readvar(&env_cache_snapshot_size, "env_cache_snapshot_size");
 	if (rv == sizeof (env_cache_snapshot_size)) {
 		mdb_printf("env_cache_snapshot_size\t\t= %d\n",
-			env_cache_snapshot_size);
+		    env_cache_snapshot_size);
 	}
 
 	mdb_printf("\nBoard info variables:\n");
@@ -116,7 +116,7 @@ sgenv_variables(uintptr_t addr, uint_t flags, int argc, const mdb_arg_t *argv)
 	rv = mdb_readvar(&board_cache_updated, "board_cache_updated");
 	if (rv == sizeof (board_cache_updated)) {
 		mdb_printf("board_cache_updated\t\t= %s\n",
-			(board_cache_updated ? "TRUE": "FALSE"));
+		    (board_cache_updated ? "TRUE": "FALSE"));
 	}
 
 	rv = mdb_readvar(&board_writer_count, "board_writer_count");
@@ -132,7 +132,7 @@ sgenv_variables(uintptr_t addr, uint_t flags, int argc, const mdb_arg_t *argv)
 	rv = mdb_readvar(&board_count_snapshot, "board_count_snapshot");
 	if (rv == sizeof (board_count_snapshot)) {
 		mdb_printf("board_count_snapshot\t\t= %d\n",
-			board_count_snapshot);
+		    board_count_snapshot);
 	}
 
 	mdb_printf("\nError variables:\n");
@@ -163,7 +163,7 @@ sgenv_env_sensor(uintptr_t addr, uint_t flags, int argc, const mdb_arg_t *argv)
 	rv = mdb_vread(&value, sizeof (env_sensor_t), addr);
 	if (rv != sizeof (env_sensor_t)) {
 		mdb_warn("sgenv_env_sensor: Failed read on "
-			"address %ll#r", addr);
+		    "address %ll#r", addr);
 		return (DCMD_ERR);
 	}
 	mdb_printf("---------- struct_env_sensor @ %ll#r ----------\n", addr);

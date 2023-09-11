@@ -77,7 +77,7 @@ typedef struct cnex_ldc {
 	struct cnex_ldc	*next;
 
 	uint64_t	id;
-	ldc_dev_t 	devclass;	/* Device class channel belongs to */
+	ldc_dev_t	devclass;	/* Device class channel belongs to */
 
 	cnex_intr_t	tx;		/* Transmit interrupt */
 	cnex_intr_t	rx;		/* Receive interrupt */
@@ -88,7 +88,7 @@ typedef struct cnex_ldc {
  * Channel nexus soft state pointer
  */
 typedef struct cnex_soft_state {
-	dev_info_t 	*devi;
+	dev_info_t	*devi;
 	uint64_t	cfghdl;		/* cnex config handle */
 	kmutex_t	clist_lock;	/* lock to protect channel list */
 	cnex_ldc_t	*clist;		/* list of registered channels */

@@ -245,7 +245,7 @@ typedef struct vcc_minor {
 /* console port structure */
 typedef struct vcc_port {
 
-	kmutex_t 	lock;		/* protects port */
+	kmutex_t	lock;		/* protects port */
 	kcondvar_t	read_cv;	/* cv to sleep for reads */
 	kcondvar_t	write_cv;	/* cv to sleep for writes */
 

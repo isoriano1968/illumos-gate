@@ -146,7 +146,7 @@ typedef struct sbbc_softstate {
 	struct sbbc_softstate	*next;
 
 	struct chosen_iosram    *iosram; /* back reference */
-	dev_info_t 		*dip;
+	dev_info_t		*dip;
 
 	/*
 	 * Tunnel Info.
@@ -170,8 +170,8 @@ typedef struct sbbc_softstate {
 	 * SBBC Interrupts
 	 */
 	uint_t			inumber;
-	ddi_iblock_cookie_t 	iblock;
-	ddi_idevice_cookie_t 	idevice;
+	ddi_iblock_cookie_t	iblock;
+	ddi_idevice_cookie_t	idevice;
 
 	sbbc_intrs_t		*intr_hdlrs;
 

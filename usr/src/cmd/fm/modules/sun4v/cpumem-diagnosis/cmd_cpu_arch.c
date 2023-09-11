@@ -434,7 +434,8 @@ cmd_cpu_getfrustr(fmd_hdl_t *hdl, cmd_cpu_t *cp)
 }
 
 char *
-cmd_cpu_getpartstr(fmd_hdl_t *hdl, cmd_cpu_t *cp) {
+cmd_cpu_getpartstr(fmd_hdl_t *hdl, cmd_cpu_t *cp)
+{
 	char *partstr;
 	nvlist_t *asru = cp->cpu_asru_nvl;
 
@@ -445,7 +446,8 @@ cmd_cpu_getpartstr(fmd_hdl_t *hdl, cmd_cpu_t *cp) {
 }
 
 char *
-cmd_cpu_getserialstr(fmd_hdl_t *hdl, cmd_cpu_t *cp) {
+cmd_cpu_getserialstr(fmd_hdl_t *hdl, cmd_cpu_t *cp)
+{
 	char *serialstr;
 	nvlist_t *asru = cp->cpu_asru_nvl;
 

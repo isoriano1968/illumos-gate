@@ -68,7 +68,7 @@ cda_dp_retire(fmd_hdl_t *hdl, nvlist_t *nvl, nvlist_t *asru, const char *uuid)
 	if (nvlist_lookup_nvlist_array(asru, FM_FMRI_HC_LIST, &hc_prs,
 	    &hc_nprs) != 0) {
 		fmd_hdl_debug(hdl, "failed to get '%s' from dp fault\n",
-			FM_FMRI_HC_LIST);
+		    FM_FMRI_HC_LIST);
 		return;
 	}
 
@@ -78,7 +78,7 @@ cda_dp_retire(fmd_hdl_t *hdl, nvlist_t *nvl, nvlist_t *asru, const char *uuid)
 
 		if (nvlist_lookup_string(hc_prs[ii], FM_FMRI_HC_ID, &id) != 0) {
 			fmd_hdl_debug(hdl, "dp fault missing '%s'\n",
-			FM_FMRI_HC_ID);
+			    FM_FMRI_HC_ID);
 			cda_stats.bad_flts.fmds_value.ui64++;
 			return;
 		}
@@ -86,7 +86,7 @@ cda_dp_retire(fmd_hdl_t *hdl, nvlist_t *nvl, nvlist_t *asru, const char *uuid)
 		cpuid = atoi(id);
 		if (!cda.cda_cpu_dooffline) {
 			fmd_hdl_debug(hdl, "dp suppressed offline of "
-				"CPU %u\n", cpuid);
+			    "CPU %u\n", cpuid);
 			cda_stats.dp_supp.fmds_value.ui64++;
 			continue;
 		}

@@ -54,9 +54,9 @@ extern "C" {
 #include <pthread.h>
 
 #define	FORWARDING_FAULTS_TO_CONTROL 0	/* not to forward faults to control */
-#define	ASYNC_EVENT_Q_SIZE 	100	/* size of the async event q */
-#define	NUM_OF_ROOT_DOMAINS 	8	/* size of iosvc_list structure array */
-#define	MAXLEN 			0x6000	/* max size of an FMA event */
+#define	ASYNC_EVENT_Q_SIZE	100	/* size of the async event q */
+#define	NUM_OF_ROOT_DOMAINS	8	/* size of iosvc_list structure array */
+#define	MAXLEN			0x6000	/* max size of an FMA event */
 #define	FMD_EVN_TTL		"__ttl"	/* name-value pair for ev_ttl */
 
 typedef enum {
@@ -94,7 +94,7 @@ typedef struct etm_iosvc_q_ele {
 
 
 typedef struct etm_iosvc {
-	char 		ldom_name[MAX_LDOM_NAME];	/* ldom_name */
+	char		ldom_name[MAX_LDOM_NAME];	/* ldom_name */
 	pthread_cond_t	msg_q_cv;	/* nudges send msg func more to send  */
 	pthread_mutex_t	msg_q_lock;	/* protects iosvc msg Q */
 	etm_iosvc_q_ele_t
@@ -125,7 +125,7 @@ typedef struct etm_async_event_ele {
 
 	etm_async_event_type_t	event_type;	/* async event type */
 	ds_hdl_t		ds_hdl;		/* ds handle */
-	char 			ldom_name[MAX_LDOM_NAME];	/* ldom name */
+	char			ldom_name[MAX_LDOM_NAME];	/* ldom name */
 	ds_domain_hdl_t		dhdl;		/* ldom handle */
 
 	struct etm_async_event_ele	*async_event_nextp;

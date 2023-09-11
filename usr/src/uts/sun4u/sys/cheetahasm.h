@@ -222,7 +222,7 @@ extern "C" {
  * CPU logout code.
  *   afar:	input AFAR, not modified
  *   datap:	Ptr to ch_ec_data_t, at end pts just past ch_ec_data_t.
- *   ec_way:	Constant value (way number) 
+ *   ec_way:	Constant value (way number)
  *   scr1:      Scratch
  *   scr2:	Scratch.
  *   scr3:	Scratch.
@@ -301,7 +301,7 @@ extern "C" {
 /*
  * Serrano gets primary AFSR and AFAR.  All bits in the AFSR except
  * the fatal error bits are cleared.  For Serrano, we also save the
- * AFAR2 register. 
+ * AFAR2 register.
  *	datap:	pointer to cpu logout structure.
  *	afar:	returned primary AFAR value.
  *	scr1:	scratch
@@ -318,7 +318,7 @@ extern "C" {
 	sethi	%hh(C_AFSR_FATAL_ERRS), scr1;				\
 	sllx	scr1, 32, scr1;						\
 	bclr	scr1, scr2;	/* Clear fatal error bits here, so */	\
-	stxa	scr2, [%g0]ASI_AFSR; /* they're left as is in AFSR */ 	\
+	stxa	scr2, [%g0]ASI_AFSR; /* they're left as is in AFSR */	\
 	membar	#Sync
 
 /*
@@ -473,7 +473,7 @@ extern "C" {
 	stxa	scr2, [datap + (CH_CLO_DATA + CH_CHD_AFSR)]%asi;	\
 	sethi	%hh(C_AFSR_FATAL_ERRS), scr1;				\
 	sllx	scr1, 32, scr1;						\
-	bclr	scr1, scr2;	/* Clear fatal error bits here, so */ 	\
+	bclr	scr1, scr2;	/* Clear fatal error bits here, so */	\
 	stxa	scr2, [%g0]ASI_AFSR; /* they're left as is in AFSR */	\
 	membar	#Sync;							\
 	GET_CPU_IMPL(scr1);						\
@@ -853,7 +853,7 @@ extern "C" {
 #if defined(JALAPENO) || defined(SERRANO)
 
 /*
- * ASI access to the L2 tag or L2 flush can hang the cpu when interacting 
+ * ASI access to the L2 tag or L2 flush can hang the cpu when interacting
  * with combinations of L2 snoops, victims and stores.
  *
  * A possible workaround is to surround each L2 ASI access with membars
@@ -996,7 +996,7 @@ extern "C" {
  * this macro returns the TLB index for that mapping based on a 512 entry
  * (2-way set associative) TLB. Aaside from the 16 entry fully associative
  * TLBs, all TLBs in Panther are 512 entry, 2-way set associative.
- *  
+ *
  * To find the index, we shift the VA right by 13 + (3 * pg_sz) and then
  * mask out all but the lower 8 bits because:
  *

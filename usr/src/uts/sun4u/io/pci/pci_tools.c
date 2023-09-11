@@ -128,7 +128,7 @@ extern int pci_do_phys_poke(size_t, uint64_t, uint64_t *, int);
  */
 static int
 pcitool_phys_peek(pci_t *pci_p, boolean_t type, size_t size,
-	uint64_t paddr, uint64_t *value_p)
+    uint64_t paddr, uint64_t *value_p)
 {
 	on_trap_data_t otd;
 	int err = DDI_SUCCESS;
@@ -190,7 +190,7 @@ pcitool_phys_peek(pci_t *pci_p, boolean_t type, size_t size,
  */
 static int
 pcitool_phys_poke(pci_t *pci_p, boolean_t type, size_t size,
-	uint64_t paddr, uint64_t value)
+    uint64_t paddr, uint64_t value)
 {
 	on_trap_data_t otd;
 	volatile int err = DDI_SUCCESS;
@@ -554,8 +554,8 @@ pcitool_intr_admn(dev_t dev, void *arg, int cmd, int mode)
  */
 static int
 pcitool_access(pci_t *pci_p, uint64_t phys_addr, uint64_t max_addr,
-	uint64_t *data, uint8_t size, boolean_t write, boolean_t endian,
-	uint32_t *pcitool_status)
+    uint64_t *data, uint8_t size, boolean_t write, boolean_t endian,
+    uint32_t *pcitool_status)
 {
 
 	int rval = SUCCESS;
@@ -721,7 +721,7 @@ pcitool_validate_barnum_bdf(pcitool_reg_t *prg)
 
 static int
 pcitool_get_bar(pci_t *pci_p, pcitool_reg_t *prg, uint64_t config_base_addr,
-	uint64_t config_max_addr, uint64_t *bar, boolean_t *is_io_space)
+    uint64_t config_max_addr, uint64_t *bar, boolean_t *is_io_space)
 {
 
 	uint8_t bar_offset;
@@ -749,7 +749,7 @@ pcitool_get_bar(pci_t *pci_p, pcitool_reg_t *prg, uint64_t config_base_addr,
 	    config_max_addr, bar,
 	    4,		/* 4 bytes. */
 	    B_FALSE,	/* Read */
-	    B_FALSE, 	/* Little endian. */
+	    B_FALSE,	/* Little endian. */
 	    &prg->status);
 	if (rval != SUCCESS)
 		return (rval);
@@ -793,7 +793,7 @@ pcitool_get_bar(pci_t *pci_p, pcitool_reg_t *prg, uint64_t config_base_addr,
 		    config_base_addr + bar_offset + 4, config_max_addr, bar,
 		    4,		/* 4 bytes. */
 		    B_FALSE,	/* Read */
-		    B_FALSE, 	/* Little endian. */
+		    B_FALSE,	/* Little endian. */
 		    &prg->status);
 		if (rval != SUCCESS)
 			return (rval);
@@ -807,7 +807,7 @@ pcitool_get_bar(pci_t *pci_p, pcitool_reg_t *prg, uint64_t config_base_addr,
 
 static int
 pcitool_config_request(pci_t *pci_p, pcitool_reg_t *prg, uint64_t base_addr,
-	uint64_t max_addr, uint8_t size, boolean_t write_flag)
+    uint64_t max_addr, uint8_t size, boolean_t write_flag)
 {
 	int rval;
 	dev_info_t *dip = pci_p->pci_dip;

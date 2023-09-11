@@ -243,7 +243,7 @@ typedef struct {
  */
 #define	NATIVE_TIME_TO_NSEC_SCALE(out, scr1, scr2, shift)		\
 	srlx	out, 32, scr2;		/* check high 32 bits */	\
-/* CSTYLED */ 								\
+/* CSTYLED */								\
 	brz,a,pt scr2, 6f;		/* if clear, 32-bit fast path */\
 	mulx	out, scr1, out;		/* delay: 32-bit fast path */	\
 	sllx	out, shift, out;	/* clear NPT and pre-scale */	\
